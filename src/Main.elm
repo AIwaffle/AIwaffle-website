@@ -170,7 +170,7 @@ view model =
     svg
         [ width model.width
         , height model.height
-        , viewBox 0 0 600 600
+        , viewBox 0 0 model.width model.height
         ]
         (List.map displayLayer model.net)
 
