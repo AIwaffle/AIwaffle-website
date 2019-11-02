@@ -37,6 +37,7 @@ type alias Model =
     , width : Float
     , height : Float
     , nodeRadius : Float
+    , edgeWidth: Float
     }
 
 
@@ -44,24 +45,37 @@ initialModel : Model
 initialModel =
     let
         width_ =
-            600.0
+            1500.0
 
         height_ =
-            600.0
+            900.0
 
         layers_ =
-            [ 4
+            [ 3
             , 5
             , 5
             , 3
-            , 1
+            , 2
             ]
-
-        nodeRadius =
-            40
 
         spacingX =
             width_ / toFloat (List.length layers_ + 1)
+
+        nodeRadius_ =
+            if List.any (\size -> size > 16) layers_ then
+                10
+            else if List.any (\size -> size > 8) layers_ then
+                25
+            else
+                40
+
+        edgeWidth_ =
+            if List.any (\size -> size > 16) layers_ then
+                1
+            else if List.any (\size -> size > 8) layers_ then
+                2
+            else
+                3
 
         createLayer : Int -> List Int -> Int -> Int -> List Node
         createLayer nodeCount layers layerIndex firstLength =
@@ -170,7 +184,8 @@ initialModel =
     in
     { net = connectNodes net_
     , layers = layers_
-    , nodeRadius = nodeRadius
+    , nodeRadius = nodeRadius_
+    , edgeWidth = edgeWidth_
     , width = width_
     , height = height_
     }
@@ -225,7 +240,7 @@ view model =
                         , y1 start.y
                         , x2 end.x
                         , y2 end.y
-                        , strokeWidth 5
+                        , strokeWidth model.edgeWidth
                         , stroke (grey weight)
                         ]
                         []
