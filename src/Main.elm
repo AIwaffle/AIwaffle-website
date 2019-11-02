@@ -33,6 +33,7 @@ type alias Net =
 
 type alias Model =
     { net : Net
+    , layers : List Int
     , width : Float
     , height : Float
     , nodeRadius : Float
@@ -42,14 +43,75 @@ type alias Model =
 initialModel : Model
 initialModel =
     let
-        net_ =
-            [ [ Node 100 300 0.2 [ 0.2, 0.6 ] [] ]
-            , [ Node 300 200 0.238 [ 0.87 ] []
-              , Node 300 400 0.8 [ 0.9 ] []
-              ]
-            , [ Node 500 300 0.6 [] [] ]
+        width_ =
+            600.0
+
+        height_ =
+            600.0
+
+        layers_ =
+            [ 4
+            , 5
+            , 5
+            , 3
+            , 1
             ]
 
+        nodeRadius =
+            40
+
+        spacingX =
+            width_ / toFloat (List.length layers_ + 1)
+
+        createLayer : Int -> List Int -> Int -> Int -> List Node
+        createLayer nodeCount layers layerIndex firstLength =
+            let
+                spacingY =
+                    height_ / toFloat (firstLength + 1)
+
+                -- temporary placeholder values
+                -- fetch these from server
+                activation =
+                    1
+                secondLength =
+                    case List.head (List.drop (layerIndex + 1) layers) of
+                        Nothing ->
+                            0
+
+                        Just length ->
+                            length
+
+                weights =
+                    List.repeat secondLength 1
+
+                x =
+                    toFloat (layerIndex + 1) * spacingX
+
+            in
+            if nodeCount <= 0 then
+                []
+
+            else
+                Node x (spacingY * toFloat nodeCount) activation weights []
+                    :: createLayer (nodeCount - 1) layers layerIndex firstLength
+
+        net_ =
+            -- [ [ Node 100 300 0.2 [ 0.2, 0.6, 0.87, 0.5] [] ]
+            -- , [ Node 300 100 0.238 [ 0.87, 0.5, 0.2, 0.3] []
+            --   , Node 300 300 0.8 [ 0.87, 0.5, 0.2, 0.3] []
+            --   , Node 300 400 0.8 [ 0.87, 0.5, 0.2, 0.3] []
+            --   , Node 300 500 0.8 [ 0.87, 0.5, 0.2, 0.3] []
+            --   ]
+            -- , [ Node 500 300 0.6 [] []
+            --   , Node 500 400 0.6 [] []
+            --   ]
+            -- ]
+            List.indexedMap
+                (\layerIndex firstLength ->
+                    createLayer firstLength layers_ layerIndex firstLength
+                )
+                layers_
+    
         connectNodes : Net -> Net
         connectNodes net =
             let
@@ -107,9 +169,10 @@ initialModel =
                         )
     in
     { net = connectNodes net_
-    , nodeRadius = 40
-    , width = 600
-    , height = 600
+    , layers = layers_
+    , nodeRadius = nodeRadius
+    , width = width_
+    , height = height_
     }
 
 
