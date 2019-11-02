@@ -2,13 +2,12 @@ module Main exposing (main)
 
 import Browser
 import Color
-import Html exposing (Html, button, div, text)
-import Html.Events exposing (onClick)
+import Html exposing (Html)
 import List
 import TypedSvg exposing (circle, g, line, svg)
 import TypedSvg.Attributes exposing (fill, stroke, viewBox)
 import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, strokeWidth, width, x1, x2, y1, y2)
-import TypedSvg.Types exposing (Fill(..), px)
+import TypedSvg.Types exposing (Fill(..))
 
 
 type alias Node =
@@ -34,6 +33,8 @@ type alias Net =
 
 type alias Model =
     { net : Net
+    , width : Float
+    , height : Float
     , nodeRadius : Float
     }
 
@@ -88,7 +89,7 @@ initialModel =
                 net
 
             else
-                [ List.map createEdges
+                List.map createEdges
                     (case firstLayer of
                         Nothing ->
                             []
@@ -96,8 +97,7 @@ initialModel =
                         Just layer ->
                             layer
                     )
-                ]
-                    ++ connectNodes
+                    :: connectNodes
                         (case List.tail net of
                             Nothing ->
                                 []
@@ -108,37 +108,24 @@ initialModel =
     in
     { net = connectNodes net_
     , nodeRadius = 40
+    , width = 600
+    , height = 600
     }
 
 
 type Msg
-    = NewActivation Float
+    = Step Int
 
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        NewActivation f ->
+        Step num ->
             model
 
 
 view : Model -> Html Msg
 view model =
-    {- svg
-        [ width 600
-        , height 600
-        , viewBox 0 0 600 600
-        ]
-        [ circle [ cx 100, cy 300, r 40 ] []
-       , circle [ cx 300, cy 200, r 40 ] []
-       , circle [ cx 300, cy 400, r 40 ] []
-       , circle [ cx 500, cy 300, r 40 ] []
-       , line [x1 100, y1 300, x2 300, y2 200, stroke Color.black, strokeWidth 5 ] []
-       , line [x1 100, y1 300, x2 300, y2 400, stroke Color.black, strokeWidth 5 ] []
-       , line [x1 500, y1 300, x2 300, y2 200, stroke Color.black, strokeWidth 5 ] []
-       , line [x1 500, y1 300, x2 300, y2 400, stroke Color.black, strokeWidth 5 ] []
-       ]
-    -}
     let
         displayLayer : List Node -> Html Msg
         displayLayer layer =
@@ -181,8 +168,8 @@ view model =
                         []
     in
     svg
-        [ width 600
-        , height 600
+        [ width model.width
+        , height model.height
         , viewBox 0 0 600 600
         ]
         (List.map displayLayer model.net)
@@ -191,7 +178,8 @@ view model =
 grey : Float -> Color.Color
 grey scale =
     let
-        value = 1 - scale
+        value =
+            1 - scale
     in
     Color.rgb value value value
 
