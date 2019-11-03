@@ -8,7 +8,7 @@ import TypedSvg exposing (circle, g, line, svg)
 import TypedSvg.Attributes exposing (fill, stroke, viewBox)
 import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, strokeWidth, width, x1, x2, y1, y2)
 import TypedSvg.Types exposing (Fill(..))
-
+import Random
 
 type alias Node =
     { x : Float
@@ -77,16 +77,41 @@ initialModel =
             else
                 3
 
-        createLayer : Int -> List Int -> Int -> Int -> List Node
-        createLayer nodeCount layers layerIndex firstLength =
+        initialSeed_ =
+            Random.initialSeed 47
+
+        generateRandomNumbers : Random.Seed -> Int -> (List Float, Random.Seed)
+        generateRandomNumbers seed times =
+            let 
+                (num, nextSeed) = Random.step (Random.float 0.1 1) seed
+                -- _ = Debug.log "num" num
+            in
+            if times <= 0 then
+                ([], nextSeed)
+            else
+                let
+                    (rests, finalSeed) = generateRandomNumbers nextSeed (times - 1)
+                in
+                (num :: rests, finalSeed)
+
+
+        createLayer : Int -> Random.Seed -> List Int -> Int -> Int -> List Node
+        createLayer nodeCount seed layers layerIndex firstLength =
             let
                 spacingY =
                     height_ / toFloat (firstLength + 1)
 
+                (randomNumbers, nextSeed) =
+                    generateRandomNumbers seed (secondLength + 1)
+                
                 -- temporary placeholder values
                 -- fetch these from server
                 activation =
-                    1
+                    case List.head randomNumbers of
+                        Nothing ->
+                            1
+                        Just num ->
+                            num
                 secondLength =
                     case List.head (List.drop (layerIndex + 1) layers) of
                         Nothing ->
@@ -96,7 +121,11 @@ initialModel =
                             length
 
                 weights =
-                    List.repeat secondLength 1
+                    case List.tail randomNumbers of
+                        Nothing ->
+                            []
+                        Just nums ->
+                            nums
 
                 x =
                     toFloat (layerIndex + 1) * spacingX
@@ -107,7 +136,7 @@ initialModel =
 
             else
                 Node x (spacingY * toFloat nodeCount) activation weights []
-                    :: createLayer (nodeCount - 1) layers layerIndex firstLength
+                    :: createLayer (nodeCount - 1) nextSeed layers layerIndex firstLength
 
         net_ =
             -- [ [ Node 100 300 0.2 [ 0.2, 0.6, 0.87, 0.5] [] ]
@@ -122,7 +151,7 @@ initialModel =
             -- ]
             List.indexedMap
                 (\layerIndex firstLength ->
-                    createLayer firstLength layers_ layerIndex firstLength
+                    createLayer firstLength initialSeed_ layers_ layerIndex firstLength
                 )
                 layers_
     
