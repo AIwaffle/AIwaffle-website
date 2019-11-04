@@ -251,6 +251,8 @@ view model =
                     , r model.nodeRadius
                     , fill
                         (Fill <| grey node.activation)
+                    , stroke Color.black
+                    , strokeWidth model.edgeWidth
                     ]
                     []
                 ]
