@@ -8,6 +8,8 @@ import Random
 import Canvas exposing (..)
 import Canvas.Settings exposing (..)
 import Canvas.Settings.Line exposing (..)
+import Canvas.Settings.Text exposing (..)
+import Round
 
 type alias Node =
     { x : Float
@@ -50,9 +52,10 @@ initialModel =
             700
 
         layers_ =
-            [ 1
-            , 2
-            , 1
+            [ 10
+            , 20
+            , 10
+            , 5
             ]
 
         spacingX =
@@ -234,17 +237,29 @@ view model =
         displayLayer : List Node -> List Renderable
         displayLayer layer =
             flatten2D (List.map displayEdges layer)
-                ++ List.map displayNode layer
+                ++ flatten2D (List.map displayNode layer)
             
 
         displayNode node =
-            shapes
+            [ shapes
                 [ fill (grey node.activation)
                 , stroke Color.black
                 ]
                 [ circle
                     (node.x, node.y) model.nodeRadius
                 ]
+            , text
+                    [ font 
+                        { size = round (model.nodeRadius * 0.8)
+                        , family = "sans-serif"
+                        }
+                    , align Center
+                    , baseLine Middle
+                    , fill (highContract node.activation)
+                    ]
+                    (node.x, node.y)
+                    (Round.round 2 node.activation)
+            ]
 
         displayEdges : Node -> List Renderable
         displayEdges node =
@@ -278,6 +293,9 @@ grey scale =
     in
     Color.rgb value value value
 
+highContract :  Float -> Color.Color
+highContract scale =
+    grey (if scale < 0.5 then 1 else 0 )
 
 main : Program () Model Msg
 main =
