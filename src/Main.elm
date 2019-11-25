@@ -3,6 +3,7 @@ module Main exposing (main)
 import Browser
 import Color
 import Html exposing (Html)
+import Html.Attributes
 import List
 import Random
 import Canvas exposing (..)
@@ -10,6 +11,10 @@ import Canvas.Settings exposing (..)
 import Canvas.Settings.Line exposing (..)
 import Canvas.Settings.Text exposing (..)
 import Round
+import Element as E
+import Element.Input as Input
+import Element.Background as Background
+import Element.Border as Border
 
 type alias Node =
     { x : Float
@@ -39,7 +44,15 @@ type alias Model =
     , height : Int
     , nodeRadius : Float
     , edgeWidth: Float
+    , learningRate: Float
     }
+
+main =
+    Browser.sandbox
+        { init = initialModel
+        , view = view
+        , update = update
+        }
 
 
 initialModel : Model
@@ -52,10 +65,9 @@ initialModel =
             700
 
         layers_ =
-            [ 10
-            , 20
-            , 10
-            , 5
+            [ 2
+            , 3
+            , 2
             ]
 
         spacingX =
@@ -217,22 +229,23 @@ initialModel =
     , edgeWidth = edgeWidth_
     , width = width_
     , height = height_
+    , learningRate = 0.5
     }
 
 
 type Msg
-    = Step Int
+    = AdjustLearningRate Float
 
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        Step num ->
-            model
+        AdjustLearningRate rate ->
+            { model | learningRate = rate }
 
 
-view : Model -> Html Msg
-view model =
+neuralNet : Model -> Html Msg
+neuralNet model =
     let
         displayLayer : List Node -> List Renderable
         displayLayer layer =
@@ -285,6 +298,63 @@ view model =
         (flatten2D (List.map displayLayer model.net))
 
 
+controls : Model -> E.Element Msg
+controls model =
+    Input.slider
+        [ E.height (E.px 10)
+        , E.width (E.px 180)
+        , E.behindContent
+            (E.el
+                [ E.width E.fill
+                , E.height (E.px 10)
+                , E.centerX
+                , Background.color (E.rgb 0.6 0.6 0.6)
+                , Border.rounded 5
+                ]
+                E.none
+            )
+        ]
+        { min = 0
+        , max = 5
+        , step = Nothing
+        , value = model.learningRate
+        , thumb = Input.defaultThumb
+        , label =
+            Input.labelAbove
+                [ E.paddingEach
+                    { top = 0
+                    , bottom = 10
+                    , left = 0
+                    , right = 0
+                    }
+                ]
+                (E.text ("Learning Rate: " ++ Round.round 2 model.learningRate))
+        , onChange = AdjustLearningRate
+        }
+
+view : Model -> Html Msg
+view model =
+    E.layout
+    []
+    <|
+        E.column
+        [ E.width E.fill
+        ]
+        [ center
+          (E.html (neuralNet model))
+        , center
+          (controls model)
+        ]
+
+
+center : E.Element msg -> E.Element msg
+center element =
+    E.el
+        [ E.htmlAttribute (Html.Attributes.style "margin" "auto")
+        ]
+        element
+
+
 grey : Float -> Color.Color
 grey scale =
     let
@@ -296,14 +366,6 @@ grey scale =
 highContract :  Float -> Color.Color
 highContract scale =
     grey (if scale < 0.5 then 1 else 0 )
-
-main : Program () Model Msg
-main =
-    Browser.sandbox
-        { init = initialModel
-        , view = view
-        , update = update
-        }
 
 -- source: https://gist.github.com/maticzav/f0b9177bf59d3efa44815167fd55cdf0
 flatten2D : List (List a) -> List a
