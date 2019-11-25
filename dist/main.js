@@ -4616,6 +4616,24 @@ var $elm$random$Random$initialSeed = function (x) {
 	return $elm$random$Random$next(
 		A2($elm$random$Random$Seed, state2, incr));
 };
+var $elm_community$list_extra$List$Extra$last = function (items) {
+	last:
+	while (true) {
+		if (!items.b) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			if (!items.b.b) {
+				var x = items.a;
+				return $elm$core$Maybe$Just(x);
+			} else {
+				var rest = items.b;
+				var $temp$items = rest;
+				items = $temp$items;
+				continue last;
+			}
+		}
+	}
+};
 var $elm$core$List$reverse = function (list) {
 	return A3($elm$core$List$foldl, $elm$core$List$cons, _List_Nil, list);
 };
@@ -4854,11 +4872,25 @@ var $author$project$Main$initialModel = function () {
 					}
 				}()));
 	};
+	var _v10 = A2(
+		generateRandomNumbers,
+		initialSeed_,
+		function () {
+			var _v11 = $elm_community$list_extra$List$Extra$last(layers_);
+			if (_v11.$ === 'Nothing') {
+				return 0;
+			} else {
+				var n = _v11.a;
+				return n;
+			}
+		}());
+	var losses_ = _v10.a;
 	return {
 		edgeWidth: edgeWidth_,
 		height: height_,
 		layers: layers_,
 		learningRate: 0.5,
+		losses: losses_,
 		net: connectNodes(net_),
 		nodeRadius: nodeRadius_,
 		width: width_
@@ -12520,6 +12552,15 @@ var $joakin$elm_canvas$Canvas$path = F2(
 	function (startingPoint, segments) {
 		return A2($joakin$elm_canvas$Canvas$Internal$Canvas$Path, startingPoint, segments);
 	});
+var $joakin$elm_canvas$Canvas$Internal$Canvas$Rect = F3(
+	function (a, b, c) {
+		return {$: 'Rect', a: a, b: b, c: c};
+	});
+var $joakin$elm_canvas$Canvas$rect = F3(
+	function (pos, width, height) {
+		return A3($joakin$elm_canvas$Canvas$Internal$Canvas$Rect, pos, width, height);
+	});
+var $avh4$elm_color$Color$red = A4($avh4$elm_color$Color$RgbaSpace, 204 / 255, 0 / 255, 0 / 255, 1.0);
 var $joakin$elm_canvas$Canvas$Internal$Canvas$DrawableShapes = function (a) {
 	return {$: 'DrawableShapes', a: a};
 };
@@ -13361,6 +13402,58 @@ var $author$project$Main$neuralNet = function (model) {
 				A2($myrho$elm_round$Round$round, 2, node.activation))
 			]);
 	};
+	var displayLosses = function () {
+		var width = model.nodeRadius * 2;
+		var height = model.nodeRadius * 2;
+		return A3(
+			$elm$core$List$map2,
+			F2(
+				function (node, loss) {
+					return _List_fromArray(
+						[
+							A2(
+							$joakin$elm_canvas$Canvas$shapes,
+							_List_fromArray(
+								[
+									$joakin$elm_canvas$Canvas$Settings$stroke($avh4$elm_color$Color$red),
+									$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(model.edgeWidth)
+								]),
+							_List_fromArray(
+								[
+									A3(
+									$joakin$elm_canvas$Canvas$rect,
+									_Utils_Tuple2(node.x + width, node.y - (height / 2)),
+									width,
+									height)
+								])),
+							A3(
+							$joakin$elm_canvas$Canvas$text,
+							_List_fromArray(
+								[
+									$joakin$elm_canvas$Canvas$Settings$Text$font(
+									{
+										family: 'sans-serif',
+										size: $elm$core$Basics$round(model.nodeRadius * 0.8)
+									}),
+									$joakin$elm_canvas$Canvas$Settings$Text$align($joakin$elm_canvas$Canvas$Settings$Text$Center),
+									$joakin$elm_canvas$Canvas$Settings$Text$baseLine($joakin$elm_canvas$Canvas$Settings$Text$Middle),
+									$joakin$elm_canvas$Canvas$Settings$fill($avh4$elm_color$Color$red)
+								]),
+							_Utils_Tuple2(node.x + ((width * 3) / 2), node.y),
+							A2($myrho$elm_round$Round$round, 2, loss))
+						]);
+				}),
+			function () {
+				var _v1 = $elm_community$list_extra$List$Extra$last(model.net);
+				if (_v1.$ === 'Nothing') {
+					return _List_Nil;
+				} else {
+					var layer = _v1.a;
+					return layer;
+				}
+			}(),
+			model.losses);
+	}();
 	var displayEdge = function (edge) {
 		var start = edge.a.start;
 		var end = edge.a.end;
@@ -13399,8 +13492,10 @@ var $author$project$Main$neuralNet = function (model) {
 		$joakin$elm_canvas$Canvas$toHtml,
 		_Utils_Tuple2(model.width, model.height),
 		_List_Nil,
-		$author$project$Main$flatten2D(
-			A2($elm$core$List$map, displayLayer, model.net)));
+		_Utils_ap(
+			$author$project$Main$flatten2D(
+				A2($elm$core$List$map, displayLayer, model.net)),
+			$author$project$Main$flatten2D(displayLosses)));
 };
 var $author$project$Main$view = function (model) {
 	return A2(

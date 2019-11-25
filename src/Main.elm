@@ -5,6 +5,7 @@ import Color
 import Html exposing (Html)
 import Html.Attributes
 import List
+import List.Extra
 import Random
 import Canvas exposing (..)
 import Canvas.Settings exposing (..)
@@ -45,6 +46,7 @@ type alias Model =
     , nodeRadius : Float
     , edgeWidth: Float
     , learningRate: Float
+    , losses : List Float
     }
 
 main =
@@ -91,6 +93,18 @@ initialModel =
 
         initialSeed_ =
             Random.initialSeed 47
+
+        (losses_, _) =
+            generateRandomNumbers
+            initialSeed_
+            (case List.Extra.last layers_ of
+                Nothing ->
+                    0
+                Just n ->
+                    n
+            )
+        
+        
 
         generateRandomNumbers : Random.Seed -> Int -> (List Float, Random.Seed)
         generateRandomNumbers seed times =
@@ -230,6 +244,7 @@ initialModel =
     , width = width_
     , height = height_
     , learningRate = 0.5
+    , losses = losses_
     }
 
 
@@ -291,11 +306,47 @@ neuralNet model =
                         ]
                     ]
         
-        -- _ = Debug.log "list" (flatten2D (List.map displayLayer model.net))
+        displayLosses : List (List Renderable)
+        displayLosses =
+            let
+                width =
+                    model.nodeRadius * 2
+                height =
+                    model.nodeRadius * 2
+            in
+            List.map2
+            (\node loss ->
+                [ shapes
+                    [ stroke Color.red
+                    , lineWidth model.edgeWidth
+                    ]
+                    [ rect (node.x + width, node.y - height / 2) width height
+                    ]
+                , text
+                    [ font 
+                        { size = round (model.nodeRadius * 0.8)
+                        , family = "sans-serif"
+                        }
+                    , align Center
+                    , baseLine Middle
+                    , fill Color.red
+                    ]
+                    (node.x + width * 3/2, node.y)
+                    (Round.round 2 loss)
+                ]
+            )
+            (case List.Extra.last model.net of
+                Nothing ->
+                    []
+                Just layer ->
+                    layer
+            )
+            model.losses
     in
     Canvas.toHtml ( model.width, model.height )
         []
-        (flatten2D (List.map displayLayer model.net))
+        (flatten2D (List.map displayLayer model.net)
+            ++ flatten2D displayLosses)
 
 
 controls : Model -> E.Element Msg
