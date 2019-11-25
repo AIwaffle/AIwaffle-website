@@ -4,11 +4,10 @@ import Browser
 import Color
 import Html exposing (Html)
 import List
-import TypedSvg exposing (circle, g, line, svg)
-import TypedSvg.Attributes exposing (fill, stroke, viewBox)
-import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, strokeWidth, width, x1, x2, y1, y2)
-import TypedSvg.Types exposing (Fill(..))
 import Random
+import Canvas exposing (..)
+import Canvas.Settings exposing (..)
+import Canvas.Settings.Line exposing (..)
 
 type alias Node =
     { x : Float
@@ -34,8 +33,8 @@ type alias Net =
 type alias Model =
     { net : Net
     , layers : List Int
-    , width : Float
-    , height : Float
+    , width : Int
+    , height : Int
     , nodeRadius : Float
     , edgeWidth: Float
     }
@@ -45,17 +44,15 @@ initialModel : Model
 initialModel =
     let
         width_ =
-            1500.0
+            1300
 
         height_ =
-            900.0
+            700
 
         layers_ =
-            [ 3
-            , 5
-            , 5
-            , 3
+            [ 1
             , 2
+            , 1
             ]
 
         spacingX =
@@ -234,54 +231,43 @@ update msg model =
 view : Model -> Html Msg
 view model =
     let
-        displayLayer : List Node -> Html Msg
+        displayLayer : List Node -> List Renderable
         displayLayer layer =
-            g
-                []
-                (List.map displayEdges layer
-                    ++ List.map displayNode layer
-                )
+            flatten2D (List.map displayEdges layer)
+                ++ List.map displayNode layer
+            
 
         displayNode node =
-            g
-                []
+            shapes
+                [ fill (grey node.activation)
+                , stroke Color.black
+                ]
                 [ circle
-                    [ cx node.x
-                    , cy node.y
-                    , r model.nodeRadius
-                    , fill
-                        (Fill <| grey node.activation)
-                    , stroke Color.black
-                    , strokeWidth model.edgeWidth
-                    ]
-                    []
+                    (node.x, node.y) model.nodeRadius
                 ]
 
+        displayEdges : Node -> List Renderable
         displayEdges node =
-            g
-                []
-                (List.map displayEdge node.edges)
+            List.map displayEdge node.edges
 
-        displayEdge : Edge -> Html Msg
+        displayEdge : Edge -> Renderable
         displayEdge edge =
             case edge of
                 Edge { start, end, weight } ->
-                    line
-                        [ x1 start.x
-                        , y1 start.y
-                        , x2 end.x
-                        , y2 end.y
-                        , strokeWidth model.edgeWidth
-                        , stroke (grey weight)
+                    shapes
+                    [ stroke (grey weight)
+                    , lineWidth model.edgeWidth
+                    ]
+                    [ path (start.x, start.y)
+                        [ lineTo (end.x, end.y)
                         ]
-                        []
+                    ]
+        
+        -- _ = Debug.log "list" (flatten2D (List.map displayLayer model.net))
     in
-    svg
-        [ width model.width
-        , height model.height
-        , viewBox 0 0 model.width model.height
-        ]
-        (List.map displayLayer model.net)
+    Canvas.toHtml ( model.width, model.height )
+        []
+        (flatten2D (List.map displayLayer model.net))
 
 
 grey : Float -> Color.Color
@@ -300,3 +286,8 @@ main =
         , view = view
         , update = update
         }
+
+-- source: https://gist.github.com/maticzav/f0b9177bf59d3efa44815167fd55cdf0
+flatten2D : List (List a) -> List a
+flatten2D list =
+  List.foldr (++) [] list
