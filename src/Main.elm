@@ -183,6 +183,7 @@ initialModel =
 
 type Msg
     = AdjustLearningRate Float
+    | Step Int
 
 
 update : Msg -> Model -> Model
@@ -190,6 +191,8 @@ update msg model =
     case msg of
         AdjustLearningRate rate ->
             { model | learningRate = rate }
+        Step num ->
+            model
 
 
 neuralNet : Model -> Html Msg
@@ -206,7 +209,7 @@ neuralNet model =
 
         displayNode node =
             [ shapes
-                [ fill (grey node.activation)
+                [ fill (greyScale node.activation)
                 , stroke Color.black
                 ]
                 [ circle
@@ -238,7 +241,7 @@ neuralNet model =
         displayEdge : Node -> Node -> Float -> Renderable
         displayEdge start end weight =
             shapes
-            [ stroke (grey weight)
+            [ stroke (greyScale weight)
             , lineWidth model.edgeWidth
             ]
             [ path (start.x, start.y)
@@ -305,7 +308,12 @@ neuralNet model =
 
 controls : Model -> E.Element Msg
 controls model =
-    learningRateControl model
+    E.row
+    [ E.spacing 20   
+    ]
+    [ learningRateControl model
+    , stepControl model
+    ]
 
 
 learningRateControl : Model -> E.Element Msg
@@ -318,7 +326,7 @@ learningRateControl model =
                 [ E.width E.fill
                 , E.height (E.px 10)
                 , E.centerX
-                , Background.color (E.rgb 0.6 0.6 0.6)
+                , Background.color grey
                 , Border.rounded 5
                 ]
                 E.none
@@ -340,6 +348,20 @@ learningRateControl model =
                 ]
                 (E.text ("Learning Rate: " ++ Round.round 2 model.learningRate))
         , onChange = AdjustLearningRate
+        }
+
+
+stepControl : Model -> E.Element Msg
+stepControl model =
+    Input.button
+        [ Background.color lightGrey
+        , E.mouseOver
+            [ Background.color grey ]
+        , E.padding 10
+        , Border.rounded 5
+        ]
+        { onPress = Just (Step 1)
+        , label = E.text "Move 1 Step"
         }
 
 
@@ -366,8 +388,20 @@ center element =
         element
 
 
-grey : Float -> Color.Color
-grey scale =
+lightGrey : E.Color
+lightGrey = E.rgb 0.8 0.8 0.8
+
+
+grey : E.Color
+grey = E.rgb 0.6 0.6 0.6
+
+
+darkGrey : E.Color
+darkGrey = E.rgb 0.4 0.4 0.4
+
+
+greyScale : Float -> Color.Color
+greyScale scale =
     let
         value =
             1 - scale
@@ -376,7 +410,7 @@ grey scale =
 
 highContract :  Float -> Color.Color
 highContract scale =
-    grey (if scale < 0.5 then 1 else 0 )
+    greyScale (if scale < 0.5 then 1 else 0 )
 
 -- source: https://gist.github.com/maticzav/f0b9177bf59d3efa44815167fd55cdf0
 flatten2D : List (List a) -> List a
