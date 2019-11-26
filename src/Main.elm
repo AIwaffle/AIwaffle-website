@@ -22,20 +22,15 @@ type alias Node =
     , y : Float
     , activation : Float
     , weights : List Float
-    , edges : List Edge
     }
 
 
-type Edge
-    = Edge
-        { start : Node
-        , end : Node
-        , weight : Float
-        }
+type alias Layer =
+    List Node
 
 
 type alias Net =
-    List (List Node)
+    List Layer
 
 
 type alias Model =
@@ -127,8 +122,9 @@ initialModel =
                 spacingY =
                     height_ / toFloat (firstLength + 1)
 
+                -- add 1 to prevLength for the node's activation in addition to weights
                 (randomNumbers, nextSeed) =
-                    generateRandomNumbers seed (secondLength + 1)
+                    generateRandomNumbers seed (prevLength + 1)
                 
                 -- temporary placeholder values
                 -- fetch these from server
@@ -138,13 +134,15 @@ initialModel =
                             1
                         Just num ->
                             num
-                secondLength =
-                    case List.head (List.drop (layerIndex + 1) layers) of
+                prevLength =
+                    case List.head (List.drop (layerIndex - 1) layers) of
                         Nothing ->
                             0
 
                         Just length ->
                             length
+
+                _ = Debug.log "prevLength" prevLength
 
                 weights =
                     case List.tail randomNumbers of
@@ -161,83 +159,18 @@ initialModel =
                 []
 
             else
-                Node x (spacingY * toFloat nodeCount) activation weights []
+                Node x (spacingY * toFloat nodeCount) activation weights
                     :: createLayer (nodeCount - 1) nextSeed layers layerIndex firstLength
 
         net_ =
-            -- [ [ Node 100 300 0.2 [ 0.2, 0.6, 0.87, 0.5] [] ]
-            -- , [ Node 300 100 0.238 [ 0.87, 0.5, 0.2, 0.3] []
-            --   , Node 300 300 0.8 [ 0.87, 0.5, 0.2, 0.3] []
-            --   , Node 300 400 0.8 [ 0.87, 0.5, 0.2, 0.3] []
-            --   , Node 300 500 0.8 [ 0.87, 0.5, 0.2, 0.3] []
-            --   ]
-            -- , [ Node 500 300 0.6 [] []
-            --   , Node 500 400 0.6 [] []
-            --   ]
-            -- ]
             List.indexedMap
                 (\layerIndex firstLength ->
                     createLayer firstLength initialSeed_ layers_ layerIndex firstLength
                 )
                 layers_
     
-        connectNodes : Net -> Net
-        connectNodes net =
-            let
-                firstLayer =
-                    List.head net
-
-                secondLayer =
-                    List.head
-                        (case List.tail net of
-                            Nothing ->
-                                []
-
-                            Just nodes ->
-                                nodes
-                        )
-
-                connect : Node -> Float -> Node -> Edge
-                connect start weight end =
-                    Edge
-                        { start = start
-                        , end = end
-                        , weight = weight
-                        }
-
-                createEdges : Node -> Node
-                createEdges start =
-                    case secondLayer of
-                        Nothing ->
-                            start
-
-                        Just layer ->
-                            { start
-                                | edges = List.map2 (connect start) start.weights layer
-                            }
-            in
-            if List.length net <= 1 then
-                net
-
-            else
-                List.map createEdges
-                    (case firstLayer of
-                        Nothing ->
-                            []
-
-                        Just layer ->
-                            layer
-                    )
-                    :: connectNodes
-                        (case List.tail net of
-                            Nothing ->
-                                []
-
-                            Just tail ->
-                                tail
-                        )
     in
-    { net = connectNodes net_
+    { net = net_
     , layers = layers_
     , nodeRadius = nodeRadius_
     , edgeWidth = edgeWidth_
@@ -262,10 +195,13 @@ update msg model =
 neuralNet : Model -> Html Msg
 neuralNet model =
     let
-        displayLayer : List Node -> List Renderable
-        displayLayer layer =
-            flatten2D (List.map displayEdges layer)
-                ++ flatten2D (List.map displayNode layer)
+        displayLayerEdges : Layer -> Layer -> List Renderable
+        displayLayerEdges prevLayer currLayer =
+            flatten2D (List.map (displayEdges prevLayer) currLayer)
+
+        displayLayerNodes : Layer -> Layer -> List Renderable
+        displayLayerNodes prevLayer currLayer =
+            flatten2D (List.map displayNode currLayer)
             
 
         displayNode node =
@@ -289,23 +225,28 @@ neuralNet model =
                     (Round.round 2 node.activation)
             ]
 
-        displayEdges : Node -> List Renderable
-        displayEdges node =
-            List.map displayEdge node.edges
+        displayEdges : Layer -> Node -> List Renderable
+        displayEdges prevLayer node =
+            let
+                _ = Debug.log "prevLayer" prevLayer
+            in
+            List.map2
+                (displayEdge node)
+                prevLayer
+                node.weights
 
-        displayEdge : Edge -> Renderable
-        displayEdge edge =
-            case edge of
-                Edge { start, end, weight } ->
-                    shapes
-                    [ stroke (grey weight)
-                    , lineWidth model.edgeWidth
-                    ]
-                    [ path (start.x, start.y)
-                        [ lineTo (end.x, end.y)
-                        ]
-                    ]
+        displayEdge : Node -> Node -> Float -> Renderable
+        displayEdge start end weight =
+            shapes
+            [ stroke (grey weight)
+            , lineWidth model.edgeWidth
+            ]
+            [ path (start.x, start.y)
+                [ lineTo (end.x, end.y)
+                ]
+            ]
         
+
         displayLosses : List (List Renderable)
         displayLosses =
             let
@@ -342,11 +283,24 @@ neuralNet model =
                     layer
             )
             model.losses
+        
+        displayLayers func =
+            flatten2D (List.map2 func
+            (case List.Extra.init model.net of
+                Just init ->
+                    [] :: init
+                Nothing ->
+                    [[]]
+            )
+            model.net
+            )
+
     in
     Canvas.toHtml ( model.width, model.height )
         []
-        (flatten2D (List.map displayLayer model.net)
-            ++ flatten2D displayLosses)
+        (displayLayers displayLayerEdges
+        ++ displayLayers displayLayerNodes
+        ++ flatten2D displayLosses)
 
 
 controls : Model -> E.Element Msg
