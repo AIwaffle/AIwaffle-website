@@ -12033,7 +12033,7 @@ var $mdgriffith$elm_ui$Element$Input$slider = F2(
 var $mdgriffith$elm_ui$Element$text = function (content) {
 	return $mdgriffith$elm_ui$Internal$Model$Text(content);
 };
-var $author$project$Main$controls = function (model) {
+var $author$project$Main$learningRateControl = function (model) {
 	return A2(
 		$mdgriffith$elm_ui$Element$Input$slider,
 		_List_fromArray(
@@ -12074,6 +12074,9 @@ var $author$project$Main$controls = function (model) {
 			thumb: $mdgriffith$elm_ui$Element$Input$defaultThumb,
 			value: model.learningRate
 		});
+};
+var $author$project$Main$controls = function (model) {
+	return $author$project$Main$learningRateControl(model);
 };
 var $elm$core$Basics$always = F2(
 	function (a, _v0) {

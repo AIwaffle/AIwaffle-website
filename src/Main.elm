@@ -305,6 +305,11 @@ neuralNet model =
 
 controls : Model -> E.Element Msg
 controls model =
+    learningRateControl model
+
+
+learningRateControl : Model -> E.Element Msg
+learningRateControl model =
     Input.slider
         [ E.height (E.px 10)
         , E.width (E.px 180)
@@ -336,6 +341,7 @@ controls model =
                 (E.text ("Learning Rate: " ++ Round.round 2 model.learningRate))
         , onChange = AdjustLearningRate
         }
+
 
 view : Model -> Html Msg
 view model =
