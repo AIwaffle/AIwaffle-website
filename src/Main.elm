@@ -72,6 +72,10 @@ initialModel =
             , 3
             , 2
             ]
+            -- [ 3
+            -- , 5
+            -- , 3
+            -- ]
             -- [ 10
             -- , 20
             -- , 20
@@ -256,6 +260,11 @@ neuralNet model =
             || (nodeLayerIndex == currentLayerIndex && nodeIndex <= currentIndex)
 
 
+        isCurrentNode : Node -> Position -> Bool
+        isCurrentNode node currentPosition =
+            node.pos == currentPosition
+
+
         displayNode node =
             [ shapes
                 [ fill
@@ -307,7 +316,12 @@ neuralNet model =
                 else
                     greyScale weight
                 )
-            , lineWidth model.edgeWidth
+            , lineWidth
+                (if isCurrentNode start model.currentPosition then
+                    model.edgeWidth * 2
+                else
+                    model.edgeWidth
+                )
             ]
             [ path (start.x, start.y)
                 [ lineTo (end.x, end.y)
