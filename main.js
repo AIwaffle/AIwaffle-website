@@ -13660,6 +13660,7 @@ var $joakin$elm_canvas$Canvas$toHtml = F3(
 			attrs,
 			entities);
 	});
+var $avh4$elm_color$Color$white = A4($avh4$elm_color$Color$RgbaSpace, 255 / 255, 255 / 255, 255 / 255, 1.0);
 var $avh4$elm_color$Color$yellow = A4($avh4$elm_color$Color$RgbaSpace, 237 / 255, 212 / 255, 0 / 255, 1.0);
 var $author$project$Main$neuralNet = function (model) {
 	var isVisitedNode = F2(
@@ -13669,6 +13670,10 @@ var $author$project$Main$neuralNet = function (model) {
 			var currentLayerIndex = currentPosition.a;
 			var currentIndex = currentPosition.b;
 			return (_Utils_cmp(nodeLayerIndex, currentLayerIndex) < 0) || (_Utils_eq(nodeLayerIndex, currentLayerIndex) && (_Utils_cmp(nodeIndex, currentIndex) < 1));
+		});
+	var isCurrentNode = F2(
+		function (node, currentPosition) {
+			return _Utils_eq(node.pos, currentPosition);
 		});
 	var displayNode = function (node) {
 		return _List_fromArray(
@@ -13790,7 +13795,8 @@ var $author$project$Main$neuralNet = function (model) {
 					[
 						$joakin$elm_canvas$Canvas$Settings$stroke(
 						A2(isVisitedNode, start, model.currentPosition) ? $author$project$Main$greenScale(weight) : $author$project$Main$greyScale(weight)),
-						$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(model.edgeWidth)
+						$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(
+						A2(isCurrentNode, start, model.currentPosition) ? (model.edgeWidth * 2) : model.edgeWidth)
 					]),
 				_List_fromArray(
 					[
@@ -13821,15 +13827,34 @@ var $author$project$Main$neuralNet = function (model) {
 					displayEdges(prevLayer),
 					currLayer));
 		});
+	var clearBackground = _List_fromArray(
+		[
+			A2(
+			$joakin$elm_canvas$Canvas$shapes,
+			_List_fromArray(
+				[
+					$joakin$elm_canvas$Canvas$Settings$fill($avh4$elm_color$Color$white)
+				]),
+			_List_fromArray(
+				[
+					A3(
+					$joakin$elm_canvas$Canvas$rect,
+					_Utils_Tuple2(0, 0),
+					model.width,
+					model.height)
+				]))
+		]);
 	return A3(
 		$joakin$elm_canvas$Canvas$toHtml,
 		_Utils_Tuple2(model.width, model.height),
 		_List_Nil,
 		_Utils_ap(
-			displayLayers(displayLayerEdges),
+			clearBackground,
 			_Utils_ap(
-				displayLayers(displayLayerNodes),
-				$author$project$Main$flatten2D(displayLosses))));
+				displayLayers(displayLayerEdges),
+				_Utils_ap(
+					displayLayers(displayLayerNodes),
+					$author$project$Main$flatten2D(displayLosses)))));
 };
 var $author$project$Main$view = function (model) {
 	return A2(
