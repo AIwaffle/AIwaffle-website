@@ -183,7 +183,7 @@ initialModel =
 
 type Msg
     = AdjustLearningRate Float
-    | Step Int
+    | MoveOneStep
 
 
 update : Msg -> Model -> Model
@@ -191,7 +191,7 @@ update msg model =
     case msg of
         AdjustLearningRate rate ->
             { model | learningRate = rate }
-        Step num ->
+        MoveOneStep ->
             model
 
 
@@ -360,7 +360,7 @@ stepControl model =
         , E.padding 10
         , Border.rounded 5
         ]
-        { onPress = Just (Step 1)
+        { onPress = Just (MoveOneStep)
         , label = E.text "Move 1 Step"
         }
 
