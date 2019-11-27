@@ -4427,11 +4427,6 @@ var $elm$core$Set$toList = function (_v0) {
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
-var $author$project$Main$Node = F5(
-	function (x, y, pos, activation, weights) {
-		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
-	});
-var $elm$core$Basics$add = _Basics_add;
 var $elm$core$Basics$False = {$: 'False'};
 var $elm$core$Basics$True = {$: 'True'};
 var $elm$core$List$any = F2(
@@ -4455,6 +4450,11 @@ var $elm$core$List$any = F2(
 			}
 		}
 	});
+var $author$project$Main$Node = F5(
+	function (x, y, pos, activation, weights) {
+		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
+	});
+var $elm$core$Basics$add = _Basics_add;
 var $elm$core$Basics$le = _Utils_le;
 var $elm$core$Basics$sub = _Basics_sub;
 var $elm$core$List$drop = F2(
@@ -4528,7 +4528,6 @@ var $elm$random$Random$float = F2(
 					$elm$random$Random$next(seed1));
 			});
 	});
-var $elm$core$Basics$gt = _Utils_gt;
 var $elm$core$Maybe$Just = function (a) {
 	return {$: 'Just', a: a};
 };
@@ -4631,7 +4630,6 @@ var $elm_community$list_extra$List$Extra$last = function (items) {
 		}
 	}
 };
-var $elm$core$Debug$log = _Debug_log;
 var $elm$random$Random$step = F2(
 	function (_v0, seed) {
 		var generator = _v0.a;
@@ -4646,6 +4644,98 @@ var $elm$core$List$tail = function (list) {
 		return $elm$core$Maybe$Nothing;
 	}
 };
+var $author$project$Main$generateRandomNet = F3(
+	function (layers, height, width) {
+		var spacingX = width / ($elm$core$List$length(layers) + 1);
+		var initialSeed = $elm$random$Random$initialSeed(47);
+		var generateRandomNumbers = F2(
+			function (seed, times) {
+				var _v0 = A2(
+					$elm$random$Random$step,
+					A2($elm$random$Random$float, 0.1, 1),
+					seed);
+				var num = _v0.a;
+				var nextSeed = _v0.b;
+				if (times <= 0) {
+					return _Utils_Tuple2(_List_Nil, nextSeed);
+				} else {
+					var _v1 = A2(generateRandomNumbers, nextSeed, times - 1);
+					var rests = _v1.a;
+					var finalSeed = _v1.b;
+					return _Utils_Tuple2(
+						A2($elm$core$List$cons, num, rests),
+						finalSeed);
+				}
+			});
+		var createLayer = F4(
+			function (nodeCount, seed, layerIndex, firstLength) {
+				var x = (layerIndex + 1) * spacingX;
+				var spacingY = height / (firstLength + 1);
+				var prevLength = function () {
+					var _v5 = $elm$core$List$head(
+						A2($elm$core$List$drop, layerIndex - 1, layers));
+					if (_v5.$ === 'Nothing') {
+						return 0;
+					} else {
+						var length = _v5.a;
+						return length;
+					}
+				}();
+				var _v2 = A2(generateRandomNumbers, seed, prevLength + 1);
+				var randomNumbers = _v2.a;
+				var nextSeed = _v2.b;
+				var activation = function () {
+					var _v4 = $elm$core$List$head(randomNumbers);
+					if (_v4.$ === 'Nothing') {
+						return 1;
+					} else {
+						var num = _v4.a;
+						return num;
+					}
+				}();
+				var weights = function () {
+					var _v3 = $elm$core$List$tail(randomNumbers);
+					if (_v3.$ === 'Nothing') {
+						return _List_Nil;
+					} else {
+						var nums = _v3.a;
+						return nums;
+					}
+				}();
+				return (nodeCount <= 0) ? _List_Nil : A2(
+					$elm$core$List$cons,
+					A5(
+						$author$project$Main$Node,
+						x,
+						spacingY * nodeCount,
+						_Utils_Tuple2(layerIndex, nodeCount),
+						activation,
+						weights),
+					A4(createLayer, nodeCount - 1, nextSeed, layerIndex, firstLength));
+			});
+		var net = A2(
+			$elm$core$List$indexedMap,
+			F2(
+				function (layerIndex, firstLength) {
+					return A4(createLayer, firstLength, initialSeed, layerIndex, firstLength);
+				}),
+			layers);
+		var _v6 = A2(
+			generateRandomNumbers,
+			initialSeed,
+			function () {
+				var _v7 = $elm_community$list_extra$List$Extra$last(layers);
+				if (_v7.$ === 'Nothing') {
+					return 0;
+				} else {
+					var n = _v7.a;
+					return n;
+				}
+			}());
+		var losses = _v6.a;
+		return _Utils_Tuple2(net, losses);
+	});
+var $elm$core$Basics$gt = _Utils_gt;
 var $author$project$Main$initialModel = function () {
 	var width_ = 1300;
 	var layers_ = _List_fromArray(
@@ -4661,28 +4751,7 @@ var $author$project$Main$initialModel = function () {
 			return size > 8;
 		},
 		layers_) ? 25 : 40);
-	var spacingX = width_ / ($elm$core$List$length(layers_) + 1);
-	var initialSeed_ = $elm$random$Random$initialSeed(47);
 	var height_ = 700;
-	var generateRandomNumbers = F2(
-		function (seed, times) {
-			var _v0 = A2(
-				$elm$random$Random$step,
-				A2($elm$random$Random$float, 0.1, 1),
-				seed);
-			var num = _v0.a;
-			var nextSeed = _v0.b;
-			if (times <= 0) {
-				return _Utils_Tuple2(_List_Nil, nextSeed);
-			} else {
-				var _v1 = A2(generateRandomNumbers, nextSeed, times - 1);
-				var rests = _v1.a;
-				var finalSeed = _v1.b;
-				return _Utils_Tuple2(
-					A2($elm$core$List$cons, num, rests),
-					finalSeed);
-			}
-		});
 	var edgeWidth_ = A2(
 		$elm$core$List$any,
 		function (size) {
@@ -4694,73 +4763,9 @@ var $author$project$Main$initialModel = function () {
 			return size > 8;
 		},
 		layers_) ? 2 : 3);
-	var createLayer = F5(
-		function (nodeCount, seed, layers, layerIndex, firstLength) {
-			var x = (layerIndex + 1) * spacingX;
-			var spacingY = height_ / (firstLength + 1);
-			var prevLength = function () {
-				var _v6 = $elm$core$List$head(
-					A2($elm$core$List$drop, layerIndex - 1, layers));
-				if (_v6.$ === 'Nothing') {
-					return 0;
-				} else {
-					var length = _v6.a;
-					return length;
-				}
-			}();
-			var _v2 = A2(generateRandomNumbers, seed, prevLength + 1);
-			var randomNumbers = _v2.a;
-			var nextSeed = _v2.b;
-			var activation = function () {
-				var _v5 = $elm$core$List$head(randomNumbers);
-				if (_v5.$ === 'Nothing') {
-					return 1;
-				} else {
-					var num = _v5.a;
-					return num;
-				}
-			}();
-			var weights = function () {
-				var _v4 = $elm$core$List$tail(randomNumbers);
-				if (_v4.$ === 'Nothing') {
-					return _List_Nil;
-				} else {
-					var nums = _v4.a;
-					return nums;
-				}
-			}();
-			var _v3 = A2($elm$core$Debug$log, 'prevLength', prevLength);
-			return (nodeCount <= 0) ? _List_Nil : A2(
-				$elm$core$List$cons,
-				A5(
-					$author$project$Main$Node,
-					x,
-					spacingY * nodeCount,
-					_Utils_Tuple2(layerIndex, nodeCount),
-					activation,
-					weights),
-				A5(createLayer, nodeCount - 1, nextSeed, layers, layerIndex, firstLength));
-		});
-	var net_ = A2(
-		$elm$core$List$indexedMap,
-		F2(
-			function (layerIndex, firstLength) {
-				return A5(createLayer, firstLength, initialSeed_, layers_, layerIndex, firstLength);
-			}),
-		layers_);
-	var _v7 = A2(
-		generateRandomNumbers,
-		initialSeed_,
-		function () {
-			var _v8 = $elm_community$list_extra$List$Extra$last(layers_);
-			if (_v8.$ === 'Nothing') {
-				return 0;
-			} else {
-				var n = _v8.a;
-				return n;
-			}
-		}());
-	var losses_ = _v7.a;
+	var _v0 = A3($author$project$Main$generateRandomNet, layers_, height_, width_);
+	var net_ = _v0.a;
+	var losses_ = _v0.b;
 	return {
 		currentPosition: _Utils_Tuple2(0, 0),
 		edgeWidth: edgeWidth_,
@@ -12851,6 +12856,7 @@ var $joakin$elm_canvas$Canvas$Settings$Line$lineWidth = function (width) {
 	return $joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand(
 		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineWidth(width));
 };
+var $elm$core$Debug$log = _Debug_log;
 var $joakin$elm_canvas$Canvas$Internal$Canvas$Path = F2(
 	function (a, b) {
 		return {$: 'Path', a: a, b: b};

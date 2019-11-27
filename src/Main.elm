@@ -82,9 +82,6 @@ initialModel =
             -- , 10
             -- ]
 
-        spacingX =
-            width_ / toFloat (List.length layers_ + 1)
-
         nodeRadius_ =
             if List.any (\size -> size > 16) layers_ then
                 10
@@ -101,20 +98,40 @@ initialModel =
             else
                 3
 
-        initialSeed_ =
+        (net_, losses_) = generateRandomNet layers_ height_ width_
+    
+    in
+    { net = net_
+    , layers = layers_
+    , nodeRadius = nodeRadius_
+    , edgeWidth = edgeWidth_
+    , width = width_
+    , height = height_
+    , learningRate = 0.5
+    , losses = losses_
+    -- start from the first input node
+    , currentPosition = (0, 0)
+    }
+
+
+generateRandomNet : List Int -> Int -> Float -> (Net, List Float)
+generateRandomNet layers height width =
+    let
+        spacingX =
+            width / toFloat (List.length layers + 1)
+
+        initialSeed =
             Random.initialSeed 47
 
-        (losses_, _) =
+        (losses, _) =
             generateRandomNumbers
-            initialSeed_
-            (case List.Extra.last layers_ of
+            initialSeed
+            (case List.Extra.last layers of
                 Nothing ->
                     0
                 Just n ->
                     n
             )
-        
-        
 
         generateRandomNumbers : Random.Seed -> Int -> (List Float, Random.Seed)
         generateRandomNumbers seed times =
@@ -130,12 +147,11 @@ initialModel =
                 in
                 (num :: rests, finalSeed)
 
-
-        createLayer : Int -> Random.Seed -> List Int -> Int -> Int -> List Node
-        createLayer nodeCount seed layers layerIndex firstLength =
+        createLayer : Int -> Random.Seed -> Int -> Int -> List Node
+        createLayer nodeCount seed layerIndex firstLength =
             let
                 spacingY =
-                    height_ / toFloat (firstLength + 1)
+                    toFloat height / toFloat (firstLength + 1)
 
                 -- add 1 to prevLength for the node's activation in addition to weights
                 (randomNumbers, nextSeed) =
@@ -157,8 +173,6 @@ initialModel =
                         Just length ->
                             length
 
-                _ = Debug.log "prevLength" prevLength
-
                 weights =
                     case List.tail randomNumbers of
                         Nothing ->
@@ -175,27 +189,16 @@ initialModel =
 
             else
                 Node x (spacingY * toFloat nodeCount) (layerIndex, nodeCount) activation weights
-                    :: createLayer (nodeCount - 1) nextSeed layers layerIndex firstLength
+                    :: createLayer (nodeCount - 1) nextSeed layerIndex firstLength
 
-        net_ =
+        net =
             List.indexedMap
                 (\layerIndex firstLength ->
-                    createLayer firstLength initialSeed_ layers_ layerIndex firstLength
+                    createLayer firstLength initialSeed layerIndex firstLength
                 )
-                layers_
-    
+                layers
     in
-    { net = net_
-    , layers = layers_
-    , nodeRadius = nodeRadius_
-    , edgeWidth = edgeWidth_
-    , width = width_
-    , height = height_
-    , learningRate = 0.5
-    , losses = losses_
-    -- start from the first input node
-    , currentPosition = (0, 0)
-    }
+    (net, losses)
 
 
 type Msg
