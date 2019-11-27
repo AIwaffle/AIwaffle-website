@@ -363,10 +363,21 @@ neuralNet model =
             model.net
             )
 
+
+        clearBackground : List Renderable
+        clearBackground =
+            [ shapes
+                [ fill Color.white ]
+                [ rect (0, 0) (toFloat model.width) (toFloat model.height)
+                ]
+            ]
+        
+
     in
     Canvas.toHtml ( model.width, model.height )
         []
-        (displayLayers displayLayerEdges
+        (clearBackground
+        ++ displayLayers displayLayerEdges
         ++ displayLayers displayLayerNodes
         ++ flatten2D displayLosses)
 
