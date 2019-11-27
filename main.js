@@ -5416,7 +5416,6 @@ var $author$project$Main$update = F2(
 				model,
 				{learningRate: rate});
 		} else {
-			var num = msg.a;
 			return model;
 		}
 	});
@@ -12090,9 +12089,7 @@ var $mdgriffith$elm_ui$Element$spacing = function (x) {
 			x,
 			x));
 };
-var $author$project$Main$Step = function (a) {
-	return {$: 'Step', a: a};
-};
+var $author$project$Main$MoveOneStep = {$: 'MoveOneStep'};
 var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
 var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$html$Html$Attributes$boolProperty = F2(
@@ -12353,8 +12350,7 @@ var $author$project$Main$stepControl = function (model) {
 			]),
 		{
 			label: $mdgriffith$elm_ui$Element$text('Move 1 Step'),
-			onPress: $elm$core$Maybe$Just(
-				$author$project$Main$Step(1))
+			onPress: $elm$core$Maybe$Just($author$project$Main$MoveOneStep)
 		});
 };
 var $author$project$Main$controls = function (model) {
