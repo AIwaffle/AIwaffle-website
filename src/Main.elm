@@ -20,9 +20,14 @@ import Element.Border as Border
 type alias Node =
     { x : Float
     , y : Float
+    , pos : Position
     , activation : Float
     , weights : List Float
     }
+
+
+type alias Position =
+    (Int, Int)
 
 
 type alias Layer =
@@ -42,6 +47,7 @@ type alias Model =
     , edgeWidth: Float
     , learningRate: Float
     , losses : List Float
+    , currentPosition : Position
     }
 
 main =
@@ -66,6 +72,11 @@ initialModel =
             , 3
             , 2
             ]
+            -- [ 10
+            -- , 20
+            -- , 20
+            -- , 10
+            -- ]
 
         spacingX =
             width_ / toFloat (List.length layers_ + 1)
@@ -159,7 +170,7 @@ initialModel =
                 []
 
             else
-                Node x (spacingY * toFloat nodeCount) activation weights
+                Node x (spacingY * toFloat nodeCount) (layerIndex, nodeCount) activation weights
                     :: createLayer (nodeCount - 1) nextSeed layers layerIndex firstLength
 
         net_ =
@@ -178,6 +189,8 @@ initialModel =
     , height = height_
     , learningRate = 0.5
     , losses = losses_
+    -- start from the first input node
+    , currentPosition = (0, 0)
     }
 
 
@@ -192,7 +205,27 @@ update msg model =
         AdjustLearningRate rate ->
             { model | learningRate = rate }
         MoveOneStep ->
-            model
+            moveOneStep model
+
+
+moveOneStep : Model -> Model
+moveOneStep model =
+    let
+        layerLength =
+            case nth currentLayerIndex model.layers of
+                Nothing ->
+                    0
+                Just n ->
+                    n
+        currentLayerIndex =
+            Tuple.first model.currentPosition
+        currentIndex =
+            Tuple.second model.currentPosition
+    in
+    if currentIndex >= layerLength - 1 then
+        { model | currentPosition = (currentLayerIndex + 1, 0) }
+    else
+        { model | currentPosition = (currentLayerIndex, currentIndex + 1) }
 
 
 neuralNet : Model -> Html Msg
@@ -207,10 +240,37 @@ neuralNet model =
             flatten2D (List.map displayNode currLayer)
             
 
+        isVisitedNode : Node -> Position -> Bool
+        isVisitedNode node currentPosition =
+            let
+                nodeLayerIndex =
+                    Tuple.first node.pos
+                nodeIndex =
+                    Tuple.second node.pos
+                currentLayerIndex =
+                    Tuple.first currentPosition
+                currentIndex =
+                    Tuple.second currentPosition
+            in
+            nodeLayerIndex < currentLayerIndex
+            || (nodeLayerIndex == currentLayerIndex && nodeIndex <= currentIndex)
+
+
         displayNode node =
             [ shapes
-                [ fill (greyScale node.activation)
-                , stroke Color.black
+                [ fill
+                    (if isVisitedNode node model.currentPosition then
+                        greenScale node.activation
+                    else
+                        greyScale node.activation
+                    )
+                , stroke
+                    (if isVisitedNode node model.currentPosition then
+                        Color.yellow
+                    else
+                        Color.black
+                    )
+                , lineWidth (model.nodeRadius * 0.10)
                 ]
                 [ circle
                     (node.x, node.y) model.nodeRadius
@@ -241,7 +301,12 @@ neuralNet model =
         displayEdge : Node -> Node -> Float -> Renderable
         displayEdge start end weight =
             shapes
-            [ stroke (greyScale weight)
+            [ stroke
+                ( if isVisitedNode start model.currentPosition then
+                    greenScale weight
+                else
+                    greyScale weight
+                )
             , lineWidth model.edgeWidth
             ]
             [ path (start.x, start.y)
@@ -408,6 +473,22 @@ greyScale scale =
     in
     Color.rgb value value value
 
+
+greenScale : Float -> Color.Color
+greenScale scale =
+    let
+        lightness =
+            let
+                value = 1 - scale
+            in
+            if value <= 0.25 then
+                value + 0.10
+            else
+                value
+    in
+    Color.hsl 0.3 0.61 lightness
+
+
 highContract :  Float -> Color.Color
 highContract scale =
     greyScale (if scale < 0.5 then 1 else 0 )
@@ -416,3 +497,7 @@ highContract scale =
 flatten2D : List (List a) -> List a
 flatten2D list =
   List.foldr (++) [] list
+
+nth : Int -> List a -> Maybe a
+nth n xs =
+    List.head (List.drop n xs)

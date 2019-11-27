@@ -4427,9 +4427,9 @@ var $elm$core$Set$toList = function (_v0) {
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
-var $author$project$Main$Node = F4(
-	function (x, y, activation, weights) {
-		return {activation: activation, weights: weights, x: x, y: y};
+var $author$project$Main$Node = F5(
+	function (x, y, pos, activation, weights) {
+		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
 	});
 var $elm$core$Basics$add = _Basics_add;
 var $elm$core$Basics$False = {$: 'False'};
@@ -4732,7 +4732,13 @@ var $author$project$Main$initialModel = function () {
 			var _v3 = A2($elm$core$Debug$log, 'prevLength', prevLength);
 			return (nodeCount <= 0) ? _List_Nil : A2(
 				$elm$core$List$cons,
-				A4($author$project$Main$Node, x, spacingY * nodeCount, activation, weights),
+				A5(
+					$author$project$Main$Node,
+					x,
+					spacingY * nodeCount,
+					_Utils_Tuple2(layerIndex, nodeCount),
+					activation,
+					weights),
 				A5(createLayer, nodeCount - 1, nextSeed, layers, layerIndex, firstLength));
 		});
 	var net_ = A2(
@@ -4755,7 +4761,17 @@ var $author$project$Main$initialModel = function () {
 			}
 		}());
 	var losses_ = _v7.a;
-	return {edgeWidth: edgeWidth_, height: height_, layers: layers_, learningRate: 0.5, losses: losses_, net: net_, nodeRadius: nodeRadius_, width: width_};
+	return {
+		currentPosition: _Utils_Tuple2(0, 0),
+		edgeWidth: edgeWidth_,
+		height: height_,
+		layers: layers_,
+		learningRate: 0.5,
+		losses: losses_,
+		net: net_,
+		nodeRadius: nodeRadius_,
+		width: width_
+	};
 }();
 var $elm$core$Result$Err = function (a) {
 	return {$: 'Err', a: a};
@@ -5408,6 +5424,38 @@ var $elm$browser$Browser$sandbox = function (impl) {
 			view: impl.view
 		});
 };
+var $elm$core$Basics$ge = _Utils_ge;
+var $author$project$Main$nth = F2(
+	function (n, xs) {
+		return $elm$core$List$head(
+			A2($elm$core$List$drop, n, xs));
+	});
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $author$project$Main$moveOneStep = function (model) {
+	var currentLayerIndex = model.currentPosition.a;
+	var layerLength = function () {
+		var _v0 = A2($author$project$Main$nth, currentLayerIndex, model.layers);
+		if (_v0.$ === 'Nothing') {
+			return 0;
+		} else {
+			var n = _v0.a;
+			return n;
+		}
+	}();
+	var currentIndex = model.currentPosition.b;
+	return (_Utils_cmp(currentIndex, layerLength - 1) > -1) ? _Utils_update(
+		model,
+		{
+			currentPosition: _Utils_Tuple2(currentLayerIndex + 1, 0)
+		}) : _Utils_update(
+		model,
+		{
+			currentPosition: _Utils_Tuple2(currentLayerIndex, currentIndex + 1)
+		});
+};
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		if (msg.$ === 'AdjustLearningRate') {
@@ -5416,7 +5464,7 @@ var $author$project$Main$update = F2(
 				model,
 				{learningRate: rate});
 		} else {
-			return model;
+			return $author$project$Main$moveOneStep(model);
 		}
 	});
 var $mdgriffith$elm_ui$Internal$Model$Unkeyed = function (a) {
@@ -5575,10 +5623,6 @@ var $mdgriffith$elm_ui$Internal$Model$lengthClassName = function (x) {
 			var len = x.b;
 			return 'max' + ($elm$core$String$fromInt(max) + $mdgriffith$elm_ui$Internal$Model$lengthClassName(len));
 	}
-};
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
 };
 var $elm$core$Basics$round = _Basics_round;
 var $mdgriffith$elm_ui$Internal$Model$floatClass = function (x) {
@@ -10001,7 +10045,6 @@ var $mdgriffith$elm_ui$Internal$Model$renderWidth = function (w) {
 	}
 };
 var $mdgriffith$elm_ui$Internal$Flag$borderWidth = $mdgriffith$elm_ui$Internal$Flag$flag(27);
-var $elm$core$Basics$ge = _Utils_ge;
 var $mdgriffith$elm_ui$Internal$Model$skippable = F2(
 	function (flag, style) {
 		if (_Utils_eq(flag, $mdgriffith$elm_ui$Internal$Flag$borderWidth)) {
@@ -12739,6 +12782,34 @@ var $joakin$elm_canvas$Canvas$Settings$Text$font = function (_v0) {
 		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$font(
 			$elm$core$String$fromInt(size) + ('px ' + family)));
 };
+var $avh4$elm_color$Color$hsla = F4(
+	function (hue, sat, light, alpha) {
+		var _v0 = _Utils_Tuple3(hue, sat, light);
+		var h = _v0.a;
+		var s = _v0.b;
+		var l = _v0.c;
+		var m2 = (l <= 0.5) ? (l * (s + 1)) : ((l + s) - (l * s));
+		var m1 = (l * 2) - m2;
+		var hueToRgb = function (h__) {
+			var h_ = (h__ < 0) ? (h__ + 1) : ((h__ > 1) ? (h__ - 1) : h__);
+			return ((h_ * 6) < 1) ? (m1 + (((m2 - m1) * h_) * 6)) : (((h_ * 2) < 1) ? m2 : (((h_ * 3) < 2) ? (m1 + (((m2 - m1) * ((2 / 3) - h_)) * 6)) : m1));
+		};
+		var b = hueToRgb(h - (1 / 3));
+		var g = hueToRgb(h);
+		var r = hueToRgb(h + (1 / 3));
+		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, alpha);
+	});
+var $avh4$elm_color$Color$hsl = F3(
+	function (h, s, l) {
+		return A4($avh4$elm_color$Color$hsla, h, s, l, 1.0);
+	});
+var $author$project$Main$greenScale = function (scale) {
+	var lightness = function () {
+		var value = 1 - scale;
+		return (value <= 0.25) ? (value + 0.10) : value;
+	}();
+	return A3($avh4$elm_color$Color$hsl, 0.3, 0.61, lightness);
+};
 var $avh4$elm_color$Color$rgb = F3(
 	function (r, g, b) {
 		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, 1.0);
@@ -13589,7 +13660,16 @@ var $joakin$elm_canvas$Canvas$toHtml = F3(
 			attrs,
 			entities);
 	});
+var $avh4$elm_color$Color$yellow = A4($avh4$elm_color$Color$RgbaSpace, 237 / 255, 212 / 255, 0 / 255, 1.0);
 var $author$project$Main$neuralNet = function (model) {
+	var isVisitedNode = F2(
+		function (node, currentPosition) {
+			var nodeLayerIndex = node.pos.a;
+			var nodeIndex = node.pos.b;
+			var currentLayerIndex = currentPosition.a;
+			var currentIndex = currentPosition.b;
+			return (_Utils_cmp(nodeLayerIndex, currentLayerIndex) < 0) || (_Utils_eq(nodeLayerIndex, currentLayerIndex) && (_Utils_cmp(nodeIndex, currentIndex) < 1));
+		});
 	var displayNode = function (node) {
 		return _List_fromArray(
 			[
@@ -13598,8 +13678,10 @@ var $author$project$Main$neuralNet = function (model) {
 				_List_fromArray(
 					[
 						$joakin$elm_canvas$Canvas$Settings$fill(
-						$author$project$Main$greyScale(node.activation)),
-						$joakin$elm_canvas$Canvas$Settings$stroke($avh4$elm_color$Color$black)
+						A2(isVisitedNode, node, model.currentPosition) ? $author$project$Main$greenScale(node.activation) : $author$project$Main$greyScale(node.activation)),
+						$joakin$elm_canvas$Canvas$Settings$stroke(
+						A2(isVisitedNode, node, model.currentPosition) ? $avh4$elm_color$Color$yellow : $avh4$elm_color$Color$black),
+						$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(model.nodeRadius * 0.10)
 					]),
 				_List_fromArray(
 					[
@@ -13707,7 +13789,7 @@ var $author$project$Main$neuralNet = function (model) {
 				_List_fromArray(
 					[
 						$joakin$elm_canvas$Canvas$Settings$stroke(
-						$author$project$Main$greyScale(weight)),
+						A2(isVisitedNode, start, model.currentPosition) ? $author$project$Main$greenScale(weight) : $author$project$Main$greyScale(weight)),
 						$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(model.edgeWidth)
 					]),
 				_List_fromArray(
