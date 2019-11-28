@@ -602,16 +602,28 @@ greyScale scale =
 greenScale : Float -> Color.Color
 greenScale scale =
     let
+        compress : Float -> Float
+        compress x =
+            tanh (1/4 * x)
         lightness =
             let
-                value = 1 - scale
+                value = 
+                    if scale < 0 then
+                        1 + compress scale
+                    else
+                        1 - compress scale
             in
             if value <= 0.25 then
                 value + 0.10
             else
                 value
+
+        _ = Debug.log "lightness" lightness
     in
-    Color.hsl 0.3 0.61 lightness
+    if scale < 0 then
+        Color.hsl 0 0.61 lightness
+    else
+        Color.hsl 0.3 0.61 lightness
 
 
 highContract :  Float -> Color.Color
@@ -626,3 +638,8 @@ flatten2D list =
 nth : Int -> List a -> Maybe a
 nth n xs =
     List.head (List.drop n xs)
+
+
+-- source: https://github.com/elm/core/issues/968
+tanh : Float -> Float
+tanh x = (e^x - e^ -x) / (e^x + e^ -x)
