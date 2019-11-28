@@ -4450,7 +4450,6 @@ var $elm$core$List$any = F2(
 			}
 		}
 	});
-var $elm$core$Basics$add = _Basics_add;
 var $elm$core$Basics$le = _Utils_le;
 var $elm$core$Basics$sub = _Basics_sub;
 var $elm$core$List$drop = F2(
@@ -4474,10 +4473,6 @@ var $elm$core$List$drop = F2(
 			}
 		}
 	});
-var $elm$core$Tuple$first = function (_v0) {
-	var x = _v0.a;
-	return x;
-};
 var $elm$core$Basics$identity = function (x) {
 	return x;
 };
@@ -4491,6 +4486,7 @@ var $elm$core$Basics$negate = function (n) {
 var $elm$core$Basics$abs = function (n) {
 	return (n < 0) ? (-n) : n;
 };
+var $elm$core$Basics$add = _Basics_add;
 var $elm$core$Bitwise$and = _Bitwise_and;
 var $elm$core$Basics$fdiv = _Basics_fdiv;
 var $elm$core$Basics$mul = _Basics_mul;
@@ -4528,6 +4524,75 @@ var $elm$random$Random$float = F2(
 					$elm$random$Random$next(seed1));
 			});
 	});
+var $elm$random$Random$step = F2(
+	function (_v0, seed) {
+		var generator = _v0.a;
+		return generator(seed);
+	});
+var $author$project$Main$generateRandomNumbers = F2(
+	function (seed, times) {
+		var _v0 = A2(
+			$elm$random$Random$step,
+			A2($elm$random$Random$float, 0.1, 1),
+			seed);
+		var num = _v0.a;
+		var nextSeed = _v0.b;
+		if (times <= 0) {
+			return _Utils_Tuple2(_List_Nil, nextSeed);
+		} else {
+			var _v1 = A2($author$project$Main$generateRandomNumbers, nextSeed, times - 1);
+			var rests = _v1.a;
+			var finalSeed = _v1.b;
+			return _Utils_Tuple2(
+				A2($elm$core$List$cons, num, rests),
+				finalSeed);
+		}
+	});
+var $elm$core$Maybe$Just = function (a) {
+	return {$: 'Just', a: a};
+};
+var $elm$core$Maybe$Nothing = {$: 'Nothing'};
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Main$generateAllLayerWeights = F4(
+	function (nodeCount, seed, layerIndex, layers) {
+		var prevLength = function () {
+			var _v2 = $elm$core$List$head(
+				A2($elm$core$List$drop, layerIndex - 1, layers));
+			if (_v2.$ === 'Nothing') {
+				return 0;
+			} else {
+				var length = _v2.a;
+				return length;
+			}
+		}();
+		var activation = 0;
+		var _v0 = A2($author$project$Main$generateRandomNumbers, seed, prevLength);
+		var randomNumbers = _v0.a;
+		var nextSeed = _v0.b;
+		var weights = randomNumbers;
+		if (nodeCount <= 0) {
+			return _Utils_Tuple2(_List_Nil, _List_Nil);
+		} else {
+			var _v1 = A4($author$project$Main$generateAllLayerWeights, nodeCount - 1, nextSeed, layerIndex, layers);
+			var nextActivation = _v1.a;
+			var nextWeights = _v1.b;
+			return _Utils_Tuple2(
+				A2($elm$core$List$cons, activation, nextActivation),
+				A2($elm$core$List$cons, weights, nextWeights));
+		}
+	});
+var $elm$core$Tuple$first = function (_v0) {
+	var x = _v0.a;
+	return x;
+};
 var $author$project$Main$Node = F5(
 	function (x, y, pos, activation, weights) {
 		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
@@ -4594,19 +4659,6 @@ var $elm$core$List$indexedMap = F2(
 				$elm$core$List$length(xs) - 1),
 			xs);
 	});
-var $elm$core$Maybe$Just = function (a) {
-	return {$: 'Just', a: a};
-};
-var $elm$core$Maybe$Nothing = {$: 'Nothing'};
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
 var $author$project$Main$nth = F2(
 	function (n, xs) {
 		return $elm$core$List$head(
@@ -4777,116 +4829,39 @@ var $elm_community$list_extra$List$Extra$last = function (items) {
 		}
 	}
 };
-var $elm$random$Random$step = F2(
-	function (_v0, seed) {
-		var generator = _v0.a;
-		return generator(seed);
-	});
-var $elm$core$List$tail = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(xs);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $author$project$Main$generateRandomNet = F3(
-	function (layers, height, width) {
+var $author$project$Main$generateRandomNet = F4(
+	function (layers, height, width, generateLayerValues) {
 		var initialSeed = $elm$random$Random$initialSeed(47);
-		var generateRandomNumbers = F2(
-			function (seed, times) {
-				var _v0 = A2(
-					$elm$random$Random$step,
-					A2($elm$random$Random$float, 0.1, 1),
-					seed);
-				var num = _v0.a;
-				var nextSeed = _v0.b;
-				if (times <= 0) {
-					return _Utils_Tuple2(_List_Nil, nextSeed);
-				} else {
-					var _v1 = A2(generateRandomNumbers, nextSeed, times - 1);
-					var rests = _v1.a;
-					var finalSeed = _v1.b;
-					return _Utils_Tuple2(
-						A2($elm$core$List$cons, num, rests),
-						finalSeed);
-				}
-			});
-		var generateLayerValues = F3(
-			function (nodeCount, seed, layerIndex) {
-				var prevLength = function () {
-					var _v6 = $elm$core$List$head(
-						A2($elm$core$List$drop, layerIndex - 1, layers));
-					if (_v6.$ === 'Nothing') {
-						return 0;
-					} else {
-						var length = _v6.a;
-						return length;
-					}
-				}();
-				var _v2 = A2(generateRandomNumbers, seed, prevLength + 1);
-				var randomNumbers = _v2.a;
-				var nextSeed = _v2.b;
-				var activation = function () {
-					var _v5 = $elm$core$List$head(randomNumbers);
-					if (_v5.$ === 'Nothing') {
-						return 1;
-					} else {
-						var num = _v5.a;
-						return num;
-					}
-				}();
-				var weights = function () {
-					var _v4 = $elm$core$List$tail(randomNumbers);
-					if (_v4.$ === 'Nothing') {
-						return _List_Nil;
-					} else {
-						var nums = _v4.a;
-						return nums;
-					}
-				}();
-				if (nodeCount <= 0) {
-					return _Utils_Tuple2(_List_Nil, _List_Nil);
-				} else {
-					var _v3 = A3(generateLayerValues, nodeCount - 1, nextSeed, layerIndex);
-					var nextActivation = _v3.a;
-					var nextWeights = _v3.b;
-					return _Utils_Tuple2(
-						A2($elm$core$List$cons, activation, nextActivation),
-						A2($elm$core$List$cons, weights, nextWeights));
-				}
-			});
-		var _v7 = A3(
+		var _v0 = A3(
 			$elm_community$list_extra$List$Extra$indexedFoldr,
 			F3(
 				function (layerIndex, layerLength, values) {
 					var weights = values.b;
 					var activations = values.a;
-					var _v8 = A3(generateLayerValues, layerLength, initialSeed, layerIndex);
-					var layerActivations = _v8.a;
-					var layerWeights = _v8.b;
+					var _v1 = A4(generateLayerValues, layerLength, initialSeed, layerIndex, layers);
+					var layerActivations = _v1.a;
+					var layerWeights = _v1.b;
 					return _Utils_Tuple2(
 						A2($elm$core$List$cons, layerActivations, activations),
 						A2($elm$core$List$cons, layerWeights, weights));
 				}),
 			_Utils_Tuple2(_List_Nil, _List_Nil),
 			layers);
-		var netActivations = _v7.a;
-		var netWeights = _v7.b;
-		var _v9 = A2(
-			generateRandomNumbers,
+		var netActivations = _v0.a;
+		var netWeights = _v0.b;
+		var _v2 = A2(
+			$author$project$Main$generateRandomNumbers,
 			initialSeed,
 			function () {
-				var _v10 = $elm_community$list_extra$List$Extra$last(layers);
-				if (_v10.$ === 'Nothing') {
+				var _v3 = $elm_community$list_extra$List$Extra$last(layers);
+				if (_v3.$ === 'Nothing') {
 					return 0;
 				} else {
-					var n = _v10.a;
+					var n = _v3.a;
 					return n;
 				}
 			}());
-		var netLosses = _v9.a;
+		var netLosses = _v2.a;
 		return A6($author$project$Main$generateNet, layers, height, width, netActivations, netWeights, netLosses);
 	});
 var $author$project$Main$initialModel = function () {
@@ -4916,7 +4891,7 @@ var $author$project$Main$initialModel = function () {
 			return size > 8;
 		},
 		layers_) ? 2 : 3);
-	var _v0 = A3($author$project$Main$generateRandomNet, layers_, height_, width_);
+	var _v0 = A4($author$project$Main$generateRandomNet, layers_, height_, width_, $author$project$Main$generateAllLayerWeights);
 	var net_ = _v0.a;
 	var losses_ = _v0.b;
 	return {
@@ -12899,6 +12874,15 @@ var $author$project$Main$greyScale = function (scale) {
 var $author$project$Main$highContract = function (scale) {
 	return $author$project$Main$greyScale(
 		(scale < 0.5) ? 1 : 0);
+};
+var $elm$core$List$tail = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(xs);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
 };
 var $elm_community$list_extra$List$Extra$init = function (items) {
 	if (!items.b) {
