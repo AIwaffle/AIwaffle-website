@@ -38,6 +38,18 @@ type alias Net =
     List Layer
 
 
+type alias Weights =
+    List (List (List Float))
+
+
+type alias Activations =
+    List (List Float)
+
+
+type alias Losses =
+    List Float
+
+
 type alias Model =
     { net : Net
     , layers : List Int
@@ -98,8 +110,9 @@ initialModel =
             else
                 3
 
-        (net_, losses_) = generateRandomNet layers_ height_ width_
-    
+        (net_, losses_) =
+            generateRandomNet layers_ height_ width_
+
     in
     { net = net_
     , layers = layers_
@@ -117,21 +130,9 @@ initialModel =
 generateRandomNet : List Int -> Int -> Float -> (Net, List Float)
 generateRandomNet layers height width =
     let
-        spacingX =
-            width / toFloat (List.length layers + 1)
-
         initialSeed =
             Random.initialSeed 47
 
-        (losses, _) =
-            generateRandomNumbers
-            initialSeed
-            (case List.Extra.last layers of
-                Nothing ->
-                    0
-                Just n ->
-                    n
-            )
 
         generateRandomNumbers : Random.Seed -> Int -> (List Float, Random.Seed)
         generateRandomNumbers seed times =
@@ -147,12 +148,21 @@ generateRandomNet layers height width =
                 in
                 (num :: rests, finalSeed)
 
-        createLayer : Int -> Random.Seed -> Int -> Int -> List Node
-        createLayer nodeCount seed layerIndex firstLength =
-            let
-                spacingY =
-                    toFloat height / toFloat (firstLength + 1)
 
+        (netLosses, _) =
+            generateRandomNumbers
+                initialSeed
+                (case List.Extra.last layers of
+                    Nothing ->
+                        0
+                    Just n ->
+                        n
+                )
+        
+
+        generateLayerValues : Int -> Random.Seed -> Int -> (List Float, List (List Float))
+        generateLayerValues nodeCount seed layerIndex =
+            let
                 -- add 1 to prevLength for the node's activation in addition to weights
                 (randomNumbers, nextSeed) =
                     generateRandomNumbers seed (prevLength + 1)
@@ -165,6 +175,7 @@ generateRandomNet layers height width =
                             1
                         Just num ->
                             num
+
                 prevLength =
                     case List.head (List.drop (layerIndex - 1) layers) of
                         Nothing ->
@@ -173,6 +184,12 @@ generateRandomNet layers height width =
                         Just length ->
                             length
 
+                -- _ = Debug.log "layerIndex" layerIndex
+
+                -- _ = Debug.log "prevLength" prevLength
+
+                -- _ = Debug.log "len(weights)" (List.length weights)
+
                 weights =
                     case List.tail randomNumbers of
                         Nothing ->
@@ -180,21 +197,79 @@ generateRandomNet layers height width =
                         Just nums ->
                             nums
 
+            in
+            if nodeCount <= 0 then
+                ([], [])
+
+            else
+                let
+                    (nextActivation, nextWeights) =
+                        generateLayerValues (nodeCount - 1) nextSeed layerIndex
+                in
+                (activation :: nextActivation, weights :: nextWeights)
+
+
+        (netActivations, netWeights) =
+            List.Extra.indexedFoldr
+                (\layerIndex layerLength values ->
+                    let
+                        (layerActivations, layerWeights) =
+                            generateLayerValues layerLength initialSeed layerIndex
+
+                        activations =
+                            Tuple.first values
+
+                        weights =
+                            Tuple.second values                        
+
+                    in
+                    (layerActivations :: activations, layerWeights :: weights)
+                )
+                ([], [])
+                layers
+
+    in
+    generateNet layers height width netActivations netWeights netLosses
+
+
+generateNet : List Int -> Int -> Float -> Activations -> Weights -> Losses -> (Net, List Float)
+generateNet layers height width activations weights losses =
+    let
+        spacingX =
+            width / toFloat (List.length layers + 1)
+
+        createLayer : Int -> Int -> Int -> List Float -> List (List Float) -> List Node
+        createLayer nodeCount layerIndex layerLength layerActivations layerWeights =
+            let
+                nodeIndex =
+                    nodeCount - 1
+
+                spacingY =
+                    toFloat height / toFloat (layerLength + 1)
+
                 x =
                     toFloat (layerIndex + 1) * spacingX
+
+                nodeActivation =
+                    Maybe.withDefault 0 (nth nodeIndex layerActivations)
+
+                nodeWeights =
+                    Maybe.withDefault [] (nth nodeIndex layerWeights)
 
             in
             if nodeCount <= 0 then
                 []
 
             else
-                Node x (spacingY * toFloat nodeCount) (layerIndex, nodeCount) activation weights
-                    :: createLayer (nodeCount - 1) nextSeed layerIndex firstLength
+                Node x (spacingY * toFloat nodeCount) (layerIndex, nodeIndex) nodeActivation nodeWeights
+                    :: createLayer (nodeCount - 1) layerIndex layerLength layerActivations layerWeights
 
         net =
             List.indexedMap
-                (\layerIndex firstLength ->
-                    createLayer firstLength initialSeed layerIndex firstLength
+                (\layerIndex layerLength ->
+                    createLayer layerLength layerIndex layerLength
+                        (Maybe.withDefault [] (nth layerIndex activations))
+                        (Maybe.withDefault [] (nth layerIndex weights))
                 )
                 layers
     in
@@ -302,9 +377,6 @@ neuralNet model =
 
         displayEdges : Layer -> Node -> List Renderable
         displayEdges prevLayer node =
-            let
-                _ = Debug.log "prevLayer" prevLayer
-            in
             List.map2
                 (displayEdge node)
                 prevLayer
