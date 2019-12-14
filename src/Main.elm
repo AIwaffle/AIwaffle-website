@@ -376,7 +376,7 @@ backwardOneStep model =
             updateWeights currentLayerIndex currentIndex model.net model.nextNet
     in
     if currentIndex <= 0 then
-        if currentLayerIndex <= 0 then
+        if currentLayerIndex <= 1 then
             { model
                 | currentPosition = (0, 0)
                 , currentDirection = Forward

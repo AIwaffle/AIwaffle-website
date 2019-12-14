@@ -5712,7 +5712,7 @@ var $author$project$Main$backwardOneStep = function (model) {
 	var nextNet = A4($author$project$Main$updateWeights, currentLayerIndex, currentIndex, model.net, model.nextNet);
 	var _v0 = A2($elm$core$Debug$log, 'currentLayerIndex', currentLayerIndex);
 	var _v1 = A2($elm$core$Debug$log, 'currentIndex', currentIndex);
-	return (currentIndex <= 0) ? ((currentLayerIndex <= 0) ? _Utils_update(
+	return (currentIndex <= 0) ? ((currentLayerIndex <= 1) ? _Utils_update(
 		model,
 		{
 			currentDirection: $author$project$Main$Forward,
