@@ -594,7 +594,7 @@ greyScale : Float -> Color.Color
 greyScale scale =
     let
         value =
-            1 - scale
+            getColorValue scale 0.4
     in
     Color.rgb value value value
 
@@ -602,10 +602,22 @@ greyScale scale =
 greenScale : Float -> Color.Color
 greenScale scale =
     let
+        lightness =
+            getColorValue scale 0.4
+    in
+    if scale < 0 then
+        Color.hsl 0 0.90 lightness
+    else
+        Color.hsl 0.3 0.90 lightness
+
+
+getColorValue : Float -> Float -> Float
+getColorValue scale strength =
+    let
         compress : Float -> Float
         compress x =
-            tanh (1/4 * x)
-        lightness =
+            tanh (strength * x)
+        returnValue =
             let
                 value = 
                     if scale < 0 then
@@ -617,18 +629,20 @@ greenScale scale =
                 value + 0.10
             else
                 value
-
-        _ = Debug.log "lightness" lightness
     in
-    if scale < 0 then
-        Color.hsl 0 0.61 lightness
-    else
-        Color.hsl 0.3 0.61 lightness
+    returnValue
 
 
 highContract :  Float -> Color.Color
 highContract scale =
-    greyScale (if scale < 0.5 then 1 else 0 )
+    let
+        value =
+            if 1 - scale < 0.5 then
+                1
+            else
+                0
+    in
+    Color.rgb value value value
 
 -- source: https://gist.github.com/maticzav/f0b9177bf59d3efa44815167fd55cdf0
 flatten2D : List (List a) -> List a
