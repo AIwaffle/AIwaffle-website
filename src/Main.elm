@@ -110,8 +110,11 @@ initialModel =
             else
                 3
 
+        initialSeed_ =
+            47
+
         (net_, losses_) =
-            generateRandomNet layers_ height_ width_ generateAllLayerWeights
+            generateRandomNet layers_ height_ width_ initialSeed_ generateAllLayerWeights
 
     in
     { net = net_
@@ -130,9 +133,6 @@ initialModel =
 generateAllLayerWeights : Int -> Random.Seed -> Int -> List Int -> (List Float, List (List Float))
 generateAllLayerWeights nodeCount seed layerIndex layers =
     let
-        (randomNumbers, nextSeed) =
-            generateRandomNumbers seed prevLength
-        
         activation =
             0
 
@@ -144,8 +144,8 @@ generateAllLayerWeights nodeCount seed layerIndex layers =
                 Just length ->
                     length
 
-        weights =
-            randomNumbers
+        (weights, nextSeed) =
+            generateRandomNumbers seed -5.0 5.0 prevLength
 
     in
     if nodeCount <= 0 then
@@ -158,21 +158,12 @@ generateAllLayerWeights nodeCount seed layerIndex layers =
         in
         (activation :: nextActivation, weights :: nextWeights)
 
+
 generateAllLayerValues : Int -> Random.Seed -> Int -> List Int -> (List Float, List (List Float))
 generateAllLayerValues nodeCount seed layerIndex layers =
     let
-        -- add 1 to prevLength for the node's activation in addition to weights
-        (randomNumbers, nextSeed) =
-            generateRandomNumbers seed (prevLength + 1)
-        
-        -- temporary placeholder values
-        -- fetch these from server
-        activation =
-            case List.head randomNumbers of
-                Nothing ->
-                    1
-                Just num ->
-                    num
+        (activation, seed1) =
+            generateRandomNumber seed 0.1 1
 
         prevLength =
             case List.head (List.drop (layerIndex - 1) layers) of
@@ -182,12 +173,8 @@ generateAllLayerValues nodeCount seed layerIndex layers =
                 Just length ->
                     length
 
-        weights =
-            case List.tail randomNumbers of
-                Nothing ->
-                    []
-                Just nums ->
-                    nums
+        (weights, nextSeed) =
+            generateRandomNumbers seed1 -5.0 5.0 (prevLength)
 
     in
     if nodeCount <= 0 then
@@ -201,31 +188,37 @@ generateAllLayerValues nodeCount seed layerIndex layers =
         (activation :: nextActivation, weights :: nextWeights)
 
 
-generateRandomNumbers : Random.Seed -> Int -> (List Float, Random.Seed)
-generateRandomNumbers seed times =
+generateRandomNumbers : Random.Seed -> Float -> Float -> Int -> (List Float, Random.Seed)
+generateRandomNumbers seed min max times =
     let 
-        (num, nextSeed) = Random.step (Random.float 0.1 1) seed
-        -- _ = Debug.log "num" num
+        (num, nextSeed) = generateRandomNumber seed min max
     in
     if times <= 0 then
         ([], nextSeed)
     else
         let
-            (rests, finalSeed) = generateRandomNumbers nextSeed (times - 1)
+            (rests, finalSeed) = generateRandomNumbers nextSeed min max (times - 1)
         in
         (num :: rests, finalSeed)
 
 
-generateRandomNet : List Int -> Int -> Float -> (Int -> Random.Seed -> Int -> List Int -> (List Float, List (List Float))) -> (Net, List Float)
-generateRandomNet layers height width generateLayerValues =
+generateRandomNumber : Random.Seed -> Float -> Float -> (Float, Random.Seed)
+generateRandomNumber seed min max =
+    Random.step (Random.float min max) seed
+
+
+generateRandomNet : List Int -> Int -> Int -> Int -> (Int -> Random.Seed -> Int -> List Int -> (List Float, List (List Float))) -> (Net, List Float)
+generateRandomNet layers height width seed generateLayerValues =
     let
         initialSeed =
-            Random.initialSeed 47
+            Random.initialSeed seed
 
 
         (netLosses, _) =
             generateRandomNumbers
                 initialSeed
+                0.1
+                1.0
                 (case List.Extra.last layers of
                     Nothing ->
                         0
@@ -257,11 +250,11 @@ generateRandomNet layers height width generateLayerValues =
     generateNet layers height width netActivations netWeights netLosses
 
 
-generateNet : List Int -> Int -> Float -> Activations -> Weights -> Losses -> (Net, List Float)
+generateNet : List Int -> Int -> Int -> Activations -> Weights -> Losses -> (Net, List Float)
 generateNet layers height width activations weights losses =
     let
         spacingX =
-            width / toFloat (List.length layers + 1)
+            toFloat width / toFloat (List.length layers + 1)
 
         createLayer : Int -> Int -> Int -> List Float -> List (List Float) -> List Node
         createLayer nodeCount layerIndex layerLength layerActivations layerWeights =
