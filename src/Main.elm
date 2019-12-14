@@ -30,6 +30,11 @@ type alias Position =
     (Int, Int)
 
 
+type MoveDirection
+    = Forward
+    | Backward
+
+
 type alias Layer =
     List Node
 
@@ -52,6 +57,7 @@ type alias Losses =
 
 type alias Model =
     { net : Net
+    , nextNet : Net
     , layers : List Int
     , width : Int
     , height : Int
@@ -60,6 +66,7 @@ type alias Model =
     , learningRate: Float
     , losses : List Float
     , currentPosition : Position
+    , currentDirection : MoveDirection
     }
 
 main =
@@ -118,6 +125,7 @@ initialModel =
 
     in
     { net = net_
+    , nextNet = net_
     , layers = layers_
     , nodeRadius = nodeRadius_
     , edgeWidth = edgeWidth_
@@ -127,6 +135,8 @@ initialModel =
     , losses = losses_
     -- start from the first input node
     , currentPosition = (0, 0)
+    -- start with forward propgation
+    , currentDirection = Forward
     }
 
 
@@ -305,11 +315,19 @@ update msg model =
         AdjustLearningRate rate ->
             { model | learningRate = rate }
         MoveOneStep ->
-            moveOneStep model
+            let
+                _ =
+                    Debug.log "currentDirection" model.currentDirection
+            in
+            case model.currentDirection of
+                Forward ->
+                    forwardOneStep model
+                Backward ->
+                    backwardOneStep model
 
 
-moveOneStep : Model -> Model
-moveOneStep model =
+forwardOneStep : Model -> Model
+forwardOneStep model =
     let
         layerLength =
             case nth currentLayerIndex model.layers of
@@ -317,15 +335,102 @@ moveOneStep model =
                     0
                 Just n ->
                     n
+        numberOfLayers =
+            List.length model.layers
+        currentLayerIndex =
+            Tuple.first model.currentPosition 
+        _ =
+            Debug.log "currentLayerIndex" currentLayerIndex
+        currentIndex =
+            Tuple.second model.currentPosition
+        _ =
+            Debug.log "currentIndex" currentIndex
+    in
+    if currentIndex >= layerLength - 1 then
+        if currentLayerIndex >= numberOfLayers - 1 then
+            { model
+                | currentPosition = (numberOfLayers - 1, layerLength - 1)
+                , currentDirection = Backward
+                , nextNet = Tuple.first (generateRandomNet model.layers model.height model.width 128 generateAllLayerWeights)
+            }
+        else
+            { model | currentPosition = (currentLayerIndex + 1, 0) }
+    else
+        { model | currentPosition = (currentLayerIndex, currentIndex + 1) }
+
+
+backwardOneStep : Model -> Model
+backwardOneStep model =
+    let
         currentLayerIndex =
             Tuple.first model.currentPosition
         currentIndex =
             Tuple.second model.currentPosition
+        _ =
+            Debug.log "currentLayerIndex" currentLayerIndex
+        _ =
+            Debug.log "currentIndex" currentIndex
+        nextLayerLength =
+            Maybe.withDefault 0 (nth (currentLayerIndex - 1) model.layers)
+        nextNet =
+            updateWeights currentLayerIndex currentIndex model.net model.nextNet
     in
-    if currentIndex >= layerLength - 1 then
-        { model | currentPosition = (currentLayerIndex + 1, 0) }
+    if currentIndex <= 0 then
+        if currentLayerIndex <= 0 then
+            { model
+                | currentPosition = (0, 0)
+                , currentDirection = Forward
+                , nextNet = Tuple.first (generateRandomNet model.layers model.height model.width 489 generateAllLayerWeights)
+            }
+        else
+            { model
+                | currentPosition = (currentLayerIndex - 1, nextLayerLength - 1)
+                , net = nextNet
+            }
     else
-        { model | currentPosition = (currentLayerIndex, currentIndex + 1) }
+        { model
+            | currentPosition = (currentLayerIndex, currentIndex - 1)
+            , net = nextNet
+        }
+
+
+emptyNode : Node
+emptyNode =
+    { x = 0
+    , y = 0
+    , pos = (0, 0)
+    , activation = 0
+    , weights = []
+    }
+
+
+updateWeights : Int -> Int -> Net -> Net -> Net
+updateWeights layerIndex index currNet nextNet =
+    let
+        currLayer =
+            Maybe.withDefault [] (nth layerIndex currNet)
+        currNode =
+            Maybe.withDefault emptyNode (nth index currLayer)
+        nextLayer =
+            Maybe.withDefault [] (nth layerIndex nextNet)
+        nextWeights =
+            case nth index nextLayer of
+                Nothing ->
+                    []
+                Just node ->
+                    node.weights
+        nextNode =
+            { currNode | weights = nextWeights }
+    in
+    List.Extra.setAt
+        layerIndex
+        (List.Extra.setAt
+            index
+            nextNode
+            currLayer
+        )
+        currNet
+
 
 
 neuralNet : Model -> Html Msg
@@ -352,8 +457,13 @@ neuralNet model =
                 currentIndex =
                     Tuple.second currentPosition
             in
-            nodeLayerIndex < currentLayerIndex
-            || (nodeLayerIndex == currentLayerIndex && nodeIndex <= currentIndex)
+            case model.currentDirection of
+                Forward ->
+                    nodeLayerIndex < currentLayerIndex
+                    || (nodeLayerIndex == currentLayerIndex && nodeIndex <= currentIndex)
+                Backward ->
+                    nodeLayerIndex > currentLayerIndex
+                    || (nodeLayerIndex == currentLayerIndex && nodeIndex >= currentIndex)
 
 
         isCurrentNode : Node -> Position -> Bool
