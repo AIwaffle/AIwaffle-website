@@ -290,13 +290,14 @@ generateNet layers height width activations weights losses =
                 spacingY =
                     toFloat height / toFloat (layerLength + 1)
 
-                sizeMargin = 100
+                sideMargin =
+                    spacingX / 2
 
                 x =
                     if layerIndex == 0 then
-                        sizeMargin
+                        sideMargin
                     else
-                        sizeMargin + toFloat (layerIndex) * spacingX
+                        sideMargin + toFloat (layerIndex) * spacingX
 
                 nodeActivation =
                     Maybe.withDefault 0 (nth nodeIndex layerActivations)
