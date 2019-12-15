@@ -17,6 +17,7 @@ import Element.Input as Input
 import Element.Background as Background
 import Element.Border as Border
 import Element.Events as Events
+import Element.Font as Font
 import Markdown
 import Http
 
@@ -898,11 +899,15 @@ contentNavigation model =
         [ E.el
             [ E.alignLeft
             , Events.onClick GetPreviousContent
+            , E.mouseOver [ Font.color grey ]
+            , E.pointer
             ]
             <| E.html (Html.i [ Html.Attributes.class "fas fa-arrow-left" ] [])
         , E.el
             [ E.alignRight
             , Events.onClick GetNextContent
+            , E.mouseOver [ Font.color grey ]
+            , E.pointer
             ]
             <| E.html (Html.i [ Html.Attributes.class "fas fa-arrow-right" ] [])
         ]
