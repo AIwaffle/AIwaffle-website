@@ -4886,7 +4886,7 @@ var $author$project$Main$initialModel = function () {
 		},
 		layers_) ? 25 : 40);
 	var initialSeed_ = 47;
-	var height_ = 700;
+	var height_ = 650;
 	var edgeWidth_ = A2(
 		$elm$core$List$any,
 		function (size) {
@@ -11321,9 +11321,14 @@ var $author$project$Main$center = function (element) {
 		_List_fromArray(
 			[
 				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'margin', 'auto'))
+				A2($elm$html$Html$Attributes$style, 'marginLeft', 'auto')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'marginRight', 'auto'))
 			]),
 		element);
+};
+var $author$project$Main$centerAll = function (elements) {
+	return A2($elm$core$List$map, $author$project$Main$center, elements);
 };
 var $mdgriffith$elm_ui$Internal$Model$AsColumn = {$: 'AsColumn'};
 var $mdgriffith$elm_ui$Internal$Model$asColumn = $mdgriffith$elm_ui$Internal$Model$AsColumn;
@@ -12712,6 +12717,45 @@ var $author$project$Main$controls = function (model) {
 				$author$project$Main$learningRateControl(model),
 				$author$project$Main$stepControl(model)
 			]));
+};
+var $mdgriffith$elm_ui$Element$rgba255 = F4(
+	function (red, green, blue, a) {
+		return A4($mdgriffith$elm_ui$Internal$Model$Rgba, red / 255, green / 255, blue / 255, a);
+	});
+var $author$project$Main$directionTracker = function (model) {
+	var direction = function () {
+		var _v1 = model.currentDirection;
+		if (_v1.$ === 'Forward') {
+			return 'forward';
+		} else {
+			return 'backward';
+		}
+	}();
+	var background = function () {
+		var lastLayerIndex = $elm$core$List$length(model.layers) - 1;
+		var lastIndex = A2(
+			$elm$core$Maybe$withDefault,
+			1,
+			A2($author$project$Main$nth, lastLayerIndex, model.layers)) - 1;
+		var _v0 = model.currentDirection;
+		if (_v0.$ === 'Forward') {
+			return _Utils_eq(
+				model.currentPosition,
+				_Utils_Tuple2(0, 0)) ? A4($mdgriffith$elm_ui$Element$rgba255, 51, 255, 51, 0.8) : A4($mdgriffith$elm_ui$Element$rgba255, 51, 255, 51, 0.3);
+		} else {
+			return _Utils_eq(
+				model.currentPosition,
+				_Utils_Tuple2(lastLayerIndex, lastIndex)) ? A4($mdgriffith$elm_ui$Element$rgba255, 255, 51, 0, 0.8) : A4($mdgriffith$elm_ui$Element$rgba255, 255, 51, 0, 0.3);
+		}
+	}();
+	return A2(
+		$mdgriffith$elm_ui$Element$el,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$padding(10),
+				$mdgriffith$elm_ui$Element$Background$color(background)
+			]),
+		$mdgriffith$elm_ui$Element$text('In ' + (direction + ' propagation')));
 };
 var $mdgriffith$elm_ui$Internal$Model$unstyled = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Unstyled, $elm$core$Basics$always);
 var $mdgriffith$elm_ui$Element$html = $mdgriffith$elm_ui$Internal$Model$unstyled;
@@ -14190,16 +14234,17 @@ var $author$project$Main$view = function (model) {
 			$mdgriffith$elm_ui$Element$column,
 			_List_fromArray(
 				[
-					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+					$mdgriffith$elm_ui$Element$spacing(10)
 				]),
-			_List_fromArray(
-				[
-					$author$project$Main$center(
-					$mdgriffith$elm_ui$Element$html(
-						$author$project$Main$neuralNet(model))),
-					$author$project$Main$center(
-					$author$project$Main$controls(model))
-				])));
+			$author$project$Main$centerAll(
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$html(
+						$author$project$Main$neuralNet(model)),
+						$author$project$Main$directionTracker(model),
+						$author$project$Main$controls(model)
+					]))));
 };
 var $author$project$Main$main = $elm$browser$Browser$sandbox(
 	{init: $author$project$Main$initialModel, update: $author$project$Main$update, view: $author$project$Main$view});
