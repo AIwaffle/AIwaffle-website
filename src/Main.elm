@@ -84,7 +84,7 @@ initialModel =
             1300
 
         height_ =
-            700
+            650
 
         layers_ =
             [ 2
@@ -657,6 +657,40 @@ stepControl model =
         , label = E.text "Move 1 Step"
         }
 
+directionTracker : Model -> E.Element Msg
+directionTracker model =
+    let
+        direction =
+            case model.currentDirection of
+                Forward ->
+                    "forward"
+                Backward ->
+                    "backward"
+        background =
+            let
+                lastLayerIndex =
+                    List.length model.layers - 1
+                lastIndex =
+                    Maybe.withDefault 1 (nth lastLayerIndex model.layers) - 1
+            in
+            case model.currentDirection of
+                Forward ->
+                    if model.currentPosition == (0, 0) then
+                        E.rgba255 51 255 51 0.8
+                    else
+                        E.rgba255 51 255 51 0.3
+                Backward ->
+                    if model.currentPosition == (lastLayerIndex, lastIndex) then
+                        E.rgba255 255 51 0 0.8
+                    else
+                        E.rgba255 255 51 0 0.3
+    in
+    E.el
+    [ E.padding 10
+    , Background.color background
+    ]
+    (E.text ("In " ++ direction ++ " propagation"))
+    
 
 view : Model -> Html Msg
 view model =
@@ -665,12 +699,15 @@ view model =
     <|
         E.column
         [ E.width E.fill
+        , E.spacing 10
         ]
-        [ center
-          (E.html (neuralNet model))
-        , center
-          (controls model)
-        ]
+        ( centerAll
+            [ E.html (neuralNet model)
+            , directionTracker model
+            , controls model
+            ]
+        )
+
 
 centerAll : List (E.Element msg) -> List (E.Element msg)
 centerAll elements =
