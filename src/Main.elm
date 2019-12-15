@@ -860,7 +860,7 @@ view model =
             , E.padding 20
             , E.htmlAttribute (Html.Attributes.style "height" "calc(100vh - 20px)")
             , E.htmlAttribute (Html.Attributes.style "overflow-x" "auto")
-            , E.htmlAttribute (Html.Attributes.style "overflow-y" "auto")
+            , E.htmlAttribute (Html.Attributes.style "overflow-y" "scroll")
             ]
             [ content
             ]
