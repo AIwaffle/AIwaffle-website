@@ -14489,7 +14489,7 @@ var $author$project$Main$view = function (model) {
 							$mdgriffith$elm_ui$Element$htmlAttribute(
 							A2($elm$html$Html$Attributes$style, 'overflow-x', 'auto')),
 							$mdgriffith$elm_ui$Element$htmlAttribute(
-							A2($elm$html$Html$Attributes$style, 'overflow-y', 'auto'))
+							A2($elm$html$Html$Attributes$style, 'overflow-y', 'scroll'))
 						]),
 					_List_fromArray(
 						[$author$project$Main$content])),
