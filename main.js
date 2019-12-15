@@ -14454,9 +14454,7 @@ var $author$project$Main$neuralNet = function (model) {
 			clearBackground,
 			_Utils_ap(
 				displayLayers(displayLayerEdges),
-				_Utils_ap(
-					displayLayers(displayLayerNodes),
-					$author$project$Main$flatten2D(displayLosses)))));
+				displayLayers(displayLayerNodes))));
 };
 var $author$project$Main$view = function (model) {
 	return A2(
