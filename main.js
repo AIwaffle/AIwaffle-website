@@ -4874,8 +4874,8 @@ var $author$project$Main$generateNet = F6(
 		var createLayer = F5(
 			function (nodeCount, layerIndex, layerLength, layerActivations, layerWeights) {
 				var spacingY = height / (layerLength + 1);
-				var sizeMargin = 100;
-				var x = (!layerIndex) ? sizeMargin : (sizeMargin + (layerIndex * spacingX));
+				var sideMargin = spacingX / 2;
+				var x = (!layerIndex) ? sideMargin : (sideMargin + (layerIndex * spacingX));
 				var nodeIndex = nodeCount - 1;
 				var nodeWeights = A2(
 					$elm$core$Maybe$withDefault,
@@ -5005,34 +5005,29 @@ var $author$project$Main$generateRandomNet = F5(
 		var netLosses = _v2.a;
 		return A6($author$project$Main$generateNet, layers, height, width, netActivations, netWeights, netLosses);
 	});
+var $elm$core$Basics$or = _Basics_or;
 var $author$project$Main$initialModel = function () {
 	var width_ = 900;
 	var layers_ = _List_fromArray(
-		[10, 20, 20, 10]);
-	var nodeRadius_ = A2(
-		$elm$core$List$any,
-		function (size) {
-			return size > 16;
-		},
-		layers_) ? 10 : (A2(
-		$elm$core$List$any,
-		function (size) {
-			return size > 8;
-		},
-		layers_) ? 25 : 40);
+		[2, 3, 2]);
+	var sizeLevels = F3(
+		function (small, medium, large) {
+			return (A2(
+				$elm$core$List$any,
+				function (size) {
+					return size > 16;
+				},
+				layers_) || ($elm$core$List$length(layers_) > 12)) ? small : ((A2(
+				$elm$core$List$any,
+				function (size) {
+					return size > 8;
+				},
+				layers_) || ($elm$core$List$length(layers_) > 8)) ? medium : large);
+		});
+	var nodeRadius_ = A3(sizeLevels, 10, 25, 40);
 	var initialSeed_ = 47;
 	var height_ = 620;
-	var edgeWidth_ = A2(
-		$elm$core$List$any,
-		function (size) {
-			return size > 16;
-		},
-		layers_) ? 1 : (A2(
-		$elm$core$List$any,
-		function (size) {
-			return size > 8;
-		},
-		layers_) ? 2 : 3);
+	var edgeWidth_ = A3(sizeLevels, 1, 2, 3);
 	var _v0 = A5($author$project$Main$generateRandomNet, layers_, height_, width_, initialSeed_, $author$project$Main$generateAllLayerValues);
 	var nextNet_ = _v0.a;
 	var losses_ = _v0.b;
@@ -5103,7 +5098,6 @@ var $elm$core$Char$isUpper = function (_char) {
 	var code = $elm$core$Char$toCode(_char);
 	return (code <= 90) && (65 <= code);
 };
-var $elm$core$Basics$or = _Basics_or;
 var $elm$core$Char$isAlpha = function (_char) {
 	return $elm$core$Char$isLower(_char) || $elm$core$Char$isUpper(_char);
 };
