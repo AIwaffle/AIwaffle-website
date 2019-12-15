@@ -17,6 +17,7 @@ import Element.Input as Input
 import Element.Background as Background
 import Element.Border as Border
 import Markdown
+import Http
 
 type alias Node =
     { x : Float
@@ -68,18 +69,20 @@ type alias Model =
     , losses : List Float
     , currentPosition : Position
     , currentDirection : MoveDirection
+    , content: String
     }
 
 main =
-    Browser.sandbox
-        { init = initialModel
-        , view = view
+    Browser.element
+        { init = init
         , update = update
+        , subscriptions = subscriptions
+        , view = view
         }
 
 
-initialModel : Model
-initialModel =
+init : () -> (Model, Cmd Msg)
+init _ =
     let
         width_ =
             900
@@ -164,7 +167,7 @@ initialModel =
             clearActivations nextNet_
 
     in
-    { net = net_
+    ({ net = net_
     , nextNet = nextNet_
     , layers = layers_
     , nodeRadius = nodeRadius_
@@ -177,7 +180,13 @@ initialModel =
     , currentPosition = (0, 0)
     -- start with forward propgation
     , currentDirection = Forward
+    , content = ""
     }
+    , Http.get
+        { url = "../contents/Introduction.md"
+        , expect = Http.expectString GotContent
+        }
+    )
 
 
 clearActivations : Net -> Net
@@ -365,25 +374,32 @@ type Msg
     = AdjustLearningRate Float
     | MoveOneStep
     | MoveOneLayer
+    | GotContent (Result Http.Error String)
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
         AdjustLearningRate rate ->
-            { model | learningRate = rate }
+            ({ model | learningRate = rate }, Cmd.none)
         MoveOneStep ->
             case model.currentDirection of
                 Forward ->
-                    forwardOneStep model
+                    (forwardOneStep model, Cmd.none)
                 Backward ->
-                    backwardOneStep model
+                    (backwardOneStep model, Cmd.none)
         MoveOneLayer ->
             case model.currentDirection of
                 Forward ->
-                    forwardOneLayer model
+                    (forwardOneLayer model, Cmd.none)
                 Backward ->
-                    backwardOneLayer model
+                    (backwardOneLayer model, Cmd.none)
+        GotContent result ->
+            case result of
+                Ok markdown ->
+                    ({ model | content = markdown}, Cmd.none)
+                Err _ ->
+                    (model, Cmd.none)
 
 
 forwardOneLayer : Model -> Model
@@ -681,8 +697,8 @@ neuralNet model =
         displayLayers func =
             flatten2D (List.map2 func
             (case List.Extra.init model.net of
-                Just init ->
-                    [] :: init
+                Just initial ->
+                    [] :: initial
                 Nothing ->
                     [[]]
             )
@@ -817,51 +833,13 @@ directionTracker model =
     (E.text ("In " ++ direction ++ " propagation"))
     
 
-content : E.Element msg
-content =
+content : Model -> E.Element msg
+content model =
     E.html (Markdown.toHtml
         [ Html.Attributes.style "white-space" "pre-wrap"
         , Html.Attributes.style "font-size" "0.8em"
         ]
-        """
-
-# Introduction
-
-Neural networks and deep learning are big topics in Computer Science and in the technology industry, they currently provide the best solutions to many problems in image recognition, speech recognition and natural language processing. Recently many papers have been published featuring AI that can learn to paint, build 3D Models, create user interfaces(pix2code), some create images given a sentence and there are many more incredible things being done everyday using neural networks.
-
-I’m writing this series of posts about Neural Networks and Deep learning, where I’m going to guide you from learning the basic concepts of Artificial Neural Networks (ANN), show you examples from simple Network to mimic the AND gate, to solving Image recognition tasks using Convolutional Neural Networks (CNNs), Recurrent Neural Networks (RNN) and more. The code will always be written in python, some times with the help of Tensorflow (I don’t expect you to be guru using Tensorflow as I will try to explain the code in details).
-
-# **Agenda**
-
-- **Introduction To Neural Networks (This post)**
-- *AND Gate Neural Network (Perceptron) and XOR Gate Feedfoward Neural Network (2 layers).*
-- *Mnist Digit Recognition with CNN*
-- *Mnist Digit Recognition with RNN*
-
-# Neural Networks
-
-The definition of a neural network, more properly referred to as an 'artificial' neural network (ANN), is provided by the inventor of one of the first neurocomputers, Dr. Robert Hecht-Nielsen. He defines a neural network as:
-
-> "...a computing system made up of a number of simple, highly interconnected processing elements, which process information by their dynamic state response to external inputs."
-
-Or you can also think of Artificial Neural Network as computational model that is inspired by the way biological neural networks in the human brain process information.
-
-# Biological motivation and connections
-
-The basic computational unit of the brain is a **neuron**. Approximately 86 billion neurons can be found in the human nervous system and they are connected with approximately 10¹⁴ — 10¹⁵ **synapses**. The diagram below shows a cartoon drawing of a biological neuron (left) and a common mathematical model (right).
-
-![img](https://miro.medium.com/max/1251/1*Mz0a4EEsdJYsbvf5M_u-Sw.png)
-
-![img](https://miro.medium.com/max/1087/1*Yf6BWJq0kdHTumErO99bUQ.jpeg)
-
-biological neuron (left) and a common mathematical model (right)
-
-The basic unit of computation in a neural network is the neuron , often called a node or unit. It receives input from some other nodes, or from an external source and computes an output. Each input has an associated
-weight (w), which is assigned on the basis of its relative importance to other inputs. The node applies a function to the weighted sum of its inputs.
-
-The idea is that the synaptic strengths (the weights *w*) are learnable and control the strength of influence and its direction: excitory (positive weight) or inhibitory (negative weight) of one neuron on another. In the basic model, the dendrites carry the signal to the cell body where they all get summed. If the final sum is above a certain threshold, the neuron can *fire*, sending a spike along its axon. In the computational model, we assume that the precise timings of the spikes do not matter, and that only the frequency of the firing communicates information. we model the *firing rate* of the neuron with an **activation function** *(e.x sigmoid function)*, which represents the frequency of the spikes along the axon.
-
-"""
+        model.content
     )
 
 
@@ -882,7 +860,7 @@ view model =
             , E.htmlAttribute (Html.Attributes.style "overflow-x" "auto")
             , E.htmlAttribute (Html.Attributes.style "overflow-y" "scroll")
             ]
-            [ content
+            [ content model
             ]
         , E.column
             [ E.width (E.fillPortion 5)
@@ -895,6 +873,12 @@ view model =
                 ]
             )
         ]
+
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
 
 
 centerAll : List (E.Element msg) -> List (E.Element msg)
