@@ -676,7 +676,8 @@ view model =
 center : E.Element msg -> E.Element msg
 center element =
     E.el
-        [ E.htmlAttribute (Html.Attributes.style "margin" "auto")
+        [ E.htmlAttribute (Html.Attributes.style "marginLeft" "auto")
+        ,  E.htmlAttribute (Html.Attributes.style "marginRight" "auto")
         ]
         element
 
