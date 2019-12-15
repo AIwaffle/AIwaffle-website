@@ -289,8 +289,8 @@ generateNet layers height width activations weights losses =
                 []
 
             else
-                Node x (spacingY * toFloat nodeCount) (layerIndex, nodeIndex) nodeActivation nodeWeights
-                    :: createLayer (nodeCount - 1) layerIndex layerLength layerActivations layerWeights
+                createLayer (nodeCount - 1) layerIndex layerLength layerActivations layerWeights
+                    ++ [Node x (spacingY * toFloat nodeCount) (layerIndex, nodeIndex) nodeActivation nodeWeights]
 
         net =
             List.indexedMap
