@@ -16,6 +16,7 @@ import Element as E
 import Element.Input as Input
 import Element.Background as Background
 import Element.Border as Border
+import Element.Events as Events
 import Markdown
 import Http
 
@@ -70,7 +71,22 @@ type alias Model =
     , currentPosition : Position
     , currentDirection : MoveDirection
     , content: String
+    , contentIndex : Int
     }
+
+
+contentNames : List String
+contentNames =
+    [ "Introduction"
+    , "Neural Network Architectures"
+    , "Types of Neural Networks"
+    ]
+
+
+firstContentName : String
+firstContentName =
+    "Introduction"
+
 
 main =
     Browser.element
@@ -181,12 +197,18 @@ init _ =
     -- start with forward propgation
     , currentDirection = Forward
     , content = ""
+    , contentIndex = 0
     }
-    , Http.get
-        { url = "../contents/Introduction.md"
+    , getContent firstContentName
+    )
+
+
+getContent : String -> Cmd Msg
+getContent contentName =
+    Http.get
+        { url = "../contents/" ++ contentName ++ ".md"
         , expect = Http.expectString GotContent
         }
-    )
 
 
 clearActivations : Net -> Net
@@ -375,6 +397,8 @@ type Msg
     | MoveOneStep
     | MoveOneLayer
     | GotContent (Result Http.Error String)
+    | GetPreviousContent
+    | GetNextContent
 
 
 update : Msg -> Model -> (Model, Cmd Msg)
@@ -400,6 +424,28 @@ update msg model =
                     ({ model | content = markdown}, Cmd.none)
                 Err _ ->
                     (model, Cmd.none)
+        GetPreviousContent ->
+            if model.contentIndex == 0 then
+                (model, Cmd.none)
+            else
+                let
+                    nextContentIndex =
+                        model.contentIndex - 1
+                    nextContentName =
+                        Maybe.withDefault firstContentName (nth nextContentIndex contentNames)
+                in
+                ({ model | contentIndex = nextContentIndex}, getContent nextContentName)
+        GetNextContent ->
+            if model.contentIndex == List.length contentNames - 1 then
+                (model, Cmd.none)
+            else
+                let
+                    prevContentIndex =
+                        model.contentIndex + 1
+                    prevContentName =
+                        Maybe.withDefault firstContentName (nth prevContentIndex contentNames)
+                in
+                ({ model | contentIndex = prevContentIndex}, getContent prevContentName)
 
 
 forwardOneLayer : Model -> Model
@@ -843,6 +889,25 @@ content model =
     )
 
 
+contentNavigation : Model -> E.Element Msg
+contentNavigation model =
+    E.row
+        [ E.padding 10
+        , E.width E.fill
+        ]
+        [ E.el
+            [ E.alignLeft
+            , Events.onClick GetPreviousContent
+            ]
+            <| E.html (Html.i [ Html.Attributes.class "fas fa-arrow-left" ] [])
+        , E.el
+            [ E.alignRight
+            , Events.onClick GetNextContent
+            ]
+            <| E.html (Html.i [ Html.Attributes.class "fas fa-arrow-right" ] [])
+        ]
+
+
 view : Model -> Html Msg
 view model =
     E.layout
@@ -860,7 +925,8 @@ view model =
             , E.htmlAttribute (Html.Attributes.style "overflow-x" "auto")
             , E.htmlAttribute (Html.Attributes.style "overflow-y" "scroll")
             ]
-            [ content model
+            [ contentNavigation model
+            , content model
             ]
         , E.column
             [ E.width (E.fillPortion 5)

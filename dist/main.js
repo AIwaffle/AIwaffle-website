@@ -4313,6 +4313,43 @@ function _Browser_load(url)
 
 
 
+var _Bitwise_and = F2(function(a, b)
+{
+	return a & b;
+});
+
+var _Bitwise_or = F2(function(a, b)
+{
+	return a | b;
+});
+
+var _Bitwise_xor = F2(function(a, b)
+{
+	return a ^ b;
+});
+
+function _Bitwise_complement(a)
+{
+	return ~a;
+};
+
+var _Bitwise_shiftLeftBy = F2(function(offset, a)
+{
+	return a << offset;
+});
+
+var _Bitwise_shiftRightBy = F2(function(offset, a)
+{
+	return a >> offset;
+});
+
+var _Bitwise_shiftRightZfBy = F2(function(offset, a)
+{
+	return a >>> offset;
+});
+
+
+
 // SEND REQUEST
 
 var _Http_toTask = F3(function(router, toTask, request)
@@ -4486,43 +4523,6 @@ function _Http_track(router, xhr, tracker)
 		}))));
 	});
 }
-
-
-var _Bitwise_and = F2(function(a, b)
-{
-	return a & b;
-});
-
-var _Bitwise_or = F2(function(a, b)
-{
-	return a | b;
-});
-
-var _Bitwise_xor = F2(function(a, b)
-{
-	return a ^ b;
-});
-
-function _Bitwise_complement(a)
-{
-	return ~a;
-};
-
-var _Bitwise_shiftLeftBy = F2(function(offset, a)
-{
-	return a << offset;
-});
-
-var _Bitwise_shiftRightBy = F2(function(offset, a)
-{
-	return a >> offset;
-});
-
-var _Bitwise_shiftRightZfBy = F2(function(offset, a)
-{
-	return a >>> offset;
-});
-
 
 
 
@@ -5411,9 +5411,6 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$element = _Browser_element;
 var $author$project$Main$Forward = {$: 'Forward'};
-var $author$project$Main$GotContent = function (a) {
-	return {$: 'GotContent', a: a};
-};
 var $elm$core$List$any = F2(
 	function (isOkay, list) {
 		any:
@@ -5449,6 +5446,295 @@ var $author$project$Main$clearActivations = function (net) {
 				layer);
 		},
 		net);
+};
+var $author$project$Main$firstContentName = 'Introduction';
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $elm$random$Random$Generator = function (a) {
+	return {$: 'Generator', a: a};
+};
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $elm$core$Basics$abs = function (n) {
+	return (n < 0) ? (-n) : n;
+};
+var $elm$core$Bitwise$and = _Bitwise_and;
+var $elm$random$Random$Seed = F2(
+	function (a, b) {
+		return {$: 'Seed', a: a, b: b};
+	});
+var $elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
+var $elm$random$Random$next = function (_v0) {
+	var state0 = _v0.a;
+	var incr = _v0.b;
+	return A2($elm$random$Random$Seed, ((state0 * 1664525) + incr) >>> 0, incr);
+};
+var $elm$core$Bitwise$xor = _Bitwise_xor;
+var $elm$random$Random$peel = function (_v0) {
+	var state = _v0.a;
+	var word = (state ^ (state >>> ((state >>> 28) + 4))) * 277803737;
+	return ((word >>> 22) ^ word) >>> 0;
+};
+var $elm$random$Random$float = F2(
+	function (a, b) {
+		return $elm$random$Random$Generator(
+			function (seed0) {
+				var seed1 = $elm$random$Random$next(seed0);
+				var range = $elm$core$Basics$abs(b - a);
+				var n1 = $elm$random$Random$peel(seed1);
+				var n0 = $elm$random$Random$peel(seed0);
+				var lo = (134217727 & n1) * 1.0;
+				var hi = (67108863 & n0) * 1.0;
+				var val = ((hi * 134217728.0) + lo) / 9007199254740992.0;
+				var scaled = (val * range) + a;
+				return _Utils_Tuple2(
+					scaled,
+					$elm$random$Random$next(seed1));
+			});
+	});
+var $elm$random$Random$step = F2(
+	function (_v0, seed) {
+		var generator = _v0.a;
+		return generator(seed);
+	});
+var $author$project$Main$generateRandomNumber = F3(
+	function (seed, min, max) {
+		return A2(
+			$elm$random$Random$step,
+			A2($elm$random$Random$float, min, max),
+			seed);
+	});
+var $author$project$Main$generateRandomNumbers = F4(
+	function (seed, min, max, times) {
+		var _v0 = A3($author$project$Main$generateRandomNumber, seed, min, max);
+		var num = _v0.a;
+		var nextSeed = _v0.b;
+		if (times <= 0) {
+			return _Utils_Tuple2(_List_Nil, nextSeed);
+		} else {
+			var _v1 = A4($author$project$Main$generateRandomNumbers, nextSeed, min, max, times - 1);
+			var rests = _v1.a;
+			var finalSeed = _v1.b;
+			return _Utils_Tuple2(
+				A2($elm$core$List$cons, num, rests),
+				finalSeed);
+		}
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Main$generateAllLayerValues = F4(
+	function (nodeCount, seed, layerIndex, layers) {
+		var prevLength = function () {
+			var _v3 = $elm$core$List$head(
+				A2($elm$core$List$drop, layerIndex - 1, layers));
+			if (_v3.$ === 'Nothing') {
+				return 0;
+			} else {
+				var length = _v3.a;
+				return length;
+			}
+		}();
+		var _v0 = A3($author$project$Main$generateRandomNumber, seed, 0.1, 1);
+		var activation = _v0.a;
+		var seed1 = _v0.b;
+		var _v1 = A4($author$project$Main$generateRandomNumbers, seed1, -5.0, 5.0, prevLength);
+		var weights = _v1.a;
+		var nextSeed = _v1.b;
+		if (nodeCount <= 0) {
+			return _Utils_Tuple2(_List_Nil, _List_Nil);
+		} else {
+			var _v2 = A4($author$project$Main$generateAllLayerValues, nodeCount - 1, nextSeed, layerIndex, layers);
+			var nextActivation = _v2.a;
+			var nextWeights = _v2.b;
+			return _Utils_Tuple2(
+				A2($elm$core$List$cons, activation, nextActivation),
+				A2($elm$core$List$cons, weights, nextWeights));
+		}
+	});
+var $author$project$Main$Node = F5(
+	function (x, y, pos, activation, weights) {
+		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
+	});
+var $author$project$Main$nth = F2(
+	function (n, xs) {
+		return $elm$core$List$head(
+			A2($elm$core$List$drop, n, xs));
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Main$generateNet = F6(
+	function (layers, height, width, activations, weights, losses) {
+		var spacingX = width / $elm$core$List$length(layers);
+		var createLayer = F5(
+			function (nodeCount, layerIndex, layerLength, layerActivations, layerWeights) {
+				var spacingY = height / (layerLength + 1);
+				var sideMargin = spacingX / 2;
+				var x = (!layerIndex) ? sideMargin : (sideMargin + (layerIndex * spacingX));
+				var nodeIndex = nodeCount - 1;
+				var nodeWeights = A2(
+					$elm$core$Maybe$withDefault,
+					_List_Nil,
+					A2($author$project$Main$nth, nodeIndex, layerWeights));
+				var nodeActivation = A2(
+					$elm$core$Maybe$withDefault,
+					0,
+					A2($author$project$Main$nth, nodeIndex, layerActivations));
+				return (nodeCount <= 0) ? _List_Nil : _Utils_ap(
+					A5(createLayer, nodeCount - 1, layerIndex, layerLength, layerActivations, layerWeights),
+					_List_fromArray(
+						[
+							A5(
+							$author$project$Main$Node,
+							x,
+							spacingY * nodeCount,
+							_Utils_Tuple2(layerIndex, nodeIndex),
+							nodeActivation,
+							nodeWeights)
+						]));
+			});
+		var net = A2(
+			$elm$core$List$indexedMap,
+			F2(
+				function (layerIndex, layerLength) {
+					return A5(
+						createLayer,
+						layerLength,
+						layerIndex,
+						layerLength,
+						A2(
+							$elm$core$Maybe$withDefault,
+							_List_Nil,
+							A2($author$project$Main$nth, layerIndex, activations)),
+						A2(
+							$elm$core$Maybe$withDefault,
+							_List_Nil,
+							A2($author$project$Main$nth, layerIndex, weights)));
+				}),
+			layers);
+		return _Utils_Tuple2(net, losses);
+	});
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $elm_community$list_extra$List$Extra$indexedFoldr = F3(
+	function (func, acc, list) {
+		var step = F2(
+			function (x, _v0) {
+				var i = _v0.a;
+				var thisAcc = _v0.b;
+				return _Utils_Tuple2(
+					i - 1,
+					A3(func, i, x, thisAcc));
+			});
+		return A3(
+			$elm$core$List$foldr,
+			step,
+			_Utils_Tuple2(
+				$elm$core$List$length(list) - 1,
+				acc),
+			list).b;
+	});
+var $elm$random$Random$initialSeed = function (x) {
+	var _v0 = $elm$random$Random$next(
+		A2($elm$random$Random$Seed, 0, 1013904223));
+	var state1 = _v0.a;
+	var incr = _v0.b;
+	var state2 = (state1 + x) >>> 0;
+	return $elm$random$Random$next(
+		A2($elm$random$Random$Seed, state2, incr));
+};
+var $elm_community$list_extra$List$Extra$last = function (items) {
+	last:
+	while (true) {
+		if (!items.b) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			if (!items.b.b) {
+				var x = items.a;
+				return $elm$core$Maybe$Just(x);
+			} else {
+				var rest = items.b;
+				var $temp$items = rest;
+				items = $temp$items;
+				continue last;
+			}
+		}
+	}
+};
+var $author$project$Main$generateRandomNet = F5(
+	function (layers, height, width, seed, generateLayerValues) {
+		var initialSeed = $elm$random$Random$initialSeed(seed);
+		var _v0 = A3(
+			$elm_community$list_extra$List$Extra$indexedFoldr,
+			F3(
+				function (layerIndex, layerLength, values) {
+					var weights = values.b;
+					var activations = values.a;
+					var _v1 = A4(generateLayerValues, layerLength, initialSeed, layerIndex, layers);
+					var layerActivations = _v1.a;
+					var layerWeights = _v1.b;
+					return _Utils_Tuple2(
+						A2($elm$core$List$cons, layerActivations, activations),
+						A2($elm$core$List$cons, layerWeights, weights));
+				}),
+			_Utils_Tuple2(_List_Nil, _List_Nil),
+			layers);
+		var netActivations = _v0.a;
+		var netWeights = _v0.b;
+		var _v2 = A4(
+			$author$project$Main$generateRandomNumbers,
+			initialSeed,
+			0.1,
+			1.0,
+			function () {
+				var _v3 = $elm_community$list_extra$List$Extra$last(layers);
+				if (_v3.$ === 'Nothing') {
+					return 0;
+				} else {
+					var n = _v3.a;
+					return n;
+				}
+			}());
+		var netLosses = _v2.a;
+		return A6($author$project$Main$generateNet, layers, height, width, netActivations, netWeights, netLosses);
+	});
+var $author$project$Main$GotContent = function (a) {
+	return {$: 'GotContent', a: a};
 };
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
@@ -6056,291 +6342,6 @@ var $elm$http$Http$expectString = function (toMsg) {
 		toMsg,
 		$elm$http$Http$resolve($elm$core$Result$Ok));
 };
-var $elm$core$List$drop = F2(
-	function (n, list) {
-		drop:
-		while (true) {
-			if (n <= 0) {
-				return list;
-			} else {
-				if (!list.b) {
-					return list;
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					var $temp$n = n - 1,
-						$temp$list = xs;
-					n = $temp$n;
-					list = $temp$list;
-					continue drop;
-				}
-			}
-		}
-	});
-var $elm$random$Random$Generator = function (a) {
-	return {$: 'Generator', a: a};
-};
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
-var $elm$core$Basics$abs = function (n) {
-	return (n < 0) ? (-n) : n;
-};
-var $elm$core$Bitwise$and = _Bitwise_and;
-var $elm$random$Random$Seed = F2(
-	function (a, b) {
-		return {$: 'Seed', a: a, b: b};
-	});
-var $elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
-var $elm$random$Random$next = function (_v0) {
-	var state0 = _v0.a;
-	var incr = _v0.b;
-	return A2($elm$random$Random$Seed, ((state0 * 1664525) + incr) >>> 0, incr);
-};
-var $elm$core$Bitwise$xor = _Bitwise_xor;
-var $elm$random$Random$peel = function (_v0) {
-	var state = _v0.a;
-	var word = (state ^ (state >>> ((state >>> 28) + 4))) * 277803737;
-	return ((word >>> 22) ^ word) >>> 0;
-};
-var $elm$random$Random$float = F2(
-	function (a, b) {
-		return $elm$random$Random$Generator(
-			function (seed0) {
-				var seed1 = $elm$random$Random$next(seed0);
-				var range = $elm$core$Basics$abs(b - a);
-				var n1 = $elm$random$Random$peel(seed1);
-				var n0 = $elm$random$Random$peel(seed0);
-				var lo = (134217727 & n1) * 1.0;
-				var hi = (67108863 & n0) * 1.0;
-				var val = ((hi * 134217728.0) + lo) / 9007199254740992.0;
-				var scaled = (val * range) + a;
-				return _Utils_Tuple2(
-					scaled,
-					$elm$random$Random$next(seed1));
-			});
-	});
-var $elm$random$Random$step = F2(
-	function (_v0, seed) {
-		var generator = _v0.a;
-		return generator(seed);
-	});
-var $author$project$Main$generateRandomNumber = F3(
-	function (seed, min, max) {
-		return A2(
-			$elm$random$Random$step,
-			A2($elm$random$Random$float, min, max),
-			seed);
-	});
-var $author$project$Main$generateRandomNumbers = F4(
-	function (seed, min, max, times) {
-		var _v0 = A3($author$project$Main$generateRandomNumber, seed, min, max);
-		var num = _v0.a;
-		var nextSeed = _v0.b;
-		if (times <= 0) {
-			return _Utils_Tuple2(_List_Nil, nextSeed);
-		} else {
-			var _v1 = A4($author$project$Main$generateRandomNumbers, nextSeed, min, max, times - 1);
-			var rests = _v1.a;
-			var finalSeed = _v1.b;
-			return _Utils_Tuple2(
-				A2($elm$core$List$cons, num, rests),
-				finalSeed);
-		}
-	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $author$project$Main$generateAllLayerValues = F4(
-	function (nodeCount, seed, layerIndex, layers) {
-		var prevLength = function () {
-			var _v3 = $elm$core$List$head(
-				A2($elm$core$List$drop, layerIndex - 1, layers));
-			if (_v3.$ === 'Nothing') {
-				return 0;
-			} else {
-				var length = _v3.a;
-				return length;
-			}
-		}();
-		var _v0 = A3($author$project$Main$generateRandomNumber, seed, 0.1, 1);
-		var activation = _v0.a;
-		var seed1 = _v0.b;
-		var _v1 = A4($author$project$Main$generateRandomNumbers, seed1, -5.0, 5.0, prevLength);
-		var weights = _v1.a;
-		var nextSeed = _v1.b;
-		if (nodeCount <= 0) {
-			return _Utils_Tuple2(_List_Nil, _List_Nil);
-		} else {
-			var _v2 = A4($author$project$Main$generateAllLayerValues, nodeCount - 1, nextSeed, layerIndex, layers);
-			var nextActivation = _v2.a;
-			var nextWeights = _v2.b;
-			return _Utils_Tuple2(
-				A2($elm$core$List$cons, activation, nextActivation),
-				A2($elm$core$List$cons, weights, nextWeights));
-		}
-	});
-var $author$project$Main$Node = F5(
-	function (x, y, pos, activation, weights) {
-		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
-	});
-var $author$project$Main$nth = F2(
-	function (n, xs) {
-		return $elm$core$List$head(
-			A2($elm$core$List$drop, n, xs));
-	});
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$Main$generateNet = F6(
-	function (layers, height, width, activations, weights, losses) {
-		var spacingX = width / $elm$core$List$length(layers);
-		var createLayer = F5(
-			function (nodeCount, layerIndex, layerLength, layerActivations, layerWeights) {
-				var spacingY = height / (layerLength + 1);
-				var sideMargin = spacingX / 2;
-				var x = (!layerIndex) ? sideMargin : (sideMargin + (layerIndex * spacingX));
-				var nodeIndex = nodeCount - 1;
-				var nodeWeights = A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($author$project$Main$nth, nodeIndex, layerWeights));
-				var nodeActivation = A2(
-					$elm$core$Maybe$withDefault,
-					0,
-					A2($author$project$Main$nth, nodeIndex, layerActivations));
-				return (nodeCount <= 0) ? _List_Nil : _Utils_ap(
-					A5(createLayer, nodeCount - 1, layerIndex, layerLength, layerActivations, layerWeights),
-					_List_fromArray(
-						[
-							A5(
-							$author$project$Main$Node,
-							x,
-							spacingY * nodeCount,
-							_Utils_Tuple2(layerIndex, nodeIndex),
-							nodeActivation,
-							nodeWeights)
-						]));
-			});
-		var net = A2(
-			$elm$core$List$indexedMap,
-			F2(
-				function (layerIndex, layerLength) {
-					return A5(
-						createLayer,
-						layerLength,
-						layerIndex,
-						layerLength,
-						A2(
-							$elm$core$Maybe$withDefault,
-							_List_Nil,
-							A2($author$project$Main$nth, layerIndex, activations)),
-						A2(
-							$elm$core$Maybe$withDefault,
-							_List_Nil,
-							A2($author$project$Main$nth, layerIndex, weights)));
-				}),
-			layers);
-		return _Utils_Tuple2(net, losses);
-	});
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
-var $elm_community$list_extra$List$Extra$indexedFoldr = F3(
-	function (func, acc, list) {
-		var step = F2(
-			function (x, _v0) {
-				var i = _v0.a;
-				var thisAcc = _v0.b;
-				return _Utils_Tuple2(
-					i - 1,
-					A3(func, i, x, thisAcc));
-			});
-		return A3(
-			$elm$core$List$foldr,
-			step,
-			_Utils_Tuple2(
-				$elm$core$List$length(list) - 1,
-				acc),
-			list).b;
-	});
-var $elm$random$Random$initialSeed = function (x) {
-	var _v0 = $elm$random$Random$next(
-		A2($elm$random$Random$Seed, 0, 1013904223));
-	var state1 = _v0.a;
-	var incr = _v0.b;
-	var state2 = (state1 + x) >>> 0;
-	return $elm$random$Random$next(
-		A2($elm$random$Random$Seed, state2, incr));
-};
-var $elm_community$list_extra$List$Extra$last = function (items) {
-	last:
-	while (true) {
-		if (!items.b) {
-			return $elm$core$Maybe$Nothing;
-		} else {
-			if (!items.b.b) {
-				var x = items.a;
-				return $elm$core$Maybe$Just(x);
-			} else {
-				var rest = items.b;
-				var $temp$items = rest;
-				items = $temp$items;
-				continue last;
-			}
-		}
-	}
-};
-var $author$project$Main$generateRandomNet = F5(
-	function (layers, height, width, seed, generateLayerValues) {
-		var initialSeed = $elm$random$Random$initialSeed(seed);
-		var _v0 = A3(
-			$elm_community$list_extra$List$Extra$indexedFoldr,
-			F3(
-				function (layerIndex, layerLength, values) {
-					var weights = values.b;
-					var activations = values.a;
-					var _v1 = A4(generateLayerValues, layerLength, initialSeed, layerIndex, layers);
-					var layerActivations = _v1.a;
-					var layerWeights = _v1.b;
-					return _Utils_Tuple2(
-						A2($elm$core$List$cons, layerActivations, activations),
-						A2($elm$core$List$cons, layerWeights, weights));
-				}),
-			_Utils_Tuple2(_List_Nil, _List_Nil),
-			layers);
-		var netActivations = _v0.a;
-		var netWeights = _v0.b;
-		var _v2 = A4(
-			$author$project$Main$generateRandomNumbers,
-			initialSeed,
-			0.1,
-			1.0,
-			function () {
-				var _v3 = $elm_community$list_extra$List$Extra$last(layers);
-				if (_v3.$ === 'Nothing') {
-					return 0;
-				} else {
-					var n = _v3.a;
-					return n;
-				}
-			}());
-		var netLosses = _v2.a;
-		return A6($author$project$Main$generateNet, layers, height, width, netActivations, netWeights, netLosses);
-	});
 var $elm$http$Http$emptyBody = _Http_emptyBody;
 var $elm$http$Http$Request = function (a) {
 	return {$: 'Request', a: a};
@@ -6514,6 +6515,13 @@ var $elm$http$Http$get = function (r) {
 	return $elm$http$Http$request(
 		{body: $elm$http$Http$emptyBody, expect: r.expect, headers: _List_Nil, method: 'GET', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
+var $author$project$Main$getContent = function (contentName) {
+	return $elm$http$Http$get(
+		{
+			expect: $elm$http$Http$expectString($author$project$Main$GotContent),
+			url: '../contents/' + (contentName + '.md')
+		});
+};
 var $author$project$Main$init = function (_v0) {
 	var width_ = 900;
 	var layers_ = _List_fromArray(
@@ -6543,6 +6551,7 @@ var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
 		{
 			content: '',
+			contentIndex: 0,
 			currentDirection: $author$project$Main$Forward,
 			currentPosition: _Utils_Tuple2(0, 0),
 			edgeWidth: edgeWidth_,
@@ -6555,11 +6564,7 @@ var $author$project$Main$init = function (_v0) {
 			nodeRadius: nodeRadius_,
 			width: width_
 		},
-		$elm$http$Http$get(
-			{
-				expect: $elm$http$Http$expectString($author$project$Main$GotContent),
-				url: '../contents/Introduction.md'
-			}));
+		$author$project$Main$getContent($author$project$Main$firstContentName));
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
@@ -6834,6 +6839,8 @@ var $author$project$Main$backwardOneLayer = function (model) {
 		}
 	}
 };
+var $author$project$Main$contentNames = _List_fromArray(
+	['Introduction', 'Neural Network Architectures', 'Types of Neural Networks']);
 var $author$project$Main$Backward = {$: 'Backward'};
 var $elm$core$Basics$ge = _Utils_ge;
 var $author$project$Main$updateActivations = F4(
@@ -6934,7 +6941,7 @@ var $author$project$Main$update = F2(
 						$author$project$Main$backwardOneLayer(model),
 						$elm$core$Platform$Cmd$none);
 				}
-			default:
+			case 'GotContent':
 				var result = msg.a;
 				if (result.$ === 'Ok') {
 					var markdown = result.a;
@@ -6945,6 +6952,38 @@ var $author$project$Main$update = F2(
 						$elm$core$Platform$Cmd$none);
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+				}
+			case 'GetPreviousContent':
+				if (!model.contentIndex) {
+					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+				} else {
+					var nextContentIndex = model.contentIndex - 1;
+					var nextContentName = A2(
+						$elm$core$Maybe$withDefault,
+						$author$project$Main$firstContentName,
+						A2($author$project$Main$nth, nextContentIndex, $author$project$Main$contentNames));
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{contentIndex: nextContentIndex}),
+						$author$project$Main$getContent(nextContentName));
+				}
+			default:
+				if (_Utils_eq(
+					model.contentIndex,
+					$elm$core$List$length($author$project$Main$contentNames) - 1)) {
+					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+				} else {
+					var prevContentIndex = model.contentIndex + 1;
+					var prevContentName = A2(
+						$elm$core$Maybe$withDefault,
+						$author$project$Main$firstContentName,
+						A2($author$project$Main$nth, prevContentIndex, $author$project$Main$contentNames));
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{contentIndex: prevContentIndex}),
+						$author$project$Main$getContent(prevContentName));
 				}
 		}
 	});
@@ -12389,6 +12428,121 @@ var $author$project$Main$content = function (model) {
 				]),
 			model.content));
 };
+var $author$project$Main$GetNextContent = {$: 'GetNextContent'};
+var $author$project$Main$GetPreviousContent = {$: 'GetPreviousContent'};
+var $mdgriffith$elm_ui$Internal$Model$AlignX = function (a) {
+	return {$: 'AlignX', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$Left = {$: 'Left'};
+var $mdgriffith$elm_ui$Element$alignLeft = $mdgriffith$elm_ui$Internal$Model$AlignX($mdgriffith$elm_ui$Internal$Model$Left);
+var $mdgriffith$elm_ui$Internal$Model$Right = {$: 'Right'};
+var $mdgriffith$elm_ui$Element$alignRight = $mdgriffith$elm_ui$Internal$Model$AlignX($mdgriffith$elm_ui$Internal$Model$Right);
+var $mdgriffith$elm_ui$Internal$Model$Fill = function (a) {
+	return {$: 'Fill', a: a};
+};
+var $mdgriffith$elm_ui$Element$fill = $mdgriffith$elm_ui$Internal$Model$Fill(1);
+var $elm$html$Html$i = _VirtualDom_node('i');
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
+var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
+	function (a, b, c, d, e) {
+		return {$: 'PaddingStyle', a: a, b: b, c: c, d: d, e: e};
+	});
+var $mdgriffith$elm_ui$Internal$Model$StyleClass = F2(
+	function (a, b) {
+		return {$: 'StyleClass', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$padding = $mdgriffith$elm_ui$Internal$Flag$flag(2);
+var $mdgriffith$elm_ui$Element$padding = function (x) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$padding,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
+			'p-' + $elm$core$String$fromInt(x),
+			x,
+			x,
+			x,
+			x));
+};
+var $mdgriffith$elm_ui$Internal$Model$AsRow = {$: 'AsRow'};
+var $mdgriffith$elm_ui$Internal$Model$asRow = $mdgriffith$elm_ui$Internal$Model$AsRow;
+var $mdgriffith$elm_ui$Element$row = F2(
+	function (attrs, children) {
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asRow,
+			$mdgriffith$elm_ui$Internal$Model$div,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentLeft + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.contentCenterY)),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+						attrs))),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
+	});
+var $author$project$Main$contentNavigation = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$row,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$padding(10),
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$alignLeft,
+						$mdgriffith$elm_ui$Element$Events$onClick($author$project$Main$GetPreviousContent)
+					]),
+				$mdgriffith$elm_ui$Element$html(
+					A2(
+						$elm$html$Html$i,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('fas fa-arrow-left')
+							]),
+						_List_Nil))),
+				A2(
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$alignRight,
+						$mdgriffith$elm_ui$Element$Events$onClick($author$project$Main$GetNextContent)
+					]),
+				$mdgriffith$elm_ui$Element$html(
+					A2(
+						$elm$html$Html$i,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('fas fa-arrow-right')
+							]),
+						_List_Nil)))
+			]));
+};
 var $author$project$Main$MoveOneLayer = {$: 'MoveOneLayer'};
 var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
 var $mdgriffith$elm_ui$Internal$Model$Describe = function (a) {
@@ -12416,24 +12570,6 @@ var $mdgriffith$elm_ui$Element$Input$hasFocusStyle = function (attr) {
 var $mdgriffith$elm_ui$Element$Input$focusDefault = function (attrs) {
 	return A2($elm$core$List$any, $mdgriffith$elm_ui$Element$Input$hasFocusStyle, attrs) ? $mdgriffith$elm_ui$Internal$Model$NoAttribute : $mdgriffith$elm_ui$Internal$Model$htmlClass('focusable');
 };
-var $elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 'Normal', a: a};
-};
-var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
-var $elm$html$Html$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
-var $elm$html$Html$Events$onClick = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'click',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
 var $mdgriffith$elm_ui$Element$Input$enter = 'Enter';
 var $elm$json$Json$Decode$andThen = _Json_andThen;
 var $elm$json$Json$Decode$fail = _Json_fail;
@@ -12540,10 +12676,6 @@ var $mdgriffith$elm_ui$Internal$Model$Colored = F3(
 	function (a, b, c) {
 		return {$: 'Colored', a: a, b: b, c: c};
 	});
-var $mdgriffith$elm_ui$Internal$Model$StyleClass = F2(
-	function (a, b) {
-		return {$: 'StyleClass', a: a, b: b};
-	});
 var $mdgriffith$elm_ui$Internal$Flag$bgColor = $mdgriffith$elm_ui$Internal$Flag$flag(8);
 var $mdgriffith$elm_ui$Internal$Model$formatColorClass = function (_v0) {
 	var red = _v0.a;
@@ -12578,9 +12710,6 @@ var $mdgriffith$elm_ui$Internal$Model$PseudoSelector = F2(
 		return {$: 'PseudoSelector', a: a, b: b};
 	});
 var $mdgriffith$elm_ui$Internal$Flag$hover = $mdgriffith$elm_ui$Internal$Flag$flag(33);
-var $mdgriffith$elm_ui$Internal$Model$AlignX = function (a) {
-	return {$: 'AlignX', a: a};
-};
 var $mdgriffith$elm_ui$Internal$Model$AlignY = function (a) {
 	return {$: 'AlignY', a: a};
 };
@@ -12719,23 +12848,6 @@ var $mdgriffith$elm_ui$Element$mouseOver = function (decs) {
 			$mdgriffith$elm_ui$Internal$Model$Hover,
 			$mdgriffith$elm_ui$Internal$Model$unwrapDecorations(decs)));
 };
-var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
-	function (a, b, c, d, e) {
-		return {$: 'PaddingStyle', a: a, b: b, c: c, d: d, e: e};
-	});
-var $mdgriffith$elm_ui$Internal$Flag$padding = $mdgriffith$elm_ui$Internal$Flag$flag(2);
-var $mdgriffith$elm_ui$Element$padding = function (x) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$padding,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
-			'p-' + $elm$core$String$fromInt(x),
-			x,
-			x,
-			x,
-			x));
-};
 var $mdgriffith$elm_ui$Internal$Flag$borderRound = $mdgriffith$elm_ui$Internal$Flag$flag(17);
 var $mdgriffith$elm_ui$Element$Border$rounded = function (radius) {
 	return A2(
@@ -12832,10 +12944,6 @@ var $mdgriffith$elm_ui$Element$Input$defaultThumb = $mdgriffith$elm_ui$Element$I
 			$mdgriffith$elm_ui$Element$Background$color(
 			A3($mdgriffith$elm_ui$Element$rgb, 1, 1, 1))
 		]));
-var $mdgriffith$elm_ui$Internal$Model$Fill = function (a) {
-	return {$: 'Fill', a: a};
-};
-var $mdgriffith$elm_ui$Element$fill = $mdgriffith$elm_ui$Internal$Model$Fill(1);
 var $mdgriffith$elm_ui$Element$Input$Above = {$: 'Above'};
 var $mdgriffith$elm_ui$Element$Input$Label = F3(
 	function (a, b, c) {
@@ -13100,8 +13208,6 @@ var $myrho$elm_round$Round$round = $myrho$elm_round$Round$roundFun(
 var $mdgriffith$elm_ui$Internal$Flag$active = $mdgriffith$elm_ui$Internal$Flag$flag(32);
 var $mdgriffith$elm_ui$Internal$Model$LivePolite = {$: 'LivePolite'};
 var $mdgriffith$elm_ui$Element$Region$announce = $mdgriffith$elm_ui$Internal$Model$Describe($mdgriffith$elm_ui$Internal$Model$LivePolite);
-var $mdgriffith$elm_ui$Internal$Model$AsRow = {$: 'AsRow'};
-var $mdgriffith$elm_ui$Internal$Model$asRow = $mdgriffith$elm_ui$Internal$Model$AsRow;
 var $mdgriffith$elm_ui$Element$Input$applyLabel = F3(
 	function (attrs, label, input) {
 		if (label.$ === 'HiddenLabel') {
@@ -13287,24 +13393,6 @@ var $elm$html$Html$Events$onInput = function (tagger) {
 			$elm$html$Html$Events$alwaysStop,
 			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
 };
-var $mdgriffith$elm_ui$Element$row = F2(
-	function (attrs, children) {
-		return A4(
-			$mdgriffith$elm_ui$Internal$Model$element,
-			$mdgriffith$elm_ui$Internal$Model$asRow,
-			$mdgriffith$elm_ui$Internal$Model$div,
-			A2(
-				$elm$core$List$cons,
-				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentLeft + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.contentCenterY)),
-				A2(
-					$elm$core$List$cons,
-					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
-					A2(
-						$elm$core$List$cons,
-						$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
-						attrs))),
-			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
-	});
 var $mdgriffith$elm_ui$Internal$Model$SpacingStyle = F3(
 	function (a, b, c) {
 		return {$: 'SpacingStyle', a: a, b: b, c: c};
@@ -15281,6 +15369,7 @@ var $author$project$Main$view = function (model) {
 						]),
 					_List_fromArray(
 						[
+							$author$project$Main$contentNavigation(model),
 							$author$project$Main$content(model)
 						])),
 					A2(
