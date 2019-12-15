@@ -723,7 +723,8 @@ neuralNet model =
         (clearBackground
         ++ displayLayers displayLayerEdges
         ++ displayLayers displayLayerNodes
-        ++ flatten2D displayLosses)
+        )
+        -- ++ flatten2D displayLosses)
 
 
 controls : Model -> E.Element Msg
