@@ -88,35 +88,71 @@ initialModel =
             620
 
         layers_ =
+            [ 2
+            , 3
+            , 2
+            ]
+
+            -- deep neural net
             -- [ 2
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
             -- , 3
             -- , 2
             -- ]
+
+            -- large and deep neural net
+            -- [ 2
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 12
+            -- ]
+
             -- [ 3
             -- , 5
             -- , 3
             -- ]
-            [ 10
-            , 20
-            , 20
-            , 10
-            ]
+            -- [ 10
+            -- , 20
+            -- , 20
+            -- , 10
+            -- ]
 
         nodeRadius_ =
-            if List.any (\size -> size > 16) layers_ then
-                10
-            else if List.any (\size -> size > 8) layers_ then
-                25
-            else
-                40
+            sizeLevels 10 25 40
 
         edgeWidth_ =
-            if List.any (\size -> size > 16) layers_ then
-                1
-            else if List.any (\size -> size > 8) layers_ then
-                2
+            sizeLevels 1 2 3
+        
+        sizeLevels small medium large =
+            if List.any (\size -> size > 16) layers_
+                || List.length layers_ > 12 then
+                small
+            else if List.any (\size -> size > 8) layers_
+                || List.length layers_ > 8 then
+                medium
             else
-                3
+                large
+
 
         initialSeed_ =
             47
