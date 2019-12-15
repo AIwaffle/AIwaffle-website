@@ -672,6 +672,12 @@ view model =
           (controls model)
         ]
 
+centerAll : List (E.Element msg) -> List (E.Element msg)
+centerAll elements =
+    List.map
+    center
+    elements
+
 
 center : E.Element msg -> E.Element msg
 center element =
