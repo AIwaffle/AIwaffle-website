@@ -207,7 +207,7 @@ init _ =
 getContent : String -> Cmd Msg
 getContent contentName =
     Http.get
-        { url = "../contents/" ++ contentName ++ ".md"
+        { url = "./contents/" ++ contentName ++ ".md"
         , expect = Http.expectString GotContent
         }
 
