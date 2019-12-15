@@ -120,12 +120,15 @@ initialModel =
         initialSeed_ =
             47
 
-        (net_, losses_) =
-            generateRandomNet layers_ height_ width_ initialSeed_ generateAllLayerWeights
+        (nextNet_, losses_) =
+            generateRandomNet layers_ height_ width_ initialSeed_ generateAllLayerValues
+    
+        net_ =
+            clearActivations nextNet_
 
     in
     { net = net_
-    , nextNet = net_
+    , nextNet = nextNet_
     , layers = layers_
     , nodeRadius = nodeRadius_
     , edgeWidth = edgeWidth_
@@ -138,6 +141,17 @@ initialModel =
     -- start with forward propgation
     , currentDirection = Forward
     }
+
+
+clearActivations : Net -> Net
+clearActivations net =
+    List.map
+        (\layer ->
+            List.map 
+            (\node -> { node | activation = 0 })
+            layer
+        )
+        net
 
 
 generateAllLayerWeights : Int -> Random.Seed -> Int -> List Int -> (List Float, List (List Float))
@@ -345,18 +359,26 @@ forwardOneStep model =
             Tuple.second model.currentPosition
         _ =
             Debug.log "currentIndex" currentIndex
+        nextNet =
+            updateActivations currentLayerIndex currentIndex model.net model.nextNet
     in
     if currentIndex >= layerLength then
         if currentLayerIndex >= numberOfLayers - 1 then
             { model
                 | currentPosition = (numberOfLayers - 1, layerLength - 1)
                 , currentDirection = Backward
-                , nextNet = Tuple.first (generateRandomNet model.layers model.height model.width 128 generateAllLayerWeights)
+                , nextNet = Tuple.first (generateRandomNet model.layers model.height model.width 128 generateAllLayerValues)
             }
         else
-            { model | currentPosition = (currentLayerIndex + 1, 0) }
+            { model
+                | currentPosition = (currentLayerIndex + 1, 0)
+                , net = nextNet
+            }
     else
-        { model | currentPosition = (currentLayerIndex, currentIndex + 1) }
+        { model
+            | currentPosition = (currentLayerIndex, currentIndex + 1)
+            , net = nextNet
+        }
 
 
 backwardOneStep : Model -> Model
@@ -380,7 +402,7 @@ backwardOneStep model =
             { model
                 | currentPosition = (0, 0)
                 , currentDirection = Forward
-                , nextNet = Tuple.first (generateRandomNet model.layers model.height model.width 489 generateAllLayerWeights)
+                , net = clearActivations model.nextNet
             }
         else
             { model
@@ -404,6 +426,15 @@ emptyNode =
     }
 
 
+updateActivations : Int -> Int -> Net -> Net -> Net
+updateActivations layerIndex index currNet nextNet =
+    let
+        combineNodes currNode nextNode =
+            { currNode | activation = nextNode.activation }
+    in
+    updateNode layerIndex index combineNodes currNet nextNet
+
+
 updateWeights : Int -> Int -> Net -> Net -> Net
 updateWeights layerIndex index currNet nextNet =
     let
@@ -416,6 +447,12 @@ updateWeights layerIndex index currNet nextNet =
 updateNode : Int -> Int -> (Node -> Node -> Node) -> Net -> Net -> Net
 updateNode layerIndex index combineNodes currNet nextNet =
     let
+        -- _ =
+        --     Debug.log "layerIndex" layerIndex
+        -- _ =
+        --     Debug.log "index" index
+        -- _ =
+        --     Debug.log "currLayer" currLayer
         currLayer =
             Maybe.withDefault [] (nth layerIndex currNet)
         currNode =
