@@ -346,7 +346,7 @@ forwardOneStep model =
         _ =
             Debug.log "currentIndex" currentIndex
     in
-    if currentIndex >= layerLength - 1 then
+    if currentIndex >= layerLength then
         if currentLayerIndex >= numberOfLayers - 1 then
             { model
                 | currentPosition = (numberOfLayers - 1, layerLength - 1)
