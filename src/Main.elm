@@ -369,10 +369,6 @@ type Msg
 
 update : Msg -> Model -> Model
 update msg model =
-    let
-        _ =
-            Debug.log "currentDirection" model.currentDirection
-    in
     case msg of
         AdjustLearningRate rate ->
             { model | learningRate = rate }
@@ -440,12 +436,8 @@ forwardOneStep model =
             List.length model.layers
         currentLayerIndex =
             Tuple.first model.currentPosition 
-        _ =
-            Debug.log "currentLayerIndex" currentLayerIndex
         currentIndex =
             Tuple.second model.currentPosition
-        _ =
-            Debug.log "currentIndex" currentIndex
         nextNet =
             updateActivations currentLayerIndex currentIndex model.net model.nextNet
     in
@@ -475,10 +467,6 @@ backwardOneStep model =
             Tuple.first model.currentPosition
         currentIndex =
             Tuple.second model.currentPosition
-        _ =
-            Debug.log "currentLayerIndex" currentLayerIndex
-        _ =
-            Debug.log "currentIndex" currentIndex
         nextLayerLength =
             Maybe.withDefault 0 (nth (currentLayerIndex - 1) model.layers)
         nextNet =
@@ -534,12 +522,6 @@ updateWeights layerIndex index currNet nextNet =
 updateNode : Int -> Int -> (Node -> Node -> Node) -> Net -> Net -> Net
 updateNode layerIndex index combineNodes currNet nextNet =
     let
-        -- _ =
-        --     Debug.log "layerIndex" layerIndex
-        -- _ =
-        --     Debug.log "index" index
-        -- _ =
-        --     Debug.log "currLayer" currLayer
         currLayer =
             Maybe.withDefault [] (nth layerIndex currNet)
         currNode =
