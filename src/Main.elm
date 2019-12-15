@@ -407,26 +407,29 @@ emptyNode =
 updateWeights : Int -> Int -> Net -> Net -> Net
 updateWeights layerIndex index currNet nextNet =
     let
+        combineNodes currNode nextNode =
+            { currNode | weights = nextNode.weights }
+    in
+    updateNode layerIndex index combineNodes currNet nextNet
+
+
+updateNode : Int -> Int -> (Node -> Node -> Node) -> Net -> Net -> Net
+updateNode layerIndex index combineNodes currNet nextNet =
+    let
         currLayer =
             Maybe.withDefault [] (nth layerIndex currNet)
         currNode =
             Maybe.withDefault emptyNode (nth index currLayer)
         nextLayer =
             Maybe.withDefault [] (nth layerIndex nextNet)
-        nextWeights =
-            case nth index nextLayer of
-                Nothing ->
-                    []
-                Just node ->
-                    node.weights
         nextNode =
-            { currNode | weights = nextWeights }
+            Maybe.withDefault emptyNode (nth index nextLayer)
     in
     List.Extra.setAt
         layerIndex
         (List.Extra.setAt
             index
-            nextNode
+            (combineNodes currNode nextNode)
             currLayer
         )
         currNet
