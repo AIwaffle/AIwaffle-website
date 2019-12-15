@@ -87,19 +87,19 @@ initialModel =
             650
 
         layers_ =
-            [ 2
-            , 3
-            , 2
-            ]
+            -- [ 2
+            -- , 3
+            -- , 2
+            -- ]
             -- [ 3
             -- , 5
             -- , 3
             -- ]
-            -- [ 10
-            -- , 20
-            -- , 20
-            -- , 10
-            -- ]
+            [ 10
+            , 20
+            , 20
+            , 10
+            ]
 
         nodeRadius_ =
             if List.any (\size -> size > 16) layers_ then
@@ -321,23 +321,67 @@ generateNet layers height width activations weights losses =
 type Msg
     = AdjustLearningRate Float
     | MoveOneStep
+    | MoveOneLayer
 
 
 update : Msg -> Model -> Model
 update msg model =
+    let
+        _ =
+            Debug.log "currentDirection" model.currentDirection
+    in
     case msg of
         AdjustLearningRate rate ->
             { model | learningRate = rate }
         MoveOneStep ->
-            let
-                _ =
-                    Debug.log "currentDirection" model.currentDirection
-            in
             case model.currentDirection of
                 Forward ->
                     forwardOneStep model
                 Backward ->
                     backwardOneStep model
+        MoveOneLayer ->
+            case model.currentDirection of
+                Forward ->
+                    forwardOneLayer model
+                Backward ->
+                    backwardOneLayer model
+
+
+forwardOneLayer : Model -> Model
+forwardOneLayer model =
+    let
+        currentLayerIndex =
+            Tuple.first model.currentPosition
+        currentIndex =
+            Tuple.second model.currentPosition
+        currentLayerLength =
+            Maybe.withDefault 0 (nth currentLayerIndex model.layers)
+    in
+    if currentIndex < currentLayerLength - 1 then
+        repeat (currentLayerLength - currentIndex) forwardOneStep model
+    else if currentIndex == currentLayerLength then
+        forwardOneLayer (forwardOneStep model)
+    else
+        model
+
+
+backwardOneLayer : Model -> Model
+backwardOneLayer model =
+    let
+        currentLayerIndex =
+            Tuple.first model.currentPosition
+        currentIndex =
+            Tuple.second model.currentPosition
+    in
+    if currentIndex > 0 then
+        repeat currentIndex backwardOneStep model
+    else if currentIndex == 0 then
+        if currentLayerIndex == 0 then
+            model
+        else
+            backwardOneLayer (backwardOneStep model)
+    else
+        model
 
 
 forwardOneStep : Model -> Model
@@ -646,6 +690,7 @@ controls model =
     ]
     [ learningRateControl model
     , stepControl
+    , layerStepControl
     ]
 
 
@@ -689,6 +734,14 @@ stepControl =
     controlButton
         { onPress = Just MoveOneStep
         , label = E.text "Move 1 Step"
+        }
+
+
+layerStepControl : E.Element Msg
+layerStepControl =
+    controlButton
+        { onPress = Just MoveOneLayer
+        , label = E.text "Move 1 Layer"
         }
 
 
@@ -850,3 +903,10 @@ nth n xs =
 -- source: https://github.com/elm/core/issues/968
 tanh : Float -> Float
 tanh x = (e^x - e^ -x) / (e^x + e^ -x)
+
+repeat : Int -> (a -> a) -> a -> a
+repeat steps func arg =
+    if steps > 0 then
+        repeat (steps - 1) func (func arg)
+    else
+        arg
