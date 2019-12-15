@@ -279,7 +279,7 @@ generateNet : List Int -> Int -> Int -> Activations -> Weights -> Losses -> (Net
 generateNet layers height width activations weights losses =
     let
         spacingX =
-            toFloat width / toFloat (List.length layers + 1)
+            toFloat width / toFloat (List.length layers)
 
         createLayer : Int -> Int -> Int -> List Float -> List (List Float) -> List Node
         createLayer nodeCount layerIndex layerLength layerActivations layerWeights =
@@ -290,8 +290,13 @@ generateNet layers height width activations weights losses =
                 spacingY =
                     toFloat height / toFloat (layerLength + 1)
 
+                sizeMargin = 100
+
                 x =
-                    toFloat (layerIndex + 1) * spacingX
+                    if layerIndex == 0 then
+                        sizeMargin
+                    else
+                        sizeMargin + toFloat (layerIndex) * spacingX
 
                 nodeActivation =
                     Maybe.withDefault 0 (nth nodeIndex layerActivations)

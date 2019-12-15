@@ -4810,6 +4810,7 @@ var $author$project$Main$Node = F5(
 		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
 	});
 var $elm$core$Basics$append = _Utils_append;
+var $elm$core$Basics$eq = _Utils_equal;
 var $elm$core$List$length = function (xs) {
 	return A3(
 		$elm$core$List$foldl,
@@ -4869,11 +4870,12 @@ var $elm$core$Maybe$withDefault = F2(
 	});
 var $author$project$Main$generateNet = F6(
 	function (layers, height, width, activations, weights, losses) {
-		var spacingX = width / ($elm$core$List$length(layers) + 1);
+		var spacingX = width / $elm$core$List$length(layers);
 		var createLayer = F5(
 			function (nodeCount, layerIndex, layerLength, layerActivations, layerWeights) {
-				var x = (layerIndex + 1) * spacingX;
 				var spacingY = height / (layerLength + 1);
+				var sizeMargin = 100;
+				var x = (!layerIndex) ? sizeMargin : (sizeMargin + (layerIndex * spacingX));
 				var nodeIndex = nodeCount - 1;
 				var nodeWeights = A2(
 					$elm$core$Maybe$withDefault,
@@ -5242,7 +5244,6 @@ var $elm$core$Basics$apR = F2(
 	function (x, f) {
 		return f(x);
 	});
-var $elm$core$Basics$eq = _Utils_equal;
 var $elm$core$Basics$floor = _Basics_floor;
 var $elm$core$Elm$JsArray$length = _JsArray_length;
 var $elm$core$Basics$max = F2(
