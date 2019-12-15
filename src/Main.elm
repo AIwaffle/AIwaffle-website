@@ -645,7 +645,7 @@ controls model =
     [ E.spacing 20   
     ]
     [ learningRateControl model
-    , stepControl model
+    , stepControl
     ]
 
 
@@ -684,8 +684,16 @@ learningRateControl model =
         }
 
 
-stepControl : Model -> E.Element Msg
-stepControl model =
+stepControl : E.Element Msg
+stepControl =
+    controlButton
+        { onPress = Just MoveOneStep
+        , label = E.text "Move 1 Step"
+        }
+
+
+controlButton : { label : E.Element msg, onPress : Maybe msg } -> E.Element msg
+controlButton =
     Input.button
         [ Background.color lightGrey
         , E.mouseOver
@@ -693,9 +701,7 @@ stepControl model =
         , E.padding 10
         , Border.rounded 5
         ]
-        { onPress = Just (MoveOneStep)
-        , label = E.text "Move 1 Step"
-        }
+
 
 directionTracker : Model -> E.Element Msg
 directionTracker model =
