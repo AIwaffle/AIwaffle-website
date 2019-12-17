@@ -970,7 +970,7 @@ calculationDisplay model =
                                             E.none
                                         _ ->
                                             E.text " + "
-                                    , highlight activation
+                                    , highlightWithBorder activation
                                     , (E.text " * ")
                                     , highlight weight
                                     ]
@@ -978,7 +978,7 @@ calculationDisplay model =
                                 []
                                 terms
                             ++ [ E.text ") = "
-                            , highlight currAcitvation
+                            , highlightWithBorder currAcitvation
                             ])
                     )
         Backward ->
@@ -987,9 +987,26 @@ calculationDisplay model =
 
 highlight : Float -> E.Element Msg
 highlight n =
+    highlightHelper n False
+
+
+highlightWithBorder : Float -> E.Element Msg
+highlightWithBorder n =
+    highlightHelper n True
+
+
+highlightHelper : Float -> Bool -> E.Element Msg
+highlightHelper n hasBorder =
     E.el
         [ Background.color <| toElmUIColor <| greenScale n
         , Font.color <| toElmUIColor <| highContract n
+        , E.padding 3
+        , Border.rounded 10
+        , Border.width 3
+        , if hasBorder then
+            Border.color <| toElmUIColor <| Color.yellow
+        else
+            Border.color <| E.rgba 0 0 0 0
         ]
         (E.text (Round.round 2 n))
 
