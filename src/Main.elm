@@ -671,7 +671,7 @@ neuralNet model =
                         }
                     , align Center
                     , baseLine Middle
-                    , fill (highContract node.activation)
+                    , fill (highContrast node.activation)
                     ]
                     (node.x, node.y)
                     (Round.round 2 node.activation)
@@ -999,7 +999,7 @@ highlightHelper : Float -> Bool -> E.Element Msg
 highlightHelper n hasBorder =
     E.el
         [ Background.color <| toElmUIColor <| greenScale n
-        , Font.color <| toElmUIColor <| highContract n
+        , Font.color <| toElmUIColor <| highContrast n
         , E.padding 3
         , Border.rounded 10
         , Border.width 3
@@ -1131,8 +1131,8 @@ getColorValue scale strength =
     returnValue
 
 
-highContract :  Float -> Color.Color
-highContract scale =
+highContrast :  Float -> Color.Color
+highContrast scale =
     let
         value =
             if abs scale > 1 then

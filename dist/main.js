@@ -12473,7 +12473,7 @@ var $avh4$elm_color$Color$rgb = F3(
 	function (r, g, b) {
 		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, 1.0);
 	});
-var $author$project$Main$highContract = function (scale) {
+var $author$project$Main$highContrast = function (scale) {
 	var value = ($elm$core$Basics$abs(scale) > 1) ? 1 : (((1 - scale) < 0.5) ? 1 : 0);
 	return A3($avh4$elm_color$Color$rgb, value, value, value);
 };
@@ -12784,7 +12784,7 @@ var $author$project$Main$highlightHelper = F2(
 						$author$project$Main$greenScale(n))),
 					$mdgriffith$elm_ui$Element$Font$color(
 					$author$project$Main$toElmUIColor(
-						$author$project$Main$highContract(n))),
+						$author$project$Main$highContrast(n))),
 					$mdgriffith$elm_ui$Element$padding(3),
 					$mdgriffith$elm_ui$Element$Border$rounded(10),
 					$mdgriffith$elm_ui$Element$Border$width(3),
@@ -15359,7 +15359,7 @@ var $author$project$Main$neuralNet = function (model) {
 						$joakin$elm_canvas$Canvas$Settings$Text$align($joakin$elm_canvas$Canvas$Settings$Text$Center),
 						$joakin$elm_canvas$Canvas$Settings$Text$baseLine($joakin$elm_canvas$Canvas$Settings$Text$Middle),
 						$joakin$elm_canvas$Canvas$Settings$fill(
-						$author$project$Main$highContract(node.activation))
+						$author$project$Main$highContrast(node.activation))
 					]),
 				_Utils_Tuple2(node.x, node.y),
 				A2($myrho$elm_round$Round$round, 2, node.activation))
