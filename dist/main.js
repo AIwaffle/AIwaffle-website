@@ -12436,7 +12436,7 @@ var $author$project$Main$getColorValue = F2(
 		};
 		var returnValue = function () {
 			var value = (scale < 0) ? (1 + compress(scale)) : (1 - compress(scale));
-			return (value <= 0.25) ? (value + 0.10) : value;
+			return (value <= 0.25) ? (value + 0.1) : value;
 		}();
 		return returnValue;
 	});
@@ -12467,7 +12467,7 @@ var $avh4$elm_color$Color$hsl = F3(
 	});
 var $author$project$Main$greenScale = function (scale) {
 	var lightness = A2($author$project$Main$getColorValue, scale, 0.4);
-	return (scale < 0) ? A3($avh4$elm_color$Color$hsl, 0, 0.90, lightness) : A3($avh4$elm_color$Color$hsl, 0.3, 0.90, lightness);
+	return (scale < 0) ? A3($avh4$elm_color$Color$hsl, 0, 0.9, lightness) : A3($avh4$elm_color$Color$hsl, 0.3, 0.9, lightness);
 };
 var $avh4$elm_color$Color$rgb = F3(
 	function (r, g, b) {
@@ -15338,7 +15338,7 @@ var $author$project$Main$neuralNet = function (model) {
 						A2(isVisitedNode, node, model.currentPosition) ? $author$project$Main$greenScale(node.activation) : $author$project$Main$greyScale(node.activation)),
 						$joakin$elm_canvas$Canvas$Settings$stroke(
 						A2(isVisitedNode, node, model.currentPosition) ? $avh4$elm_color$Color$yellow : $avh4$elm_color$Color$black),
-						$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(model.nodeRadius * 0.10)
+						$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(model.nodeRadius * 0.1)
 					]),
 				_List_fromArray(
 					[
