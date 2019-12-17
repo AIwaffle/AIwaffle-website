@@ -91,6 +91,7 @@ firstContentName =
     "Introduction"
 
 
+main : Program () Model Msg
 main =
     Browser.element
         { init = init
@@ -655,7 +656,7 @@ neuralNet model =
             flatten2D (List.map (displayEdges prevLayer) currLayer)
 
         displayLayerNodes : Layer -> Layer -> List Renderable
-        displayLayerNodes prevLayer currLayer =
+        displayLayerNodes _ currLayer =
             flatten2D (List.map displayNode currLayer)
 
         isVisitedNode : Node -> Position -> Bool
@@ -1029,8 +1030,8 @@ calculationDisplay model =
 
                             _ ->
                                 E.row []
-                                    ([ E.text (model.activationFunction ++ "(") ]
-                                        ++ List.foldl
+                                    (E.text (model.activationFunction ++ "(")
+                                        :: List.foldl
                                             (\( weight, activation ) list ->
                                                 list
                                                     ++ [ case List.length list of
@@ -1118,7 +1119,7 @@ view model =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
+subscriptions _ =
     Sub.none
 
 

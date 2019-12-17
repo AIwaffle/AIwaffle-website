@@ -6569,7 +6569,7 @@ var $author$project$Main$init = function (_v0) {
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$Main$subscriptions = function (model) {
+var $author$project$Main$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Main$emptyNode = {
@@ -12867,11 +12867,9 @@ var $author$project$Main$calculationDisplay = function (model) {
 						return A2(
 							$mdgriffith$elm_ui$Element$row,
 							_List_Nil,
-							_Utils_ap(
-								_List_fromArray(
-									[
-										$mdgriffith$elm_ui$Element$text(model.activationFunction + '(')
-									]),
+							A2(
+								$elm$core$List$cons,
+								$mdgriffith$elm_ui$Element$text(model.activationFunction + '('),
 								_Utils_ap(
 									A3(
 										$elm$core$List$foldl,
@@ -15316,8 +15314,8 @@ var $author$project$Main$neuralNet = function (model) {
 			var nodeIndex = node.pos.b;
 			var currentLayerIndex = currentPosition.a;
 			var currentIndex = currentPosition.b;
-			var _v2 = model.currentDirection;
-			if (_v2.$ === 'Forward') {
+			var _v3 = model.currentDirection;
+			if (_v3.$ === 'Forward') {
 				return (_Utils_cmp(nodeLayerIndex, currentLayerIndex) < 0) || (_Utils_eq(nodeLayerIndex, currentLayerIndex) && (_Utils_cmp(nodeIndex, currentIndex) < 1));
 			} else {
 				return (_Utils_cmp(nodeLayerIndex, currentLayerIndex) > 0) || (_Utils_eq(nodeLayerIndex, currentLayerIndex) && (_Utils_cmp(nodeIndex, currentIndex) > -1));
@@ -15407,11 +15405,11 @@ var $author$project$Main$neuralNet = function (model) {
 						]);
 				}),
 			function () {
-				var _v1 = $elm_community$list_extra$List$Extra$last(model.net);
-				if (_v1.$ === 'Nothing') {
+				var _v2 = $elm_community$list_extra$List$Extra$last(model.net);
+				if (_v2.$ === 'Nothing') {
 					return _List_Nil;
 				} else {
-					var layer = _v1.a;
+					var layer = _v2.a;
 					return layer;
 				}
 			}(),
@@ -15423,9 +15421,9 @@ var $author$project$Main$neuralNet = function (model) {
 				$elm$core$List$map2,
 				func,
 				function () {
-					var _v0 = $elm_community$list_extra$List$Extra$init(model.net);
-					if (_v0.$ === 'Just') {
-						var initial = _v0.a;
+					var _v1 = $elm_community$list_extra$List$Extra$init(model.net);
+					if (_v1.$ === 'Just') {
+						var initial = _v1.a;
 						return A2($elm$core$List$cons, _List_Nil, initial);
 					} else {
 						return _List_fromArray(
@@ -15435,7 +15433,7 @@ var $author$project$Main$neuralNet = function (model) {
 				model.net));
 	};
 	var displayLayerNodes = F2(
-		function (prevLayer, currLayer) {
+		function (_v0, currLayer) {
 			return $author$project$Main$flatten2D(
 				A2($elm$core$List$map, displayNode, currLayer));
 		});
