@@ -123,18 +123,18 @@ init _ =
             620
 
         layers_ =
-            -- [ 2
-            -- , 3
-            -- , 2
-            -- ]
+            [ 2
+            , 3
+            , 2
+            ]
             
             -- [ 2
             -- , 1
             -- ]
 
-            [ 10
-            , 1
-            ]
+            -- [ 10
+            -- , 1
+            -- ]
 
             -- deep neural net
             -- [ 2
@@ -208,7 +208,7 @@ init _ =
             generateRandomNet layers_ height_ width_ initialSeed_ generateAllLayerValues
 
         net_ =
-            clearActivations nextNet_
+            clearActivationsExceptFirst nextNet_
     in
     ( { net = net_
       , nextNet = nextNet_
@@ -239,6 +239,11 @@ getContent contentName =
         { url = "./contents/" ++ contentName ++ ".md"
         , expect = Http.expectString GotContent
         }
+
+
+clearActivationsExceptFirst : Net -> Net
+clearActivationsExceptFirst net =
+    updateActivations 0 0 (clearActivations net) net
 
 
 clearActivations : Net -> Net
@@ -554,11 +559,14 @@ forwardOneStep model =
 
         currentIndex =
             Tuple.second model.currentPosition
-
+        
         nextNet =
-            updateActivations currentLayerIndex currentIndex model.net model.nextNet
+            if currentIndex >= layerLength - 1 then
+                updateActivations (currentLayerIndex + 1) 0 model.net model.nextNet
+            else
+                updateActivations currentLayerIndex (currentIndex + 1) model.net model.nextNet
     in
-    if currentIndex >= layerLength then
+    if currentIndex >= layerLength - 1 then
         if currentLayerIndex >= numberOfLayers - 1 then
             { model
                 | currentPosition = ( numberOfLayers - 1, layerLength - 1 )
@@ -599,7 +607,7 @@ backwardOneStep model =
             { model
                 | currentPosition = ( 0, 0 )
                 , currentDirection = Forward
-                , net = clearActivations model.nextNet
+                , net = clearActivationsExceptFirst model.nextNet
             }
 
         else

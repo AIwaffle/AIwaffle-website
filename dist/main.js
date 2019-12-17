@@ -5447,7 +5447,13 @@ var $author$project$Main$clearActivations = function (net) {
 		},
 		net);
 };
-var $author$project$Main$firstContentName = 'Introduction';
+var $author$project$Main$emptyNode = {
+	activation: 0,
+	pos: _Utils_Tuple2(0, 0),
+	weights: _List_Nil,
+	x: 0,
+	y: 0
+};
 var $elm$core$List$drop = F2(
 	function (n, list) {
 		drop:
@@ -5469,6 +5475,234 @@ var $elm$core$List$drop = F2(
 			}
 		}
 	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Main$nth = F2(
+	function (n, xs) {
+		return (n < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
+			A2($elm$core$List$drop, n, xs));
+	});
+var $elm$core$Basics$always = F2(
+	function (a, _v0) {
+		return a;
+	});
+var $elm$core$List$takeReverse = F3(
+	function (n, list, kept) {
+		takeReverse:
+		while (true) {
+			if (n <= 0) {
+				return kept;
+			} else {
+				if (!list.b) {
+					return kept;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs,
+						$temp$kept = A2($elm$core$List$cons, x, kept);
+					n = $temp$n;
+					list = $temp$list;
+					kept = $temp$kept;
+					continue takeReverse;
+				}
+			}
+		}
+	});
+var $elm$core$List$takeTailRec = F2(
+	function (n, list) {
+		return $elm$core$List$reverse(
+			A3($elm$core$List$takeReverse, n, list, _List_Nil));
+	});
+var $elm$core$List$takeFast = F3(
+	function (ctr, n, list) {
+		if (n <= 0) {
+			return _List_Nil;
+		} else {
+			var _v0 = _Utils_Tuple2(n, list);
+			_v0$1:
+			while (true) {
+				_v0$5:
+				while (true) {
+					if (!_v0.b.b) {
+						return list;
+					} else {
+						if (_v0.b.b.b) {
+							switch (_v0.a) {
+								case 1:
+									break _v0$1;
+								case 2:
+									var _v2 = _v0.b;
+									var x = _v2.a;
+									var _v3 = _v2.b;
+									var y = _v3.a;
+									return _List_fromArray(
+										[x, y]);
+								case 3:
+									if (_v0.b.b.b.b) {
+										var _v4 = _v0.b;
+										var x = _v4.a;
+										var _v5 = _v4.b;
+										var y = _v5.a;
+										var _v6 = _v5.b;
+										var z = _v6.a;
+										return _List_fromArray(
+											[x, y, z]);
+									} else {
+										break _v0$5;
+									}
+								default:
+									if (_v0.b.b.b.b && _v0.b.b.b.b.b) {
+										var _v7 = _v0.b;
+										var x = _v7.a;
+										var _v8 = _v7.b;
+										var y = _v8.a;
+										var _v9 = _v8.b;
+										var z = _v9.a;
+										var _v10 = _v9.b;
+										var w = _v10.a;
+										var tl = _v10.b;
+										return (ctr > 1000) ? A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A2($elm$core$List$takeTailRec, n - 4, tl))))) : A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A3($elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
+									} else {
+										break _v0$5;
+									}
+							}
+						} else {
+							if (_v0.a === 1) {
+								break _v0$1;
+							} else {
+								break _v0$5;
+							}
+						}
+					}
+				}
+				return list;
+			}
+			var _v1 = _v0.b;
+			var x = _v1.a;
+			return _List_fromArray(
+				[x]);
+		}
+	});
+var $elm$core$List$take = F2(
+	function (n, list) {
+		return A3($elm$core$List$takeFast, 0, n, list);
+	});
+var $elm_community$list_extra$List$Extra$updateAt = F3(
+	function (index, fn, list) {
+		if (index < 0) {
+			return list;
+		} else {
+			var tail = A2($elm$core$List$drop, index, list);
+			var head = A2($elm$core$List$take, index, list);
+			if (tail.b) {
+				var x = tail.a;
+				var xs = tail.b;
+				return _Utils_ap(
+					head,
+					A2(
+						$elm$core$List$cons,
+						fn(x),
+						xs));
+			} else {
+				return list;
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$setAt = F2(
+	function (index, value) {
+		return A2(
+			$elm_community$list_extra$List$Extra$updateAt,
+			index,
+			$elm$core$Basics$always(value));
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Main$updateNode = F5(
+	function (layerIndex, index, combineNodes, currNet, nextNet) {
+		var nextLayer = A2(
+			$elm$core$Maybe$withDefault,
+			_List_Nil,
+			A2($author$project$Main$nth, layerIndex, nextNet));
+		var nextNode = A2(
+			$elm$core$Maybe$withDefault,
+			$author$project$Main$emptyNode,
+			A2($author$project$Main$nth, index, nextLayer));
+		var currLayer = A2(
+			$elm$core$Maybe$withDefault,
+			_List_Nil,
+			A2($author$project$Main$nth, layerIndex, currNet));
+		var currNode = A2(
+			$elm$core$Maybe$withDefault,
+			$author$project$Main$emptyNode,
+			A2($author$project$Main$nth, index, currLayer));
+		return A3(
+			$elm_community$list_extra$List$Extra$setAt,
+			layerIndex,
+			A3(
+				$elm_community$list_extra$List$Extra$setAt,
+				index,
+				A2(combineNodes, currNode, nextNode),
+				currLayer),
+			currNet);
+	});
+var $author$project$Main$updateActivations = F4(
+	function (layerIndex, index, currNet, nextNet) {
+		var combineNodes = F2(
+			function (currNode, nextNode) {
+				return _Utils_update(
+					currNode,
+					{activation: nextNode.activation});
+			});
+		return A5($author$project$Main$updateNode, layerIndex, index, combineNodes, currNet, nextNet);
+	});
+var $author$project$Main$clearActivationsExceptFirst = function (net) {
+	return A4(
+		$author$project$Main$updateActivations,
+		0,
+		0,
+		$author$project$Main$clearActivations(net),
+		net);
+};
+var $author$project$Main$firstContentName = 'Introduction';
 var $elm$random$Random$Generator = function (a) {
 	return {$: 'Generator', a: a};
 };
@@ -5540,15 +5774,6 @@ var $author$project$Main$generateRandomNumbers = F4(
 				finalSeed);
 		}
 	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
 var $author$project$Main$generateAllLayerValues = F4(
 	function (nodeCount, seed, layerIndex, layers) {
 		var prevLength = function () {
@@ -5581,20 +5806,6 @@ var $author$project$Main$generateAllLayerValues = F4(
 var $author$project$Main$Node = F5(
 	function (x, y, pos, activation, weights) {
 		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
-	});
-var $author$project$Main$nth = F2(
-	function (n, xs) {
-		return (n < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
-			A2($elm$core$List$drop, n, xs));
-	});
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
 	});
 var $author$project$Main$generateNet = F6(
 	function (layers, height, width, activations, weights, losses) {
@@ -6525,7 +6736,7 @@ var $author$project$Main$getContent = function (contentName) {
 var $author$project$Main$init = function (_v0) {
 	var width_ = 900;
 	var layers_ = _List_fromArray(
-		[10, 1]);
+		[2, 3, 2]);
 	var sizeLevels = F3(
 		function (small, medium, large) {
 			return (A2(
@@ -6547,7 +6758,7 @@ var $author$project$Main$init = function (_v0) {
 	var _v1 = A5($author$project$Main$generateRandomNet, layers_, height_, width_, initialSeed_, $author$project$Main$generateAllLayerValues);
 	var nextNet_ = _v1.a;
 	var losses_ = _v1.b;
-	var net_ = $author$project$Main$clearActivations(nextNet_);
+	var net_ = $author$project$Main$clearActivationsExceptFirst(nextNet_);
 	return _Utils_Tuple2(
 		{
 			activationFunction: 'σ',
@@ -6572,199 +6783,6 @@ var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $author$project$Main$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
-var $author$project$Main$emptyNode = {
-	activation: 0,
-	pos: _Utils_Tuple2(0, 0),
-	weights: _List_Nil,
-	x: 0,
-	y: 0
-};
-var $elm$core$Basics$always = F2(
-	function (a, _v0) {
-		return a;
-	});
-var $elm$core$List$takeReverse = F3(
-	function (n, list, kept) {
-		takeReverse:
-		while (true) {
-			if (n <= 0) {
-				return kept;
-			} else {
-				if (!list.b) {
-					return kept;
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					var $temp$n = n - 1,
-						$temp$list = xs,
-						$temp$kept = A2($elm$core$List$cons, x, kept);
-					n = $temp$n;
-					list = $temp$list;
-					kept = $temp$kept;
-					continue takeReverse;
-				}
-			}
-		}
-	});
-var $elm$core$List$takeTailRec = F2(
-	function (n, list) {
-		return $elm$core$List$reverse(
-			A3($elm$core$List$takeReverse, n, list, _List_Nil));
-	});
-var $elm$core$List$takeFast = F3(
-	function (ctr, n, list) {
-		if (n <= 0) {
-			return _List_Nil;
-		} else {
-			var _v0 = _Utils_Tuple2(n, list);
-			_v0$1:
-			while (true) {
-				_v0$5:
-				while (true) {
-					if (!_v0.b.b) {
-						return list;
-					} else {
-						if (_v0.b.b.b) {
-							switch (_v0.a) {
-								case 1:
-									break _v0$1;
-								case 2:
-									var _v2 = _v0.b;
-									var x = _v2.a;
-									var _v3 = _v2.b;
-									var y = _v3.a;
-									return _List_fromArray(
-										[x, y]);
-								case 3:
-									if (_v0.b.b.b.b) {
-										var _v4 = _v0.b;
-										var x = _v4.a;
-										var _v5 = _v4.b;
-										var y = _v5.a;
-										var _v6 = _v5.b;
-										var z = _v6.a;
-										return _List_fromArray(
-											[x, y, z]);
-									} else {
-										break _v0$5;
-									}
-								default:
-									if (_v0.b.b.b.b && _v0.b.b.b.b.b) {
-										var _v7 = _v0.b;
-										var x = _v7.a;
-										var _v8 = _v7.b;
-										var y = _v8.a;
-										var _v9 = _v8.b;
-										var z = _v9.a;
-										var _v10 = _v9.b;
-										var w = _v10.a;
-										var tl = _v10.b;
-										return (ctr > 1000) ? A2(
-											$elm$core$List$cons,
-											x,
-											A2(
-												$elm$core$List$cons,
-												y,
-												A2(
-													$elm$core$List$cons,
-													z,
-													A2(
-														$elm$core$List$cons,
-														w,
-														A2($elm$core$List$takeTailRec, n - 4, tl))))) : A2(
-											$elm$core$List$cons,
-											x,
-											A2(
-												$elm$core$List$cons,
-												y,
-												A2(
-													$elm$core$List$cons,
-													z,
-													A2(
-														$elm$core$List$cons,
-														w,
-														A3($elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
-									} else {
-										break _v0$5;
-									}
-							}
-						} else {
-							if (_v0.a === 1) {
-								break _v0$1;
-							} else {
-								break _v0$5;
-							}
-						}
-					}
-				}
-				return list;
-			}
-			var _v1 = _v0.b;
-			var x = _v1.a;
-			return _List_fromArray(
-				[x]);
-		}
-	});
-var $elm$core$List$take = F2(
-	function (n, list) {
-		return A3($elm$core$List$takeFast, 0, n, list);
-	});
-var $elm_community$list_extra$List$Extra$updateAt = F3(
-	function (index, fn, list) {
-		if (index < 0) {
-			return list;
-		} else {
-			var tail = A2($elm$core$List$drop, index, list);
-			var head = A2($elm$core$List$take, index, list);
-			if (tail.b) {
-				var x = tail.a;
-				var xs = tail.b;
-				return _Utils_ap(
-					head,
-					A2(
-						$elm$core$List$cons,
-						fn(x),
-						xs));
-			} else {
-				return list;
-			}
-		}
-	});
-var $elm_community$list_extra$List$Extra$setAt = F2(
-	function (index, value) {
-		return A2(
-			$elm_community$list_extra$List$Extra$updateAt,
-			index,
-			$elm$core$Basics$always(value));
-	});
-var $author$project$Main$updateNode = F5(
-	function (layerIndex, index, combineNodes, currNet, nextNet) {
-		var nextLayer = A2(
-			$elm$core$Maybe$withDefault,
-			_List_Nil,
-			A2($author$project$Main$nth, layerIndex, nextNet));
-		var nextNode = A2(
-			$elm$core$Maybe$withDefault,
-			$author$project$Main$emptyNode,
-			A2($author$project$Main$nth, index, nextLayer));
-		var currLayer = A2(
-			$elm$core$Maybe$withDefault,
-			_List_Nil,
-			A2($author$project$Main$nth, layerIndex, currNet));
-		var currNode = A2(
-			$elm$core$Maybe$withDefault,
-			$author$project$Main$emptyNode,
-			A2($author$project$Main$nth, index, currLayer));
-		return A3(
-			$elm_community$list_extra$List$Extra$setAt,
-			layerIndex,
-			A3(
-				$elm_community$list_extra$List$Extra$setAt,
-				index,
-				A2(combineNodes, currNode, nextNode),
-				currLayer),
-			currNet);
-	});
 var $author$project$Main$updateWeights = F4(
 	function (layerIndex, index, currNet, nextNet) {
 		var combineNodes = F2(
@@ -6788,7 +6806,7 @@ var $author$project$Main$backwardOneStep = function (model) {
 		{
 			currentDirection: $author$project$Main$Forward,
 			currentPosition: _Utils_Tuple2(0, 0),
-			net: $author$project$Main$clearActivations(model.nextNet)
+			net: $author$project$Main$clearActivationsExceptFirst(model.nextNet)
 		}) : _Utils_update(
 		model,
 		{
@@ -6844,16 +6862,6 @@ var $author$project$Main$contentNames = _List_fromArray(
 	['Introduction', 'Neural Network Architectures', 'Types of Neural Networks']);
 var $author$project$Main$Backward = {$: 'Backward'};
 var $elm$core$Basics$ge = _Utils_ge;
-var $author$project$Main$updateActivations = F4(
-	function (layerIndex, index, currNet, nextNet) {
-		var combineNodes = F2(
-			function (currNode, nextNode) {
-				return _Utils_update(
-					currNode,
-					{activation: nextNode.activation});
-			});
-		return A5($author$project$Main$updateNode, layerIndex, index, combineNodes, currNet, nextNet);
-	});
 var $author$project$Main$forwardOneStep = function (model) {
 	var numberOfLayers = $elm$core$List$length(model.layers);
 	var currentLayerIndex = model.currentPosition.a;
@@ -6867,8 +6875,8 @@ var $author$project$Main$forwardOneStep = function (model) {
 		}
 	}();
 	var currentIndex = model.currentPosition.b;
-	var nextNet = A4($author$project$Main$updateActivations, currentLayerIndex, currentIndex, model.net, model.nextNet);
-	return (_Utils_cmp(currentIndex, layerLength) > -1) ? ((_Utils_cmp(currentLayerIndex, numberOfLayers - 1) > -1) ? _Utils_update(
+	var nextNet = (_Utils_cmp(currentIndex, layerLength - 1) > -1) ? A4($author$project$Main$updateActivations, currentLayerIndex + 1, 0, model.net, model.nextNet) : A4($author$project$Main$updateActivations, currentLayerIndex, currentIndex + 1, model.net, model.nextNet);
+	return (_Utils_cmp(currentIndex, layerLength - 1) > -1) ? ((_Utils_cmp(currentLayerIndex, numberOfLayers - 1) > -1) ? _Utils_update(
 		model,
 		{
 			currentDirection: $author$project$Main$Backward,
