@@ -1098,7 +1098,9 @@ highContract :  Float -> Color.Color
 highContract scale =
     let
         value =
-            if 1 - scale < 0.5 then
+            if abs scale > 1 then
+                1
+            else if 1 - scale < 0.5 then
                 1
             else
                 0
