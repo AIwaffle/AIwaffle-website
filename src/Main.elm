@@ -77,6 +77,18 @@ type alias Model =
     , activationFunction : String
     }
 
+edges :
+    { top : Int
+    , right : Int
+    , bottom : Int
+    , left : Int
+    }
+edges =
+    { top = 0
+    , right = 0
+    , bottom = 0
+    , left = 0
+    }
 
 contentNames : List String
 contentNames =
@@ -111,52 +123,60 @@ init _ =
             620
 
         layers_ =
-            [ 2
-            , 3
-            , 2
+            -- [ 2
+            -- , 3
+            -- , 2
+            -- ]
+            
+            -- [ 2
+            -- , 1
+            -- ]
+
+            [ 10
+            , 1
             ]
 
-        -- deep neural net
-        -- [ 2
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 3
-        -- , 2
-        -- ]
-        -- large and deep neural net
-        -- [ 2
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 13
-        -- , 12
-        -- ]
-        -- [ 3
-        -- , 5
-        -- , 3
-        -- ]
-        -- [ 10
-        -- , 20
-        -- , 20
-        -- , 10
-        -- ]
+            -- deep neural net
+            -- [ 2
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 3
+            -- , 2
+            -- ]
+            -- large and deep neural net
+            -- [ 2
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 13
+            -- , 12
+            -- ]
+            -- [ 3
+            -- , 5
+            -- , 3
+            -- ]
+            -- [ 10
+            -- , 20
+            -- , 20
+            -- , 10
+            -- ]
         nodeRadius_ =
             sizeLevels 10 25 40
 
@@ -860,12 +880,7 @@ learningRateControl model =
         , thumb = Input.defaultThumb
         , label =
             Input.labelAbove
-                [ E.paddingEach
-                    { top = 0
-                    , bottom = 10
-                    , left = 0
-                    , right = 0
-                    }
+                [ E.paddingEach { edges | bottom = 10 }
                 ]
                 (E.text ("Learning Rate: " ++ Round.round 2 model.learningRate))
         , onChange = AdjustLearningRate
@@ -1029,7 +1044,11 @@ calculationDisplay model =
                                 E.text ""
 
                             _ ->
-                                E.row []
+                                E.wrappedRow
+                                    [ E.spacingXY 0 10
+                                    , Background.color (adjustAlpha bgColor 0.8)
+                                    , E.paddingEach { edges | bottom = 15 }
+                                    ]
                                     (E.text (model.activationFunction ++ "(")
                                         :: List.foldl
                                             (\( weight, activation ) list ->
@@ -1152,6 +1171,20 @@ grey =
 darkGrey : E.Color
 darkGrey =
     E.rgb 0.4 0.4 0.4
+
+
+bgColor : E.Color
+bgColor =
+    E.rgb 1 1 1
+
+
+adjustAlpha : E.Color -> Float -> E.Color
+adjustAlpha oldColor newAlpha =
+    let
+        oldColorChannels =
+            E.toRgb oldColor
+    in
+    E.fromRgb { oldColorChannels | alpha = newAlpha }
 
 
 greyScale : Float -> Color.Color
