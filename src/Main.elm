@@ -956,31 +956,42 @@ calculationDisplay model =
                     E.el
                     [ E.centerX
                     ]
-                    (E.text
-                        (case terms of
-                            [] ->
-                                ""
-                            _ ->
-                                model.activationFunction
-                                ++ "("
-                                ++ ( String.join " + "
-                                <| List.foldr
-                                    (\(weight, activation) list ->
-                                        (Round.round 2 weight
-                                            ++ " * "
-                                            ++ Round.round 2 activation
-                                        ) :: list
-                                    )
-                                    []
-                                    terms
+                    (case terms of
+                        [] ->
+                            E.text ""
+                        _ ->
+                            E.row []
+                            ([ E.text (model.activationFunction ++ "(") ]
+                            ++ List.foldl
+                                (\(weight, activation) list ->
+                                    list
+                                    ++ [ case List.length list of
+                                        0 ->
+                                            E.none
+                                        _ ->
+                                            E.text " + "
+                                    , highlight activation
+                                    , (E.text " * ")
+                                    , highlight weight
+                                    ]
                                 )
-                                ++ ")"
-                                ++ " = "
-                                ++ Round.round 2 currAcitvation
-                        )
+                                []
+                                terms
+                            ++ [ E.text ") = "
+                            , highlight currAcitvation
+                            ])
                     )
         Backward ->
             E.none
+
+
+highlight : Float -> E.Element Msg
+highlight n =
+    E.el
+        [ Background.color <| toElmUIColor <| greenScale n
+        , Font.color <| toElmUIColor <| highContract n
+        ]
+        (E.text (Round.round 2 n))
 
 
 view : Model -> Html Msg
@@ -1070,6 +1081,15 @@ greenScale scale =
         Color.hsl 0 0.90 lightness
     else
         Color.hsl 0.3 0.90 lightness
+
+
+toElmUIColor : Color.Color -> E.Color
+toElmUIColor color =
+    let
+        {red, green, blue, alpha } =
+            Color.toRgba color
+    in
+    E.rgba red green blue alpha
 
 
 getColorValue : Float -> Float -> Float
