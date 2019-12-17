@@ -12402,6 +12402,17 @@ var $mdgriffith$elm_ui$Element$Background$color = function (clr) {
 			'background-color',
 			clr));
 };
+var $mdgriffith$elm_ui$Internal$Flag$borderColor = $mdgriffith$elm_ui$Internal$Flag$flag(28);
+var $mdgriffith$elm_ui$Element$Border$color = function (clr) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$borderColor,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$Colored,
+			'bc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(clr),
+			'border-color',
+			clr));
+};
 var $mdgriffith$elm_ui$Internal$Flag$fontColor = $mdgriffith$elm_ui$Internal$Flag$flag(14);
 var $mdgriffith$elm_ui$Element$Font$color = function (fontColor) {
 	return A2(
@@ -12466,6 +12477,28 @@ var $author$project$Main$highContract = function (scale) {
 	var value = ($elm$core$Basics$abs(scale) > 1) ? 1 : (((1 - scale) < 0.5) ? 1 : 0);
 	return A3($avh4$elm_color$Color$rgb, value, value, value);
 };
+var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
+	function (a, b, c, d, e) {
+		return {$: 'PaddingStyle', a: a, b: b, c: c, d: d, e: e};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$padding = $mdgriffith$elm_ui$Internal$Flag$flag(2);
+var $mdgriffith$elm_ui$Element$padding = function (x) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$padding,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
+			'p-' + $elm$core$String$fromInt(x),
+			x,
+			x,
+			x,
+			x));
+};
+var $mdgriffith$elm_ui$Internal$Model$Rgba = F4(
+	function (a, b, c, d) {
+		return {$: 'Rgba', a: a, b: b, c: c, d: d};
+	});
+var $mdgriffith$elm_ui$Element$rgba = $mdgriffith$elm_ui$Internal$Model$Rgba;
 var $elm$core$String$foldr = _String_foldr;
 var $elm$core$String$toList = function (string) {
 	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
@@ -12691,17 +12724,23 @@ var $myrho$elm_round$Round$round = $myrho$elm_round$Round$roundFun(
 				}
 			}
 		}));
+var $mdgriffith$elm_ui$Internal$Flag$borderRound = $mdgriffith$elm_ui$Internal$Flag$flag(17);
+var $mdgriffith$elm_ui$Element$Border$rounded = function (radius) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$borderRound,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$Single,
+			'br-' + $elm$core$String$fromInt(radius),
+			'border-radius',
+			$elm$core$String$fromInt(radius) + 'px'));
+};
 var $mdgriffith$elm_ui$Internal$Model$Text = function (a) {
 	return {$: 'Text', a: a};
 };
 var $mdgriffith$elm_ui$Element$text = function (content) {
 	return $mdgriffith$elm_ui$Internal$Model$Text(content);
 };
-var $mdgriffith$elm_ui$Internal$Model$Rgba = F4(
-	function (a, b, c, d) {
-		return {$: 'Rgba', a: a, b: b, c: c, d: d};
-	});
-var $mdgriffith$elm_ui$Element$rgba = $mdgriffith$elm_ui$Internal$Model$Rgba;
 var $avh4$elm_color$Color$toRgba = function (_v0) {
 	var r = _v0.a;
 	var g = _v0.b;
@@ -12717,20 +12756,50 @@ var $author$project$Main$toElmUIColor = function (color) {
 	var alpha = _v0.alpha;
 	return A4($mdgriffith$elm_ui$Element$rgba, red, green, blue, alpha);
 };
-var $author$project$Main$highlight = function (n) {
+var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
+	function (a, b, c, d, e) {
+		return {$: 'BorderWidth', a: a, b: b, c: c, d: d, e: e};
+	});
+var $mdgriffith$elm_ui$Element$Border$width = function (v) {
 	return A2(
-		$mdgriffith$elm_ui$Element$el,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$Background$color(
-				$author$project$Main$toElmUIColor(
-					$author$project$Main$greenScale(n))),
-				$mdgriffith$elm_ui$Element$Font$color(
-				$author$project$Main$toElmUIColor(
-					$author$project$Main$highContract(n)))
-			]),
-		$mdgriffith$elm_ui$Element$text(
-			A2($myrho$elm_round$Round$round, 2, n)));
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
+			'b-' + $elm$core$String$fromInt(v),
+			v,
+			v,
+			v,
+			v));
+};
+var $avh4$elm_color$Color$yellow = A4($avh4$elm_color$Color$RgbaSpace, 237 / 255, 212 / 255, 0 / 255, 1.0);
+var $author$project$Main$highlightHelper = F2(
+	function (n, hasBorder) {
+		return A2(
+			$mdgriffith$elm_ui$Element$el,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$Background$color(
+					$author$project$Main$toElmUIColor(
+						$author$project$Main$greenScale(n))),
+					$mdgriffith$elm_ui$Element$Font$color(
+					$author$project$Main$toElmUIColor(
+						$author$project$Main$highContract(n))),
+					$mdgriffith$elm_ui$Element$padding(3),
+					$mdgriffith$elm_ui$Element$Border$rounded(10),
+					$mdgriffith$elm_ui$Element$Border$width(3),
+					hasBorder ? $mdgriffith$elm_ui$Element$Border$color(
+					$author$project$Main$toElmUIColor($avh4$elm_color$Color$yellow)) : $mdgriffith$elm_ui$Element$Border$color(
+					A4($mdgriffith$elm_ui$Element$rgba, 0, 0, 0, 0))
+				]),
+			$mdgriffith$elm_ui$Element$text(
+				A2($myrho$elm_round$Round$round, 2, n)));
+	});
+var $author$project$Main$highlight = function (n) {
+	return A2($author$project$Main$highlightHelper, n, false);
+};
+var $author$project$Main$highlightWithBorder = function (n) {
+	return A2($author$project$Main$highlightHelper, n, true);
 };
 var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
 var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
@@ -12822,7 +12891,7 @@ var $author$project$Main$calculationDisplay = function (model) {
 																return $mdgriffith$elm_ui$Element$text(' + ');
 															}
 														}(),
-															$author$project$Main$highlight(activation),
+															$author$project$Main$highlightWithBorder(activation),
 															$mdgriffith$elm_ui$Element$text(' * '),
 															$author$project$Main$highlight(weight)
 														]));
@@ -12832,7 +12901,7 @@ var $author$project$Main$calculationDisplay = function (model) {
 									_List_fromArray(
 										[
 											$mdgriffith$elm_ui$Element$text(') = '),
-											$author$project$Main$highlight(currAcitvation)
+											$author$project$Main$highlightWithBorder(currAcitvation)
 										]))));
 					}
 				}());
@@ -13088,23 +13157,6 @@ var $elm$html$Html$Events$onClick = function (msg) {
 		$elm$json$Json$Decode$succeed(msg));
 };
 var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
-var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
-	function (a, b, c, d, e) {
-		return {$: 'PaddingStyle', a: a, b: b, c: c, d: d, e: e};
-	});
-var $mdgriffith$elm_ui$Internal$Flag$padding = $mdgriffith$elm_ui$Internal$Flag$flag(2);
-var $mdgriffith$elm_ui$Element$padding = function (x) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$padding,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
-			'p-' + $elm$core$String$fromInt(x),
-			x,
-			x,
-			x,
-			x));
-};
 var $mdgriffith$elm_ui$Internal$Flag$cursor = $mdgriffith$elm_ui$Internal$Flag$flag(21);
 var $mdgriffith$elm_ui$Element$pointer = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$cursor, $mdgriffith$elm_ui$Internal$Style$classes.cursorPointer);
 var $author$project$Main$contentNavigation = function (model) {
@@ -13281,17 +13333,6 @@ var $mdgriffith$elm_ui$Element$Input$button = F2(
 					[label])));
 	});
 var $author$project$Main$lightGrey = A3($mdgriffith$elm_ui$Element$rgb, 0.8, 0.8, 0.8);
-var $mdgriffith$elm_ui$Internal$Flag$borderRound = $mdgriffith$elm_ui$Internal$Flag$flag(17);
-var $mdgriffith$elm_ui$Element$Border$rounded = function (radius) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderRound,
-		A3(
-			$mdgriffith$elm_ui$Internal$Model$Single,
-			'br-' + $elm$core$String$fromInt(radius),
-			'border-radius',
-			$elm$core$String$fromInt(radius) + 'px'));
-};
 var $author$project$Main$controlButton = $mdgriffith$elm_ui$Element$Input$button(
 	_List_fromArray(
 		[
@@ -13327,37 +13368,10 @@ var $mdgriffith$elm_ui$Element$behindContent = function (element) {
 var $mdgriffith$elm_ui$Element$Input$Thumb = function (a) {
 	return {$: 'Thumb', a: a};
 };
-var $mdgriffith$elm_ui$Internal$Flag$borderColor = $mdgriffith$elm_ui$Internal$Flag$flag(28);
-var $mdgriffith$elm_ui$Element$Border$color = function (clr) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderColor,
-		A3(
-			$mdgriffith$elm_ui$Internal$Model$Colored,
-			'bc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(clr),
-			'border-color',
-			clr));
-};
 var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
 	return {$: 'Px', a: a};
 };
 var $mdgriffith$elm_ui$Element$px = $mdgriffith$elm_ui$Internal$Model$Px;
-var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
-	function (a, b, c, d, e) {
-		return {$: 'BorderWidth', a: a, b: b, c: c, d: d, e: e};
-	});
-var $mdgriffith$elm_ui$Element$Border$width = function (v) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
-			'b-' + $elm$core$String$fromInt(v),
-			v,
-			v,
-			v,
-			v));
-};
 var $mdgriffith$elm_ui$Element$Input$defaultThumb = $mdgriffith$elm_ui$Element$Input$Thumb(
 	_List_fromArray(
 		[
@@ -15295,7 +15309,6 @@ var $joakin$elm_canvas$Canvas$toHtml = F3(
 			entities);
 	});
 var $avh4$elm_color$Color$white = A4($avh4$elm_color$Color$RgbaSpace, 255 / 255, 255 / 255, 255 / 255, 1.0);
-var $avh4$elm_color$Color$yellow = A4($avh4$elm_color$Color$RgbaSpace, 237 / 255, 212 / 255, 0 / 255, 1.0);
 var $author$project$Main$neuralNet = function (model) {
 	var isVisitedNode = F2(
 		function (node, currentPosition) {
