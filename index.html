@@ -19,6 +19,24 @@
       p {
           line-height: 1.2em;
       }
+      html {
+        --scrollbarBG: white;
+        --thumbBG: rgba(204,204,204,1);
+      }
+      .content::-webkit-scrollbar {
+        width: 15px;
+      }
+      .content {
+        scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+      }
+      .content::-webkit-scrollbar-track {
+        background: var(--scrollbarBG);
+      }
+      .content::-webkit-scrollbar-thumb {
+        background-color: var(--thumbBG) ;
+        border-radius: 6px;
+        border: 3px solid var(--scrollbarBG);
+      }
     </style>
     <script src="main.js"></script>
     <div id="app"></div>
