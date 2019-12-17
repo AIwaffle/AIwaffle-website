@@ -73,6 +73,7 @@ type alias Model =
     , currentDirection : MoveDirection
     , content: String
     , contentIndex : Int
+    , activationFunction : String
     }
 
 
@@ -199,6 +200,7 @@ init _ =
     , currentDirection = Forward
     , content = ""
     , contentIndex = 0
+    , activationFunction = "σ"
     }
     , getContent firstContentName
     )
@@ -913,6 +915,74 @@ contentNavigation model =
         ]
 
 
+getCurrentNode : Model -> Node
+getCurrentNode model =
+    let
+        layerIndex =
+            Tuple.first model.currentPosition
+        index =
+            Tuple.second model.currentPosition
+    in
+    Maybe.withDefault emptyNode
+    <| nth
+       index
+       <| Maybe.withDefault [] (nth layerIndex model.nextNet)
+
+
+calculationDisplay : Model -> E.Element Msg
+calculationDisplay model =
+    let
+        currNode =
+            getCurrentNode model
+        currAcitvation =
+            currNode.activation
+        currWeights =
+            currNode.weights
+        currLayerIndex =
+            Tuple.first model.currentPosition
+        prevLayer =
+            nth (currLayerIndex - 1) model.net
+    in
+    case model.currentDirection of
+        Forward ->
+            case prevLayer of
+                Nothing ->
+                    E.none
+                Just layer ->
+                    let
+                        terms =
+                            List.map2 Tuple.pair currWeights (List.map .activation layer)
+                    in
+                    E.el
+                    [ E.centerX
+                    ]
+                    (E.text
+                        (case terms of
+                            [] ->
+                                ""
+                            _ ->
+                                model.activationFunction
+                                ++ "("
+                                ++ ( String.join " + "
+                                <| List.foldr
+                                    (\(weight, activation) list ->
+                                        (Round.round 2 weight
+                                            ++ " * "
+                                            ++ Round.round 2 activation
+                                        ) :: list
+                                    )
+                                    []
+                                    terms
+                                )
+                                ++ ")"
+                                ++ " = "
+                                ++ Round.round 2 currAcitvation
+                        )
+                    )
+        Backward ->
+            E.none
+
+
 view : Model -> Html Msg
 view model =
     E.layout
@@ -936,6 +1006,7 @@ view model =
         , E.column
             [ E.width (E.fillPortion 5)
             , E.spacing 10
+            , E.inFront (calculationDisplay model)
             ]
             ( centerAll
                 [ E.html (neuralNet model)
@@ -1041,7 +1112,10 @@ flatten2D list =
 
 nth : Int -> List a -> Maybe a
 nth n xs =
-    List.head (List.drop n xs)
+    if n < 0 then
+        Nothing
+    else
+        List.head (List.drop n xs)
 
 
 -- source: https://github.com/elm/core/issues/968
