@@ -977,6 +977,7 @@ content model =
             , Html.Attributes.style "padding-right" "0.8em"
             , Html.Attributes.style "overflow-x" "auto"
             , Html.Attributes.style "overflow-y" "scroll"
+            , Html.Attributes.class "content"
             ]
             model.content
         )

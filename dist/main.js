@@ -13217,7 +13217,8 @@ var $author$project$Main$content = function (model) {
 					A2($elm$html$Html$Attributes$style, 'font-size', '0.8em'),
 					A2($elm$html$Html$Attributes$style, 'padding-right', '0.8em'),
 					A2($elm$html$Html$Attributes$style, 'overflow-x', 'auto'),
-					A2($elm$html$Html$Attributes$style, 'overflow-y', 'scroll')
+					A2($elm$html$Html$Attributes$style, 'overflow-y', 'scroll'),
+					$elm$html$Html$Attributes$class('content')
 				]),
 			model.content));
 };
