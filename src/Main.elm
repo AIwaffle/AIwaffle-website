@@ -974,6 +974,9 @@ content model =
         (Markdown.toHtml
             [ Html.Attributes.style "white-space" "pre-wrap"
             , Html.Attributes.style "font-size" "0.8em"
+            , Html.Attributes.style "padding-right" "0.8em"
+            , Html.Attributes.style "overflow-x" "auto"
+            , Html.Attributes.style "overflow-y" "scroll"
             ]
             model.content
         )
@@ -982,7 +985,7 @@ content model =
 contentNavigation : Model -> E.Element Msg
 contentNavigation model =
     E.row
-        [ E.padding 10
+        [ E.paddingXY 20 10
         , E.width E.fill
         ]
         [ E.el
@@ -1125,13 +1128,10 @@ view model =
             [ E.width E.fill
             , E.height E.fill
             ]
-        <|
             [ E.column
                 [ E.width (E.fillPortion 3)
-                , E.padding 20
+                , E.paddingXY 20 0
                 , E.htmlAttribute (Html.Attributes.style "height" "calc(100vh - 20px)")
-                , E.htmlAttribute (Html.Attributes.style "overflow-x" "auto")
-                , E.htmlAttribute (Html.Attributes.style "overflow-y" "scroll")
                 ]
                 [ contentNavigation model
                 , content model
