@@ -504,15 +504,20 @@ forwardOneLayer model =
         currentIndex =
             Tuple.second model.currentPosition
 
+        numberOfLayers =
+            List.length model.layers
+
         currentLayerLength =
             Maybe.withDefault 0 (nth currentLayerIndex model.layers)
     in
     if currentIndex < currentLayerLength - 1 then
-        repeat (currentLayerLength - currentIndex) forwardOneStep model
+        repeat (currentLayerLength - currentIndex - 1) forwardOneStep model
 
-    else if currentIndex == currentLayerLength then
-        forwardOneLayer (forwardOneStep model)
-
+    else if currentIndex == currentLayerLength - 1 then
+        if currentLayerIndex == numberOfLayers - 1 then
+            forwardOneStep model
+        else
+            forwardOneLayer (forwardOneStep model)
     else
         model
 

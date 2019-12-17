@@ -6897,6 +6897,7 @@ var $author$project$Main$forwardOneStep = function (model) {
 var $author$project$Main$forwardOneLayer = function (model) {
 	forwardOneLayer:
 	while (true) {
+		var numberOfLayers = $elm$core$List$length(model.layers);
 		var currentLayerIndex = model.currentPosition.a;
 		var currentLayerLength = A2(
 			$elm$core$Maybe$withDefault,
@@ -6904,12 +6905,16 @@ var $author$project$Main$forwardOneLayer = function (model) {
 			A2($author$project$Main$nth, currentLayerIndex, model.layers));
 		var currentIndex = model.currentPosition.b;
 		if (_Utils_cmp(currentIndex, currentLayerLength - 1) < 0) {
-			return A3($author$project$Main$repeat, currentLayerLength - currentIndex, $author$project$Main$forwardOneStep, model);
+			return A3($author$project$Main$repeat, (currentLayerLength - currentIndex) - 1, $author$project$Main$forwardOneStep, model);
 		} else {
-			if (_Utils_eq(currentIndex, currentLayerLength)) {
-				var $temp$model = $author$project$Main$forwardOneStep(model);
-				model = $temp$model;
-				continue forwardOneLayer;
+			if (_Utils_eq(currentIndex, currentLayerLength - 1)) {
+				if (_Utils_eq(currentLayerIndex, numberOfLayers - 1)) {
+					return $author$project$Main$forwardOneStep(model);
+				} else {
+					var $temp$model = $author$project$Main$forwardOneStep(model);
+					model = $temp$model;
+					continue forwardOneLayer;
+				}
 			} else {
 				return model;
 			}
