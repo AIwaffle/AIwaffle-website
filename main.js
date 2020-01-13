@@ -5702,7 +5702,12 @@ var $author$project$Main$clearActivationsExceptFirst = function (net) {
 		$author$project$Main$clearActivations(net),
 		net);
 };
-var $author$project$Main$firstContentName = 'Introduction';
+var $author$project$Main$contentNames = _List_fromArray(
+	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model']);
+var $author$project$Main$firstContentName = A2(
+	$elm$core$Maybe$withDefault,
+	'',
+	$elm$core$List$head($author$project$Main$contentNames));
 var $elm$random$Random$Generator = function (a) {
 	return {$: 'Generator', a: a};
 };
@@ -6858,8 +6863,6 @@ var $author$project$Main$backwardOneLayer = function (model) {
 		}
 	}
 };
-var $author$project$Main$contentNames = _List_fromArray(
-	['Introduction', 'Neural Network Architectures', 'Types of Neural Networks']);
 var $author$project$Main$Backward = {$: 'Backward'};
 var $elm$core$Basics$ge = _Utils_ge;
 var $author$project$Main$forwardOneStep = function (model) {
