@@ -92,15 +92,15 @@ edges =
 
 contentNames : List String
 contentNames =
-    [ "Introduction"
-    , "Neural Network Architectures"
-    , "Types of Neural Networks"
+    [ "Intro to Machine Learning"
+    , "Intro to Deep Learning"
+    , "Logistic Regression Model"
     ]
 
 
 firstContentName : String
 firstContentName =
-    "Introduction"
+    Maybe.withDefault "" <| List.head contentNames
 
 
 main : Program () Model Msg
