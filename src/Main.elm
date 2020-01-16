@@ -14,10 +14,8 @@ import Element.Font as Font
 import Element.Input as Input
 import Html exposing (Html)
 import Html.Attributes
-import Http
 import List
 import List.Extra
-import Markdown
 import Random
 import Round
 

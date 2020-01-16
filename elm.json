@@ -13,7 +13,6 @@
             "elm/http": "2.0.0",
             "elm/random": "1.0.0",
             "elm-community/list-extra": "8.2.2",
-            "elm-explorations/markdown": "1.0.0",
             "joakin/elm-canvas": "4.0.1",
             "mdgriffith/elm-ui": "1.1.5",
             "myrho/elm-round": "1.0.4"
