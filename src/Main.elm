@@ -1,4 +1,4 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 import Browser
 import Canvas exposing (..)
@@ -21,6 +21,7 @@ import Markdown
 import Random
 import Round
 
+port renderContent : (String -> Cmd msg)
 
 type alias Node =
     { x : Float
@@ -72,7 +73,6 @@ type alias Model =
     , losses : List Float
     , currentPosition : Position
     , currentDirection : MoveDirection
-    , content : String
     , contentIndex : Int
     , activationFunction : String
     }
@@ -225,20 +225,11 @@ init _ =
 
       -- start with forward propgation
       , currentDirection = Forward
-      , content = ""
       , contentIndex = 0
       , activationFunction = "σ"
       }
-    , getContent firstContentName
+    , renderContent firstContentName
     )
-
-
-getContent : String -> Cmd Msg
-getContent contentName =
-    Http.get
-        { url = "./contents/" ++ contentName ++ ".md"
-        , expect = Http.expectString GotContent
-        }
 
 
 clearActivationsExceptFirst : Net -> Net
@@ -431,7 +422,6 @@ type Msg
     = AdjustLearningRate Float
     | MoveOneStep
     | MoveOneLayer
-    | GotContent (Result Http.Error String)
     | GetPreviousContent
     | GetNextContent
 
@@ -458,14 +448,6 @@ update msg model =
                 Backward ->
                     ( backwardOneLayer model, Cmd.none )
 
-        GotContent result ->
-            case result of
-                Ok markdown ->
-                    ( { model | content = markdown }, Cmd.none )
-
-                Err _ ->
-                    ( model, Cmd.none )
-
         GetPreviousContent ->
             if model.contentIndex == 0 then
                 ( model, Cmd.none )
@@ -478,7 +460,7 @@ update msg model =
                     nextContentName =
                         Maybe.withDefault firstContentName (nth nextContentIndex contentNames)
                 in
-                ( { model | contentIndex = nextContentIndex }, getContent nextContentName )
+                ( { model | contentIndex = nextContentIndex }, renderContent nextContentName )
 
         GetNextContent ->
             if model.contentIndex == List.length contentNames - 1 then
@@ -492,7 +474,7 @@ update msg model =
                     prevContentName =
                         Maybe.withDefault firstContentName (nth prevContentIndex contentNames)
                 in
-                ( { model | contentIndex = prevContentIndex }, getContent prevContentName )
+                ( { model | contentIndex = prevContentIndex }, renderContent prevContentName )
 
 
 forwardOneLayer : Model -> Model
@@ -968,21 +950,6 @@ directionTracker model =
         (E.text ("In " ++ direction ++ " propagation"))
 
 
-content : Model -> E.Element msg
-content model =
-    E.html
-        (Markdown.toHtml
-            [ Html.Attributes.style "white-space" "pre-wrap"
-            , Html.Attributes.style "font-size" "0.8em"
-            , Html.Attributes.style "padding-right" "0.8em"
-            , Html.Attributes.style "overflow-x" "auto"
-            , Html.Attributes.style "overflow-y" "scroll"
-            , Html.Attributes.class "content"
-            ]
-            model.content
-        )
-
-
 contentNavigation : Model -> E.Element Msg
 contentNavigation model =
     E.row
@@ -1135,7 +1102,7 @@ view model =
                 , E.htmlAttribute (Html.Attributes.style "height" "calc(100vh - 20px)")
                 ]
                 [ contentNavigation model
-                , content model
+                , E.html <| Html.div [ Html.Attributes.class "content" ] []
                 ]
             , E.column
                 [ E.width (E.fillPortion 5)

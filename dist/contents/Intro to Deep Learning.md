@@ -45,12 +45,15 @@ So, we introduce *Deep Learning*.
 ## Neural network
 ![image.png](https://i.loli.net/2020/01/12/t5lyLQTqNIZuHx1.png)
 This is a neuron. A neuron can be understood as a container of a value, called *activation value* ($a$). It takes several inputs $x_i$ and outputs an scalar $y$. It does the following calculation:
+
 $$a = \sum{w_ix_i + b_i}$$
 $$y = \text{activation}(a) \text{ or } \sigma(a)$$
+
 The *activation function* is a nonlinear function, such as [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)). We will explain this later.
 
 ![image.png](https://i.loli.net/2020/01/12/vuzyPFrGVhsjd4I.png)
 Above is a neural network example. We suppose you know matrix multiplication, so we can describe the effect of any layer as:
+
 $$Y = \sigma(WX+B)$$
 $$W = \begin{bmatrix}
 w_{11} &w_{12}  & \cdots &w_{1m} \\ 

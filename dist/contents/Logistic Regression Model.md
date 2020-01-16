@@ -34,6 +34,7 @@ However, the matrix multiplication operation is a *closure operation*, the final
 
 ## Sigmoid function
 ![image.png](https://i.loli.net/2019/12/10/qBvW4SY8EJhuCIH.png)
+
 $$Sigmoid(x) = \frac{1}{1 + e^{-x}}$$
 
 If we insert one layer of sigmoid function into our network, the output is no longer linear, the *capacity* of our model increases, which means we can solve more complex problems.
