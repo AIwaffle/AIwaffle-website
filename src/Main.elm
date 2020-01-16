@@ -18,6 +18,7 @@ import List
 import List.Extra
 import Random
 import Round
+import FeatherIcons
 
 port renderContent : (String -> Cmd msg)
 
@@ -961,7 +962,7 @@ contentNavigation model =
             , E.pointer
             ]
           <|
-            E.html (Html.i [ Html.Attributes.class "fas fa-arrow-left" ] [])
+            E.html (FeatherIcons.arrowLeft |> FeatherIcons.toHtml [])
         , E.el
             [ E.alignRight
             , Events.onClick GetNextContent
@@ -969,7 +970,7 @@ contentNavigation model =
             , E.pointer
             ]
           <|
-            E.html (Html.i [ Html.Attributes.class "fas fa-arrow-right" ] [])
+            E.html (FeatherIcons.arrowRight |> FeatherIcons.toHtml [])
         ]
 
 
