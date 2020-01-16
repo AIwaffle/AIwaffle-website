@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/markdown-it.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.0/css/texmath.min.css">
     <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.0/texmath.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/solarized-light.css">
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js" onload="hljs.initHighlightingOnLoad"></script>
 </head>
 <body>
     <link
@@ -61,7 +63,16 @@
           .then((contentText) => {
             const contentNode = document.getElementsByClassName("content")[0];
             const tm = texmath.use(katex);
-            const md = window.markdownit().use(tm,{delimiters:'dollars'});
+            const md = window.markdownit({
+              highlight: function (str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                  try {
+                    return hljs.highlight(lang, str).value;
+                  } catch (__) {}
+                }
+                return ''; // use external default escaping
+              }
+            }).use(tm,{delimiters:'dollars'});
             contentNode.innerHTML = md.render(contentText);
           })
         }
