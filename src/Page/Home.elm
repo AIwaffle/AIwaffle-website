@@ -1,4 +1,4 @@
-module Page.Home exposing (main)
+module Page.Home exposing (main, Model, Msg, init, update, view)
 
 import Browser
 import Html exposing (Html)
@@ -123,7 +123,10 @@ viewCourseCard title =
       , Font.bold
       , E.centerY
       ]
-      [ E.text title
+      [ E.link []
+        { url = "/" ++ title
+        , label = E.text title
+        }
       ]
       )
 
