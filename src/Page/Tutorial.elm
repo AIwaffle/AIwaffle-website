@@ -102,8 +102,8 @@ firstContentName =
     Maybe.withDefault "" <| List.head contentNames
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
+init : String -> ( Model, Cmd Msg )
+init contentName =
     let
         width_ =
             900
@@ -214,10 +214,10 @@ init _ =
 
       -- start with forward propgation
       , currentDirection = Forward
-      , contentIndex = 0
+      , contentIndex = getContentIndex contentName
       , activationFunction = "σ"
       }
-    , renderContent firstContentName
+    , renderContent contentName
     )
 
 
@@ -413,6 +413,7 @@ type Msg
     | MoveOneLayer
     | GetPreviousContent
     | GetNextContent
+    | GetContentFromName String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -436,6 +437,17 @@ update msg model =
 
                 Backward ->
                     ( backwardOneLayer model, Cmd.none )
+
+        GetContentFromName name ->
+            let
+                index =
+                    getContentIndex name
+            in
+            ( { model |
+                contentIndex = index
+            }
+            , renderContent name
+            )
 
         GetPreviousContent ->
             if model.contentIndex == 0 then
@@ -469,6 +481,11 @@ update msg model =
 getContentName : Int -> String
 getContentName index =
     Maybe.withDefault firstContentName <| nth index contentNames
+
+
+getContentIndex : String -> Int
+getContentIndex name =
+    Maybe.withDefault 0 <| List.Extra.elemIndex name contentNames
 
 
 forwardOneLayer : Model -> Model

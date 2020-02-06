@@ -100,7 +100,7 @@ route url model =
           (Parser.s "home")
         , Parser.map
           (\tutorialName ->
-            stepTutorial model (Tutorial.init ())
+            stepTutorial model (Tutorial.init tutorialName)
           )
           (Parser.s "tutorial" </> tutorialName_)
         , Parser.map
