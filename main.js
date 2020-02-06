@@ -5465,12 +5465,6 @@ var $author$project$Page$Tutorial$clearActivationsExceptFirst = function (net) {
 		$author$project$Page$Tutorial$clearActivations(net),
 		net);
 };
-var $author$project$Page$Tutorial$contentNames = _List_fromArray(
-	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model']);
-var $author$project$Page$Tutorial$firstContentName = A2(
-	$elm$core$Maybe$withDefault,
-	'',
-	$elm$core$List$head($author$project$Page$Tutorial$contentNames));
 var $elm$random$Random$Generator = function (a) {
 	return {$: 'Generator', a: a};
 };
@@ -5712,9 +5706,45 @@ var $author$project$Page$Tutorial$generateRandomNet = F5(
 		var netLosses = _v2.a;
 		return A6($author$project$Page$Tutorial$generateNet, layers, height, width, netActivations, netWeights, netLosses);
 	});
+var $author$project$Page$Tutorial$contentNames = _List_fromArray(
+	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model']);
+var $elm_community$list_extra$List$Extra$findIndexHelp = F3(
+	function (index, predicate, list) {
+		findIndexHelp:
+		while (true) {
+			if (!list.b) {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (predicate(x)) {
+					return $elm$core$Maybe$Just(index);
+				} else {
+					var $temp$index = index + 1,
+						$temp$predicate = predicate,
+						$temp$list = xs;
+					index = $temp$index;
+					predicate = $temp$predicate;
+					list = $temp$list;
+					continue findIndexHelp;
+				}
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$findIndex = $elm_community$list_extra$List$Extra$findIndexHelp(0);
+var $elm_community$list_extra$List$Extra$elemIndex = function (x) {
+	return $elm_community$list_extra$List$Extra$findIndex(
+		$elm$core$Basics$eq(x));
+};
+var $author$project$Page$Tutorial$getContentIndex = function (name) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$elemIndex, name, $author$project$Page$Tutorial$contentNames));
+};
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$Page$Tutorial$renderContent = _Platform_outgoingPort('renderContent', $elm$json$Json$Encode$string);
-var $author$project$Page$Tutorial$init = function (_v0) {
+var $author$project$Page$Tutorial$init = function (contentName) {
 	var width_ = 900;
 	var layers_ = _List_fromArray(
 		[2, 3, 2]);
@@ -5736,14 +5766,14 @@ var $author$project$Page$Tutorial$init = function (_v0) {
 	var initialSeed_ = 47;
 	var height_ = 620;
 	var edgeWidth_ = A3(sizeLevels, 1, 2, 3);
-	var _v1 = A5($author$project$Page$Tutorial$generateRandomNet, layers_, height_, width_, initialSeed_, $author$project$Page$Tutorial$generateAllLayerValues);
-	var nextNet_ = _v1.a;
-	var losses_ = _v1.b;
+	var _v0 = A5($author$project$Page$Tutorial$generateRandomNet, layers_, height_, width_, initialSeed_, $author$project$Page$Tutorial$generateAllLayerValues);
+	var nextNet_ = _v0.a;
+	var losses_ = _v0.b;
 	var net_ = $author$project$Page$Tutorial$clearActivationsExceptFirst(nextNet_);
 	return _Utils_Tuple2(
 		{
 			activationFunction: 'σ',
-			contentIndex: 0,
+			contentIndex: $author$project$Page$Tutorial$getContentIndex(contentName),
 			currentDirection: $author$project$Page$Tutorial$Forward,
 			currentPosition: _Utils_Tuple2(0, 0),
 			edgeWidth: edgeWidth_,
@@ -5756,7 +5786,7 @@ var $author$project$Page$Tutorial$init = function (_v0) {
 			nodeRadius: nodeRadius_,
 			width: width_
 		},
-		$author$project$Page$Tutorial$renderContent($author$project$Page$Tutorial$firstContentName));
+		$author$project$Page$Tutorial$renderContent(contentName));
 };
 var $elm$url$Url$Parser$Parser = function (a) {
 	return {$: 'Parser', a: a};
@@ -6584,7 +6614,7 @@ var $author$project$Main$route = F2(
 						return A2(
 							$author$project$Main$stepTutorial,
 							model,
-							$author$project$Page$Tutorial$init(_Utils_Tuple0));
+							$author$project$Page$Tutorial$init(tutorialName));
 					},
 					A2(
 						$elm$url$Url$Parser$slash,
@@ -6751,6 +6781,10 @@ var $author$project$Page$Tutorial$backwardOneLayer = function (model) {
 		}
 	}
 };
+var $author$project$Page$Tutorial$firstContentName = A2(
+	$elm$core$Maybe$withDefault,
+	'',
+	$elm$core$List$head($author$project$Page$Tutorial$contentNames));
 var $author$project$Page$Tutorial$Backward = {$: 'Backward'};
 var $elm$core$Basics$ge = _Utils_ge;
 var $author$project$Page$Tutorial$forwardOneStep = function (model) {
@@ -6844,6 +6878,14 @@ var $author$project$Page$Tutorial$update = F2(
 						$author$project$Page$Tutorial$backwardOneLayer(model),
 						$elm$core$Platform$Cmd$none);
 				}
+			case 'GetContentFromName':
+				var name = msg.a;
+				var index = $author$project$Page$Tutorial$getContentIndex(name);
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{contentIndex: index}),
+					$author$project$Page$Tutorial$renderContent(name));
 			case 'GetPreviousContent':
 				if (!model.contentIndex) {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
