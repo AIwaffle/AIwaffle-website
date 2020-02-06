@@ -6527,6 +6527,11 @@ var $author$project$Main$stepTutorial = F2(
 				}),
 			A2($elm$core$Platform$Cmd$map, $author$project$Main$TutorialMsg, cmds));
 	});
+var $elm$url$Url$Parser$top = $elm$url$Url$Parser$Parser(
+	function (state) {
+		return _List_fromArray(
+			[state]);
+	});
 var $elm$url$Url$Parser$custom = F2(
 	function (tipe, stringToSomething) {
 		return $elm$url$Url$Parser$Parser(
@@ -6584,7 +6589,14 @@ var $author$project$Main$route = F2(
 					A2(
 						$elm$url$Url$Parser$slash,
 						$elm$url$Url$Parser$s('tutorial'),
-						$author$project$Main$tutorialName_))
+						$author$project$Main$tutorialName_)),
+					A2(
+					$elm$url$Url$Parser$map,
+					A2(
+						$author$project$Main$stepHome,
+						model,
+						$author$project$Page$Home$init(_Utils_Tuple0)),
+					$elm$url$Url$Parser$top)
 				]));
 		var _v0 = A2($elm$url$Url$Parser$parse, parser, url);
 		if (_v0.$ === 'Just') {
@@ -12851,7 +12863,7 @@ var $author$project$Page$Home$viewCourseCard = function (title) {
 					_List_Nil,
 					{
 						label: $mdgriffith$elm_ui$Element$text(title),
-						url: '/' + title
+						url: '/tutorial/' + title
 					})
 				])));
 };
