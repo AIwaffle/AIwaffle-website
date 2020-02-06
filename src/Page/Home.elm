@@ -124,7 +124,7 @@ viewCourseCard title =
       , E.centerY
       ]
       [ E.link []
-        { url = "/tutorial/" ++ title
+        { url = "/" ++ title
         , label = E.text title
         }
       ]

@@ -1,4 +1,4 @@
-port module Page.Tutorial exposing (Model, Msg, main, init, subscriptions, update, view, getContentName)
+port module Page.Tutorial exposing (Model, Msg, init, subscriptions, update, view, getContentName)
 
 import Browser
 import Canvas exposing (..)
@@ -21,14 +21,6 @@ import Round
 import FeatherIcons
 
 port renderContent : (String -> Cmd msg)
-
-main =
-  Browser.element
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
 
 type alias Node =
     { x : Float

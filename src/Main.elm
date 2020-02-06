@@ -6,6 +6,7 @@ import Html
 import Url
 import Page.Home as Home
 import Page.NotFound as NotFound
+import Page.Tutorial as Tutorial
 import Url.Parser as Parser exposing (Parser, (</>))
 
 
@@ -37,7 +38,7 @@ type alias Model =
 type Page
   = NotFound
   | Home Home.Model
-  | Tutorial
+  | Tutorial Tutorial.Model
 
 
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
@@ -57,6 +58,7 @@ type Msg
   | UrlChanged Url.Url
   | NotFoundMsg NotFound.Msg
   | HomeMsg Home.Msg
+  | TutorialMsg Tutorial.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -78,6 +80,11 @@ update message model =
         Home home -> stepHome model (Home.update msg home)
         _             -> ( model, Cmd.none )
 
+    TutorialMsg msg ->
+      case model.page of
+        Tutorial tutorial -> stepTutorial model (Tutorial.update msg tutorial)
+        _             -> ( model, Cmd.none )
+
     NotFoundMsg _ ->
       ( model, Cmd.none )
 
@@ -93,12 +100,9 @@ route url model =
           (Parser.s "home")
         , Parser.map
           (\tutorialName ->
-            stepTutorial model url
+            stepTutorial model (Tutorial.init ())
           )
           (Parser.s "tutorial" </> tutorialName_)
-        , Parser.map
-            (stepHome model (Home.init ()))
-            Parser.top
         ]
   in
   case Parser.parse parser url of
@@ -123,10 +127,10 @@ stepHome model (home, cmds) =
   )
 
 
-stepTutorial : Model -> Url.Url -> ( Model, Cmd Msg )
-stepTutorial model url =
-  ( { model | page = Tutorial }
-  , Nav.load "/tutorial"
+stepTutorial : Model -> ( Tutorial.Model, Cmd Tutorial.Msg ) -> ( Model, Cmd Msg )
+stepTutorial model (tutorial, cmds) =
+  ( { model | page = Tutorial tutorial }
+  , Cmd.map TutorialMsg cmds
   )
 
 
@@ -146,24 +150,21 @@ view : Model -> Browser.Document Msg
 view model =
   case model.page of
     NotFound ->
-      viewNotFound
+      { title = "AIWaffle"
+      , body =
+        [ Html.map NotFoundMsg <| NotFound.view {}
+        ]
+      }
     Home home ->
-      viewHome home
-    Tutorial ->
-      viewNotFound
+      { title = "AIWaffle"
+      , body =
+        [ Html.map HomeMsg <| Home.view home
+        ]
+      }
+    Tutorial tutorial ->
+      { title = Tutorial.getContentName tutorial.contentIndex
+      , body =
+        [ Html.map TutorialMsg <| Tutorial.view tutorial
+        ]
+      }
       
-viewNotFound : Browser.Document Msg
-viewNotFound =
-  { title = "AIWaffle"
-  , body =
-    [ Html.map NotFoundMsg <| NotFound.view {}
-    ]
-  }
-
-viewHome : Home.Model -> Browser.Document Msg
-viewHome home =
-  { title = "AIWaffle"
-  , body =
-    [ Html.map HomeMsg <| Home.view home
-    ]
-  }
