@@ -103,6 +103,9 @@ route url model =
             stepTutorial model (Tutorial.init ())
           )
           (Parser.s "tutorial" </> tutorialName_)
+        , Parser.map
+            (stepHome model (Home.init ()))
+            Parser.top
         ]
   in
   case Parser.parse parser url of

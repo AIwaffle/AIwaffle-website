@@ -12863,7 +12863,7 @@ var $author$project$Page$Home$viewCourseCard = function (title) {
 					_List_Nil,
 					{
 						label: $mdgriffith$elm_ui$Element$text(title),
-						url: '/tutorial/' + title
+						url: '/' + title
 					})
 				])));
 };
