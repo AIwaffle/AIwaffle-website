@@ -1103,12 +1103,14 @@ view model =
     E.layout
         []
     <|
-        E.row
+        E.wrappedRow
             [ E.width E.fill
             , E.height E.fill
             ]
             [ E.column
-                [ E.width (E.fillPortion 3)
+                [ E.width (E.fillPortion 3 |>
+                    E.minimum 360
+                )
                 , E.paddingXY 20 0
                 , E.htmlAttribute (Html.Attributes.style "height" "calc(100vh - 20px)")
                 ]

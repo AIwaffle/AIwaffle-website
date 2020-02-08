@@ -14969,6 +14969,14 @@ var $mdgriffith$elm_ui$Internal$Model$InFront = {$: 'InFront'};
 var $mdgriffith$elm_ui$Element$inFront = function (element) {
 	return A2($mdgriffith$elm_ui$Element$createNearby, $mdgriffith$elm_ui$Internal$Model$InFront, element);
 };
+var $mdgriffith$elm_ui$Internal$Model$Min = F2(
+	function (a, b) {
+		return {$: 'Min', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Element$minimum = F2(
+	function (i, l) {
+		return A2($mdgriffith$elm_ui$Internal$Model$Min, i, l);
+	});
 var $joakin$elm_canvas$Canvas$Settings$Text$Center = {$: 'Center'};
 var $joakin$elm_canvas$Canvas$Settings$Text$Middle = {$: 'Middle'};
 var $joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand = function (a) {
@@ -16128,7 +16136,7 @@ var $author$project$Page$Tutorial$view = function (model) {
 		$mdgriffith$elm_ui$Element$layout,
 		_List_Nil,
 		A2(
-			$mdgriffith$elm_ui$Element$row,
+			$mdgriffith$elm_ui$Element$wrappedRow,
 			_List_fromArray(
 				[
 					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
@@ -16141,7 +16149,10 @@ var $author$project$Page$Tutorial$view = function (model) {
 					_List_fromArray(
 						[
 							$mdgriffith$elm_ui$Element$width(
-							$mdgriffith$elm_ui$Element$fillPortion(3)),
+							A2(
+								$mdgriffith$elm_ui$Element$minimum,
+								360,
+								$mdgriffith$elm_ui$Element$fillPortion(3))),
 							A2($mdgriffith$elm_ui$Element$paddingXY, 20, 0),
 							$mdgriffith$elm_ui$Element$htmlAttribute(
 							A2($elm$html$Html$Attributes$style, 'height', 'calc(100vh - 20px)'))
