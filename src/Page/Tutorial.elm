@@ -1107,28 +1107,38 @@ view model =
             [ E.width E.fill
             , E.height E.fill
             ]
-            [ E.column
-                [ E.width (E.fillPortion 3 |>
-                    E.minimum 360
-                )
-                , E.paddingXY 20 0
-                , E.htmlAttribute (Html.Attributes.style "height" "calc(100vh - 20px)")
-                ]
-                [ contentNavigation model
-                , E.html <| Html.div [ Html.Attributes.class "content" ] []
-                ]
-            , E.column
-                [ E.width (E.fillPortion 5)
-                , E.spacing 10
-                , E.inFront (calculationDisplay model)
-                ]
-                (centerAll
-                    [ E.html (neuralNet model)
-                    , directionTracker model
-                    , controls model
-                    ]
-                )
+            [ viewTutorialText model
+            , viewTutorialDemo model
             ]
+
+
+viewTutorialDemo : Model -> E.Element Msg
+viewTutorialDemo model =
+    E.column
+        [ E.width (E.fillPortion 5)
+        , E.spacing 10
+        , E.inFront (calculationDisplay model)
+        ]
+        (centerAll
+            [ E.html (neuralNet model)
+            , directionTracker model
+            , controls model
+            ]
+        )
+
+
+viewTutorialText : Model -> E.Element Msg
+viewTutorialText model =
+    E.column
+        [ E.width (E.fillPortion 3 |>
+            E.minimum 360
+        )
+        , E.paddingXY 20 0
+        , E.htmlAttribute (Html.Attributes.style "height" "calc(100vh - 20px)")
+        ]
+        [ contentNavigation model
+        , E.html <| Html.div [ Html.Attributes.class "content" ] []
+        ]
 
 
 subscriptions : Model -> Sub Msg
