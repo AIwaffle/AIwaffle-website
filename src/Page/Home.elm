@@ -98,6 +98,7 @@ viewBody model =
     , E.paragraph
       [ E.centerX
       , Font.center
+      , E.width (E.fill |> E.maximum 600)
       ]
       [ E.text "learn AI Interactively from scratch for free. \nUnderstand the workings behind the AI superpower, \nand start using them yourself!"
       ]
