@@ -8,5 +8,10 @@ A visual tutorial of machine learning.
 
 See [sample tutorial content](https://github.com/AlienKevin/AIWaffle-website/blob/master/dist/contents/Introduction.md).
 
+# Build locally
+1. Install elm-live using `npm install elm-live`
+2. run `elm-live src/Main.elm --pushstate --start-page dist/index.html --host 0.0.0.0 -- --output=dist/main.js`. The `--host 0.0.0.0` is only required for Windows Subsystem for Linux 2.
+3. In your browser, go to address `localhost:8000`
+
 # License
 MIT
