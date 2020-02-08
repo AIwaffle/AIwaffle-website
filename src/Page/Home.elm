@@ -94,11 +94,12 @@ viewBody model =
       , Font.bold
       ]
       (E.text "Develop Your AI Superpower")
-    , E.el
+    , E.paragraph
       [ E.centerX
       , Font.center
       ]
-      (E.text "learn AI Interactively from scratch for free. \nUnderstand the workings behind the AI superpower, \nand start using them yourself!")
+      [ E.text "learn AI Interactively from scratch for free. \nUnderstand the workings behind the AI superpower, \nand start using them yourself!"
+      ]
     , E.wrappedRow
       [ E.centerX
       , E.padding 20
