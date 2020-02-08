@@ -2,6 +2,7 @@ module Page.Home exposing (main, Model, Msg, init, update, view)
 
 import Browser
 import Html exposing (Html)
+import Html.Attributes
 import Element as E
 import Element.Font as Font
 import Element.Background as Background
@@ -117,6 +118,7 @@ viewCourseCard title =
     [ Background.image "/assets/waffle.png"
     , E.width <| E.px 200
     , E.height <| E.px 200
+    , E.htmlAttribute <| Html.Attributes.style "margin" "auto"
     ]
     ( E.paragraph
       [ Font.center
