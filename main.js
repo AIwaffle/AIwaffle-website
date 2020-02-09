@@ -6611,10 +6611,14 @@ var $author$project$Main$route = F2(
 					A2(
 					$elm$url$Url$Parser$map,
 					function (tutorialName) {
+						var name = A2(
+							$elm$core$Maybe$withDefault,
+							tutorialName,
+							$elm$url$Url$percentDecode(tutorialName));
 						return A2(
 							$author$project$Main$stepTutorial,
 							model,
-							$author$project$Page$Tutorial$init(tutorialName));
+							$author$project$Page$Tutorial$init(name));
 					},
 					A2(
 						$elm$url$Url$Parser$slash,
@@ -6781,10 +6785,6 @@ var $author$project$Page$Tutorial$backwardOneLayer = function (model) {
 		}
 	}
 };
-var $author$project$Page$Tutorial$firstContentName = A2(
-	$elm$core$Maybe$withDefault,
-	'',
-	$elm$core$List$head($author$project$Page$Tutorial$contentNames));
 var $author$project$Page$Tutorial$Backward = {$: 'Backward'};
 var $elm$core$Basics$ge = _Utils_ge;
 var $author$project$Page$Tutorial$forwardOneStep = function (model) {
@@ -6878,7 +6878,7 @@ var $author$project$Page$Tutorial$update = F2(
 						$author$project$Page$Tutorial$backwardOneLayer(model),
 						$elm$core$Platform$Cmd$none);
 				}
-			case 'GetContentFromName':
+			default:
 				var name = msg.a;
 				var index = $author$project$Page$Tutorial$getContentIndex(name);
 				return _Utils_Tuple2(
@@ -6886,38 +6886,6 @@ var $author$project$Page$Tutorial$update = F2(
 						model,
 						{contentIndex: index}),
 					$author$project$Page$Tutorial$renderContent(name));
-			case 'GetPreviousContent':
-				if (!model.contentIndex) {
-					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-				} else {
-					var nextContentIndex = model.contentIndex - 1;
-					var nextContentName = A2(
-						$elm$core$Maybe$withDefault,
-						$author$project$Page$Tutorial$firstContentName,
-						A2($author$project$Page$Tutorial$nth, nextContentIndex, $author$project$Page$Tutorial$contentNames));
-					return _Utils_Tuple2(
-						_Utils_update(
-							model,
-							{contentIndex: nextContentIndex}),
-						$author$project$Page$Tutorial$renderContent(nextContentName));
-				}
-			default:
-				if (_Utils_eq(
-					model.contentIndex,
-					$elm$core$List$length($author$project$Page$Tutorial$contentNames) - 1)) {
-					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-				} else {
-					var prevContentIndex = model.contentIndex + 1;
-					var prevContentName = A2(
-						$elm$core$Maybe$withDefault,
-						$author$project$Page$Tutorial$firstContentName,
-						A2($author$project$Page$Tutorial$nth, prevContentIndex, $author$project$Page$Tutorial$contentNames));
-					return _Utils_Tuple2(
-						_Utils_update(
-							model,
-							{contentIndex: prevContentIndex}),
-						$author$project$Page$Tutorial$renderContent(prevContentName));
-				}
 		}
 	});
 var $author$project$Main$update = F2(
@@ -6973,8 +6941,16 @@ var $author$project$Main$update = F2(
 var $author$project$Main$NotFoundMsg = function (a) {
 	return {$: 'NotFoundMsg', a: a};
 };
+var $author$project$Page$Tutorial$firstContentName = A2(
+	$elm$core$Maybe$withDefault,
+	'',
+	$elm$core$List$head($author$project$Page$Tutorial$contentNames));
 var $author$project$Page$Tutorial$getContentName = function (index) {
-	return A2(
+	var lastIndex = $elm$core$List$length($author$project$Page$Tutorial$contentNames) - 1;
+	return (_Utils_cmp(index, lastIndex) > 0) ? A2(
+		$elm$core$Maybe$withDefault,
+		$author$project$Page$Tutorial$firstContentName,
+		A2($author$project$Page$Tutorial$nth, lastIndex, $author$project$Page$Tutorial$contentNames)) : A2(
 		$elm$core$Maybe$withDefault,
 		$author$project$Page$Tutorial$firstContentName,
 		A2($author$project$Page$Tutorial$nth, index, $author$project$Page$Tutorial$contentNames));
@@ -15951,8 +15927,6 @@ var $author$project$Page$Tutorial$viewTutorialDemo = function (model) {
 					$author$project$Page$Tutorial$controls(model)
 				])));
 };
-var $author$project$Page$Tutorial$GetNextContent = {$: 'GetNextContent'};
-var $author$project$Page$Tutorial$GetPreviousContent = {$: 'GetPreviousContent'};
 var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
 var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
 var $feathericons$elm_feather$FeatherIcons$Icon = function (a) {
@@ -16102,6 +16076,8 @@ var $feathericons$elm_feather$FeatherIcons$toHtml = F2(
 				src));
 	});
 var $author$project$Page$Tutorial$contentNavigation = function (model) {
+	var prevUrl = $author$project$Page$Tutorial$getContentName(model.contentIndex - 1);
+	var nextUrl = $author$project$Page$Tutorial$getContentName(model.contentIndex + 1);
 	return A2(
 		$mdgriffith$elm_ui$Element$row,
 		_List_fromArray(
@@ -16112,11 +16088,10 @@ var $author$project$Page$Tutorial$contentNavigation = function (model) {
 		_List_fromArray(
 			[
 				A2(
-				$mdgriffith$elm_ui$Element$el,
+				$mdgriffith$elm_ui$Element$link,
 				_List_fromArray(
 					[
 						$mdgriffith$elm_ui$Element$alignLeft,
-						$mdgriffith$elm_ui$Element$Events$onClick($author$project$Page$Tutorial$GetPreviousContent),
 						$mdgriffith$elm_ui$Element$mouseOver(
 						_List_fromArray(
 							[
@@ -16124,14 +16099,16 @@ var $author$project$Page$Tutorial$contentNavigation = function (model) {
 							])),
 						$mdgriffith$elm_ui$Element$pointer
 					]),
-				$mdgriffith$elm_ui$Element$html(
-					A2($feathericons$elm_feather$FeatherIcons$toHtml, _List_Nil, $feathericons$elm_feather$FeatherIcons$arrowLeft))),
+				{
+					label: $mdgriffith$elm_ui$Element$html(
+						A2($feathericons$elm_feather$FeatherIcons$toHtml, _List_Nil, $feathericons$elm_feather$FeatherIcons$arrowLeft)),
+					url: prevUrl
+				}),
 				A2(
-				$mdgriffith$elm_ui$Element$el,
+				$mdgriffith$elm_ui$Element$link,
 				_List_fromArray(
 					[
 						$mdgriffith$elm_ui$Element$alignRight,
-						$mdgriffith$elm_ui$Element$Events$onClick($author$project$Page$Tutorial$GetNextContent),
 						$mdgriffith$elm_ui$Element$mouseOver(
 						_List_fromArray(
 							[
@@ -16139,8 +16116,11 @@ var $author$project$Page$Tutorial$contentNavigation = function (model) {
 							])),
 						$mdgriffith$elm_ui$Element$pointer
 					]),
-				$mdgriffith$elm_ui$Element$html(
-					A2($feathericons$elm_feather$FeatherIcons$toHtml, _List_Nil, $feathericons$elm_feather$FeatherIcons$arrowRight)))
+				{
+					label: $mdgriffith$elm_ui$Element$html(
+						A2($feathericons$elm_feather$FeatherIcons$toHtml, _List_Nil, $feathericons$elm_feather$FeatherIcons$arrowRight)),
+					url: nextUrl
+				})
 			]));
 };
 var $mdgriffith$elm_ui$Internal$Model$Min = F2(
