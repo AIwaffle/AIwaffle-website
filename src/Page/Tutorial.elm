@@ -411,8 +411,6 @@ type Msg
     = AdjustLearningRate Float
     | MoveOneStep
     | MoveOneLayer
-    | GetPreviousContent
-    | GetNextContent
     | GetContentFromName String
 
 
@@ -449,38 +447,17 @@ update msg model =
             , renderContent name
             )
 
-        GetPreviousContent ->
-            if model.contentIndex == 0 then
-                ( model, Cmd.none )
-
-            else
-                let
-                    nextContentIndex =
-                        model.contentIndex - 1
-
-                    nextContentName =
-                        Maybe.withDefault firstContentName (nth nextContentIndex contentNames)
-                in
-                ( { model | contentIndex = nextContentIndex }, renderContent nextContentName )
-
-        GetNextContent ->
-            if model.contentIndex == List.length contentNames - 1 then
-                ( model, Cmd.none )
-
-            else
-                let
-                    prevContentIndex =
-                        model.contentIndex + 1
-
-                    prevContentName =
-                        Maybe.withDefault firstContentName (nth prevContentIndex contentNames)
-                in
-                ( { model | contentIndex = prevContentIndex }, renderContent prevContentName )
-
 
 getContentName : Int -> String
 getContentName index =
-    Maybe.withDefault firstContentName <| nth index contentNames
+    let
+        lastIndex =
+            List.length contentNames - 1
+    in
+    if index > lastIndex then
+        Maybe.withDefault firstContentName <| nth lastIndex contentNames
+    else
+        Maybe.withDefault firstContentName <| nth index contentNames
 
 
 getContentIndex : String -> Int
@@ -963,26 +940,33 @@ directionTracker model =
 
 contentNavigation : Model -> E.Element Msg
 contentNavigation model =
+    let
+        prevUrl =
+            getContentName (model.contentIndex - 1)
+        nextUrl =
+            getContentName (model.contentIndex + 1)
+    in
     E.row
         [ E.paddingXY 20 10
         , E.width E.fill
         ]
-        [ E.el
+        [ E.link
             [ E.alignLeft
-            , Events.onClick GetPreviousContent
             , E.mouseOver [ Font.color grey ]
             , E.pointer
-            ]
-          <|
-            E.html (FeatherIcons.arrowLeft |> FeatherIcons.toHtml [])
-        , E.el
+            ] <|
+            { url = prevUrl
+            , label =
+                E.html (FeatherIcons.arrowLeft |> FeatherIcons.toHtml [])
+            }
+        , E.link
             [ E.alignRight
-            , Events.onClick GetNextContent
             , E.mouseOver [ Font.color grey ]
             , E.pointer
-            ]
-          <|
-            E.html (FeatherIcons.arrowRight |> FeatherIcons.toHtml [])
+            ] <|
+            { url = nextUrl
+            , label = E.html (FeatherIcons.arrowRight |> FeatherIcons.toHtml [])
+            }
         ]
 
 
