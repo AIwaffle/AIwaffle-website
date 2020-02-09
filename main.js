@@ -13768,6 +13768,8 @@ var $author$project$Page$Tutorial$center = function (element) {
 var $author$project$Page$Tutorial$centerAll = function (elements) {
 	return A2($elm$core$List$map, $author$project$Page$Tutorial$center, elements);
 };
+var $author$project$Page$Tutorial$contentDemos = _List_fromArray(
+	[false, false, true]);
 var $author$project$Page$Tutorial$MoveOneLayer = {$: 'MoveOneLayer'};
 var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
 var $elm$json$Json$Encode$bool = _Json_wrap;
@@ -15908,24 +15910,30 @@ var $author$project$Page$Tutorial$neuralNet = function (model) {
 				displayLayers(displayLayerNodes))));
 };
 var $author$project$Page$Tutorial$viewTutorialDemo = function (model) {
-	return A2(
-		$mdgriffith$elm_ui$Element$column,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$width(
-				$mdgriffith$elm_ui$Element$fillPortion(5)),
-				$mdgriffith$elm_ui$Element$spacing(10),
-				$mdgriffith$elm_ui$Element$inFront(
-				$author$project$Page$Tutorial$calculationDisplay(model))
-			]),
-		$author$project$Page$Tutorial$centerAll(
+	var _v0 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Page$Tutorial$contentDemos);
+	if (_v0.$ === 'Nothing') {
+		return $mdgriffith$elm_ui$Element$none;
+	} else {
+		var hasDemo = _v0.a;
+		return hasDemo ? A2(
+			$mdgriffith$elm_ui$Element$column,
 			_List_fromArray(
 				[
-					$mdgriffith$elm_ui$Element$html(
-					$author$project$Page$Tutorial$neuralNet(model)),
-					$author$project$Page$Tutorial$directionTracker(model),
-					$author$project$Page$Tutorial$controls(model)
-				])));
+					$mdgriffith$elm_ui$Element$width(
+					$mdgriffith$elm_ui$Element$fillPortion(5)),
+					$mdgriffith$elm_ui$Element$spacing(10),
+					$mdgriffith$elm_ui$Element$inFront(
+					$author$project$Page$Tutorial$calculationDisplay(model))
+				]),
+			$author$project$Page$Tutorial$centerAll(
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$html(
+						$author$project$Page$Tutorial$neuralNet(model)),
+						$author$project$Page$Tutorial$directionTracker(model),
+						$author$project$Page$Tutorial$controls(model)
+					]))) : $mdgriffith$elm_ui$Element$none;
+	}
 };
 var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
 var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
@@ -16142,6 +16150,10 @@ var $author$project$Page$Tutorial$viewTutorialText = function (model) {
 					360,
 					$mdgriffith$elm_ui$Element$fillPortion(3))),
 				A2($mdgriffith$elm_ui$Element$paddingXY, 20, 0),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'max-width', '70vw')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'margin', 'auto')),
 				$mdgriffith$elm_ui$Element$htmlAttribute(
 				A2($elm$html$Html$Attributes$style, 'height', 'calc(100vh - 20px)'))
 			]),
