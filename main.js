@@ -7280,7 +7280,11 @@ var $author$project$Page$Tutorial$netsFromLogisticRegressionModel = F2(
 				$elm$core$List$length(logisticModel.x),
 				$elm$core$List$length(logisticModel.y)
 			]);
-		var epochNumber = $elm$core$List$length(logisticModel.loss);
+		var epochNumber = $elm$core$List$length(
+			A2(
+				$elm$core$Maybe$withDefault,
+				_List_Nil,
+				A2($author$project$Page$Tutorial$nth, 0, logisticModel.y)));
 		var allWeights = A2(
 			$elm$core$Maybe$withDefault,
 			_List_Nil,
@@ -7291,7 +7295,6 @@ var $author$project$Page$Tutorial$netsFromLogisticRegressionModel = F2(
 					$elm$core$Maybe$withDefault,
 					_List_Nil,
 					A2($author$project$Page$Tutorial$nth, 0, logisticModel.w))));
-		var allLoss = logisticModel.loss;
 		var allActivations = A2(
 			$elm$core$Maybe$withDefault,
 			_List_Nil,
@@ -7302,7 +7305,7 @@ var $author$project$Page$Tutorial$netsFromLogisticRegressionModel = F2(
 					$elm$core$Maybe$withDefault,
 					_List_Nil,
 					A2($author$project$Page$Tutorial$nth, 0, logisticModel.a))));
-		return A2(
+		var nets = A2(
 			$elm$core$List$map,
 			function (index) {
 				var x2 = A2(
@@ -7326,16 +7329,6 @@ var $author$project$Page$Tutorial$netsFromLogisticRegressionModel = F2(
 							])
 						])
 					]);
-				var loss = function () {
-					var _v0 = A2($author$project$Page$Tutorial$nth, index, allLoss);
-					if (_v0.$ === 'Nothing') {
-						return _List_Nil;
-					} else {
-						var singleLoss = _v0.a;
-						return _List_fromArray(
-							[singleLoss]);
-					}
-				}();
 				var activations = _List_fromArray(
 					[
 						_List_fromArray(
@@ -7359,7 +7352,9 @@ var $author$project$Page$Tutorial$netsFromLogisticRegressionModel = F2(
 					]);
 				return A5($author$project$Page$Tutorial$generateNet, layers, demoModel.height, demoModel.width, activations, weights);
 			},
-			A2($elm$core$List$range, 0, epochNumber));
+			$elm$core$List$reverse(
+				A2($elm$core$List$range, 0, epochNumber)));
+		return nets;
 	});
 var $author$project$Page$Tutorial$update = F2(
 	function (msg, model) {
