@@ -393,41 +393,35 @@ netsFromLogisticRegressionModel : Model -> LogisticRegressionModel -> List Net
 netsFromLogisticRegressionModel demoModel logisticModel =
     let
         epochNumber =
-            List.length logisticModel.loss
+            List.length <| Maybe.withDefault [] <| nth 0 logisticModel.y
         layers =
             [List.length logisticModel.x, List.length logisticModel.y]
         allActivations =
             Maybe.withDefault [] <| nth 0 (Maybe.withDefault [] <| nth 0 logisticModel.a)
         allWeights =
             Maybe.withDefault [] <| nth 0 (Maybe.withDefault [] <| nth 0 logisticModel.w)
-        allLoss =
-            logisticModel.loss
-    in
-    List.map
-        (\index ->
-            let
-                x1 =
-                    Maybe.withDefault [] <| nth 0 logisticModel.x
-                x2 =
-                    Maybe.withDefault [] <| nth 1 logisticModel.x
-                activations =
-                    [ [ Maybe.withDefault 0 <| nth index x1
-                        , Maybe.withDefault 0 <| nth index x2
+        nets =
+            List.map
+            (\index ->
+                let
+                    x1 =
+                        Maybe.withDefault [] <| nth 0 logisticModel.x
+                    x2 =
+                        Maybe.withDefault [] <| nth 1 logisticModel.x
+                    activations =
+                        [ [ Maybe.withDefault 0 <| nth index x1
+                            , Maybe.withDefault 0 <| nth index x2
+                            ]
+                        , [ Maybe.withDefault 0 <| nth index allActivations ]
                         ]
-                    , [ Maybe.withDefault 0 <| nth index allActivations ]
-                    ]
-                weights =
-                    [[[ Maybe.withDefault 0 <| nth index allWeights ]]]
-                loss =
-                    case nth index allLoss of
-                        Nothing ->
-                            []
-                        Just singleLoss ->
-                            [ singleLoss ]
-            in
-            generateNet layers demoModel.height demoModel.width activations weights
-        )
-        (List.range 0 epochNumber)
+                    weights =
+                        [[[ Maybe.withDefault 0 <| nth index allWeights ]]]
+                in
+                generateNet layers demoModel.height demoModel.width activations weights
+            )
+            (List.reverse <| List.range 0 epochNumber)
+    in
+    nets
 
 
 getContentName : Int -> String
