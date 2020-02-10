@@ -5348,32 +5348,59 @@ var $author$project$Page$Home$init = function (_v0) {
 		$elm$core$Platform$Cmd$none);
 };
 var $author$project$Main$NotFound = {$: 'NotFound'};
-var $author$project$Page$Tutorial$Forward = {$: 'Forward'};
-var $author$project$Page$Tutorial$LoggedIn = function (a) {
-	return {$: 'LoggedIn', a: a};
+var $author$project$Page$Tutorial$DemoMsg = function (a) {
+	return {$: 'DemoMsg', a: a};
 };
-var $elm$core$List$any = F2(
-	function (isOkay, list) {
-		any:
+var $author$project$Page$Tutorial$contentNames = _List_fromArray(
+	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model']);
+var $elm_community$list_extra$List$Extra$findIndexHelp = F3(
+	function (index, predicate, list) {
+		findIndexHelp:
 		while (true) {
 			if (!list.b) {
-				return false;
+				return $elm$core$Maybe$Nothing;
 			} else {
 				var x = list.a;
 				var xs = list.b;
-				if (isOkay(x)) {
-					return true;
+				if (predicate(x)) {
+					return $elm$core$Maybe$Just(index);
 				} else {
-					var $temp$isOkay = isOkay,
+					var $temp$index = index + 1,
+						$temp$predicate = predicate,
 						$temp$list = xs;
-					isOkay = $temp$isOkay;
+					index = $temp$index;
+					predicate = $temp$predicate;
 					list = $temp$list;
-					continue any;
+					continue findIndexHelp;
 				}
 			}
 		}
 	});
-var $author$project$Page$Tutorial$emptyNet = _List_Nil;
+var $elm_community$list_extra$List$Extra$findIndex = $elm_community$list_extra$List$Extra$findIndexHelp(0);
+var $elm_community$list_extra$List$Extra$elemIndex = function (x) {
+	return $elm_community$list_extra$List$Extra$findIndex(
+		$elm$core$Basics$eq(x));
+};
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Page$Tutorial$getContentIndex = function (name) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$elemIndex, name, $author$project$Page$Tutorial$contentNames));
+};
+var $author$project$Demo$LogisticRegression$emptyLogisticRegressionModel = {a: _List_Nil, loss: _List_Nil, w: _List_Nil, x: _List_Nil, y: _List_Nil};
+var $author$project$Demo$LogisticRegression$emptyModel = {demoId: '', demoModel: $author$project$Demo$LogisticRegression$emptyLogisticRegressionModel, serverError: $elm$core$Maybe$Nothing};
+var $author$project$Demo$LogisticRegression$LoggedIn = function (a) {
+	return {$: 'LoggedIn', a: a};
+};
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
 		return {$: 'BadStatus_', a: a, b: b};
@@ -5983,51 +6010,6 @@ var $elm$http$Http$expectWhatever = function (toMsg) {
 				return $elm$core$Result$Ok(_Utils_Tuple0);
 			}));
 };
-var $author$project$Page$Tutorial$contentNames = _List_fromArray(
-	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model']);
-var $elm_community$list_extra$List$Extra$findIndexHelp = F3(
-	function (index, predicate, list) {
-		findIndexHelp:
-		while (true) {
-			if (!list.b) {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				if (predicate(x)) {
-					return $elm$core$Maybe$Just(index);
-				} else {
-					var $temp$index = index + 1,
-						$temp$predicate = predicate,
-						$temp$list = xs;
-					index = $temp$index;
-					predicate = $temp$predicate;
-					list = $temp$list;
-					continue findIndexHelp;
-				}
-			}
-		}
-	});
-var $elm_community$list_extra$List$Extra$findIndex = $elm_community$list_extra$List$Extra$findIndexHelp(0);
-var $elm_community$list_extra$List$Extra$elemIndex = function (x) {
-	return $elm_community$list_extra$List$Extra$findIndex(
-		$elm$core$Basics$eq(x));
-};
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$Page$Tutorial$getContentIndex = function (name) {
-	return A2(
-		$elm$core$Maybe$withDefault,
-		0,
-		A2($elm_community$list_extra$List$Extra$elemIndex, name, $author$project$Page$Tutorial$contentNames));
-};
 var $elm$http$Http$jsonBody = function (value) {
 	return A2(
 		_Http_pair,
@@ -6219,71 +6201,41 @@ var $elm$http$Http$post = function (r) {
 	return $elm$http$Http$request(
 		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
+var $author$project$Demo$LogisticRegression$serverRoot = 'http://106.15.39.117:8080/';
 var $elm$json$Json$Encode$string = _Json_wrap;
+var $author$project$Demo$LogisticRegression$logIn = $elm$http$Http$post(
+	{
+		body: $elm$http$Http$jsonBody(
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'username',
+						$elm$json$Json$Encode$string('admin')),
+						_Utils_Tuple2(
+						'password',
+						$elm$json$Json$Encode$string('040506'))
+					]))),
+		expect: $elm$http$Http$expectWhatever($author$project$Demo$LogisticRegression$LoggedIn),
+		url: $author$project$Demo$LogisticRegression$serverRoot + 'auth/login'
+	});
+var $author$project$Demo$LogisticRegression$init = _Utils_Tuple2($author$project$Demo$LogisticRegression$emptyModel, $author$project$Demo$LogisticRegression$logIn);
+var $elm$core$Platform$Cmd$map = _Platform_map;
 var $author$project$Page$Tutorial$renderContent = _Platform_outgoingPort('renderContent', $elm$json$Json$Encode$string);
-var $author$project$Page$Tutorial$serverRoot = 'http://106.15.39.117:8080/';
 var $author$project$Page$Tutorial$init = function (contentName) {
-	var width_ = 900;
-	var layers_ = _List_fromArray(
-		[2, 1]);
-	var sizeLevels = F3(
-		function (small, medium, large) {
-			return (A2(
-				$elm$core$List$any,
-				function (size) {
-					return size > 16;
-				},
-				layers_) || ($elm$core$List$length(layers_) > 12)) ? small : ((A2(
-				$elm$core$List$any,
-				function (size) {
-					return size > 8;
-				},
-				layers_) || ($elm$core$List$length(layers_) > 8)) ? medium : large);
-		});
-	var nodeRadius_ = A3(sizeLevels, 10, 25, 40);
-	var initialSeed_ = 47;
-	var height_ = 620;
-	var edgeWidth_ = A3(sizeLevels, 1, 2, 3);
+	var _v0 = $author$project$Demo$LogisticRegression$init;
+	var demo = _v0.a;
+	var initDemoMsg = _v0.b;
 	return _Utils_Tuple2(
 		{
-			activationFunction: 'σ',
 			contentIndex: $author$project$Page$Tutorial$getContentIndex(contentName),
-			currentDirection: $author$project$Page$Tutorial$Forward,
-			currentPosition: _Utils_Tuple2(0, 0),
-			demoId: '',
-			edgeWidth: edgeWidth_,
-			height: height_,
-			layers: layers_,
-			learningRate: 0.5,
-			losses: _List_Nil,
-			net: $author$project$Page$Tutorial$emptyNet,
-			netIndex: 0,
-			nets: _List_Nil,
-			nextNet: $author$project$Page$Tutorial$emptyNet,
-			nodeRadius: nodeRadius_,
-			serverError: $elm$core$Maybe$Nothing,
-			width: width_
+			demo: demo
 		},
 		$elm$core$Platform$Cmd$batch(
 			_List_fromArray(
 				[
 					$author$project$Page$Tutorial$renderContent(contentName),
-					$elm$http$Http$post(
-					{
-						body: $elm$http$Http$jsonBody(
-							$elm$json$Json$Encode$object(
-								_List_fromArray(
-									[
-										_Utils_Tuple2(
-										'username',
-										$elm$json$Json$Encode$string('admin')),
-										_Utils_Tuple2(
-										'password',
-										$elm$json$Json$Encode$string('040506'))
-									]))),
-						expect: $elm$http$Http$expectWhatever($author$project$Page$Tutorial$LoggedIn),
-						url: $author$project$Page$Tutorial$serverRoot + 'auth/login'
-					})
+					A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, initDemoMsg)
 				])));
 };
 var $elm$url$Url$Parser$Parser = function (a) {
@@ -6509,7 +6461,6 @@ var $elm$url$Url$Parser$slash = F2(
 var $author$project$Main$HomeMsg = function (a) {
 	return {$: 'HomeMsg', a: a};
 };
-var $elm$core$Platform$Cmd$map = _Platform_map;
 var $author$project$Main$stepHome = F2(
 	function (model, _v0) {
 		var home = _v0.a;
@@ -6693,354 +6644,10 @@ var $author$project$Page$Home$update = F2(
 	function (msg, model) {
 		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	});
-var $author$project$Page$Tutorial$clearActivations = function (net) {
-	return A2(
-		$elm$core$List$map,
-		function (layer) {
-			return A2(
-				$elm$core$List$map,
-				function (node) {
-					return _Utils_update(
-						node,
-						{activation: 0});
-				},
-				layer);
-		},
-		net);
-};
-var $author$project$Page$Tutorial$emptyNode = {
-	activation: 0,
-	pos: _Utils_Tuple2(0, 0),
-	weights: _List_Nil,
-	x: 0,
-	y: 0
-};
-var $elm$core$List$drop = F2(
-	function (n, list) {
-		drop:
-		while (true) {
-			if (n <= 0) {
-				return list;
-			} else {
-				if (!list.b) {
-					return list;
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					var $temp$n = n - 1,
-						$temp$list = xs;
-					n = $temp$n;
-					list = $temp$list;
-					continue drop;
-				}
-			}
-		}
-	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $author$project$Page$Tutorial$nth = F2(
-	function (n, xs) {
-		return (n < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
-			A2($elm$core$List$drop, n, xs));
-	});
-var $elm$core$Basics$always = F2(
-	function (a, _v0) {
-		return a;
-	});
-var $elm$core$List$takeReverse = F3(
-	function (n, list, kept) {
-		takeReverse:
-		while (true) {
-			if (n <= 0) {
-				return kept;
-			} else {
-				if (!list.b) {
-					return kept;
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					var $temp$n = n - 1,
-						$temp$list = xs,
-						$temp$kept = A2($elm$core$List$cons, x, kept);
-					n = $temp$n;
-					list = $temp$list;
-					kept = $temp$kept;
-					continue takeReverse;
-				}
-			}
-		}
-	});
-var $elm$core$List$takeTailRec = F2(
-	function (n, list) {
-		return $elm$core$List$reverse(
-			A3($elm$core$List$takeReverse, n, list, _List_Nil));
-	});
-var $elm$core$List$takeFast = F3(
-	function (ctr, n, list) {
-		if (n <= 0) {
-			return _List_Nil;
-		} else {
-			var _v0 = _Utils_Tuple2(n, list);
-			_v0$1:
-			while (true) {
-				_v0$5:
-				while (true) {
-					if (!_v0.b.b) {
-						return list;
-					} else {
-						if (_v0.b.b.b) {
-							switch (_v0.a) {
-								case 1:
-									break _v0$1;
-								case 2:
-									var _v2 = _v0.b;
-									var x = _v2.a;
-									var _v3 = _v2.b;
-									var y = _v3.a;
-									return _List_fromArray(
-										[x, y]);
-								case 3:
-									if (_v0.b.b.b.b) {
-										var _v4 = _v0.b;
-										var x = _v4.a;
-										var _v5 = _v4.b;
-										var y = _v5.a;
-										var _v6 = _v5.b;
-										var z = _v6.a;
-										return _List_fromArray(
-											[x, y, z]);
-									} else {
-										break _v0$5;
-									}
-								default:
-									if (_v0.b.b.b.b && _v0.b.b.b.b.b) {
-										var _v7 = _v0.b;
-										var x = _v7.a;
-										var _v8 = _v7.b;
-										var y = _v8.a;
-										var _v9 = _v8.b;
-										var z = _v9.a;
-										var _v10 = _v9.b;
-										var w = _v10.a;
-										var tl = _v10.b;
-										return (ctr > 1000) ? A2(
-											$elm$core$List$cons,
-											x,
-											A2(
-												$elm$core$List$cons,
-												y,
-												A2(
-													$elm$core$List$cons,
-													z,
-													A2(
-														$elm$core$List$cons,
-														w,
-														A2($elm$core$List$takeTailRec, n - 4, tl))))) : A2(
-											$elm$core$List$cons,
-											x,
-											A2(
-												$elm$core$List$cons,
-												y,
-												A2(
-													$elm$core$List$cons,
-													z,
-													A2(
-														$elm$core$List$cons,
-														w,
-														A3($elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
-									} else {
-										break _v0$5;
-									}
-							}
-						} else {
-							if (_v0.a === 1) {
-								break _v0$1;
-							} else {
-								break _v0$5;
-							}
-						}
-					}
-				}
-				return list;
-			}
-			var _v1 = _v0.b;
-			var x = _v1.a;
-			return _List_fromArray(
-				[x]);
-		}
-	});
-var $elm$core$List$take = F2(
-	function (n, list) {
-		return A3($elm$core$List$takeFast, 0, n, list);
-	});
-var $elm_community$list_extra$List$Extra$updateAt = F3(
-	function (index, fn, list) {
-		if (index < 0) {
-			return list;
-		} else {
-			var tail = A2($elm$core$List$drop, index, list);
-			var head = A2($elm$core$List$take, index, list);
-			if (tail.b) {
-				var x = tail.a;
-				var xs = tail.b;
-				return _Utils_ap(
-					head,
-					A2(
-						$elm$core$List$cons,
-						fn(x),
-						xs));
-			} else {
-				return list;
-			}
-		}
-	});
-var $elm_community$list_extra$List$Extra$setAt = F2(
-	function (index, value) {
-		return A2(
-			$elm_community$list_extra$List$Extra$updateAt,
-			index,
-			$elm$core$Basics$always(value));
-	});
-var $author$project$Page$Tutorial$updateNode = F5(
-	function (layerIndex, index, combineNodes, currNet, nextNet) {
-		var nextLayer = A2(
-			$elm$core$Maybe$withDefault,
-			_List_Nil,
-			A2($author$project$Page$Tutorial$nth, layerIndex, nextNet));
-		var nextNode = A2(
-			$elm$core$Maybe$withDefault,
-			$author$project$Page$Tutorial$emptyNode,
-			A2($author$project$Page$Tutorial$nth, index, nextLayer));
-		var currLayer = A2(
-			$elm$core$Maybe$withDefault,
-			_List_Nil,
-			A2($author$project$Page$Tutorial$nth, layerIndex, currNet));
-		var currNode = A2(
-			$elm$core$Maybe$withDefault,
-			$author$project$Page$Tutorial$emptyNode,
-			A2($author$project$Page$Tutorial$nth, index, currLayer));
-		return A3(
-			$elm_community$list_extra$List$Extra$setAt,
-			layerIndex,
-			A3(
-				$elm_community$list_extra$List$Extra$setAt,
-				index,
-				A2(combineNodes, currNode, nextNode),
-				currLayer),
-			currNet);
-	});
-var $author$project$Page$Tutorial$updateActivations = F4(
-	function (layerIndex, index, currNet, nextNet) {
-		var combineNodes = F2(
-			function (currNode, nextNode) {
-				return _Utils_update(
-					currNode,
-					{activation: nextNode.activation});
-			});
-		return A5($author$project$Page$Tutorial$updateNode, layerIndex, index, combineNodes, currNet, nextNet);
-	});
-var $author$project$Page$Tutorial$clearActivationsExceptFirst = function (net) {
-	return A4(
-		$author$project$Page$Tutorial$updateActivations,
-		0,
-		0,
-		$author$project$Page$Tutorial$clearActivations(net),
-		net);
-};
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
-var $author$project$Page$Tutorial$updateWeights = F4(
-	function (layerIndex, index, currNet, nextNet) {
-		var combineNodes = F2(
-			function (currNode, nextNode) {
-				return _Utils_update(
-					currNode,
-					{weights: nextNode.weights});
-			});
-		return A5($author$project$Page$Tutorial$updateNode, layerIndex, index, combineNodes, currNet, nextNet);
-	});
-var $author$project$Page$Tutorial$backwardOneStep = function (model) {
-	var currentLayerIndex = model.currentPosition.a;
-	var nextLayerLength = A2(
-		$elm$core$Maybe$withDefault,
-		0,
-		A2($author$project$Page$Tutorial$nth, currentLayerIndex - 1, model.layers));
-	var currentIndex = model.currentPosition.b;
-	var nextNet = A4($author$project$Page$Tutorial$updateWeights, currentLayerIndex, currentIndex, model.net, model.nextNet);
-	return (currentIndex <= 0) ? ((currentLayerIndex <= 1) ? _Utils_update(
-		model,
-		{
-			currentDirection: $author$project$Page$Tutorial$Forward,
-			currentPosition: _Utils_Tuple2(0, 0),
-			net: $author$project$Page$Tutorial$clearActivationsExceptFirst(model.nextNet)
-		}) : _Utils_update(
-		model,
-		{
-			currentPosition: _Utils_Tuple2(currentLayerIndex - 1, nextLayerLength - 1),
-			net: nextNet
-		})) : _Utils_update(
-		model,
-		{
-			currentPosition: _Utils_Tuple2(currentLayerIndex, currentIndex - 1),
-			net: nextNet
-		});
-};
-var $author$project$Page$Tutorial$repeat = F3(
-	function (steps, func, arg) {
-		repeat:
-		while (true) {
-			if (steps > 0) {
-				var $temp$steps = steps - 1,
-					$temp$func = func,
-					$temp$arg = func(arg);
-				steps = $temp$steps;
-				func = $temp$func;
-				arg = $temp$arg;
-				continue repeat;
-			} else {
-				return arg;
-			}
-		}
-	});
-var $author$project$Page$Tutorial$backwardOneLayer = function (model) {
-	backwardOneLayer:
-	while (true) {
-		var currentLayerIndex = model.currentPosition.a;
-		var currentIndex = model.currentPosition.b;
-		if (currentIndex > 0) {
-			return A3($author$project$Page$Tutorial$repeat, currentIndex, $author$project$Page$Tutorial$backwardOneStep, model);
-		} else {
-			if (!currentIndex) {
-				if (!currentLayerIndex) {
-					return model;
-				} else {
-					var $temp$model = $author$project$Page$Tutorial$backwardOneStep(model);
-					model = $temp$model;
-					continue backwardOneLayer;
-				}
-			} else {
-				return model;
-			}
-		}
-	}
-};
-var $author$project$Page$Tutorial$contentDemos = _List_fromArray(
-	[false, false, true]);
-var $author$project$Page$Tutorial$Backward = {$: 'Backward'};
-var $elm$core$Basics$ge = _Utils_ge;
-var $author$project$Page$Tutorial$GetNextEpoch = function (a) {
+var $author$project$Demo$LogisticRegression$GetNextEpoch = function (a) {
 	return {$: 'GetNextEpoch', a: a};
 };
-var $author$project$Page$Tutorial$LogisticRegressionModel = F5(
+var $author$project$Demo$LogisticRegression$LogisticRegressionModel = F5(
 	function (x, y, w, a, loss) {
 		return {a: a, loss: loss, w: w, x: x, y: y};
 	});
@@ -7048,9 +6655,9 @@ var $elm$json$Json$Decode$field = _Json_decodeField;
 var $elm$json$Json$Decode$float = _Json_decodeFloat;
 var $elm$json$Json$Decode$list = _Json_decodeList;
 var $elm$json$Json$Decode$map5 = _Json_map5;
-var $author$project$Page$Tutorial$epochDecoder = A6(
+var $author$project$Demo$LogisticRegression$epochDecoder = A6(
 	$elm$json$Json$Decode$map5,
-	$author$project$Page$Tutorial$LogisticRegressionModel,
+	$author$project$Demo$LogisticRegression$LogisticRegressionModel,
 	A2(
 		$elm$json$Json$Decode$field,
 		'X',
@@ -7101,7 +6708,7 @@ var $elm$http$Http$expectJson = F2(
 	});
 var $elm$json$Json$Encode$float = _Json_wrap;
 var $elm$json$Json$Encode$int = _Json_wrap;
-var $author$project$Page$Tutorial$getEpoch = function (demoId) {
+var $author$project$Demo$LogisticRegression$getEpoch = function (demoId) {
 	return $elm$http$Http$post(
 		{
 			body: $elm$http$Http$jsonBody(
@@ -7118,91 +6725,11 @@ var $author$project$Page$Tutorial$getEpoch = function (demoId) {
 							'learning_rate',
 							$elm$json$Json$Encode$float(0.01))
 						]))),
-			expect: A2($elm$http$Http$expectJson, $author$project$Page$Tutorial$GetNextEpoch, $author$project$Page$Tutorial$epochDecoder),
-			url: $author$project$Page$Tutorial$serverRoot + 'api/model/iter'
+			expect: A2($elm$http$Http$expectJson, $author$project$Demo$LogisticRegression$GetNextEpoch, $author$project$Demo$LogisticRegression$epochDecoder),
+			url: $author$project$Demo$LogisticRegression$serverRoot + 'api/model/iter'
 		});
 };
-var $author$project$Page$Tutorial$forwardOneStep = function (model) {
-	var numberOfLayers = $elm$core$List$length(model.layers);
-	var currentLayerIndex = model.currentPosition.a;
-	var layerLength = function () {
-		var _v0 = A2($author$project$Page$Tutorial$nth, currentLayerIndex, model.layers);
-		if (_v0.$ === 'Nothing') {
-			return 0;
-		} else {
-			var n = _v0.a;
-			return n;
-		}
-	}();
-	var currentIndex = model.currentPosition.b;
-	var nextNet = (_Utils_cmp(currentIndex, layerLength - 1) > -1) ? A4($author$project$Page$Tutorial$updateActivations, currentLayerIndex + 1, 0, model.net, model.nextNet) : A4($author$project$Page$Tutorial$updateActivations, currentLayerIndex, currentIndex + 1, model.net, model.nextNet);
-	if (_Utils_cmp(currentIndex, layerLength - 1) > -1) {
-		if (_Utils_cmp(currentLayerIndex, numberOfLayers - 1) > -1) {
-			var beforeEndOfEpoch = _Utils_cmp(
-				model.netIndex,
-				$elm$core$List$length(model.nets)) < 0;
-			return _Utils_Tuple2(
-				_Utils_update(
-					model,
-					{
-						currentDirection: $author$project$Page$Tutorial$Backward,
-						currentPosition: _Utils_Tuple2(numberOfLayers - 1, layerLength - 1),
-						netIndex: beforeEndOfEpoch ? (model.netIndex + 1) : model.netIndex,
-						nextNet: beforeEndOfEpoch ? A2(
-							$elm$core$Maybe$withDefault,
-							$author$project$Page$Tutorial$emptyNet,
-							A2($author$project$Page$Tutorial$nth, model.netIndex + 1, model.nets)) : $author$project$Page$Tutorial$emptyNet
-					}),
-				beforeEndOfEpoch ? $elm$core$Platform$Cmd$none : $author$project$Page$Tutorial$getEpoch(model.demoId));
-		} else {
-			return _Utils_Tuple2(
-				_Utils_update(
-					model,
-					{
-						currentPosition: _Utils_Tuple2(currentLayerIndex + 1, 0),
-						net: nextNet
-					}),
-				$elm$core$Platform$Cmd$none);
-		}
-	} else {
-		return _Utils_Tuple2(
-			_Utils_update(
-				model,
-				{
-					currentPosition: _Utils_Tuple2(currentLayerIndex, currentIndex + 1),
-					net: nextNet
-				}),
-			$elm$core$Platform$Cmd$none);
-	}
-};
-var $author$project$Page$Tutorial$forwardOneLayer = function (model) {
-	forwardOneLayer:
-	while (true) {
-		var numberOfLayers = $elm$core$List$length(model.layers);
-		var currentLayerIndex = model.currentPosition.a;
-		var currentLayerLength = A2(
-			$elm$core$Maybe$withDefault,
-			0,
-			A2($author$project$Page$Tutorial$nth, currentLayerIndex, model.layers));
-		var currentIndex = model.currentPosition.b;
-		if (_Utils_cmp(currentIndex, currentLayerLength - 1) < 0) {
-			return $author$project$Page$Tutorial$forwardOneStep(model);
-		} else {
-			if (_Utils_eq(currentIndex, currentLayerLength - 1)) {
-				if (_Utils_eq(currentLayerIndex, numberOfLayers - 1)) {
-					return $author$project$Page$Tutorial$forwardOneStep(model);
-				} else {
-					var $temp$model = $author$project$Page$Tutorial$forwardOneStep(model).a;
-					model = $temp$model;
-					continue forwardOneLayer;
-				}
-			} else {
-				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-			}
-		}
-	}
-};
-var $author$project$Page$Tutorial$GetDemoId = function (a) {
+var $author$project$Demo$LogisticRegression$GetDemoId = function (a) {
 	return {$: 'GetDemoId', a: a};
 };
 var $elm$http$Http$emptyBody = _Http_emptyBody;
@@ -7212,186 +6739,15 @@ var $elm$http$Http$expectString = function (toMsg) {
 		toMsg,
 		$elm$http$Http$resolve($elm$core$Result$Ok));
 };
-var $author$project$Page$Tutorial$initDemo = $elm$http$Http$post(
+var $author$project$Demo$LogisticRegression$initDemo = $elm$http$Http$post(
 	{
 		body: $elm$http$Http$emptyBody,
-		expect: $elm$http$Http$expectString($author$project$Page$Tutorial$GetDemoId),
-		url: $author$project$Page$Tutorial$serverRoot + 'api/model/new'
+		expect: $elm$http$Http$expectString($author$project$Demo$LogisticRegression$GetDemoId),
+		url: $author$project$Demo$LogisticRegression$serverRoot + 'api/model/new'
 	});
-var $author$project$Page$Tutorial$Node = F5(
-	function (x, y, pos, activation, weights) {
-		return {activation: activation, pos: pos, weights: weights, x: x, y: y};
-	});
-var $author$project$Page$Tutorial$generateNet = F5(
-	function (layers, height, width, activations, weights) {
-		var spacingX = width / $elm$core$List$length(layers);
-		var createLayer = F5(
-			function (nodeCount, layerIndex, layerLength, layerActivations, layerWeights) {
-				var spacingY = height / (layerLength + 1);
-				var sideMargin = spacingX / 2;
-				var x = (!layerIndex) ? sideMargin : (sideMargin + (layerIndex * spacingX));
-				var nodeIndex = nodeCount - 1;
-				var nodeWeights = A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($author$project$Page$Tutorial$nth, nodeIndex, layerWeights));
-				var nodeActivation = A2(
-					$elm$core$Maybe$withDefault,
-					0,
-					A2($author$project$Page$Tutorial$nth, nodeIndex, layerActivations));
-				return (nodeCount <= 0) ? _List_Nil : _Utils_ap(
-					A5(createLayer, nodeCount - 1, layerIndex, layerLength, layerActivations, layerWeights),
-					_List_fromArray(
-						[
-							A5(
-							$author$project$Page$Tutorial$Node,
-							x,
-							spacingY * nodeCount,
-							_Utils_Tuple2(layerIndex, nodeIndex),
-							nodeActivation,
-							nodeWeights)
-						]));
-			});
-		var net = A2(
-			$elm$core$List$indexedMap,
-			F2(
-				function (layerIndex, layerLength) {
-					return A5(
-						createLayer,
-						layerLength,
-						layerIndex,
-						layerLength,
-						A2(
-							$elm$core$Maybe$withDefault,
-							_List_Nil,
-							A2($author$project$Page$Tutorial$nth, layerIndex, activations)),
-						A2(
-							$elm$core$Maybe$withDefault,
-							_List_Nil,
-							A2($author$project$Page$Tutorial$nth, layerIndex, weights)));
-				}),
-			layers);
-		return net;
-	});
-var $author$project$Page$Tutorial$netsFromLogisticRegressionModel = F2(
-	function (demoModel, logisticModel) {
-		var layers = _List_fromArray(
-			[
-				$elm$core$List$length(logisticModel.x),
-				$elm$core$List$length(logisticModel.y)
-			]);
-		var epochNumber = $elm$core$List$length(
-			A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				A2($author$project$Page$Tutorial$nth, 0, logisticModel.y)));
-		var allWeights = A2(
-			$elm$core$Maybe$withDefault,
-			_List_Nil,
-			A2(
-				$author$project$Page$Tutorial$nth,
-				0,
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($author$project$Page$Tutorial$nth, 0, logisticModel.w))));
-		var allActivations = A2(
-			$elm$core$Maybe$withDefault,
-			_List_Nil,
-			A2(
-				$author$project$Page$Tutorial$nth,
-				0,
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($author$project$Page$Tutorial$nth, 0, logisticModel.a))));
-		var nets = A2(
-			$elm$core$List$map,
-			function (index) {
-				var x2 = A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($author$project$Page$Tutorial$nth, 1, logisticModel.x));
-				var x1 = A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($author$project$Page$Tutorial$nth, 0, logisticModel.x));
-				var weights = _List_fromArray(
-					[
-						_List_fromArray(
-						[
-							_List_fromArray(
-							[
-								A2(
-								$elm$core$Maybe$withDefault,
-								0,
-								A2($author$project$Page$Tutorial$nth, index, allWeights))
-							])
-						])
-					]);
-				var activations = _List_fromArray(
-					[
-						_List_fromArray(
-						[
-							A2(
-							$elm$core$Maybe$withDefault,
-							0,
-							A2($author$project$Page$Tutorial$nth, index, x1)),
-							A2(
-							$elm$core$Maybe$withDefault,
-							0,
-							A2($author$project$Page$Tutorial$nth, index, x2))
-						]),
-						_List_fromArray(
-						[
-							A2(
-							$elm$core$Maybe$withDefault,
-							0,
-							A2($author$project$Page$Tutorial$nth, index, allActivations))
-						])
-					]);
-				return A5($author$project$Page$Tutorial$generateNet, layers, demoModel.height, demoModel.width, activations, weights);
-			},
-			$elm$core$List$reverse(
-				A2($elm$core$List$range, 0, epochNumber)));
-		return nets;
-	});
-var $author$project$Page$Tutorial$update = F2(
+var $author$project$Demo$LogisticRegression$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
-			case 'AdjustLearningRate':
-				var rate = msg.a;
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{learningRate: rate}),
-					$elm$core$Platform$Cmd$none);
-			case 'MoveOneStep':
-				var _v1 = model.currentDirection;
-				if (_v1.$ === 'Forward') {
-					return $author$project$Page$Tutorial$forwardOneStep(model);
-				} else {
-					return _Utils_Tuple2(
-						$author$project$Page$Tutorial$backwardOneStep(model),
-						$elm$core$Platform$Cmd$none);
-				}
-			case 'MoveOneLayer':
-				var _v2 = model.currentDirection;
-				if (_v2.$ === 'Forward') {
-					return $author$project$Page$Tutorial$forwardOneLayer(model);
-				} else {
-					return _Utils_Tuple2(
-						$author$project$Page$Tutorial$backwardOneLayer(model),
-						$elm$core$Platform$Cmd$none);
-				}
-			case 'GetContentFromName':
-				var name = msg.a;
-				var index = $author$project$Page$Tutorial$getContentIndex(name);
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{contentIndex: index}),
-					$author$project$Page$Tutorial$renderContent(name));
 			case 'LoggedIn':
 				var result = msg.a;
 				return _Utils_Tuple2(
@@ -7407,15 +6763,7 @@ var $author$project$Page$Tutorial$update = F2(
 							return model;
 						}
 					}(),
-					function () {
-						var _v4 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Page$Tutorial$contentDemos);
-						if (_v4.$ === 'Nothing') {
-							return $elm$core$Platform$Cmd$none;
-						} else {
-							var hasDemo = _v4.a;
-							return hasDemo ? $author$project$Page$Tutorial$initDemo : $elm$core$Platform$Cmd$none;
-						}
-					}());
+					$author$project$Demo$LogisticRegression$initDemo);
 			case 'GetDemoId':
 				var result = msg.a;
 				if (result.$ === 'Ok') {
@@ -7424,7 +6772,7 @@ var $author$project$Page$Tutorial$update = F2(
 						_Utils_update(
 							model,
 							{demoId: id}),
-						$author$project$Page$Tutorial$getEpoch(id));
+						$author$project$Demo$LogisticRegression$getEpoch(id));
 				} else {
 					return _Utils_Tuple2(
 						_Utils_update(
@@ -7442,9 +6790,7 @@ var $author$project$Page$Tutorial$update = F2(
 							var logisticRegressionModel = result.a;
 							return _Utils_update(
 								model,
-								{
-									nets: A2($author$project$Page$Tutorial$netsFromLogisticRegressionModel, model, logisticRegressionModel)
-								});
+								{demoModel: logisticRegressionModel});
 						} else {
 							return _Utils_update(
 								model,
@@ -7454,6 +6800,28 @@ var $author$project$Page$Tutorial$update = F2(
 						}
 					}(),
 					$elm$core$Platform$Cmd$none);
+		}
+	});
+var $author$project$Page$Tutorial$update = F2(
+	function (msg, model) {
+		if (msg.$ === 'GetContentFromName') {
+			var name = msg.a;
+			var index = $author$project$Page$Tutorial$getContentIndex(name);
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{contentIndex: index}),
+				$author$project$Page$Tutorial$renderContent(name));
+		} else {
+			var demoMsg = msg.a;
+			var _v1 = A2($author$project$Demo$LogisticRegression$update, demoMsg, model.demo);
+			var newDemo = _v1.a;
+			var newDemoMsg = _v1.b;
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{demo: newDemo}),
+				A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, newDemoMsg));
 		}
 	});
 var $author$project$Main$update = F2(
@@ -7509,10 +6877,45 @@ var $author$project$Main$update = F2(
 var $author$project$Main$NotFoundMsg = function (a) {
 	return {$: 'NotFoundMsg', a: a};
 };
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
 var $author$project$Page$Tutorial$firstContentName = A2(
 	$elm$core$Maybe$withDefault,
 	'',
 	$elm$core$List$head($author$project$Page$Tutorial$contentNames));
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $author$project$Page$Tutorial$nth = F2(
+	function (n, xs) {
+		return (n < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
+			A2($elm$core$List$drop, n, xs));
+	});
 var $author$project$Page$Tutorial$getContentName = function (index) {
 	var lastIndex = $elm$core$List$length($author$project$Page$Tutorial$contentNames) - 1;
 	return (_Utils_cmp(index, lastIndex) > 0) ? A2(
@@ -7722,6 +7125,10 @@ var $mdgriffith$elm_ui$Internal$Model$lengthClassName = function (x) {
 			var len = x.b;
 			return 'max' + ($elm$core$String$fromInt(max) + $mdgriffith$elm_ui$Internal$Model$lengthClassName(len));
 	}
+};
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
 };
 var $mdgriffith$elm_ui$Internal$Model$transformClass = function (transform) {
 	switch (transform.$) {
@@ -10053,6 +9460,27 @@ var $elm$json$Json$Encode$list = F2(
 				_Json_emptyArray(_Utils_Tuple0),
 				entries));
 	});
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
 var $mdgriffith$elm_ui$Internal$Model$fontName = function (font) {
 	switch (font.$) {
 		case 'Serif':
@@ -11947,6 +11375,7 @@ var $mdgriffith$elm_ui$Internal$Model$renderWidth = function (w) {
 	}
 };
 var $mdgriffith$elm_ui$Internal$Flag$borderWidth = $mdgriffith$elm_ui$Internal$Flag$flag(27);
+var $elm$core$Basics$ge = _Utils_ge;
 var $mdgriffith$elm_ui$Internal$Model$skippable = F2(
 	function (flag, style) {
 		if (_Utils_eq(flag, $mdgriffith$elm_ui$Internal$Flag$borderWidth)) {
@@ -13795,508 +13224,6 @@ var $author$project$Page$NotFound$view = function (model) {
 				]),
 			$mdgriffith$elm_ui$Element$text('This page does not exist!')));
 };
-var $mdgriffith$elm_ui$Element$fromRgb = function (clr) {
-	return A4($mdgriffith$elm_ui$Internal$Model$Rgba, clr.red, clr.green, clr.blue, clr.alpha);
-};
-var $mdgriffith$elm_ui$Element$toRgb = function (_v0) {
-	var r = _v0.a;
-	var g = _v0.b;
-	var b = _v0.c;
-	var a = _v0.d;
-	return {alpha: a, blue: b, green: g, red: r};
-};
-var $author$project$Page$Tutorial$adjustAlpha = F2(
-	function (oldColor, newAlpha) {
-		var oldColorChannels = $mdgriffith$elm_ui$Element$toRgb(oldColor);
-		return $mdgriffith$elm_ui$Element$fromRgb(
-			_Utils_update(
-				oldColorChannels,
-				{alpha: newAlpha}));
-	});
-var $mdgriffith$elm_ui$Element$rgb = F3(
-	function (r, g, b) {
-		return A4($mdgriffith$elm_ui$Internal$Model$Rgba, r, g, b, 1);
-	});
-var $author$project$Page$Tutorial$bgColor = A3($mdgriffith$elm_ui$Element$rgb, 1, 1, 1);
-var $author$project$Page$Tutorial$edges = {bottom: 0, left: 0, right: 0, top: 0};
-var $author$project$Page$Tutorial$getCurrentNode = function (model) {
-	var layerIndex = model.currentPosition.a;
-	var index = model.currentPosition.b;
-	return A2(
-		$elm$core$Maybe$withDefault,
-		$author$project$Page$Tutorial$emptyNode,
-		A2(
-			$author$project$Page$Tutorial$nth,
-			index,
-			A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				A2($author$project$Page$Tutorial$nth, layerIndex, model.nextNet))));
-};
-var $mdgriffith$elm_ui$Internal$Flag$borderColor = $mdgriffith$elm_ui$Internal$Flag$flag(28);
-var $mdgriffith$elm_ui$Element$Border$color = function (clr) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderColor,
-		A3(
-			$mdgriffith$elm_ui$Internal$Model$Colored,
-			'bc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(clr),
-			'border-color',
-			clr));
-};
-var $elm$core$Basics$e = _Basics_e;
-var $elm$core$Basics$pow = _Basics_pow;
-var $author$project$Page$Tutorial$tanh = function (x) {
-	return (A2($elm$core$Basics$pow, $elm$core$Basics$e, x) - A2($elm$core$Basics$pow, $elm$core$Basics$e, -x)) / (A2($elm$core$Basics$pow, $elm$core$Basics$e, x) + A2($elm$core$Basics$pow, $elm$core$Basics$e, -x));
-};
-var $author$project$Page$Tutorial$getColorValue = F2(
-	function (scale, strength) {
-		var compress = function (x) {
-			return $author$project$Page$Tutorial$tanh(strength * x);
-		};
-		var returnValue = function () {
-			var value = (scale < 0) ? (1 + compress(scale)) : (1 - compress(scale));
-			return (value <= 0.25) ? (value + 0.1) : value;
-		}();
-		return returnValue;
-	});
-var $avh4$elm_color$Color$RgbaSpace = F4(
-	function (a, b, c, d) {
-		return {$: 'RgbaSpace', a: a, b: b, c: c, d: d};
-	});
-var $avh4$elm_color$Color$hsla = F4(
-	function (hue, sat, light, alpha) {
-		var _v0 = _Utils_Tuple3(hue, sat, light);
-		var h = _v0.a;
-		var s = _v0.b;
-		var l = _v0.c;
-		var m2 = (l <= 0.5) ? (l * (s + 1)) : ((l + s) - (l * s));
-		var m1 = (l * 2) - m2;
-		var hueToRgb = function (h__) {
-			var h_ = (h__ < 0) ? (h__ + 1) : ((h__ > 1) ? (h__ - 1) : h__);
-			return ((h_ * 6) < 1) ? (m1 + (((m2 - m1) * h_) * 6)) : (((h_ * 2) < 1) ? m2 : (((h_ * 3) < 2) ? (m1 + (((m2 - m1) * ((2 / 3) - h_)) * 6)) : m1));
-		};
-		var b = hueToRgb(h - (1 / 3));
-		var g = hueToRgb(h);
-		var r = hueToRgb(h + (1 / 3));
-		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, alpha);
-	});
-var $avh4$elm_color$Color$hsl = F3(
-	function (h, s, l) {
-		return A4($avh4$elm_color$Color$hsla, h, s, l, 1.0);
-	});
-var $author$project$Page$Tutorial$greenScale = function (scale) {
-	var lightness = A2($author$project$Page$Tutorial$getColorValue, scale, 0.4);
-	return (scale < 0) ? A3($avh4$elm_color$Color$hsl, 0, 0.9, lightness) : A3($avh4$elm_color$Color$hsl, 0.3, 0.9, lightness);
-};
-var $elm$core$Basics$abs = function (n) {
-	return (n < 0) ? (-n) : n;
-};
-var $avh4$elm_color$Color$rgb = F3(
-	function (r, g, b) {
-		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, 1.0);
-	});
-var $author$project$Page$Tutorial$highContrast = function (scale) {
-	var value = ($elm$core$Basics$abs(scale) > 1) ? 1 : (((1 - scale) < 0.5) ? 1 : 0);
-	return A3($avh4$elm_color$Color$rgb, value, value, value);
-};
-var $mdgriffith$elm_ui$Element$rgba = $mdgriffith$elm_ui$Internal$Model$Rgba;
-var $elm$core$String$foldr = _String_foldr;
-var $elm$core$String$toList = function (string) {
-	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
-};
-var $myrho$elm_round$Round$addSign = F2(
-	function (signed, str) {
-		var isNotZero = A2(
-			$elm$core$List$any,
-			function (c) {
-				return (!_Utils_eq(
-					c,
-					_Utils_chr('0'))) && (!_Utils_eq(
-					c,
-					_Utils_chr('.')));
-			},
-			$elm$core$String$toList(str));
-		return _Utils_ap(
-			(signed && isNotZero) ? '-' : '',
-			str);
-	});
-var $elm$core$String$cons = _String_cons;
-var $elm$core$Char$fromCode = _Char_fromCode;
-var $myrho$elm_round$Round$increaseNum = function (_v0) {
-	var head = _v0.a;
-	var tail = _v0.b;
-	if (_Utils_eq(
-		head,
-		_Utils_chr('9'))) {
-		var _v1 = $elm$core$String$uncons(tail);
-		if (_v1.$ === 'Nothing') {
-			return '01';
-		} else {
-			var headtail = _v1.a;
-			return A2(
-				$elm$core$String$cons,
-				_Utils_chr('0'),
-				$myrho$elm_round$Round$increaseNum(headtail));
-		}
-	} else {
-		var c = $elm$core$Char$toCode(head);
-		return ((c >= 48) && (c < 57)) ? A2(
-			$elm$core$String$cons,
-			$elm$core$Char$fromCode(c + 1),
-			tail) : '0';
-	}
-};
-var $elm$core$Basics$isInfinite = _Basics_isInfinite;
-var $elm$core$Basics$isNaN = _Basics_isNaN;
-var $elm$core$String$fromChar = function (_char) {
-	return A2($elm$core$String$cons, _char, '');
-};
-var $elm$core$Bitwise$shiftRightBy = _Bitwise_shiftRightBy;
-var $elm$core$String$repeatHelp = F3(
-	function (n, chunk, result) {
-		return (n <= 0) ? result : A3(
-			$elm$core$String$repeatHelp,
-			n >> 1,
-			_Utils_ap(chunk, chunk),
-			(!(n & 1)) ? result : _Utils_ap(result, chunk));
-	});
-var $elm$core$String$repeat = F2(
-	function (n, chunk) {
-		return A3($elm$core$String$repeatHelp, n, chunk, '');
-	});
-var $elm$core$String$padRight = F3(
-	function (n, _char, string) {
-		return _Utils_ap(
-			string,
-			A2(
-				$elm$core$String$repeat,
-				n - $elm$core$String$length(string),
-				$elm$core$String$fromChar(_char)));
-	});
-var $elm$core$String$reverse = _String_reverse;
-var $myrho$elm_round$Round$splitComma = function (str) {
-	var _v0 = A2($elm$core$String$split, '.', str);
-	if (_v0.b) {
-		if (_v0.b.b) {
-			var before = _v0.a;
-			var _v1 = _v0.b;
-			var after = _v1.a;
-			return _Utils_Tuple2(before, after);
-		} else {
-			var before = _v0.a;
-			return _Utils_Tuple2(before, '0');
-		}
-	} else {
-		return _Utils_Tuple2('0', '0');
-	}
-};
-var $myrho$elm_round$Round$toDecimal = function (fl) {
-	var _v0 = A2(
-		$elm$core$String$split,
-		'e',
-		$elm$core$String$fromFloat(
-			$elm$core$Basics$abs(fl)));
-	if (_v0.b) {
-		if (_v0.b.b) {
-			var num = _v0.a;
-			var _v1 = _v0.b;
-			var exp = _v1.a;
-			var e = A2(
-				$elm$core$Maybe$withDefault,
-				0,
-				$elm$core$String$toInt(
-					A2($elm$core$String$startsWith, '+', exp) ? A2($elm$core$String$dropLeft, 1, exp) : exp));
-			var _v2 = $myrho$elm_round$Round$splitComma(num);
-			var before = _v2.a;
-			var after = _v2.b;
-			var total = _Utils_ap(before, after);
-			var zeroed = (e < 0) ? A2(
-				$elm$core$Maybe$withDefault,
-				'0',
-				A2(
-					$elm$core$Maybe$map,
-					function (_v3) {
-						var a = _v3.a;
-						var b = _v3.b;
-						return a + ('.' + b);
-					},
-					A2(
-						$elm$core$Maybe$map,
-						$elm$core$Tuple$mapFirst($elm$core$String$fromChar),
-						$elm$core$String$uncons(
-							_Utils_ap(
-								A2(
-									$elm$core$String$repeat,
-									$elm$core$Basics$abs(e),
-									'0'),
-								total))))) : A3(
-				$elm$core$String$padRight,
-				e + 1,
-				_Utils_chr('0'),
-				total);
-			return _Utils_ap(
-				(fl < 0) ? '-' : '',
-				zeroed);
-		} else {
-			var num = _v0.a;
-			return _Utils_ap(
-				(fl < 0) ? '-' : '',
-				num);
-		}
-	} else {
-		return '';
-	}
-};
-var $myrho$elm_round$Round$roundFun = F3(
-	function (functor, s, fl) {
-		if ($elm$core$Basics$isInfinite(fl) || $elm$core$Basics$isNaN(fl)) {
-			return $elm$core$String$fromFloat(fl);
-		} else {
-			var signed = fl < 0;
-			var _v0 = $myrho$elm_round$Round$splitComma(
-				$myrho$elm_round$Round$toDecimal(
-					$elm$core$Basics$abs(fl)));
-			var before = _v0.a;
-			var after = _v0.b;
-			var r = $elm$core$String$length(before) + s;
-			var normalized = _Utils_ap(
-				A2($elm$core$String$repeat, (-r) + 1, '0'),
-				A3(
-					$elm$core$String$padRight,
-					r,
-					_Utils_chr('0'),
-					_Utils_ap(before, after)));
-			var totalLen = $elm$core$String$length(normalized);
-			var roundDigitIndex = A2($elm$core$Basics$max, 1, r);
-			var increase = A2(
-				functor,
-				signed,
-				A3($elm$core$String$slice, roundDigitIndex, totalLen, normalized));
-			var remains = A3($elm$core$String$slice, 0, roundDigitIndex, normalized);
-			var num = increase ? $elm$core$String$reverse(
-				A2(
-					$elm$core$Maybe$withDefault,
-					'1',
-					A2(
-						$elm$core$Maybe$map,
-						$myrho$elm_round$Round$increaseNum,
-						$elm$core$String$uncons(
-							$elm$core$String$reverse(remains))))) : remains;
-			var numLen = $elm$core$String$length(num);
-			var numZeroed = (num === '0') ? num : ((s <= 0) ? _Utils_ap(
-				num,
-				A2(
-					$elm$core$String$repeat,
-					$elm$core$Basics$abs(s),
-					'0')) : ((_Utils_cmp(
-				s,
-				$elm$core$String$length(after)) < 0) ? (A3($elm$core$String$slice, 0, numLen - s, num) + ('.' + A3($elm$core$String$slice, numLen - s, numLen, num))) : _Utils_ap(
-				before + '.',
-				A3(
-					$elm$core$String$padRight,
-					s,
-					_Utils_chr('0'),
-					after))));
-			return A2($myrho$elm_round$Round$addSign, signed, numZeroed);
-		}
-	});
-var $myrho$elm_round$Round$round = $myrho$elm_round$Round$roundFun(
-	F2(
-		function (signed, str) {
-			var _v0 = $elm$core$String$uncons(str);
-			if (_v0.$ === 'Nothing') {
-				return false;
-			} else {
-				if ('5' === _v0.a.a.valueOf()) {
-					if (_v0.a.b === '') {
-						var _v1 = _v0.a;
-						return !signed;
-					} else {
-						var _v2 = _v0.a;
-						return true;
-					}
-				} else {
-					var _v3 = _v0.a;
-					var _int = _v3.a;
-					return function (i) {
-						return ((i > 53) && signed) || ((i >= 53) && (!signed));
-					}(
-						$elm$core$Char$toCode(_int));
-				}
-			}
-		}));
-var $mdgriffith$elm_ui$Internal$Flag$borderRound = $mdgriffith$elm_ui$Internal$Flag$flag(17);
-var $mdgriffith$elm_ui$Element$Border$rounded = function (radius) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderRound,
-		A3(
-			$mdgriffith$elm_ui$Internal$Model$Single,
-			'br-' + $elm$core$String$fromInt(radius),
-			'border-radius',
-			$elm$core$String$fromInt(radius) + 'px'));
-};
-var $avh4$elm_color$Color$toRgba = function (_v0) {
-	var r = _v0.a;
-	var g = _v0.b;
-	var b = _v0.c;
-	var a = _v0.d;
-	return {alpha: a, blue: b, green: g, red: r};
-};
-var $author$project$Page$Tutorial$toElmUIColor = function (color) {
-	var _v0 = $avh4$elm_color$Color$toRgba(color);
-	var red = _v0.red;
-	var green = _v0.green;
-	var blue = _v0.blue;
-	var alpha = _v0.alpha;
-	return A4($mdgriffith$elm_ui$Element$rgba, red, green, blue, alpha);
-};
-var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
-	function (a, b, c, d, e) {
-		return {$: 'BorderWidth', a: a, b: b, c: c, d: d, e: e};
-	});
-var $mdgriffith$elm_ui$Element$Border$width = function (v) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
-			'b-' + $elm$core$String$fromInt(v),
-			v,
-			v,
-			v,
-			v));
-};
-var $avh4$elm_color$Color$yellow = A4($avh4$elm_color$Color$RgbaSpace, 237 / 255, 212 / 255, 0 / 255, 1.0);
-var $author$project$Page$Tutorial$highlightHelper = F2(
-	function (n, hasBorder) {
-		return A2(
-			$mdgriffith$elm_ui$Element$el,
-			_List_fromArray(
-				[
-					$mdgriffith$elm_ui$Element$Background$color(
-					$author$project$Page$Tutorial$toElmUIColor(
-						$author$project$Page$Tutorial$greenScale(n))),
-					$mdgriffith$elm_ui$Element$Font$color(
-					$author$project$Page$Tutorial$toElmUIColor(
-						$author$project$Page$Tutorial$highContrast(n))),
-					$mdgriffith$elm_ui$Element$padding(3),
-					$mdgriffith$elm_ui$Element$Border$rounded(10),
-					$mdgriffith$elm_ui$Element$Border$width(3),
-					hasBorder ? $mdgriffith$elm_ui$Element$Border$color(
-					$author$project$Page$Tutorial$toElmUIColor($avh4$elm_color$Color$yellow)) : $mdgriffith$elm_ui$Element$Border$color(
-					A4($mdgriffith$elm_ui$Element$rgba, 0, 0, 0, 0))
-				]),
-			$mdgriffith$elm_ui$Element$text(
-				A2($myrho$elm_round$Round$round, 2, n)));
-	});
-var $author$project$Page$Tutorial$highlight = function (n) {
-	return A2($author$project$Page$Tutorial$highlightHelper, n, false);
-};
-var $author$project$Page$Tutorial$highlightWithBorder = function (n) {
-	return A2($author$project$Page$Tutorial$highlightHelper, n, true);
-};
-var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
-var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
-var $elm$core$Tuple$pair = F2(
-	function (a, b) {
-		return _Utils_Tuple2(a, b);
-	});
-var $mdgriffith$elm_ui$Element$spacingXY = F2(
-	function (x, y) {
-		return A2(
-			$mdgriffith$elm_ui$Internal$Model$StyleClass,
-			$mdgriffith$elm_ui$Internal$Flag$spacing,
-			A3(
-				$mdgriffith$elm_ui$Internal$Model$SpacingStyle,
-				A2($mdgriffith$elm_ui$Internal$Model$spacingName, x, y),
-				x,
-				y));
-	});
-var $author$project$Page$Tutorial$calculationDisplay = function (model) {
-	var currNode = $author$project$Page$Tutorial$getCurrentNode(model);
-	var currWeights = currNode.weights;
-	var currLayerIndex = model.currentPosition.a;
-	var prevLayer = A2($author$project$Page$Tutorial$nth, currLayerIndex - 1, model.net);
-	var currAcitvation = currNode.activation;
-	var _v0 = model.currentDirection;
-	if (_v0.$ === 'Forward') {
-		if (prevLayer.$ === 'Nothing') {
-			return $mdgriffith$elm_ui$Element$none;
-		} else {
-			var layer = prevLayer.a;
-			var terms = A3(
-				$elm$core$List$map2,
-				$elm$core$Tuple$pair,
-				currWeights,
-				A2(
-					$elm$core$List$map,
-					function ($) {
-						return $.activation;
-					},
-					layer));
-			return A2(
-				$mdgriffith$elm_ui$Element$el,
-				_List_fromArray(
-					[$mdgriffith$elm_ui$Element$centerX]),
-				function () {
-					if (!terms.b) {
-						return $mdgriffith$elm_ui$Element$text('');
-					} else {
-						return A2(
-							$mdgriffith$elm_ui$Element$wrappedRow,
-							_List_fromArray(
-								[
-									A2($mdgriffith$elm_ui$Element$spacingXY, 0, 10),
-									$mdgriffith$elm_ui$Element$Background$color(
-									A2($author$project$Page$Tutorial$adjustAlpha, $author$project$Page$Tutorial$bgColor, 0.8)),
-									$mdgriffith$elm_ui$Element$paddingEach(
-									_Utils_update(
-										$author$project$Page$Tutorial$edges,
-										{bottom: 15}))
-								]),
-							A2(
-								$elm$core$List$cons,
-								$mdgriffith$elm_ui$Element$text(model.activationFunction + '('),
-								_Utils_ap(
-									A3(
-										$elm$core$List$foldl,
-										F2(
-											function (_v3, list) {
-												var weight = _v3.a;
-												var activation = _v3.b;
-												return _Utils_ap(
-													list,
-													_List_fromArray(
-														[
-															function () {
-															var _v4 = $elm$core$List$length(list);
-															if (!_v4) {
-																return $mdgriffith$elm_ui$Element$none;
-															} else {
-																return $mdgriffith$elm_ui$Element$text(' + ');
-															}
-														}(),
-															$author$project$Page$Tutorial$highlightWithBorder(activation),
-															$mdgriffith$elm_ui$Element$text(' * '),
-															$author$project$Page$Tutorial$highlight(weight)
-														]));
-											}),
-										_List_Nil,
-										terms),
-									_List_fromArray(
-										[
-											$mdgriffith$elm_ui$Element$text(') = '),
-											$author$project$Page$Tutorial$highlightWithBorder(currAcitvation)
-										]))));
-					}
-				}());
-		}
-	} else {
-		return $mdgriffith$elm_ui$Element$none;
-	}
-};
 var $author$project$Page$Tutorial$center = function (element) {
 	return A2(
 		$mdgriffith$elm_ui$Element$el,
@@ -14309,168 +13236,15 @@ var $author$project$Page$Tutorial$center = function (element) {
 			]),
 		element);
 };
-var $author$project$Page$Tutorial$centerAll = function (elements) {
-	return A2($elm$core$List$map, $author$project$Page$Tutorial$center, elements);
-};
-var $author$project$Page$Tutorial$MoveOneLayer = {$: 'MoveOneLayer'};
-var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
-var $elm$json$Json$Encode$bool = _Json_wrap;
-var $elm$html$Html$Attributes$boolProperty = F2(
-	function (key, bool) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$bool(bool));
-	});
-var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
-var $mdgriffith$elm_ui$Internal$Model$NoAttribute = {$: 'NoAttribute'};
-var $mdgriffith$elm_ui$Element$Input$hasFocusStyle = function (attr) {
-	if (((attr.$ === 'StyleClass') && (attr.b.$ === 'PseudoSelector')) && (attr.b.a.$ === 'Focus')) {
-		var _v1 = attr.b;
-		var _v2 = _v1.a;
-		return true;
-	} else {
-		return false;
-	}
-};
-var $mdgriffith$elm_ui$Element$Input$focusDefault = function (attrs) {
-	return A2($elm$core$List$any, $mdgriffith$elm_ui$Element$Input$hasFocusStyle, attrs) ? $mdgriffith$elm_ui$Internal$Model$NoAttribute : $mdgriffith$elm_ui$Internal$Model$htmlClass('focusable');
-};
+var $author$project$Page$Tutorial$contentDemos = _List_fromArray(
+	[false, false, true]);
+var $mdgriffith$elm_ui$Element$fillPortion = $mdgriffith$elm_ui$Internal$Model$Fill;
+var $elm$core$Debug$log = _Debug_log;
+var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
 			f(x));
-	});
-var $elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 'Normal', a: a};
-};
-var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
-var $elm$html$Html$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
-var $elm$html$Html$Events$onClick = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'click',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
-var $mdgriffith$elm_ui$Element$Input$enter = 'Enter';
-var $elm$json$Json$Decode$andThen = _Json_andThen;
-var $elm$json$Json$Decode$fail = _Json_fail;
-var $elm$virtual_dom$VirtualDom$MayPreventDefault = function (a) {
-	return {$: 'MayPreventDefault', a: a};
-};
-var $elm$html$Html$Events$preventDefaultOn = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayPreventDefault(decoder));
-	});
-var $elm$json$Json$Decode$string = _Json_decodeString;
-var $mdgriffith$elm_ui$Element$Input$onKey = F2(
-	function (desiredCode, msg) {
-		var decode = function (code) {
-			return _Utils_eq(code, desiredCode) ? $elm$json$Json$Decode$succeed(msg) : $elm$json$Json$Decode$fail('Not the enter key');
-		};
-		var isKey = A2(
-			$elm$json$Json$Decode$andThen,
-			decode,
-			A2($elm$json$Json$Decode$field, 'key', $elm$json$Json$Decode$string));
-		return $mdgriffith$elm_ui$Internal$Model$Attr(
-			A2(
-				$elm$html$Html$Events$preventDefaultOn,
-				'keyup',
-				A2(
-					$elm$json$Json$Decode$map,
-					function (fired) {
-						return _Utils_Tuple2(fired, true);
-					},
-					isKey)));
-	});
-var $mdgriffith$elm_ui$Element$Input$onEnter = function (msg) {
-	return A2($mdgriffith$elm_ui$Element$Input$onKey, $mdgriffith$elm_ui$Element$Input$enter, msg);
-};
-var $mdgriffith$elm_ui$Internal$Flag$cursor = $mdgriffith$elm_ui$Internal$Flag$flag(21);
-var $mdgriffith$elm_ui$Element$pointer = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$cursor, $mdgriffith$elm_ui$Internal$Style$classes.cursorPointer);
-var $elm$html$Html$Attributes$tabindex = function (n) {
-	return A2(
-		_VirtualDom_attribute,
-		'tabIndex',
-		$elm$core$String$fromInt(n));
-};
-var $mdgriffith$elm_ui$Element$Input$button = F2(
-	function (attrs, _v0) {
-		var onPress = _v0.onPress;
-		var label = _v0.label;
-		return A4(
-			$mdgriffith$elm_ui$Internal$Model$element,
-			$mdgriffith$elm_ui$Internal$Model$asEl,
-			$mdgriffith$elm_ui$Internal$Model$div,
-			A2(
-				$elm$core$List$cons,
-				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
-				A2(
-					$elm$core$List$cons,
-					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
-					A2(
-						$elm$core$List$cons,
-						$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentCenterX + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.contentCenterY + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.seButton + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.noTextSelection)))))),
-						A2(
-							$elm$core$List$cons,
-							$mdgriffith$elm_ui$Element$pointer,
-							A2(
-								$elm$core$List$cons,
-								$mdgriffith$elm_ui$Element$Input$focusDefault(attrs),
-								A2(
-									$elm$core$List$cons,
-									$mdgriffith$elm_ui$Internal$Model$Describe($mdgriffith$elm_ui$Internal$Model$Button),
-									A2(
-										$elm$core$List$cons,
-										$mdgriffith$elm_ui$Internal$Model$Attr(
-											$elm$html$Html$Attributes$tabindex(0)),
-										function () {
-											if (onPress.$ === 'Nothing') {
-												return A2(
-													$elm$core$List$cons,
-													$mdgriffith$elm_ui$Internal$Model$Attr(
-														$elm$html$Html$Attributes$disabled(true)),
-													attrs);
-											} else {
-												var msg = onPress.a;
-												return A2(
-													$elm$core$List$cons,
-													$mdgriffith$elm_ui$Element$Events$onClick(msg),
-													A2(
-														$elm$core$List$cons,
-														$mdgriffith$elm_ui$Element$Input$onEnter(msg),
-														attrs));
-											}
-										}()))))))),
-			$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-				_List_fromArray(
-					[label])));
-	});
-var $author$project$Page$Tutorial$grey = A3($mdgriffith$elm_ui$Element$rgb, 0.6, 0.6, 0.6);
-var $author$project$Page$Tutorial$lightGrey = A3($mdgriffith$elm_ui$Element$rgb, 0.8, 0.8, 0.8);
-var $mdgriffith$elm_ui$Internal$Model$Hover = {$: 'Hover'};
-var $mdgriffith$elm_ui$Internal$Model$PseudoSelector = F2(
-	function (a, b) {
-		return {$: 'PseudoSelector', a: a, b: b};
-	});
-var $mdgriffith$elm_ui$Internal$Flag$hover = $mdgriffith$elm_ui$Internal$Flag$flag(33);
-var $mdgriffith$elm_ui$Internal$Model$Nearby = F2(
-	function (a, b) {
-		return {$: 'Nearby', a: a, b: b};
-	});
-var $mdgriffith$elm_ui$Internal$Model$TransformComponent = F2(
-	function (a, b) {
-		return {$: 'TransformComponent', a: a, b: b};
 	});
 var $mdgriffith$elm_ui$Internal$Model$map = F2(
 	function (fn, el) {
@@ -14501,6 +13275,137 @@ var $mdgriffith$elm_ui$Internal$Model$map = F2(
 			default:
 				return $mdgriffith$elm_ui$Internal$Model$Empty;
 		}
+	});
+var $mdgriffith$elm_ui$Element$map = $mdgriffith$elm_ui$Internal$Model$map;
+var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
+var $author$project$Demo$LogisticRegression$view = function (model) {
+	return $mdgriffith$elm_ui$Element$text('logistic regression demo');
+};
+var $author$project$Page$Tutorial$viewTutorialDemo = function (model) {
+	var _v0 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Page$Tutorial$contentDemos);
+	if (_v0.$ === 'Nothing') {
+		return $mdgriffith$elm_ui$Element$none;
+	} else {
+		var hasDemo = _v0.a;
+		var _v1 = A2($elm$core$Debug$log, 'hasDemo', hasDemo);
+		var _v2 = A2($elm$core$Debug$log, 'model.contentIndex', model.contentIndex);
+		return hasDemo ? A2(
+			$mdgriffith$elm_ui$Element$column,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$width(
+					$mdgriffith$elm_ui$Element$fillPortion(5)),
+					$mdgriffith$elm_ui$Element$spacing(10)
+				]),
+			_List_fromArray(
+				[
+					$author$project$Page$Tutorial$center(
+					A2(
+						$mdgriffith$elm_ui$Element$map,
+						$author$project$Page$Tutorial$DemoMsg,
+						$author$project$Demo$LogisticRegression$view(model.demo)))
+				])) : $mdgriffith$elm_ui$Element$none;
+	}
+};
+var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
+var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
+var $feathericons$elm_feather$FeatherIcons$Icon = function (a) {
+	return {$: 'Icon', a: a};
+};
+var $feathericons$elm_feather$FeatherIcons$defaultAttributes = function (name) {
+	return {
+		_class: $elm$core$Maybe$Just('feather feather-' + name),
+		size: 24,
+		sizeUnit: '',
+		strokeWidth: 2,
+		viewBox: '0 0 24 24'
+	};
+};
+var $feathericons$elm_feather$FeatherIcons$makeBuilder = F2(
+	function (name, src) {
+		return $feathericons$elm_feather$FeatherIcons$Icon(
+			{
+				attrs: $feathericons$elm_feather$FeatherIcons$defaultAttributes(name),
+				src: src
+			});
+	});
+var $elm$svg$Svg$Attributes$points = _VirtualDom_attribute('points');
+var $elm$svg$Svg$polyline = $elm$svg$Svg$trustedNode('polyline');
+var $elm$svg$Svg$Attributes$x1 = _VirtualDom_attribute('x1');
+var $elm$svg$Svg$Attributes$x2 = _VirtualDom_attribute('x2');
+var $elm$svg$Svg$Attributes$y1 = _VirtualDom_attribute('y1');
+var $elm$svg$Svg$Attributes$y2 = _VirtualDom_attribute('y2');
+var $feathericons$elm_feather$FeatherIcons$arrowLeft = A2(
+	$feathericons$elm_feather$FeatherIcons$makeBuilder,
+	'arrow-left',
+	_List_fromArray(
+		[
+			A2(
+			$elm$svg$Svg$line,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$x1('19'),
+					$elm$svg$Svg$Attributes$y1('12'),
+					$elm$svg$Svg$Attributes$x2('5'),
+					$elm$svg$Svg$Attributes$y2('12')
+				]),
+			_List_Nil),
+			A2(
+			$elm$svg$Svg$polyline,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$points('12 19 5 12 12 5')
+				]),
+			_List_Nil)
+		]));
+var $feathericons$elm_feather$FeatherIcons$arrowRight = A2(
+	$feathericons$elm_feather$FeatherIcons$makeBuilder,
+	'arrow-right',
+	_List_fromArray(
+		[
+			A2(
+			$elm$svg$Svg$line,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$x1('5'),
+					$elm$svg$Svg$Attributes$y1('12'),
+					$elm$svg$Svg$Attributes$x2('19'),
+					$elm$svg$Svg$Attributes$y2('12')
+				]),
+			_List_Nil),
+			A2(
+			$elm$svg$Svg$polyline,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$points('12 5 19 12 12 19')
+				]),
+			_List_Nil)
+		]));
+var $mdgriffith$elm_ui$Element$rgb = F3(
+	function (r, g, b) {
+		return A4($mdgriffith$elm_ui$Internal$Model$Rgba, r, g, b, 1);
+	});
+var $author$project$Page$Tutorial$grey = A3($mdgriffith$elm_ui$Element$rgb, 0.6, 0.6, 0.6);
+var $elm$core$Basics$always = F2(
+	function (a, _v0) {
+		return a;
+	});
+var $mdgriffith$elm_ui$Internal$Model$unstyled = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Unstyled, $elm$core$Basics$always);
+var $mdgriffith$elm_ui$Element$html = $mdgriffith$elm_ui$Internal$Model$unstyled;
+var $mdgriffith$elm_ui$Internal$Model$Hover = {$: 'Hover'};
+var $mdgriffith$elm_ui$Internal$Model$PseudoSelector = F2(
+	function (a, b) {
+		return {$: 'PseudoSelector', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$hover = $mdgriffith$elm_ui$Internal$Flag$flag(33);
+var $mdgriffith$elm_ui$Internal$Model$Nearby = F2(
+	function (a, b) {
+		return {$: 'Nearby', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Model$NoAttribute = {$: 'NoAttribute'};
+var $mdgriffith$elm_ui$Internal$Model$TransformComponent = F2(
+	function (a, b) {
+		return {$: 'TransformComponent', a: a, b: b};
 	});
 var $elm$virtual_dom$VirtualDom$mapAttribute = _VirtualDom_mapAttribute;
 var $mdgriffith$elm_ui$Internal$Model$mapAttrFromStyle = F2(
@@ -14594,1984 +13499,6 @@ var $mdgriffith$elm_ui$Element$mouseOver = function (decs) {
 			$mdgriffith$elm_ui$Internal$Model$Hover,
 			$mdgriffith$elm_ui$Internal$Model$unwrapDecorations(decs)));
 };
-var $author$project$Page$Tutorial$controlButton = $mdgriffith$elm_ui$Element$Input$button(
-	_List_fromArray(
-		[
-			$mdgriffith$elm_ui$Element$Background$color($author$project$Page$Tutorial$lightGrey),
-			$mdgriffith$elm_ui$Element$mouseOver(
-			_List_fromArray(
-				[
-					$mdgriffith$elm_ui$Element$Background$color($author$project$Page$Tutorial$grey)
-				])),
-			$mdgriffith$elm_ui$Element$padding(10),
-			$mdgriffith$elm_ui$Element$Border$rounded(5)
-		]));
-var $author$project$Page$Tutorial$layerStepControl = $author$project$Page$Tutorial$controlButton(
-	{
-		label: $mdgriffith$elm_ui$Element$text('Move 1 Layer'),
-		onPress: $elm$core$Maybe$Just($author$project$Page$Tutorial$MoveOneLayer)
-	});
-var $author$project$Page$Tutorial$AdjustLearningRate = function (a) {
-	return {$: 'AdjustLearningRate', a: a};
-};
-var $mdgriffith$elm_ui$Internal$Model$Behind = {$: 'Behind'};
-var $mdgriffith$elm_ui$Element$createNearby = F2(
-	function (loc, element) {
-		if (element.$ === 'Empty') {
-			return $mdgriffith$elm_ui$Internal$Model$NoAttribute;
-		} else {
-			return A2($mdgriffith$elm_ui$Internal$Model$Nearby, loc, element);
-		}
-	});
-var $mdgriffith$elm_ui$Element$behindContent = function (element) {
-	return A2($mdgriffith$elm_ui$Element$createNearby, $mdgriffith$elm_ui$Internal$Model$Behind, element);
-};
-var $mdgriffith$elm_ui$Element$Input$Thumb = function (a) {
-	return {$: 'Thumb', a: a};
-};
-var $mdgriffith$elm_ui$Element$Input$defaultThumb = $mdgriffith$elm_ui$Element$Input$Thumb(
-	_List_fromArray(
-		[
-			$mdgriffith$elm_ui$Element$width(
-			$mdgriffith$elm_ui$Element$px(16)),
-			$mdgriffith$elm_ui$Element$height(
-			$mdgriffith$elm_ui$Element$px(16)),
-			$mdgriffith$elm_ui$Element$Border$rounded(8),
-			$mdgriffith$elm_ui$Element$Border$width(1),
-			$mdgriffith$elm_ui$Element$Border$color(
-			A3($mdgriffith$elm_ui$Element$rgb, 0.5, 0.5, 0.5)),
-			$mdgriffith$elm_ui$Element$Background$color(
-			A3($mdgriffith$elm_ui$Element$rgb, 1, 1, 1))
-		]));
-var $mdgriffith$elm_ui$Element$Input$Above = {$: 'Above'};
-var $mdgriffith$elm_ui$Element$Input$Label = F3(
-	function (a, b, c) {
-		return {$: 'Label', a: a, b: b, c: c};
-	});
-var $mdgriffith$elm_ui$Element$Input$labelAbove = $mdgriffith$elm_ui$Element$Input$Label($mdgriffith$elm_ui$Element$Input$Above);
-var $mdgriffith$elm_ui$Internal$Flag$active = $mdgriffith$elm_ui$Internal$Flag$flag(32);
-var $mdgriffith$elm_ui$Internal$Model$LivePolite = {$: 'LivePolite'};
-var $mdgriffith$elm_ui$Element$Region$announce = $mdgriffith$elm_ui$Internal$Model$Describe($mdgriffith$elm_ui$Internal$Model$LivePolite);
-var $mdgriffith$elm_ui$Element$Input$applyLabel = F3(
-	function (attrs, label, input) {
-		if (label.$ === 'HiddenLabel') {
-			var labelText = label.a;
-			return A4(
-				$mdgriffith$elm_ui$Internal$Model$element,
-				$mdgriffith$elm_ui$Internal$Model$asColumn,
-				$mdgriffith$elm_ui$Internal$Model$NodeName('label'),
-				attrs,
-				$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-					_List_fromArray(
-						[input])));
-		} else {
-			var position = label.a;
-			var labelAttrs = label.b;
-			var labelChild = label.c;
-			var labelElement = A4(
-				$mdgriffith$elm_ui$Internal$Model$element,
-				$mdgriffith$elm_ui$Internal$Model$asEl,
-				$mdgriffith$elm_ui$Internal$Model$div,
-				labelAttrs,
-				$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-					_List_fromArray(
-						[labelChild])));
-			switch (position.$) {
-				case 'Above':
-					return A4(
-						$mdgriffith$elm_ui$Internal$Model$element,
-						$mdgriffith$elm_ui$Internal$Model$asColumn,
-						$mdgriffith$elm_ui$Internal$Model$NodeName('label'),
-						attrs,
-						$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-							_List_fromArray(
-								[labelElement, input])));
-				case 'Below':
-					return A4(
-						$mdgriffith$elm_ui$Internal$Model$element,
-						$mdgriffith$elm_ui$Internal$Model$asColumn,
-						$mdgriffith$elm_ui$Internal$Model$NodeName('label'),
-						attrs,
-						$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-							_List_fromArray(
-								[input, labelElement])));
-				case 'OnRight':
-					return A4(
-						$mdgriffith$elm_ui$Internal$Model$element,
-						$mdgriffith$elm_ui$Internal$Model$asRow,
-						$mdgriffith$elm_ui$Internal$Model$NodeName('label'),
-						attrs,
-						$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-							_List_fromArray(
-								[input, labelElement])));
-				default:
-					return A4(
-						$mdgriffith$elm_ui$Internal$Model$element,
-						$mdgriffith$elm_ui$Internal$Model$asRow,
-						$mdgriffith$elm_ui$Internal$Model$NodeName('label'),
-						attrs,
-						$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-							_List_fromArray(
-								[labelElement, input])));
-			}
-		}
-	});
-var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
-var $mdgriffith$elm_ui$Internal$Flag$focus = $mdgriffith$elm_ui$Internal$Flag$flag(31);
-var $mdgriffith$elm_ui$Internal$Model$getHeight = function (attrs) {
-	return A3(
-		$elm$core$List$foldr,
-		F2(
-			function (attr, acc) {
-				if (acc.$ === 'Just') {
-					var x = acc.a;
-					return $elm$core$Maybe$Just(x);
-				} else {
-					if (attr.$ === 'Height') {
-						var len = attr.a;
-						return $elm$core$Maybe$Just(len);
-					} else {
-						return $elm$core$Maybe$Nothing;
-					}
-				}
-			}),
-		$elm$core$Maybe$Nothing,
-		attrs);
-};
-var $mdgriffith$elm_ui$Internal$Model$getSpacing = F2(
-	function (attrs, _default) {
-		return A2(
-			$elm$core$Maybe$withDefault,
-			_default,
-			A3(
-				$elm$core$List$foldr,
-				F2(
-					function (attr, acc) {
-						if (acc.$ === 'Just') {
-							var x = acc.a;
-							return $elm$core$Maybe$Just(x);
-						} else {
-							if ((attr.$ === 'StyleClass') && (attr.b.$ === 'SpacingStyle')) {
-								var _v2 = attr.b;
-								var x = _v2.b;
-								var y = _v2.c;
-								return $elm$core$Maybe$Just(
-									_Utils_Tuple2(x, y));
-							} else {
-								return $elm$core$Maybe$Nothing;
-							}
-						}
-					}),
-				$elm$core$Maybe$Nothing,
-				attrs));
-	});
-var $mdgriffith$elm_ui$Internal$Model$getWidth = function (attrs) {
-	return A3(
-		$elm$core$List$foldr,
-		F2(
-			function (attr, acc) {
-				if (acc.$ === 'Just') {
-					var x = acc.a;
-					return $elm$core$Maybe$Just(x);
-				} else {
-					if (attr.$ === 'Width') {
-						var len = attr.a;
-						return $elm$core$Maybe$Just(len);
-					} else {
-						return $elm$core$Maybe$Nothing;
-					}
-				}
-			}),
-		$elm$core$Maybe$Nothing,
-		attrs);
-};
-var $mdgriffith$elm_ui$Internal$Model$Label = function (a) {
-	return {$: 'Label', a: a};
-};
-var $mdgriffith$elm_ui$Element$Input$hiddenLabelAttribute = function (label) {
-	if (label.$ === 'HiddenLabel') {
-		var textLabel = label.a;
-		return $mdgriffith$elm_ui$Internal$Model$Describe(
-			$mdgriffith$elm_ui$Internal$Model$Label(textLabel));
-	} else {
-		return $mdgriffith$elm_ui$Internal$Model$NoAttribute;
-	}
-};
-var $mdgriffith$elm_ui$Element$Input$isHiddenLabel = function (label) {
-	if (label.$ === 'HiddenLabel') {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $elm$html$Html$Attributes$max = $elm$html$Html$Attributes$stringProperty('max');
-var $elm$html$Html$Attributes$min = $elm$html$Html$Attributes$stringProperty('min');
-var $elm$html$Html$Events$alwaysStop = function (x) {
-	return _Utils_Tuple2(x, true);
-};
-var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
-};
-var $elm$html$Html$Events$stopPropagationOn = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
-	});
-var $elm$json$Json$Decode$at = F2(
-	function (fields, decoder) {
-		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
-	});
-var $elm$html$Html$Events$targetValue = A2(
-	$elm$json$Json$Decode$at,
-	_List_fromArray(
-		['target', 'value']),
-	$elm$json$Json$Decode$string);
-var $elm$html$Html$Events$onInput = function (tagger) {
-	return A2(
-		$elm$html$Html$Events$stopPropagationOn,
-		'input',
-		A2(
-			$elm$json$Json$Decode$map,
-			$elm$html$Html$Events$alwaysStop,
-			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
-};
-var $elm$html$Html$Attributes$step = function (n) {
-	return A2($elm$html$Html$Attributes$stringProperty, 'step', n);
-};
-var $elm$core$String$toFloat = _String_toFloat;
-var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
-var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $mdgriffith$elm_ui$Element$fillPortion = $mdgriffith$elm_ui$Internal$Model$Fill;
-var $mdgriffith$elm_ui$Internal$Model$mapAttr = F2(
-	function (fn, attr) {
-		switch (attr.$) {
-			case 'NoAttribute':
-				return $mdgriffith$elm_ui$Internal$Model$NoAttribute;
-			case 'Describe':
-				var description = attr.a;
-				return $mdgriffith$elm_ui$Internal$Model$Describe(description);
-			case 'AlignX':
-				var x = attr.a;
-				return $mdgriffith$elm_ui$Internal$Model$AlignX(x);
-			case 'AlignY':
-				var y = attr.a;
-				return $mdgriffith$elm_ui$Internal$Model$AlignY(y);
-			case 'Width':
-				var x = attr.a;
-				return $mdgriffith$elm_ui$Internal$Model$Width(x);
-			case 'Height':
-				var x = attr.a;
-				return $mdgriffith$elm_ui$Internal$Model$Height(x);
-			case 'Class':
-				var x = attr.a;
-				var y = attr.b;
-				return A2($mdgriffith$elm_ui$Internal$Model$Class, x, y);
-			case 'StyleClass':
-				var flag = attr.a;
-				var style = attr.b;
-				return A2($mdgriffith$elm_ui$Internal$Model$StyleClass, flag, style);
-			case 'Nearby':
-				var location = attr.a;
-				var elem = attr.b;
-				return A2(
-					$mdgriffith$elm_ui$Internal$Model$Nearby,
-					location,
-					A2($mdgriffith$elm_ui$Internal$Model$map, fn, elem));
-			case 'Attr':
-				var htmlAttr = attr.a;
-				return $mdgriffith$elm_ui$Internal$Model$Attr(
-					A2($elm$virtual_dom$VirtualDom$mapAttribute, fn, htmlAttr));
-			default:
-				var fl = attr.a;
-				var trans = attr.b;
-				return A2($mdgriffith$elm_ui$Internal$Model$TransformComponent, fl, trans);
-		}
-	});
-var $mdgriffith$elm_ui$Element$Input$viewHorizontalThumb = F3(
-	function (factor, thumbAttributes, trackHeight) {
-		return A2(
-			$mdgriffith$elm_ui$Element$row,
-			_List_fromArray(
-				[
-					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-					$mdgriffith$elm_ui$Element$height(
-					A2($elm$core$Maybe$withDefault, $mdgriffith$elm_ui$Element$fill, trackHeight)),
-					$mdgriffith$elm_ui$Element$centerY
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$mdgriffith$elm_ui$Element$el,
-					_List_fromArray(
-						[
-							$mdgriffith$elm_ui$Element$width(
-							$mdgriffith$elm_ui$Element$fillPortion(
-								$elm$core$Basics$round(factor * 10000)))
-						]),
-					$mdgriffith$elm_ui$Element$none),
-					A2(
-					$mdgriffith$elm_ui$Element$el,
-					A2(
-						$elm$core$List$cons,
-						$mdgriffith$elm_ui$Element$centerY,
-						A2(
-							$elm$core$List$map,
-							$mdgriffith$elm_ui$Internal$Model$mapAttr($elm$core$Basics$never),
-							thumbAttributes)),
-					$mdgriffith$elm_ui$Element$none),
-					A2(
-					$mdgriffith$elm_ui$Element$el,
-					_List_fromArray(
-						[
-							$mdgriffith$elm_ui$Element$width(
-							$mdgriffith$elm_ui$Element$fillPortion(
-								$elm$core$Basics$round(
-									$elm$core$Basics$abs(1 - factor) * 10000)))
-						]),
-					$mdgriffith$elm_ui$Element$none)
-				]));
-	});
-var $mdgriffith$elm_ui$Element$Input$viewVerticalThumb = F3(
-	function (factor, thumbAttributes, trackWidth) {
-		return A2(
-			$mdgriffith$elm_ui$Element$column,
-			_List_fromArray(
-				[
-					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
-					$mdgriffith$elm_ui$Element$width(
-					A2($elm$core$Maybe$withDefault, $mdgriffith$elm_ui$Element$fill, trackWidth)),
-					$mdgriffith$elm_ui$Element$centerX
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$mdgriffith$elm_ui$Element$el,
-					_List_fromArray(
-						[
-							$mdgriffith$elm_ui$Element$height(
-							$mdgriffith$elm_ui$Element$fillPortion(
-								$elm$core$Basics$round(
-									$elm$core$Basics$abs(1 - factor) * 10000)))
-						]),
-					$mdgriffith$elm_ui$Element$none),
-					A2(
-					$mdgriffith$elm_ui$Element$el,
-					A2(
-						$elm$core$List$cons,
-						$mdgriffith$elm_ui$Element$centerX,
-						A2(
-							$elm$core$List$map,
-							$mdgriffith$elm_ui$Internal$Model$mapAttr($elm$core$Basics$never),
-							thumbAttributes)),
-					$mdgriffith$elm_ui$Element$none),
-					A2(
-					$mdgriffith$elm_ui$Element$el,
-					_List_fromArray(
-						[
-							$mdgriffith$elm_ui$Element$height(
-							$mdgriffith$elm_ui$Element$fillPortion(
-								$elm$core$Basics$round(factor * 10000)))
-						]),
-					$mdgriffith$elm_ui$Element$none)
-				]));
-	});
-var $mdgriffith$elm_ui$Element$Input$slider = F2(
-	function (attributes, input) {
-		var trackWidth = $mdgriffith$elm_ui$Internal$Model$getWidth(attributes);
-		var trackHeight = $mdgriffith$elm_ui$Internal$Model$getHeight(attributes);
-		var vertical = function () {
-			var _v8 = _Utils_Tuple2(trackWidth, trackHeight);
-			_v8$3:
-			while (true) {
-				if (_v8.a.$ === 'Nothing') {
-					if (_v8.b.$ === 'Nothing') {
-						var _v9 = _v8.a;
-						var _v10 = _v8.b;
-						return false;
-					} else {
-						break _v8$3;
-					}
-				} else {
-					if ((_v8.a.a.$ === 'Px') && (_v8.b.$ === 'Just')) {
-						switch (_v8.b.a.$) {
-							case 'Px':
-								var w = _v8.a.a.a;
-								var h = _v8.b.a.a;
-								return _Utils_cmp(h, w) > 0;
-							case 'Fill':
-								return true;
-							default:
-								break _v8$3;
-						}
-					} else {
-						break _v8$3;
-					}
-				}
-			}
-			return false;
-		}();
-		var factor = (input.value - input.min) / (input.max - input.min);
-		var _v0 = input.thumb;
-		var thumbAttributes = _v0.a;
-		var height = $mdgriffith$elm_ui$Internal$Model$getHeight(thumbAttributes);
-		var thumbHeightString = function () {
-			if (height.$ === 'Nothing') {
-				return '20px';
-			} else {
-				if (height.a.$ === 'Px') {
-					var px = height.a.a;
-					return $elm$core$String$fromInt(px) + 'px';
-				} else {
-					return '100%';
-				}
-			}
-		}();
-		var width = $mdgriffith$elm_ui$Internal$Model$getWidth(thumbAttributes);
-		var thumbWidthString = function () {
-			if (width.$ === 'Nothing') {
-				return '20px';
-			} else {
-				if (width.a.$ === 'Px') {
-					var px = width.a.a;
-					return $elm$core$String$fromInt(px) + 'px';
-				} else {
-					return '100%';
-				}
-			}
-		}();
-		var className = 'thmb-' + (thumbWidthString + ('-' + thumbHeightString));
-		var thumbShadowStyle = _List_fromArray(
-			[
-				A2($mdgriffith$elm_ui$Internal$Model$Property, 'width', thumbWidthString),
-				A2($mdgriffith$elm_ui$Internal$Model$Property, 'height', thumbHeightString)
-			]);
-		var _v1 = A2(
-			$mdgriffith$elm_ui$Internal$Model$getSpacing,
-			attributes,
-			_Utils_Tuple2(5, 5));
-		var spacingX = _v1.a;
-		var spacingY = _v1.b;
-		return A3(
-			$mdgriffith$elm_ui$Element$Input$applyLabel,
-			_List_fromArray(
-				[
-					$mdgriffith$elm_ui$Element$Input$isHiddenLabel(input.label) ? $mdgriffith$elm_ui$Internal$Model$NoAttribute : A2($mdgriffith$elm_ui$Element$spacingXY, spacingX, spacingY),
-					$mdgriffith$elm_ui$Element$Region$announce,
-					$mdgriffith$elm_ui$Element$width(
-					function () {
-						if (trackWidth.$ === 'Nothing') {
-							return $mdgriffith$elm_ui$Element$fill;
-						} else {
-							if (trackWidth.a.$ === 'Px') {
-								return $mdgriffith$elm_ui$Element$shrink;
-							} else {
-								var x = trackWidth.a;
-								return x;
-							}
-						}
-					}()),
-					$mdgriffith$elm_ui$Element$height(
-					function () {
-						if (trackHeight.$ === 'Nothing') {
-							return $mdgriffith$elm_ui$Element$shrink;
-						} else {
-							if (trackHeight.a.$ === 'Px') {
-								return $mdgriffith$elm_ui$Element$shrink;
-							} else {
-								var x = trackHeight.a;
-								return x;
-							}
-						}
-					}())
-				]),
-			input.label,
-			A2(
-				$mdgriffith$elm_ui$Element$row,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$width(
-						A2($elm$core$Maybe$withDefault, $mdgriffith$elm_ui$Element$fill, trackWidth)),
-						$mdgriffith$elm_ui$Element$height(
-						A2(
-							$elm$core$Maybe$withDefault,
-							$mdgriffith$elm_ui$Element$px(20),
-							trackHeight))
-					]),
-				_List_fromArray(
-					[
-						A4(
-						$mdgriffith$elm_ui$Internal$Model$element,
-						$mdgriffith$elm_ui$Internal$Model$asEl,
-						$mdgriffith$elm_ui$Internal$Model$NodeName('input'),
-						_List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$Input$hiddenLabelAttribute(input.label),
-								A2(
-								$mdgriffith$elm_ui$Internal$Model$StyleClass,
-								$mdgriffith$elm_ui$Internal$Flag$active,
-								A2($mdgriffith$elm_ui$Internal$Model$Style, 'input[type=\"range\"].' + (className + '::-moz-range-thumb'), thumbShadowStyle)),
-								A2(
-								$mdgriffith$elm_ui$Internal$Model$StyleClass,
-								$mdgriffith$elm_ui$Internal$Flag$hover,
-								A2($mdgriffith$elm_ui$Internal$Model$Style, 'input[type=\"range\"].' + (className + '::-webkit-slider-thumb'), thumbShadowStyle)),
-								A2(
-								$mdgriffith$elm_ui$Internal$Model$StyleClass,
-								$mdgriffith$elm_ui$Internal$Flag$focus,
-								A2($mdgriffith$elm_ui$Internal$Model$Style, 'input[type=\"range\"].' + (className + '::-ms-thumb'), thumbShadowStyle)),
-								$mdgriffith$elm_ui$Internal$Model$Attr(
-								$elm$html$Html$Attributes$class(className + ' focusable-parent')),
-								$mdgriffith$elm_ui$Internal$Model$Attr(
-								$elm$html$Html$Events$onInput(
-									function (str) {
-										var _v4 = $elm$core$String$toFloat(str);
-										if (_v4.$ === 'Nothing') {
-											return input.onChange(0);
-										} else {
-											var val = _v4.a;
-											return input.onChange(val);
-										}
-									})),
-								$mdgriffith$elm_ui$Internal$Model$Attr(
-								$elm$html$Html$Attributes$type_('range')),
-								$mdgriffith$elm_ui$Internal$Model$Attr(
-								$elm$html$Html$Attributes$step(
-									function () {
-										var _v5 = input.step;
-										if (_v5.$ === 'Nothing') {
-											return 'any';
-										} else {
-											var step = _v5.a;
-											return $elm$core$String$fromFloat(step);
-										}
-									}())),
-								$mdgriffith$elm_ui$Internal$Model$Attr(
-								$elm$html$Html$Attributes$min(
-									$elm$core$String$fromFloat(input.min))),
-								$mdgriffith$elm_ui$Internal$Model$Attr(
-								$elm$html$Html$Attributes$max(
-									$elm$core$String$fromFloat(input.max))),
-								$mdgriffith$elm_ui$Internal$Model$Attr(
-								$elm$html$Html$Attributes$value(
-									$elm$core$String$fromFloat(input.value))),
-								vertical ? $mdgriffith$elm_ui$Internal$Model$Attr(
-								A2($elm$html$Html$Attributes$attribute, 'orient', 'vertical')) : $mdgriffith$elm_ui$Internal$Model$NoAttribute,
-								$mdgriffith$elm_ui$Element$width(
-								vertical ? A2(
-									$elm$core$Maybe$withDefault,
-									$mdgriffith$elm_ui$Element$px(20),
-									trackHeight) : A2($elm$core$Maybe$withDefault, $mdgriffith$elm_ui$Element$fill, trackWidth)),
-								$mdgriffith$elm_ui$Element$height(
-								vertical ? A2($elm$core$Maybe$withDefault, $mdgriffith$elm_ui$Element$fill, trackWidth) : A2(
-									$elm$core$Maybe$withDefault,
-									$mdgriffith$elm_ui$Element$px(20),
-									trackHeight))
-							]),
-						$mdgriffith$elm_ui$Internal$Model$Unkeyed(_List_Nil)),
-						A2(
-						$mdgriffith$elm_ui$Element$el,
-						A2(
-							$elm$core$List$cons,
-							$mdgriffith$elm_ui$Element$width(
-								A2($elm$core$Maybe$withDefault, $mdgriffith$elm_ui$Element$fill, trackWidth)),
-							A2(
-								$elm$core$List$cons,
-								$mdgriffith$elm_ui$Element$height(
-									A2(
-										$elm$core$Maybe$withDefault,
-										$mdgriffith$elm_ui$Element$px(20),
-										trackHeight)),
-								_Utils_ap(
-									attributes,
-									_List_fromArray(
-										[
-											$mdgriffith$elm_ui$Element$behindContent(
-											vertical ? A3($mdgriffith$elm_ui$Element$Input$viewVerticalThumb, factor, thumbAttributes, trackWidth) : A3($mdgriffith$elm_ui$Element$Input$viewHorizontalThumb, factor, thumbAttributes, trackHeight))
-										])))),
-						$mdgriffith$elm_ui$Element$none)
-					])));
-	});
-var $author$project$Page$Tutorial$learningRateControl = function (model) {
-	return A2(
-		$mdgriffith$elm_ui$Element$Input$slider,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$height(
-				$mdgriffith$elm_ui$Element$px(10)),
-				$mdgriffith$elm_ui$Element$width(
-				$mdgriffith$elm_ui$Element$px(180)),
-				$mdgriffith$elm_ui$Element$behindContent(
-				A2(
-					$mdgriffith$elm_ui$Element$el,
-					_List_fromArray(
-						[
-							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-							$mdgriffith$elm_ui$Element$height(
-							$mdgriffith$elm_ui$Element$px(10)),
-							$mdgriffith$elm_ui$Element$centerX,
-							$mdgriffith$elm_ui$Element$Background$color($author$project$Page$Tutorial$grey),
-							$mdgriffith$elm_ui$Element$Border$rounded(5)
-						]),
-					$mdgriffith$elm_ui$Element$none))
-			]),
-		{
-			label: A2(
-				$mdgriffith$elm_ui$Element$Input$labelAbove,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$paddingEach(
-						_Utils_update(
-							$author$project$Page$Tutorial$edges,
-							{bottom: 10}))
-					]),
-				$mdgriffith$elm_ui$Element$text(
-					'Learning Rate: ' + A2($myrho$elm_round$Round$round, 2, model.learningRate))),
-			max: 5,
-			min: 0,
-			onChange: $author$project$Page$Tutorial$AdjustLearningRate,
-			step: $elm$core$Maybe$Nothing,
-			thumb: $mdgriffith$elm_ui$Element$Input$defaultThumb,
-			value: model.learningRate
-		});
-};
-var $author$project$Page$Tutorial$MoveOneStep = {$: 'MoveOneStep'};
-var $author$project$Page$Tutorial$stepControl = $author$project$Page$Tutorial$controlButton(
-	{
-		label: $mdgriffith$elm_ui$Element$text('Move 1 Step'),
-		onPress: $elm$core$Maybe$Just($author$project$Page$Tutorial$MoveOneStep)
-	});
-var $author$project$Page$Tutorial$controls = function (model) {
-	return A2(
-		$mdgriffith$elm_ui$Element$row,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$spacing(20)
-			]),
-		_List_fromArray(
-			[
-				$author$project$Page$Tutorial$learningRateControl(model),
-				$author$project$Page$Tutorial$stepControl,
-				$author$project$Page$Tutorial$layerStepControl
-			]));
-};
-var $author$project$Page$Tutorial$directionTracker = function (model) {
-	var direction = function () {
-		var _v1 = model.currentDirection;
-		if (_v1.$ === 'Forward') {
-			return 'forward';
-		} else {
-			return 'backward';
-		}
-	}();
-	var background = function () {
-		var lastLayerIndex = $elm$core$List$length(model.layers) - 1;
-		var lastIndex = A2(
-			$elm$core$Maybe$withDefault,
-			1,
-			A2($author$project$Page$Tutorial$nth, lastLayerIndex, model.layers)) - 1;
-		var _v0 = model.currentDirection;
-		if (_v0.$ === 'Forward') {
-			return _Utils_eq(
-				model.currentPosition,
-				_Utils_Tuple2(0, 0)) ? A4($mdgriffith$elm_ui$Element$rgba255, 51, 255, 51, 0.8) : A4($mdgriffith$elm_ui$Element$rgba255, 51, 255, 51, 0.3);
-		} else {
-			return _Utils_eq(
-				model.currentPosition,
-				_Utils_Tuple2(lastLayerIndex, lastIndex)) ? A4($mdgriffith$elm_ui$Element$rgba255, 255, 51, 0, 0.8) : A4($mdgriffith$elm_ui$Element$rgba255, 255, 51, 0, 0.3);
-		}
-	}();
-	return A2(
-		$mdgriffith$elm_ui$Element$el,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$padding(10),
-				$mdgriffith$elm_ui$Element$Background$color(background)
-			]),
-		$mdgriffith$elm_ui$Element$text('In ' + (direction + ' propagation')));
-};
-var $mdgriffith$elm_ui$Internal$Model$unstyled = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Unstyled, $elm$core$Basics$always);
-var $mdgriffith$elm_ui$Element$html = $mdgriffith$elm_ui$Internal$Model$unstyled;
-var $mdgriffith$elm_ui$Internal$Model$InFront = {$: 'InFront'};
-var $mdgriffith$elm_ui$Element$inFront = function (element) {
-	return A2($mdgriffith$elm_ui$Element$createNearby, $mdgriffith$elm_ui$Internal$Model$InFront, element);
-};
-var $joakin$elm_canvas$Canvas$Settings$Text$Center = {$: 'Center'};
-var $joakin$elm_canvas$Canvas$Settings$Text$Middle = {$: 'Middle'};
-var $joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand = function (a) {
-	return {$: 'SettingCommand', a: a};
-};
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field = F2(
-	function (name, value) {
-		return $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('field')),
-					_Utils_Tuple2(
-					'name',
-					$elm$json$Json$Encode$string(name)),
-					_Utils_Tuple2('value', value)
-				]));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$textAlign = function (align) {
-	return A2(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
-		'textAlign',
-		$elm$json$Json$Encode$string(align));
-};
-var $joakin$elm_canvas$Canvas$Settings$Text$textAlignToString = function (alignment) {
-	switch (alignment.$) {
-		case 'Left':
-			return 'left';
-		case 'Right':
-			return 'right';
-		case 'Center':
-			return 'center';
-		case 'Start':
-			return 'start';
-		default:
-			return 'end';
-	}
-};
-var $joakin$elm_canvas$Canvas$Settings$Text$align = function (alignment) {
-	return $joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$textAlign(
-			$joakin$elm_canvas$Canvas$Settings$Text$textAlignToString(alignment)));
-};
-var $joakin$elm_canvas$Canvas$Settings$Text$textBaseLineToString = function (baseLineSetting) {
-	switch (baseLineSetting.$) {
-		case 'Top':
-			return 'top';
-		case 'Hanging':
-			return 'hanging';
-		case 'Middle':
-			return 'middle';
-		case 'Alphabetic':
-			return 'alphabetic';
-		case 'Ideographic':
-			return 'ideographic';
-		default:
-			return 'bottom';
-	}
-};
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$textBaseline = function (baseline) {
-	return A2(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
-		'textBaseline',
-		$elm$json$Json$Encode$string(baseline));
-};
-var $joakin$elm_canvas$Canvas$Settings$Text$baseLine = function (textBaseLine) {
-	return $joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$textBaseline(
-			$joakin$elm_canvas$Canvas$Settings$Text$textBaseLineToString(textBaseLine)));
-};
-var $avh4$elm_color$Color$black = A4($avh4$elm_color$Color$RgbaSpace, 0 / 255, 0 / 255, 0 / 255, 1.0);
-var $joakin$elm_canvas$Canvas$Internal$Canvas$Circle = F2(
-	function (a, b) {
-		return {$: 'Circle', a: a, b: b};
-	});
-var $joakin$elm_canvas$Canvas$circle = F2(
-	function (pos, radius) {
-		return A2($joakin$elm_canvas$Canvas$Internal$Canvas$Circle, pos, radius);
-	});
-var $joakin$elm_canvas$Canvas$Internal$Canvas$Fill = function (a) {
-	return {$: 'Fill', a: a};
-};
-var $joakin$elm_canvas$Canvas$Internal$Canvas$SettingDrawOp = function (a) {
-	return {$: 'SettingDrawOp', a: a};
-};
-var $joakin$elm_canvas$Canvas$Settings$fill = function (color) {
-	return $joakin$elm_canvas$Canvas$Internal$Canvas$SettingDrawOp(
-		$joakin$elm_canvas$Canvas$Internal$Canvas$Fill(color));
-};
-var $author$project$Page$Tutorial$flatten2D = function (list) {
-	return A3($elm$core$List$foldr, $elm$core$Basics$append, _List_Nil, list);
-};
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$font = function (f) {
-	return A2(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
-		'font',
-		$elm$json$Json$Encode$string(f));
-};
-var $joakin$elm_canvas$Canvas$Settings$Text$font = function (_v0) {
-	var size = _v0.size;
-	var family = _v0.family;
-	return $joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$font(
-			$elm$core$String$fromInt(size) + ('px ' + family)));
-};
-var $author$project$Page$Tutorial$greyScale = function (scale) {
-	var value = A2($author$project$Page$Tutorial$getColorValue, scale, 0.4);
-	return A3($avh4$elm_color$Color$rgb, value, value, value);
-};
-var $elm$core$List$tail = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(xs);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm_community$list_extra$List$Extra$init = function (items) {
-	if (!items.b) {
-		return $elm$core$Maybe$Nothing;
-	} else {
-		var nonEmptyList = items;
-		return A2(
-			$elm$core$Maybe$map,
-			$elm$core$List$reverse,
-			$elm$core$List$tail(
-				$elm$core$List$reverse(nonEmptyList)));
-	}
-};
-var $elm_community$list_extra$List$Extra$last = function (items) {
-	last:
-	while (true) {
-		if (!items.b) {
-			return $elm$core$Maybe$Nothing;
-		} else {
-			if (!items.b.b) {
-				var x = items.a;
-				return $elm$core$Maybe$Just(x);
-			} else {
-				var rest = items.b;
-				var $temp$items = rest;
-				items = $temp$items;
-				continue last;
-			}
-		}
-	}
-};
-var $joakin$elm_canvas$Canvas$Internal$Canvas$LineTo = function (a) {
-	return {$: 'LineTo', a: a};
-};
-var $joakin$elm_canvas$Canvas$lineTo = function (point) {
-	return $joakin$elm_canvas$Canvas$Internal$Canvas$LineTo(point);
-};
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineWidth = function (value) {
-	return A2(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
-		'lineWidth',
-		$elm$json$Json$Encode$float(value));
-};
-var $joakin$elm_canvas$Canvas$Settings$Line$lineWidth = function (width) {
-	return $joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineWidth(width));
-};
-var $joakin$elm_canvas$Canvas$Internal$Canvas$Path = F2(
-	function (a, b) {
-		return {$: 'Path', a: a, b: b};
-	});
-var $joakin$elm_canvas$Canvas$path = F2(
-	function (startingPoint, segments) {
-		return A2($joakin$elm_canvas$Canvas$Internal$Canvas$Path, startingPoint, segments);
-	});
-var $joakin$elm_canvas$Canvas$Internal$Canvas$Rect = F3(
-	function (a, b, c) {
-		return {$: 'Rect', a: a, b: b, c: c};
-	});
-var $joakin$elm_canvas$Canvas$rect = F3(
-	function (pos, width, height) {
-		return A3($joakin$elm_canvas$Canvas$Internal$Canvas$Rect, pos, width, height);
-	});
-var $avh4$elm_color$Color$red = A4($avh4$elm_color$Color$RgbaSpace, 204 / 255, 0 / 255, 0 / 255, 1.0);
-var $joakin$elm_canvas$Canvas$Internal$Canvas$DrawableShapes = function (a) {
-	return {$: 'DrawableShapes', a: a};
-};
-var $joakin$elm_canvas$Canvas$Internal$Canvas$NotSpecified = {$: 'NotSpecified'};
-var $joakin$elm_canvas$Canvas$Renderable = function (a) {
-	return {$: 'Renderable', a: a};
-};
-var $joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke = F2(
-	function (a, b) {
-		return {$: 'FillAndStroke', a: a, b: b};
-	});
-var $joakin$elm_canvas$Canvas$Internal$Canvas$Stroke = function (a) {
-	return {$: 'Stroke', a: a};
-};
-var $joakin$elm_canvas$Canvas$mergeDrawOp = F2(
-	function (op1, op2) {
-		var _v0 = _Utils_Tuple2(op1, op2);
-		_v0$7:
-		while (true) {
-			switch (_v0.b.$) {
-				case 'FillAndStroke':
-					var _v1 = _v0.b;
-					var c = _v1.a;
-					var sc = _v1.b;
-					return A2($joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c, sc);
-				case 'Fill':
-					switch (_v0.a.$) {
-						case 'Fill':
-							var c = _v0.b.a;
-							return $joakin$elm_canvas$Canvas$Internal$Canvas$Fill(c);
-						case 'Stroke':
-							var c1 = _v0.a.a;
-							var c2 = _v0.b.a;
-							return A2($joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c2, c1);
-						case 'FillAndStroke':
-							var _v2 = _v0.a;
-							var c = _v2.a;
-							var sc = _v2.b;
-							var c2 = _v0.b.a;
-							return A2($joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c2, sc);
-						default:
-							break _v0$7;
-					}
-				case 'Stroke':
-					switch (_v0.a.$) {
-						case 'Stroke':
-							var c = _v0.b.a;
-							return $joakin$elm_canvas$Canvas$Internal$Canvas$Stroke(c);
-						case 'Fill':
-							var c1 = _v0.a.a;
-							var c2 = _v0.b.a;
-							return A2($joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c1, c2);
-						case 'FillAndStroke':
-							var _v3 = _v0.a;
-							var c = _v3.a;
-							var sc = _v3.b;
-							var sc2 = _v0.b.a;
-							return A2($joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c, sc2);
-						default:
-							break _v0$7;
-					}
-				default:
-					if (_v0.a.$ === 'NotSpecified') {
-						break _v0$7;
-					} else {
-						var whatever = _v0.a;
-						var _v5 = _v0.b;
-						return whatever;
-					}
-			}
-		}
-		var _v4 = _v0.a;
-		var whatever = _v0.b;
-		return whatever;
-	});
-var $joakin$elm_canvas$Canvas$addSettingsToRenderable = F2(
-	function (settings, renderable) {
-		var addSetting = F2(
-			function (setting, _v1) {
-				var r = _v1.a;
-				return $joakin$elm_canvas$Canvas$Renderable(
-					function () {
-						switch (setting.$) {
-							case 'SettingCommand':
-								var cmd = setting.a;
-								return _Utils_update(
-									r,
-									{
-										commands: A2($elm$core$List$cons, cmd, r.commands)
-									});
-							case 'SettingCommands':
-								var cmds = setting.a;
-								return _Utils_update(
-									r,
-									{
-										commands: A3($elm$core$List$foldl, $elm$core$List$cons, r.commands, cmds)
-									});
-							case 'SettingUpdateDrawable':
-								var f = setting.a;
-								return _Utils_update(
-									r,
-									{
-										drawable: f(r.drawable)
-									});
-							default:
-								var op = setting.a;
-								return _Utils_update(
-									r,
-									{
-										drawOp: A2($joakin$elm_canvas$Canvas$mergeDrawOp, r.drawOp, op)
-									});
-						}
-					}());
-			});
-		return A3($elm$core$List$foldl, addSetting, renderable, settings);
-	});
-var $joakin$elm_canvas$Canvas$shapes = F2(
-	function (settings, ss) {
-		return A2(
-			$joakin$elm_canvas$Canvas$addSettingsToRenderable,
-			settings,
-			$joakin$elm_canvas$Canvas$Renderable(
-				{
-					commands: _List_Nil,
-					drawOp: $joakin$elm_canvas$Canvas$Internal$Canvas$NotSpecified,
-					drawable: $joakin$elm_canvas$Canvas$Internal$Canvas$DrawableShapes(ss)
-				}));
-	});
-var $joakin$elm_canvas$Canvas$Settings$stroke = function (color) {
-	return $joakin$elm_canvas$Canvas$Internal$Canvas$SettingDrawOp(
-		$joakin$elm_canvas$Canvas$Internal$Canvas$Stroke(color));
-};
-var $joakin$elm_canvas$Canvas$Internal$Canvas$DrawableText = function (a) {
-	return {$: 'DrawableText', a: a};
-};
-var $joakin$elm_canvas$Canvas$text = F3(
-	function (settings, point, str) {
-		return A2(
-			$joakin$elm_canvas$Canvas$addSettingsToRenderable,
-			settings,
-			$joakin$elm_canvas$Canvas$Renderable(
-				{
-					commands: _List_Nil,
-					drawOp: $joakin$elm_canvas$Canvas$Internal$Canvas$NotSpecified,
-					drawable: $joakin$elm_canvas$Canvas$Internal$Canvas$DrawableText(
-						{maxWidth: $elm$core$Maybe$Nothing, point: point, text: str})
-				}));
-	});
-var $elm$html$Html$canvas = _VirtualDom_node('canvas');
-var $joakin$elm_canvas$Canvas$cnvs = A2($elm$html$Html$canvas, _List_Nil, _List_Nil);
-var $elm$html$Html$Attributes$property = $elm$virtual_dom$VirtualDom$property;
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$commands = function (list) {
-	return A2(
-		$elm$html$Html$Attributes$property,
-		'cmds',
-		A2($elm$json$Json$Encode$list, $elm$core$Basics$identity, list));
-};
-var $elm$html$Html$Attributes$height = function (n) {
-	return A2(
-		_VirtualDom_attribute,
-		'height',
-		$elm$core$String$fromInt(n));
-};
-var $elm$html$Html$Keyed$node = $elm$virtual_dom$VirtualDom$keyedNode;
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$empty = _List_Nil;
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn = F2(
-	function (name, args) {
-		return $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('function')),
-					_Utils_Tuple2(
-					'name',
-					$elm$json$Json$Encode$string(name)),
-					_Utils_Tuple2(
-					'args',
-					A2($elm$json$Json$Encode$list, $elm$core$Basics$identity, args))
-				]));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$beginPath = A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn, 'beginPath', _List_Nil);
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$arc = F6(
-	function (x, y, radius, startAngle, endAngle, anticlockwise) {
-		return A2(
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'arc',
-			_List_fromArray(
-				[
-					$elm$json$Json$Encode$float(x),
-					$elm$json$Json$Encode$float(y),
-					$elm$json$Json$Encode$float(radius),
-					$elm$json$Json$Encode$float(startAngle),
-					$elm$json$Json$Encode$float(endAngle),
-					$elm$json$Json$Encode$bool(anticlockwise)
-				]));
-	});
-var $elm$core$Basics$pi = _Basics_pi;
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$circle = F3(
-	function (x, y, r) {
-		return A6($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$arc, x, y, r, 0, 2 * $elm$core$Basics$pi, false);
-	});
-var $elm$core$Basics$cos = _Basics_cos;
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$moveTo = F2(
-	function (x, y) {
-		return A2(
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'moveTo',
-			_List_fromArray(
-				[
-					$elm$json$Json$Encode$float(x),
-					$elm$json$Json$Encode$float(y)
-				]));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$rect = F4(
-	function (x, y, w, h) {
-		return A2(
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'rect',
-			_List_fromArray(
-				[
-					$elm$json$Json$Encode$float(x),
-					$elm$json$Json$Encode$float(y),
-					$elm$json$Json$Encode$float(w),
-					$elm$json$Json$Encode$float(h)
-				]));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$arcTo = F5(
-	function (x1, y1, x2, y2, radius) {
-		return A2(
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'arcTo',
-			_List_fromArray(
-				[
-					$elm$json$Json$Encode$float(x1),
-					$elm$json$Json$Encode$float(y1),
-					$elm$json$Json$Encode$float(x2),
-					$elm$json$Json$Encode$float(y2),
-					$elm$json$Json$Encode$float(radius)
-				]));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$bezierCurveTo = F6(
-	function (cp1x, cp1y, cp2x, cp2y, x, y) {
-		return A2(
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'bezierCurveTo',
-			_List_fromArray(
-				[
-					$elm$json$Json$Encode$float(cp1x),
-					$elm$json$Json$Encode$float(cp1y),
-					$elm$json$Json$Encode$float(cp2x),
-					$elm$json$Json$Encode$float(cp2y),
-					$elm$json$Json$Encode$float(x),
-					$elm$json$Json$Encode$float(y)
-				]));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineTo = F2(
-	function (x, y) {
-		return A2(
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'lineTo',
-			_List_fromArray(
-				[
-					$elm$json$Json$Encode$float(x),
-					$elm$json$Json$Encode$float(y)
-				]));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$quadraticCurveTo = F4(
-	function (cpx, cpy, x, y) {
-		return A2(
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'quadraticCurveTo',
-			_List_fromArray(
-				[
-					$elm$json$Json$Encode$float(cpx),
-					$elm$json$Json$Encode$float(cpy),
-					$elm$json$Json$Encode$float(x),
-					$elm$json$Json$Encode$float(y)
-				]));
-	});
-var $joakin$elm_canvas$Canvas$renderLineSegment = F2(
-	function (segment, cmds) {
-		switch (segment.$) {
-			case 'ArcTo':
-				var _v1 = segment.a;
-				var x = _v1.a;
-				var y = _v1.b;
-				var _v2 = segment.b;
-				var x2 = _v2.a;
-				var y2 = _v2.b;
-				var radius = segment.c;
-				return A2(
-					$elm$core$List$cons,
-					A5($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$arcTo, x, y, x2, y2, radius),
-					cmds);
-			case 'BezierCurveTo':
-				var _v3 = segment.a;
-				var cp1x = _v3.a;
-				var cp1y = _v3.b;
-				var _v4 = segment.b;
-				var cp2x = _v4.a;
-				var cp2y = _v4.b;
-				var _v5 = segment.c;
-				var x = _v5.a;
-				var y = _v5.b;
-				return A2(
-					$elm$core$List$cons,
-					A6($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$bezierCurveTo, cp1x, cp1y, cp2x, cp2y, x, y),
-					cmds);
-			case 'LineTo':
-				var _v6 = segment.a;
-				var x = _v6.a;
-				var y = _v6.b;
-				return A2(
-					$elm$core$List$cons,
-					A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineTo, x, y),
-					cmds);
-			case 'MoveTo':
-				var _v7 = segment.a;
-				var x = _v7.a;
-				var y = _v7.b;
-				return A2(
-					$elm$core$List$cons,
-					A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$moveTo, x, y),
-					cmds);
-			default:
-				var _v8 = segment.a;
-				var cpx = _v8.a;
-				var cpy = _v8.b;
-				var _v9 = segment.b;
-				var x = _v9.a;
-				var y = _v9.b;
-				return A2(
-					$elm$core$List$cons,
-					A4($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$quadraticCurveTo, cpx, cpy, x, y),
-					cmds);
-		}
-	});
-var $elm$core$Basics$sin = _Basics_sin;
-var $joakin$elm_canvas$Canvas$renderShape = F2(
-	function (shape, cmds) {
-		switch (shape.$) {
-			case 'Rect':
-				var _v1 = shape.a;
-				var x = _v1.a;
-				var y = _v1.b;
-				var w = shape.b;
-				var h = shape.c;
-				return A2(
-					$elm$core$List$cons,
-					A4($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$rect, x, y, w, h),
-					A2(
-						$elm$core$List$cons,
-						A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$moveTo, x, y),
-						cmds));
-			case 'Circle':
-				var _v2 = shape.a;
-				var x = _v2.a;
-				var y = _v2.b;
-				var r = shape.b;
-				return A2(
-					$elm$core$List$cons,
-					A3($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$circle, x, y, r),
-					A2(
-						$elm$core$List$cons,
-						A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$moveTo, x + r, y),
-						cmds));
-			case 'Path':
-				var _v3 = shape.a;
-				var x = _v3.a;
-				var y = _v3.b;
-				var segments = shape.b;
-				return A3(
-					$elm$core$List$foldl,
-					$joakin$elm_canvas$Canvas$renderLineSegment,
-					A2(
-						$elm$core$List$cons,
-						A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$moveTo, x, y),
-						cmds),
-					segments);
-			default:
-				var _v4 = shape.a;
-				var x = _v4.a;
-				var y = _v4.b;
-				var radius = shape.b;
-				var startAngle = shape.c;
-				var endAngle = shape.d;
-				var anticlockwise = shape.e;
-				return A2(
-					$elm$core$List$cons,
-					A6($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$arc, x, y, radius, startAngle, endAngle, anticlockwise),
-					A2(
-						$elm$core$List$cons,
-						A2(
-							$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$moveTo,
-							x + $elm$core$Basics$cos(startAngle),
-							y + $elm$core$Basics$sin(startAngle)),
-						cmds));
-		}
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$NonZero = {$: 'NonZero'};
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillRuleToString = function (fillRule) {
-	if (fillRule.$ === 'NonZero') {
-		return 'nonzero';
-	} else {
-		return 'evenodd';
-	}
-};
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fill = function (fillRule) {
-	return A2(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-		'fill',
-		_List_fromArray(
-			[
-				$elm$json$Json$Encode$string(
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillRuleToString(fillRule))
-			]));
-};
-var $avh4$elm_color$Color$toCssString = function (_v0) {
-	var r = _v0.a;
-	var g = _v0.b;
-	var b = _v0.c;
-	var a = _v0.d;
-	var roundTo = function (x) {
-		return $elm$core$Basics$round(x * 1000) / 1000;
-	};
-	var pct = function (x) {
-		return $elm$core$Basics$round(x * 10000) / 100;
-	};
-	return $elm$core$String$concat(
-		_List_fromArray(
-			[
-				'rgba(',
-				$elm$core$String$fromFloat(
-				pct(r)),
-				'%,',
-				$elm$core$String$fromFloat(
-				pct(g)),
-				'%,',
-				$elm$core$String$fromFloat(
-				pct(b)),
-				'%,',
-				$elm$core$String$fromFloat(
-				roundTo(a)),
-				')'
-			]));
-};
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillStyle = function (color) {
-	return A2(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
-		'fillStyle',
-		$elm$json$Json$Encode$string(
-			$avh4$elm_color$Color$toCssString(color)));
-};
-var $joakin$elm_canvas$Canvas$renderShapeFill = F2(
-	function (c, cmds) {
-		return A2(
-			$elm$core$List$cons,
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fill($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$NonZero),
-			A2(
-				$elm$core$List$cons,
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillStyle(c),
-				cmds));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$stroke = A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn, 'stroke', _List_Nil);
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$strokeStyle = function (color) {
-	return A2(
-		$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
-		'strokeStyle',
-		$elm$json$Json$Encode$string(
-			$avh4$elm_color$Color$toCssString(color)));
-};
-var $joakin$elm_canvas$Canvas$renderShapeStroke = F2(
-	function (c, cmds) {
-		return A2(
-			$elm$core$List$cons,
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$stroke,
-			A2(
-				$elm$core$List$cons,
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$strokeStyle(c),
-				cmds));
-	});
-var $joakin$elm_canvas$Canvas$renderShapeDrawOp = F2(
-	function (drawOp, cmds) {
-		switch (drawOp.$) {
-			case 'NotSpecified':
-				return A2($joakin$elm_canvas$Canvas$renderShapeFill, $avh4$elm_color$Color$black, cmds);
-			case 'Fill':
-				var c = drawOp.a;
-				return A2($joakin$elm_canvas$Canvas$renderShapeFill, c, cmds);
-			case 'Stroke':
-				var c = drawOp.a;
-				return A2($joakin$elm_canvas$Canvas$renderShapeStroke, c, cmds);
-			default:
-				var fc = drawOp.a;
-				var sc = drawOp.b;
-				return A2(
-					$joakin$elm_canvas$Canvas$renderShapeStroke,
-					sc,
-					A2($joakin$elm_canvas$Canvas$renderShapeFill, fc, cmds));
-		}
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillText = F4(
-	function (text, x, y, maybeMaxWidth) {
-		if (maybeMaxWidth.$ === 'Nothing') {
-			return A2(
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-				'fillText',
-				_List_fromArray(
-					[
-						$elm$json$Json$Encode$string(text),
-						$elm$json$Json$Encode$float(x),
-						$elm$json$Json$Encode$float(y)
-					]));
-		} else {
-			var maxWidth = maybeMaxWidth.a;
-			return A2(
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-				'fillText',
-				_List_fromArray(
-					[
-						$elm$json$Json$Encode$string(text),
-						$elm$json$Json$Encode$float(x),
-						$elm$json$Json$Encode$float(y),
-						$elm$json$Json$Encode$float(maxWidth)
-					]));
-		}
-	});
-var $joakin$elm_canvas$Canvas$renderTextFill = F5(
-	function (txt, x, y, color, cmds) {
-		return A2(
-			$elm$core$List$cons,
-			A4($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillText, txt.text, x, y, txt.maxWidth),
-			A2(
-				$elm$core$List$cons,
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillStyle(color),
-				cmds));
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$strokeText = F4(
-	function (text, x, y, maybeMaxWidth) {
-		if (maybeMaxWidth.$ === 'Nothing') {
-			return A2(
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-				'strokeText',
-				_List_fromArray(
-					[
-						$elm$json$Json$Encode$string(text),
-						$elm$json$Json$Encode$float(x),
-						$elm$json$Json$Encode$float(y)
-					]));
-		} else {
-			var maxWidth = maybeMaxWidth.a;
-			return A2(
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-				'strokeText',
-				_List_fromArray(
-					[
-						$elm$json$Json$Encode$string(text),
-						$elm$json$Json$Encode$float(x),
-						$elm$json$Json$Encode$float(y),
-						$elm$json$Json$Encode$float(maxWidth)
-					]));
-		}
-	});
-var $joakin$elm_canvas$Canvas$renderTextStroke = F5(
-	function (txt, x, y, color, cmds) {
-		return A2(
-			$elm$core$List$cons,
-			A4($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$strokeText, txt.text, x, y, txt.maxWidth),
-			A2(
-				$elm$core$List$cons,
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$strokeStyle(color),
-				cmds));
-	});
-var $joakin$elm_canvas$Canvas$renderTextDrawOp = F3(
-	function (drawOp, txt, cmds) {
-		var _v0 = txt.point;
-		var x = _v0.a;
-		var y = _v0.b;
-		switch (drawOp.$) {
-			case 'NotSpecified':
-				return A5($joakin$elm_canvas$Canvas$renderTextFill, txt, x, y, $avh4$elm_color$Color$black, cmds);
-			case 'Fill':
-				var c = drawOp.a;
-				return A5($joakin$elm_canvas$Canvas$renderTextFill, txt, x, y, c, cmds);
-			case 'Stroke':
-				var c = drawOp.a;
-				return A5($joakin$elm_canvas$Canvas$renderTextStroke, txt, x, y, c, cmds);
-			default:
-				var fc = drawOp.a;
-				var sc = drawOp.b;
-				return A5(
-					$joakin$elm_canvas$Canvas$renderTextStroke,
-					txt,
-					x,
-					y,
-					sc,
-					A5($joakin$elm_canvas$Canvas$renderTextFill, txt, x, y, fc, cmds));
-		}
-	});
-var $joakin$elm_canvas$Canvas$renderText = F3(
-	function (drawOp, txt, cmds) {
-		return A3($joakin$elm_canvas$Canvas$renderTextDrawOp, drawOp, txt, cmds);
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$drawImage = F9(
-	function (sx, sy, sw, sh, dx, dy, dw, dh, imageObj) {
-		return A2(
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'drawImage',
-			_List_fromArray(
-				[
-					imageObj,
-					$elm$json$Json$Encode$float(sx),
-					$elm$json$Json$Encode$float(sy),
-					$elm$json$Json$Encode$float(sw),
-					$elm$json$Json$Encode$float(sh),
-					$elm$json$Json$Encode$float(dx),
-					$elm$json$Json$Encode$float(dy),
-					$elm$json$Json$Encode$float(dw),
-					$elm$json$Json$Encode$float(dh)
-				]));
-	});
-var $joakin$elm_canvas$Canvas$Internal$Texture$drawTexture = F4(
-	function (x, y, t, cmds) {
-		return A2(
-			$elm$core$List$cons,
-			function () {
-				if (t.$ === 'TImage') {
-					var image = t.a;
-					return A9($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$drawImage, 0, 0, image.width, image.height, x, y, image.width, image.height, image.json);
-				} else {
-					var sprite = t.a;
-					var image = t.b;
-					return A9($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$drawImage, sprite.x, sprite.y, sprite.width, sprite.height, x, y, sprite.width, sprite.height, image.json);
-				}
-			}(),
-			cmds);
-	});
-var $joakin$elm_canvas$Canvas$renderTexture = F3(
-	function (_v0, t, cmds) {
-		var x = _v0.a;
-		var y = _v0.b;
-		return A4($joakin$elm_canvas$Canvas$Internal$Texture$drawTexture, x, y, t, cmds);
-	});
-var $joakin$elm_canvas$Canvas$renderDrawable = F3(
-	function (drawable, drawOp, cmds) {
-		switch (drawable.$) {
-			case 'DrawableText':
-				var txt = drawable.a;
-				return A3($joakin$elm_canvas$Canvas$renderText, drawOp, txt, cmds);
-			case 'DrawableShapes':
-				var ss = drawable.a;
-				return A2(
-					$joakin$elm_canvas$Canvas$renderShapeDrawOp,
-					drawOp,
-					A3(
-						$elm$core$List$foldl,
-						$joakin$elm_canvas$Canvas$renderShape,
-						A2($elm$core$List$cons, $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$beginPath, cmds),
-						ss));
-			default:
-				var p = drawable.a;
-				var t = drawable.b;
-				return A3($joakin$elm_canvas$Canvas$renderTexture, p, t, cmds);
-		}
-	});
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$restore = A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn, 'restore', _List_Nil);
-var $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$save = A2($joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn, 'save', _List_Nil);
-var $joakin$elm_canvas$Canvas$renderOne = F2(
-	function (_v0, cmds) {
-		var data = _v0.a;
-		var commands = data.commands;
-		var drawable = data.drawable;
-		var drawOp = data.drawOp;
-		return A2(
-			$elm$core$List$cons,
-			$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$restore,
-			A3(
-				$joakin$elm_canvas$Canvas$renderDrawable,
-				drawable,
-				drawOp,
-				_Utils_ap(
-					commands,
-					A2($elm$core$List$cons, $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$save, cmds))));
-	});
-var $joakin$elm_canvas$Canvas$render = function (entities) {
-	return A3($elm$core$List$foldl, $joakin$elm_canvas$Canvas$renderOne, $joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$empty, entities);
-};
-var $joakin$elm_canvas$Canvas$Internal$Texture$TImage = function (a) {
-	return {$: 'TImage', a: a};
-};
-var $elm$json$Json$Decode$value = _Json_decodeValue;
-var $joakin$elm_canvas$Canvas$decodeTextureImageInfo = A2(
-	$elm$json$Json$Decode$andThen,
-	function (target) {
-		return A3(
-			$elm$json$Json$Decode$map2,
-			F2(
-				function (width, height) {
-					return {height: height, json: target, width: width};
-				}),
-			A2(
-				$elm$json$Json$Decode$at,
-				_List_fromArray(
-					['target', 'width']),
-				$elm$json$Json$Decode$float),
-			A2(
-				$elm$json$Json$Decode$at,
-				_List_fromArray(
-					['target', 'height']),
-				$elm$json$Json$Decode$float));
-	},
-	A2($elm$json$Json$Decode$field, 'target', $elm$json$Json$Decode$value));
-var $elm$html$Html$img = _VirtualDom_node('img');
-var $elm$html$Html$Attributes$src = function (url) {
-	return A2(
-		$elm$html$Html$Attributes$stringProperty,
-		'src',
-		_VirtualDom_noJavaScriptOrHtmlUri(url));
-};
-var $joakin$elm_canvas$Canvas$renderTextureSource = function (textureSource) {
-	var url = textureSource.a;
-	var onLoad = textureSource.b;
-	return _Utils_Tuple2(
-		url,
-		A2(
-			$elm$html$Html$img,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$src(url),
-					A2($elm$html$Html$Attributes$style, 'display', 'none'),
-					A2(
-					$elm$html$Html$Events$on,
-					'load',
-					A2(
-						$elm$json$Json$Decode$map,
-						A2(
-							$elm$core$Basics$composeR,
-							$joakin$elm_canvas$Canvas$Internal$Texture$TImage,
-							A2($elm$core$Basics$composeR, $elm$core$Maybe$Just, onLoad)),
-						$joakin$elm_canvas$Canvas$decodeTextureImageInfo)),
-					A2(
-					$elm$html$Html$Events$on,
-					'error',
-					$elm$json$Json$Decode$succeed(
-						onLoad($elm$core$Maybe$Nothing)))
-				]),
-			_List_Nil));
-};
-var $elm$html$Html$Attributes$width = function (n) {
-	return A2(
-		_VirtualDom_attribute,
-		'width',
-		$elm$core$String$fromInt(n));
-};
-var $joakin$elm_canvas$Canvas$toHtmlWith = F3(
-	function (options, attrs, entities) {
-		return A3(
-			$elm$html$Html$Keyed$node,
-			'elm-canvas',
-			A2(
-				$elm$core$List$cons,
-				$joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$commands(
-					$joakin$elm_canvas$Canvas$render(entities)),
-				A2(
-					$elm$core$List$cons,
-					$elm$html$Html$Attributes$height(options.height),
-					A2(
-						$elm$core$List$cons,
-						$elm$html$Html$Attributes$width(options.width),
-						attrs))),
-			A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2('__canvas', $joakin$elm_canvas$Canvas$cnvs),
-				A2($elm$core$List$map, $joakin$elm_canvas$Canvas$renderTextureSource, options.textures)));
-	});
-var $joakin$elm_canvas$Canvas$toHtml = F3(
-	function (_v0, attrs, entities) {
-		var w = _v0.a;
-		var h = _v0.b;
-		return A3(
-			$joakin$elm_canvas$Canvas$toHtmlWith,
-			{height: h, textures: _List_Nil, width: w},
-			attrs,
-			entities);
-	});
-var $avh4$elm_color$Color$white = A4($avh4$elm_color$Color$RgbaSpace, 255 / 255, 255 / 255, 255 / 255, 1.0);
-var $author$project$Page$Tutorial$neuralNet = function (model) {
-	var isVisitedNode = F2(
-		function (node, currentPosition) {
-			var nodeLayerIndex = node.pos.a;
-			var nodeIndex = node.pos.b;
-			var currentLayerIndex = currentPosition.a;
-			var currentIndex = currentPosition.b;
-			var _v3 = model.currentDirection;
-			if (_v3.$ === 'Forward') {
-				return (_Utils_cmp(nodeLayerIndex, currentLayerIndex) < 0) || (_Utils_eq(nodeLayerIndex, currentLayerIndex) && (_Utils_cmp(nodeIndex, currentIndex) < 1));
-			} else {
-				return (_Utils_cmp(nodeLayerIndex, currentLayerIndex) > 0) || (_Utils_eq(nodeLayerIndex, currentLayerIndex) && (_Utils_cmp(nodeIndex, currentIndex) > -1));
-			}
-		});
-	var isCurrentNode = F2(
-		function (node, currentPosition) {
-			return _Utils_eq(node.pos, currentPosition);
-		});
-	var displayNode = function (node) {
-		return _List_fromArray(
-			[
-				A2(
-				$joakin$elm_canvas$Canvas$shapes,
-				_List_fromArray(
-					[
-						$joakin$elm_canvas$Canvas$Settings$fill(
-						A2(isVisitedNode, node, model.currentPosition) ? $author$project$Page$Tutorial$greenScale(node.activation) : $author$project$Page$Tutorial$greyScale(node.activation)),
-						$joakin$elm_canvas$Canvas$Settings$stroke(
-						A2(isVisitedNode, node, model.currentPosition) ? $avh4$elm_color$Color$yellow : $avh4$elm_color$Color$black),
-						$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(model.nodeRadius * 0.1)
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$joakin$elm_canvas$Canvas$circle,
-						_Utils_Tuple2(node.x, node.y),
-						model.nodeRadius)
-					])),
-				A3(
-				$joakin$elm_canvas$Canvas$text,
-				_List_fromArray(
-					[
-						$joakin$elm_canvas$Canvas$Settings$Text$font(
-						{
-							family: 'sans-serif',
-							size: $elm$core$Basics$round(model.nodeRadius * 0.8)
-						}),
-						$joakin$elm_canvas$Canvas$Settings$Text$align($joakin$elm_canvas$Canvas$Settings$Text$Center),
-						$joakin$elm_canvas$Canvas$Settings$Text$baseLine($joakin$elm_canvas$Canvas$Settings$Text$Middle),
-						$joakin$elm_canvas$Canvas$Settings$fill(
-						$author$project$Page$Tutorial$highContrast(node.activation))
-					]),
-				_Utils_Tuple2(node.x, node.y),
-				A2($myrho$elm_round$Round$round, 2, node.activation))
-			]);
-	};
-	var displayLosses = function () {
-		var width = model.nodeRadius * 2;
-		var height = model.nodeRadius * 2;
-		return A3(
-			$elm$core$List$map2,
-			F2(
-				function (node, loss) {
-					return _List_fromArray(
-						[
-							A2(
-							$joakin$elm_canvas$Canvas$shapes,
-							_List_fromArray(
-								[
-									$joakin$elm_canvas$Canvas$Settings$stroke($avh4$elm_color$Color$red),
-									$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(model.edgeWidth)
-								]),
-							_List_fromArray(
-								[
-									A3(
-									$joakin$elm_canvas$Canvas$rect,
-									_Utils_Tuple2(node.x + width, node.y - (height / 2)),
-									width,
-									height)
-								])),
-							A3(
-							$joakin$elm_canvas$Canvas$text,
-							_List_fromArray(
-								[
-									$joakin$elm_canvas$Canvas$Settings$Text$font(
-									{
-										family: 'sans-serif',
-										size: $elm$core$Basics$round(model.nodeRadius * 0.8)
-									}),
-									$joakin$elm_canvas$Canvas$Settings$Text$align($joakin$elm_canvas$Canvas$Settings$Text$Center),
-									$joakin$elm_canvas$Canvas$Settings$Text$baseLine($joakin$elm_canvas$Canvas$Settings$Text$Middle),
-									$joakin$elm_canvas$Canvas$Settings$fill($avh4$elm_color$Color$red)
-								]),
-							_Utils_Tuple2(node.x + ((width * 3) / 2), node.y),
-							A2($myrho$elm_round$Round$round, 2, loss))
-						]);
-				}),
-			function () {
-				var _v2 = $elm_community$list_extra$List$Extra$last(model.net);
-				if (_v2.$ === 'Nothing') {
-					return _List_Nil;
-				} else {
-					var layer = _v2.a;
-					return layer;
-				}
-			}(),
-			model.losses);
-	}();
-	var displayLayers = function (func) {
-		return $author$project$Page$Tutorial$flatten2D(
-			A3(
-				$elm$core$List$map2,
-				func,
-				function () {
-					var _v1 = $elm_community$list_extra$List$Extra$init(model.net);
-					if (_v1.$ === 'Just') {
-						var initial = _v1.a;
-						return A2($elm$core$List$cons, _List_Nil, initial);
-					} else {
-						return _List_fromArray(
-							[_List_Nil]);
-					}
-				}(),
-				model.net));
-	};
-	var displayLayerNodes = F2(
-		function (_v0, currLayer) {
-			return $author$project$Page$Tutorial$flatten2D(
-				A2($elm$core$List$map, displayNode, currLayer));
-		});
-	var displayEdge = F3(
-		function (start, end, weight) {
-			return A2(
-				$joakin$elm_canvas$Canvas$shapes,
-				_List_fromArray(
-					[
-						$joakin$elm_canvas$Canvas$Settings$stroke(
-						A2(isVisitedNode, start, model.currentPosition) ? $author$project$Page$Tutorial$greenScale(weight) : $author$project$Page$Tutorial$greyScale(weight)),
-						$joakin$elm_canvas$Canvas$Settings$Line$lineWidth(
-						A2(isCurrentNode, start, model.currentPosition) ? (model.edgeWidth * 2) : model.edgeWidth)
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$joakin$elm_canvas$Canvas$path,
-						_Utils_Tuple2(start.x, start.y),
-						_List_fromArray(
-							[
-								$joakin$elm_canvas$Canvas$lineTo(
-								_Utils_Tuple2(end.x, end.y))
-							]))
-					]));
-		});
-	var displayEdges = F2(
-		function (prevLayer, node) {
-			return A3(
-				$elm$core$List$map2,
-				displayEdge(node),
-				prevLayer,
-				node.weights);
-		});
-	var displayLayerEdges = F2(
-		function (prevLayer, currLayer) {
-			return $author$project$Page$Tutorial$flatten2D(
-				A2(
-					$elm$core$List$map,
-					displayEdges(prevLayer),
-					currLayer));
-		});
-	var clearBackground = _List_fromArray(
-		[
-			A2(
-			$joakin$elm_canvas$Canvas$shapes,
-			_List_fromArray(
-				[
-					$joakin$elm_canvas$Canvas$Settings$fill($avh4$elm_color$Color$white)
-				]),
-			_List_fromArray(
-				[
-					A3(
-					$joakin$elm_canvas$Canvas$rect,
-					_Utils_Tuple2(0, 0),
-					model.width,
-					model.height)
-				]))
-		]);
-	return A3(
-		$joakin$elm_canvas$Canvas$toHtml,
-		_Utils_Tuple2(model.width, model.height),
-		_List_Nil,
-		_Utils_ap(
-			clearBackground,
-			_Utils_ap(
-				displayLayers(displayLayerEdges),
-				displayLayers(displayLayerNodes))));
-};
-var $author$project$Page$Tutorial$viewTutorialDemo = function (model) {
-	var _v0 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Page$Tutorial$contentDemos);
-	if (_v0.$ === 'Nothing') {
-		return $mdgriffith$elm_ui$Element$none;
-	} else {
-		var hasDemo = _v0.a;
-		return hasDemo ? A2(
-			$mdgriffith$elm_ui$Element$column,
-			_List_fromArray(
-				[
-					$mdgriffith$elm_ui$Element$width(
-					$mdgriffith$elm_ui$Element$fillPortion(5)),
-					$mdgriffith$elm_ui$Element$spacing(10),
-					$mdgriffith$elm_ui$Element$inFront(
-					$author$project$Page$Tutorial$calculationDisplay(model))
-				]),
-			$author$project$Page$Tutorial$centerAll(
-				function () {
-					var _v1 = model.serverError;
-					if (_v1.$ === 'Nothing') {
-						return _List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$html(
-								$author$project$Page$Tutorial$neuralNet(model)),
-								$author$project$Page$Tutorial$directionTracker(model),
-								$author$project$Page$Tutorial$controls(model)
-							]);
-					} else {
-						var error = _v1.a;
-						return _List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$text(error)
-							]);
-					}
-				}())) : $mdgriffith$elm_ui$Element$none;
-	}
-};
-var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
-var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
-var $feathericons$elm_feather$FeatherIcons$Icon = function (a) {
-	return {$: 'Icon', a: a};
-};
-var $feathericons$elm_feather$FeatherIcons$defaultAttributes = function (name) {
-	return {
-		_class: $elm$core$Maybe$Just('feather feather-' + name),
-		size: 24,
-		sizeUnit: '',
-		strokeWidth: 2,
-		viewBox: '0 0 24 24'
-	};
-};
-var $feathericons$elm_feather$FeatherIcons$makeBuilder = F2(
-	function (name, src) {
-		return $feathericons$elm_feather$FeatherIcons$Icon(
-			{
-				attrs: $feathericons$elm_feather$FeatherIcons$defaultAttributes(name),
-				src: src
-			});
-	});
-var $elm$svg$Svg$Attributes$points = _VirtualDom_attribute('points');
-var $elm$svg$Svg$polyline = $elm$svg$Svg$trustedNode('polyline');
-var $elm$svg$Svg$Attributes$x1 = _VirtualDom_attribute('x1');
-var $elm$svg$Svg$Attributes$x2 = _VirtualDom_attribute('x2');
-var $elm$svg$Svg$Attributes$y1 = _VirtualDom_attribute('y1');
-var $elm$svg$Svg$Attributes$y2 = _VirtualDom_attribute('y2');
-var $feathericons$elm_feather$FeatherIcons$arrowLeft = A2(
-	$feathericons$elm_feather$FeatherIcons$makeBuilder,
-	'arrow-left',
-	_List_fromArray(
-		[
-			A2(
-			$elm$svg$Svg$line,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x1('19'),
-					$elm$svg$Svg$Attributes$y1('12'),
-					$elm$svg$Svg$Attributes$x2('5'),
-					$elm$svg$Svg$Attributes$y2('12')
-				]),
-			_List_Nil),
-			A2(
-			$elm$svg$Svg$polyline,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$points('12 19 5 12 12 5')
-				]),
-			_List_Nil)
-		]));
-var $feathericons$elm_feather$FeatherIcons$arrowRight = A2(
-	$feathericons$elm_feather$FeatherIcons$makeBuilder,
-	'arrow-right',
-	_List_fromArray(
-		[
-			A2(
-			$elm$svg$Svg$line,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$x1('5'),
-					$elm$svg$Svg$Attributes$y1('12'),
-					$elm$svg$Svg$Attributes$x2('19'),
-					$elm$svg$Svg$Attributes$y2('12')
-				]),
-			_List_Nil),
-			A2(
-			$elm$svg$Svg$polyline,
-			_List_fromArray(
-				[
-					$elm$svg$Svg$Attributes$points('12 5 19 12 12 19')
-				]),
-			_List_Nil)
-		]));
 var $mdgriffith$elm_ui$Element$paddingXY = F2(
 	function (x, y) {
 		return _Utils_eq(x, y) ? A2(
@@ -16594,6 +13521,8 @@ var $mdgriffith$elm_ui$Element$paddingXY = F2(
 				y,
 				x));
 	});
+var $mdgriffith$elm_ui$Internal$Flag$cursor = $mdgriffith$elm_ui$Internal$Flag$flag(21);
+var $mdgriffith$elm_ui$Element$pointer = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$cursor, $mdgriffith$elm_ui$Internal$Style$classes.cursorPointer);
 var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
 var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
 var $elm$svg$Svg$Attributes$height = _VirtualDom_attribute('height');
