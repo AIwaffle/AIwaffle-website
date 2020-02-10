@@ -19,6 +19,9 @@ import List.Extra
 import Random
 import Round
 import FeatherIcons
+import Http
+import Json.Encode as Encode
+import Json.Decode as Decode
 
 port renderContent : (String -> Cmd msg)
 
@@ -48,6 +51,31 @@ type alias Net =
     List Layer
 
 
+type alias Floats1 =
+    List Float
+
+
+type alias Floats2 =
+    List (List Float)
+
+
+type alias Floats3 =
+    List (List (List Float))
+
+type alias LogisticRegressionModel =
+    { x : Floats2
+    , y : Floats2
+    , w : Floats3
+    , a : Floats3
+    , loss : Floats1
+    }
+
+
+emptyNet : Net
+emptyNet =
+    []
+
+
 type alias Weights =
     List (List (List Float))
 
@@ -61,8 +89,10 @@ type alias Losses =
 
 
 type alias Model =
-    { net : Net
+    { netIndex : Int
+    , net : Net
     , nextNet : Net
+    , nets : List Net
     , layers : List Int
     , width : Int
     , height : Int
@@ -73,6 +103,8 @@ type alias Model =
     , currentPosition : Position
     , currentDirection : MoveDirection
     , contentIndex : Int
+    , demoId : String
+    , serverError : Maybe String
     , activationFunction : String
     }
 
@@ -88,6 +120,12 @@ edges =
     , bottom = 0
     , left = 0
     }
+
+
+serverRoot : String
+serverRoot =
+    "http://106.15.39.117:8080/"
+
 
 contentNames : List String
 contentNames =
@@ -121,59 +159,9 @@ init contentName =
 
         layers_ =
             [ 2
-            , 3
-            , 2
+            , 1
             ]
             
-            -- [ 2
-            -- , 1
-            -- ]
-
-            -- [ 10
-            -- , 1
-            -- ]
-
-            -- deep neural net
-            -- [ 2
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 3
-            -- , 2
-            -- ]
-            -- large and deep neural net
-            -- [ 2
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 13
-            -- , 12
-            -- ]
-            -- [ 3
-            -- , 5
-            -- , 3
-            -- ]
-            -- [ 10
-            -- , 20
-            -- , 20
-            -- , 10
-            -- ]
         nodeRadius_ =
             sizeLevels 10 25 40
 
@@ -201,21 +189,18 @@ init contentName =
         initialSeed_ =
             47
 
-        ( nextNet_, losses_ ) =
-            generateRandomNet layers_ height_ width_ initialSeed_ generateAllLayerValues
-
-        net_ =
-            clearActivationsExceptFirst nextNet_
     in
-    ( { net = net_
-      , nextNet = nextNet_
+    ( { netIndex = 0
+      , net = emptyNet
+      , nextNet = emptyNet
+      , nets = []
       , layers = layers_
       , nodeRadius = nodeRadius_
       , edgeWidth = edgeWidth_
       , width = width_
       , height = height_
       , learningRate = 0.5
-      , losses = losses_
+      , losses = []
 
       -- start from the first input node
       , currentPosition = ( 0, 0 )
@@ -223,9 +208,21 @@ init contentName =
       -- start with forward propgation
       , currentDirection = Forward
       , contentIndex = getContentIndex contentName
+      , serverError = Nothing
+      , demoId = ""
       , activationFunction = "σ"
       }
-    , renderContent contentName
+    , Cmd.batch
+        [ renderContent contentName
+        , Http.post
+            { url = serverRoot ++ "auth/login"
+            , body = Http.jsonBody <| Encode.object
+                [ ( "username", Encode.string "admin" )
+                , ( "password", Encode.string "040506" )
+                ]
+            , expect = Http.expectWhatever LoggedIn
+            }
+        ]
     )
 
 
@@ -245,126 +242,8 @@ clearActivations net =
         net
 
 
-generateAllLayerWeights : Int -> Random.Seed -> Int -> List Int -> ( List Float, List (List Float) )
-generateAllLayerWeights nodeCount seed layerIndex layers =
-    let
-        activation =
-            0
-
-        prevLength =
-            case List.head (List.drop (layerIndex - 1) layers) of
-                Nothing ->
-                    0
-
-                Just length ->
-                    length
-
-        ( weights, nextSeed ) =
-            generateRandomNumbers seed -5.0 5.0 prevLength
-    in
-    if nodeCount <= 0 then
-        ( [], [] )
-
-    else
-        let
-            ( nextActivation, nextWeights ) =
-                generateAllLayerWeights (nodeCount - 1) nextSeed layerIndex layers
-        in
-        ( activation :: nextActivation, weights :: nextWeights )
-
-
-generateAllLayerValues : Int -> Random.Seed -> Int -> List Int -> ( List Float, List (List Float) )
-generateAllLayerValues nodeCount seed layerIndex layers =
-    let
-        ( activation, seed1 ) =
-            generateRandomNumber seed 0.1 1
-
-        prevLength =
-            case List.head (List.drop (layerIndex - 1) layers) of
-                Nothing ->
-                    0
-
-                Just length ->
-                    length
-
-        ( weights, nextSeed ) =
-            generateRandomNumbers seed1 -5.0 5.0 prevLength
-    in
-    if nodeCount <= 0 then
-        ( [], [] )
-
-    else
-        let
-            ( nextActivation, nextWeights ) =
-                generateAllLayerValues (nodeCount - 1) nextSeed layerIndex layers
-        in
-        ( activation :: nextActivation, weights :: nextWeights )
-
-
-generateRandomNumbers : Random.Seed -> Float -> Float -> Int -> ( List Float, Random.Seed )
-generateRandomNumbers seed min max times =
-    let
-        ( num, nextSeed ) =
-            generateRandomNumber seed min max
-    in
-    if times <= 0 then
-        ( [], nextSeed )
-
-    else
-        let
-            ( rests, finalSeed ) =
-                generateRandomNumbers nextSeed min max (times - 1)
-        in
-        ( num :: rests, finalSeed )
-
-
-generateRandomNumber : Random.Seed -> Float -> Float -> ( Float, Random.Seed )
-generateRandomNumber seed min max =
-    Random.step (Random.float min max) seed
-
-
-generateRandomNet : List Int -> Int -> Int -> Int -> (Int -> Random.Seed -> Int -> List Int -> ( List Float, List (List Float) )) -> ( Net, List Float )
-generateRandomNet layers height width seed generateLayerValues =
-    let
-        initialSeed =
-            Random.initialSeed seed
-
-        ( netLosses, _ ) =
-            generateRandomNumbers
-                initialSeed
-                0.1
-                1.0
-                (case List.Extra.last layers of
-                    Nothing ->
-                        0
-
-                    Just n ->
-                        n
-                )
-
-        ( netActivations, netWeights ) =
-            List.Extra.indexedFoldr
-                (\layerIndex layerLength values ->
-                    let
-                        ( layerActivations, layerWeights ) =
-                            generateLayerValues layerLength initialSeed layerIndex layers
-
-                        activations =
-                            Tuple.first values
-
-                        weights =
-                            Tuple.second values
-                    in
-                    ( layerActivations :: activations, layerWeights :: weights )
-                )
-                ( [], [] )
-                layers
-    in
-    generateNet layers height width netActivations netWeights netLosses
-
-
-generateNet : List Int -> Int -> Int -> Activations -> Weights -> Losses -> ( Net, List Float )
-generateNet layers height width activations weights losses =
+generateNet : List Int -> Int -> Int -> Activations -> Weights -> Net
+generateNet layers height width activations weights =
     let
         spacingX =
             toFloat width / toFloat (List.length layers)
@@ -412,7 +291,7 @@ generateNet layers height width activations weights losses =
                 )
                 layers
     in
-    ( net, losses )
+    net
 
 
 type Msg
@@ -420,6 +299,9 @@ type Msg
     | MoveOneStep
     | MoveOneLayer
     | GetContentFromName String
+    | LoggedIn (Result Http.Error ())
+    | GetDemoId (Result Http.Error String)
+    | GetNextEpoch (Result Http.Error LogisticRegressionModel)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -431,7 +313,7 @@ update msg model =
         MoveOneStep ->
             case model.currentDirection of
                 Forward ->
-                    ( forwardOneStep model, Cmd.none )
+                    forwardOneStep model
 
                 Backward ->
                     ( backwardOneStep model, Cmd.none )
@@ -439,7 +321,7 @@ update msg model =
         MoveOneLayer ->
             case model.currentDirection of
                 Forward ->
-                    ( forwardOneLayer model, Cmd.none )
+                    forwardOneLayer model
 
                 Backward ->
                     ( backwardOneLayer model, Cmd.none )
@@ -454,6 +336,98 @@ update msg model =
             }
             , renderContent name
             )
+        
+        LoggedIn result ->
+            ( case result of
+                Err reason ->
+                    { model |
+                        serverError =
+                            Just "Can't log in to server."
+                    }
+                Ok _ ->
+                    model
+            , case nth model.contentIndex contentDemos of
+                Nothing ->
+                    Cmd.none
+                Just hasDemo ->
+                    if hasDemo then
+                        initDemo
+                    else
+                        Cmd.none
+            )
+        
+        GetDemoId result ->
+            case result of
+                Ok id ->
+                    ({ model |
+                        demoId =
+                            id
+                    }
+                    , getEpoch id
+                    )
+                Err _ ->
+                    ({ model |
+                        serverError =
+                            Just "Can't get demo from server."
+                    }
+                    , Cmd.none
+                    )
+
+        GetNextEpoch result ->
+            (case result of
+                Ok logisticRegressionModel ->
+                    { model |
+                        nets =
+                            netsFromLogisticRegressionModel model logisticRegressionModel
+                    }
+                Err _ ->
+                    { model |
+                        serverError =
+                            Just "Can't get next epoch from server."
+                    }
+            , Cmd.none
+            )
+
+
+netsFromLogisticRegressionModel : Model -> LogisticRegressionModel -> List Net
+netsFromLogisticRegressionModel demoModel logisticModel =
+    let
+        epochNumber =
+            List.length logisticModel.loss
+        layers =
+            [List.length logisticModel.x, List.length logisticModel.y]
+        allActivations =
+            Maybe.withDefault [] <| nth 0 (Maybe.withDefault [] <| nth 0 logisticModel.a)
+        allWeights =
+            Maybe.withDefault [] <| nth 0 (Maybe.withDefault [] <| nth 0 logisticModel.w)
+        allLoss =
+            logisticModel.loss
+    in
+    List.map
+        (\index ->
+            let
+                x1 =
+                    Maybe.withDefault [] <| nth 0 logisticModel.x
+                x2 =
+                    Maybe.withDefault [] <| nth 1 logisticModel.x
+                activations =
+                    [ [ Maybe.withDefault 0 <| nth index x1
+                        , Maybe.withDefault 0 <| nth index x2
+                        ]
+                    , [ Maybe.withDefault 0 <| nth index allActivations ]
+                    ]
+                weights =
+                    [[[ Maybe.withDefault 0 <| nth index allWeights ]]]
+                loss =
+                    case nth index allLoss of
+                        Nothing ->
+                            []
+                        Just singleLoss ->
+                            [ singleLoss ]
+            in
+            generateNet layers demoModel.height demoModel.width activations weights
+        )
+        (List.range 0 epochNumber)
 
 
 getContentName : Int -> String
@@ -473,7 +447,7 @@ getContentIndex name =
     Maybe.withDefault 0 <| List.Extra.elemIndex name contentNames
 
 
-forwardOneLayer : Model -> Model
+forwardOneLayer : Model -> (Model, Cmd Msg)
 forwardOneLayer model =
     let
         currentLayerIndex =
@@ -489,15 +463,17 @@ forwardOneLayer model =
             Maybe.withDefault 0 (nth currentLayerIndex model.layers)
     in
     if currentIndex < currentLayerLength - 1 then
-        repeat (currentLayerLength - currentIndex - 1) forwardOneStep model
+        forwardOneStep model
 
     else if currentIndex == currentLayerLength - 1 then
         if currentLayerIndex == numberOfLayers - 1 then
             forwardOneStep model
-        else
-            forwardOneLayer (forwardOneStep model)
+        else -- todo
+            forwardOneLayer (Tuple.first <| forwardOneStep model)
     else
-        model
+        ( model
+        , Cmd.none
+        )
 
 
 backwardOneLayer : Model -> Model
@@ -523,7 +499,7 @@ backwardOneLayer model =
         model
 
 
-forwardOneStep : Model -> Model
+forwardOneStep : Model -> (Model, Cmd Msg)
 forwardOneStep model =
     let
         layerLength =
@@ -551,23 +527,44 @@ forwardOneStep model =
     in
     if currentIndex >= layerLength - 1 then
         if currentLayerIndex >= numberOfLayers - 1 then
-            { model
+            let
+                beforeEndOfEpoch =
+                    model.netIndex < List.length model.nets
+            in
+            ({ model
                 | currentPosition = ( numberOfLayers - 1, layerLength - 1 )
                 , currentDirection = Backward
-                , nextNet = Tuple.first (generateRandomNet model.layers model.height model.width 128 generateAllLayerValues)
+                , nextNet =
+                    if beforeEndOfEpoch then
+                        Maybe.withDefault emptyNet <| nth (model.netIndex + 1) model.nets
+                    else
+                        emptyNet
+                , netIndex =
+                    if beforeEndOfEpoch then
+                        model.netIndex + 1
+                    else
+                        model.netIndex
             }
+            , if beforeEndOfEpoch then
+                Cmd.none
+            else
+                getEpoch model.demoId
+            )
 
         else
-            { model
+            ({ model
                 | currentPosition = ( currentLayerIndex + 1, 0 )
                 , net = nextNet
             }
-
+            , Cmd.none
+            )
     else
-        { model
+        ({ model
             | currentPosition = ( currentLayerIndex, currentIndex + 1 )
             , net = nextNet
         }
+        , Cmd.none
+        )
 
 
 backwardOneStep : Model -> Model
@@ -604,6 +601,37 @@ backwardOneStep model =
             | currentPosition = ( currentLayerIndex, currentIndex - 1 )
             , net = nextNet
         }
+
+
+initDemo =
+    Http.post
+        { url = serverRoot ++ "api/model/new"
+        , body = Http.emptyBody
+        , expect = Http.expectString GetDemoId
+        }
+
+
+getEpoch : String -> Cmd Msg
+getEpoch demoId =
+    Http.post
+        { url = serverRoot ++ "api/model/iter"
+        , body = Http.jsonBody <| Encode.object
+            [ ("session_id", Encode.string demoId)
+            , ("epoch_num", Encode.int 1)
+            , ("learning_rate", Encode.float 0.01)
+            ]
+        , expect = Http.expectJson GetNextEpoch epochDecoder
+        }
+
+
+epochDecoder : Decode.Decoder LogisticRegressionModel
+epochDecoder =
+    Decode.map5 LogisticRegressionModel
+        (Decode.field "X" <| Decode.list (Decode.list Decode.float))
+        (Decode.field "Y" <| Decode.list (Decode.list Decode.float))
+        (Decode.field "W" <| Decode.list (Decode.list (Decode.list Decode.float)))
+        (Decode.field "A" <| Decode.list (Decode.list (Decode.list Decode.float)))
+        (Decode.field "loss" <| Decode.list Decode.float)
 
 
 emptyNode : Node
@@ -1116,11 +1144,16 @@ viewTutorialDemo model =
                 , E.spacing 10
                 , E.inFront (calculationDisplay model)
                 ]
-                (centerAll
-                    [ E.html (neuralNet model)
-                    , directionTracker model
-                    , controls model
-                    ]
+                (centerAll <|
+                    case model.serverError of
+                        Nothing ->
+                            [ E.html (neuralNet model)
+                            , directionTracker model
+                            , controls model
+                            ]
+                        Just error ->
+                            [ E.text error
+                            ]
                 )
             else
                 E.none
