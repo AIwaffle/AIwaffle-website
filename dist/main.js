@@ -6457,11 +6457,11 @@ var $gicentre$elm_vegalite$VegaLite$toVegaLite = function (spec) {
 };
 var $author$project$Demo$LogisticRegression$emptySpec = function () {
 	var encoding = $gicentre$elm_vegalite$VegaLite$encoding;
-	var cars = A2($gicentre$elm_vegalite$VegaLite$dataFromRows, _List_Nil, _List_Nil);
+	var data = A2($gicentre$elm_vegalite$VegaLite$dataFromRows, _List_Nil, _List_Nil);
 	return $gicentre$elm_vegalite$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				cars,
+				data,
 				encoding(_List_Nil),
 				$gicentre$elm_vegalite$VegaLite$circle(_List_Nil)
 			]));
@@ -7688,92 +7688,23 @@ var $elm$core$Debug$log = _Debug_log;
 var $gicentre$elm_vegalite$VegaLite$combineSpecs = function (specs) {
 	return $elm$json$Json$Encode$object(specs);
 };
+var $gicentre$elm_vegalite$VegaLite$VLHeight = {$: 'VLHeight'};
+var $gicentre$elm_vegalite$VegaLite$heightOfContainer = _Utils_Tuple2(
+	$gicentre$elm_vegalite$VegaLite$VLHeight,
+	$elm$json$Json$Encode$string('container'));
+var $gicentre$elm_vegalite$VegaLite$VLLayer = {$: 'VLLayer'};
+var $gicentre$elm_vegalite$VegaLite$layer = function (specs) {
+	return _Utils_Tuple2(
+		$gicentre$elm_vegalite$VegaLite$VLLayer,
+		$gicentre$elm_vegalite$VegaLite$toList(specs));
+};
 var $gicentre$elm_vegalite$VegaLite$X = {$: 'X'};
 var $gicentre$elm_vegalite$VegaLite$Y = {$: 'Y'};
-var $gicentre$elm_vegalite$VegaLite$arrangementLabel = function (arrng) {
-	switch (arrng.$) {
-		case 'Row':
-			return 'row';
-		case 'Column':
-			return 'column';
-		default:
-			return 'repeat';
-	}
-};
-var $elm$json$Json$Encode$int = _Json_wrap;
-var $gicentre$elm_vegalite$VegaLite$binProperty = function (binProp) {
-	switch (binProp.$) {
-		case 'MaxBins':
-			var n = binProp.a;
-			return _Utils_Tuple2(
-				'maxbins',
-				$elm$json$Json$Encode$int(n));
-		case 'BiAnchor':
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'anchor',
-				$elm$json$Json$Encode$float(x));
-		case 'Base':
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'base',
-				$elm$json$Json$Encode$float(x));
-		case 'Step':
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'step',
-				$elm$json$Json$Encode$float(x));
-		case 'Steps':
-			var xs = binProp.a;
-			return _Utils_Tuple2(
-				'steps',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		case 'MinStep':
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'minstep',
-				$elm$json$Json$Encode$float(x));
-		case 'Divides':
-			var xs = binProp.a;
-			return _Utils_Tuple2(
-				'divide',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		case 'Extent':
-			var mn = binProp.a;
-			var mx = binProp.b;
-			return _Utils_Tuple2(
-				'extent',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[mn, mx])));
-		case 'SelectionExtent':
-			var s = binProp.a;
-			return _Utils_Tuple2(
-				'extent',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'selection',
-							$elm$json$Json$Encode$string(s))
-						])));
-		default:
-			var b = binProp.a;
-			return _Utils_Tuple2(
-				'nice',
-				$elm$json$Json$Encode$bool(b));
-	}
-};
-var $gicentre$elm_vegalite$VegaLite$bin = function (bProps) {
-	return _Utils_eq(bProps, _List_Nil) ? _Utils_Tuple2(
-		'bin',
-		$elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
-		'bin',
-		$elm$json$Json$Encode$object(
-			A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$binProperty, bProps)));
-};
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
 var $gicentre$elm_vegalite$VegaLite$dayLabel = function (dayName) {
 	switch (dayName.$) {
 		case 'Mon':
@@ -7792,6 +7723,7 @@ var $gicentre$elm_vegalite$VegaLite$dayLabel = function (dayName) {
 			return 'Sun';
 	}
 };
+var $elm$json$Json$Encode$int = _Json_wrap;
 var $gicentre$elm_vegalite$VegaLite$monthNameLabel = function (mon) {
 	switch (mon.$) {
 		case 'Jan':
@@ -7875,6 +7807,323 @@ var $gicentre$elm_vegalite$VegaLite$dateTimeProperty = function (dtp) {
 				'milliseconds',
 				$elm$json$Json$Encode$int(ms));
 	}
+};
+var $gicentre$elm_vegalite$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 'Numbers':
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 'Strings':
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 'DateTimes':
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var $gicentre$elm_vegalite$VegaLite$transpose = function (xss) {
+	var numCols = A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$head,
+		A2(
+			$elm$core$Basics$composeR,
+			$elm$core$Maybe$withDefault(_List_Nil),
+			$elm$core$List$length));
+	return A3(
+		$elm$core$List$foldr,
+		$elm$core$List$map2($elm$core$List$cons),
+		A2(
+			$elm$core$List$repeat,
+			numCols(xss),
+			_List_Nil),
+		xss);
+};
+var $gicentre$elm_vegalite$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			$elm$json$Json$Encode$list,
+			$elm$json$Json$Encode$object,
+			$gicentre$elm_vegalite$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			$gicentre$elm_vegalite$VegaLite$VLData,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			$gicentre$elm_vegalite$VegaLite$VLData,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$getAt = F2(
+	function (idx, xs) {
+		return (idx < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
+			A2($elm$core$List$drop, idx, xs));
+	});
+var $gicentre$elm_vegalite$VegaLite$Line = {$: 'Line'};
+var $gicentre$elm_vegalite$VegaLite$line = $gicentre$elm_vegalite$VegaLite$mark($gicentre$elm_vegalite$VegaLite$Line);
+var $gicentre$elm_vegalite$VegaLite$MColor = function (a) {
+	return {$: 'MColor', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$maColor = $gicentre$elm_vegalite$VegaLite$MColor;
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $gicentre$elm_vegalite$VegaLite$Numbers = function (a) {
+	return {$: 'Numbers', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$nums = $gicentre$elm_vegalite$VegaLite$Numbers;
+var $gicentre$elm_vegalite$VegaLite$PName = function (a) {
+	return {$: 'PName', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$pName = $gicentre$elm_vegalite$VegaLite$PName;
+var $gicentre$elm_vegalite$VegaLite$PmType = function (a) {
+	return {$: 'PmType', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$Quantitative = {$: 'Quantitative'};
+var $gicentre$elm_vegalite$VegaLite$pQuant = $gicentre$elm_vegalite$VegaLite$PmType($gicentre$elm_vegalite$VegaLite$Quantitative);
+var $gicentre$elm_vegalite$VegaLite$Latitude = {$: 'Latitude'};
+var $gicentre$elm_vegalite$VegaLite$Latitude2 = {$: 'Latitude2'};
+var $gicentre$elm_vegalite$VegaLite$Longitude = {$: 'Longitude'};
+var $gicentre$elm_vegalite$VegaLite$Longitude2 = {$: 'Longitude2'};
+var $gicentre$elm_vegalite$VegaLite$X2 = {$: 'X2'};
+var $gicentre$elm_vegalite$VegaLite$XError = {$: 'XError'};
+var $gicentre$elm_vegalite$VegaLite$XError2 = {$: 'XError2'};
+var $gicentre$elm_vegalite$VegaLite$Y2 = {$: 'Y2'};
+var $gicentre$elm_vegalite$VegaLite$YError = {$: 'YError'};
+var $gicentre$elm_vegalite$VegaLite$YError2 = {$: 'YError2'};
+var $gicentre$elm_vegalite$VegaLite$arrangementLabel = function (arrng) {
+	switch (arrng.$) {
+		case 'Row':
+			return 'row';
+		case 'Column':
+			return 'column';
+		default:
+			return 'repeat';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$AxGridColor = function (a) {
+	return {$: 'AxGridColor', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxGridDash = function (a) {
+	return {$: 'AxGridDash', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxGridOpacity = function (a) {
+	return {$: 'AxGridOpacity', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxGridWidth = function (a) {
+	return {$: 'AxGridWidth', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelAlign = function (a) {
+	return {$: 'AxLabelAlign', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelBaseline = function (a) {
+	return {$: 'AxLabelBaseline', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelColor = function (a) {
+	return {$: 'AxLabelColor', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelFont = function (a) {
+	return {$: 'AxLabelFont', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelFontSize = function (a) {
+	return {$: 'AxLabelFontSize', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelFontStyle = function (a) {
+	return {$: 'AxLabelFontStyle', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelFontWeight = function (a) {
+	return {$: 'AxLabelFontWeight', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelOpacity = function (a) {
+	return {$: 'AxLabelOpacity', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxTickColor = function (a) {
+	return {$: 'AxTickColor', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxTickOpacity = function (a) {
+	return {$: 'AxTickOpacity', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxTickWidth = function (a) {
+	return {$: 'AxTickWidth', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$anchorLabel = function (an) {
+	switch (an.$) {
+		case 'AnStart':
+			return 'start';
+		case 'AnMiddle':
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$binProperty = function (binProp) {
+	switch (binProp.$) {
+		case 'MaxBins':
+			var n = binProp.a;
+			return _Utils_Tuple2(
+				'maxbins',
+				$elm$json$Json$Encode$int(n));
+		case 'BiAnchor':
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'anchor',
+				$elm$json$Json$Encode$float(x));
+		case 'Base':
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'base',
+				$elm$json$Json$Encode$float(x));
+		case 'Step':
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'step',
+				$elm$json$Json$Encode$float(x));
+		case 'Steps':
+			var xs = binProp.a;
+			return _Utils_Tuple2(
+				'steps',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+		case 'MinStep':
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'minstep',
+				$elm$json$Json$Encode$float(x));
+		case 'Divides':
+			var xs = binProp.a;
+			return _Utils_Tuple2(
+				'divide',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+		case 'Extent':
+			var mn = binProp.a;
+			var mx = binProp.b;
+			return _Utils_Tuple2(
+				'extent',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$float,
+					_List_fromArray(
+						[mn, mx])));
+		case 'SelectionExtent':
+			var s = binProp.a;
+			return _Utils_Tuple2(
+				'extent',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'selection',
+							$elm$json$Json$Encode$string(s))
+						])));
+		default:
+			var b = binProp.a;
+			return _Utils_Tuple2(
+				'nice',
+				$elm$json$Json$Encode$bool(b));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$bin = function (bProps) {
+	return _Utils_eq(bProps, _List_Nil) ? _Utils_Tuple2(
+		'bin',
+		$elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
+		'bin',
+		$elm$json$Json$Encode$object(
+			A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$binProperty, bProps)));
 };
 var $gicentre$elm_vegalite$VegaLite$dataValuesSpecs = function (dvs) {
 	switch (dvs.$) {
@@ -9305,252 +9554,6 @@ var $gicentre$elm_vegalite$VegaLite$trFilterSpec = F2(
 						$gicentre$elm_vegalite$VegaLite$filterProperty(f)));
 		}
 	});
-var $gicentre$elm_vegalite$VegaLite$color = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'color',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$markChannelProperty, markProps))));
-};
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var $gicentre$elm_vegalite$VegaLite$dataColumn = F2(
-	function (colName, data) {
-		switch (data.$) {
-			case 'Numbers':
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (x) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$float(x));
-						},
-						col));
-			case 'Strings':
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (s) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$string(s));
-						},
-						col));
-			case 'DateTimes':
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (ds) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, ds)));
-						},
-						col));
-			default:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (b) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$bool(b));
-						},
-						col));
-		}
-	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$List$repeatHelp = F3(
-	function (result, n, value) {
-		repeatHelp:
-		while (true) {
-			if (n <= 0) {
-				return result;
-			} else {
-				var $temp$result = A2($elm$core$List$cons, value, result),
-					$temp$n = n - 1,
-					$temp$value = value;
-				result = $temp$result;
-				n = $temp$n;
-				value = $temp$value;
-				continue repeatHelp;
-			}
-		}
-	});
-var $elm$core$List$repeat = F2(
-	function (n, value) {
-		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
-	});
-var $gicentre$elm_vegalite$VegaLite$transpose = function (xss) {
-	var numCols = A2(
-		$elm$core$Basics$composeR,
-		$elm$core$List$head,
-		A2(
-			$elm$core$Basics$composeR,
-			$elm$core$Maybe$withDefault(_List_Nil),
-			$elm$core$List$length));
-	return A3(
-		$elm$core$List$foldr,
-		$elm$core$List$map2($elm$core$List$cons),
-		A2(
-			$elm$core$List$repeat,
-			numCols(xss),
-			_List_Nil),
-		xss);
-};
-var $gicentre$elm_vegalite$VegaLite$dataFromColumns = F2(
-	function (fmts, cols) {
-		var dataArray = A2(
-			$elm$json$Json$Encode$list,
-			$elm$json$Json$Encode$object,
-			$gicentre$elm_vegalite$VegaLite$transpose(cols));
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			$gicentre$elm_vegalite$VegaLite$VLData,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('values', dataArray)
-					]))) : _Utils_Tuple2(
-			$gicentre$elm_vegalite$VegaLite$VLData,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('values', dataArray),
-						_Utils_Tuple2(
-						'format',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$formatProperty, fmts)))
-					])));
-	});
-var $elm$core$List$drop = F2(
-	function (n, list) {
-		drop:
-		while (true) {
-			if (n <= 0) {
-				return list;
-			} else {
-				if (!list.b) {
-					return list;
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					var $temp$n = n - 1,
-						$temp$list = xs;
-					n = $temp$n;
-					list = $temp$list;
-					continue drop;
-				}
-			}
-		}
-	});
-var $elm_community$list_extra$List$Extra$getAt = F2(
-	function (idx, xs) {
-		return (idx < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
-			A2($elm$core$List$drop, idx, xs));
-	});
-var $gicentre$elm_vegalite$VegaLite$MName = function (a) {
-	return {$: 'MName', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$mName = $gicentre$elm_vegalite$VegaLite$MName;
-var $gicentre$elm_vegalite$VegaLite$MmType = function (a) {
-	return {$: 'MmType', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$Nominal = {$: 'Nominal'};
-var $gicentre$elm_vegalite$VegaLite$mNominal = $gicentre$elm_vegalite$VegaLite$MmType($gicentre$elm_vegalite$VegaLite$Nominal);
-var $gicentre$elm_vegalite$VegaLite$Numbers = function (a) {
-	return {$: 'Numbers', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$nums = $gicentre$elm_vegalite$VegaLite$Numbers;
-var $gicentre$elm_vegalite$VegaLite$PName = function (a) {
-	return {$: 'PName', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$pName = $gicentre$elm_vegalite$VegaLite$PName;
-var $gicentre$elm_vegalite$VegaLite$PmType = function (a) {
-	return {$: 'PmType', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$Quantitative = {$: 'Quantitative'};
-var $gicentre$elm_vegalite$VegaLite$pQuant = $gicentre$elm_vegalite$VegaLite$PmType($gicentre$elm_vegalite$VegaLite$Quantitative);
-var $gicentre$elm_vegalite$VegaLite$Latitude = {$: 'Latitude'};
-var $gicentre$elm_vegalite$VegaLite$Latitude2 = {$: 'Latitude2'};
-var $gicentre$elm_vegalite$VegaLite$Longitude = {$: 'Longitude'};
-var $gicentre$elm_vegalite$VegaLite$Longitude2 = {$: 'Longitude2'};
-var $gicentre$elm_vegalite$VegaLite$X2 = {$: 'X2'};
-var $gicentre$elm_vegalite$VegaLite$XError = {$: 'XError'};
-var $gicentre$elm_vegalite$VegaLite$XError2 = {$: 'XError2'};
-var $gicentre$elm_vegalite$VegaLite$Y2 = {$: 'Y2'};
-var $gicentre$elm_vegalite$VegaLite$YError = {$: 'YError'};
-var $gicentre$elm_vegalite$VegaLite$YError2 = {$: 'YError2'};
-var $gicentre$elm_vegalite$VegaLite$AxGridColor = function (a) {
-	return {$: 'AxGridColor', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxGridDash = function (a) {
-	return {$: 'AxGridDash', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxGridOpacity = function (a) {
-	return {$: 'AxGridOpacity', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxGridWidth = function (a) {
-	return {$: 'AxGridWidth', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxLabelAlign = function (a) {
-	return {$: 'AxLabelAlign', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxLabelBaseline = function (a) {
-	return {$: 'AxLabelBaseline', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxLabelColor = function (a) {
-	return {$: 'AxLabelColor', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxLabelFont = function (a) {
-	return {$: 'AxLabelFont', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxLabelFontSize = function (a) {
-	return {$: 'AxLabelFontSize', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxLabelFontStyle = function (a) {
-	return {$: 'AxLabelFontStyle', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxLabelFontWeight = function (a) {
-	return {$: 'AxLabelFontWeight', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxLabelOpacity = function (a) {
-	return {$: 'AxLabelOpacity', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxTickColor = function (a) {
-	return {$: 'AxTickColor', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxTickOpacity = function (a) {
-	return {$: 'AxTickOpacity', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$AxTickWidth = function (a) {
-	return {$: 'AxTickWidth', a: a};
-};
-var $gicentre$elm_vegalite$VegaLite$anchorLabel = function (an) {
-	switch (an.$) {
-		case 'AnStart':
-			return 'start';
-		case 'AnMiddle':
-			return 'middle';
-		default:
-			return 'end';
-	}
-};
 var $elm$core$Tuple$second = function (_v0) {
 	var y = _v0.b;
 	return y;
@@ -10424,6 +10427,107 @@ var $gicentre$elm_vegalite$VegaLite$position = F2(
 							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
 		}
 	});
+var $author$project$Demo$LogisticRegression$lineSpec = function (model) {
+	var x2 = 1;
+	var x1 = 0;
+	var w = A2(
+		$elm$core$Maybe$withDefault,
+		_List_Nil,
+		A2(
+			$elm_community$list_extra$List$Extra$getAt,
+			0,
+			A2(
+				$elm$core$Maybe$withDefault,
+				_List_Nil,
+				A2($elm_community$list_extra$List$Extra$getAt, 0, model.demoModel.w))));
+	var w1 = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$getAt, 0, w));
+	var w2 = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$getAt, 1, w));
+	var encoding = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$gicentre$elm_vegalite$VegaLite$encoding,
+			A2(
+				$gicentre$elm_vegalite$VegaLite$position,
+				$gicentre$elm_vegalite$VegaLite$X,
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$pName('x'),
+						$gicentre$elm_vegalite$VegaLite$pQuant
+					]))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$position,
+			$gicentre$elm_vegalite$VegaLite$Y,
+			_List_fromArray(
+				[
+					$gicentre$elm_vegalite$VegaLite$pName('y'),
+					$gicentre$elm_vegalite$VegaLite$pQuant
+				])));
+	var b = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$getAt, 2, w));
+	var y1 = (-b) / w2;
+	var y2 = ((-b) - (x2 * w1)) / w2;
+	var points = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$gicentre$elm_vegalite$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$gicentre$elm_vegalite$VegaLite$dataColumn,
+				'x',
+				$gicentre$elm_vegalite$VegaLite$nums(
+					_List_fromArray(
+						[x1, x2])))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$dataColumn,
+			'y',
+			$gicentre$elm_vegalite$VegaLite$nums(
+				_List_fromArray(
+					[y1, y2]))));
+	var _v0 = A2($elm$core$Debug$log, 'w1', w1);
+	var _v1 = A2($elm$core$Debug$log, 'w2', w2);
+	var _v2 = A2($elm$core$Debug$log, 'b', b);
+	return $gicentre$elm_vegalite$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				points(_List_Nil),
+				$gicentre$elm_vegalite$VegaLite$line(
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$maColor('#734FD8')
+					])),
+				encoding(_List_Nil)
+			]));
+};
+var $gicentre$elm_vegalite$VegaLite$color = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'color',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$markChannelProperty, markProps))));
+};
+var $gicentre$elm_vegalite$VegaLite$MName = function (a) {
+	return {$: 'MName', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$mName = $gicentre$elm_vegalite$VegaLite$MName;
+var $gicentre$elm_vegalite$VegaLite$MmType = function (a) {
+	return {$: 'MmType', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$Nominal = {$: 'Nominal'};
+var $gicentre$elm_vegalite$VegaLite$mNominal = $gicentre$elm_vegalite$VegaLite$MmType($gicentre$elm_vegalite$VegaLite$Nominal);
+var $elm$core$Basics$round = _Basics_round;
+var $gicentre$elm_vegalite$VegaLite$Strings = function (a) {
+	return {$: 'Strings', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$strs = $gicentre$elm_vegalite$VegaLite$Strings;
 var $author$project$Demo$LogisticRegression$scatterPlotSpec = function (model) {
 	var points = A2(
 		$elm$core$Basics$composeL,
@@ -10451,11 +10555,24 @@ var $author$project$Demo$LogisticRegression$scatterPlotSpec = function (model) {
 		A2(
 			$gicentre$elm_vegalite$VegaLite$dataColumn,
 			'group',
-			$gicentre$elm_vegalite$VegaLite$nums(
+			$gicentre$elm_vegalite$VegaLite$strs(
 				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 0, model.demoModel.y)))));
+					$elm$core$List$map,
+					function (num) {
+						var _v0 = $elm$core$Basics$round(num);
+						switch (_v0) {
+							case 0:
+								return 'Group 1';
+							case 1:
+								return 'Group 2';
+							default:
+								return 'Group';
+						}
+					},
+					A2(
+						$elm$core$Maybe$withDefault,
+						_List_Nil,
+						A2($elm_community$list_extra$List$Extra$getAt, 0, model.demoModel.y))))));
 	var encoding = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10493,13 +10610,34 @@ var $author$project$Demo$LogisticRegression$scatterPlotSpec = function (model) {
 				$gicentre$elm_vegalite$VegaLite$circle(_List_Nil)
 			]));
 };
+var $gicentre$elm_vegalite$VegaLite$VLWidth = {$: 'VLWidth'};
+var $gicentre$elm_vegalite$VegaLite$widthOfContainer = _Utils_Tuple2(
+	$gicentre$elm_vegalite$VegaLite$VLWidth,
+	$elm$json$Json$Encode$string('container'));
 var $author$project$Demo$LogisticRegression$demoSpecs = function (model) {
 	return $gicentre$elm_vegalite$VegaLite$combineSpecs(
 		_List_fromArray(
 			[
 				_Utils_Tuple2(
 				'logisticRegressionDemoScatterPlot',
-				$author$project$Demo$LogisticRegression$scatterPlotSpec(model))
+				function () {
+					var encoding = $gicentre$elm_vegalite$VegaLite$encoding;
+					var data = A2($gicentre$elm_vegalite$VegaLite$dataFromRows, _List_Nil, _List_Nil);
+					return $gicentre$elm_vegalite$VegaLite$toVegaLite(
+						_List_fromArray(
+							[
+								$gicentre$elm_vegalite$VegaLite$widthOfContainer,
+								$gicentre$elm_vegalite$VegaLite$heightOfContainer,
+								data,
+								encoding(_List_Nil),
+								$gicentre$elm_vegalite$VegaLite$layer(
+								_List_fromArray(
+									[
+										$author$project$Demo$LogisticRegression$lineSpec(model),
+										$author$project$Demo$LogisticRegression$scatterPlotSpec(model)
+									]))
+							]));
+				}())
 			]));
 };
 var $author$project$Demo$LogisticRegression$GetNextEpoch = function (a) {
@@ -10781,7 +10919,6 @@ var $mdgriffith$elm_ui$Internal$Flag$flag = function (i) {
 	return (i > 31) ? $mdgriffith$elm_ui$Internal$Flag$Second(1 << (i - 32)) : $mdgriffith$elm_ui$Internal$Flag$Flag(1 << i);
 };
 var $mdgriffith$elm_ui$Internal$Flag$bgColor = $mdgriffith$elm_ui$Internal$Flag$flag(8);
-var $elm$core$Basics$round = _Basics_round;
 var $mdgriffith$elm_ui$Internal$Model$floatClass = function (x) {
 	return $elm$core$String$fromInt(
 		$elm$core$Basics$round(x * 255));
@@ -13348,9 +13485,6 @@ var $elm$core$Basics$min = F2(
 	function (x, y) {
 		return (_Utils_cmp(x, y) < 0) ? x : y;
 	});
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
 var $mdgriffith$elm_ui$Internal$Model$renderProps = F3(
 	function (force, _v0, existing) {
 		var key = _v0.a;
@@ -17097,7 +17231,11 @@ var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id'
 var $author$project$Demo$LogisticRegression$view = function (model) {
 	return A2(
 		$mdgriffith$elm_ui$Element$column,
-		_List_Nil,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+				$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
+			]),
 		_List_fromArray(
 			[
 				A2(
@@ -17105,7 +17243,15 @@ var $author$project$Demo$LogisticRegression$view = function (model) {
 				_List_fromArray(
 					[
 						$mdgriffith$elm_ui$Element$htmlAttribute(
-						$elm$html$Html$Attributes$id('logisticRegressionDemoScatterPlot'))
+						$elm$html$Html$Attributes$id('logisticRegressionDemoScatterPlot')),
+						$mdgriffith$elm_ui$Element$width(
+						$mdgriffith$elm_ui$Element$px(550)),
+						$mdgriffith$elm_ui$Element$height(
+						$mdgriffith$elm_ui$Element$px(500)),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'max-width', '100vw')),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'max-height', '100vw'))
 					]),
 				$mdgriffith$elm_ui$Element$none)
 			]));

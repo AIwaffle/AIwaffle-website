@@ -183,9 +183,15 @@ epochDecoder =
 view : Model -> E.Element Msg
 view model =
   E.column
-    []
+    [ E.width E.fill
+    , E.height E.fill
+    ]
     [ E.el
       [ E.htmlAttribute <| Html.Attributes.id "logisticRegressionDemoScatterPlot"
+      , E.width <| E.px 550
+      , E.height <| E.px 500
+      , E.htmlAttribute <| Html.Attributes.style "max-width" "100vw"
+      , E.htmlAttribute <| Html.Attributes.style "max-height" "100vw"
       ]
       (E.none)
     ]
@@ -193,19 +199,50 @@ view model =
 
 demoSpecs : Model -> Vega.Spec
 demoSpecs model =
-    Vega.combineSpecs
-      [ ( "logisticRegressionDemoScatterPlot", scatterPlotSpec model )
-      ]
+  Vega.combineSpecs
+    [ ( "logisticRegressionDemoScatterPlot",
+      let
+        data =
+          Vega.dataFromRows [] []
+
+        encoding =
+          Vega.encoding
+      in
+      Vega.toVegaLite
+        [ Vega.widthOfContainer
+        , Vega.heightOfContainer
+        , data
+        , encoding []
+        , Vega.layer
+          [ lineSpec model
+          , scatterPlotSpec model
+          ]
+        ]
+    )
+    ]
 
 
 scatterPlotSpec : Model -> Vega.Spec
 scatterPlotSpec model =
   let
     points =
-        Vega.dataFromColumns []
-            << Vega.dataColumn "x" (Vega.nums <| Maybe.withDefault [] <| List.Extra.getAt 0 model.demoModel.x)
-            << Vega.dataColumn "y" (Vega.nums <| Maybe.withDefault [] <| List.Extra.getAt 1 model.demoModel.x)
-            << Vega.dataColumn "group" (Vega.nums <| Maybe.withDefault [] <| List.Extra.getAt 0 model.demoModel.y)
+      Vega.dataFromColumns []
+        << Vega.dataColumn "x" (Vega.nums <| Maybe.withDefault [] <| List.Extra.getAt 0 model.demoModel.x)
+        << Vega.dataColumn "y" (Vega.nums <| Maybe.withDefault [] <| List.Extra.getAt 1 model.demoModel.x)
+        << Vega.dataColumn "group" (Vega.strs <|
+          (List.map
+            (\num ->
+              case round num of
+                0 ->
+                  "Group 1"
+                1 ->
+                  "Group 2"
+                _ ->
+                  "Group"
+            )
+            (Maybe.withDefault [] <| List.Extra.getAt 0 model.demoModel.y)
+          )
+        )
 
     encoding =
       Vega.encoding
@@ -213,15 +250,64 @@ scatterPlotSpec model =
         << Vega.position Vega.Y [ Vega.pName "y", Vega.pQuant ]
         << Vega.color [ Vega.mName "group", Vega.mNominal ]
   in
-  Vega.toVegaLite [ points [], encoding [], Vega.circle [] ]
+  Vega.toVegaLite
+    [ points []
+    , encoding []
+    , Vega.circle []
+    ]
+
+lineSpec : Model -> Vega.Spec
+lineSpec model =
+  let
+    w =
+      Maybe.withDefault [] <| List.Extra.getAt 0 <|
+        Maybe.withDefault [] <| List.Extra.getAt 0 <|
+          model.demoModel.w
+    w1 =
+      Maybe.withDefault 0 <| List.Extra.getAt 0 <| w
+    _ =
+      Debug.log "w1" w1
+    w2 =
+      Maybe.withDefault 0 <| List.Extra.getAt 1 <| w
+    _ =
+      Debug.log "w2" w2
+    b =
+      Maybe.withDefault 0 <| List.Extra.getAt 2 <| w
+    _ =
+      Debug.log "b" b
+    x1 =
+      0
+    y1 =
+      (-b) / w2
+    x2 =
+      1
+    y2 =
+      (-b - x2 * w1) / w2
+    points =
+        Vega.dataFromColumns []
+          << Vega.dataColumn "x" (Vega.nums [x1, x2])
+          << Vega.dataColumn "y" (Vega.nums [y1, y2])
+    encoding =
+      Vega.encoding
+        << Vega.position Vega.X [ Vega.pName "x", Vega.pQuant ]
+        << Vega.position Vega.Y [ Vega.pName "y", Vega.pQuant ]
+  in
+  Vega.toVegaLite
+      [ points []
+      , Vega.line
+        [ Vega.maColor "#734FD8"
+        ]
+      , encoding []
+      ]
+
 
 emptySpec : Vega.Spec
 emptySpec =
   let
-    cars =
+    data =
       Vega.dataFromRows [] []
 
     encoding =
       Vega.encoding
   in
-  Vega.toVegaLite [ cars, encoding [], Vega.circle [] ]
+  Vega.toVegaLite [ data, encoding [], Vega.circle [] ]
