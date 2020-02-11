@@ -15,27 +15,15 @@ import List.Extra
 import FeatherIcons
 import Http
 import Demo.LogisticRegression as Demo
+import VegaLite as Vega
 
 port renderContent : (String -> Cmd msg)
+port elmToJs : Vega.Spec -> Cmd msg
 
 type alias Model =
     { contentIndex : Int
     , demo : Demo.Model
     }
-
-edges :
-    { top : Int
-    , right : Int
-    , bottom : Int
-    , left : Int
-    }
-edges =
-    { top = 0
-    , right = 0
-    , bottom = 0
-    , left = 0
-    }
-
 
 contentNames : List String
 contentNames =
@@ -96,14 +84,21 @@ update msg model =
             )
         DemoMsg demoMsg ->
             let
+                _ =
+                    Debug.log "demoMsg" demoMsg
                 (newDemo, newDemoMsg) =
                     Demo.update demoMsg model.demo
+                _ =
+                    Debug.log "newDemo" newDemo
             in
             ( { model |
                 demo =
                     newDemo
             }
-            , Cmd.map DemoMsg newDemoMsg
+            , Cmd.batch
+                [ Cmd.map DemoMsg newDemoMsg
+                , elmToJs newDemo.demoSpecs
+                ]
             )
 
 
@@ -160,7 +155,7 @@ view : Model -> Html Msg
 view model =
     E.layout
         []
-    <|
+        <|
         E.wrappedRow
             [ E.width E.fill
             , E.height E.fill

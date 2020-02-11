@@ -14,13 +14,13 @@ import Round
 import Http
 import Json.Encode as Encode
 import Json.Decode as Decode
+import VegaLite as Vega
 
 
 type alias LogisticRegressionModel =
   { x : Floats2
   , y : Floats2
   , w : Floats3
-  , a : Floats3
   , loss : Floats1
   }
 
@@ -40,6 +40,7 @@ type alias Floats3 =
 type alias Model =
   { demoId : String
   , demoModel : LogisticRegressionModel
+  , demoSpecs : Vega.Spec
   , serverError : Maybe String
   }
 
@@ -48,6 +49,8 @@ emptyModel =
   { demoId = ""
   , demoModel =
     emptyLogisticRegressionModel
+  , demoSpecs =
+    emptySpec
   , serverError =
     Nothing
   }
@@ -68,14 +71,13 @@ emptyLogisticRegressionModel =
   { x = []
   , y = []
   , w = []
-  , a = []
   , loss = []
   }
 
 init : ( Model, Cmd Msg )
 init  =
     ( emptyModel
-    , logIn 
+    , logIn
     )
 
 
@@ -147,9 +149,18 @@ update msg model =
     GetNextEpoch result ->
       (case result of
         Ok logisticRegressionModel ->
+          let
+            _ = Debug.log "logisticRegressionModel" logisticRegressionModel
+          in
           { model |
             demoModel =
               logisticRegressionModel
+            , demoSpecs =
+              demoSpecs
+                { model |
+                  demoModel =
+                    logisticRegressionModel
+                }
           }
         Err _ ->
           { model |
@@ -162,13 +173,55 @@ update msg model =
 
 epochDecoder : Decode.Decoder LogisticRegressionModel
 epochDecoder =
-  Decode.map5 LogisticRegressionModel
+  Decode.map4 LogisticRegressionModel
     (Decode.field "X" <| Decode.list (Decode.list Decode.float))
     (Decode.field "Y" <| Decode.list (Decode.list Decode.float))
     (Decode.field "W" <| Decode.list (Decode.list (Decode.list Decode.float)))
-    (Decode.field "A" <| Decode.list (Decode.list (Decode.list Decode.float)))
     (Decode.field "loss" <| Decode.list Decode.float)
+
 
 view : Model -> E.Element Msg
 view model =
-  E.text <| "logistic regression demo"
+  E.column
+    []
+    [ E.el
+      [ E.htmlAttribute <| Html.Attributes.id "logisticRegressionDemoScatterPlot"
+      ]
+      (E.none)
+    ]
+
+
+demoSpecs : Model -> Vega.Spec
+demoSpecs model =
+    Vega.combineSpecs
+      [ ( "logisticRegressionDemoScatterPlot", scatterPlotSpec model )
+      ]
+
+
+scatterPlotSpec : Model -> Vega.Spec
+scatterPlotSpec model =
+  let
+    points =
+        Vega.dataFromColumns []
+            << Vega.dataColumn "x" (Vega.nums <| Maybe.withDefault [] <| List.Extra.getAt 0 model.demoModel.x)
+            << Vega.dataColumn "y" (Vega.nums <| Maybe.withDefault [] <| List.Extra.getAt 1 model.demoModel.x)
+            << Vega.dataColumn "group" (Vega.nums <| Maybe.withDefault [] <| List.Extra.getAt 0 model.demoModel.y)
+
+    encoding =
+      Vega.encoding
+        << Vega.position Vega.X [ Vega.pName "x", Vega.pQuant ]
+        << Vega.position Vega.Y [ Vega.pName "y", Vega.pQuant ]
+        << Vega.color [ Vega.mName "group", Vega.mNominal ]
+  in
+  Vega.toVegaLite [ points [], encoding [], Vega.circle [] ]
+
+emptySpec : Vega.Spec
+emptySpec =
+  let
+    cars =
+      Vega.dataFromRows [] []
+
+    encoding =
+      Vega.encoding
+  in
+  Vega.toVegaLite [ cars, encoding [], Vega.circle [] ]

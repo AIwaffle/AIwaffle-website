@@ -17,6 +17,10 @@
     <script defer>
       if(window.customElements)customElements.define("elm-canvas",class extends HTMLElement{constructor(){super(),this.commands=[],this.mounted=!1}set cmds(a){this.commands=a,this.render()}static get observedAttributes(){return["width","height"]}connectedCallback(){requestAnimationFrame(()=>{this.canvas=this.querySelector("canvas"),this.context=this.canvas.getContext("2d"),this.mounted=!0,this.setCanvasDimensions(),this.render()})}attributeChangedCallback(a,b,c){("width"===a||"height"===a)&&b!==c&&requestAnimationFrame(()=>{this.setCanvasDimensions()})}setCanvasDimensions(){if(this.mounted){var a=+(this.getAttribute("width")||this.canvas.getAttribute("width")),b=+(this.getAttribute("height")||this.canvas.getAttribute("height")),c=window.devicePixelRatio||1;this.canvas.style.width=a+"px",this.canvas.style.height=b+"px",this.canvas.width=a*c,this.canvas.height=b*c,this.context.setTransform(1,0,0,1,0,0),this.context.scale(c,c)}}render(){if(this.mounted){for(let a=this.commands.length-1;0<=a;a--)this.execCommand(this.commands[a]);this.commands=[]}}execCommand(a){"function"===a.type?this.context[a.name](...a.args):"field"===a.type&&(this.context[a.name]=a.value)}});else throw new Error("window.customElements does not exist. Please use an appropriate polyfill");
     </script>
+    <!-- These scripts link to the Vega/Vega-Lite runtime -->
+    <script defer src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <style>
       img {
         width: 100%;
@@ -75,6 +79,18 @@
             }).use(tm,{delimiters:'dollars'});
             contentNode.innerHTML = md.render(contentText);
           })
+        }
+      );
+      // This function grabs the specification from Elm (here called specs).
+      app.ports.elmToJs.subscribe(
+        function(namedSpecs) {
+          console.log(namedSpecs)
+          for (let name of Object.keys(namedSpecs)) {
+            vegaEmbed(`#${name}`, namedSpecs[name], {
+              actions: false,
+              logLevel: vega.Warn
+            }).catch(console.warn);
+          }
         }
       );
     </script>
