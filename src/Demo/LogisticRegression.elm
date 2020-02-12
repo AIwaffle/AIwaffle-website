@@ -60,6 +60,14 @@ type Msg
   = LoggedIn (Result Http.Error ())
   | GetDemoId (Result Http.Error String)
   | GetNextEpoch (Result Http.Error LogisticRegressionModel)
+  | Run Int
+
+
+theme =
+  { yellow = E.rgb255 247 203 55
+  , black = E.rgb255 0 0 0
+  , darkYellow = E.rgb255 235 182 0
+  }
 
 
 serverRoot : String
@@ -101,13 +109,13 @@ initDemo =
     }
 
 
-getEpoch : String -> Cmd Msg
-getEpoch demoId =
+getEpoch : Int -> String -> Cmd Msg
+getEpoch epochNumber demoId =
   Http.post
     { url = serverRoot ++ "api/model/iter"
     , body = Http.jsonBody <| Encode.object
       [ ("session_id", Encode.string demoId)
-      , ("epoch_num", Encode.int 1)
+      , ("epoch_num", Encode.int epochNumber)
       , ("learning_rate", Encode.float 0.01)
       ]
     , expect = Http.expectJson GetNextEpoch epochDecoder
@@ -136,7 +144,7 @@ update msg model =
         demoId =
           id
         }
-        , getEpoch id
+        , getEpoch 1 id
         )
       Err _ ->
         ({ model |
@@ -145,6 +153,11 @@ update msg model =
         }
         , Cmd.none
         )
+
+    Run epochNumber ->
+      ( model
+      , getEpoch epochNumber model.demoId
+      )
 
     GetNextEpoch result ->
       (case result of
@@ -194,6 +207,16 @@ view model =
       , E.htmlAttribute <| Html.Attributes.style "max-height" "100vw"
       ]
       (E.none)
+    , Input.button
+      [ Background.color theme.yellow
+      , E.padding 10
+      , E.mouseOver
+        [ Background.color theme.darkYellow
+        ]
+      ]
+      { onPress = Just (Run 1)
+      , label = E.text "Run 1 Epoch"
+      }
     ]
 
 
