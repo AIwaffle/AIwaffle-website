@@ -320,11 +320,11 @@ lineSpec model =
     _ =
       Debug.log "w1" w1
     w2 =
-      Maybe.withDefault 0 <| List.Extra.getAt 0 <| w
+      Maybe.withDefault 0 <| List.Extra.getAt 2 <| w
     _ =
       Debug.log "w2" w2
     b =
-      Maybe.withDefault 0 <| List.Extra.getAt 2 <| w
+      Maybe.withDefault 0 <| List.Extra.getAt 0 <| w
     _ =
       Debug.log "b" b
     x1 =

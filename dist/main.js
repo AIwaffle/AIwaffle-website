@@ -10447,7 +10447,7 @@ var $author$project$Demo$LogisticRegression$lineSpec = function (model) {
 	var w2 = A2(
 		$elm$core$Maybe$withDefault,
 		0,
-		A2($elm_community$list_extra$List$Extra$getAt, 0, w));
+		A2($elm_community$list_extra$List$Extra$getAt, 2, w));
 	var encoding = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10472,7 +10472,7 @@ var $author$project$Demo$LogisticRegression$lineSpec = function (model) {
 	var b = A2(
 		$elm$core$Maybe$withDefault,
 		0,
-		A2($elm_community$list_extra$List$Extra$getAt, 2, w));
+		A2($elm_community$list_extra$List$Extra$getAt, 0, w));
 	var y1 = (-b) / w2;
 	var y2 = ((-b) - (x2 * w1)) / w2;
 	var points = A2(
