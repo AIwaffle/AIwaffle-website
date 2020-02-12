@@ -7257,7 +7257,7 @@ var $elm$http$Http$post = function (r) {
 	return $elm$http$Http$request(
 		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
-var $author$project$Demo$LogisticRegression$serverRoot = 'http://106.15.39.117:8080/';
+var $author$project$Demo$LogisticRegression$serverRoot = '/';
 var $author$project$Demo$LogisticRegression$logIn = $elm$http$Http$post(
 	{
 		body: $elm$http$Http$jsonBody(
