@@ -10507,6 +10507,67 @@ var $author$project$Demo$LogisticRegression$lineSpec = function (model) {
 				encoding(_List_Nil)
 			]));
 };
+var $gicentre$elm_vegalite$VegaLite$VLWidth = {$: 'VLWidth'};
+var $gicentre$elm_vegalite$VegaLite$widthOfContainer = _Utils_Tuple2(
+	$gicentre$elm_vegalite$VegaLite$VLWidth,
+	$elm$json$Json$Encode$string('container'));
+var $author$project$Demo$LogisticRegression$lossPlotSpec = function (model) {
+	var points = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$gicentre$elm_vegalite$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$gicentre$elm_vegalite$VegaLite$dataColumn,
+				'epoch',
+				$gicentre$elm_vegalite$VegaLite$nums(
+					A2(
+						$elm$core$List$map,
+						$elm$core$Basics$toFloat,
+						A2(
+							$elm$core$List$range,
+							0,
+							$elm$core$List$length(model.demoModel.loss) - 1))))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$dataColumn,
+			'loss',
+			$gicentre$elm_vegalite$VegaLite$nums(model.demoModel.loss)));
+	var encoding = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$gicentre$elm_vegalite$VegaLite$encoding,
+			A2(
+				$gicentre$elm_vegalite$VegaLite$position,
+				$gicentre$elm_vegalite$VegaLite$X,
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$pName('epoch'),
+						$gicentre$elm_vegalite$VegaLite$pQuant
+					]))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$position,
+			$gicentre$elm_vegalite$VegaLite$Y,
+			_List_fromArray(
+				[
+					$gicentre$elm_vegalite$VegaLite$pName('loss'),
+					$gicentre$elm_vegalite$VegaLite$pQuant
+				])));
+	var _v0 = A2($elm$core$Debug$log, 'lossPlot model.demoModel.loss', model.demoModel.loss);
+	return $gicentre$elm_vegalite$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$gicentre$elm_vegalite$VegaLite$widthOfContainer,
+				$gicentre$elm_vegalite$VegaLite$heightOfContainer,
+				points(_List_Nil),
+				$gicentre$elm_vegalite$VegaLite$line(
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$maColor('#734FD8')
+					])),
+				encoding(_List_Nil)
+			]));
+};
 var $gicentre$elm_vegalite$VegaLite$color = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -10610,10 +10671,6 @@ var $author$project$Demo$LogisticRegression$scatterPlotSpec = function (model) {
 				$gicentre$elm_vegalite$VegaLite$circle(_List_Nil)
 			]));
 };
-var $gicentre$elm_vegalite$VegaLite$VLWidth = {$: 'VLWidth'};
-var $gicentre$elm_vegalite$VegaLite$widthOfContainer = _Utils_Tuple2(
-	$gicentre$elm_vegalite$VegaLite$VLWidth,
-	$elm$json$Json$Encode$string('container'));
 var $author$project$Demo$LogisticRegression$demoSpecs = function (model) {
 	return $gicentre$elm_vegalite$VegaLite$combineSpecs(
 		_List_fromArray(
@@ -10637,7 +10694,10 @@ var $author$project$Demo$LogisticRegression$demoSpecs = function (model) {
 										$author$project$Demo$LogisticRegression$scatterPlotSpec(model)
 									]))
 							]));
-				}())
+				}()),
+				_Utils_Tuple2(
+				'logisticRegressionDemoLossPlot',
+				$author$project$Demo$LogisticRegression$lossPlotSpec(model))
 			]));
 };
 var $author$project$Demo$LogisticRegression$GetNextEpoch = function (a) {
@@ -10781,16 +10841,20 @@ var $author$project$Demo$LogisticRegression$update = F2(
 				return _Utils_Tuple2(
 					function () {
 						if (result.$ === 'Ok') {
-							var logisticRegressionModel = result.a;
-							var _v4 = A2($elm$core$Debug$log, 'logisticRegressionModel', logisticRegressionModel);
+							var newDemoModel = result.a;
+							var storedDemoModel = _Utils_update(
+								newDemoModel,
+								{
+									loss: _Utils_ap(model.demoModel.loss, newDemoModel.loss)
+								});
 							return _Utils_update(
 								model,
 								{
-									demoModel: logisticRegressionModel,
+									demoModel: storedDemoModel,
 									demoSpecs: $author$project$Demo$LogisticRegression$demoSpecs(
 										_Utils_update(
 											model,
-											{demoModel: logisticRegressionModel}))
+											{demoModel: storedDemoModel}))
 								});
 						} else {
 							return _Utils_update(
@@ -17521,14 +17585,31 @@ var $author$project$Demo$LogisticRegression$view = function (model) {
 						$mdgriffith$elm_ui$Element$htmlAttribute(
 						$elm$html$Html$Attributes$id('logisticRegressionDemoScatterPlot')),
 						$mdgriffith$elm_ui$Element$width(
-						$mdgriffith$elm_ui$Element$px(550)),
-						$mdgriffith$elm_ui$Element$height(
 						$mdgriffith$elm_ui$Element$px(500)),
+						$mdgriffith$elm_ui$Element$height(
+						$mdgriffith$elm_ui$Element$px(400)),
 						$mdgriffith$elm_ui$Element$centerX,
 						$mdgriffith$elm_ui$Element$htmlAttribute(
 						A2($elm$html$Html$Attributes$style, 'max-width', '100vw')),
 						$mdgriffith$elm_ui$Element$htmlAttribute(
-						A2($elm$html$Html$Attributes$style, 'max-height', '100vw'))
+						A2($elm$html$Html$Attributes$style, 'max-height', '70vw'))
+					]),
+				$mdgriffith$elm_ui$Element$none),
+				A2(
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						$elm$html$Html$Attributes$id('logisticRegressionDemoLossPlot')),
+						$mdgriffith$elm_ui$Element$width(
+						$mdgriffith$elm_ui$Element$px(500)),
+						$mdgriffith$elm_ui$Element$height(
+						$mdgriffith$elm_ui$Element$px(300)),
+						$mdgriffith$elm_ui$Element$centerX,
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'max-width', '100vw')),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'max-height', '30vw'))
 					]),
 				$mdgriffith$elm_ui$Element$none),
 				A2(

@@ -161,18 +161,22 @@ update msg model =
 
     GetNextEpoch result ->
       (case result of
-        Ok logisticRegressionModel ->
+        Ok newDemoModel ->
           let
-            _ = Debug.log "logisticRegressionModel" logisticRegressionModel
+            storedDemoModel =
+              { newDemoModel |
+                  loss =
+                    model.demoModel.loss ++ newDemoModel.loss
+              }
           in
           { model |
             demoModel =
-              logisticRegressionModel
+              storedDemoModel
             , demoSpecs =
               demoSpecs
                 { model |
                   demoModel =
-                    logisticRegressionModel
+                    storedDemoModel
                 }
           }
         Err _ ->
@@ -201,12 +205,20 @@ view model =
     ]
     [ E.el
       [ E.htmlAttribute <| Html.Attributes.id "logisticRegressionDemoScatterPlot"
-      , E.width <| E.px 550
-      , E.height <| E.px 500
+      , E.width <| E.px 500
+      , E.height <| E.px 400
       , E.centerX
       , E.htmlAttribute <| Html.Attributes.style "max-width" "100vw"
-      , E.htmlAttribute <| Html.Attributes.style "max-height" "100vw"
+      , E.htmlAttribute <| Html.Attributes.style "max-height" "70vw"
       ]
+      (E.none)
+    , E.el
+      [ E.htmlAttribute <| Html.Attributes.id "logisticRegressionDemoLossPlot"
+      , E.width <| E.px 500
+      , E.height <| E.px 300
+      , E.centerX
+      , E.htmlAttribute <| Html.Attributes.style "max-width" "100vw"
+      , E.htmlAttribute <| Html.Attributes.style "max-height" "30vw"]
       (E.none)
     , E.wrappedRow
       [ E.spacing 20
@@ -255,6 +267,9 @@ demoSpecs model =
           , scatterPlotSpec model
           ]
         ]
+    )
+    , ( "logisticRegressionDemoLossPlot"
+    , lossPlotSpec model
     )
     ]
 
@@ -331,6 +346,33 @@ lineSpec model =
   in
   Vega.toVegaLite
       [ points []
+      , Vega.line
+        [ Vega.maColor "#734FD8"
+        ]
+      , encoding []
+      ]
+
+
+lossPlotSpec : Model -> Vega.Spec
+lossPlotSpec model =
+  let
+    _ = Debug.log "lossPlot model.demoModel.loss" <| model.demoModel.loss
+    points =
+      Vega.dataFromColumns []
+        << Vega.dataColumn "epoch"
+          (Vega.nums <| List.map toFloat <|
+            List.range 0 (List.length model.demoModel.loss - 1)
+          )
+        << Vega.dataColumn "loss" (Vega.nums model.demoModel.loss)
+    encoding =
+      Vega.encoding
+        << Vega.position Vega.X [ Vega.pName "epoch", Vega.pQuant ]
+        << Vega.position Vega.Y [ Vega.pName "loss", Vega.pQuant ]
+  in
+  Vega.toVegaLite
+      [ Vega.widthOfContainer
+      , Vega.heightOfContainer
+      , points []
       , Vega.line
         [ Vega.maColor "#734FD8"
         ]
