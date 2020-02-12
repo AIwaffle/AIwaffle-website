@@ -17524,6 +17524,7 @@ var $author$project$Demo$LogisticRegression$view = function (model) {
 						$mdgriffith$elm_ui$Element$px(550)),
 						$mdgriffith$elm_ui$Element$height(
 						$mdgriffith$elm_ui$Element$px(500)),
+						$mdgriffith$elm_ui$Element$centerX,
 						$mdgriffith$elm_ui$Element$htmlAttribute(
 						A2($elm$html$Html$Attributes$style, 'max-width', '100vw')),
 						$mdgriffith$elm_ui$Element$htmlAttribute(
