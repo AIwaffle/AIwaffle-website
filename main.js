@@ -10443,11 +10443,11 @@ var $author$project$Demo$LogisticRegression$lineSpec = function (model) {
 	var w1 = A2(
 		$elm$core$Maybe$withDefault,
 		0,
-		A2($elm_community$list_extra$List$Extra$getAt, 0, w));
+		A2($elm_community$list_extra$List$Extra$getAt, 1, w));
 	var w2 = A2(
 		$elm$core$Maybe$withDefault,
 		0,
-		A2($elm_community$list_extra$List$Extra$getAt, 1, w));
+		A2($elm_community$list_extra$List$Extra$getAt, 0, w));
 	var encoding = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -17373,7 +17373,6 @@ var $mdgriffith$elm_ui$Element$Input$button = F2(
 				_List_fromArray(
 					[label])));
 	});
-var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $mdgriffith$elm_ui$Internal$Model$Hover = {$: 'Hover'};
 var $mdgriffith$elm_ui$Internal$Model$PseudoSelector = F2(
 	function (a, b) {
@@ -17485,6 +17484,26 @@ var $author$project$Demo$LogisticRegression$theme = {
 	darkYellow: A3($mdgriffith$elm_ui$Element$rgb255, 235, 182, 0),
 	yellow: A3($mdgriffith$elm_ui$Element$rgb255, 247, 203, 55)
 };
+var $author$project$Demo$LogisticRegression$button = F2(
+	function (text, msg) {
+		return A2(
+			$mdgriffith$elm_ui$Element$Input$button,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$Background$color($author$project$Demo$LogisticRegression$theme.yellow),
+					$mdgriffith$elm_ui$Element$padding(10),
+					$mdgriffith$elm_ui$Element$mouseOver(
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$Background$color($author$project$Demo$LogisticRegression$theme.darkYellow)
+						]))
+				]),
+			{
+				label: $mdgriffith$elm_ui$Element$text(text),
+				onPress: $elm$core$Maybe$Just(msg)
+			});
+	});
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $author$project$Demo$LogisticRegression$view = function (model) {
 	return A2(
 		$mdgriffith$elm_ui$Element$column,
@@ -17512,22 +17531,31 @@ var $author$project$Demo$LogisticRegression$view = function (model) {
 					]),
 				$mdgriffith$elm_ui$Element$none),
 				A2(
-				$mdgriffith$elm_ui$Element$Input$button,
+				$mdgriffith$elm_ui$Element$wrappedRow,
 				_List_fromArray(
 					[
-						$mdgriffith$elm_ui$Element$Background$color($author$project$Demo$LogisticRegression$theme.yellow),
-						$mdgriffith$elm_ui$Element$padding(10),
-						$mdgriffith$elm_ui$Element$mouseOver(
-						_List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$Background$color($author$project$Demo$LogisticRegression$theme.darkYellow)
-							]))
+						$mdgriffith$elm_ui$Element$spacing(20),
+						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
 					]),
-				{
-					label: $mdgriffith$elm_ui$Element$text('Run 1 Epoch'),
-					onPress: $elm$core$Maybe$Just(
-						$author$project$Demo$LogisticRegression$Run(1))
-				})
+				_List_fromArray(
+					[
+						A2(
+						$author$project$Demo$LogisticRegression$button,
+						'Run 1 Epoch',
+						$author$project$Demo$LogisticRegression$Run(1)),
+						A2(
+						$author$project$Demo$LogisticRegression$button,
+						'Run 10 Epoch',
+						$author$project$Demo$LogisticRegression$Run(10)),
+						A2(
+						$author$project$Demo$LogisticRegression$button,
+						'Run 100 Epoch',
+						$author$project$Demo$LogisticRegression$Run(100)),
+						A2(
+						$author$project$Demo$LogisticRegression$button,
+						'Run 1000 Epoch',
+						$author$project$Demo$LogisticRegression$Run(1000))
+					]))
 			]));
 };
 var $author$project$Page$Tutorial$viewTutorialDemo = function (model) {
