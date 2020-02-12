@@ -207,17 +207,30 @@ view model =
       , E.htmlAttribute <| Html.Attributes.style "max-height" "100vw"
       ]
       (E.none)
-    , Input.button
-      [ Background.color theme.yellow
-      , E.padding 10
-      , E.mouseOver
-        [ Background.color theme.darkYellow
-        ]
+    , E.wrappedRow
+      [ E.spacing 20
+      , E.width E.fill
       ]
-      { onPress = Just (Run 1)
-      , label = E.text "Run 1 Epoch"
-      }
+      [ button "Run 1 Epoch" (Run 1)
+      , button "Run 10 Epoch" (Run 10)
+      , button "Run 100 Epoch" (Run 100)
+      , button "Run 1000 Epoch" (Run 1000)
+      ]
     ]
+
+
+button : String -> Msg -> E.Element Msg
+button text msg =
+  Input.button
+    [ Background.color theme.yellow
+    , E.padding 10
+    , E.mouseOver
+      [ Background.color theme.darkYellow
+      ]
+    ]
+    { onPress = Just msg
+    , label = E.text text
+    }
 
 
 demoSpecs : Model -> Vega.Spec
@@ -287,11 +300,11 @@ lineSpec model =
         Maybe.withDefault [] <| List.Extra.getAt 0 <|
           model.demoModel.w
     w1 =
-      Maybe.withDefault 0 <| List.Extra.getAt 0 <| w
+      Maybe.withDefault 0 <| List.Extra.getAt 1 <| w
     _ =
       Debug.log "w1" w1
     w2 =
-      Maybe.withDefault 0 <| List.Extra.getAt 1 <| w
+      Maybe.withDefault 0 <| List.Extra.getAt 0 <| w
     _ =
       Debug.log "w2" w2
     b =
