@@ -203,6 +203,7 @@ view model =
       [ E.htmlAttribute <| Html.Attributes.id "logisticRegressionDemoScatterPlot"
       , E.width <| E.px 550
       , E.height <| E.px 500
+      , E.centerX
       , E.htmlAttribute <| Html.Attributes.style "max-width" "100vw"
       , E.htmlAttribute <| Html.Attributes.style "max-height" "100vw"
       ]
