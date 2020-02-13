@@ -317,16 +317,10 @@ lineSpec model =
           model.demoModel.w
     w1 =
       Maybe.withDefault 0 <| List.Extra.getAt 1 <| w
-    _ =
-      Debug.log "w1" w1
     w2 =
       Maybe.withDefault 0 <| List.Extra.getAt 2 <| w
-    _ =
-      Debug.log "w2" w2
     b =
       Maybe.withDefault 0 <| List.Extra.getAt 0 <| w
-    _ =
-      Debug.log "b" b
     x1 =
       0
     y1 =
@@ -356,7 +350,6 @@ lineSpec model =
 lossPlotSpec : Model -> Vega.Spec
 lossPlotSpec model =
   let
-    _ = Debug.log "lossPlot model.demoModel.loss" <| model.demoModel.loss
     points =
       Vega.dataFromColumns []
         << Vega.dataColumn "epoch"

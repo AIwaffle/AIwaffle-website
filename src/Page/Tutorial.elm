@@ -84,12 +84,8 @@ update msg model =
             )
         DemoMsg demoMsg ->
             let
-                _ =
-                    Debug.log "demoMsg" demoMsg
                 (newDemo, newDemoMsg) =
                     Demo.update demoMsg model.demo
-                _ =
-                    Debug.log "newDemo" newDemo
             in
             ( { model |
                 demo =
@@ -171,10 +167,6 @@ viewTutorialDemo model =
         Nothing ->
             E.none
         Just hasDemo ->
-            let
-                _ = Debug.log "hasDemo" hasDemo
-                _ = Debug.log "model.contentIndex" model.contentIndex
-            in
             if hasDemo then
                 E.column
                 [ E.width (E.fillPortion 5)
