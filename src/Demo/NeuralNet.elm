@@ -117,7 +117,7 @@ edges =
 
 serverRoot : String
 serverRoot =
-  "/"
+  "http://106.15.39.117:8080/"
 
 
 init : ( Model, Cmd Msg )

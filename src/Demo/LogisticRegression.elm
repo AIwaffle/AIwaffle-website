@@ -72,7 +72,7 @@ theme =
 
 serverRoot : String
 serverRoot =
-  "/"
+  "http://106.15.39.117:8080/"
 
 
 emptyLogisticRegressionModel =
