@@ -49,6 +49,7 @@ firstContentName =
 
 theme =
   { yellow = E.rgb255 247 203 55
+  , darkYellow = E.rgb255 235 182 0
   , grey = E.rgb255 170 170 170
   , dark = E.rgb255 50 29 29
   }
@@ -137,6 +138,7 @@ view model =
             [ viewTutorialMenu model
             , viewTutorialText model
             , viewTutorialDemo model
+            , viewNextButton model
             ]
 
 
@@ -164,7 +166,7 @@ viewTutorialMenu model =
             :: List.indexedMap
                 (\contentIndex contentName ->
                     E.link []
-                        { url = "/tutorial/" ++ contentName
+                        { url = contentName
                         , label =
                             E.el
                             ( if contentIndex == model.contentIndex then
@@ -195,6 +197,12 @@ viewTutorialDemo model =
                 E.column
                 [ E.width (E.fillPortion 6)
                 , E.spacing 10
+                , E.paddingEach
+                    { top = 0
+                    , left = 0
+                    , bottom = 70
+                    , right = 0
+                    }
                 ]
                 [ center <|
                     E.map DemoMsg <| Demo.view model.demo
@@ -230,6 +238,27 @@ viewTutorialText model =
             []
         ]
 
+
+viewNextButton : Model -> E.Element Msg
+viewNextButton model =
+    E.link
+        [ E.htmlAttribute <| Html.Attributes.style "position" "fixed"
+        , E.htmlAttribute <| Html.Attributes.style "bottom" "20px"
+        , E.htmlAttribute <| Html.Attributes.style "right" "20px"
+        ]
+        { url = getContentName (model.contentIndex + 1)
+        , label =
+            Input.button
+                [ Background.color theme.yellow
+                , E.padding 10
+                , E.mouseOver
+                [ Background.color theme.darkYellow
+                ]
+                ]
+                { onPress = Nothing
+                , label = E.text "Next"
+                }
+        }
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =

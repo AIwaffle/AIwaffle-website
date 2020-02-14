@@ -17248,57 +17248,6 @@ var $author$project$Page$NotFound$view = function (model) {
 				]),
 			$mdgriffith$elm_ui$Element$text('This page does not exist!')));
 };
-var $author$project$Page$Tutorial$center = function (element) {
-	return A2(
-		$mdgriffith$elm_ui$Element$el,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'marginLeft', 'auto')),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'marginRight', 'auto'))
-			]),
-		element);
-};
-var $author$project$Page$Tutorial$contentDemos = _List_fromArray(
-	[false, false, true]);
-var $mdgriffith$elm_ui$Element$fillPortion = $mdgriffith$elm_ui$Internal$Model$Fill;
-var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
-var $mdgriffith$elm_ui$Internal$Model$map = F2(
-	function (fn, el) {
-		switch (el.$) {
-			case 'Styled':
-				var styled = el.a;
-				return $mdgriffith$elm_ui$Internal$Model$Styled(
-					{
-						html: F2(
-							function (add, context) {
-								return A2(
-									$elm$virtual_dom$VirtualDom$map,
-									fn,
-									A2(styled.html, add, context));
-							}),
-						styles: styled.styles
-					});
-			case 'Unstyled':
-				var html = el.a;
-				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
-					A2(
-						$elm$core$Basics$composeL,
-						$elm$virtual_dom$VirtualDom$map(fn),
-						html));
-			case 'Text':
-				var str = el.a;
-				return $mdgriffith$elm_ui$Internal$Model$Text(str);
-			default:
-				return $mdgriffith$elm_ui$Internal$Model$Empty;
-		}
-	});
-var $mdgriffith$elm_ui$Element$map = $mdgriffith$elm_ui$Internal$Model$map;
-var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
-var $author$project$Demo$LogisticRegression$Run = function (a) {
-	return {$: 'Run', a: a};
-};
 var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
 var $elm$html$Html$Attributes$boolProperty = F2(
 	function (key, bool) {
@@ -17450,6 +17399,37 @@ var $mdgriffith$elm_ui$Internal$Model$TransformComponent = F2(
 	function (a, b) {
 		return {$: 'TransformComponent', a: a, b: b};
 	});
+var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
+var $mdgriffith$elm_ui$Internal$Model$map = F2(
+	function (fn, el) {
+		switch (el.$) {
+			case 'Styled':
+				var styled = el.a;
+				return $mdgriffith$elm_ui$Internal$Model$Styled(
+					{
+						html: F2(
+							function (add, context) {
+								return A2(
+									$elm$virtual_dom$VirtualDom$map,
+									fn,
+									A2(styled.html, add, context));
+							}),
+						styles: styled.styles
+					});
+			case 'Unstyled':
+				var html = el.a;
+				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
+					A2(
+						$elm$core$Basics$composeL,
+						$elm$virtual_dom$VirtualDom$map(fn),
+						html));
+			case 'Text':
+				var str = el.a;
+				return $mdgriffith$elm_ui$Internal$Model$Text(str);
+			default:
+				return $mdgriffith$elm_ui$Internal$Model$Empty;
+		}
+	});
 var $elm$virtual_dom$VirtualDom$mapAttribute = _VirtualDom_mapAttribute;
 var $mdgriffith$elm_ui$Internal$Model$mapAttrFromStyle = F2(
 	function (fn, attr) {
@@ -17541,6 +17521,64 @@ var $mdgriffith$elm_ui$Element$mouseOver = function (decs) {
 			$mdgriffith$elm_ui$Internal$Model$PseudoSelector,
 			$mdgriffith$elm_ui$Internal$Model$Hover,
 			$mdgriffith$elm_ui$Internal$Model$unwrapDecorations(decs)));
+};
+var $author$project$Page$Tutorial$theme = {
+	dark: A3($mdgriffith$elm_ui$Element$rgb255, 50, 29, 29),
+	darkYellow: A3($mdgriffith$elm_ui$Element$rgb255, 235, 182, 0),
+	grey: A3($mdgriffith$elm_ui$Element$rgb255, 170, 170, 170),
+	yellow: A3($mdgriffith$elm_ui$Element$rgb255, 247, 203, 55)
+};
+var $author$project$Page$Tutorial$viewNextButton = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$link,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'position', 'fixed')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'bottom', '20px')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'right', '20px'))
+			]),
+		{
+			label: A2(
+				$mdgriffith$elm_ui$Element$Input$button,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$Background$color($author$project$Page$Tutorial$theme.yellow),
+						$mdgriffith$elm_ui$Element$padding(10),
+						$mdgriffith$elm_ui$Element$mouseOver(
+						_List_fromArray(
+							[
+								$mdgriffith$elm_ui$Element$Background$color($author$project$Page$Tutorial$theme.darkYellow)
+							]))
+					]),
+				{
+					label: $mdgriffith$elm_ui$Element$text('Next'),
+					onPress: $elm$core$Maybe$Nothing
+				}),
+			url: $author$project$Page$Tutorial$getContentName(model.contentIndex + 1)
+		});
+};
+var $author$project$Page$Tutorial$center = function (element) {
+	return A2(
+		$mdgriffith$elm_ui$Element$el,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'marginLeft', 'auto')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'marginRight', 'auto'))
+			]),
+		element);
+};
+var $author$project$Page$Tutorial$contentDemos = _List_fromArray(
+	[false, false, true]);
+var $mdgriffith$elm_ui$Element$fillPortion = $mdgriffith$elm_ui$Internal$Model$Fill;
+var $mdgriffith$elm_ui$Element$map = $mdgriffith$elm_ui$Internal$Model$map;
+var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
+var $author$project$Demo$LogisticRegression$Run = function (a) {
+	return {$: 'Run', a: a};
 };
 var $author$project$Demo$LogisticRegression$theme = {
 	black: A3($mdgriffith$elm_ui$Element$rgb255, 0, 0, 0),
@@ -17651,7 +17689,9 @@ var $author$project$Page$Tutorial$viewTutorialDemo = function (model) {
 				[
 					$mdgriffith$elm_ui$Element$width(
 					$mdgriffith$elm_ui$Element$fillPortion(6)),
-					$mdgriffith$elm_ui$Element$spacing(10)
+					$mdgriffith$elm_ui$Element$spacing(10),
+					$mdgriffith$elm_ui$Element$paddingEach(
+					{bottom: 70, left: 0, right: 0, top: 0})
 				]),
 			_List_fromArray(
 				[
@@ -17664,11 +17704,6 @@ var $author$project$Page$Tutorial$viewTutorialDemo = function (model) {
 	}
 };
 var $mdgriffith$elm_ui$Element$Font$regular = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$fontWeight, $mdgriffith$elm_ui$Internal$Style$classes.textNormalWeight);
-var $author$project$Page$Tutorial$theme = {
-	dark: A3($mdgriffith$elm_ui$Element$rgb255, 50, 29, 29),
-	grey: A3($mdgriffith$elm_ui$Element$rgb255, 170, 170, 170),
-	yellow: A3($mdgriffith$elm_ui$Element$rgb255, 247, 203, 55)
-};
 var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
 	function (a, b, c, d, e) {
 		return {$: 'BorderWidth', a: a, b: b, c: c, d: d, e: e};
@@ -17736,7 +17771,7 @@ var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
 											$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Tutorial$theme.grey)
 										]),
 									$mdgriffith$elm_ui$Element$text(contentName)),
-								url: '/tutorial/' + contentName
+								url: contentName
 							});
 					}),
 				$author$project$Page$Tutorial$contentNames))) : $mdgriffith$elm_ui$Element$none;
@@ -17833,7 +17868,8 @@ var $author$project$Page$Tutorial$view = function (model) {
 				[
 					$author$project$Page$Tutorial$viewTutorialMenu(model),
 					$author$project$Page$Tutorial$viewTutorialText(model),
-					$author$project$Page$Tutorial$viewTutorialDemo(model)
+					$author$project$Page$Tutorial$viewTutorialDemo(model),
+					$author$project$Page$Tutorial$viewNextButton(model)
 				])));
 };
 var $author$project$Main$view = function (model) {
