@@ -16362,15 +16362,6 @@ var $mdgriffith$elm_ui$Element$column = F2(
 						attrs))),
 			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
 	});
-var $mdgriffith$elm_ui$Internal$Model$ImportFont = F2(
-	function (a, b) {
-		return {$: 'ImportFont', a: a, b: b};
-	});
-var $mdgriffith$elm_ui$Element$Font$external = function (_v0) {
-	var url = _v0.url;
-	var name = _v0.name;
-	return A2($mdgriffith$elm_ui$Internal$Model$ImportFont, name, url);
-};
 var $mdgriffith$elm_ui$Internal$Model$FontFamily = F2(
 	function (a, b) {
 		return {$: 'FontFamily', a: a, b: b};
@@ -16714,6 +16705,7 @@ var $author$project$Page$Home$theme = {
 	dark: A3($mdgriffith$elm_ui$Element$rgb255, 50, 29, 29),
 	yellow: A3($mdgriffith$elm_ui$Element$rgb255, 247, 203, 55)
 };
+var $mdgriffith$elm_ui$Element$Font$typeface = $mdgriffith$elm_ui$Internal$Model$Typeface;
 var $mdgriffith$elm_ui$Internal$Model$Class = F2(
 	function (a, b) {
 		return {$: 'Class', a: a, b: b};
@@ -17178,8 +17170,7 @@ var $author$project$Page$Home$view = function (model) {
 				$mdgriffith$elm_ui$Element$Font$family(
 				_List_fromArray(
 					[
-						$mdgriffith$elm_ui$Element$Font$external(
-						{name: 'Nunito', url: 'https://fonts.googleapis.com/css?family=Nunito'}),
+						$mdgriffith$elm_ui$Element$Font$typeface('Nunito'),
 						$mdgriffith$elm_ui$Element$Font$sansSerif
 					])),
 				$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Home$theme.yellow),
@@ -17201,6 +17192,15 @@ var $author$project$Page$Home$view = function (model) {
 					$author$project$Page$Home$viewHeader,
 					$author$project$Page$Home$viewBody(model)
 				])));
+};
+var $mdgriffith$elm_ui$Internal$Model$ImportFont = F2(
+	function (a, b) {
+		return {$: 'ImportFont', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Element$Font$external = function (_v0) {
+	var url = _v0.url;
+	var name = _v0.name;
+	return A2($mdgriffith$elm_ui$Internal$Model$ImportFont, name, url);
 };
 var $mdgriffith$elm_ui$Element$Font$size = function (i) {
 	return A2(
