@@ -19,6 +19,7 @@ import VegaLite as Vega
 
 port renderContent : (String -> Cmd msg)
 port elmToJs : Vega.Spec -> Cmd msg
+port scrollToTop : () -> Cmd msg
 
 type alias Model =
     { contentIndex : Int
@@ -71,6 +72,7 @@ init contentName =
     , Cmd.batch
         [ renderContent contentName
         , Cmd.map DemoMsg initDemoMsg
+        , scrollToTop ()
         ]
     )
 

@@ -7277,6 +7277,11 @@ var $author$project$Demo$LogisticRegression$logIn = $elm$http$Http$post(
 var $author$project$Demo$LogisticRegression$init = _Utils_Tuple2($author$project$Demo$LogisticRegression$emptyModel, $author$project$Demo$LogisticRegression$logIn);
 var $elm$core$Platform$Cmd$map = _Platform_map;
 var $author$project$Page$Tutorial$renderContent = _Platform_outgoingPort('renderContent', $elm$json$Json$Encode$string);
+var $author$project$Page$Tutorial$scrollToTop = _Platform_outgoingPort(
+	'scrollToTop',
+	function ($) {
+		return $elm$json$Json$Encode$null;
+	});
 var $author$project$Page$Tutorial$init = function (contentName) {
 	var _v0 = $author$project$Demo$LogisticRegression$init;
 	var demo = _v0.a;
@@ -7291,7 +7296,8 @@ var $author$project$Page$Tutorial$init = function (contentName) {
 			_List_fromArray(
 				[
 					$author$project$Page$Tutorial$renderContent(contentName),
-					A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, initDemoMsg)
+					A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, initDemoMsg),
+					$author$project$Page$Tutorial$scrollToTop(_Utils_Tuple0)
 				])));
 };
 var $elm$url$Url$Parser$Parser = function (a) {
