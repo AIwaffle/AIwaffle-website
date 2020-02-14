@@ -125,38 +125,6 @@ getContentIndex name =
     Maybe.withDefault 0 <| List.Extra.elemIndex name contentNames
 
 
-contentNavigation : Model -> E.Element Msg
-contentNavigation model =
-    let
-        prevUrl =
-            getContentName (model.contentIndex - 1)
-        nextUrl =
-            getContentName (model.contentIndex + 1)
-    in
-    E.row
-        [ E.paddingXY 20 10
-        , E.width E.fill
-        ]
-        [ E.link
-            [ E.alignLeft
-            , E.mouseOver [ Font.color grey ]
-            , E.pointer
-            ] <|
-            { url = prevUrl
-            , label =
-                E.html (FeatherIcons.arrowLeft |> FeatherIcons.toHtml [])
-            }
-        , E.link
-            [ E.alignRight
-            , E.mouseOver [ Font.color grey ]
-            , E.pointer
-            ] <|
-            { url = nextUrl
-            , label = E.html (FeatherIcons.arrowRight |> FeatherIcons.toHtml [])
-            }
-        ]
-
-
 view : Model -> Html Msg
 view model =
     E.layout
@@ -244,10 +212,10 @@ viewTutorialText model =
         , E.paddingXY 20 0
         , E.htmlAttribute (Html.Attributes.style "max-width" "70vw")
         , E.htmlAttribute (Html.Attributes.style "margin" "auto")
+        , E.htmlAttribute (Html.Attributes.style "margin-top" "20px")
         , E.htmlAttribute (Html.Attributes.style "margin-left" "20vw")
         ]
-        [ contentNavigation model
-        , E.html <| Html.div
+        [ E.html <| Html.div
             [ Html.Attributes.class
                 (case nth model.contentIndex contentDemos of
                     Nothing ->
