@@ -16804,7 +16804,6 @@ var $mdgriffith$elm_ui$Internal$Model$AlignY = function (a) {
 };
 var $mdgriffith$elm_ui$Internal$Model$CenterY = {$: 'CenterY'};
 var $mdgriffith$elm_ui$Element$centerY = $mdgriffith$elm_ui$Internal$Model$AlignY($mdgriffith$elm_ui$Internal$Model$CenterY);
-var $mdgriffith$elm_ui$Element$htmlAttribute = $mdgriffith$elm_ui$Internal$Model$Attr;
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $mdgriffith$elm_ui$Element$Background$image = function (src) {
 	return $mdgriffith$elm_ui$Internal$Model$Attr(
@@ -16851,19 +16850,16 @@ var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
 	return {$: 'Px', a: a};
 };
 var $mdgriffith$elm_ui$Element$px = $mdgriffith$elm_ui$Internal$Model$Px;
-var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $author$project$Page$Home$viewCourseCard = function (title) {
 	return A2(
 		$mdgriffith$elm_ui$Element$el,
 		_List_fromArray(
 			[
-				$mdgriffith$elm_ui$Element$Background$image('/assets/waffle.png'),
+				$mdgriffith$elm_ui$Element$Background$image('/assets/waffle.svg'),
 				$mdgriffith$elm_ui$Element$width(
 				$mdgriffith$elm_ui$Element$px(200)),
 				$mdgriffith$elm_ui$Element$height(
-				$mdgriffith$elm_ui$Element$px(200)),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'margin', 'auto'))
+				$mdgriffith$elm_ui$Element$px(200))
 			]),
 		A2(
 			$mdgriffith$elm_ui$Element$paragraph,
@@ -16972,6 +16968,7 @@ var $mdgriffith$elm_ui$Element$paddingEach = function (_v0) {
 			bottom,
 			left));
 };
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $mdgriffith$elm_ui$Element$wrappedRow = F2(
 	function (attrs, children) {
 		var _v0 = $mdgriffith$elm_ui$Internal$Model$extractSpacingAndPadding(attrs);
@@ -17197,6 +17194,7 @@ var $author$project$Page$Home$view = function (model) {
 					$author$project$Page$Home$viewBody(model)
 				])));
 };
+var $mdgriffith$elm_ui$Element$htmlAttribute = $mdgriffith$elm_ui$Internal$Model$Attr;
 var $mdgriffith$elm_ui$Element$Font$size = function (i) {
 	return A2(
 		$mdgriffith$elm_ui$Internal$Model$StyleClass,

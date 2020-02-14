@@ -116,10 +116,9 @@ viewBody model =
 
 viewCourseCard title =
   E.el
-    [ Background.image "/assets/waffle.png"
+    [ Background.image "/assets/waffle.svg"
     , E.width <| E.px 200
     , E.height <| E.px 200
-    , E.htmlAttribute <| Html.Attributes.style "margin" "auto"
     ]
     ( E.paragraph
       [ Font.center
