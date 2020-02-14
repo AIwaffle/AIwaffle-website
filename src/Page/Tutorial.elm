@@ -146,9 +146,11 @@ viewTutorialMenu : Model -> E.Element Msg
 viewTutorialMenu model =
     if model.showMenu then
         E.column
-            [ E.htmlAttribute <| Html.Attributes.style "width" "20vw"
+            [ E.htmlAttribute <| Html.Attributes.style "width" "300px"
             , E.htmlAttribute <| Html.Attributes.style "height" "100vh"
             , E.htmlAttribute <| Html.Attributes.style "position" "fixed"
+            , E.htmlAttribute <| Html.Attributes.id "tutorial-menu"
+            , E.htmlAttribute <| Html.Attributes.style "z-index" "9999"
             , E.height <| E.fill
             , E.spacing 30
             , E.padding 20
@@ -214,14 +216,13 @@ viewTutorialDemo model =
 viewTutorialText : Model -> E.Element Msg
 viewTutorialText model =
     E.column
-        [ E.width (E.fillPortion 4 |>
+        [ E.width (E.fillPortion 5 |>
             E.minimum 360
         )
         , E.paddingXY 20 0
         , E.htmlAttribute (Html.Attributes.style "max-width" "70vw")
         , E.htmlAttribute (Html.Attributes.style "margin" "auto")
         , E.htmlAttribute (Html.Attributes.style "margin-top" "20px")
-        , E.htmlAttribute (Html.Attributes.style "margin-left" "20vw")
         ]
         [ E.html <| Html.div
             [ Html.Attributes.class

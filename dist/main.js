@@ -17726,11 +17726,15 @@ var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
 		_List_fromArray(
 			[
 				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'width', '20vw')),
+				A2($elm$html$Html$Attributes$style, 'width', '300px')),
 				$mdgriffith$elm_ui$Element$htmlAttribute(
 				A2($elm$html$Html$Attributes$style, 'height', '100vh')),
 				$mdgriffith$elm_ui$Element$htmlAttribute(
 				A2($elm$html$Html$Attributes$style, 'position', 'fixed')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				$elm$html$Html$Attributes$id('tutorial-menu')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'z-index', '9999')),
 				$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
 				$mdgriffith$elm_ui$Element$spacing(30),
 				$mdgriffith$elm_ui$Element$padding(20),
@@ -17821,16 +17825,14 @@ var $author$project$Page$Tutorial$viewTutorialText = function (model) {
 				A2(
 					$mdgriffith$elm_ui$Element$minimum,
 					360,
-					$mdgriffith$elm_ui$Element$fillPortion(4))),
+					$mdgriffith$elm_ui$Element$fillPortion(5))),
 				A2($mdgriffith$elm_ui$Element$paddingXY, 20, 0),
 				$mdgriffith$elm_ui$Element$htmlAttribute(
 				A2($elm$html$Html$Attributes$style, 'max-width', '70vw')),
 				$mdgriffith$elm_ui$Element$htmlAttribute(
 				A2($elm$html$Html$Attributes$style, 'margin', 'auto')),
 				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'margin-top', '20px')),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'margin-left', '20vw'))
+				A2($elm$html$Html$Attributes$style, 'margin-top', '20px'))
 			]),
 		_List_fromArray(
 			[
