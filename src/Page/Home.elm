@@ -50,12 +50,9 @@ view : Model -> Html Msg
 view model =
   E.layout
     [ Font.family
-        [ Font.external
-          { name = "Nunito"
-          , url = "https://fonts.googleapis.com/css?family=Nunito"
-          }
-        , Font.sansSerif
-        ]
+      [ Font.typeface "Nunito"
+      , Font.sansSerif
+      ]
     , Font.color <| theme.yellow
     , Font.glow (E.rgba255 255 218 94 0.8) 3
     , Background.color <| theme.dark
