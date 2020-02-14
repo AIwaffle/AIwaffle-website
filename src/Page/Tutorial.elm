@@ -23,6 +23,7 @@ port elmToJs : Vega.Spec -> Cmd msg
 type alias Model =
     { contentIndex : Int
     , demo : Demo.Model
+    , showMenu : Bool
     }
 
 contentNames : List String
@@ -46,6 +47,13 @@ firstContentName =
     Maybe.withDefault "" <| List.head contentNames
 
 
+theme =
+  { yellow = E.rgb255 247 203 55
+  , grey = E.rgb255 170 170 170
+  , dark = E.rgb255 50 29 29
+  }
+
+
 init : String -> ( Model, Cmd Msg )
 init contentName =
     let
@@ -56,6 +64,8 @@ init contentName =
         getContentIndex contentName 
     , demo =
         demo
+    , showMenu =
+        True
     }
     , Cmd.batch
         [ renderContent contentName
@@ -156,9 +166,55 @@ view model =
             [ E.width E.fill
             , E.height E.fill
             ]
-            [ viewTutorialText model
+            [ viewTutorialMenu model
+            , viewTutorialText model
             , viewTutorialDemo model
             ]
+
+
+viewTutorialMenu : Model -> E.Element Msg
+viewTutorialMenu model =
+    if model.showMenu then
+        E.column
+            [ E.htmlAttribute <| Html.Attributes.style "width" "20vw"
+            , E.htmlAttribute <| Html.Attributes.style "height" "100vh"
+            , E.htmlAttribute <| Html.Attributes.style "position" "fixed"
+            , E.height <| E.fill
+            , E.spacing 30
+            , E.padding 20
+            , Background.color theme.dark
+            , Font.color theme.yellow
+            ]
+            ( E.link
+                [ E.width E.fill
+                , Border.width 2
+                , E.padding 10
+                ]
+                { url = "/"
+                , label = E.text "Home"
+                }
+            :: List.indexedMap
+                (\contentIndex contentName ->
+                    E.link []
+                        { url = "/tutorial/" ++ contentName
+                        , label =
+                            E.el
+                            ( if contentIndex == model.contentIndex then
+                                [ Font.bold
+                                , Font.color theme.yellow
+                                ]
+                            else
+                                [ Font.regular
+                                , Font.color theme.grey
+                                ]
+                            )
+                            (E.text contentName)
+                        }
+                )
+                contentNames
+            )
+    else
+        E.none
 
 
 viewTutorialDemo : Model -> E.Element Msg
@@ -169,7 +225,7 @@ viewTutorialDemo model =
         Just hasDemo ->
             if hasDemo then
                 E.column
-                [ E.width (E.fillPortion 5)
+                [ E.width (E.fillPortion 6)
                 , E.spacing 10
                 ]
                 [ center <|
@@ -182,12 +238,13 @@ viewTutorialDemo model =
 viewTutorialText : Model -> E.Element Msg
 viewTutorialText model =
     E.column
-        [ E.width (E.fillPortion 3 |>
+        [ E.width (E.fillPortion 4 |>
             E.minimum 360
         )
         , E.paddingXY 20 0
         , E.htmlAttribute (Html.Attributes.style "max-width" "70vw")
         , E.htmlAttribute (Html.Attributes.style "margin" "auto")
+        , E.htmlAttribute (Html.Attributes.style "margin-left" "20vw")
         ]
         [ contentNavigation model
         , E.html <| Html.div
