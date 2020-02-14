@@ -1,1 +1,18061 @@
-!function(r){"use strict";function n(r,n,e){return e.a=r,e.f=n,e}function v(e){return n(2,e,function(n){return function(r){return e(n,r)}})}function D(t){return n(3,t,function(e){return function(n){return function(r){return t(e,n,r)}}})}function e(a){return n(4,a,function(t){return function(e){return function(n){return function(r){return a(t,e,n,r)}}}})}function t(u){return n(5,u,function(a){return function(t){return function(e){return function(n){return function(r){return u(a,t,e,n,r)}}}}})}function a(c){return n(6,c,function(u){return function(a){return function(t){return function(e){return function(n){return function(r){return c(u,a,t,e,n,r)}}}}}})}function u(i){return n(7,i,function(c){return function(u){return function(a){return function(t){return function(e){return function(n){return function(r){return i(c,u,a,t,e,n,r)}}}}}}})}function c(o){return n(8,o,function(i){return function(c){return function(u){return function(a){return function(t){return function(e){return function(n){return function(r){return o(i,c,u,a,t,e,n,r)}}}}}}}})}function i(s){return n(9,s,function(o){return function(i){return function(c){return function(u){return function(a){return function(t){return function(e){return function(n){return function(r){return s(o,i,c,u,a,t,e,n,r)}}}}}}}}})}function J(r,n,e){return 2===r.a?r.f(n,e):r(n)(e)}function B(r,n,e,t){return 3===r.a?r.f(n,e,t):r(n)(e)(t)}function P(r,n,e,t,a){return 4===r.a?r.f(n,e,t,a):r(n)(e)(t)(a)}function h(r,n,e,t,a,u){return 5===r.a?r.f(n,e,t,a,u):r(n)(e)(t)(a)(u)}function s(r,n,e,t,a,u,c){return 6===r.a?r.f(n,e,t,a,u,c):r(n)(e)(t)(a)(u)(c)}function f(r,n,e,t,a,u,c,i){return 7===r.a?r.f(n,e,t,a,u,c,i):r(n)(e)(t)(a)(u)(c)(i)}function l(r,n,e,t,a,u,c,i,o){return 8===r.a?r.f(n,e,t,a,u,c,i,o):r(n)(e)(t)(a)(u)(c)(i)(o)}function p(r,n){for(var e,t=[],a=o(r,n,0,t);a&&(e=t.pop());a=o(e.a,e.b,0,t));return a}function o(r,n,e,t){if(100<e)return t.push(Y(r,n)),!0;if(r===n)return!0;if("object"!=typeof r||null===r||null===n)return"function"==typeof r&&S(5),!1;for(var a in r.$<0&&(r=be(r),n=be(n)),r)if(!o(r[a],n[a],e+1,t))return!1;return!0}var d=v(p);v(function(r,n){return!p(r,n)});function b(r,n,e){if("object"!=typeof r)return r===n?0:r<n?-1:1;if(void 0===r.$)return(e=b(r.a,n.a))||(e=b(r.b,n.b))?e:b(r.c,n.c);for(;r.b&&n.b&&!(e=b(r.a,n.a));r=r.b,n=n.b);return e||(r.b?1:n.b?-1:0)}v(function(r,n){return b(r,n)<0}),v(function(r,n){return b(r,n)<1}),v(function(r,n){return 0<b(r,n)}),v(function(r,n){return 0<=b(r,n)});var g=v(function(r,n){var e=b(r,n);return e<0?fe:e?se:oe}),m=0;function Y(r,n){return{a:r,b:n}}function $(r,n,e){return{a:r,b:n,c:e}}function w(r){return r}function x(r,n){var e={};for(var t in r)e[t]=r[t];for(var t in n)e[t]=n[t];return e}v(G);function G(r,n){if("string"==typeof r)return r+n;if(!r.b)return n;var e=y(r.a,n);r=r.b;for(var t=e;r.b;r=r.b)t=t.b=y(r.a,n);return e}var H={$:0};function y(r,n){return{$:1,a:r,b:n}}var k=v(y);function X(r){for(var n=H,e=r.length;e--;)n=y(r[e],n);return n}function z(r){for(var n=[];r.b;r=r.b)n.push(r.a);return n}var C=D(function(r,n,e){for(var t=[];n.b&&e.b;n=n.b,e=e.b)t.push(J(r,n.a,e.a));return X(t)});e(function(r,n,e,t){for(var a=[];n.b&&e.b&&t.b;n=n.b,e=e.b,t=t.b)a.push(B(r,n.a,e.a,t.a));return X(a)}),t(function(r,n,e,t,a){for(var u=[];n.b&&e.b&&t.b&&a.b;n=n.b,e=e.b,t=t.b,a=a.b)u.push(P(r,n.a,e.a,t.a,a.a));return X(u)}),a(function(r,n,e,t,a,u){for(var c=[];n.b&&e.b&&t.b&&a.b&&u.b;n=n.b,e=e.b,t=t.b,a=a.b,u=u.b)c.push(h(r,n.a,e.a,t.a,a.a,u.a));return X(c)}),v(function(e,r){return X(z(r).sort(function(r,n){return b(e(r),e(n))}))}),v(function(t,r){return X(z(r).sort(function(r,n){var e=J(t,r,n);return e===oe?0:e===fe?-1:1}))});var A=D(function(r,n,e){for(var t=Array(r),a=0;a<r;a++)t[a]=e(n+a);return t}),j=v(function(r,n){for(var e=Array(r),t=0;t<r&&n.b;t++)e[t]=n.a,n=n.b;return e.length=t,Y(e,n)}),O=(v(function(r,n){return n[r]}),D(function(r,n,e){for(var t=e.length,a=Array(t),u=0;u<t;u++)a[u]=e[u];return a[r]=n,a}),v(function(r,n){for(var e=n.length,t=Array(e+1),a=0;a<e;a++)t[a]=n[a];return t[e]=r,t}),D(function(r,n,e){for(var t=e.length,a=0;a<t;a++)n=J(r,e[a],n);return n}),D(function(r,n,e){for(var t=e.length-1;0<=t;t--)n=J(r,e[t],n);return n}));v(function(r,n){for(var e=n.length,t=Array(e),a=0;a<e;a++)t[a]=r(n[a]);return t}),D(function(r,n,e){for(var t=e.length,a=Array(t),u=0;u<t;u++)a[u]=J(r,n+u,e[u]);return a}),D(function(r,n,e){return e.slice(r,n)}),D(function(r,n,e){var t=n.length,a=r-t;e.length<a&&(a=e.length);for(var u=Array(t+a),c=0;c<t;c++)u[c]=n[c];for(c=0;c<a;c++)u[c+t]=e[c];return u}),v(function(r,n){return n}),v(function(r,n){return console.log(r+": "+L(n)),n});function L(){return"<internals>"}function S(r){throw Error("https://github.com/elm/core/blob/1.0.0/hints/"+r+".md")}v(function(r,n){return r+n}),v(function(r,n){return r-n}),v(function(r,n){return r*n}),v(function(r,n){return r/n}),v(function(r,n){return r/n|0}),v(Math.pow),v(function(r,n){return n%r}),v(function(r,n){var e=n%r;return 0===r?S(11):0<e&&r<0||e<0&&0<r?e+r:e}),v(Math.atan2);var E=Math.ceil,F=Math.floor,K=Math.round,N=Math.log;v(function(r,n){return r&&n}),v(function(r,n){return r||n}),v(function(r,n){return r!==n});var T=v(function(r,n){return r+n});v(function(r,n){return r+n});v(function(r,n){for(var e=n.length,t=Array(e),a=0;a<e;){var u=n.charCodeAt(a);u<55296||56319<u?(t[a]=r(w(n[a])),a++):(t[a]=r(w(n[a]+n[a+1])),a+=2)}return t.join("")}),v(function(r,n){for(var e=[],t=n.length,a=0;a<t;){var u=n[a],c=n.charCodeAt(a);a++,c<55296||56319<c||(u+=n[a],a++),r(w(u))&&e.push(u)}return e.join("")});D(function(r,n,e){for(var t=e.length,a=0;a<t;){var u=e[a],c=e.charCodeAt(a);a++,c<55296||56319<c||(u+=e[a],a++),n=J(r,w(u),n)}return n}),D(function(r,n,e){for(var t=e.length;t--;){var a=e[t],u=e.charCodeAt(t);u<56320||57343<u||(a=e[--t]+a),n=J(r,w(a),n)}return n});var _=v(function(r,n){return n.split(r)}),R=v(function(r,n){return n.join(r)}),M=D(function(r,n,e){return e.slice(r,n)});v(function(r,n){for(var e=n.length;e--;){var t=n[e],a=n.charCodeAt(e);if(a<56320||57343<a||(t=n[--e]+t),r(w(t)))return!0}return!1});var W=v(function(r,n){for(var e=n.length;e--;){var t=n[e],a=n.charCodeAt(e);if(a<56320||57343<a||(t=n[--e]+t),!r(w(t)))return!1}return!0}),q=v(function(r,n){return!!~n.indexOf(r)}),I=v(function(r,n){return 0==n.indexOf(r)}),U=(v(function(r,n){return r.length<=n.length&&n.lastIndexOf(r)==n.length-r.length}),v(function(r,n){var e=r.length;if(e<1)return H;for(var t=0,a=[];-1<(t=n.indexOf(r,t));)a.push(t),t+=e;return X(a)}));function Q(r){return r+""}function Z(r){return{$:2,b:r}}Z(function(r){return"number"!=typeof r?br("an INT",r):-2147483647<r&&r<2147483647&&(0|r)===r?$e(r):!isFinite(r)||r%1?br("an INT",r):$e(r)}),Z(function(r){return"boolean"==typeof r?$e(r):br("a BOOL",r)});var V=Z(function(r){return"number"==typeof r?$e(r):br("a FLOAT",r)}),rr=(Z(function(r){return $e(gr(r))}),Z(function(r){return"string"==typeof r?$e(r):r instanceof String?$e(r+""):br("a STRING",r)}));var nr=v(function(r,n){return{$:6,d:r,b:n}});v(function(r,n){return{$:7,e:r,b:n}});function er(r,n){return{$:9,f:r,g:n}}var tr=v(function(r,n){return{$:10,b:n,h:r}});var ar=v(function(r,n){return er(r,[n])}),ur=D(function(r,n,e){return er(r,[n,e])}),cr=(e(function(r,n,e,t){return er(r,[n,e,t])}),t(function(r,n,e,t,a){return er(r,[n,e,t,a])})),ir=(a(function(r,n,e,t,a,u){return er(r,[n,e,t,a,u])}),u(function(r,n,e,t,a,u,c){return er(r,[n,e,t,a,u,c])}),c(function(r,n,e,t,a,u,c,i){return er(r,[n,e,t,a,u,c,i])}),i(function(r,n,e,t,a,u,c,i,o){return er(r,[n,e,t,a,u,c,i,o])}),v(function(r,n){try{return sr(r,JSON.parse(n))}catch(r){return he(J(pe,"This is not valid JSON! "+r.message,gr(n)))}})),or=v(function(r,n){return sr(r,mr(n))});function sr(r,n){switch(r.$){case 2:return r.b(n);case 5:return null===n?$e(r.c):br("null",n);case 3:return lr(n)?fr(r.b,n,X):br("a LIST",n);case 4:return lr(n)?fr(r.b,n,dr):br("an ARRAY",n);case 6:var e=r.d;if("object"!=typeof n||null===n||!(e in n))return br("an OBJECT with a field named `"+e+"`",n);var t=sr(r.b,n[e]);return et(t)?t:he(J(ge,e,t.a));case 7:var a=r.e;if(!lr(n))return br("an ARRAY",n);if(n.length<=a)return br("a LONGER array. Need index "+a+" but only see "+n.length+" entries",n);t=sr(r.b,n[a]);return et(t)?t:he(J(me,a,t.a));case 8:if("object"!=typeof n||null===n||lr(n))return br("an OBJECT",n);var u=H;for(var c in n)if(n.hasOwnProperty(c)){t=sr(r.b,n[c]);if(!et(t))return he(J(ge,c,t.a));u=y(Y(c,t.a),u)}return $e(Ne(u));case 9:for(var i=r.f,o=r.g,s=0;s<o.length;s++){t=sr(o[s],n);if(!et(t))return t;i=i(t.a)}return $e(i);case 10:t=sr(r.b,n);return et(t)?sr(r.h(t.a),n):t;case 11:for(var f=H,l=r.g;l.b;l=l.b){t=sr(l.a,n);if(et(t))return t;f=y(t.a,f)}return he(we(Ne(f)));case 1:return he(J(pe,r.a,gr(n)));case 0:return $e(r.a)}}function fr(r,n,e){for(var t=n.length,a=Array(t),u=0;u<t;u++){var c=sr(r,n[u]);if(!et(c))return he(J(me,u,c.a));a[u]=c.a}return $e(e(a))}function lr(r){return Array.isArray(r)||"undefined"!=typeof FileList&&r instanceof FileList}function dr(n){return J(nt,n.length,function(r){return n[r]})}function br(r,n){return he(J(pe,"Expecting "+r,gr(n)))}function vr(r,n){if(r===n)return!0;if(r.$!==n.$)return!1;switch(r.$){case 0:case 1:return r.a===n.a;case 2:return r.b===n.b;case 5:return r.c===n.c;case 3:case 4:case 8:return vr(r.b,n.b);case 6:return r.d===n.d&&vr(r.b,n.b);case 7:return r.e===n.e&&vr(r.b,n.b);case 9:return r.f===n.f&&hr(r.g,n.g);case 10:return r.h===n.h&&vr(r.b,n.b);case 11:return hr(r.g,n.g)}}function hr(r,n){var e=r.length;if(e!==n.length)return!1;for(var t=0;t<e;t++)if(!vr(r[t],n[t]))return!1;return!0}var pr=v(function(r,n){return JSON.stringify(mr(n),null,r)+""});function gr(r){return r}function mr(r){return r}var $r=D(function(r,n,e){return e[r]=mr(n),e});function wr(r){return{$:0,a:r}}function xr(r){return{$:2,b:r,c:null}}var yr=v(function(r,n){return{$:3,b:r,d:n}});v(function(r,n){return{$:4,b:r,d:n}});var kr=0;function zr(r){var n={$:0,e:kr++,f:r,g:null,h:[]};return Sr(n),n}function Cr(n){return xr(function(r){r(wr(zr(n)))})}function Ar(r,n){r.h.push(n),Sr(r)}var jr=v(function(n,e){return xr(function(r){Ar(n,e),r(wr(m))})});var Or=!1,Lr=[];function Sr(r){if(Lr.push(r),!Or){for(Or=!0;r=Lr.shift();)Er(r);Or=!1}}function Er(n){for(;n.f;){var r=n.f.$;if(0===r||1===r){for(;n.g&&n.g.$!==r;)n.g=n.g.i;if(!n.g)return;n.f=n.g.b(n.f.a),n.g=n.g.i}else{if(2===r)return void(n.f.c=n.f.b(function(r){n.f=r,Sr(n)}));if(5===r){if(0===n.h.length)return;n.f=n.f.b(n.h.shift())}else n.g={$:3===r?0:1,b:n.f.b,i:n.g},n.f=n.f.d}}}e(function(r,n,e,t){return Fr(n,t,r.c0,r.d2,r.dL,function(){return function(){}})});function Fr(r,n,e,t,a,u){var c=J(or,r,gr(n?n.flags:void 0));et(c)||S(2);var i={},o=(c=e(c.a)).a,s=u(l,o),f=function(r,n){var e;for(var t in Kr){var a=Kr[t];a.a&&((e=e||{})[t]=a.a(t,n)),r[t]=Tr(a,n)}return e}(i,l);function l(r,n){c=J(t,r,o),s(o=c.a,n),Ir(i,c.b,a(o))}return Ir(i,c.b,a(o)),f?{ports:f}:{}}var Kr={};function Nr(r,n,e,t,a){return{b:r,c:n,d:e,e:t,f:a}}function Tr(r,n){var t={g:n,h:void 0},a=r.c,u=r.d,c=r.e,i=r.f;return t.h=zr(J(yr,function r(e){return J(yr,r,{$:5,b:function(r){var n=r.a;return 0===r.$?B(u,t,n,e):c&&i?P(a,t,n.i,n.j,e):B(a,t,c?n.i:n.j,e)}})},r.b))}var _r=v(function(n,e){return xr(function(r){n.g(e),r(wr(m))})}),Rr=v(function(r,n){return J(jr,r.h,{$:0,a:n})});function Mr(n){return function(r){return{$:1,k:n,l:r}}}function Wr(r){return{$:2,m:r}}var qr=v(function(r,n){return{$:3,n:r,o:n}});function Ir(r,n,e){var t={};for(var a in Dr(!0,n,t,null),Dr(!1,e,t,null),r)Ar(r[a],{$:"fx",a:t[a]||{i:H,j:H}})}function Dr(r,n,e,t){switch(n.$){case 1:var a=n.k,u=function(r,n,e,t){return J(r?Kr[n].e:Kr[n].f,function(r){for(var n=e;n;n=n.q)r=n.p(r);return r},t)}(r,a,t,n.l);return void(e[a]=function(r,n,e){return e=e||{i:H,j:H},r?e.i=y(n,e.i):e.j=y(n,e.j),e}(r,u,e[a]));case 2:for(var c=n.m;c.b;c=c.b)Dr(r,c.a,e,t);return;case 3:return void Dr(r,n.o,e,{p:n.n,q:t})}}function Jr(r){Kr[r]&&S(3)}function Br(r,n){return Jr(r),Kr[r]={e:Pr,r:n,a:Yr},Mr(r)}var Pr=v(function(r,n){return n});function Yr(r){var e,u=[],c=Kr[r].r,i=(e=0,xr(function(r){var n=setTimeout(function(){r(wr(m))},e);return function(){clearTimeout(n)}}));return Kr[r].b=i,Kr[r].c=D(function(r,n){for(;n.b;n=n.b)for(var e=u,t=mr(c(n.a)),a=0;a<e.length;a++)e[a](t);return i}),{subscribe:function(r){u.push(r)},unsubscribe:function(r){var n=(u=u.slice()).indexOf(r);n<0||u.splice(n,1)}}}var Gr;v(function(n,e){return function(r){return n(e(r))}});var Hr="undefined"!=typeof document?document:{};function Xr(r,n){r.appendChild(n)}e(function(r,n,e,t){var a=t.node;return a.parentNode.replaceChild(hn(r,function(){}),a),{}});function Ur(r){return{$:0,a:r}}var Qr=v(function(u,c){return v(function(r,n){for(var e=[],t=0;n.b;n=n.b){var a=n.a;t+=a.b||0,e.push(a)}return t+=e.length,{$:1,c:c,d:bn(r),e:e,f:u,b:t}})}),Zr=Qr(void 0),Vr=v(function(u,c){return v(function(r,n){for(var e=[],t=0;n.b;n=n.b){var a=n.a;t+=a.b.b||0,e.push(a)}return t+=e.length,{$:2,c:c,d:bn(r),e:e,f:u,b:t}})})(void 0);var rn=v(function(r,n){return{$:4,j:r,k:n,b:1+(n.b||0)}});function nn(r,n){return{$:5,l:r,m:n,k:void 0}}v(function(r,n){return nn([r,n],function(){return r(n)})}),D(function(r,n,e){return nn([r,n,e],function(){return J(r,n,e)})}),e(function(r,n,e,t){return nn([r,n,e,t],function(){return B(r,n,e,t)})}),t(function(r,n,e,t,a){return nn([r,n,e,t,a],function(){return P(r,n,e,t,a)})}),a(function(r,n,e,t,a,u){return nn([r,n,e,t,a,u],function(){return h(r,n,e,t,a,u)})}),u(function(r,n,e,t,a,u,c){return nn([r,n,e,t,a,u,c],function(){return s(r,n,e,t,a,u,c)})}),c(function(r,n,e,t,a,u,c,i){return nn([r,n,e,t,a,u,c,i],function(){return f(r,n,e,t,a,u,c,i)})}),i(function(r,n,e,t,a,u,c,i,o){return nn([r,n,e,t,a,u,c,i,o],function(){return l(r,n,e,t,a,u,c,i,o)})});var en=v(function(r,n){return{$:"a0",n:r,o:n}}),tn=v(function(r,n){return{$:"a1",n:r,o:n}}),an=v(function(r,n){return{$:"a2",n:r,o:n}}),un=v(function(r,n){return{$:"a3",n:r,o:n}});D(function(r,n,e){return{$:"a4",n:n,o:{f:r,o:e}}});function cn(r){return"script"==r?"p":r}function on(r){return/^\s*(javascript:|data:text\/html)/i.test(r)?"":r}var sn=v(function(r,n){return"a0"===n.$?J(en,n.n,function(r,n){var e=ct(n);return{$:n.$,a:e?B(at,e<3?ln:dn,ut(r),n.a):J(tt,r,n.a)}}(r,n.o)):n});var fn,ln=v(function(r,n){return Y(r(n.a),n.b)}),dn=v(function(r,n){return{E:r(n.E),a1:n.a1,aY:n.aY}});function bn(r){for(var n={};r.b;r=r.b){var e=r.a,t=e.$,a=e.n,u=e.o;if("a2"!==t){var c=n[t]||(n[t]={});"a3"===t&&"class"===a?vn(c,a,u):c[a]=u}else"className"===a?vn(n,a,mr(u)):n[a]=mr(u)}return n}function vn(r,n,e){var t=r[n];r[n]=t?t+" "+e:e}function hn(r,n){var e=r.$;if(5===e)return hn(r.k||(r.k=r.m()),n);if(0===e)return Hr.createTextNode(r.a);if(4===e){for(var t=r.k,a=r.j;4===t.$;)"object"!=typeof a?a=[a,t.j]:a.push(t.j),t=t.k;var u={j:a,p:n};return(c=hn(t,u)).elm_event_node_ref=u,c}if(3===e)return pn(c=r.h(r.g),n,r.d),c;var c=r.f?Hr.createElementNS(r.f,r.c):Hr.createElement(r.c);Gr&&"a"==r.c&&c.addEventListener("click",Gr(c)),pn(c,n,r.d);for(var i=r.e,o=0;o<i.length;o++)Xr(c,hn(1===e?i[o]:i[o].b,n));return c}function pn(r,n,e){for(var t in e){var a=e[t];"a1"===t?gn(r,a):"a0"===t?wn(r,n,a):"a3"===t?mn(r,a):"a4"===t?$n(r,a):("value"!==t&&"checked"!==t||r[t]!==a)&&(r[t]=a)}}function gn(r,n){var e=r.style;for(var t in n)e[t]=n[t]}function mn(r,n){for(var e in n){var t=n[e];void 0!==t?r.setAttribute(e,t):r.removeAttribute(e)}}function $n(r,n){for(var e in n){var t=n[e],a=t.f,u=t.o;void 0!==u?r.setAttributeNS(a,e,u):r.removeAttributeNS(a,e)}}function wn(r,n,e){var t=r.elmFs||(r.elmFs={});for(var a in e){var u=e[a],c=t[a];if(u){if(c){if(c.q.$===u.$){c.q=u;continue}r.removeEventListener(a,c)}c=xn(n,u),r.addEventListener(a,c,fn&&{passive:ct(u)<2}),t[a]=c}else r.removeEventListener(a,c),t[a]=void 0}}try{window.addEventListener("t",null,Object.defineProperty({},"passive",{get:function(){fn=!0}}))}catch(r){}function xn(f,r){function l(r){var n=l.q,e=sr(n.a,r);if(et(e)){for(var t,a=ct(n),u=e.a,c=a?a<3?u.a:u.E:u,i=1==a?u.b:3==a&&u.a1,o=(i&&r.stopPropagation(),(2==a?u.b:3==a&&u.aY)&&r.preventDefault(),f);t=o.j;){if("function"==typeof t)c=t(c);else for(var s=t.length;s--;)c=t[s](c);o=o.p}o(c,i)}}return l.q=r,l}function yn(r,n){return r.$==n.$&&vr(r.a,n.a)}function kn(r,n){var e=[];return Cn(r,n,e,0),e}function zn(r,n,e,t){var a={$:n,r:e,s:t,t:void 0,u:void 0};return r.push(a),a}function Cn(r,n,e,t){if(r!==n){var a=r.$,u=n.$;if(a!==u){if(1!==a||2!==u)return void zn(e,0,t,n);n=function(r){for(var n=r.e,e=n.length,t=Array(e),a=0;a<e;a++)t[a]=n[a].b;return{$:1,c:r.c,d:r.d,e:t,f:r.f,b:r.b}}(n),u=1}switch(u){case 5:for(var c=r.l,i=n.l,o=c.length,s=o===i.length;s&&o--;)s=c[o]===i[o];if(s)return void(n.k=r.k);n.k=n.m();var f=[];return Cn(r.k,n.k,f,0),void(0<f.length&&zn(e,1,t,f));case 4:for(var l=r.j,d=n.j,b=!1,v=r.k;4===v.$;)b=!0,"object"!=typeof l?l=[l,v.j]:l.push(v.j),v=v.k;for(var h=n.k;4===h.$;)b=!0,"object"!=typeof d?d=[d,h.j]:d.push(h.j),h=h.k;return b&&l.length!==d.length?void zn(e,0,t,n):((b?function(r,n){for(var e=0;e<r.length;e++)if(r[e]!==n[e])return!1;return!0}(l,d):l===d)||zn(e,2,t,d),void Cn(v,h,e,t+1));case 0:return void(r.a!==n.a&&zn(e,3,t,n.a));case 1:return void An(r,n,e,t,On);case 2:return void An(r,n,e,t,Ln);case 3:if(r.h!==n.h)return void zn(e,0,t,n);var p=jn(r.d,n.d);p&&zn(e,4,t,p);var g=n.i(r.g,n.g);return void(g&&zn(e,5,t,g))}}}function An(r,n,e,t,a){if(r.c===n.c&&r.f===n.f){var u=jn(r.d,n.d);u&&zn(e,4,t,u),a(r,n,e,t)}else zn(e,0,t,n)}function jn(r,n,e){var t;for(var a in r)if("a1"!==a&&"a0"!==a&&"a3"!==a&&"a4"!==a)if(a in n){var u=r[a],c=n[a];u===c&&"value"!==a&&"checked"!==a||"a0"===e&&yn(u,c)||((t=t||{})[a]=c)}else(t=t||{})[a]=e?"a1"===e?"":"a0"===e||"a3"===e?void 0:{f:r[a].f,o:void 0}:"string"==typeof r[a]?"":null;else{var i=jn(r[a],n[a]||{},a);i&&((t=t||{})[a]=i)}for(var o in n)o in r||((t=t||{})[o]=n[o]);return t}function On(r,n,e,t){var a=r.e,u=n.e,c=a.length,i=u.length;i<c?zn(e,6,t,{v:i,i:c-i}):c<i&&zn(e,7,t,{v:c,e:u});for(var o=c<i?c:i,s=0;s<o;s++){var f=a[s];Cn(f,u[s],e,++t),t+=f.b||0}}function Ln(r,n,e,t){for(var a=[],u={},c=[],i=r.e,o=n.e,s=i.length,f=o.length,l=0,d=0,b=t;l<s&&d<f;){var v=(A=i[l]).a,h=(j=o[d]).a,p=A.b,g=j.b,m=void 0,$=void 0;if(v!==h){var w=i[l+1],x=o[d+1];if(w){var y=w.a,k=w.b;$=h===y}if(x){var z=x.a,C=x.b;m=v===z}if(m&&$)Cn(p,C,a,++b),En(u,a,v,g,d,c),b+=p.b||0,Fn(u,a,v,k,++b),b+=k.b||0,l+=2,d+=2;else if(m)b++,En(u,a,h,g,d,c),Cn(p,C,a,b),b+=p.b||0,l+=1,d+=2;else if($)Fn(u,a,v,p,++b),b+=p.b||0,Cn(k,g,a,++b),b+=k.b||0,l+=2,d+=1;else{if(!w||y!==z)break;Fn(u,a,v,p,++b),En(u,a,h,g,d,c),b+=p.b||0,Cn(k,C,a,++b),b+=k.b||0,l+=2,d+=2}}else Cn(p,g,a,++b),b+=p.b||0,l++,d++}for(;l<s;){var A;Fn(u,a,(A=i[l]).a,p=A.b,++b),b+=p.b||0,l++}for(;d<f;){var j,O=O||[];En(u,a,(j=o[d]).a,j.b,void 0,O),d++}(0<a.length||0<c.length||O)&&zn(e,8,t,{w:a,x:c,y:O})}var Sn="_elmW6BL";function En(r,n,e,t,a,u){var c=r[e];if(!c)return u.push({r:a,A:c={c:0,z:t,r:a,s:void 0}}),void(r[e]=c);if(1===c.c){u.push({r:a,A:c}),c.c=2;var i=[];return Cn(c.z,t,i,c.r),c.r=a,void(c.s.s={w:i,A:c})}En(r,n,e+Sn,t,a,u)}function Fn(r,n,e,t,a){var u=r[e];if(u){if(0===u.c){u.c=2;var c=[];return Cn(t,u.z,c,a),void zn(n,9,a,{w:c,A:u})}Fn(r,n,e+Sn,t,a)}else{var i=zn(n,9,a,void 0);r[e]={c:1,z:t,r:a,s:i}}}function Kn(r,n,e,t){!function r(n,e,t,a,u,c,i){var o=t[a];var s=o.r;for(;s===u;){var f=o.$;if(1===f)Kn(n,e.k,o.s,i);else if(8===f){o.t=n,o.u=i;var l=o.s.w;0<l.length&&r(n,e,l,0,u,c,i)}else if(9===f){o.t=n,o.u=i;var d=o.s;if(d){d.A.s=n;var l=d.w;0<l.length&&r(n,e,l,0,u,c,i)}}else o.t=n,o.u=i;if(!(o=t[++a])||(s=o.r)>c)return a}var b=e.$;if(4===b){for(var v=e.k;4===v.$;)v=v.k;return r(n,v,t,a,u+1,c,n.elm_event_node_ref)}var h=e.e;var p=n.childNodes;for(var g=0;g<h.length;g++){var m=1===b?h[g]:h[g].b,$=++u+(m.b||0);if(u<=s&&s<=$&&(a=r(p[g],m,t,a,u,$,i),!(o=t[a])||(s=o.r)>c))return a;u=$}return a}(r,n,e,0,0,n.b,t)}function Nn(r,n,e,t){return 0===e.length?r:(Kn(r,n,e,t),Tn(r,e))}function Tn(r,n){for(var e=0;e<n.length;e++){var t=n[e],a=t.t,u=_n(a,t);a===r&&(r=u)}return r}function _n(r,n){switch(n.$){case 0:return function(r,n,e){var t=r.parentNode,a=hn(n,e);a.elm_event_node_ref||(a.elm_event_node_ref=r.elm_event_node_ref);t&&a!==r&&t.replaceChild(a,r);return a}(r,n.s,n.u);case 4:return pn(r,n.u,n.s),r;case 3:return r.replaceData(0,r.length,n.s),r;case 1:return Tn(r,n.s);case 2:return r.elm_event_node_ref?r.elm_event_node_ref.j=n.s:r.elm_event_node_ref={j:n.s,p:n.u},r;case 6:for(var e=n.s,t=0;t<e.i;t++)r.removeChild(r.childNodes[e.v]);return r;case 7:for(var a=(e=n.s).e,u=r.childNodes[t=e.v];t<a.length;t++)r.insertBefore(hn(a[t],n.u),u);return r;case 9:if(!(e=n.s))return r.parentNode.removeChild(r),r;var c=e.A;return void 0!==c.r&&r.parentNode.removeChild(r),c.s=Tn(r,e.w),r;case 8:return function(r,n){var e=n.s,t=function(r,n){if(!r)return;for(var e=Hr.createDocumentFragment(),t=0;t<r.length;t++){var a=r[t].A;Xr(e,2===a.c?a.s:hn(a.z,n.u))}return e}(e.y,n);r=Tn(r,e.w);for(var a=e.x,u=0;u<a.length;u++){var c=a[u],i=c.A,o=2===i.c?i.s:hn(i.z,n.u);r.insertBefore(o,r.childNodes[c.r])}t&&Xr(r,t);return r}(r,n);case 5:return n.s(r);default:S(10)}}function Rn(r){if(3===r.nodeType)return Ur(r.textContent);if(1!==r.nodeType)return Ur("");for(var n=H,e=r.attributes,t=e.length;t--;){var a=e[t];n=y(J(un,a.name,a.value),n)}var u=r.tagName.toLowerCase(),c=H,i=r.childNodes;for(t=i.length;t--;)c=y(Rn(i[t]),c);return B(Zr,u,n,c)}e(function(n,r,e,i){return Fr(r,i,n.c0,n.d2,n.dL,function(t,r){var a=n.d3,u=i.node,c=Rn(u);return qn(r,function(r){var n=a(r),e=kn(c,n);u=Nn(u,c,e,t),c=n})})});var Mn=e(function(n,r,e,t){return Fr(r,t,n.c0,n.d2,n.dL,function(a,r){var u=n.a$&&n.a$(a),c=n.d3,i=Hr.title,o=Hr.body,s=Rn(o);return qn(r,function(r){Gr=u;var n=c(r),e=Zr("body")(H)(n.aK),t=kn(s,e);o=Nn(o,s,t,a),s=e,Gr=0,i!==n.a3&&(Hr.title=i=n.a3)})})}),Wn="undefined"!=typeof requestAnimationFrame?requestAnimationFrame:function(r){return setTimeout(r,1e3/60)};function qn(e,t){t(e);var a=0;function u(){a=1===a?0:(Wn(u),t(e),1)}return function(r,n){e=r,n?(t(e),2===a&&(a=1)):(0===a&&Wn(u),a=2)}}function In(){return xt(Hr.location.href).a||S(1)}v(function(r,n){return J(sa,yt,xr(function(){n&&history.go(n),r()}))});var Dn=v(function(r,n){return J(sa,yt,xr(function(){history.pushState({},"",n),r()}))}),Jn=(v(function(r,n){return J(sa,yt,xr(function(){history.replaceState({},"",n),r()}))}),{addEventListener:function(){},removeEventListener:function(){}}),Bn="undefined"!=typeof window?window:Jn;D(function(n,e,t){return Cr(xr(function(){function r(r){zr(t(r))}return n.addEventListener(e,r,fn&&{passive:!0}),function(){n.removeEventListener(e,r)}}))}),v(function(r,n){var e=sr(r,n);return et(e)?xe(e.a):ye});function Pn(e,t){return xr(function(n){Wn(function(){var r=document.getElementById(e);n(r?wr(t(r)):{$:1,a:it(e)})})})}v(function(n,r){return Pn(r,function(r){return r[n](),m})});v(function(r,n){return e=function(){return Bn.scroll(r,n),m},xr(function(r){Wn(function(){r(wr(e()))})});var e});D(function(r,n,e){return Pn(r,function(r){return r.scrollLeft=n,r.scrollTop=e,m})});var Yn=D(function(t,a,u){return xr(function(n){function e(r){n(a(u.aO.a(r)))}var r=new XMLHttpRequest;r.addEventListener("error",function(){e(_a)}),r.addEventListener("timeout",function(){e(Wa)}),r.addEventListener("load",function(){e(function(r,n){return J(200<=n.status&&n.status<300?Ta:Ka,function(r){return{a4:r.responseURL,dF:r.status,dG:r.statusText,bp:function(r){if(!r)return Ia;for(var n=Ia,e=r.split("\r\n"),t=e.length;t--;){var a=e[t],u=a.indexOf(": ");if(0<u){var c=a.substring(0,u),i=a.substring(2+u);n=B(nu,c,function(r){return xe(Da(r)?i+", "+r.a:i)},n)}}return n}(r.getAllResponseHeaders())}}(n),r(n.response))}(u.aO.b,r))}),Da(u.b$)&&function(n,e,t){e.upload.addEventListener("progress",function(r){e.c||zr(J(Ja,n,Y(t,Ma({dx:r.loaded,bW:r.total}))))}),e.addEventListener("progress",function(r){e.c||zr(J(Ja,n,Y(t,Ra({dp:r.loaded,bW:r.lengthComputable?xe(r.total):ye}))))})}(t,r,u.b$.a);try{r.open(u.de,u.a4,!0)}catch(r){return e(Na(u.a4))}return function(r,n){for(var e=n.bp;e.b;e=e.b)r.setRequestHeader(e.a.a,e.a.b);r.timeout=n.d_.a||0,r.responseType=n.aO.d,r.withCredentials=n.ci}(r,u),u.aK.a&&r.setRequestHeader("Content-Type",u.aK.a),r.send(u.aK.b),function(){r.c=!0,r.abort()}})});var Gn=D(function(r,n,e){return{$:0,d:r,b:n,a:e}}),Hn=v(function(n,e){return{$:0,d:e.d,b:e.b,a:function(r){return n(e.a(r))}}});function Xn(r){return new DataView(r)}var Un=v(function(r,n){return{$:0,a:r,b:n}});v(function(r,n){return new Blob([n],{type:r})});v(function(r,n){return r&n}),v(function(r,n){return r|n}),v(function(r,n){return r^n});v(function(r,n){return n<<r}),v(function(r,n){return n>>r}),v(function(r,n){return n>>>r});function Qn(r){return J(Ae,"\n    ",J(je,"\n",r))}function Zn(r){return B(Oe,v(function(r,n){return n+1}),0,r)}function Vn(r){var n=Ke(r);return 97<=n&&n<=122}function re(r){var n=Ke(r);return n<=90&&65<=n}function ne(r){return Vn(r)||re(r)}function ee(r){return Vn(r)||re(r)||function(r){var n=Ke(r);return n<=57&&48<=n}(r)}function te(r){return r}function ae(r){return r.a}function ue(r){return r}function ce(r){return""===r}function ie(r){return B(At,St(le),kt(H),r)}var oe=1,se=2,fe=0,le=k,de=D(function(r,n,e){for(;;){if(-2===e.$)return n;var t=e.d,a=r,u=B(r,e.b,e.c,B(de,r,n,e.e));r=a,n=u,e=t}}),be=function(r){return B(de,D(function(r,n,e){return J(le,Y(r,n),e)}),H,r)},ve=O,he=(D(function(e,r,n){var t=n.c,a=n.d,u=v(function(r,n){return B(ve,r.$?e:u,n,r.a)});return B(ve,u,B(ve,e,r,a),t)}),function(r){return{$:1,a:r}}),pe=v(function(r,n){return{$:3,a:r,b:n}}),ge=v(function(r,n){return{$:0,a:r,b:n}}),me=v(function(r,n){return{$:1,a:r,b:n}}),$e=function(r){return{$:0,a:r}},we=function(r){return{$:2,a:r}},xe=function(r){return{$:0,a:r}},ye={$:1},ke=W,ze=pr,Ce=Q,Ae=v(function(r,n){return J(R,r,z(n))}),je=v(function(r,n){return X(J(_,r,n))}),Oe=D(function(r,n,e){for(;;){if(!e.b)return n;var t=e.b,a=r,u=J(r,e.a,n);r=a,n=u,e=t}}),Le=C,Se=D(function(r,n,e){for(;;){if(1<=b(r,n))return e;var t=r,a=n-1,u=J(le,n,e);r=t,n=a,e=u}}),Ee=v(function(r,n){return B(Se,r,n,H)}),Fe=v(function(r,n){return B(Le,r,J(Ee,0,Zn(n)-1),n)}),Ke=function(r){var n=r.charCodeAt(0);return n<55296||56319<n?n:1024*(n-55296)+r.charCodeAt(1)-56320+65536},Ne=function(r){return B(Oe,le,H,r)},Te=function(r){var n=r.charCodeAt(0);return n?xe(n<55296||56319<n?Y(w(r[0]),r.slice(1)):Y(w(r[0]+r[1]),r.slice(2))):ye},_e=v(function(r,n){return"\n\n("+Ce(r+1)+") "+Qn(Re(n))}),Re=function(r){return J(Me,r,H)},Me=v(function(r,n){r:for(;;)switch(r.$){case 0:var t=r.a,e=r.b,a=function(){var r=Te(t);if(1===r.$)return!1;var n=r.a,e=n.b;return ne(n.a)&&J(ke,ee,e)}(),u=e,c=J(le,a?"."+t:"['"+t+"']",n);r=u,n=c;continue r;case 1:e=r.b;var i="["+Ce(r.a)+"]";u=e,c=J(le,i,n);r=u,n=c;continue r;case 2:var o=r.a;if(o.b){if(o.b.b){var s=(n.b?"The Json.Decode.oneOf at json"+J(Ae,"",Ne(n)):"Json.Decode.oneOf")+" failed in the following "+Ce(Zn(o))+" ways:";return J(Ae,"\n\n",J(le,s,J(Fe,_e,o)))}r=u=e=o.a,n=c=n;continue r}return"Ran into a Json.Decode.oneOf with no possibilities"+(n.b?" at json"+J(Ae,"",Ne(n)):"!");default:var f=r.a,l=r.b;return(s=n.b?"Problem with the value at json"+J(Ae,"",Ne(n))+":\n\n    ":"Problem with the given value:\n\n")+(Qn(J(ze,4,l))+"\n\n")+f}}),We=e(function(r,n,e,t){return{$:0,a:r,b:n,c:e,d:t}}),qe=[],Ie=E,De=v(function(r,n){return N(n)/N(r)}),Je=Ie(J(De,2,32)),Be=P(We,0,Je,qe,qe),Pe=A,Ye=(v(function(r,n){return r(n)}),v(function(r,n){return n(r)}),d),Ge=F,He=function(r){return r.length},Xe=v(function(r,n){return 0<b(r,n)?r:n}),Ue=j,Qe=v(function(r,n){for(;;){var e=J(Ue,32,r),t=e.b,a=J(le,{$:0,a:e.a},n);if(!t.b)return Ne(a);r=t,n=a}}),Ze=v(function(r,n){for(;;){var e=Ie(n/32);if(1===e)return J(Ue,32,r).a;r=J(Qe,r,H),n=e}}),Ve=v(function(r,n){if(n.c){var e=32*n.c,t=Ge(J(De,32,e-1)),a=r?Ne(n.g):n.g,u=J(Ze,a,n.c);return P(We,He(n.f)+e,J(Xe,5,t*Je),u,n.f)}return P(We,He(n.f),Je,qe,n.f)}),rt=t(function(r,n,e,t,a){for(;;){if(n<0)return J(Ve,!1,{g:t,c:e/32|0,f:a});var u={$:1,a:B(Pe,32,n,r)};r=r,n=n-32,e=e,t=J(le,u,t),a=a}}),nt=v(function(r,n){if(0<r){var e=r%32,t=B(Pe,e,r-e,n);return h(rt,n,r-e-32,r,H,t)}return Be}),et=function(r){return!r.$},tt=ar,at=ur,ut=function(r){return{$:0,a:r}},ct=function(r){switch(r.$){case 0:return 0;case 1:return 1;case 2:return 2;default:return 3}},it=ue,ot=a(function(r,n,e,t,a,u){return{bn:u,bs:n,bG:t,bJ:e,bM:r,bN:a}}),st=q,ft=function(r){return r.length},lt=M,dt=v(function(r,n){return r<1?n:B(lt,r,ft(n),n)}),bt=U,vt=v(function(r,n){return r<1?"":B(lt,0,r,n)}),ht=function(r){for(var n=0,e=r.charCodeAt(0),t=43==e||45==e?1:0,a=t;a<r.length;++a){var u=r.charCodeAt(a);if(u<48||57<u)return ye;n=10*n+u-48}return a==t?ye:xe(45==e?-n:n)},pt=t(function(r,n,e,t,a){if(ce(a)||J(st,"@",a))return ye;var u=J(bt,":",a);if(u.b){if(u.b.b)return ye;var c=u.a,i=ht(J(dt,c+1,a));if(1===i.$)return ye;var o=i;return xe(s(ot,r,J(vt,c,a),o,n,e,t))}return xe(s(ot,r,a,ye,n,e,t))}),gt=e(function(r,n,e,t){if(ce(t))return ye;var a=J(bt,"/",t);if(a.b){var u=a.a;return h(pt,r,J(dt,u,t),n,e,J(vt,u,t))}return h(pt,r,"/",n,e,t)}),mt=D(function(r,n,e){if(ce(e))return ye;var t=J(bt,"?",e);if(t.b){var a=t.a;return P(gt,r,xe(J(dt,a+1,e)),n,J(vt,a,e))}return P(gt,r,ye,n,e)}),$t=v(function(r,n){if(ce(n))return ye;var e=J(bt,"#",n);if(e.b){var t=e.a;return B(mt,r,xe(J(dt,t+1,n)),J(vt,t,n))}return B(mt,r,ye,n)}),wt=I,xt=function(r){return J(wt,"http://",r)?J($t,0,J(dt,7,r)):J(wt,"https://",r)?J($t,1,J(dt,8,r)):ye},yt=function(r){for(;;){r=r}},kt=wr,zt=kt(0),Ct=e(function(r,n,e,t){if(t.b){var a=t.a,u=t.b;if(u.b){var c=u.a,i=u.b;if(i.b){var o=i.a,s=i.b;if(s.b){var f=s.b;return J(r,a,J(r,c,J(r,o,J(r,s.a,500<e?B(Oe,r,n,Ne(f)):P(Ct,r,n,e+1,f)))))}return J(r,a,J(r,c,J(r,o,n)))}return J(r,a,J(r,c,n))}return J(r,a,n)}return n}),At=D(function(r,n,e){return P(Ct,r,n,0,e)}),jt=v(function(e,r){return B(At,v(function(r,n){return J(le,e(r),n)}),H,r)}),Ot=yr,Lt=v(function(n,r){return J(Ot,function(r){return kt(n(r))},r)}),St=D(function(e,r,t){return J(Ot,function(n){return J(Ot,function(r){return kt(J(e,n,r))},t)},r)}),Et=_r,Ft=v(function(r,n){var e=n;return Cr(J(Ot,Et(r),e))}),Kt=D(function(r,n){return J(Lt,function(){return 0},ie(J(jt,Ft(r),n)))}),Nt=D(function(){return kt(0)}),Tt=v(function(r,n){return J(Lt,r,n)});Kr.Task=Nr(zt,Kt,Nt,Tt);function _t(r){return{$:1,a:r}}function Rt(){return Y({aL:X(["Intro to Machine Learning","Intro to Deep Learning","Logistic Regression Model"])},da)}function Mt(r){return{$:1,a:r}}function Wt(r){return ha(Ye(r))}function qt(r){return J(pa,0,J(Wt,r,va))}function It(r){switch(r){case 0:return"area";case 1:return"bar";case 2:return"boxplot";case 5:return"circle";case 3:return"errorband";case 4:return"errorbar";case 7:return"image";case 8:return"line";case 6:return"geoshape";case 9:return"point";case 10:return"rect";case 11:return"rule";case 12:return"square";case 13:return"text";case 14:return"tick";default:return"trail"}}function Dt(r){return $a(r?"radial":"linear")}function Jt(r){switch(r){case 3:return $a("normal");case 0:return $a("bold");case 1:return $a("bolder");case 2:return $a("lighter");case 4:return wa(100);case 5:return wa(200);case 6:return wa(300);case 7:return wa(400);case 8:return wa(500);case 9:return wa(600);case 10:return wa(700);case 11:return wa(800);default:return wa(900)}}function Bt(r){return gr(B(Oe,v(function(r,n){return B($r,r.a,r.b,n)}),{},r))}function Pt(r){var n=r.b;return Bt(X([Y("offset",wa(r.a)),Y("color",$a(n))]))}function Yt(r){switch(r.$){case 0:return Y("x1",wa(r.a));case 1:return Y("y1",wa(r.a));case 2:return Y("x2",wa(r.a));case 3:return Y("y2",wa(r.a));case 4:return Y("r1",wa(r.a));case 5:return Y("r2",wa(r.a));default:return Y("stops",J(xa,Pt,r.a))}}function Gt(r){switch(r){case 1:return"left";case 0:return"center";default:return"right"}}function Ht(r){return r?"vertical":"horizontal"}function Xt(r){switch(r.$){case 0:return"circle";case 1:return"square";case 2:return"cross";case 3:return"diamond";case 4:return"triangle-up";case 5:return"triangle-down";case 6:return"triangle-left";case 7:return"triangle-right";case 12:return"triangle";case 9:return"stroke";case 10:return"arrow";case 11:return"wedge";default:return r.a}}function Ut(r){switch(r){case 0:return"top";case 1:return"middle";default:return"bottom"}}function Qt(r){return B(At,ja,H,r)}function Zt(r){switch(r.$){case 0:var n=r.a;return""===ya(n)?X([Y("type",$a("json"))]):X([Y("type",$a("json")),Y("property",$a(n))]);case 1:return X([Y("type",$a("csv"))]);case 2:return X([Y("type",$a("tsv"))]);case 3:var e=r.a;return X([Y("type",$a("dsv")),Y("delimiter",$a(J(La,e,"")))]);case 4:return X([Y("type",$a("arrow"))]);case 5:var t=r.a;return X([Y("type",$a("topojson")),Y("feature",$a(t))]);case 6:t=r.a;return X([Y("type",$a("topojson")),Y("mesh",$a(t))]);default:var a=r.a;return p(a,H)?X([Y("parse",null)]):X([Y("parse",Bt(J(jt,function(r){return Y(r.a,function(r){switch(r.$){case 0:return $a("number");case 1:return $a("boolean");case 2:return $a(""===(n=r.a)?"date":"date:'"+n+"'");default:var n;return $a(""===(n=r.a)?"utc":"utc:'"+n+"'")}}(r.b))},a)))])}}function Vt(r){return Y(15,Bt(r))}function ra(r){return Bt(J(le,Y("$schema",$a("https://vega.github.io/schema/vega-lite/v4.json")),J(jt,function(r){var n=r.b;return Y(function(r){switch(r){case 0:return"name";case 1:return"description";case 2:return"title";case 3:case 5:return"width";case 4:case 6:return"height";case 8:return"padding";case 7:return"autosize";case 9:return"background";case 10:return"data";case 11:return"datasets";case 14:return"projection";case 12:return"mark";case 13:return"transform";case 15:return"encoding";case 29:return"config";case 30:return"selection";case 17:return"concat";case 20:return"columns";case 18:return"hconcat";case 19:return"vconcat";case 16:return"layer";case 21:return"repeat";case 22:return"facet";case 25:return"spacing";case 26:return"align";case 27:return"bounds";case 28:return"center";case 23:return"spec";case 24:return"resolve";default:return"view"}}(r.a),n)},r)))}function na(r){if(-1!==r.$||-1!==r.d.$||-1!==r.e.$)return r;if(-1!==r.e.d.$||r.e.d.a){var n=r.d,e=r.e;c=e.b,i=e.c,t=e.d,f=e.e;return h(Ya,1,r.b,r.c,h(Ya,0,n.b,n.c,n.d,n.e),h(Ya,0,c,i,t,f))}var t,a=r.d,u=r.e,c=u.b,i=u.c,o=(t=u.d).d,s=t.e,f=u.e;return h(Ya,0,t.b,t.c,h(Ya,1,r.b,r.c,h(Ya,0,a.b,a.c,a.d,a.e),o),h(Ya,1,c,i,s,f))}function ea(r){if(-1!==r.$||-1!==r.d.$||-1!==r.e.$)return r;if(-1!==r.d.d.$||r.d.d.a){var n=r.d,e=n.d,t=r.e;f=t.b,l=t.c,d=t.d,b=t.e;return h(Ya,1,a=r.b,u=r.c,h(Ya,0,n.b,n.c,e,o=n.e),h(Ya,0,f,l,d,b))}var a=r.b,u=r.c,c=r.d,i=c.d,o=c.e,s=r.e,f=s.b,l=s.c,d=s.d,b=s.e;return h(Ya,0,c.b,c.c,h(Ya,1,i.b,i.c,i.d,i.e),h(Ya,1,a,u,o,h(Ya,0,f,l,d,b)))}function ta(r){return{$:4,a:r}}function aa(r){return J(Un,"application/json",J(ze,0,r))}function ua(r){return{$:1,a:r}}var ca,ia,oa=Mr("Task"),sa=v(function(r,n){return oa(J(Lt,r,n))}),fa=function(n){var r=n.dk,c=n.dl,e=function(){e.a(r(In()))};return Mn({a$:function(u){return e.a=u,Bn.addEventListener("popstate",e),~Bn.navigator.userAgent.indexOf("Trident")&&Bn.addEventListener("hashchange",e),v(function(r,n){if(!(n.ctrlKey||n.metaKey||n.shiftKey||1<=n.button||r.target||r.hasAttribute("download"))){n.preventDefault();var e=r.href,t=In(),a=xt(e).a;u(c(a&&t.bM===a.bM&&t.bs===a.bs&&t.bJ.a===a.bJ.a?{$:0,a:a}:function(r){return{$:1,a:r}}(e)))}})},c0:function(r){return B(n.c0,r,In(),e)},d3:n.d3,d2:n.d2,dL:n.dL})},la=Wr,da=la(H),ba={$:0},va=X(["Intro to Machine Learning","Intro to Deep Learning","Logistic Regression Model"]),ha=D(function(r,n,e){for(;;){if(!e.b)return ye;var t=e.b;if(n(e.a))return xe(r);r=r+1,n=n,e=t}})(0),pa=v(function(r,n){return n.$?r:n.a}),ga={O:H,a5:H,aF:H,a9:H},ma=gr,$a=gr,wa=gr,xa=v(function(r,n){return gr(B(Oe,function(e){return v(function(r,n){return n.push(mr(e(r))),n})}(r),[],n))}),ya=function(r){return r.trim()},ka=function(r){switch(r.$){case 24:return Y("filled",ma(r.a));case 7:return Y("clip",ma(r.a));case 8:return Y("color",$a(e=r.a));case 10:return Y("cornerRadius",wa(r.a));case 13:return Y("cornerRadiusBottomLeft",wa(r.a));case 14:return Y("cornerRadiusBottomRight",wa(r.a));case 11:return Y("cornerRadiusTopLeft",wa(r.a));case 12:return Y("cornerRadiusTopRight",wa(r.a));case 15:return Y("cursor",$a(function(r){switch(r){case 0:return"auto";case 1:return"default";case 2:return"none";case 3:return"context-menu";case 4:return"help";case 5:return"pointer";case 6:return"progress";case 7:return"wait";case 8:return"cell";case 9:return"crosshair";case 10:return"text";case 11:return"vertical-text";case 12:return"alias";case 13:return"copy";case 14:return"move";case 15:return"no-drop";case 16:return"not-allowed";case 17:return"all-scroll";case 18:return"col-resize";case 19:return"row-resize";case 20:return"n-resize";case 21:return"e-resize";case 22:return"s-resize";case 23:return"w-resize";case 24:return"ne-resize";case 25:return"nw-resize";case 26:return"se-resize";case 27:return"sw-resize";case 28:return"ew-resize";case 29:return"ns-resize";case 30:return"nesw-resize";case 31:return"nwse-resize";case 32:return"zoom-in";case 33:return"zoom-out";case 34:return"grab";default:return"grabbing"}}(r.a)));case 21:return Y("extent",function(r){switch(r.$){case 0:return $a("ci");case 1:return $a("stderr");case 2:return $a("stdev");case 3:return $a("iqr");case 4:return $a("min-max");default:return wa(r.a)}}(r.a));case 16:return Y("href",$a(r.a));case 39:return Y("invalid",r.a?$a("filter"):null);case 22:return""===ya(e=r.a)?Y("fill",null):Y("fill",$a(e));case 23:var n=r.b;return Y("fill",Bt(J(le,Y("gradient",Dt(r.a)),J(jt,Yt,n))));case 9:n=r.b;return Y("color",Bt(J(le,Y("gradient",Dt(r.a)),J(jt,Yt,n))));case 45:n=r.b;return Y("stroke",Bt(J(le,Y("gradient",Dt(r.a)),J(jt,Yt,n))));case 44:var e;return""===ya(e=r.a)?Y("stroke",null):Y("stroke",$a(e));case 46:return Y("strokeCap",$a(function(r){switch(r){case 0:return"butt";case 1:return"round";default:return"square"}}(r.a)));case 49:return Y("strokeJoin",$a(function(r){switch(r){case 0:return"miter";case 1:return"round";default:return"bevel"}}(r.a)));case 50:return Y("strokeMiterLimit",wa(r.a));case 33:return Y("opacity",wa(r.a));case 25:return Y("fillOpacity",wa(r.a));case 51:return Y("strokeOpacity",wa(r.a));case 52:return Y("strokeWidth",wa(r.a));case 47:var t=r.a;return p(t,H)?Y("strokeDash",null):Y("strokeDash",J(xa,wa,t));case 48:return Y("strokeDashOffset",wa(r.a));case 53:return Y("style",J(xa,$a,r.a));case 30:return Y("interpolate",$a(function(r){switch(r){case 7:return"linear";case 8:return"linear-closed";case 12:return"step";case 11:return"step-before";case 10:return"step-after";case 0:return"basis";case 2:return"basis-open";case 1:return"basis-closed";case 4:return"cardinal";case 6:return"cardinal-open";case 5:return"cardinal-closed";case 3:return"bundle";default:return"monotone"}}(r.a)));case 54:return Y("tension",wa(r.a));case 36:return Y("orient",$a(Ht(r.a)));case 41:return Y("shape",$a(Xt(r.a)));case 43:return Y("size",wa(r.a));case 1:return Y("angle",wa(r.a));case 0:return Y("align",$a(Gt(r.a)));case 3:return Y("baseline",$a(Ut(r.a)));case 19:return Y("dx",wa(r.a));case 20:return Y("dy",wa(r.a));case 26:return Y("font",$a(r.a));case 27:return Y("fontSize",wa(r.a));case 28:return Y("fontStyle",$a(r.a));case 29:return Y("fontWeight",Jt(r.a));case 38:return Y("radius",wa(r.a));case 55:return Y("text",$a(r.a));case 56:return Y("theta",wa(r.a));case 4:return Y("binSpacing",wa(r.a));case 17:return Y("continuousBandSize",wa(r.a));case 18:return Y("discreteBandSize",wa(r.a));case 42:return Y("shortTimeLabels",ma(r.a));case 2:return Y("bandSize",wa(r.a));case 57:return Y("thickness",wa(r.a));case 40:return Y("rule",Bt(J(jt,ka,n=r.a)));case 5:return Y("borders",Bt(J(jt,ka,n=r.a)));case 32:return Y("median",Bt(J(jt,ka,n=r.a)));case 6:return Y("box",Bt(J(jt,ka,n=r.a)));case 34:return Y("outliers",Bt(J(jt,ka,n=r.a)));case 58:return Y("ticks",Bt(J(jt,ka,n=r.a)));case 59:var a=r.a;return Y("tooltip",2===a?null:Bt(X([Y("content",$a(function(r){switch(r){case 0:return"encoding";case 1:return"data";default:return"null"}}(a)))])));case 37:return Y("point",za(r.a));case 31:return Y("line",function(r){return r.$?Bt(J(jt,ka,r.a)):ma(!1)}(r.a));case 60:return Y("width",wa(r.a));case 61:return Y("height",wa(r.a));case 62:return Y("x",wa(r.a));case 63:return Y("y",wa(r.a));case 64:return Y("x2",wa(r.a));case 65:return Y("y2",wa(r.a));case 35:return Y("order",ma(r.a));case 66:return Y("xOffset",wa(r.a));case 68:return Y("x2Offset",wa(r.a));case 67:return Y("yOffset",wa(r.a));case 69:return Y("y2Offset",wa(r.a));default:return Y("aspect",ma(r.a))}},za=function(r){switch(r.$){case 0:return $a("transparent");case 1:return ma(!1);default:var n=r.a;return p(n,H)?ma(!0):Bt(J(jt,ka,n))}},Ca=v(function(r,n){return Y(12,n.b?Bt(J(le,Y("type",$a(It(r))),J(jt,ka,n))):$a(It(r)))}),Aa=Ca(5),ja=v(function(r,n){return n.b?B(At,le,n,r):r}),Oa=v(function(r,n){return Qt(J(jt,r,n))}),La=T,Sa=xa(ue),Ea=v(function(r,n){return p(r,H)?Y(10,Bt(X([Y("values",Sa(n))]))):Y(10,Bt(X([Y("values",Sa(n)),Y("format",Bt(J(Oa,Zt,r)))])))}),Fa={az:"",p:ga,aN:(ca=Vt,ia=J(Ea,H,H),ra(X([ia,ca(H),Aa(H)]))),ak:ye},Ka=v(function(r,n){return{$:3,a:r,b:n}}),Na=function(r){return{$:0,a:r}},Ta=v(function(r,n){return{$:4,a:r,b:n}}),_a={$:2},Ra=function(r){return{$:1,a:r}},Ma=function(r){return{$:0,a:r}},Wa={$:1},qa={$:-2},Ia=qa,Da=function(r){return!r.$},Ja=Rr,Ba=g,Pa=v(function(r,n){r:for(;;){if(-2===n.$)return ye;var e=n.c,t=n.d,a=n.e;switch(J(Ba,r,n.b)){case 0:r=r,n=t;continue r;case 1:return xe(e);default:r=r,n=a;continue r}}}),Ya=t(function(r,n,e,t,a){return{$:-1,a:r,b:n,c:e,d:t,e:a}}),Ga=t(function(r,n,e,t,a){if(-1!==a.$||a.a){if(-1!==t.$||t.a||-1!==t.d.$||t.d.a)return h(Ya,r,n,e,t,a);var u=t.d;f=t.e;return h(Ya,0,t.b,t.c,h(Ya,1,u.b,u.c,u.d,u.e),h(Ya,1,n,e,f,a))}var c=a.b,i=a.c,o=a.d,s=a.e;if(-1!==t.$||t.a)return h(Ya,r,c,i,h(Ya,0,n,e,t,o),s);var f;return h(Ya,0,n,e,h(Ya,1,t.b,t.c,t.d,f=t.e),h(Ya,1,c,i,o,s))}),Ha=D(function(r,n,e){if(-2===e.$)return h(Ya,0,r,n,qa,qa);var t=e.a,a=e.b,u=e.c,c=e.d,i=e.e;switch(J(Ba,r,a)){case 0:return h(Ga,t,a,u,B(Ha,r,n,c),i);case 1:return h(Ya,t,a,n,c,i);default:return h(Ga,t,a,u,c,B(Ha,r,n,i))}}),Xa=D(function(r,n,e){var t=B(Ha,r,n,e);if(-1!==t.$||t.a)return t;return h(Ya,1,t.b,t.c,t.d,t.e)}),Ua=u(function(r,n,e,t,a,u,c){if(-1!==u.$||u.a){r:for(;-1===c.$&&1===c.a;){if(-1===c.d.$){if(1!==c.d.a)break r;return ea(n)}return ea(n)}return n}return h(Ya,e,u.b,u.c,u.d,h(Ya,0,t,a,u.e,c))}),Qa=function(r){if(-1!==r.$||-1!==r.d.$)return qa;var n=r.a,e=r.b,t=r.c,a=r.d,u=a.d,c=r.e;if(1!==a.a)return h(Ya,n,e,t,Qa(a),c);if(-1!==u.$||u.a){var i=na(r);if(-1!==i.$)return qa;var o=i.e;return h(Ga,i.a,i.b,i.c,Qa(i.d),o)}return h(Ya,n,e,t,Qa(a),c)},Za=v(function(r,n){if(-2===n.$)return qa;var e=n.a,t=n.b,a=n.c,u=n.d,c=n.e;if(b(r,t)<0){if(-1!==u.$||1!==u.a)return h(Ya,e,t,a,J(Za,r,u),c);var i=u.d;if(-1!==i.$||i.a){var o=na(n);if(-1!==o.$)return qa;var s=o.e;return h(Ga,o.a,o.b,o.c,J(Za,r,o.d),s)}return h(Ya,e,t,a,J(Za,r,u),c)}return J(Va,r,f(Ua,r,n,e,t,a,u,c))}),Va=v(function(r,n){if(-1!==n.$)return qa;var e=n.a,t=n.b,a=n.c,u=n.d,c=n.e;if(p(r,t)){var i=function(r){for(;;){if(-1!==r.$||-1!==r.d.$)return r;r=r.d}}(c);return-1!==i.$?qa:h(Ga,e,i.b,i.c,u,Qa(c))}return h(Ga,e,t,a,u,J(Za,r,c))}),ru=v(function(r,n){var e=J(Za,r,n);if(-1!==e.$||e.a)return e;return h(Ya,1,e.b,e.c,e.d,e.e)}),nu=D(function(r,n,e){var t=n(J(Pa,r,e));return t.$?J(ru,r,e):B(Xa,r,t.a,e)}),eu=D(function(r,n,e){return n(r(e))}),tu=v(function(r,n){return B(Gn,"arraybuffer",Xn,J(eu,n,r))}),au={$:2},uu={$:1},cu=v(function(r,n){return n.$?he(r(n.a)):$e(n.a)}),iu=v(function(r,n){switch(n.$){case 0:return he({$:0,a:n.a});case 1:return he(uu);case 2:return he(au);case 3:return he(function(r){return{$:3,a:r}}(n.a.dF));default:return J(cu,ta,r(n.b))}}),ou=v(function(r,n){return{bP:r,bX:n}}),su=kt(J(ou,Ia,H)),fu=function(e){return xr(function(r){var n=e.f;2===n.$&&n.c&&n.c(),e.f=null,r(wr(m))})},lu=Cr,du=D(function(e,r,t){for(;;){if(!r.b)return kt(t);var n=r.a,a=r.b;if(n.$){var u=n.a;return J(Ot,function(r){var n=u.b$;return B(du,e,a,1===n.$?t:B(Xa,n.a,r,t))},lu(B(Yn,e,Et(e),u)))}var c=n.a,i=J(Pa,c,t);if(1!==i.$)return J(Ot,function(){return B(du,e,a,J(ru,c,t))},fu(i.a));e=e,r=a,t=t}}),bu=e(function(r,n,e,t){return J(Ot,function(r){return kt(J(ou,r,e))},B(du,r,n,t.bP))}),vu=D(function(r,n,e){var t=r(n);return t.$?e:J(le,t.a,e)}),hu=v(function(r,n){return B(At,vu(r),H,n)}),pu=e(function(r,n,e,t){var a=t.b;return p(n,t.a)?xe(J(Et,r,a(e))):ye}),gu=D(function(r,n,e){return J(Ot,function(){return kt(e)},ie(J(hu,B(pu,r,n.a,n.b),e.bX)))}),mu=v(function(r,n){if(n.$){var e=n.a;return ua({ci:e.ci,aK:e.aK,aO:J(Hn,r,e.aO),bp:e.bp,de:e.de,d_:e.d_,b$:e.b$,a4:e.a4})}return{$:0,a:n.a}}),$u=v(function(r,n){return{$:0,a:r,b:n}}),wu=v(function(r,n){return J($u,n.a,J(eu,n.b,r))});Kr.Http=Nr(su,bu,gu,mu,wu);function xu(r){return function(r){return Nc(ua({ci:!1,aK:r.aK,aO:r.aO,bp:r.bp,de:r.de,d_:r.d_,b$:r.b$,a4:r.a4}))}({aK:r.aK,aO:r.aO,bp:H,de:"POST",d_:ye,b$:ye,a4:r.a4})}function yu(o){return function(r){var n=r.U,e=r.I,t=r.S,a=r.M,u=r.z;if(e.b){var c=e.a,i=e.b;return p(c,o)?X([h(Wc,J(le,c,n),i,t,a,u)]):H}return H}}function ku(r){return{$:3,a:r}}function zu(r){return{$:4,a:r}}function Cu(r){return X([r])}function Au(r){switch(r.$){case 0:return Y("year",si(r.a));case 1:return Y("quarter",si(r.a));case 2:return Y("month",$a(function(r){switch(r){case 0:return"Jan";case 1:return"Feb";case 2:return"Mar";case 3:return"Apr";case 4:return"May";case 5:return"Jun";case 6:return"Jul";case 7:return"Aug";case 8:return"Sep";case 9:return"Oct";case 10:return"Nov";default:return"Dec"}}(r.a)));case 3:return Y("month",si(r.a));case 4:return Y("date",si(r.a));case 5:return Y("day",$a(function(r){switch(r){case 0:return"Mon";case 1:return"Tue";case 2:return"Wed";case 3:return"Thu";case 4:return"Fri";case 5:return"Sat";default:return"Sun"}}(r.a)));case 6:return Y("hours",si(r.a));case 7:return Y("minutes",si(r.a));case 8:return Y("seconds",si(r.a));default:return Y("milliseconds",si(r.a))}}function ju(r){if(r.b){return xe(r.a)}return ye}function Ou(r){switch(r){case 1:return"row";case 0:return"column";default:return"repeat"}}function Lu(r){return{$:59,a:r}}function Su(r){return{$:60,a:r}}function Eu(r){return{$:61,a:r}}function Fu(r){return{$:62,a:r}}function Ku(r){return{$:15,a:r}}function Nu(r){return{$:17,a:r}}function Tu(r){return{$:19,a:r}}function _u(r){return{$:23,a:r}}function Ru(r){return{$:24,a:r}}function Mu(r){return{$:25,a:r}}function Wu(r){return{$:26,a:r}}function qu(r){return{$:28,a:r}}function Iu(r){return{$:32,a:r}}function Du(r){return{$:36,a:r}}function Ju(r){return{$:40,a:r}}function Bu(r){switch(r.$){case 5:return Y("maxbins",si(r.a));case 0:return Y("anchor",wa(r.a));case 1:return Y("base",wa(r.a));case 8:return Y("step",wa(r.a));case 9:return Y("steps",J(xa,wa,r.a));case 6:return Y("minstep",wa(r.a));case 2:return Y("divide",J(xa,wa,r.a));case 3:return Y("extent",J(xa,wa,X([r.a,r.b])));case 4:return Y("extent",Bt(X([Y("selection",$a(r.a))])));default:return Y("nice",ma(r.a))}}function Pu(r){return p(r,H)?Y("bin",ma(!0)):Y("bin",Bt(J(jt,Bu,r)))}function Yu(r){switch(r.$){case 2:return J(jt,wa,r.a);case 3:return J(jt,$a,r.a);case 1:return J(jt,function(r){return Bt(J(jt,Au,r))},r.a);default:return J(jt,ma,r.a)}}function Gu(r){switch(r.$){case 2:return wa(r.a);case 3:return $a(r.a);case 0:return ma(r.a);case 1:return Bt(J(jt,Au,r.a));default:return null}}function Hu(r){switch(r.$){case 0:var n=r.b;return X([Y("field",$a(e=r.a)),Y("equal",Gu(n))]);case 1:n=r.b;return X([Y("field",$a(e=r.a)),Y("lt",Gu(n))]);case 2:n=r.b;return X([Y("field",$a(e=r.a)),Y("lte",Gu(n))]);case 3:n=r.b;return X([Y("field",$a(e=r.a)),Y("gt",Gu(n))]);case 4:n=r.b;return X([Y("field",$a(e=r.a)),Y("gte",Gu(n))]);case 7:return X([Y("selection",$a(r.a))]);case 9:var e=r.a,t=r.b,a=function(){if(t.$){if(t.a.b){if(t.b.b){r=t.b;return J(xa,Bt,X([J(jt,Au,t.a),J(jt,Au,r)]))}return Sa(X([Bt(J(jt,Au,t.a)),null]))}var r;return Sa(X(t.b.b?[null,Bt(J(jt,Au,r=t.b))]:[null,null]))}return J(xa,wa,X([t.a,t.b]))}();return X([Y("field",$a(e)),Y("range",a)]);case 8:e=r.a,t=r.b,a=function(){switch(t.$){case 2:return J(xa,wa,t.a);case 1:return J(xa,function(r){return Bt(J(jt,Au,r))},t.a);case 3:return J(xa,$a,t.a);default:return J(xa,ma,t.a)}}();return X([Y("field",$a(e)),Y("oneOf",a)]);case 10:return X([Y("field",$a(e=r.a)),Y("valid",ma(!0))]);default:return H}}function Xu(r){switch(r){case 0:return ma(!1);case 1:return $a("parity");default:return $a("greedy")}}function Uu(r){var n=J(je,"\n",r);return n.b?n.b.b?J(xa,$a,n):$a(n.a):$a("")}function Qu(r){switch(r.$){case 0:return Y("clipHeight",wa(r.a));case 1:return Y("columnPadding",wa(r.a));case 25:return Y("rowPadding",wa(r.a));case 2:return Y("columns",wa(r.a));case 3:return Y("cornerRadius",wa(r.a));case 5:return Y("fillColor",$a(n=r.a));case 4:return Y("direction",$a(Ht(r.a)));case 43:return Y("type",$a(r.a?"symbol":"gradient"));case 6:return Y("format",$a(n=r.a));case 7:return Y("formatType",$a("number"));case 8:return Y("formatType",$a("time"));case 9:return Y("gradientLength",wa(r.a));case 10:return Y("gradientThickness",wa(r.a));case 11:return Y("gradientStrokeColor",$a(n=r.a));case 12:return Y("gradientStrokeWidth",wa(r.a));case 13:return Y("gridAlign",function(r){switch(r){case 0:return $a("none");case 1:return $a("each");default:return $a("all")}}(r.a));case 14:return Y("labelAlign",$a(Gt(r.a)));case 15:return Y("labelBaseline",$a(Ut(r.a)));case 16:return Y("labelColor",$a(n=r.a));case 17:return Y("labelFont",$a(n=r.a));case 18:return Y("labelFontSize",wa(r.a));case 19:return Y("labelLimit",wa(r.a));case 20:return Y("labelOffset",wa(r.a));case 21:return Y("labelOverlap",Xu(r.a));case 22:return Y("offset",wa(r.a));case 23:return Y("orient",$a(function(r){switch(r){case 3:return"left";case 7:return"top-left";case 6:return"top";case 8:return"top-right";case 5:return"right";case 2:return"bottom-right";case 0:return"bottom";case 1:return"bottom-left";default:return"none"}}(r.a)));case 24:return Y("padding",wa(r.a));case 26:return Y("strokeColor",$a(n=r.a));case 27:return Y("strokeWidth",wa(r.a));case 28:return Y("symbolFillColor",$a(n=r.a));case 32:return Y("symbolStrokeColor",$a(n=r.a));case 29:return Y("symbolType",$a(Xt(n=r.a)));case 30:return Y("symbolSize",wa(r.a));case 31:return Y("symbolStrokeWidth",wa(r.a));case 33:return Y("tickCount",wa(r.a));case 34:return Y("title",""===(n=r.a)?null:Uu(n));case 35:return Y("titleAlign",$a(Gt(r.a)));case 36:return Y("titleBaseline",$a(Ut(r.a)));case 37:return Y("titleColor",$a(n=r.a));case 38:var n;return Y("titleFont",$a(n=r.a));case 39:return Y("titleFontSize",wa(r.a));case 40:return Y("titleFontWeight",Jt(r.a));case 41:return Y("titleLimit",wa(r.a));case 42:return Y("titlePadding",wa(r.a));case 44:var e=r.a;return Y("values",function(){switch(e.$){case 1:return J(xa,wa,e.a);case 0:return J(xa,function(r){return Bt(J(jt,Au,r))},e.a);default:return J(xa,$a,e.a)}}());case 45:return Y("legendX",wa(r.a));case 46:return Y("legendY",wa(r.a));default:return Y("zindex",si(r.a))}}function Zu(r){switch(r){case 0:return"nominal";case 1:return"ordinal";case 2:return"quantitative";case 3:return"temporal";default:return"geojson"}}function Vu(r){switch(r.$){case 0:return 1===(n=r.a).$?$a("argmax"):ft(ya(e=n.a))?Bt(X([Y("argmax",$a(e))])):$a("argmax");case 1:var n,e;return 1===(n=r.a).$?$a("argmin"):ft(ya(e=n.a))?Bt(X([Y("argmin",$a(e))])):$a("argmin");case 4:return $a("count");case 2:return $a("ci0");case 3:return $a("ci1");case 5:return $a("distinct");case 6:return $a("max");case 7:return $a("mean");case 8:return $a("median");case 9:return $a("min");case 10:return $a("missing");case 11:return $a("q1");case 12:return $a("q3");case 14:return $a("stdev");case 15:return $a("stdevp");case 16:return $a("sum");case 13:return $a("stderr");case 17:return $a("valid");case 18:return $a("variance");default:return $a("variancep")}}function rc(r){switch(r.$){case 0:return Y("type",$a(function(r){switch(r){case 0:return"linear";case 1:return"pow";case 4:return"symlog";case 2:return"sqrt";case 3:return"log";case 5:return"time";case 6:return"utc";case 7:return"ordinal";case 8:return"band";case 9:return"point";case 10:return"bin-linear";case 11:return"bin-ordinal";case 12:return"quantile";case 13:return"quantize";default:return"threshold"}}(r.a)));case 1:return Y("domain",function(r){switch(r.$){case 0:return J(xa,wa,r.a);case 2:return J(xa,function(r){return Bt(J(jt,Au,r))},r.a);case 1:return J(xa,$a,r.a);case 3:return Bt(X([Y("selection",$a(r.a))]));default:return $a("unaggregated")}}(r.a));case 2:var n=r.a;switch(n.$){case 0:return Y("range",J(xa,wa,n.a));case 1:return Y("range",J(xa,$a,n.a));default:return Y("range",$a(n.a))}case 3:return J(yi,r.a,r.b);case 4:return Y("align",wa(r.a));case 5:return Y("padding",wa(r.a));case 16:return Y("base",wa(r.a));case 14:return Y("exponent",wa(r.a));case 15:return Y("constant",wa(r.a));case 6:return Y("paddingInner",wa(r.a));case 7:return Y("paddingOuter",wa(r.a));case 8:var e=r.a;return Y("rangeStep",e.$?null:wa(e.a));case 9:return Y("round",ma(r.a));case 10:return Y("clamp",ma(r.a));case 11:return Y("interpolate",function(r){switch(r.$){case 7:var n=r.a;return Bt(X([Y("type",$a("rgb")),Y("gamma",wa(n))]));case 4:return Bt(X([Y("type",$a("hsl"))]));case 5:return Bt(X([Y("type",$a("hsl-long"))]));case 6:return Bt(X([Y("type",$a("lab"))]));case 2:return Bt(X([Y("type",$a("hcl"))]));case 3:return Bt(X([Y("type",$a("hcl-long"))]));case 0:n=r.a;return Bt(X([Y("type",$a("cubehelix")),Y("gamma",wa(n))]));default:n=r.a;return Bt(X([Y("type",$a("cubehelix-long")),Y("gamma",wa(n))]))}}(r.a));case 12:return Y("nice",function(r){switch(r.$){case 0:return $a("millisecond");case 1:return $a("second");case 2:return $a("minute");case 3:return $a("hour");case 4:return $a("day");case 5:return $a("week");case 6:return $a("month");case 7:return $a("year");case 10:var n=r.b;return Bt(X([Y("interval",$a(xi(r.a))),Y("step",si(n))]));case 8:return ma(!0);case 9:return ma(!1);default:return si(r.a)}}(r.a));case 13:return Y("zero",ma(r.a));default:return Y("reverse",ma(r.a))}}function nc(r){switch(r.$){case 0:return X([Y("order",$a("ascending"))]);case 1:return X([Y("order",$a("descending"))]);case 5:return X([Y("encoding",$a(function(r){switch(r){case 0:return"x";case 1:return"y";case 2:return"x2";case 3:return"y2";case 4:return"color";case 5:return"opacity";case 6:return"shape";default:return"size"}}(r.a)))]);case 4:var n=r.b;return X([Y("field",$a(r.a)),Y("op",Vu(n))]);case 3:n=r.b;return X([Y("field",Bt(X([Y("repeat",$a(Ou(r.a)))]))),Y("op",Vu(n))]);default:return H}}function ec(r){switch(r.$){case 0:if(r.a.$){if(r.b.$){return Y("frame",Sa(X([null,null])))}return Y("frame",Sa(X([null,si(r.b.a)])))}if(r.b.$){return Y("frame",Sa(X([si(r.a.a),null])))}return Y("frame",J(xa,si,X([r.a.a,r.b.a])));case 1:return Y("keyvals",Sa(Yu(r.a)));case 2:var n=r.b,e=r.c;return Y("keyvals",Bt(X([Y("start",wa(r.a)),Y("stop",wa(n)),Y("step",wa(e))])));case 3:return Y("method",$a(function(r){switch(r){case 0:return"value";case 1:return"mean";case 2:return"median";case 3:return"max";default:return"min"}}(r.a)));case 5:return Y("value",Gu(r.a));default:return Y("groupby",null)}}function tc(r){return Y("stack",function(r){switch(r){case 0:return $a("zero");case 1:return $a("normalize");case 2:return $a("center");default:return null}}(r))}function ac(r){switch(r.$){case 0:return Y("field",$a(r.a));case 5:return Y("type",$a(Zu(r.a)));case 6:return Pu(r.a);case 7:return Y("bin",$a("binned"));case 10:return Y("aggregate",Vu(r.a));case 8:return Y("timeUnit",$a(xi(r.a)));case 9:return Y("title",Uu(r.a));case 13:var n=r.a;r:for(;;){if(!n.b)return Y("sort",null);if(n.b.b)break r;switch(n.a.$){case 0:return Y("sort",$a("ascending"));case 1:return Y("sort",$a("descending"));case 2:return Y("sort",Sa(Yu(n.a.a)));default:break r}}return Y("sort",Bt(J(Oa,nc,n)));case 14:return Y("band",wa(r.a));case 11:return p(n=r.a,H)?Y("scale",null):Y("scale",Bt(J(jt,rc,n)));case 12:var e=r.a;return p(e,H)?Y("axis",null):Y("axis",Bt(J(jt,ji,e)));case 15:return tc(r.a);case 4:return Y("field",Bt(X([Y("repeat",$a(Ou(r.a)))])));case 1:return Y("value",$a("width"));case 2:return Y("value",$a("height"));case 3:return Y("value",wa(r.a));default:return Y("impute",Bt(J(jt,ec,r.a)))}}function uc(r){switch(r){case 0:return"x";case 1:return"y";case 2:return"x2";case 3:return"y2";case 8:return"xError";case 9:return"yError";case 10:return"xError2";case 11:return"yError2";case 4:return"longitude";case 5:return"latitude";case 6:return"longitude2";default:return"latitude2"}}function cc(r){var n,e=J(oi,J(oi,J(oi,bi(H),J(fi,"x",mi(J(pa,H,J(hi,0,r.p.aF))))),J(fi,"y",mi(J(pa,H,J(hi,1,r.p.aF))))),J(fi,"group",Ki(J(jt,function(r){switch(Fi(r)){case 0:return"Group 1";case 1:return"Group 2";default:return"Group"}},J(pa,H,J(hi,0,r.p.a9)))))),t=J(oi,J(oi,J(oi,Vt,J(Oi,0,X([$i("x"),wi]))),J(Oi,1,X([$i("y"),wi]))),(n=X([Si("group"),Ei]),le(Y("color",Bt(J(Oa,Ci,n))))));return ra(X([e(H),t(H),Aa(H)]))}function ic(r){return function(r){return Bt(r)}(X([Y("logisticRegressionDemoScatterPlot",(e=Vt,t=J(Ea,H,H),ra(X([Li,ii,t,e(H),(n=X([function(r){var n=J(pa,H,J(hi,0,J(pa,H,J(hi,0,r.p.a5)))),e=J(pa,0,J(hi,1,n)),t=J(pa,0,J(hi,2,n)),a=J(oi,J(oi,Vt,J(Oi,0,X([$i("x"),wi]))),J(Oi,1,X([$i("y"),wi]))),u=J(pa,0,J(hi,0,n)),c=-u/t,i=(-u-1*e)/t,o=J(oi,J(oi,bi(H),J(fi,"x",mi(X([0,1])))),J(fi,"y",mi(X([c,i]))));return ra(X([o(H),pi(X([gi("#734FD8")])),a(H)]))}(r),cc(r)]),Y(16,Sa(n)))])))),Y("logisticRegressionDemoLossPlot",function(r){var n=J(oi,J(oi,bi(H),J(fi,"epoch",mi(J(jt,te,J(Ee,0,Zn(r.p.O)-1))))),J(fi,"loss",mi(r.p.O))),e=J(oi,J(oi,Vt,J(Oi,0,X([$i("epoch"),wi]))),J(Oi,1,X([$i("loss"),wi])));return ra(X([Li,ii,n(H),pi(X([gi("#734FD8")])),e(H)]))}(r))]));var n,e,t}function oc(r){return{$:2,a:r}}function sc(r){return{$:2,a:r}}function fc(r){var n=Zn(va)-1;return 0<b(r,n)?J(pa,Gi,J(Hi,n,va)):J(pa,Gi,J(Hi,r,va))}function lc(r){return 31<r?{$:1,a:1<<r-32}:function(r){return{$:0,a:r}}(1<<r)}function dc(r){return Ce(Fi(255*r))}function bc(r){var n=r.b,e=r.c,t=r.d;return dc(r.a)+"-"+dc(n)+"-"+dc(e)+"-"+dc(t)}function vc(r){return J(Zi,Vi,B(Qi,"bg-"+bc(r),"background-color",r))}function hc(r){return J(Zi,ro,B(Qi,"fc-"+bc(r),"color",r))}function pc(r){return{$:0,a:r}}function gc(r){return{$:1,a:r}}function mc(r){return{$:1,a:r}}function $c(r){return{$:0,a:r}}function wc(r){switch(r.$){case 0:return ye;case 1:var n=r.a,e=n.b,t=n.c;return xe("mv-"+dc(n.a)+"-"+dc(e)+"-"+dc(t));default:var a=r.a,u=a.b,c=a.c,i=r.b,o=i.a,s=i.b,f=i.c,l=r.c,d=l.a,b=l.b,v=l.c,h=r.d;return xe("tfrm-"+dc(a.a)+"-"+dc(u)+"-"+dc(c)+"-"+dc(o)+"-"+dc(s)+"-"+dc(f)+"-"+dc(d)+"-"+dc(b)+"-"+dc(v)+"-"+dc(h))}}function xc(r){return"."+r}function yc(r){var n=r.b,e=r.c,t=r.d;return"rgba("+Ce(Fi(255*r.a))+","+Ce(Fi(255*n))+","+Ce(Fi(255*e))+","+mf(t)+")"}function kc(r){return J(Ae," ",J(hu,ue,X([r.bv?xe("inset"):ye,xe(mf(r.bC.a)+"px"),xe(mf(r.bC.b)+"px"),xe(mf(r.bd)+"px"),xe(mf(r.bW)+"px"),xe(yc(r.bh))])))}function zc(r){return X([J(gf,xc(Wo)+":focus-within",J(hu,ue,X([J($f,function(r){return J(pf,"border-color",yc(r))},r.cs),J($f,function(r){return J(pf,"background-color",yc(r))},r.cm),J($f,function(r){return J(pf,"box-shadow",kc({bd:r.bd,bh:r.bh,bv:!1,bC:J(xf,te,J(wf,te,r.bC)),bW:r.bW}))},r.dy),xe(J(pf,"outline","none"))]))),J(gf,xc(po)+":focus .focusable, "+xc(po)+".focusable:focus",J(hu,ue,X([J($f,function(r){return J(pf,"border-color",yc(r))},r.cs),J($f,function(r){return J(pf,"background-color",yc(r))},r.cm),J($f,function(r){return J(pf,"box-shadow",kc({bd:r.bd,bh:r.bh,bv:!1,bC:J(xf,te,J(wf,te,r.bC)),bW:r.bW}))},r.dy),xe(J(pf,"outline","none"))])))])}function Cc(r){return Zr(cn(r))}function Ac(r){return{$:5,a:r}}function jc(r){switch(r){case 0:return xc(bo);case 1:return xc(to);case 2:return xc(lo);case 3:return xc(fo);case 4:return xc(ao);default:return xc(uo)}}function Oc(a){return Ac(J(Oa,function(r){var n=a(r),e=n.a,t=n.b;return X([J(Cf,function(r){switch(r){case 0:return xc(To);case 1:return xc(So);case 2:return xc(No);case 3:return xc(Ko);case 4:return xc(Eo);default:return xc(Fo)}}(r),e),J(kf,xc(po),X([J(Cf,jc(r),t)]))])},Of))}function Lc(r){return X([J(zf,".v-"+r,X([J(Af,"font-feature-settings",'"'+r+'"')])),J(zf,".v-"+r+"-off",X([J(Af,"font-feature-settings",'"'+r+'" 0')]))])}function Sc(r){return J(Ae,"",r)}var Ec,Fc,Kc,Nc=Mr("Http"),Tc=(Mr("Http"),xu({aK:aa(Bt(X([Y("username",$a("admin")),Y("password",$a("040506"))]))),aO:J(tu,function(r){return{$:0,a:r}},iu(function(){return $e(0)})),a4:"/auth/login"})),_c=Y(Fa,Tc),Rc=qr,Mc=Br("renderContent",$a),Wc=t(function(r,n,e,t,a){return{M:t,S:e,I:n,z:a,U:r}}),qc=v(function(r,n){return h(Wc,n.U,n.I,n.S,n.M,r(n.z))}),Ic=v(function(u,r){var c=r;return function(r){var n=r.U,e=r.I,t=r.S,a=r.M;return J(jt,qc(r.z),c(h(Wc,n,e,t,a,u)))}}),Dc=function(r){return r.b&&(""!==r.a||r.b.b)?J(le,r.a,Dc(r.b)):H},Jc=v(function(r,n){return xe(1===n.$?X([r]):J(le,r,n.a))}),Bc=function(r){try{return xe(decodeURIComponent(r))}catch(r){return ye}},Pc=v(function(r,n){var e=J(je,"=",r);if(e.b&&e.b.b&&!e.b.b.b){var t=e.b.a,a=Bc(e.a);if(1===a.$)return n;var u=a.a,c=Bc(t);return 1===c.$?n:B(nu,u,Jc(c.a),n)}return n}),Yc=v(function(r,n){var e;return function(r){r:for(;;){if(r.b){var n=r.a,e=n.I;if(e.b){if(""!==e.a||e.b.b){r=r.b;continue r}return xe(n.z)}return xe(n.z)}return ye}}(r(h(Wc,H,function(r){var n=J(je,"/",r);return Dc(n.b&&""===n.a?n.b:n)}(n.bG),1===(e=n.bN).$?Ia:B(At,Pc,Ia,J(je,"&",e.a)),n.bn,ue)))}),Gc=v(function(r,n){var e=r,t=n;return function(r){return J(Oa,t,e(r))}}),Hc=v(function(r,n){var e=n.b;return Y(x(r,{G:_t(n.a)}),J(Rc,ku,e))}),Xc=v(function(r,n){var e=n.b;return Y(x(r,{G:{$:2,a:n.a}}),J(Rc,zu,e))}),Uc=v(function(r,f){return function(r){var n=r.U,e=r.I,t=r.S,a=r.M,u=r.z;if(e.b){var c=e.a,i=e.b,o=f(c);if(o.$)return H;var s=o.a;return X([h(Wc,J(le,c,n),i,t,a,u(s))])}return H}}),Qc=J(Uc,"TUTORIAL",xe),Zc=v(function(r,u){var e,n=(e=X([J(Ic,J(Hc,u,Rt()),yu("home")),J(Ic,function(r){var n,e,t,a=J(pa,r,Bc(r));return J(Xc,u,(e=_c.a,t=_c.b,Y({cF:qt(n=a),ai:e},la(X([Mc(n),J(Rc,Mt,t)])))))},J(Gc,yu("tutorial"),Qc)),J(Ic,J(Hc,u,Rt()),Cu)]),function(n){return J(Oa,function(r){return r(n)},e)}),t=J(Yc,n,r);return t.$?Y(x(u,{G:ba}),da):t.a}),Vc=D(function(r,n,e){return J(Zc,n,{aT:e,G:_t(Rt().a)})}),ri=Wr(H),ni=function(r){return J(sa,yt,xr(function(){try{Bn.location=r}catch(r){Hr.location.reload(!1)}}))},ei=Dn,ti=v(function(r,n){return 1===r.$?n:n+":"+Ce(r.a)}),ai=D(function(r,n,e){return 1===n.$?e:G(e,G(r,n.a))}),ui=v(function(r,n){return Y(n,da)}),ci=Br("elmToJs",ue),ii=Y(4,$a("container")),oi=D(function(r,n,e){return r(n(e))}),si=gr,fi=v(function(n,r){switch(r.$){case 2:return le(J(jt,function(r){return Y(n,wa(r))},r.a));case 3:return le(J(jt,function(r){return Y(n,$a(r))},r.a));case 1:return le(J(jt,function(r){return Y(n,Bt(J(jt,Au,r)))},r.a));default:return le(J(jt,function(r){return Y(n,ma(r))},r.a))}}),li=D(function(r,n,e){for(;;){if(n<=0)return r;r=J(le,e,r),n=n-1,e=e}}),di=v(function(r,n){return B(li,H,r,n)}),bi=v(function(r,n){var e,t,a=J(xa,Bt,(e=n,t=J(eu,ju,J(eu,pa(H),Zn)),B(At,Le(le),J(di,t(e),H),e)));return p(r,H)?Y(10,Bt(X([Y("values",a)]))):Y(10,Bt(X([Y("values",a),Y("format",Bt(J(Oa,Zt,r)))])))}),vi=v(function(r,n){r:for(;;){if(0<r){if(n.b){r=r-1,n=n.b;continue r}return n}return n}}),hi=v(function(r,n){return r<0?ye:ju(J(vi,r,n))}),pi=Ca(8),gi=function(r){return{$:8,a:r}},mi=function(r){return{$:2,a:r}},$i=function(r){return{$:0,a:r}},wi={$:5,a:2},xi=function(r){switch(r.$){case 0:return"year";case 1:return"yearquarter";case 2:return"yearquartermonth";case 3:return"yearmonth";case 4:return"yearmonthdate";case 5:return"yearmonthdatehours";case 6:return"yearmonthdatehoursminutes";case 7:return"yearmonthdatehoursminutesseconds";case 8:return"quarter";case 9:return"quartermonth";case 10:return"month";case 11:return"monthdate";case 12:return"monthdatehours";case 13:return"date";case 14:return"day";case 15:return"hours";case 16:return"hoursminutes";case 17:return"hoursminutesseconds";case 18:return"minutes";case 19:return"minutesseconds";case 20:return"seconds";case 21:return"secondsmilliseconds";case 22:return"milliseconds";default:return"utc"+xi(r.a)}},yi=v(function(r,n){if(n.b){if(n.b.b){if(n.b.b.b)return Y("scheme",$a(r));var e=n.a,t=n.b.a;return Y("scheme",Bt(X([Y("name",$a(r)),Y("extent",J(xa,wa,X([e,t])))])))}var a=n.a;return Y("scheme",Bt(X([Y("name",$a(r)),Y("count",wa(a))])))}return Y("scheme",$a(r))}),ki=function(r){switch(r.$){case 0:return $a(r.a);case 1:return zi(r.a);case 2:return J(Ai,r.a,r.b);case 4:return $a(r.a);case 3:return Bt(X([Y("selection",$a(r.a))]));case 5:return Bt(X([Y("and",J(xa,ki,X([r.a,r.b])))]));case 6:return Bt(X([Y("or",J(xa,ki,X([r.a,r.b])))]));default:return Bt(X([Y("not",ki(r.a))]))}},zi=function(r){switch(r.$){case 5:return $a(r.a);case 6:return ki(r.a);default:return Bt(Hu(r))}},Ci=function(r){switch(r.$){case 0:return X([Y("field",$a(r.a))]);case 1:return X([Y("field",Bt(X([Y("repeat",$a(Ou(r.a)))])))]);case 2:return X([Y("type",$a(Zu(r.a)))]);case 3:return p(e=r.a,H)?X([Y("scale",null)]):X([Y("scale",Bt(J(jt,rc,e)))]);case 10:var n=r.a;return p(n,H)?X([Y("legend",null)]):X([Y("legend",Bt(J(jt,Qu,n)))]);case 4:return X([Pu(r.a)]);case 6:var e=r.a;r:for(;;){if(!e.b)return X([Y("sort",null)]);if(e.b.b)break r;switch(e.a.$){case 0:return X([Y("sort",$a("ascending"))]);case 1:return X([Y("sort",$a("descending"))]);case 2:return X([Y("sort",Sa(Yu(e.a.a)))]);default:break r}}return X([Y("sort",Bt(J(Oa,nc,e)))]);case 5:return X([Y("bin",$a("binned"))]);case 11:var t=r.b,a=r.c;return J(le,Y("condition",Bt(J(le,Y("selection",ki(r.a)),J(Oa,Ci,t)))),J(Oa,Ci,a));case 12:var u=r.a,c=(a=r.b,function(r){var n=r.b;return Bt(J(le,Y("test",ki(r.a)),J(Oa,Ci,n)))});return J(le,Y("condition",!u.b||u.b.b?J(xa,c,u):c(u.a)),J(Oa,Ci,a));case 7:return X([Y("timeUnit",$a(xi(r.a)))]);case 8:return X([Y("title",Uu(r.a))]);case 9:return X([Y("aggregate",Vu(r.a))]);case 13:return X([Y("value",$a(r.a))]);case 14:return X([Y("value",wa(r.a))]);case 15:return X([Y("value",$a(r.a))]);default:return X([Y("value",ma(r.a))])}},Ai=v(function(r,n){switch(n.$){case 5:return $a(n.a);case 6:return ki(n.a);default:return Bt(G(Ci(r),Hu(n)))}}),ji=function(r){switch(r.$){case 0:return Y("bandPosition",wa(i=r.a));case 64:var n=r.a,o=r.b,e=function(){switch(o.$){case 0:var r=o.b;return Y(ji(Ku(o.a)),ji(Ku(r)));case 1:var n=o.b;return Y(ji(Nu(o.a)),ji(Nu(n)));case 2:var e=o.b;return Y(ji(Tu(o.a)),ji(Tu(e)));case 3:var t=o.b;return Y(ji(_u(o.a)),ji(_u(t)));case 4:var a=o.b;return Y(ji(Ru(o.a)),ji(Ru(a)));case 5:a=o.b;return Y(ji(Mu(o.a)),ji(Mu(a)));case 6:var u=o.b;return Y(ji(Wu(o.a)),ji(Wu(u)));case 7:var c=o.b;return Y(ji(qu(o.a)),ji(qu(c)));case 8:e=o.b;return Y(ji(Iu(o.a)),ji(Iu(e)));case 9:c=o.b;return Y(ji(Du(o.a)),ji(Du(c)));case 10:u=o.b;return Y(ji(Ju(o.a)),ji(Ju(u)));case 11:e=o.b;return Y(ji(Lu(o.a)),ji(Lu(e)));case 12:var i=o.b;return Y(ji(Su(o.a)),ji(Su(i)));case 13:c=o.b;return Y(ji(Eu(o.a)),ji(Eu(c)));default:u=o.b;return Y(ji(Fu(o.a)),ji(Fu(u)))}}(),t=e.a,a=e.b;return Y(t.a,Bt(X([Y("condition",Bt(X([Y("test",ki(n)),Y("value",t.b)]))),Y("value",a.b)])));case 11:return Y("format",$a(r.a));case 12:return Y("formatType",$a("number"));case 13:return Y("formatType",$a("time"));case 59:return Y("gridColor",$a(r.a));case 60:var u=r.a;return p(u,H)?Y("gridDash",null):Y("gridDash",J(xa,wa,u));case 61:return Y("gridOpacity",wa(r.a));case 62:return Y("gridWidth",wa(r.a));case 14:return Y("labels",ma(r.a));case 15:return Y("labelAlign",$a(Gt(r.a)));case 17:return Y("labelBaseline",$a(Ut(r.a)));case 18:return Y("labelBound",(c=r.a).$?ma(!1):1===(i=c.a)?ma(!0):wa(i));case 16:return Y("labelAngle",wa(r.a));case 19:return Y("labelColor",$a(r.a));case 20:return Y("labelExpr",$a(r.a));case 21:var c;return Y("labelFlush",(c=r.a).$?ma(!1):1===(i=c.a)?ma(!0):wa(i));case 22:return Y("labelFlushOffset",wa(i=r.a));case 23:return Y("labelFont",$a(r.a));case 24:return Y("labelFontSize",wa(i=r.a));case 25:return Y("labelFontStyle",$a(r.a));case 26:return Y("labelFontWeight",Jt(r.a));case 27:return Y("labelLimit",wa(i=r.a));case 28:return Y("labelOpacity",wa(i=r.a));case 29:return Y("labelOverlap",Xu(r.a));case 30:return Y("labelPadding",wa(r.a));case 31:return Y("labelSeparation",wa(r.a));case 7:return Y("domain",ma(r.a));case 8:return Y("domainColor",$a(r.a));case 9:return Y("domainOpacity",wa(i=r.a));case 10:return Y("domainWidth",wa(i=r.a));case 58:return Y("grid",ma(r.a));case 1:return Y("maxExtent",wa(i=r.a));case 2:return Y("minExtent",wa(i=r.a));case 3:return Y("orient",$a(function(r){switch(r){case 0:return"top";case 1:return"bottom";case 2:return"left";default:return"right"}}(r.a)));case 4:return Y("offset",wa(i=r.a));case 5:return Y("position",wa(i=r.a));case 6:return Y("zindex",si(i=r.a));case 38:return Y("ticks",ma(r.a));case 32:return Y("tickColor",$a(r.a));case 33:return Y("tickCount",si(i=r.a));case 34:return Y("tickExtra",ma(r.a));case 35:return Y("tickOffset",wa(i=r.a));case 36:return Y("tickOpacity",wa(i=r.a));case 37:return Y("tickRound",ma(r.a));case 63:return Y("tickMinStep",wa(i=r.a));case 39:return Y("tickSize",wa(r.a));case 40:return Y("tickWidth",wa(i=r.a));case 42:return Y("values",Sa(Yu(r.a)));case 41:return Y("values",J(xa,function(r){return Bt(J(jt,Au,r))},r.a));case 43:return Y("title",Uu(r.a));case 44:return Y("titleAlign",$a(Gt(r.a)));case 46:return Y("titleAngle",wa(r.a));case 45:return Y("titleAnchor",$a(function(r){switch(r){case 0:return"start";case 1:return"middle";default:return"end"}}(r.a)));case 47:return Y("titleBaseline",$a(Ut(r.a)));case 48:return Y("titleColor",$a(r.a));case 49:return Y("titleFont",$a(r.a));case 50:return Y("titleFontSize",wa(i=r.a));case 51:return Y("titleFontStyle",$a(r.a));case 52:return Y("titleFontWeight",Jt(r.a));case 53:return Y("titleLimit",wa(i=r.a));case 54:return Y("titleOpacity",wa(i=r.a));case 55:return Y("titlePadding",wa(r.a));case 56:return Y("titleX",wa(i=r.a));default:var i;return Y("titleY",wa(i=r.a))}},Oi=v(function(r,n){switch(r){case 0:return le(Y(uc(0),Bt(J(jt,ac,n))));case 1:return le(Y(uc(1),Bt(J(jt,ac,n))));case 2:return le(Y(uc(2),Bt(J(jt,ac,n))));case 3:return le(Y(uc(3),Bt(J(jt,ac,n))));case 8:return le(Y(uc(8),Bt(J(jt,ac,n))));case 9:return le(Y(uc(9),Bt(J(jt,ac,n))));case 10:return le(Y(uc(10),Bt(J(jt,ac,n))));case 11:return le(Y(uc(11),Bt(J(jt,ac,n))));case 4:return le(Y(uc(4),Bt(J(jt,ac,n))));case 5:return le(Y(uc(5),Bt(J(jt,ac,n))));case 6:return le(Y(uc(6),Bt(J(jt,ac,n))));default:return le(Y(uc(7),Bt(J(jt,ac,n))))}}),Li=Y(3,$a("container")),Si=function(r){return{$:0,a:r}},Ei=function(r){return{$:2,a:r}}(0),Fi=K,Ki=function(r){return{$:3,a:r}},Ni=e(function(r,n,e,t){return{O:t,a5:e,aF:r,a9:n}}),Ti=nr,_i=V,Ri=function(r){return{$:3,b:r}},Mi=h(cr,Ni,J(Ti,"X",Ri(Ri(_i))),J(Ti,"Y",Ri(Ri(_i))),J(Ti,"W",Ri(Ri(Ri(_i)))),J(Ti,"loss",Ri(_i))),Wi=ir,qi=v(function(r,n){return B(Gn,"",ue,J(eu,n,r))}),Ii=v(function(r,n){return J(qi,r,iu(function(r){return J(cu,Re,J(Wi,n,r))}))}),Di=v(function(r,n){return xu({aK:aa(Bt(X([Y("session_id",$a(n)),Y("epoch_num",si(r)),Y("learning_rate",wa(.01))]))),aO:J(Ii,oc,Mi),a4:"/api/model/iter"})}),Ji=xu({aK:{$:0},aO:function(r){return J(qi,r,iu($e))}(function(r){return{$:1,a:r}}),a4:"/api/model/new"}),Bi=v(function(r,e){switch(r.$){case 0:var t=r.a;return Y(function(){if(1!==t.$)return e;return x(e,{ak:xe("Can't log in to server.")})}(),Ji);case 1:if((t=r.a).$)return Y(x(e,{ak:xe("Can't get demo from server.")}),da);var n=t.a;return Y(x(e,{az:n}),J(Di,1,n));case 3:return Y(e,J(Di,r.a,e.az));default:t=r.a;return Y(function(){if(t.$)return x(e,{ak:xe("Can't get next epoch from server.")});var r=t.a,n=x(r,{O:G(e.p.O,r.O)});return x(e,{p:n,aN:ic(x(e,{p:n}))})}(),da)}}),Pi=v(function(r,n){if(r.$){var e=J(Bi,r.a,n.ai),t=e.a,a=e.b;return Y(x(n,{ai:t}),la(X([J(Rc,Mt,a),ci(t.aN)])))}var u=r.a;return Y(x(n,{cF:qt(u)}),Mc(u))}),Yi=v(function(r,n){switch(r.$){case 0:var e=r.a;return Y(n,e.$?ni(e.a):J(ei,n.aT,function(r){return B(ai,"#",r.bn,B(ai,"?",r.bN,G(J(ti,r.bJ,G(r.bM?"https://":"http://",r.bs)),r.bG)))}(e.a)));case 1:return J(Zc,r.a,n);case 3:var t=r.a,a=n.G;return 1!==a.$?Y(n,da):J(Hc,n,J(ui,t,a.a));case 4:t=r.a;var u=n.G;return 2!==u.$?Y(n,da):J(Xc,n,J(Pi,t,u.a));default:return Y(n,da)}}),Gi=J(pa,"",ju(va)),Hi=v(function(r,n){return r<0?ye:ju(J(vi,r,n))}),Xi=rn,Ui=Xi,Qi=D(function(r,n,e){return{$:4,a:r,b:n,c:e}}),Zi=v(function(r,n){return{$:4,a:r,b:n}}),Vi=lc(8),ro=lc(14),no="a",eo="atv",to="ab",ao="cx",uo="cy",co="acb",io="accx",oo="accy",so="acr",fo="al",lo="ar",bo="at",vo="ah",ho="av",po="s",go="bh",mo="b",$o="w7",wo="bd",xo="bdt",yo="bn",ko="bs",zo="cpe",Co="cp",Ao="cpx",jo="cpy",Oo="c",Lo="ctr",So="cb",Eo="ccx",Fo="ccy",Ko="cl",No="cr",To="ct",_o="cptr",Ro="ctxt",Mo="fcs",Wo="focus-within",qo="fs",Io="g",Do="hbh",Jo="hc",Bo="he",Po="hf",Yo="hfp",Go="hv",Ho="ic",Xo="fr",Uo="iml",Qo="imlf",Zo="imlp",Vo="implw",rs="it",ns="i",es="lnk",ts="nb",as="notxt",us="ol",cs="or",is="oq",os="pg",ss="p",fs="ppe",ls="ui",ds="r",bs="sb",vs="sbx",hs="sby",ps="sbt",gs="e",ms="cap",$s="sev",ws="sk",xs="t",ys="tc",ks="w8",zs="w2",Cs="w9",As="tj",js="tja",Os="tl",Ls="w3",Ss="w5",Es="w4",Fs="tr",Ks="w6",Ns="w1",Ts="tun",_s="ts",Rs="clr",Ms="u",Ws="wc",qs="we",Is="wf",Ds="wfp",Js="wrp",Bs={$:0},Ps={$:0},Ys=po+" "+Oo,Gs=po+" "+Io,Hs=po+" "+os,Xs=po+" "+ss,Us=po+" "+ds,Qs=po+" "+gs,Zs={$:0},Vs=v(function(r,n){switch(n.$){case 0:return r;case 1:return G(n.a,r);case 2:return G(r,n.a);default:return G(n.a,G(r,n.b))}}),rf=D(function(n,r,e){switch(e.$){case 0:return r;case 1:return G(J(jt,function(r){return Y(n,r)},e.a),r);case 2:return G(r,J(jt,function(r){return Y(n,r)},t=e.a));default:var t=e.b;return G(J(jt,function(r){return Y(n,r)},e.a),G(r,J(jt,function(r){return Y(n,r)},t)))}}),nf=lc(41),ef=lc(40),tf=lc(42),af=lc(43),uf=v(function(r,n){return J(an,r,$a(n))}),cf=uf("className"),of=Zr("div"),sf=Ia,ff=function(r){switch(r.$){case 0:return Ce(r.a)+"px";case 1:return"auto";case 2:return Ce(r.a)+"fr";case 3:var n=r.b;return"min"+(Ce(r.a)+ff(n));default:n=r.b;return"max"+(Ce(r.a)+ff(n))}},lf=function(r){switch(r.$){case 13:return u=r.a;case 12:return u=r.a;case 0:return r.a;case 1:return u=r.a;case 2:return"font-size-"+Ce(r.a);case 3:case 4:return r.a;case 5:return r.a;case 7:case 6:return r.a;case 8:var n=r.a;return"grid-rows-"+J(Ae,"-",J(jt,ff,n.ds))+"-cols-"+J(Ae,"-",J(jt,ff,n.u))+"-space-x-"+ff(n.dC.a)+"-space-y-"+ff(n.dC.b);case 9:var e=r.a;return"gp grid-pos-"+Ce(e.s)+"-"+Ce(e.cE)+"-"+Ce(e.ae)+"-"+Ce(e.Z);case 11:var t=r.a,a=r.b,u=function(){switch(t){case 0:return"fs";case 1:return"hv";default:return"act"}}();return J(Ae," ",J(jt,function(r){var n=lf(r);return""===n?"":n+"-"+u},a));default:return J(pa,"",wc(r.a))}},df=v(function(r,n){return B(Xa,r,0,n)}),bf=v(function(r,n){return!J(Pa,r,n).$}),vf=v(function(r,n){return J(bf,r,n)}),hf=v(function(r,n){var e=n.a,t=n.b,a=lf(r);return J(vf,a,e)?n:Y(J(df,a,e),J(le,r,t))}),pf=v(function(r,n){return{$:0,a:r,b:n}}),gf=v(function(r,n){return{$:0,a:r,b:n}}),mf=Q,$f=v(function(r,n){return n.$?ye:xe(r(n.a))}),wf=v(function(r,n){var e=n.b;return Y(r(n.a),e)}),xf=v(function(r,n){return Y(n.a,r(n.b))}),yf=v(function(r,n){return J(an,function(r){return"innerHTML"==r||"formAction"==r?"data-"+r:r}(r),on(n))}),kf=v(function(r,n){return{$:1,a:r,b:n}}),zf=v(function(r,n){return{$:0,a:r,b:n}}),Cf=v(function(r,n){return{$:3,a:r,b:n}}),Af=v(function(r,n){return{$:0,a:r,b:n}}),jf=v(function(r,n){return{$:2,a:r,b:n}}),Of=X([0,1,2,3,4,5]),Lf=X([J(Af,"display","flex"),J(Af,"flex-direction","column"),J(Af,"white-space","pre"),J(Cf,xc(Do),X([J(Af,"z-index","0"),J(kf,xc(go),X([J(Af,"z-index","-1")]))])),J(Cf,xc(ps),X([J(kf,xc(xs),X([J(Cf,xc(Po),X([J(Af,"flex-grow","0")])),J(Cf,xc(Is),X([J(Af,"align-self","auto !important")]))]))])),J(kf,xc(Jo),X([J(Af,"height","auto")])),J(kf,xc(Po),X([J(Af,"flex-grow","100000")])),J(kf,xc(Is),X([J(Af,"width","100%")])),J(kf,xc(Ds),X([J(Af,"width","100%")])),J(kf,xc(Ws),X([J(Af,"align-self","flex-start")])),Oc(function(r){switch(r){case 0:return Y(X([J(Af,"justify-content","flex-start")]),X([J(Af,"margin-bottom","auto !important"),J(Af,"margin-top","0 !important")]));case 1:return Y(X([J(Af,"justify-content","flex-end")]),X([J(Af,"margin-top","auto !important"),J(Af,"margin-bottom","0 !important")]));case 2:return Y(X([J(Af,"align-items","flex-end")]),X([J(Af,"align-self","flex-end")]));case 3:return Y(X([J(Af,"align-items","flex-start")]),X([J(Af,"align-self","flex-start")]));case 4:return Y(X([J(Af,"align-items","center")]),X([J(Af,"align-self","center")]));default:return Y(X([J(kf,xc(po),X([J(Af,"margin-top","auto"),J(Af,"margin-bottom","auto")]))]),X([J(Af,"margin-top","auto !important"),J(Af,"margin-bottom","auto !important")]))}})]),Sf=X([0,1,2,3,4,5]),Ef=X([J(zf,"html,body",X([J(Af,"height","100%"),J(Af,"padding","0"),J(Af,"margin","0")])),J(zf,G(xc(po),G(xc(gs),xc(Ho))),X([J(Af,"display","block")])),J(zf,xc(po)+":focus",X([J(Af,"outline","none")])),J(zf,xc(ls),X([J(Af,"width","100%"),J(Af,"height","auto"),J(Af,"min-height","100%"),J(Af,"z-index","0"),J(Cf,G(xc(po),xc(Po)),X([J(Af,"height","100%"),J(kf,xc(Po),X([J(Af,"height","100%")]))])),J(kf,xc(Xo),X([J(Cf,xc(ts),X([J(Af,"position","fixed")]))]))])),J(zf,xc(ts),X([J(Af,"position","relative"),J(Af,"border","none"),J(Af,"display","flex"),J(Af,"flex-direction","row"),J(Af,"flex-basis","auto"),J(Cf,xc(gs),Lf),Ac(J(jt,function(r){switch(r){case 0:return J(Cf,xc(no),X([J(Af,"position","absolute"),J(Af,"bottom","100%"),J(Af,"left","0"),J(Af,"width","100%"),J(Af,"z-index","20"),J(Af,"margin","0 !important"),J(kf,xc(Po),X([J(Af,"height","auto")])),J(kf,xc(Is),X([J(Af,"width","100%")])),J(Af,"pointer-events","none"),J(kf,"*",X([J(Af,"pointer-events","auto")]))]));case 1:return J(Cf,xc(mo),X([J(Af,"position","absolute"),J(Af,"bottom","0"),J(Af,"left","0"),J(Af,"height","0"),J(Af,"width","100%"),J(Af,"z-index","20"),J(Af,"margin","0 !important"),J(Af,"pointer-events","none"),J(kf,"*",X([J(Af,"pointer-events","auto")])),J(kf,xc(Po),X([J(Af,"height","auto")]))]));case 2:return J(Cf,xc(cs),X([J(Af,"position","absolute"),J(Af,"left","100%"),J(Af,"top","0"),J(Af,"height","100%"),J(Af,"margin","0 !important"),J(Af,"z-index","20"),J(Af,"pointer-events","none"),J(kf,"*",X([J(Af,"pointer-events","auto")]))]));case 3:return J(Cf,xc(us),X([J(Af,"position","absolute"),J(Af,"right","100%"),J(Af,"top","0"),J(Af,"height","100%"),J(Af,"margin","0 !important"),J(Af,"z-index","20"),J(Af,"pointer-events","none"),J(kf,"*",X([J(Af,"pointer-events","auto")]))]));case 4:return J(Cf,xc(Xo),X([J(Af,"position","absolute"),J(Af,"width","100%"),J(Af,"height","100%"),J(Af,"left","0"),J(Af,"top","0"),J(Af,"margin","0 !important"),J(Af,"pointer-events","none"),J(kf,"*",X([J(Af,"pointer-events","auto")]))]));default:return J(Cf,xc(go),X([J(Af,"position","absolute"),J(Af,"width","100%"),J(Af,"height","100%"),J(Af,"left","0"),J(Af,"top","0"),J(Af,"margin","0 !important"),J(Af,"z-index","0"),J(Af,"pointer-events","none"),J(kf,"*",X([J(Af,"pointer-events","auto")]))]))}},Sf))])),J(zf,xc(po),X([J(Af,"position","relative"),J(Af,"border","none"),J(Af,"flex-shrink","0"),J(Af,"display","flex"),J(Af,"flex-direction","row"),J(Af,"flex-basis","auto"),J(Af,"resize","none"),J(Af,"font-feature-settings","inherit"),J(Af,"box-sizing","border-box"),J(Af,"margin","0"),J(Af,"padding","0"),J(Af,"border-width","0"),J(Af,"border-style","solid"),J(Af,"font-size","inherit"),J(Af,"color","inherit"),J(Af,"font-family","inherit"),J(Af,"line-height","1"),J(Af,"font-weight","inherit"),J(Af,"text-decoration","none"),J(Af,"font-style","inherit"),J(Cf,xc(Js),X([J(Af,"flex-wrap","wrap")])),J(Cf,xc(as),X([J(Af,"-moz-user-select","none"),J(Af,"-webkit-user-select","none"),J(Af,"-ms-user-select","none"),J(Af,"user-select","none")])),J(Cf,xc(_o),X([J(Af,"cursor","pointer")])),J(Cf,xc(Ro),X([J(Af,"cursor","text")])),J(Cf,xc(fs),X([J(Af,"pointer-events","none !important")])),J(Cf,xc(zo),X([J(Af,"pointer-events","auto !important")])),J(Cf,xc(Rs),X([J(Af,"opacity","0")])),J(Cf,xc(is),X([J(Af,"opacity","1")])),J(Cf,xc(G(Go,Rs))+":hover",X([J(Af,"opacity","0")])),J(Cf,xc(G(Go,is))+":hover",X([J(Af,"opacity","1")])),J(Cf,xc(G(Mo,Rs))+":focus",X([J(Af,"opacity","0")])),J(Cf,xc(G(Mo,is))+":focus",X([J(Af,"opacity","1")])),J(Cf,xc(G(eo,Rs))+":active",X([J(Af,"opacity","0")])),J(Cf,xc(G(eo,is))+":active",X([J(Af,"opacity","1")])),J(Cf,xc(_s),X([J(Af,"transition",J(Ae,", ",J(jt,function(r){return r+" 160ms"},X(["transform","opacity","filter","background-color","color","font-size"]))))])),J(Cf,xc(bs),X([J(Af,"overflow","auto"),J(Af,"flex-shrink","1")])),J(Cf,xc(vs),X([J(Af,"overflow-x","auto"),J(Cf,xc(ds),X([J(Af,"flex-shrink","1")]))])),J(Cf,xc(hs),X([J(Af,"overflow-y","auto"),J(Cf,xc(Oo),X([J(Af,"flex-shrink","1")])),J(Cf,xc(gs),X([J(Af,"flex-shrink","1")]))])),J(Cf,xc(Co),X([J(Af,"overflow","hidden")])),J(Cf,xc(Ao),X([J(Af,"overflow-x","hidden")])),J(Cf,xc(jo),X([J(Af,"overflow-y","hidden")])),J(Cf,xc(Ws),X([J(Af,"width","auto")])),J(Cf,xc(yo),X([J(Af,"border-width","0")])),J(Cf,xc(wo),X([J(Af,"border-style","dashed")])),J(Cf,xc(xo),X([J(Af,"border-style","dotted")])),J(Cf,xc(ko),X([J(Af,"border-style","solid")])),J(Cf,xc(xs),X([J(Af,"white-space","pre"),J(Af,"display","inline-block")])),J(Cf,xc(rs),X([J(Af,"line-height","1.05"),J(Af,"background","transparent")])),J(Cf,xc(gs),Lf),J(Cf,xc(ds),X([J(Af,"display","flex"),J(Af,"flex-direction","row"),J(kf,xc(po),X([J(Af,"flex-basis","0%"),J(Cf,xc(qs),X([J(Af,"flex-basis","auto")])),J(Cf,xc(es),X([J(Af,"flex-basis","auto")]))])),J(kf,xc(Po),X([J(Af,"align-self","stretch !important")])),J(kf,xc(Yo),X([J(Af,"align-self","stretch !important")])),J(kf,xc(Is),X([J(Af,"flex-grow","100000")])),J(kf,xc(Lo),X([J(Af,"flex-grow","0"),J(Af,"flex-basis","auto"),J(Af,"align-self","stretch")])),J(kf,"u:first-of-type."+so,X([J(Af,"flex-grow","1")])),J(kf,"s:first-of-type."+io,X([J(Af,"flex-grow","1"),J(kf,xc(ao),X([J(Af,"margin-left","auto !important")]))])),J(kf,"s:last-of-type."+io,X([J(Af,"flex-grow","1"),J(kf,xc(ao),X([J(Af,"margin-right","auto !important")]))])),J(kf,"s:only-of-type."+io,X([J(Af,"flex-grow","1"),J(kf,xc(uo),X([J(Af,"margin-top","auto !important"),J(Af,"margin-bottom","auto !important")]))])),J(kf,"s:last-of-type."+io+" ~ u",X([J(Af,"flex-grow","0")])),J(kf,"u:first-of-type."+so+" ~ s."+io,X([J(Af,"flex-grow","0")])),Oc(function(r){switch(r){case 0:return Y(X([J(Af,"align-items","flex-start")]),X([J(Af,"align-self","flex-start")]));case 1:return Y(X([J(Af,"align-items","flex-end")]),X([J(Af,"align-self","flex-end")]));case 2:return Y(X([J(Af,"justify-content","flex-end")]),H);case 3:return Y(X([J(Af,"justify-content","flex-start")]),H);case 4:return Y(X([J(Af,"justify-content","center")]),H);default:return Y(X([J(Af,"align-items","center")]),X([J(Af,"align-self","center")]))}}),J(Cf,xc($s),X([J(Af,"justify-content","space-between")]))])),J(Cf,xc(Oo),X([J(Af,"display","flex"),J(Af,"flex-direction","column"),J(kf,xc(po),X([J(Af,"flex-basis","0%"),J(Cf,xc(Bo),X([J(Af,"flex-basis","auto")])),J(Cf,xc(Oo),X([J(Af,"flex-basis","auto")]))])),J(kf,xc(Po),X([J(Af,"flex-grow","100000")])),J(kf,xc(Is),X([J(Af,"width","100%")])),J(kf,xc(Ds),X([J(Af,"width","100%")])),J(kf,xc(Ws),X([J(Af,"align-self","flex-start")])),J(kf,"u:first-of-type."+co,X([J(Af,"flex-grow","1")])),J(kf,"s:first-of-type."+oo,X([J(Af,"flex-grow","1"),J(kf,xc(uo),X([J(Af,"margin-top","auto !important"),J(Af,"margin-bottom","0 !important")]))])),J(kf,"s:last-of-type."+oo,X([J(Af,"flex-grow","1"),J(kf,xc(uo),X([J(Af,"margin-bottom","auto !important"),J(Af,"margin-top","0 !important")]))])),J(kf,"s:only-of-type."+oo,X([J(Af,"flex-grow","1"),J(kf,xc(uo),X([J(Af,"margin-top","auto !important"),J(Af,"margin-bottom","auto !important")]))])),J(kf,"s:last-of-type."+oo+" ~ u",X([J(Af,"flex-grow","0")])),J(kf,"u:first-of-type."+co+" ~ s."+oo,X([J(Af,"flex-grow","0")])),Oc(function(r){switch(r){case 0:return Y(X([J(Af,"justify-content","flex-start")]),X([J(Af,"margin-bottom","auto")]));case 1:return Y(X([J(Af,"justify-content","flex-end")]),X([J(Af,"margin-top","auto")]));case 2:return Y(X([J(Af,"align-items","flex-end")]),X([J(Af,"align-self","flex-end")]));case 3:return Y(X([J(Af,"align-items","flex-start")]),X([J(Af,"align-self","flex-start")]));case 4:return Y(X([J(Af,"align-items","center")]),X([J(Af,"align-self","center")]));default:return Y(X([J(Af,"justify-content","center")]),H)}}),J(kf,xc(Lo),X([J(Af,"flex-grow","0"),J(Af,"flex-basis","auto"),J(Af,"width","100%"),J(Af,"align-self","stretch !important")])),J(Cf,xc($s),X([J(Af,"justify-content","space-between")]))])),J(Cf,xc(Io),X([J(Af,"display","-ms-grid"),J(kf,".gp",X([J(kf,xc(po),X([J(Af,"width","100%")]))])),J(jf,Y("display","grid"),X([Y("display","grid")])),(Ec=function(r){switch(r){case 0:return X([J(Af,"justify-content","flex-start")]);case 1:return X([J(Af,"justify-content","flex-end")]);case 2:return X([J(Af,"align-items","flex-end")]);case 3:return X([J(Af,"align-items","flex-start")]);case 4:return X([J(Af,"align-items","center")]);default:return X([J(Af,"justify-content","center")])}},Ac(J(Oa,function(r){return X([J(kf,xc(po),X([J(Cf,jc(r),Ec(r))]))])},Of)))])),J(Cf,xc(os),X([J(Af,"display","block"),J(kf,xc(po+":first-child"),X([J(Af,"margin","0 !important")])),J(kf,xc(po+(jc(3)+":first-child + .")+po),X([J(Af,"margin","0 !important")])),J(kf,xc(po+(jc(2)+":first-child + .")+po),X([J(Af,"margin","0 !important")])),Oc(function(r){switch(r){case 0:case 1:return Y(H,H);case 2:return Y(H,X([J(Af,"float","right"),J(Cf,"::after",X([J(Af,"content",'""'),J(Af,"display","table"),J(Af,"clear","both")]))]));case 3:return Y(H,X([J(Af,"float","left"),J(Cf,"::after",X([J(Af,"content",'""'),J(Af,"display","table"),J(Af,"clear","both")]))]));case 4:default:return Y(H,H)}})])),J(Cf,xc(Uo),X([J(Af,"white-space","pre-wrap"),J(Af,"height","100%"),J(Af,"width","100%"),J(Af,"background-color","transparent")])),J(Cf,xc(Vo),X([J(Cf,xc(gs),X([J(Af,"flex-basis","auto")]))])),J(Cf,xc(Zo),X([J(Af,"white-space","pre-wrap"),J(Af,"cursor","text"),J(kf,xc(Qo),X([J(Af,"white-space","pre-wrap"),J(Af,"color","transparent")]))])),J(Cf,xc(ss),X([J(Af,"display","block"),J(Af,"white-space","normal"),J(Cf,xc(Do),X([J(Af,"z-index","0"),J(kf,xc(go),X([J(Af,"z-index","-1")]))])),J(kf,xc(xs),X([J(Af,"display","inline"),J(Af,"white-space","normal")])),J(kf,xc(gs),X([J(Af,"display","inline"),J(Af,"white-space","normal"),J(Cf,xc(Xo),X([J(Af,"display","flex")])),J(Cf,xc(go),X([J(Af,"display","flex")])),J(Cf,xc(no),X([J(Af,"display","flex")])),J(Cf,xc(mo),X([J(Af,"display","flex")])),J(Cf,xc(cs),X([J(Af,"display","flex")])),J(Cf,xc(us),X([J(Af,"display","flex")])),J(kf,xc(xs),X([J(Af,"display","inline"),J(Af,"white-space","normal")])),J(kf,xc(gs),X([J(kf,xc(xs),X([J(Af,"display","inline"),J(Af,"white-space","normal")]))]))])),J(kf,xc(ds),X([J(Af,"display","inline-flex")])),J(kf,xc(Oo),X([J(Af,"display","inline-flex")])),J(kf,xc(Io),X([J(Af,"display","inline-grid")])),Oc(function(r){switch(r){case 0:case 1:return Y(H,H);case 2:return Y(H,X([J(Af,"float","right")]));case 3:return Y(H,X([J(Af,"float","left")]));case 4:default:return Y(H,H)}})])),J(Cf,".hidden",X([J(Af,"display","none")])),J(Cf,xc(Ns),X([J(Af,"font-weight","100")])),J(Cf,xc(zs),X([J(Af,"font-weight","200")])),J(Cf,xc(Ls),X([J(Af,"font-weight","300")])),J(Cf,xc(Es),X([J(Af,"font-weight","400")])),J(Cf,xc(Ss),X([J(Af,"font-weight","500")])),J(Cf,xc(Ks),X([J(Af,"font-weight","600")])),J(Cf,xc($o),X([J(Af,"font-weight","700")])),J(Cf,xc(ks),X([J(Af,"font-weight","800")])),J(Cf,xc(Cs),X([J(Af,"font-weight","900")])),J(Cf,xc(ns),X([J(Af,"font-style","italic")])),J(Cf,xc(ws),X([J(Af,"text-decoration","line-through")])),J(Cf,xc(Ms),X([J(Af,"text-decoration","underline"),J(Af,"text-decoration-skip-ink","auto"),J(Af,"text-decoration-skip","ink")])),J(Cf,G(xc(Ms),xc(ws)),X([J(Af,"text-decoration","line-through underline"),J(Af,"text-decoration-skip-ink","auto"),J(Af,"text-decoration-skip","ink")])),J(Cf,xc(Ts),X([J(Af,"font-style","normal")])),J(Cf,xc(As),X([J(Af,"text-align","justify")])),J(Cf,xc(js),X([J(Af,"text-align","justify-all")])),J(Cf,xc(ys),X([J(Af,"text-align","center")])),J(Cf,xc(Fs),X([J(Af,"text-align","right")])),J(Cf,xc(Os),X([J(Af,"text-align","left")])),J(Cf,".modal",X([J(Af,"position","fixed"),J(Af,"left","0"),J(Af,"top","0"),J(Af,"width","100%"),J(Af,"height","100%"),J(Af,"pointer-events","none")]))]))]),Ff=Qt(X([J(jt,function(r){return J(zf,".border-"+Ce(r),X([J(Af,"border-width",Ce(r)+"px")]))},J(Ee,0,6)),J(jt,function(r){return J(zf,".font-size-"+Ce(r),X([J(Af,"font-size",Ce(r)+"px")]))},J(Ee,8,32)),J(jt,function(r){return J(zf,".p-"+Ce(r),X([J(Af,"padding",Ce(r)+"px")]))},J(Ee,0,24)),X([J(zf,".v-smcp",X([J(Af,"font-variant","small-caps")])),J(zf,".v-smcp-off",X([J(Af,"font-variant","normal")]))]),Lc("zero"),Lc("onum"),Lc("liga"),Lc("dlig"),Lc("ordn"),Lc("tnum"),Lc("afrc"),Lc("frac")])),Kf="\n.explain {\n    border: 6px solid rgb(174, 121, 15) !important;\n}\n.explain > ."+po+" {\n    border: 4px dashed rgb(0, 151, 167) !important;\n}\n\n.ctr {\n    border: none !important;\n}\n.explain > .ctr > ."+po+" {\n    border: 4px dashed rgb(0, 151, 167) !important;\n}\n\n",Nf="@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {"+xc(po)+xc(ds)+" > "+xc(po)+" { flex-basis: auto !important; } "+xc(po)+xc(ds)+" > "+xc(po)+xc(Lo)+' { flex-basis: auto !important; }}\ninput[type="search"],\ninput[type="search"]::-webkit-search-decoration,\ninput[type="search"]::-webkit-search-cancel-button,\ninput[type="search"]::-webkit-search-results-button,\ninput[type="search"]::-webkit-search-results-decoration {\n  -webkit-appearance:none;\n}\n\ninput[type=range] {\n  -webkit-appearance: none; \n  background: transparent;\n  position:absolute;\n  left:0;\n  top:0;\n  z-index:10;\n  width: 100%;\n  outline: dashed 1px;\n  height: 100%;\n  opacity: 0;\n}\n\ninput[type=range]::-moz-range-track {\n    background: transparent;\n    cursor: pointer;\n}\ninput[type=range]::-ms-track {\n    background: transparent;\n    cursor: pointer;\n}\ninput[type=range]::-webkit-slider-runnable-track {\n    background: transparent;\n    cursor: pointer;\n}\n\ninput[type=range]::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range]::-moz-range-thumb {\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range]::-ms-thumb {\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range][orient=vertical]{\n    writing-mode: bt-lr; /* IE */\n    -webkit-appearance: slider-vertical;  /* WebKit */\n}\n'+Kf,Tf=v(function(r,n){return{au:n,i:H,H:H,y:r}}),_f=v(function(r,n){var i=r,e=v(function(r,n){switch(r.$){case 0:return x(n,{H:J(le,Y(r.a,r.b),n.H)});case 2:var e=r.a;return x(n,{i:J(le,{au:"\n}",i:H,H:r.b,y:"@supports ("+e.a+":"+e.b+") {"+i.y},n.i)});case 4:var t=r.b;return x(n,{i:J(le,J(_f,J(Tf,i.y+" + "+r.a,""),t),n.i)});case 1:var a=r.b;return x(n,{i:J(le,J(_f,J(Tf,i.y+" > "+r.a,""),a),n.i)});case 3:var u=r.b;return x(n,{i:J(le,J(_f,J(Tf,G(i.y,r.a),""),u),n.i)});default:var c=r.a;return x(n,{i:J(le,J(_f,J(Tf,i.y,""),c),n.i)})}});return B(At,e,i,n)}),Rf=G(Nf,(Fc=G(Ef,Ff),Kc=function(r){var n=r;return G(Mf(n),Sc(J(jt,Kc,n.i)))},Sc(J(jt,Kc,B(At,v(function(r,n){var e=r.b;return J(le,J(_f,J(Tf,r.a,""),e),n)}),H,Fc)))));function Mf(r){return r.H.b?r.y+"{"+(Sc(J(jt,function(r){return r.a+":"+r.b+";"},r.H))+(r.au+"}")):""}function Wf(r){switch(r.df){case 0:return B(Cc,"div",H,X([B(Cc,"style",H,X([El(Rf)]))]));case 1:return El("");default:return B(Cc,"elm-ui-static-rules",X([J(yf,"rules",$a(Rf))]),H)}}function qf(r){switch(r.$){case 0:return"serif";case 1:return"sans-serif";case 2:return"monospace";case 3:return'"'+r.a+'"';case 4:return'"'+r.a+'"';default:return'"'+r.a.dg+'"'}}function If(r){switch(r.$){case 0:return"smcp"===r.a;case 1:return!1;default:return"smcp"===r.a&&1===r.b}}function Df(r){return 5===r.$&&J(Fl,If,r.a.b1)}function Jf(r){switch(r.$){case 0:return'"'+r.a+'"';case 1:return'"'+r.a+'" 0';default:return'"'+r.a+'" '+Ce(r.b)}}function Bf(r){return 5!==r.$?ye:xe(J(Ae,", ",J(jt,Jf,r.a.b1)))}function Pf(r){return r.b?xe(B(Oe,Kl,r.a,r.b)):ye}function Yf(r){var n,e=X([r.cy,r.cn,r.cJ,r.c9]),t=J(pa,r.cJ,Pf(e)),a=J(pa,r.cn,Pf(J(Jl,function(r){return!p(r,t)},e))),u=J(pa,r.cy,(n=e).b?xe(B(Oe,Xe,n.a,n.b)):ye),c=1/(u-t),i=1-u;return{cy:B(Dl,1/(u-a),u-a,1-u),bo:B(Dl,c,u-t,i)}}function Gf(r){return Y(X([Y("display","block")]),X([Y("display","inline-block"),Y("line-height",mf(r.Z)),Y("vertical-align",mf(r.b2)+"em"),Y("font-size",mf(r.bW)+"em")]))}function Hf(r){function n(r){return 4!==r.$?ye:xe("@import url('"+r.b+"');")}var t=J(jt,ae,r);return G(J(Ae,"\n",J(jt,function(r){return J(Ae,"\n",J(hu,n,r.b))},r)),J(Ae,"\n",J(jt,function(r){var n=r.a,e=function(r){return B(Oe,v(function(r,n){if(1!==n.$)return n;if(5!==r.$)return n;var e=r.a.b9;if(1===e.$)return n;var t=e.a;return xe(Y(Gf(Yf(t).bo),Gf(Yf(t).cy)))}),ye,r)}(r.b);return J(Ae,"",J(jt,1===e.$?Il(n):J(ql,n,e.a),t))},r)))}function Xf(r){return Vr(cn(r))}function Uf(r){return!r.b}function Qf(r){return J(of,X([cf(ad)]),X([td(r)]))}function Zf(r){return J(of,X([cf(ud)]),X([td(r)]))}function Vf(r){return{$:10,a:r}}function rl(r){return{$:1,a:r}}function nl(r){return{$:2,a:r}}function el(r){return{$:1,a:r}}function tl(r){switch(r){case 0:return vo+" "+fo;case 2:return vo+" "+lo;default:return vo+" "+ao}}function al(r){switch(r){case 0:return ho+" "+bo;case 2:return ho+" "+to;default:return ho+" "+uo}}function ul(r){return{$:1,a:r}}function cl(r){return{$:8,a:r}}function il(r){return{$:1,a:r}}function ol(r){return il(cf(r))}function sl(r){return{$:7,a:r}}function fl(r){return J(Zi,Wd,J(Md,B(Oe,Dd,"ff-",r),r))}function ll(r){return{$:2,a:r}}function dl(r){return{$:2,a:r}}function bl(r){return{$:3,a:r}}function vl(r){return J(Zi,tb,h(eb,"p-"+Ce(r),r,r,r,r))}function hl(r){return{$:6,a:r}}function pl(r){return{$:2,a:r}}function gl(r){return J(Zi,xb,B(wb,J(yb,r,r),r,r))}function ml(r){return{$:2,a:r}}function $l(r){return ml(r)}function wl(r){return{$:5,a:r}}function xl(r){return J(hb,X([il(J(zb,"background",'url("'+"/assets/waffle.svg"+'") center / cover no-repeat')),_d(Lb(200)),Nd(Lb(200))]),J(kb,X([bb,hc(ib.aM),lb,Ab]),X([J(Ob,H,{c8:$l(r),a4:"/tutorial/"+r})])))}function yl(r){return J(nb,X([fl(X([ob("Nunito"),ub])),hc(ib.b7),J(Pd,P(ab,255,218,94,.8),3),vc(ib.aM),vl(10)]),J(Rd,X([_d(Jd)]),X([Rb,function(r){return J(Rd,X([_d(Jd),gl(20),vl(30)]),X([J(hb,X([vb,lb]),$l("Develop Your AI Superpower")),J(kb,X([vb,bb,_d(J(mb,600,Jd))]),X([$l("learn AI Interactively from scratch for free. \nUnderstand the workings behind the AI superpower, \nand start using them yourself!")])),J(Kb,X([vl(20),gl(40),pb(J(Cb,"margin-left","auto")),pb(J(Cb,"margin-right","auto")),pb(J(Cb,"display","flex")),pb(J(Cb,"justify-content","center"))]),J(jt,xl,r.aL))]))}(r)])))}function kl(){return J(nb,X([fl(X([J(Mb,(r={dg:"Nunito",a4:"https://fonts.googleapis.com/css?family=Nunito"}).dg,r.a4),ub])),hc(Wb.b7),J(Zi,Vd,dl(50)),J(Pd,P(ab,255,218,94,.8),3),vc(Wb.aM),_d(Jd),Nd(Jd),Ab,bb,vl(10)]),J(hb,X([pb(J(Cb,"margin-top","45vh")),_d(Jd)]),$l("This page does not exist!")));var r}function zl(r){return{$:3,a:r}}function Cl(r){return 4===r.$&&11===r.b.$&&!r.b.a}function Al(r){return J(Zi,iv,J(cv,1,(n=r,e=B(Oe,dv,Y(H,Ed),n),t=e.a,J(le,Vf(e.b),t))));var n,e,t}function jl(r){var n,e=J(Hi,r.cF,qb);return 1===e.$?Pb:e.a?J(Rd,X([_d(Ib(5)),gl(10)]),X([(n=J(Bb,Mt,J(Rd,X([_d(Jd),Nd(Jd)]),X([J(hb,X([pb(hv("logisticRegressionDemoScatterPlot")),_d(Lb(500)),Nd(Lb(400)),vb,pb(J(Cb,"max-width","100vw")),pb(J(Cb,"max-height","70vw"))]),Pb),J(hb,X([pb(hv("logisticRegressionDemoLossPlot")),_d(Lb(500)),Nd(Lb(300)),vb,pb(J(Cb,"max-width","100vw")),pb(J(Cb,"max-height","30vw"))]),Pb),J(Kb,X([gl(20),_d(Jd)]),X([J(vv,"Run 1 Epoch",zl(1)),J(vv,"Run 10 Epoch",zl(10)),J(vv,"Run 100 Epoch",zl(100)),J(vv,"Run 1000 Epoch",zl(1e3))]))]))),J(hb,X([pb(J(Cb,"marginLeft","auto")),pb(J(Cb,"marginRight","auto"))]),n))])):Pb}function Ol(r){return J(Rd,X([_d(J(Bv,360,Ib(3))),J(Sv,20,0),pb(J(Cb,"max-width","70vw")),pb(J(Cb,"margin","auto"))]),X([function(r){var n=fc(r.cF-1),e=fc(r.cF+1);return J(_b,X([J(Sv,20,10),_d(Jd)]),X([J(Ob,X([Nb,Al(X([hc(jv)])),av]),{c8:Lv(J(Dv,H,Cv)),a4:n}),J(Ob,X([Tb,Al(X([hc(jv)])),av]),{c8:Lv(J(Dv,H,Av)),a4:e})]))}(r),Lv(J(of,X([cf(1===(n=J(Hi,r.cF,qb)).$?"content":n.a?"content content-scroll":"content")]),H))]));var n}var Ll,Sl,El=Ur,Fl=v(function(r,n){for(;;){if(!n.b)return!1;var e=n.b;if(r(n.a))return!0;r=r,n=e}}),Kl=v(function(r,n){return b(r,n)<0?r:n}),Nl=D(function(r,n,e){var t=n.a,a=n.b;return r?e+"\n  "+t+": "+a+" !important;":e+"\n  "+t+": "+a+";"}),Tl=e(function(r,n,e,t){if(1===n.$)return X([e+"{"+B(Oe,Nl(!1),"",t)+"\n}"]);switch(n.a){case 1:switch(r.cX){case 0:return H;case 2:return X([e+"-hv {"+B(Oe,Nl(!0),"",t)+"\n}"]);default:return X([e+"-hv:hover {"+B(Oe,Nl(!1),"",t)+"\n}"])}case 0:var a=B(Oe,Nl(!1),"",t);return X([e+"-fs:focus {"+a+"\n}","."+po+":focus ~ "+e+"-fs:not(.focus)  {"+a+"\n}","."+po+":focus "+e+"-fs  {"+a+"\n}",e+"-fs:focus-within {"+a+"\n}",".focusable-parent:focus ~ ."+po+" "+e+"-fs {"+a+"\n}"]);default:return X([e+"-act:active {"+B(Oe,Nl(!1),"",t)+"\n}"])}}),_l=D(function(n,r,e){switch(r.$){case 0:return P(Tl,n,e,r.a,r.b);case 13:return P(Tl,n,e,"."+(t=r.a),X([J(pf,"box-shadow",r.b)]));case 12:var t=r.a,a=J(Xe,0,J(Kl,1,1-r.b));return P(Tl,n,e,"."+t,X([J(pf,"opacity",mf(a))]));case 2:var u=r.a;return P(Tl,n,e,".font-size-"+Ce(u),X([J(pf,"font-size",Ce(u)+"px")]));case 1:t=r.a;var c=r.b,i=J(Ae,", ",J(hu,Bf,c)),o=X([J(pf,"font-family",J(Ae,", ",J(jt,qf,c))),J(pf,"font-feature-settings",i),J(pf,"font-variant",J(Fl,Df,c)?"small-caps":"normal")]);return P(Tl,n,e,"."+t,o);case 3:return P(Tl,n,e,"."+(M=r.a),X([J(pf,r.b,q=r.c)]));case 4:return P(Tl,n,e,"."+(M=r.a),X([J(pf,r.b,yc(r.c))]));case 5:var s=r.a,f=r.b,l=r.c,d=Ce(l)+"px",b=Ce(f)+"px",v="."+ds,h="."+Js+v,p="."+lo,g="."+ss,m="."+os,$="."+fo,w=mf(l/2)+"px",x=mf(f/2)+"px",y="."+Oo,k="."+po;return Qt(X([P(Tl,n,e,(M="."+s)+v+" > "+k+" + "+k,X([J(pf,"margin-left",b)])),P(Tl,n,e,M+h+" > "+k,X([J(pf,"margin",w+" "+x)])),P(Tl,n,e,M+y+" > "+k+" + "+k,X([J(pf,"margin-top",d)])),P(Tl,n,e,M+m+" > "+k+" + "+k,X([J(pf,"margin-top",d)])),P(Tl,n,e,M+m+" > "+$,X([J(pf,"margin-right",b)])),P(Tl,n,e,M+m+" > "+p,X([J(pf,"margin-left",b)])),P(Tl,n,e,G(M,g),X([J(pf,"line-height","calc(1em + "+Ce(l)+"px)")])),P(Tl,n,e,"textarea"+k+M,X([J(pf,"line-height","calc(1em + "+Ce(l)+"px)"),J(pf,"height","calc(100% + "+Ce(l)+"px)")])),P(Tl,n,e,M+g+" > "+$,X([J(pf,"margin-right",b)])),P(Tl,n,e,M+g+" > "+p,X([J(pf,"margin-left",b)])),P(Tl,n,e,M+g+"::after",X([J(pf,"content","''"),J(pf,"display","block"),J(pf,"height","0"),J(pf,"width","0"),J(pf,"margin-top",Ce(-1*(l/2|0))+"px")])),P(Tl,n,e,M+g+"::before",X([J(pf,"content","''"),J(pf,"display","block"),J(pf,"height","0"),J(pf,"width","0"),J(pf,"margin-bottom",Ce(-1*(l/2|0))+"px")]))]));case 7:p=r.c;var z=r.d;$=r.e;return P(Tl,n,e,M="."+(s=r.a),X([J(pf,"padding",Ce(r.b)+"px "+Ce(p)+"px "+Ce(z)+"px "+Ce($)+"px")]));case 6:p=r.c,z=r.d,$=r.e;return P(Tl,n,e,M="."+(s=r.a),X([J(pf,"border-width",Ce(r.b)+"px "+Ce(p)+"px "+Ce(z)+"px "+Ce($)+"px")]));case 8:var C=r.a,A=D(function(r,n,e){r:for(;;)switch(e.$){case 0:return Ce(e.a)+"px";case 1:var t=Y(r,n);if(1===t.a.$){if(1===t.b.$){return"max-content"}return"minmax(max-content, "+Ce(a=t.b.a)+"px)"}if(1===t.b.$){return"minmax("+Ce(t.a.a)+"px, max-content)"}var a=t.b.a;return"minmax("+Ce(t.a.a)+"px, "+Ce(a)+"px)";case 2:var u=e.a,c=Y(r,n);if(1===c.a.$){if(1===c.b.$){return Ce(u)+"fr"}return"minmax(max-content, "+Ce(a=c.b.a)+"px)"}if(1===c.b.$){return"minmax("+Ce(c.a.a)+"px, "+Ce(u)+"frfr)"}a=c.b.a;return"minmax("+Ce(c.a.a)+"px, "+Ce(a)+"px)";case 3:var i=e.b;r=xe(e.a),n=n,e=i;continue r;default:i=e.b;r=r,n=xe(e.a),e=i;continue r}}),j=function(r){return B(A,ye,ye,r)},O=(j(C.dC.a),j(C.dC.b)),L="grid-template-rows: "+J(Ae," ",J(jt,j,C.ds))+";",S="-ms-grid-rows: "+J(Ae,O,J(jt,j,C.u))+";",E="-ms-grid-columns: "+J(Ae,O,J(jt,j,C.u))+";",F="grid-row-gap:"+j(C.dC.b)+";",K="grid-column-gap:"+j(C.dC.a)+";",N="grid-template-columns: "+J(Ae," ",J(jt,j,C.u))+";";return X([(M=".grid-rows-"+J(Ae,"-",J(jt,ff,C.ds))+"-cols-"+J(Ae,"-",J(jt,ff,C.u))+"-space-x-"+ff(C.dC.a)+"-space-y-"+ff(C.dC.b))+"{"+E+S+"}","@supports (display:grid) {"+(M+"{"+N+L+K+F+"}")+"}"]);case 9:var T=r.a,_=J(Ae," ",X(["-ms-grid-row: "+Ce(T.s)+";","-ms-grid-row-span: "+Ce(T.Z)+";","-ms-grid-column: "+Ce(T.cE)+";","-ms-grid-column-span: "+Ce(T.ae)+";"])),R=J(Ae," ",X(["grid-row: "+Ce(T.s)+" / "+Ce(T.s+T.Z)+";","grid-column: "+Ce(T.cE)+" / "+Ce(T.cE+T.ae)+";"]));return X([(M=".grid-pos-"+Ce(T.s)+"-"+Ce(T.cE)+"-"+Ce(T.ae)+"-"+Ce(T.Z))+"{"+_+"}","@supports (display:grid) {"+(M+"{"+R+"}")+"}"]);case 11:var M=r.a;return J(Oa,function(r){return B(_l,n,r,xe(M))},r.b);default:var W=r.a,q=function(r){switch(r.$){case 0:return ye;case 1:var n=r.a,e=n.b,t=n.c;return xe("translate3d("+mf(n.a)+"px, "+mf(e)+"px, "+mf(t)+"px)");default:var a=r.a,u=a.b,c=a.c,i=r.b,o=i.a,s=i.b,f=i.c,l=r.c,d=l.a,b=l.b,v=l.c,h=r.d,p="translate3d("+mf(a.a)+"px, "+mf(u)+"px, "+mf(c)+"px)",g="scale3d("+mf(o)+", "+mf(s)+", "+mf(f)+")",m="rotate3d("+mf(d)+", "+mf(b)+", "+mf(v)+", "+mf(h)+"rad)";return xe(p+" "+g+" "+m)}}(W),I=Y(M=wc(W),q);return I.a.$||I.b.$?H:P(Tl,n,e,"."+(s=I.a.a),X([J(pf,"transform",I.b.a)]))}}),Rl=v(function(e,r){return Bt(J(jt,function(r){var n=B(_l,e,r,ye);return Y(lf(r),J(xa,$a,n))},r))}),Ml=v(function(r,n){return r+" {"+J(Ae,"",J(jt,function(r){return r.a+": "+r.b+";"},n))+"}"}),Wl=D(function(r,n,e){var t=e.b;return X([J(Ml,"."+r+"."+n+", ."+r+" ."+n,e.a),J(Ml,"."+r+"."+n+"> ."+xs+", ."+r+" ."+n+" > ."+xs,t)])}),ql=D(function(r,n,e){var t=n.a,a=n.b,u=p(r,e)?r:e+" ."+r;return J(Ae," ",G(B(Wl,u,ms,a),B(Wl,u,qo,t)))}),Il=v(function(r,n){var e=p(r,n)?r:n+" ."+r;return J(Ae," ",X([J(Ml,"."+e+"."+ms+", ."+e+" ."+ms,X([Y("line-height","1")])),J(Ml,"."+e+"."+ms+"> ."+xs+", ."+e+" ."+ms+" > ."+xs,X([Y("vertical-align","0"),Y("line-height","1")]))]))}),Dl=D(function(r,n,e){return{Z:n/r,bW:r,b2:e}}),Jl=v(function(e,r){return B(At,v(function(r,n){return e(r)?J(le,r,n):n}),H,r)}),Bl=v(function(a,r){var n=v(function(r,n){return{aB:G(n.aB,B(_l,a,r,ye)),ao:1===(t=1!==(e=r).$?ye:xe(Y(e.a,e.b))).$?n.ao:J(le,t.a,n.ao)};var e,t}),e=B(Oe,n,{aB:H,ao:H},r),t=e.aB;return G(Hf(e.ao),Sc(t))}),Pl=v(function(r,n){switch(r.df){case 0:case 1:return B(Cc,"div",H,X([B(Cc,"style",H,X([El(J(Bl,r,n))]))]));default:return B(Cc,"elm-ui-rules",X([J(yf,"rules",J(Rl,r,n))]),H)}}),Yl=e(function(r,n,e,t){var a=J(Pl,n,B(Oe,hf,Y(sf,zc(n.cS)),e).b);return r?J(le,Y("static-stylesheet",Wf(n)),J(le,Y("dynamic-stylesheet",a),t)):J(le,Y("dynamic-stylesheet",a),t)}),Gl=e(function(r,n,e,t){var a=J(Pl,n,B(Oe,hf,Y(sf,zc(n.cS)),e).b);return r?J(le,Wf(n),J(le,a,t)):J(le,a,t)}),Hl=lc(45),Xl=lc(37),Ul=Zr("p"),Ql=v(function(r,n){var e=n.a;if(r.$){var t=r.a;return p(t&n.b,t)}var a=r.a;return p(a&e,a)}),Zl=Zr("s"),Vl=Zr("u"),rd=lc(44),nd=lc(39),ed=a(function(r,n,e,a,u,t){var c=v(function(r,n){if(1===a.$){var e=a.a;return B(Xf,r,n,function(){switch(u.$){case 0:return e;case 2:return P(Yl,!1,u.a,u.b,e);default:return P(Yl,!0,u.a,u.b,e)}}())}var t=a.a;return J(function(){switch(r){case"div":return of;case"p":return Ul;default:return Cc(r)}}(),n,function(){switch(u.$){case 0:return t;case 2:return P(Gl,!1,u.a,u.b,t);default:return P(Gl,!0,u.a,u.b,t)}}())}),i=function(){switch(n.$){case 0:return J(c,"div",e);case 1:return J(c,n.a,e);default:return B(Cc,n.a,e,X([J(c,n.b,X([cf(po+" "+gs)]))]))}}();switch(t){case 0:return J(Ql,nd,r)&&!J(Ql,rd,r)?i:J(Ql,ef,r)?J(Vl,X([cf(J(Ae," ",X([po,gs,Lo,Fo,so])))]),X([i])):J(Ql,tf,r)?J(Zl,X([cf(J(Ae," ",X([po,gs,Lo,Fo,io])))]),X([i])):i;case 1:return J(Ql,Xl,r)&&!J(Ql,Hl,r)?i:J(Ql,af,r)?J(Zl,X([cf(J(Ae," ",X([po,gs,Lo,oo])))]),X([i])):J(Ql,nf,r)?J(Vl,X([cf(J(Ae," ",X([po,gs,Lo,co])))]),X([i])):i;default:return i}}),td=El,ad=po+" "+xs+" "+Ws+" "+Jo,ud=po+" "+xs+" "+Is+" "+Po,cd=D(function(s,r,n){var e=v(function(r,n){var e=r.a,t=r.b,a=n.a,u=n.b;switch(t.$){case 0:var c=t.a;return p(s,4),Y(J(le,Y(e,c(s)),a),u);case 1:var i=t.a;return p(s,4),Y(J(le,Y(e,J(i.cY,Zs,s)),a),Uf(u)?i.dK:G(i.dK,u));case 2:var o=t.a;return Y(J(le,Y(e,(p(s,2)?Zf:Qf)(o)),a),u);default:return Y(a,u)}}),t=v(function(r,n){var e=n.a,t=n.b;switch(r.$){case 0:var a=r.a;return p(s,4),Y(J(le,a(s),e),t);case 1:var u=r.a;return p(s,4),Y(J(le,J(u.cY,Zs,s),e),Uf(t)?u.dK:G(u.dK,t));case 2:var c=r.a;return Y(J(le,(p(s,2)?Zf:Qf)(c),e),t);default:return Y(e,t)}});if(1===r.$){var a=r.a,u=B(At,e,Y(H,H),a),c=u.a;if((f=Uf(o=u.b)?n.dK:G(n.dK,o)).b){var i=f;return mc({cY:P(ed,n.N,n.Q,n.J,gc(B(rf,"nearby-element-pls",c,n.K))),dK:i})}return $c(h(ed,n.N,n.Q,n.J,gc(B(rf,"nearby-element-pls",c,n.K)),Zs))}var o,f,l=r.a,d=B(At,t,Y(H,H),l),b=d.a;if((f=Uf(o=d.b)?n.dK:G(n.dK,o)).b){i=f;return mc({cY:P(ed,n.N,n.Q,n.J,pc(J(Vs,b,n.K))),dK:i})}return $c(h(ed,n.N,n.Q,n.J,pc(J(Vs,b,n.K)),Zs))}),id=D(function(r,n,e){return{$:3,a:r,b:n,c:e}}),od=v(function(r,n){return{$:0,a:r,b:n}}),sd=v(function(r,n){var e=n.a,t=n.b;return r.$?J(od,e,r.a|t):J(od,r.a|e,t)}),fd=v(function(r,n){return{$:3,a:r,b:n}}),ld=v(function(r,n){return J(of,X([cf(function(){switch(r){case 0:return J(Ae," ",X([ts,gs,no]));case 1:return J(Ae," ",X([ts,gs,mo]));case 2:return J(Ae," ",X([ts,gs,cs]));case 3:return J(Ae," ",X([ts,gs,us]));case 4:return J(Ae," ",X([ts,gs,Xo]));default:return J(Ae," ",X([ts,gs,go]))}}())]),X([function(){switch(n.$){case 3:return El("");case 2:return Qf(n.a);case 0:return(0,n.a)(2);default:return J(n.a.cY,Zs,2)}}()]))}),dd=D(function(r,n,e){var t=J(ld,r,n);switch(e.$){case 0:return(5===r?rl:nl)(X([t]));case 1:var a=e.a;return 5===r?rl(J(le,t,a)):J(fd,a,X([t]));case 2:var u=e.a;return 5===r?J(fd,X([t]),u):nl(J(le,t,u));default:a=e.a,u=e.b;return 5===r?J(fd,J(le,t,a),u):J(fd,a,J(le,t,u))}}),bd=v(function(r,n){return{$:2,a:r,b:n}}),vd=v(function(r,n){switch(n.$){case 0:return el(r);case 1:return J(bd,n.a,r);default:return J(bd,n.a,n.b)}}),hd=v(function(r,n){return J(un,function(r){return/^(on|formAction$)/i.test(r)?"data-"+r:r}(r),on(n))}),pd=e(function(r,n,e,t){return{$:2,a:r,b:n,c:e,d:t}}),gd=v(function(r,n){switch(r.$){case 0:switch(n.$){case 0:return ul($(a=n.a,0,0));case 1:return ul($(0,u=n.a,0));case 2:return ul($(0,0,c=n.a));case 3:return ul(e=n.a);case 4:var e=n.a,t=n.b;return P(pd,$(0,0,0),$(1,1,1),e,t);default:e=n.a;return P(pd,$(0,0,0),e,$(0,0,1),0)}case 1:var a=(i=r.a).a,u=i.b,c=i.c;switch(n.$){case 0:return ul($(n.a,u,c));case 1:return ul($(a,n.a,c));case 2:return ul($(a,u,n.a));case 3:return ul(e=n.a);case 4:e=n.a,t=n.b;return P(pd,i,$(1,1,1),e,t);default:return P(pd,i,n.a,$(0,0,1),0)}default:a=(i=r.a).a,u=i.b,c=i.c;var i,o=r.b,s=r.c;t=r.d;switch(n.$){case 0:return P(pd,$(n.a,u,c),o,s,t);case 1:return P(pd,$(a,n.a,c),o,s,t);case 2:return P(pd,$(a,u,n.a),o,s,t);case 3:return P(pd,n.a,o,s,t);case 4:return P(pd,i,o,n.a,n.b);default:return P(pd,i,n.a,s,t)}}}),md=lc(7),$d=lc(36),wd=v(function(r,n){return J(od,r.a|n.a,r.b|n.b)}),xd=J(od,0,0),yd=function(r){switch(r.$){case 0:var n=Ce(r.a),e="height-px-"+n;return $(xd,Bo+" "+e,X([B(id,e,"height",n+"px")]));case 1:return $(J(sd,$d,xd),Jo,H);case 2:var t=r.a;return 1===t?$(J(sd,Xl,xd),Po,H):$(J(sd,Xl,xd),Yo+" height-fill-"+Ce(t),X([B(id,po+"."+Oo+" > "+xc("height-fill-"+Ce(t)),"flex-grow",Ce(1e5*t))]));case 3:var a=r.a,u=r.b,c="min-height-"+Ce(a),i=B(id,c,"min-height",Ce(a)+"px"),o=yd(u),s=o.b,f=o.c;return $(J(sd,Hl,o.a),c+" "+s,J(le,i,f));default:var l=r.a,d=(u=r.b,c="max-height-"+Ce(l),i=B(id,c,"max-height",Ce(l)+"px"),yd(u));s=d.b,f=d.c;return $(J(sd,Hl,d.a),c+" "+s,J(le,i,f))}},kd=lc(38),zd=function(r){switch(r.$){case 0:var n=r.a;return $(xd,qs+" width-px-"+Ce(n),X([B(id,"width-px-"+Ce(n),"width",Ce(n)+"px")]));case 1:return $(J(sd,kd,xd),Ws,H);case 2:var e=r.a;return 1===e?$(J(sd,nd,xd),Is,H):$(J(sd,nd,xd),Ds+" width-fill-"+Ce(e),X([B(id,po+"."+ds+" > "+xc("width-fill-"+Ce(e)),"flex-grow",Ce(1e5*e))]));case 3:var t=r.a,a=r.b,u="min-width-"+Ce(t),c=B(id,u,"min-width",Ce(t)+"px"),i=zd(a),o=i.b,s=i.c;return $(J(sd,rd,i.a),u+" "+o,J(le,c,s));default:var f=r.a,l=(a=r.b,u="max-width-"+Ce(f),c=B(id,u,"max-width",Ce(f)+"px"),zd(a));o=l.b,s=l.c;return $(J(sd,rd,l.a),u+" "+o,J(le,c,s))}},Cd=lc(27),Ad=v(function(r,n){if(p(r,Cd)){if(3!==n.$)return!1;switch(n.c){case"0px":case"1px":case"2px":case"3px":case"4px":case"5px":case"6px":return!0;default:return!1}}else switch(n.$){case 2:var e=n.a;return 8<=e&&e<=32;case 7:var t=n.b,a=n.c,u=n.e;return p(t,n.d)&&p(t,a)&&p(t,u)&&0<=t&&t<=24;default:return!1}}),jd=lc(6),Od=lc(30),Ld=lc(29),Sd=c(function(r,n,e,t,a,u,c,i){r:for(;;){if(!i.b){var o=wc(t);return 1===o.$?{J:J(le,cf(r),u),K:c,N:e,Q:n,dK:a}:{J:J(le,cf(r+" "+o.a),u),K:c,N:e,Q:n,dK:J(le,Vf(t),a)}}var s=i.a,f=i.b;switch(s.$){case 0:r=d=r,n=b=n,e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 3:var l=s.b;if(J(Ql,$=s.a,e)){r=d=r,n=b=n,e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}r=d=l+" "+r,n=b=n,e=v=J(sd,$,e),t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 1:var d=r,b=n,v=e,h=t,p=a,g=J(le,s.a,u);r=d,n=b,e=v,t=h,a=p,u=g,c=N=c,i=f;continue r;case 4:var m=s.b;if(J(Ql,$=s.a,e)){r=d=r,n=b=n,e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}if(J(Ad,$,m)){r=d=lf(m)+" "+r,n=b=n,e=v=J(sd,$,e),t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}d=lf(m)+" "+r,b=n,v=J(sd,$,e),h=t,p=J(le,m,a);r=d,n=b,e=v,t=h,a=p,u=g=u,c=N=c,i=f;continue r;case 10:var $,w=s.b;r=d=r,n=b=n,e=v=J(sd,$=s.a,e),t=h=J(gd,t,w),a=p=a,u=g=u,c=N=c,i=f;continue r;case 7:var x=s.a;if(J(Ql,jd,e)){r=d=r,n=b=n,e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}switch(x.$){case 0:d=qs+" width-px-"+Ce(C=x.a)+" "+r,b=n,v=J(sd,jd,e),h=t,p=J(le,B(id,"width-px-"+Ce(C),"width",Ce(C)+"px"),a);r=d,n=b,e=v,t=h,a=p,u=g=u,c=N=c,i=f;continue r;case 1:r=d=r+" "+Ws,n=b=n,e=v=J(sd,kd,J(sd,jd,e)),t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 2:if(1===(O=x.a)){r=d=r+" "+Is,n=b=n,e=v=J(sd,nd,J(sd,jd,e)),t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}d=r+" "+Ds+" width-fill-"+Ce(O),b=n,v=J(sd,nd,J(sd,jd,e)),h=t,p=J(le,B(id,po+"."+ds+" > "+xc("width-fill-"+Ce(O)),"flex-grow",Ce(1e5*O)),a);r=d,n=b,e=v,t=h,a=p,u=g=u,c=N=c,i=f;continue r;default:var y=zd(x),k=y.c;d=r+" "+y.b,b=n,v=J(wd,y.a,J(sd,jd,e)),h=t,p=G(k,a);r=d,n=b,e=v,t=h,a=p,u=g=u,c=N=c,i=f;continue r}case 8:var z=s.a;if(J(Ql,md,e)){r=d=r,n=b=n,e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}switch(z.$){case 0:var C,A=Ce(C=z.a)+"px",j="height-px-"+A;d=Bo+" "+j+" "+r,b=n,v=J(sd,md,e),h=t,p=J(le,B(id,j,"height ",A),a);r=d,n=b,e=v,t=h,a=p,u=g=u,c=N=c,i=f;continue r;case 1:r=d=Jo+" "+r,n=b=n,e=v=J(sd,$d,J(sd,md,e)),t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 2:var O;if(1===(O=z.a)){r=d=Po+" "+r,n=b=n,e=v=J(sd,Xl,J(sd,md,e)),t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}d=r+" "+Yo+" height-fill-"+Ce(O),b=n,v=J(sd,Xl,J(sd,md,e)),h=t,p=J(le,B(id,po+"."+Oo+" > "+xc("height-fill-"+Ce(O)),"flex-grow",Ce(1e5*O)),a);r=d,n=b,e=v,t=h,a=p,u=g=u,c=N=c,i=f;continue r;default:var L=yd(z);k=L.c,d=r+" "+L.b,b=n,v=J(wd,L.a,J(sd,md,e)),h=t,p=G(k,a);r=d,n=b,e=v,t=h,a=p,u=g=u,c=N=c,i=f;continue r}case 2:var S=s.a;switch(S.$){case 0:r=d=r,n=b=J(vd,"main",n),e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 1:r=d=r,n=b=J(vd,"nav",n),e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 2:r=d=r,n=b=J(vd,"footer",n),e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 3:r=d=r,n=b=J(vd,"aside",n),e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 4:var E=S.a;if(1<E){if(E<7){r=d=r,n=b=J(vd,"h"+Ce(E),n),e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}r=d=r,n=b=J(vd,"h6",n),e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}r=d=r,n=b=J(vd,"h1",n),e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 9:r=d=r,n=b=n,e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;case 8:d=r,b=n,v=e,h=t,p=a,g=J(le,J(hd,"role","button"),u);r=d,n=b,e=v,t=h,a=p,u=g,c=N=c,i=f;continue r;case 5:d=r,b=n,v=e,h=t,p=a,g=J(le,J(hd,"aria-label",S.a),u);r=d,n=b,e=v,t=h,a=p,u=g,c=N=c,i=f;continue r;case 6:d=r,b=n,v=e,h=t,p=a,g=J(le,J(hd,"aria-live","polite"),u);r=d,n=b,e=v,t=h,a=p,u=g,c=N=c,i=f;continue r;default:d=r,b=n,v=e,h=t,p=a,g=J(le,J(hd,"aria-live","assertive"),u);r=d,n=b,e=v,t=h,a=p,u=g,c=N=c,i=f;continue r}case 9:var F=s.a,K=s.b,N=(d=r,b=n,v=e,h=t,p=k=function(){switch(K.$){case 3:return a;case 2:return a;case 0:return a;default:return G(a,K.a.dK)}}(),g=u,B(dd,F,K,c));r=d,n=b,e=v,t=h,a=p,u=g,c=N,i=f;continue r;case 6:var T=s.a;if(J(Ql,Od,e)){r=d=r,n=b=n,e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}r=d=tl(T)+" "+r,n=b=n,e=v=function(r){switch(T){case 1:return J(sd,tf,r);case 2:return J(sd,ef,r);default:return r}}(J(sd,Od,e)),t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r;default:var _=s.a;if(J(Ql,Ld,e)){r=d=r,n=b=n,e=v=e,t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}r=d=al(_)+" "+r,n=b=n,e=v=function(r){switch(_){case 1:return J(sd,af,r);case 2:return J(sd,nf,r);default:return r}}(J(sd,Ld,e)),t=h=t,a=p=a,u=g=u,c=N=c,i=f;continue r}}}),Ed={$:0},Fd=Ed,Kd=e(function(r,n,e,t){return B(cd,r,t,l(Sd,function(r){switch(r){case 0:return Us;case 1:return Ys;case 2:return Qs;case 3:return Gs;case 4:return Xs;default:return Hs}}(r),n,xd,Fd,H,H,Ps,Ne(e)))}),Nd=cl,Td={$:1},_d=sl,Rd=v(function(r,n){return P(Kd,1,Bs,J(le,ol(To+" "+Ko),J(le,Nd(Td),J(le,_d(Td),r))),pc(n))}),Md=v(function(r,n){return{$:1,a:r,b:n}}),Wd=lc(5),qd=function(r){return r.toLowerCase()},Id=function(r){return X(r.trim().split(/\s+/g))},Dd=v(function(r,n){return G(n,function(){switch(r.$){case 0:return"serif";case 1:return"sans-serif";case 2:return"monospace";case 3:return J(Ae,"-",Id(qd(r.a)));case 4:return J(Ae,"-",Id(qd(r.a)));default:return J(Ae,"-",Id(qd(r.a.dg)))}}())}),Jd=ll(1),Bd=lc(18),Pd=v(function(r,n){var e,t={bd:2*n,bh:r,bC:Y(0,0)};return J(Zi,Bd,B(id,Sc(X(["txt",dc((e=t).bC.a)+"px",dc(e.bC.b)+"px",dc(e.bd)+"px",bc(e.bh)])),"text-shadow",function(r){return J(Ae," ",X([mf(r.bC.a)+"px",mf(r.bC.b)+"px",mf(r.bd)+"px",yc(r.bh)]))}(t)))}),Yd=v(function(r,n){return{$:2,a:r,b:n}}),Gd=v(function(r,n){return{$:1,a:r,b:n}}),Hd=e(function(r,n,e,t){return{$:0,a:r,b:n,c:e,d:t}}),Xd={cm:ye,cs:ye,dy:xe({bd:0,bh:P(Hd,155/255,203/255,1,1),bC:Y(0,0),bW:3})},Ud=v(function(r,n){switch(n.$){case 0:return(0,n.a)(2);case 1:return J(n.a.cY,r(n.a.dK),2);case 2:return Qf(n.a);default:return Qf("")}}),Qd=D(function(r,n,e){var t=function(r){var n,e,t,a,u=v(function(r,n){switch(r.$){case 0:return 1===n.cX.$?x(n,{cX:xe(r.a)}):n;case 1:return 1===n.cS.$?x(n,{cS:xe(r.a)}):n;default:return 1===n.df.$?x(n,{df:xe(r.a)}):n}});return n=B(At,u,{cS:ye,cX:ye,df:ye},r),{cS:1===(a=n.cS).$?Xd:a.a,cX:1===(t=n.cX).$?1:t.a,df:1===(e=n.df).$?0:e.a}}(r),a=(1===t.df?Yd:Gd)(t);return J(Ud,a,P(Kd,2,Bs,n,pc(X([e]))))}),Zd={$:1},Vd=lc(4),rb=(Ll=X([bl("Open Sans"),bl("Helvetica"),bl("Verdana"),Zd]),X([J(Zi,Vi,B(Qi,"bg-"+bc(P(Hd,1,1,1,0)),"background-color",P(Hd,1,1,1,0))),J(Zi,ro,B(Qi,"fc-"+bc(P(Hd,0,0,0,1)),"color",P(Hd,0,0,0,1))),J(Zi,Vd,dl(20)),J(Zi,Wd,J(Md,B(Oe,Dd,"font-",Ll),Ll))])),nb=D(function(r,n,e){return B(Qd,r.bD,J(le,ol(J(Ae," ",X([ls,po,gs]))),G(rb,n)),e)})({bD:H}),eb=t(function(r,n,e,t,a){return{$:7,a:r,b:n,c:e,d:t,e:a}}),tb=lc(2),ab=e(function(r,n,e,t){return P(Hd,r/255,n/255,e/255,t)}),ub=Zd,cb=D(function(r,n,e){return P(Hd,r/255,n/255,e/255,1)}),ib={aM:B(cb,50,29,29),b7:B(cb,247,203,55)},ob=bl,sb=v(function(r,n){return{$:3,a:r,b:n}}),fb=lc(13),lb=J(sb,fb,$o),db=lc(12),bb=J(sb,db,ys),vb=hl(1),hb=v(function(r,n){return P(Kd,2,Bs,J(le,_d(Td),J(le,Nd(Td),r)),pc(X([n])))}),pb=il,gb=v(function(r,n){return{$:4,a:r,b:n}}),mb=v(function(r,n){return J(gb,r,n)}),$b={$:9},wb=D(function(r,n,e){return{$:5,a:r,b:n,c:e}}),xb=lc(3),yb=v(function(r,n){return"spacing-"+Ce(r)+"-"+Ce(n)}),kb=v(function(r,n){return P(Kd,4,Bs,J(le,pl($b),J(le,_d(Jd),J(le,gl(5),r))),pc(n))}),zb=tn,Cb=zb,Ab=wl(1),jb=un("rel"),Ob=v(function(r,n){var e=n.a4,t=n.c8;return P(Kd,2,el("a"),J(le,il(function(r){return J(uf,"href",/^javascript:/i.test((n=r).replace(/\s/g,""))?"":n);var n}(e)),J(le,il(jb("noopener noreferrer")),J(le,_d(Td),J(le,Nd(Td),J(le,ol(Eo+" "+Fo+" "+es),r))))),pc(X([t])))}),Lb=function(r){return{$:0,a:r}},Sb=t(function(r,n,e,t,a){return{$:0,a:r,b:n,c:e,d:t,e:a}}),Eb=D(function(r,n,e){return{$:0,a:r,b:n,c:e}}),Fb=e(function(r,n,e,t){return"pad-"+Ce(r)+"-"+Ce(n)+"-"+Ce(e)+"-"+Ce(t)}),Kb=v(function(r,n){var e=function(r){return B(At,v(function(n,r){var e=r.a,t=r.b;return Y(function(){if(e.$){if(4!==n.$||7!==n.b.$)return ye;var r=n.b;return xe(h(Sb,r.a,r.b,r.c,r.d,r.e))}return e}(),function(){if(t.$){if(4!==n.$||5!==n.b.$)return ye;var r=n.b;return xe(B(Eb,r.a,r.b,r.c))}return t}())}),Y(ye,ye),r)}(r),f=e.a,t=e.b;if(1===t.$)return P(Kd,0,Bs,J(le,ol(Ko+" "+Fo+" "+Js),J(le,_d(Td),J(le,Nd(Td),r))),pc(n));var a=t.a,u=a.a,l=a.b,d=a.c,c=function(){if(f.$)return ye;var r,n,e,t,a,u=f.a,c=u.b,i=u.c,o=u.d,s=u.e;return-1<b(i,l/2|0)&&-1<b(o,d/2|0)?xe((t=(r={be:o-(d/2|0),bw:s-(l/2|0),bS:i-(l/2|0),b_:c-(d/2|0)}).be,a=r.bw,p(n=r.b_,e=r.bS)&&p(n,t)&&p(n,a)?J(Zi,tb,h(eb,"p-"+Ce(n),n,n,n,n)):J(Zi,tb,h(eb,P(Fb,n,e,t,a),n,e,t,a)))):ye}();if(c.$){var i=-d/2,o=-l/2;return P(Kd,2,Bs,r,pc(X([P(Kd,0,Bs,J(le,ol(Ko+" "+Fo+" "+Js),J(le,il(J(Cb,"margin",mf(i)+"px "+mf(o)+"px")),J(le,il(J(Cb,"width","calc(100% + "+Ce(l)+"px)")),J(le,il(J(Cb,"height","calc(100% + "+Ce(d)+"px)")),J(le,J(Zi,xb,B(wb,u,l,d)),H))))),pc(n))])))}var s=c.a;return P(Kd,0,Bs,J(le,ol(Ko+" "+Fo+" "+Js),J(le,_d(Td),J(le,Nd(Td),G(r,X([s]))))),pc(n))}),Nb=hl(0),Tb=hl(2),_b=v(function(r,n){return P(Kd,0,Bs,J(le,ol(Ko+" "+Fo),J(le,_d(Td),J(le,Nd(Td),r))),pc(n))}),Rb=J(_b,X([_d(Jd)]),X([J(hb,X([Nb]),$l("AIWaffle")),J(hb,X([Tb]),$l("Log In"))])),Mb=v(function(r,n){return{$:4,a:r,b:n}}),Wb={aM:B(cb,50,29,29),b7:B(cb,247,203,55)},qb=X([!1,!1,!0]),Ib=ll,Db={$:3},Jb=v(function(e,r){switch(r.$){case 1:var t=r.a;return mc({cY:v(function(r,n){return J(Xi,e,J(t.cY,r,n))}),dK:t.dK});case 0:var n=r.a;return $c(J(oi,Xi(e),n));case 2:return ml(r.a);default:return Db}}),Bb=Jb,Pb=Db,Yb={$:8},Gb=v(function(r,n){return J(an,r,ma(n))})("disabled"),Hb={$:0},Xb=en,Ub=v(function(r,n){return J(Xb,r,{$:0,a:n})}),Qb=J(oi,il,function(r){return J(Ub,"click",ut(r))}),Zb=tr,Vb=function(r){return{$:1,a:r}},rv=v(function(r,n){return J(Xb,r,{$:2,a:n})}),nv=rr,ev=v(function(n,e){var r=J(Zb,function(r){return p(r,n)?ut(e):Vb("Not the enter key")},J(Ti,"key",nv));return il(J(rv,"keyup",J(tt,function(r){return Y(r,!0)},r)))}),tv=lc(21),av=J(sb,tv,_o),uv=v(function(n,r){var e=r.di,t=r.c8;return P(Kd,2,Bs,J(le,_d(Td),J(le,Nd(Td),J(le,ol(Eo+" "+Fo+" "+ps+" "+as),J(le,av,J(le,function(r){return J(Fl,Cl,r)?Hb:ol("focusable")}(n),J(le,pl(Yb),J(le,il(J(un,"tabIndex",Ce(0))),function(){if(1===e.$)return J(le,il(Gb(!0)),n);var r=e.a;return J(le,Qb(r),J(le,function(r){return J(ev,"Enter",r)}(r),n))}()))))))),pc(X([t])))}),cv=v(function(r,n){return{$:11,a:r,b:n}}),iv=lc(33),ov=v(function(r,n){return{$:9,a:r,b:n}}),sv=v(function(r,n){return{$:10,a:r,b:n}}),fv=sn,lv=v(function(r,n){switch(n.$){case 0:return Hb;case 2:return pl(n.a);case 6:return hl(n.a);case 5:return wl(n.a);case 7:return sl(n.a);case 8:return cl(n.a);case 3:return J(sb,n.a,n.b);case 4:return J(Zi,n.a,n.b);case 9:return J(ov,n.a,J(Jb,r,n.b));case 1:return il(J(fv,r,n.a));default:return J(sv,n.a,n.b)}}),dv=v(function(r,n){var e=n.a,t=n.b,a=function(r){return J(lv,yt,r)}(r);switch(a.$){case 4:return Y(J(le,a.b,e),t);case 10:return Y(e,J(gd,t,a.b));default:return Y(e,t)}}),bv={cq:B(cb,0,0,0),bi:B(cb,235,182,0),b7:B(cb,247,203,55)},vv=v(function(r,n){return J(uv,X([vc(bv.b7),vl(10),Al(X([vc(bv.bi)]))]),{c8:$l(r),di:xe(n)})}),hv=uf("id"),pv=Qr("http://www.w3.org/2000/svg"),gv=pv("line"),mv=v(function(r,n){return{k:function(r){return{at:xe("feather feather-"+r),bW:24,al:"",aC:2,aE:"0 0 24 24"}}(r),m:n}}),$v=un("points"),wv=pv("polyline"),xv=un("x1"),yv=un("x2"),kv=un("y1"),zv=un("y2"),Cv=J(mv,"arrow-left",X([J(gv,X([xv("19"),kv("12"),yv("5"),zv("12")]),H),J(wv,X([$v("12 19 5 12 12 5")]),H)])),Av=J(mv,"arrow-right",X([J(gv,X([xv("5"),kv("12"),yv("19"),zv("12")]),H),J(wv,X([$v("12 5 19 12 12 19")]),H)])),jv=B(D(function(r,n,e){return P(Hd,r,n,e,1)}),.6,.6,.6),Ov=v(function(r){return r}),Lv=J(oi,$c,Ov),Sv=v(function(r,n){return p(r,n)?J(Zi,tb,h(eb,"p-"+Ce(r),r,r,r,r)):J(Zi,tb,h(eb,"p-"+Ce(r)+"-"+Ce(n),n,r,n,r))}),Ev=un("class"),Fv=un("fill"),Kv=un("height"),Nv=Xi,Tv=un("stroke"),_v=un("stroke-linecap"),Rv=un("stroke-linejoin"),Mv=un("stroke-width"),Wv=pv("svg"),qv=un("viewBox"),Iv=un("width"),Dv=v(function(r,n){var e,t=n.m,a=n.k,u=mf(a.bW),c=X([Fv("none"),Kv(G(u,a.al)),Iv(G(u,a.al)),Tv("currentColor"),_v("round"),Rv("round"),Mv(mf(a.aC)),qv(a.aE)]),i=G((e=a.at).$?c:J(le,Ev(e.a),c),r);return J(Wv,i,J(jt,Nv(yt),t))}),Jv=v(function(r,n){return{$:3,a:r,b:n}}),Bv=v(function(r,n){return J(Jv,r,n)}),Pv=fa({c0:Vc,dk:function(r){return{$:1,a:r}},dl:function(r){return{$:0,a:r}},dL:function(){return ri},d2:Yi,d3:function(r){var n=r.G;switch(n.$){case 0:return{aK:X([J(Ui,sc,kl())]),a3:"AIWaffle"};case 1:return{aK:X([J(Ui,ku,yl(n.a))]),a3:"AIWaffle"};default:var e=n.a;return{aK:X([J(Ui,zu,function(r){return J(nb,H,J(Kb,X([_d(Jd),Nd(Jd)]),X([Ol(r),jl(r)])))}(e))]),a3:fc(e.cF)}}}});Sl={Main:{init:Pv(ut(0))(0)}},r.Elm?function r(n,e){for(var t in e)t in n?"init"==t?S(6):r(n[t],e[t]):n[t]=e[t]}(r.Elm,Sl):r.Elm=Sl}(this);
+(function(scope){
+'use strict';
+
+function F(arity, fun, wrapper) {
+  wrapper.a = arity;
+  wrapper.f = fun;
+  return wrapper;
+}
+
+function F2(fun) {
+  return F(2, fun, function(a) { return function(b) { return fun(a,b); }; })
+}
+function F3(fun) {
+  return F(3, fun, function(a) {
+    return function(b) { return function(c) { return fun(a, b, c); }; };
+  });
+}
+function F4(fun) {
+  return F(4, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return fun(a, b, c, d); }; }; };
+  });
+}
+function F5(fun) {
+  return F(5, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return fun(a, b, c, d, e); }; }; }; };
+  });
+}
+function F6(fun) {
+  return F(6, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return function(f) {
+    return fun(a, b, c, d, e, f); }; }; }; }; };
+  });
+}
+function F7(fun) {
+  return F(7, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return function(f) {
+    return function(g) { return fun(a, b, c, d, e, f, g); }; }; }; }; }; };
+  });
+}
+function F8(fun) {
+  return F(8, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return function(f) {
+    return function(g) { return function(h) {
+    return fun(a, b, c, d, e, f, g, h); }; }; }; }; }; }; };
+  });
+}
+function F9(fun) {
+  return F(9, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return function(f) {
+    return function(g) { return function(h) { return function(i) {
+    return fun(a, b, c, d, e, f, g, h, i); }; }; }; }; }; }; }; };
+  });
+}
+
+function A2(fun, a, b) {
+  return fun.a === 2 ? fun.f(a, b) : fun(a)(b);
+}
+function A3(fun, a, b, c) {
+  return fun.a === 3 ? fun.f(a, b, c) : fun(a)(b)(c);
+}
+function A4(fun, a, b, c, d) {
+  return fun.a === 4 ? fun.f(a, b, c, d) : fun(a)(b)(c)(d);
+}
+function A5(fun, a, b, c, d, e) {
+  return fun.a === 5 ? fun.f(a, b, c, d, e) : fun(a)(b)(c)(d)(e);
+}
+function A6(fun, a, b, c, d, e, f) {
+  return fun.a === 6 ? fun.f(a, b, c, d, e, f) : fun(a)(b)(c)(d)(e)(f);
+}
+function A7(fun, a, b, c, d, e, f, g) {
+  return fun.a === 7 ? fun.f(a, b, c, d, e, f, g) : fun(a)(b)(c)(d)(e)(f)(g);
+}
+function A8(fun, a, b, c, d, e, f, g, h) {
+  return fun.a === 8 ? fun.f(a, b, c, d, e, f, g, h) : fun(a)(b)(c)(d)(e)(f)(g)(h);
+}
+function A9(fun, a, b, c, d, e, f, g, h, i) {
+  return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
+}
+
+console.warn('Compiled in DEV mode. Follow the advice at https://elm-lang.org/0.19.1/optimize for better performance and smaller assets.');
+
+
+// EQUALITY
+
+function _Utils_eq(x, y)
+{
+	for (
+		var pair, stack = [], isEqual = _Utils_eqHelp(x, y, 0, stack);
+		isEqual && (pair = stack.pop());
+		isEqual = _Utils_eqHelp(pair.a, pair.b, 0, stack)
+		)
+	{}
+
+	return isEqual;
+}
+
+function _Utils_eqHelp(x, y, depth, stack)
+{
+	if (depth > 100)
+	{
+		stack.push(_Utils_Tuple2(x,y));
+		return true;
+	}
+
+	if (x === y)
+	{
+		return true;
+	}
+
+	if (typeof x !== 'object' || x === null || y === null)
+	{
+		typeof x === 'function' && _Debug_crash(5);
+		return false;
+	}
+
+	/**/
+	if (x.$ === 'Set_elm_builtin')
+	{
+		x = $elm$core$Set$toList(x);
+		y = $elm$core$Set$toList(y);
+	}
+	if (x.$ === 'RBNode_elm_builtin' || x.$ === 'RBEmpty_elm_builtin')
+	{
+		x = $elm$core$Dict$toList(x);
+		y = $elm$core$Dict$toList(y);
+	}
+	//*/
+
+	/**_UNUSED/
+	if (x.$ < 0)
+	{
+		x = $elm$core$Dict$toList(x);
+		y = $elm$core$Dict$toList(y);
+	}
+	//*/
+
+	for (var key in x)
+	{
+		if (!_Utils_eqHelp(x[key], y[key], depth + 1, stack))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+var _Utils_equal = F2(_Utils_eq);
+var _Utils_notEqual = F2(function(a, b) { return !_Utils_eq(a,b); });
+
+
+
+// COMPARISONS
+
+// Code in Generate/JavaScript.hs, Basics.js, and List.js depends on
+// the particular integer values assigned to LT, EQ, and GT.
+
+function _Utils_cmp(x, y, ord)
+{
+	if (typeof x !== 'object')
+	{
+		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
+	}
+
+	/**/
+	if (x instanceof String)
+	{
+		var a = x.valueOf();
+		var b = y.valueOf();
+		return a === b ? 0 : a < b ? -1 : 1;
+	}
+	//*/
+
+	/**_UNUSED/
+	if (typeof x.$ === 'undefined')
+	//*/
+	/**/
+	if (x.$[0] === '#')
+	//*/
+	{
+		return (ord = _Utils_cmp(x.a, y.a))
+			? ord
+			: (ord = _Utils_cmp(x.b, y.b))
+				? ord
+				: _Utils_cmp(x.c, y.c);
+	}
+
+	// traverse conses until end of a list or a mismatch
+	for (; x.b && y.b && !(ord = _Utils_cmp(x.a, y.a)); x = x.b, y = y.b) {} // WHILE_CONSES
+	return ord || (x.b ? /*GT*/ 1 : y.b ? /*LT*/ -1 : /*EQ*/ 0);
+}
+
+var _Utils_lt = F2(function(a, b) { return _Utils_cmp(a, b) < 0; });
+var _Utils_le = F2(function(a, b) { return _Utils_cmp(a, b) < 1; });
+var _Utils_gt = F2(function(a, b) { return _Utils_cmp(a, b) > 0; });
+var _Utils_ge = F2(function(a, b) { return _Utils_cmp(a, b) >= 0; });
+
+var _Utils_compare = F2(function(x, y)
+{
+	var n = _Utils_cmp(x, y);
+	return n < 0 ? $elm$core$Basics$LT : n ? $elm$core$Basics$GT : $elm$core$Basics$EQ;
+});
+
+
+// COMMON VALUES
+
+var _Utils_Tuple0_UNUSED = 0;
+var _Utils_Tuple0 = { $: '#0' };
+
+function _Utils_Tuple2_UNUSED(a, b) { return { a: a, b: b }; }
+function _Utils_Tuple2(a, b) { return { $: '#2', a: a, b: b }; }
+
+function _Utils_Tuple3_UNUSED(a, b, c) { return { a: a, b: b, c: c }; }
+function _Utils_Tuple3(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
+
+function _Utils_chr_UNUSED(c) { return c; }
+function _Utils_chr(c) { return new String(c); }
+
+
+// RECORDS
+
+function _Utils_update(oldRecord, updatedFields)
+{
+	var newRecord = {};
+
+	for (var key in oldRecord)
+	{
+		newRecord[key] = oldRecord[key];
+	}
+
+	for (var key in updatedFields)
+	{
+		newRecord[key] = updatedFields[key];
+	}
+
+	return newRecord;
+}
+
+
+// APPEND
+
+var _Utils_append = F2(_Utils_ap);
+
+function _Utils_ap(xs, ys)
+{
+	// append Strings
+	if (typeof xs === 'string')
+	{
+		return xs + ys;
+	}
+
+	// append Lists
+	if (!xs.b)
+	{
+		return ys;
+	}
+	var root = _List_Cons(xs.a, ys);
+	xs = xs.b
+	for (var curr = root; xs.b; xs = xs.b) // WHILE_CONS
+	{
+		curr = curr.b = _List_Cons(xs.a, ys);
+	}
+	return root;
+}
+
+
+
+var _List_Nil_UNUSED = { $: 0 };
+var _List_Nil = { $: '[]' };
+
+function _List_Cons_UNUSED(hd, tl) { return { $: 1, a: hd, b: tl }; }
+function _List_Cons(hd, tl) { return { $: '::', a: hd, b: tl }; }
+
+
+var _List_cons = F2(_List_Cons);
+
+function _List_fromArray(arr)
+{
+	var out = _List_Nil;
+	for (var i = arr.length; i--; )
+	{
+		out = _List_Cons(arr[i], out);
+	}
+	return out;
+}
+
+function _List_toArray(xs)
+{
+	for (var out = []; xs.b; xs = xs.b) // WHILE_CONS
+	{
+		out.push(xs.a);
+	}
+	return out;
+}
+
+var _List_map2 = F3(function(f, xs, ys)
+{
+	for (var arr = []; xs.b && ys.b; xs = xs.b, ys = ys.b) // WHILE_CONSES
+	{
+		arr.push(A2(f, xs.a, ys.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map3 = F4(function(f, xs, ys, zs)
+{
+	for (var arr = []; xs.b && ys.b && zs.b; xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A3(f, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map4 = F5(function(f, ws, xs, ys, zs)
+{
+	for (var arr = []; ws.b && xs.b && ys.b && zs.b; ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A4(f, ws.a, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map5 = F6(function(f, vs, ws, xs, ys, zs)
+{
+	for (var arr = []; vs.b && ws.b && xs.b && ys.b && zs.b; vs = vs.b, ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A5(f, vs.a, ws.a, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_sortBy = F2(function(f, xs)
+{
+	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
+		return _Utils_cmp(f(a), f(b));
+	}));
+});
+
+var _List_sortWith = F2(function(f, xs)
+{
+	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
+		var ord = A2(f, a, b);
+		return ord === $elm$core$Basics$EQ ? 0 : ord === $elm$core$Basics$LT ? -1 : 1;
+	}));
+});
+
+
+
+var _JsArray_empty = [];
+
+function _JsArray_singleton(value)
+{
+    return [value];
+}
+
+function _JsArray_length(array)
+{
+    return array.length;
+}
+
+var _JsArray_initialize = F3(function(size, offset, func)
+{
+    var result = new Array(size);
+
+    for (var i = 0; i < size; i++)
+    {
+        result[i] = func(offset + i);
+    }
+
+    return result;
+});
+
+var _JsArray_initializeFromList = F2(function (max, ls)
+{
+    var result = new Array(max);
+
+    for (var i = 0; i < max && ls.b; i++)
+    {
+        result[i] = ls.a;
+        ls = ls.b;
+    }
+
+    result.length = i;
+    return _Utils_Tuple2(result, ls);
+});
+
+var _JsArray_unsafeGet = F2(function(index, array)
+{
+    return array[index];
+});
+
+var _JsArray_unsafeSet = F3(function(index, value, array)
+{
+    var length = array.length;
+    var result = new Array(length);
+
+    for (var i = 0; i < length; i++)
+    {
+        result[i] = array[i];
+    }
+
+    result[index] = value;
+    return result;
+});
+
+var _JsArray_push = F2(function(value, array)
+{
+    var length = array.length;
+    var result = new Array(length + 1);
+
+    for (var i = 0; i < length; i++)
+    {
+        result[i] = array[i];
+    }
+
+    result[length] = value;
+    return result;
+});
+
+var _JsArray_foldl = F3(function(func, acc, array)
+{
+    var length = array.length;
+
+    for (var i = 0; i < length; i++)
+    {
+        acc = A2(func, array[i], acc);
+    }
+
+    return acc;
+});
+
+var _JsArray_foldr = F3(function(func, acc, array)
+{
+    for (var i = array.length - 1; i >= 0; i--)
+    {
+        acc = A2(func, array[i], acc);
+    }
+
+    return acc;
+});
+
+var _JsArray_map = F2(function(func, array)
+{
+    var length = array.length;
+    var result = new Array(length);
+
+    for (var i = 0; i < length; i++)
+    {
+        result[i] = func(array[i]);
+    }
+
+    return result;
+});
+
+var _JsArray_indexedMap = F3(function(func, offset, array)
+{
+    var length = array.length;
+    var result = new Array(length);
+
+    for (var i = 0; i < length; i++)
+    {
+        result[i] = A2(func, offset + i, array[i]);
+    }
+
+    return result;
+});
+
+var _JsArray_slice = F3(function(from, to, array)
+{
+    return array.slice(from, to);
+});
+
+var _JsArray_appendN = F3(function(n, dest, source)
+{
+    var destLen = dest.length;
+    var itemsToCopy = n - destLen;
+
+    if (itemsToCopy > source.length)
+    {
+        itemsToCopy = source.length;
+    }
+
+    var size = destLen + itemsToCopy;
+    var result = new Array(size);
+
+    for (var i = 0; i < destLen; i++)
+    {
+        result[i] = dest[i];
+    }
+
+    for (var i = 0; i < itemsToCopy; i++)
+    {
+        result[i + destLen] = source[i];
+    }
+
+    return result;
+});
+
+
+
+// LOG
+
+var _Debug_log_UNUSED = F2(function(tag, value)
+{
+	return value;
+});
+
+var _Debug_log = F2(function(tag, value)
+{
+	console.log(tag + ': ' + _Debug_toString(value));
+	return value;
+});
+
+
+// TODOS
+
+function _Debug_todo(moduleName, region)
+{
+	return function(message) {
+		_Debug_crash(8, moduleName, region, message);
+	};
+}
+
+function _Debug_todoCase(moduleName, region, value)
+{
+	return function(message) {
+		_Debug_crash(9, moduleName, region, value, message);
+	};
+}
+
+
+// TO STRING
+
+function _Debug_toString_UNUSED(value)
+{
+	return '<internals>';
+}
+
+function _Debug_toString(value)
+{
+	return _Debug_toAnsiString(false, value);
+}
+
+function _Debug_toAnsiString(ansi, value)
+{
+	if (typeof value === 'function')
+	{
+		return _Debug_internalColor(ansi, '<function>');
+	}
+
+	if (typeof value === 'boolean')
+	{
+		return _Debug_ctorColor(ansi, value ? 'True' : 'False');
+	}
+
+	if (typeof value === 'number')
+	{
+		return _Debug_numberColor(ansi, value + '');
+	}
+
+	if (value instanceof String)
+	{
+		return _Debug_charColor(ansi, "'" + _Debug_addSlashes(value, true) + "'");
+	}
+
+	if (typeof value === 'string')
+	{
+		return _Debug_stringColor(ansi, '"' + _Debug_addSlashes(value, false) + '"');
+	}
+
+	if (typeof value === 'object' && '$' in value)
+	{
+		var tag = value.$;
+
+		if (typeof tag === 'number')
+		{
+			return _Debug_internalColor(ansi, '<internals>');
+		}
+
+		if (tag[0] === '#')
+		{
+			var output = [];
+			for (var k in value)
+			{
+				if (k === '$') continue;
+				output.push(_Debug_toAnsiString(ansi, value[k]));
+			}
+			return '(' + output.join(',') + ')';
+		}
+
+		if (tag === 'Set_elm_builtin')
+		{
+			return _Debug_ctorColor(ansi, 'Set')
+				+ _Debug_fadeColor(ansi, '.fromList') + ' '
+				+ _Debug_toAnsiString(ansi, $elm$core$Set$toList(value));
+		}
+
+		if (tag === 'RBNode_elm_builtin' || tag === 'RBEmpty_elm_builtin')
+		{
+			return _Debug_ctorColor(ansi, 'Dict')
+				+ _Debug_fadeColor(ansi, '.fromList') + ' '
+				+ _Debug_toAnsiString(ansi, $elm$core$Dict$toList(value));
+		}
+
+		if (tag === 'Array_elm_builtin')
+		{
+			return _Debug_ctorColor(ansi, 'Array')
+				+ _Debug_fadeColor(ansi, '.fromList') + ' '
+				+ _Debug_toAnsiString(ansi, $elm$core$Array$toList(value));
+		}
+
+		if (tag === '::' || tag === '[]')
+		{
+			var output = '[';
+
+			value.b && (output += _Debug_toAnsiString(ansi, value.a), value = value.b)
+
+			for (; value.b; value = value.b) // WHILE_CONS
+			{
+				output += ',' + _Debug_toAnsiString(ansi, value.a);
+			}
+			return output + ']';
+		}
+
+		var output = '';
+		for (var i in value)
+		{
+			if (i === '$') continue;
+			var str = _Debug_toAnsiString(ansi, value[i]);
+			var c0 = str[0];
+			var parenless = c0 === '{' || c0 === '(' || c0 === '[' || c0 === '<' || c0 === '"' || str.indexOf(' ') < 0;
+			output += ' ' + (parenless ? str : '(' + str + ')');
+		}
+		return _Debug_ctorColor(ansi, tag) + output;
+	}
+
+	if (typeof DataView === 'function' && value instanceof DataView)
+	{
+		return _Debug_stringColor(ansi, '<' + value.byteLength + ' bytes>');
+	}
+
+	if (typeof File === 'function' && value instanceof File)
+	{
+		return _Debug_internalColor(ansi, '<' + value.name + '>');
+	}
+
+	if (typeof value === 'object')
+	{
+		var output = [];
+		for (var key in value)
+		{
+			var field = key[0] === '_' ? key.slice(1) : key;
+			output.push(_Debug_fadeColor(ansi, field) + ' = ' + _Debug_toAnsiString(ansi, value[key]));
+		}
+		if (output.length === 0)
+		{
+			return '{}';
+		}
+		return '{ ' + output.join(', ') + ' }';
+	}
+
+	return _Debug_internalColor(ansi, '<internals>');
+}
+
+function _Debug_addSlashes(str, isChar)
+{
+	var s = str
+		.replace(/\\/g, '\\\\')
+		.replace(/\n/g, '\\n')
+		.replace(/\t/g, '\\t')
+		.replace(/\r/g, '\\r')
+		.replace(/\v/g, '\\v')
+		.replace(/\0/g, '\\0');
+
+	if (isChar)
+	{
+		return s.replace(/\'/g, '\\\'');
+	}
+	else
+	{
+		return s.replace(/\"/g, '\\"');
+	}
+}
+
+function _Debug_ctorColor(ansi, string)
+{
+	return ansi ? '\x1b[96m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_numberColor(ansi, string)
+{
+	return ansi ? '\x1b[95m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_stringColor(ansi, string)
+{
+	return ansi ? '\x1b[93m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_charColor(ansi, string)
+{
+	return ansi ? '\x1b[92m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_fadeColor(ansi, string)
+{
+	return ansi ? '\x1b[37m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_internalColor(ansi, string)
+{
+	return ansi ? '\x1b[94m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_toHexDigit(n)
+{
+	return String.fromCharCode(n < 10 ? 48 + n : 55 + n);
+}
+
+
+// CRASH
+
+
+function _Debug_crash_UNUSED(identifier)
+{
+	throw new Error('https://github.com/elm/core/blob/1.0.0/hints/' + identifier + '.md');
+}
+
+
+function _Debug_crash(identifier, fact1, fact2, fact3, fact4)
+{
+	switch(identifier)
+	{
+		case 0:
+			throw new Error('What node should I take over? In JavaScript I need something like:\n\n    Elm.Main.init({\n        node: document.getElementById("elm-node")\n    })\n\nYou need to do this with any Browser.sandbox or Browser.element program.');
+
+		case 1:
+			throw new Error('Browser.application programs cannot handle URLs like this:\n\n    ' + document.location.href + '\n\nWhat is the root? The root of your file system? Try looking at this program with `elm reactor` or some other server.');
+
+		case 2:
+			var jsonErrorString = fact1;
+			throw new Error('Problem with the flags given to your Elm program on initialization.\n\n' + jsonErrorString);
+
+		case 3:
+			var portName = fact1;
+			throw new Error('There can only be one port named `' + portName + '`, but your program has multiple.');
+
+		case 4:
+			var portName = fact1;
+			var problem = fact2;
+			throw new Error('Trying to send an unexpected type of value through port `' + portName + '`:\n' + problem);
+
+		case 5:
+			throw new Error('Trying to use `(==)` on functions.\nThere is no way to know if functions are "the same" in the Elm sense.\nRead more about this at https://package.elm-lang.org/packages/elm/core/latest/Basics#== which describes why it is this way and what the better version will look like.');
+
+		case 6:
+			var moduleName = fact1;
+			throw new Error('Your page is loading multiple Elm scripts with a module named ' + moduleName + '. Maybe a duplicate script is getting loaded accidentally? If not, rename one of them so I know which is which!');
+
+		case 8:
+			var moduleName = fact1;
+			var region = fact2;
+			var message = fact3;
+			throw new Error('TODO in module `' + moduleName + '` ' + _Debug_regionToString(region) + '\n\n' + message);
+
+		case 9:
+			var moduleName = fact1;
+			var region = fact2;
+			var value = fact3;
+			var message = fact4;
+			throw new Error(
+				'TODO in module `' + moduleName + '` from the `case` expression '
+				+ _Debug_regionToString(region) + '\n\nIt received the following value:\n\n    '
+				+ _Debug_toString(value).replace('\n', '\n    ')
+				+ '\n\nBut the branch that handles it says:\n\n    ' + message.replace('\n', '\n    ')
+			);
+
+		case 10:
+			throw new Error('Bug in https://github.com/elm/virtual-dom/issues');
+
+		case 11:
+			throw new Error('Cannot perform mod 0. Division by zero error.');
+	}
+}
+
+function _Debug_regionToString(region)
+{
+	if (region.start.line === region.end.line)
+	{
+		return 'on line ' + region.start.line;
+	}
+	return 'on lines ' + region.start.line + ' through ' + region.end.line;
+}
+
+
+
+// MATH
+
+var _Basics_add = F2(function(a, b) { return a + b; });
+var _Basics_sub = F2(function(a, b) { return a - b; });
+var _Basics_mul = F2(function(a, b) { return a * b; });
+var _Basics_fdiv = F2(function(a, b) { return a / b; });
+var _Basics_idiv = F2(function(a, b) { return (a / b) | 0; });
+var _Basics_pow = F2(Math.pow);
+
+var _Basics_remainderBy = F2(function(b, a) { return a % b; });
+
+// https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/divmodnote-letter.pdf
+var _Basics_modBy = F2(function(modulus, x)
+{
+	var answer = x % modulus;
+	return modulus === 0
+		? _Debug_crash(11)
+		:
+	((answer > 0 && modulus < 0) || (answer < 0 && modulus > 0))
+		? answer + modulus
+		: answer;
+});
+
+
+// TRIGONOMETRY
+
+var _Basics_pi = Math.PI;
+var _Basics_e = Math.E;
+var _Basics_cos = Math.cos;
+var _Basics_sin = Math.sin;
+var _Basics_tan = Math.tan;
+var _Basics_acos = Math.acos;
+var _Basics_asin = Math.asin;
+var _Basics_atan = Math.atan;
+var _Basics_atan2 = F2(Math.atan2);
+
+
+// MORE MATH
+
+function _Basics_toFloat(x) { return x; }
+function _Basics_truncate(n) { return n | 0; }
+function _Basics_isInfinite(n) { return n === Infinity || n === -Infinity; }
+
+var _Basics_ceiling = Math.ceil;
+var _Basics_floor = Math.floor;
+var _Basics_round = Math.round;
+var _Basics_sqrt = Math.sqrt;
+var _Basics_log = Math.log;
+var _Basics_isNaN = isNaN;
+
+
+// BOOLEANS
+
+function _Basics_not(bool) { return !bool; }
+var _Basics_and = F2(function(a, b) { return a && b; });
+var _Basics_or  = F2(function(a, b) { return a || b; });
+var _Basics_xor = F2(function(a, b) { return a !== b; });
+
+
+
+var _String_cons = F2(function(chr, str)
+{
+	return chr + str;
+});
+
+function _String_uncons(string)
+{
+	var word = string.charCodeAt(0);
+	return word
+		? $elm$core$Maybe$Just(
+			0xD800 <= word && word <= 0xDBFF
+				? _Utils_Tuple2(_Utils_chr(string[0] + string[1]), string.slice(2))
+				: _Utils_Tuple2(_Utils_chr(string[0]), string.slice(1))
+		)
+		: $elm$core$Maybe$Nothing;
+}
+
+var _String_append = F2(function(a, b)
+{
+	return a + b;
+});
+
+function _String_length(str)
+{
+	return str.length;
+}
+
+var _String_map = F2(function(func, string)
+{
+	var len = string.length;
+	var array = new Array(len);
+	var i = 0;
+	while (i < len)
+	{
+		var word = string.charCodeAt(i);
+		if (0xD800 <= word && word <= 0xDBFF)
+		{
+			array[i] = func(_Utils_chr(string[i] + string[i+1]));
+			i += 2;
+			continue;
+		}
+		array[i] = func(_Utils_chr(string[i]));
+		i++;
+	}
+	return array.join('');
+});
+
+var _String_filter = F2(function(isGood, str)
+{
+	var arr = [];
+	var len = str.length;
+	var i = 0;
+	while (i < len)
+	{
+		var char = str[i];
+		var word = str.charCodeAt(i);
+		i++;
+		if (0xD800 <= word && word <= 0xDBFF)
+		{
+			char += str[i];
+			i++;
+		}
+
+		if (isGood(_Utils_chr(char)))
+		{
+			arr.push(char);
+		}
+	}
+	return arr.join('');
+});
+
+function _String_reverse(str)
+{
+	var len = str.length;
+	var arr = new Array(len);
+	var i = 0;
+	while (i < len)
+	{
+		var word = str.charCodeAt(i);
+		if (0xD800 <= word && word <= 0xDBFF)
+		{
+			arr[len - i] = str[i + 1];
+			i++;
+			arr[len - i] = str[i - 1];
+			i++;
+		}
+		else
+		{
+			arr[len - i] = str[i];
+			i++;
+		}
+	}
+	return arr.join('');
+}
+
+var _String_foldl = F3(function(func, state, string)
+{
+	var len = string.length;
+	var i = 0;
+	while (i < len)
+	{
+		var char = string[i];
+		var word = string.charCodeAt(i);
+		i++;
+		if (0xD800 <= word && word <= 0xDBFF)
+		{
+			char += string[i];
+			i++;
+		}
+		state = A2(func, _Utils_chr(char), state);
+	}
+	return state;
+});
+
+var _String_foldr = F3(function(func, state, string)
+{
+	var i = string.length;
+	while (i--)
+	{
+		var char = string[i];
+		var word = string.charCodeAt(i);
+		if (0xDC00 <= word && word <= 0xDFFF)
+		{
+			i--;
+			char = string[i] + char;
+		}
+		state = A2(func, _Utils_chr(char), state);
+	}
+	return state;
+});
+
+var _String_split = F2(function(sep, str)
+{
+	return str.split(sep);
+});
+
+var _String_join = F2(function(sep, strs)
+{
+	return strs.join(sep);
+});
+
+var _String_slice = F3(function(start, end, str) {
+	return str.slice(start, end);
+});
+
+function _String_trim(str)
+{
+	return str.trim();
+}
+
+function _String_trimLeft(str)
+{
+	return str.replace(/^\s+/, '');
+}
+
+function _String_trimRight(str)
+{
+	return str.replace(/\s+$/, '');
+}
+
+function _String_words(str)
+{
+	return _List_fromArray(str.trim().split(/\s+/g));
+}
+
+function _String_lines(str)
+{
+	return _List_fromArray(str.split(/\r\n|\r|\n/g));
+}
+
+function _String_toUpper(str)
+{
+	return str.toUpperCase();
+}
+
+function _String_toLower(str)
+{
+	return str.toLowerCase();
+}
+
+var _String_any = F2(function(isGood, string)
+{
+	var i = string.length;
+	while (i--)
+	{
+		var char = string[i];
+		var word = string.charCodeAt(i);
+		if (0xDC00 <= word && word <= 0xDFFF)
+		{
+			i--;
+			char = string[i] + char;
+		}
+		if (isGood(_Utils_chr(char)))
+		{
+			return true;
+		}
+	}
+	return false;
+});
+
+var _String_all = F2(function(isGood, string)
+{
+	var i = string.length;
+	while (i--)
+	{
+		var char = string[i];
+		var word = string.charCodeAt(i);
+		if (0xDC00 <= word && word <= 0xDFFF)
+		{
+			i--;
+			char = string[i] + char;
+		}
+		if (!isGood(_Utils_chr(char)))
+		{
+			return false;
+		}
+	}
+	return true;
+});
+
+var _String_contains = F2(function(sub, str)
+{
+	return str.indexOf(sub) > -1;
+});
+
+var _String_startsWith = F2(function(sub, str)
+{
+	return str.indexOf(sub) === 0;
+});
+
+var _String_endsWith = F2(function(sub, str)
+{
+	return str.length >= sub.length &&
+		str.lastIndexOf(sub) === str.length - sub.length;
+});
+
+var _String_indexes = F2(function(sub, str)
+{
+	var subLen = sub.length;
+
+	if (subLen < 1)
+	{
+		return _List_Nil;
+	}
+
+	var i = 0;
+	var is = [];
+
+	while ((i = str.indexOf(sub, i)) > -1)
+	{
+		is.push(i);
+		i = i + subLen;
+	}
+
+	return _List_fromArray(is);
+});
+
+
+// TO STRING
+
+function _String_fromNumber(number)
+{
+	return number + '';
+}
+
+
+// INT CONVERSIONS
+
+function _String_toInt(str)
+{
+	var total = 0;
+	var code0 = str.charCodeAt(0);
+	var start = code0 == 0x2B /* + */ || code0 == 0x2D /* - */ ? 1 : 0;
+
+	for (var i = start; i < str.length; ++i)
+	{
+		var code = str.charCodeAt(i);
+		if (code < 0x30 || 0x39 < code)
+		{
+			return $elm$core$Maybe$Nothing;
+		}
+		total = 10 * total + code - 0x30;
+	}
+
+	return i == start
+		? $elm$core$Maybe$Nothing
+		: $elm$core$Maybe$Just(code0 == 0x2D ? -total : total);
+}
+
+
+// FLOAT CONVERSIONS
+
+function _String_toFloat(s)
+{
+	// check if it is a hex, octal, or binary number
+	if (s.length === 0 || /[\sxbo]/.test(s))
+	{
+		return $elm$core$Maybe$Nothing;
+	}
+	var n = +s;
+	// faster isNaN check
+	return n === n ? $elm$core$Maybe$Just(n) : $elm$core$Maybe$Nothing;
+}
+
+function _String_fromList(chars)
+{
+	return _List_toArray(chars).join('');
+}
+
+
+
+
+function _Char_toCode(char)
+{
+	var code = char.charCodeAt(0);
+	if (0xD800 <= code && code <= 0xDBFF)
+	{
+		return (code - 0xD800) * 0x400 + char.charCodeAt(1) - 0xDC00 + 0x10000
+	}
+	return code;
+}
+
+function _Char_fromCode(code)
+{
+	return _Utils_chr(
+		(code < 0 || 0x10FFFF < code)
+			? '\uFFFD'
+			:
+		(code <= 0xFFFF)
+			? String.fromCharCode(code)
+			:
+		(code -= 0x10000,
+			String.fromCharCode(Math.floor(code / 0x400) + 0xD800, code % 0x400 + 0xDC00)
+		)
+	);
+}
+
+function _Char_toUpper(char)
+{
+	return _Utils_chr(char.toUpperCase());
+}
+
+function _Char_toLower(char)
+{
+	return _Utils_chr(char.toLowerCase());
+}
+
+function _Char_toLocaleUpper(char)
+{
+	return _Utils_chr(char.toLocaleUpperCase());
+}
+
+function _Char_toLocaleLower(char)
+{
+	return _Utils_chr(char.toLocaleLowerCase());
+}
+
+
+
+/**/
+function _Json_errorToString(error)
+{
+	return $elm$json$Json$Decode$errorToString(error);
+}
+//*/
+
+
+// CORE DECODERS
+
+function _Json_succeed(msg)
+{
+	return {
+		$: 0,
+		a: msg
+	};
+}
+
+function _Json_fail(msg)
+{
+	return {
+		$: 1,
+		a: msg
+	};
+}
+
+function _Json_decodePrim(decoder)
+{
+	return { $: 2, b: decoder };
+}
+
+var _Json_decodeInt = _Json_decodePrim(function(value) {
+	return (typeof value !== 'number')
+		? _Json_expecting('an INT', value)
+		:
+	(-2147483647 < value && value < 2147483647 && (value | 0) === value)
+		? $elm$core$Result$Ok(value)
+		:
+	(isFinite(value) && !(value % 1))
+		? $elm$core$Result$Ok(value)
+		: _Json_expecting('an INT', value);
+});
+
+var _Json_decodeBool = _Json_decodePrim(function(value) {
+	return (typeof value === 'boolean')
+		? $elm$core$Result$Ok(value)
+		: _Json_expecting('a BOOL', value);
+});
+
+var _Json_decodeFloat = _Json_decodePrim(function(value) {
+	return (typeof value === 'number')
+		? $elm$core$Result$Ok(value)
+		: _Json_expecting('a FLOAT', value);
+});
+
+var _Json_decodeValue = _Json_decodePrim(function(value) {
+	return $elm$core$Result$Ok(_Json_wrap(value));
+});
+
+var _Json_decodeString = _Json_decodePrim(function(value) {
+	return (typeof value === 'string')
+		? $elm$core$Result$Ok(value)
+		: (value instanceof String)
+			? $elm$core$Result$Ok(value + '')
+			: _Json_expecting('a STRING', value);
+});
+
+function _Json_decodeList(decoder) { return { $: 3, b: decoder }; }
+function _Json_decodeArray(decoder) { return { $: 4, b: decoder }; }
+
+function _Json_decodeNull(value) { return { $: 5, c: value }; }
+
+var _Json_decodeField = F2(function(field, decoder)
+{
+	return {
+		$: 6,
+		d: field,
+		b: decoder
+	};
+});
+
+var _Json_decodeIndex = F2(function(index, decoder)
+{
+	return {
+		$: 7,
+		e: index,
+		b: decoder
+	};
+});
+
+function _Json_decodeKeyValuePairs(decoder)
+{
+	return {
+		$: 8,
+		b: decoder
+	};
+}
+
+function _Json_mapMany(f, decoders)
+{
+	return {
+		$: 9,
+		f: f,
+		g: decoders
+	};
+}
+
+var _Json_andThen = F2(function(callback, decoder)
+{
+	return {
+		$: 10,
+		b: decoder,
+		h: callback
+	};
+});
+
+function _Json_oneOf(decoders)
+{
+	return {
+		$: 11,
+		g: decoders
+	};
+}
+
+
+// DECODING OBJECTS
+
+var _Json_map1 = F2(function(f, d1)
+{
+	return _Json_mapMany(f, [d1]);
+});
+
+var _Json_map2 = F3(function(f, d1, d2)
+{
+	return _Json_mapMany(f, [d1, d2]);
+});
+
+var _Json_map3 = F4(function(f, d1, d2, d3)
+{
+	return _Json_mapMany(f, [d1, d2, d3]);
+});
+
+var _Json_map4 = F5(function(f, d1, d2, d3, d4)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4]);
+});
+
+var _Json_map5 = F6(function(f, d1, d2, d3, d4, d5)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4, d5]);
+});
+
+var _Json_map6 = F7(function(f, d1, d2, d3, d4, d5, d6)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4, d5, d6]);
+});
+
+var _Json_map7 = F8(function(f, d1, d2, d3, d4, d5, d6, d7)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4, d5, d6, d7]);
+});
+
+var _Json_map8 = F9(function(f, d1, d2, d3, d4, d5, d6, d7, d8)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4, d5, d6, d7, d8]);
+});
+
+
+// DECODE
+
+var _Json_runOnString = F2(function(decoder, string)
+{
+	try
+	{
+		var value = JSON.parse(string);
+		return _Json_runHelp(decoder, value);
+	}
+	catch (e)
+	{
+		return $elm$core$Result$Err(A2($elm$json$Json$Decode$Failure, 'This is not valid JSON! ' + e.message, _Json_wrap(string)));
+	}
+});
+
+var _Json_run = F2(function(decoder, value)
+{
+	return _Json_runHelp(decoder, _Json_unwrap(value));
+});
+
+function _Json_runHelp(decoder, value)
+{
+	switch (decoder.$)
+	{
+		case 2:
+			return decoder.b(value);
+
+		case 5:
+			return (value === null)
+				? $elm$core$Result$Ok(decoder.c)
+				: _Json_expecting('null', value);
+
+		case 3:
+			if (!_Json_isArray(value))
+			{
+				return _Json_expecting('a LIST', value);
+			}
+			return _Json_runArrayDecoder(decoder.b, value, _List_fromArray);
+
+		case 4:
+			if (!_Json_isArray(value))
+			{
+				return _Json_expecting('an ARRAY', value);
+			}
+			return _Json_runArrayDecoder(decoder.b, value, _Json_toElmArray);
+
+		case 6:
+			var field = decoder.d;
+			if (typeof value !== 'object' || value === null || !(field in value))
+			{
+				return _Json_expecting('an OBJECT with a field named `' + field + '`', value);
+			}
+			var result = _Json_runHelp(decoder.b, value[field]);
+			return ($elm$core$Result$isOk(result)) ? result : $elm$core$Result$Err(A2($elm$json$Json$Decode$Field, field, result.a));
+
+		case 7:
+			var index = decoder.e;
+			if (!_Json_isArray(value))
+			{
+				return _Json_expecting('an ARRAY', value);
+			}
+			if (index >= value.length)
+			{
+				return _Json_expecting('a LONGER array. Need index ' + index + ' but only see ' + value.length + ' entries', value);
+			}
+			var result = _Json_runHelp(decoder.b, value[index]);
+			return ($elm$core$Result$isOk(result)) ? result : $elm$core$Result$Err(A2($elm$json$Json$Decode$Index, index, result.a));
+
+		case 8:
+			if (typeof value !== 'object' || value === null || _Json_isArray(value))
+			{
+				return _Json_expecting('an OBJECT', value);
+			}
+
+			var keyValuePairs = _List_Nil;
+			// TODO test perf of Object.keys and switch when support is good enough
+			for (var key in value)
+			{
+				if (value.hasOwnProperty(key))
+				{
+					var result = _Json_runHelp(decoder.b, value[key]);
+					if (!$elm$core$Result$isOk(result))
+					{
+						return $elm$core$Result$Err(A2($elm$json$Json$Decode$Field, key, result.a));
+					}
+					keyValuePairs = _List_Cons(_Utils_Tuple2(key, result.a), keyValuePairs);
+				}
+			}
+			return $elm$core$Result$Ok($elm$core$List$reverse(keyValuePairs));
+
+		case 9:
+			var answer = decoder.f;
+			var decoders = decoder.g;
+			for (var i = 0; i < decoders.length; i++)
+			{
+				var result = _Json_runHelp(decoders[i], value);
+				if (!$elm$core$Result$isOk(result))
+				{
+					return result;
+				}
+				answer = answer(result.a);
+			}
+			return $elm$core$Result$Ok(answer);
+
+		case 10:
+			var result = _Json_runHelp(decoder.b, value);
+			return (!$elm$core$Result$isOk(result))
+				? result
+				: _Json_runHelp(decoder.h(result.a), value);
+
+		case 11:
+			var errors = _List_Nil;
+			for (var temp = decoder.g; temp.b; temp = temp.b) // WHILE_CONS
+			{
+				var result = _Json_runHelp(temp.a, value);
+				if ($elm$core$Result$isOk(result))
+				{
+					return result;
+				}
+				errors = _List_Cons(result.a, errors);
+			}
+			return $elm$core$Result$Err($elm$json$Json$Decode$OneOf($elm$core$List$reverse(errors)));
+
+		case 1:
+			return $elm$core$Result$Err(A2($elm$json$Json$Decode$Failure, decoder.a, _Json_wrap(value)));
+
+		case 0:
+			return $elm$core$Result$Ok(decoder.a);
+	}
+}
+
+function _Json_runArrayDecoder(decoder, value, toElmValue)
+{
+	var len = value.length;
+	var array = new Array(len);
+	for (var i = 0; i < len; i++)
+	{
+		var result = _Json_runHelp(decoder, value[i]);
+		if (!$elm$core$Result$isOk(result))
+		{
+			return $elm$core$Result$Err(A2($elm$json$Json$Decode$Index, i, result.a));
+		}
+		array[i] = result.a;
+	}
+	return $elm$core$Result$Ok(toElmValue(array));
+}
+
+function _Json_isArray(value)
+{
+	return Array.isArray(value) || (typeof FileList !== 'undefined' && value instanceof FileList);
+}
+
+function _Json_toElmArray(array)
+{
+	return A2($elm$core$Array$initialize, array.length, function(i) { return array[i]; });
+}
+
+function _Json_expecting(type, value)
+{
+	return $elm$core$Result$Err(A2($elm$json$Json$Decode$Failure, 'Expecting ' + type, _Json_wrap(value)));
+}
+
+
+// EQUALITY
+
+function _Json_equality(x, y)
+{
+	if (x === y)
+	{
+		return true;
+	}
+
+	if (x.$ !== y.$)
+	{
+		return false;
+	}
+
+	switch (x.$)
+	{
+		case 0:
+		case 1:
+			return x.a === y.a;
+
+		case 2:
+			return x.b === y.b;
+
+		case 5:
+			return x.c === y.c;
+
+		case 3:
+		case 4:
+		case 8:
+			return _Json_equality(x.b, y.b);
+
+		case 6:
+			return x.d === y.d && _Json_equality(x.b, y.b);
+
+		case 7:
+			return x.e === y.e && _Json_equality(x.b, y.b);
+
+		case 9:
+			return x.f === y.f && _Json_listEquality(x.g, y.g);
+
+		case 10:
+			return x.h === y.h && _Json_equality(x.b, y.b);
+
+		case 11:
+			return _Json_listEquality(x.g, y.g);
+	}
+}
+
+function _Json_listEquality(aDecoders, bDecoders)
+{
+	var len = aDecoders.length;
+	if (len !== bDecoders.length)
+	{
+		return false;
+	}
+	for (var i = 0; i < len; i++)
+	{
+		if (!_Json_equality(aDecoders[i], bDecoders[i]))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+// ENCODE
+
+var _Json_encode = F2(function(indentLevel, value)
+{
+	return JSON.stringify(_Json_unwrap(value), null, indentLevel) + '';
+});
+
+function _Json_wrap(value) { return { $: 0, a: value }; }
+function _Json_unwrap(value) { return value.a; }
+
+function _Json_wrap_UNUSED(value) { return value; }
+function _Json_unwrap_UNUSED(value) { return value; }
+
+function _Json_emptyArray() { return []; }
+function _Json_emptyObject() { return {}; }
+
+var _Json_addField = F3(function(key, value, object)
+{
+	object[key] = _Json_unwrap(value);
+	return object;
+});
+
+function _Json_addEntry(func)
+{
+	return F2(function(entry, array)
+	{
+		array.push(_Json_unwrap(func(entry)));
+		return array;
+	});
+}
+
+var _Json_encodeNull = _Json_wrap(null);
+
+
+
+// TASKS
+
+function _Scheduler_succeed(value)
+{
+	return {
+		$: 0,
+		a: value
+	};
+}
+
+function _Scheduler_fail(error)
+{
+	return {
+		$: 1,
+		a: error
+	};
+}
+
+function _Scheduler_binding(callback)
+{
+	return {
+		$: 2,
+		b: callback,
+		c: null
+	};
+}
+
+var _Scheduler_andThen = F2(function(callback, task)
+{
+	return {
+		$: 3,
+		b: callback,
+		d: task
+	};
+});
+
+var _Scheduler_onError = F2(function(callback, task)
+{
+	return {
+		$: 4,
+		b: callback,
+		d: task
+	};
+});
+
+function _Scheduler_receive(callback)
+{
+	return {
+		$: 5,
+		b: callback
+	};
+}
+
+
+// PROCESSES
+
+var _Scheduler_guid = 0;
+
+function _Scheduler_rawSpawn(task)
+{
+	var proc = {
+		$: 0,
+		e: _Scheduler_guid++,
+		f: task,
+		g: null,
+		h: []
+	};
+
+	_Scheduler_enqueue(proc);
+
+	return proc;
+}
+
+function _Scheduler_spawn(task)
+{
+	return _Scheduler_binding(function(callback) {
+		callback(_Scheduler_succeed(_Scheduler_rawSpawn(task)));
+	});
+}
+
+function _Scheduler_rawSend(proc, msg)
+{
+	proc.h.push(msg);
+	_Scheduler_enqueue(proc);
+}
+
+var _Scheduler_send = F2(function(proc, msg)
+{
+	return _Scheduler_binding(function(callback) {
+		_Scheduler_rawSend(proc, msg);
+		callback(_Scheduler_succeed(_Utils_Tuple0));
+	});
+});
+
+function _Scheduler_kill(proc)
+{
+	return _Scheduler_binding(function(callback) {
+		var task = proc.f;
+		if (task.$ === 2 && task.c)
+		{
+			task.c();
+		}
+
+		proc.f = null;
+
+		callback(_Scheduler_succeed(_Utils_Tuple0));
+	});
+}
+
+
+/* STEP PROCESSES
+
+type alias Process =
+  { $ : tag
+  , id : unique_id
+  , root : Task
+  , stack : null | { $: SUCCEED | FAIL, a: callback, b: stack }
+  , mailbox : [msg]
+  }
+
+*/
+
+
+var _Scheduler_working = false;
+var _Scheduler_queue = [];
+
+
+function _Scheduler_enqueue(proc)
+{
+	_Scheduler_queue.push(proc);
+	if (_Scheduler_working)
+	{
+		return;
+	}
+	_Scheduler_working = true;
+	while (proc = _Scheduler_queue.shift())
+	{
+		_Scheduler_step(proc);
+	}
+	_Scheduler_working = false;
+}
+
+
+function _Scheduler_step(proc)
+{
+	while (proc.f)
+	{
+		var rootTag = proc.f.$;
+		if (rootTag === 0 || rootTag === 1)
+		{
+			while (proc.g && proc.g.$ !== rootTag)
+			{
+				proc.g = proc.g.i;
+			}
+			if (!proc.g)
+			{
+				return;
+			}
+			proc.f = proc.g.b(proc.f.a);
+			proc.g = proc.g.i;
+		}
+		else if (rootTag === 2)
+		{
+			proc.f.c = proc.f.b(function(newRoot) {
+				proc.f = newRoot;
+				_Scheduler_enqueue(proc);
+			});
+			return;
+		}
+		else if (rootTag === 5)
+		{
+			if (proc.h.length === 0)
+			{
+				return;
+			}
+			proc.f = proc.f.b(proc.h.shift());
+		}
+		else // if (rootTag === 3 || rootTag === 4)
+		{
+			proc.g = {
+				$: rootTag === 3 ? 0 : 1,
+				b: proc.f.b,
+				i: proc.g
+			};
+			proc.f = proc.f.d;
+		}
+	}
+}
+
+
+
+function _Process_sleep(time)
+{
+	return _Scheduler_binding(function(callback) {
+		var id = setTimeout(function() {
+			callback(_Scheduler_succeed(_Utils_Tuple0));
+		}, time);
+
+		return function() { clearTimeout(id); };
+	});
+}
+
+
+
+
+// PROGRAMS
+
+
+var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.init,
+		impl.update,
+		impl.subscriptions,
+		function() { return function() {} }
+	);
+});
+
+
+
+// INITIALIZE A PROGRAM
+
+
+function _Platform_initialize(flagDecoder, args, init, update, subscriptions, stepperBuilder)
+{
+	var result = A2(_Json_run, flagDecoder, _Json_wrap(args ? args['flags'] : undefined));
+	$elm$core$Result$isOk(result) || _Debug_crash(2 /**/, _Json_errorToString(result.a) /**/);
+	var managers = {};
+	result = init(result.a);
+	var model = result.a;
+	var stepper = stepperBuilder(sendToApp, model);
+	var ports = _Platform_setupEffects(managers, sendToApp);
+
+	function sendToApp(msg, viewMetadata)
+	{
+		result = A2(update, msg, model);
+		stepper(model = result.a, viewMetadata);
+		_Platform_dispatchEffects(managers, result.b, subscriptions(model));
+	}
+
+	_Platform_dispatchEffects(managers, result.b, subscriptions(model));
+
+	return ports ? { ports: ports } : {};
+}
+
+
+
+// TRACK PRELOADS
+//
+// This is used by code in elm/browser and elm/http
+// to register any HTTP requests that are triggered by init.
+//
+
+
+var _Platform_preload;
+
+
+function _Platform_registerPreload(url)
+{
+	_Platform_preload.add(url);
+}
+
+
+
+// EFFECT MANAGERS
+
+
+var _Platform_effectManagers = {};
+
+
+function _Platform_setupEffects(managers, sendToApp)
+{
+	var ports;
+
+	// setup all necessary effect managers
+	for (var key in _Platform_effectManagers)
+	{
+		var manager = _Platform_effectManagers[key];
+
+		if (manager.a)
+		{
+			ports = ports || {};
+			ports[key] = manager.a(key, sendToApp);
+		}
+
+		managers[key] = _Platform_instantiateManager(manager, sendToApp);
+	}
+
+	return ports;
+}
+
+
+function _Platform_createManager(init, onEffects, onSelfMsg, cmdMap, subMap)
+{
+	return {
+		b: init,
+		c: onEffects,
+		d: onSelfMsg,
+		e: cmdMap,
+		f: subMap
+	};
+}
+
+
+function _Platform_instantiateManager(info, sendToApp)
+{
+	var router = {
+		g: sendToApp,
+		h: undefined
+	};
+
+	var onEffects = info.c;
+	var onSelfMsg = info.d;
+	var cmdMap = info.e;
+	var subMap = info.f;
+
+	function loop(state)
+	{
+		return A2(_Scheduler_andThen, loop, _Scheduler_receive(function(msg)
+		{
+			var value = msg.a;
+
+			if (msg.$ === 0)
+			{
+				return A3(onSelfMsg, router, value, state);
+			}
+
+			return cmdMap && subMap
+				? A4(onEffects, router, value.i, value.j, state)
+				: A3(onEffects, router, cmdMap ? value.i : value.j, state);
+		}));
+	}
+
+	return router.h = _Scheduler_rawSpawn(A2(_Scheduler_andThen, loop, info.b));
+}
+
+
+
+// ROUTING
+
+
+var _Platform_sendToApp = F2(function(router, msg)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		router.g(msg);
+		callback(_Scheduler_succeed(_Utils_Tuple0));
+	});
+});
+
+
+var _Platform_sendToSelf = F2(function(router, msg)
+{
+	return A2(_Scheduler_send, router.h, {
+		$: 0,
+		a: msg
+	});
+});
+
+
+
+// BAGS
+
+
+function _Platform_leaf(home)
+{
+	return function(value)
+	{
+		return {
+			$: 1,
+			k: home,
+			l: value
+		};
+	};
+}
+
+
+function _Platform_batch(list)
+{
+	return {
+		$: 2,
+		m: list
+	};
+}
+
+
+var _Platform_map = F2(function(tagger, bag)
+{
+	return {
+		$: 3,
+		n: tagger,
+		o: bag
+	}
+});
+
+
+
+// PIPE BAGS INTO EFFECT MANAGERS
+
+
+function _Platform_dispatchEffects(managers, cmdBag, subBag)
+{
+	var effectsDict = {};
+	_Platform_gatherEffects(true, cmdBag, effectsDict, null);
+	_Platform_gatherEffects(false, subBag, effectsDict, null);
+
+	for (var home in managers)
+	{
+		_Scheduler_rawSend(managers[home], {
+			$: 'fx',
+			a: effectsDict[home] || { i: _List_Nil, j: _List_Nil }
+		});
+	}
+}
+
+
+function _Platform_gatherEffects(isCmd, bag, effectsDict, taggers)
+{
+	switch (bag.$)
+	{
+		case 1:
+			var home = bag.k;
+			var effect = _Platform_toEffect(isCmd, home, taggers, bag.l);
+			effectsDict[home] = _Platform_insert(isCmd, effect, effectsDict[home]);
+			return;
+
+		case 2:
+			for (var list = bag.m; list.b; list = list.b) // WHILE_CONS
+			{
+				_Platform_gatherEffects(isCmd, list.a, effectsDict, taggers);
+			}
+			return;
+
+		case 3:
+			_Platform_gatherEffects(isCmd, bag.o, effectsDict, {
+				p: bag.n,
+				q: taggers
+			});
+			return;
+	}
+}
+
+
+function _Platform_toEffect(isCmd, home, taggers, value)
+{
+	function applyTaggers(x)
+	{
+		for (var temp = taggers; temp; temp = temp.q)
+		{
+			x = temp.p(x);
+		}
+		return x;
+	}
+
+	var map = isCmd
+		? _Platform_effectManagers[home].e
+		: _Platform_effectManagers[home].f;
+
+	return A2(map, applyTaggers, value)
+}
+
+
+function _Platform_insert(isCmd, newEffect, effects)
+{
+	effects = effects || { i: _List_Nil, j: _List_Nil };
+
+	isCmd
+		? (effects.i = _List_Cons(newEffect, effects.i))
+		: (effects.j = _List_Cons(newEffect, effects.j));
+
+	return effects;
+}
+
+
+
+// PORTS
+
+
+function _Platform_checkPortName(name)
+{
+	if (_Platform_effectManagers[name])
+	{
+		_Debug_crash(3, name)
+	}
+}
+
+
+
+// OUTGOING PORTS
+
+
+function _Platform_outgoingPort(name, converter)
+{
+	_Platform_checkPortName(name);
+	_Platform_effectManagers[name] = {
+		e: _Platform_outgoingPortMap,
+		r: converter,
+		a: _Platform_setupOutgoingPort
+	};
+	return _Platform_leaf(name);
+}
+
+
+var _Platform_outgoingPortMap = F2(function(tagger, value) { return value; });
+
+
+function _Platform_setupOutgoingPort(name)
+{
+	var subs = [];
+	var converter = _Platform_effectManagers[name].r;
+
+	// CREATE MANAGER
+
+	var init = _Process_sleep(0);
+
+	_Platform_effectManagers[name].b = init;
+	_Platform_effectManagers[name].c = F3(function(router, cmdList, state)
+	{
+		for ( ; cmdList.b; cmdList = cmdList.b) // WHILE_CONS
+		{
+			// grab a separate reference to subs in case unsubscribe is called
+			var currentSubs = subs;
+			var value = _Json_unwrap(converter(cmdList.a));
+			for (var i = 0; i < currentSubs.length; i++)
+			{
+				currentSubs[i](value);
+			}
+		}
+		return init;
+	});
+
+	// PUBLIC API
+
+	function subscribe(callback)
+	{
+		subs.push(callback);
+	}
+
+	function unsubscribe(callback)
+	{
+		// copy subs into a new array in case unsubscribe is called within a
+		// subscribed callback
+		subs = subs.slice();
+		var index = subs.indexOf(callback);
+		if (index >= 0)
+		{
+			subs.splice(index, 1);
+		}
+	}
+
+	return {
+		subscribe: subscribe,
+		unsubscribe: unsubscribe
+	};
+}
+
+
+
+// INCOMING PORTS
+
+
+function _Platform_incomingPort(name, converter)
+{
+	_Platform_checkPortName(name);
+	_Platform_effectManagers[name] = {
+		f: _Platform_incomingPortMap,
+		r: converter,
+		a: _Platform_setupIncomingPort
+	};
+	return _Platform_leaf(name);
+}
+
+
+var _Platform_incomingPortMap = F2(function(tagger, finalTagger)
+{
+	return function(value)
+	{
+		return tagger(finalTagger(value));
+	};
+});
+
+
+function _Platform_setupIncomingPort(name, sendToApp)
+{
+	var subs = _List_Nil;
+	var converter = _Platform_effectManagers[name].r;
+
+	// CREATE MANAGER
+
+	var init = _Scheduler_succeed(null);
+
+	_Platform_effectManagers[name].b = init;
+	_Platform_effectManagers[name].c = F3(function(router, subList, state)
+	{
+		subs = subList;
+		return init;
+	});
+
+	// PUBLIC API
+
+	function send(incomingValue)
+	{
+		var result = A2(_Json_run, converter, _Json_wrap(incomingValue));
+
+		$elm$core$Result$isOk(result) || _Debug_crash(4, name, result.a);
+
+		var value = result.a;
+		for (var temp = subs; temp.b; temp = temp.b) // WHILE_CONS
+		{
+			sendToApp(temp.a(value));
+		}
+	}
+
+	return { send: send };
+}
+
+
+
+// EXPORT ELM MODULES
+//
+// Have DEBUG and PROD versions so that we can (1) give nicer errors in
+// debug mode and (2) not pay for the bits needed for that in prod mode.
+//
+
+
+function _Platform_export_UNUSED(exports)
+{
+	scope['Elm']
+		? _Platform_mergeExportsProd(scope['Elm'], exports)
+		: scope['Elm'] = exports;
+}
+
+
+function _Platform_mergeExportsProd(obj, exports)
+{
+	for (var name in exports)
+	{
+		(name in obj)
+			? (name == 'init')
+				? _Debug_crash(6)
+				: _Platform_mergeExportsProd(obj[name], exports[name])
+			: (obj[name] = exports[name]);
+	}
+}
+
+
+function _Platform_export(exports)
+{
+	scope['Elm']
+		? _Platform_mergeExportsDebug('Elm', scope['Elm'], exports)
+		: scope['Elm'] = exports;
+}
+
+
+function _Platform_mergeExportsDebug(moduleName, obj, exports)
+{
+	for (var name in exports)
+	{
+		(name in obj)
+			? (name == 'init')
+				? _Debug_crash(6, moduleName)
+				: _Platform_mergeExportsDebug(moduleName + '.' + name, obj[name], exports[name])
+			: (obj[name] = exports[name]);
+	}
+}
+
+
+
+
+// HELPERS
+
+
+var _VirtualDom_divertHrefToApp;
+
+var _VirtualDom_doc = typeof document !== 'undefined' ? document : {};
+
+
+function _VirtualDom_appendChild(parent, child)
+{
+	parent.appendChild(child);
+}
+
+var _VirtualDom_init = F4(function(virtualNode, flagDecoder, debugMetadata, args)
+{
+	// NOTE: this function needs _Platform_export available to work
+
+	/**_UNUSED/
+	var node = args['node'];
+	//*/
+	/**/
+	var node = args && args['node'] ? args['node'] : _Debug_crash(0);
+	//*/
+
+	node.parentNode.replaceChild(
+		_VirtualDom_render(virtualNode, function() {}),
+		node
+	);
+
+	return {};
+});
+
+
+
+// TEXT
+
+
+function _VirtualDom_text(string)
+{
+	return {
+		$: 0,
+		a: string
+	};
+}
+
+
+
+// NODE
+
+
+var _VirtualDom_nodeNS = F2(function(namespace, tag)
+{
+	return F2(function(factList, kidList)
+	{
+		for (var kids = [], descendantsCount = 0; kidList.b; kidList = kidList.b) // WHILE_CONS
+		{
+			var kid = kidList.a;
+			descendantsCount += (kid.b || 0);
+			kids.push(kid);
+		}
+		descendantsCount += kids.length;
+
+		return {
+			$: 1,
+			c: tag,
+			d: _VirtualDom_organizeFacts(factList),
+			e: kids,
+			f: namespace,
+			b: descendantsCount
+		};
+	});
+});
+
+
+var _VirtualDom_node = _VirtualDom_nodeNS(undefined);
+
+
+
+// KEYED NODE
+
+
+var _VirtualDom_keyedNodeNS = F2(function(namespace, tag)
+{
+	return F2(function(factList, kidList)
+	{
+		for (var kids = [], descendantsCount = 0; kidList.b; kidList = kidList.b) // WHILE_CONS
+		{
+			var kid = kidList.a;
+			descendantsCount += (kid.b.b || 0);
+			kids.push(kid);
+		}
+		descendantsCount += kids.length;
+
+		return {
+			$: 2,
+			c: tag,
+			d: _VirtualDom_organizeFacts(factList),
+			e: kids,
+			f: namespace,
+			b: descendantsCount
+		};
+	});
+});
+
+
+var _VirtualDom_keyedNode = _VirtualDom_keyedNodeNS(undefined);
+
+
+
+// CUSTOM
+
+
+function _VirtualDom_custom(factList, model, render, diff)
+{
+	return {
+		$: 3,
+		d: _VirtualDom_organizeFacts(factList),
+		g: model,
+		h: render,
+		i: diff
+	};
+}
+
+
+
+// MAP
+
+
+var _VirtualDom_map = F2(function(tagger, node)
+{
+	return {
+		$: 4,
+		j: tagger,
+		k: node,
+		b: 1 + (node.b || 0)
+	};
+});
+
+
+
+// LAZY
+
+
+function _VirtualDom_thunk(refs, thunk)
+{
+	return {
+		$: 5,
+		l: refs,
+		m: thunk,
+		k: undefined
+	};
+}
+
+var _VirtualDom_lazy = F2(function(func, a)
+{
+	return _VirtualDom_thunk([func, a], function() {
+		return func(a);
+	});
+});
+
+var _VirtualDom_lazy2 = F3(function(func, a, b)
+{
+	return _VirtualDom_thunk([func, a, b], function() {
+		return A2(func, a, b);
+	});
+});
+
+var _VirtualDom_lazy3 = F4(function(func, a, b, c)
+{
+	return _VirtualDom_thunk([func, a, b, c], function() {
+		return A3(func, a, b, c);
+	});
+});
+
+var _VirtualDom_lazy4 = F5(function(func, a, b, c, d)
+{
+	return _VirtualDom_thunk([func, a, b, c, d], function() {
+		return A4(func, a, b, c, d);
+	});
+});
+
+var _VirtualDom_lazy5 = F6(function(func, a, b, c, d, e)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e], function() {
+		return A5(func, a, b, c, d, e);
+	});
+});
+
+var _VirtualDom_lazy6 = F7(function(func, a, b, c, d, e, f)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f], function() {
+		return A6(func, a, b, c, d, e, f);
+	});
+});
+
+var _VirtualDom_lazy7 = F8(function(func, a, b, c, d, e, f, g)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f, g], function() {
+		return A7(func, a, b, c, d, e, f, g);
+	});
+});
+
+var _VirtualDom_lazy8 = F9(function(func, a, b, c, d, e, f, g, h)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f, g, h], function() {
+		return A8(func, a, b, c, d, e, f, g, h);
+	});
+});
+
+
+
+// FACTS
+
+
+var _VirtualDom_on = F2(function(key, handler)
+{
+	return {
+		$: 'a0',
+		n: key,
+		o: handler
+	};
+});
+var _VirtualDom_style = F2(function(key, value)
+{
+	return {
+		$: 'a1',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_property = F2(function(key, value)
+{
+	return {
+		$: 'a2',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_attribute = F2(function(key, value)
+{
+	return {
+		$: 'a3',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_attributeNS = F3(function(namespace, key, value)
+{
+	return {
+		$: 'a4',
+		n: key,
+		o: { f: namespace, o: value }
+	};
+});
+
+
+
+// XSS ATTACK VECTOR CHECKS
+
+
+function _VirtualDom_noScript(tag)
+{
+	return tag == 'script' ? 'p' : tag;
+}
+
+function _VirtualDom_noOnOrFormAction(key)
+{
+	return /^(on|formAction$)/i.test(key) ? 'data-' + key : key;
+}
+
+function _VirtualDom_noInnerHtmlOrFormAction(key)
+{
+	return key == 'innerHTML' || key == 'formAction' ? 'data-' + key : key;
+}
+
+function _VirtualDom_noJavaScriptUri_UNUSED(value)
+{
+	return /^javascript:/i.test(value.replace(/\s/g,'')) ? '' : value;
+}
+
+function _VirtualDom_noJavaScriptUri(value)
+{
+	return /^javascript:/i.test(value.replace(/\s/g,''))
+		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
+		: value;
+}
+
+function _VirtualDom_noJavaScriptOrHtmlUri_UNUSED(value)
+{
+	return /^\s*(javascript:|data:text\/html)/i.test(value) ? '' : value;
+}
+
+function _VirtualDom_noJavaScriptOrHtmlUri(value)
+{
+	return /^\s*(javascript:|data:text\/html)/i.test(value)
+		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
+		: value;
+}
+
+
+
+// MAP FACTS
+
+
+var _VirtualDom_mapAttribute = F2(function(func, attr)
+{
+	return (attr.$ === 'a0')
+		? A2(_VirtualDom_on, attr.n, _VirtualDom_mapHandler(func, attr.o))
+		: attr;
+});
+
+function _VirtualDom_mapHandler(func, handler)
+{
+	var tag = $elm$virtual_dom$VirtualDom$toHandlerInt(handler);
+
+	// 0 = Normal
+	// 1 = MayStopPropagation
+	// 2 = MayPreventDefault
+	// 3 = Custom
+
+	return {
+		$: handler.$,
+		a:
+			!tag
+				? A2($elm$json$Json$Decode$map, func, handler.a)
+				:
+			A3($elm$json$Json$Decode$map2,
+				tag < 3
+					? _VirtualDom_mapEventTuple
+					: _VirtualDom_mapEventRecord,
+				$elm$json$Json$Decode$succeed(func),
+				handler.a
+			)
+	};
+}
+
+var _VirtualDom_mapEventTuple = F2(function(func, tuple)
+{
+	return _Utils_Tuple2(func(tuple.a), tuple.b);
+});
+
+var _VirtualDom_mapEventRecord = F2(function(func, record)
+{
+	return {
+		message: func(record.message),
+		stopPropagation: record.stopPropagation,
+		preventDefault: record.preventDefault
+	}
+});
+
+
+
+// ORGANIZE FACTS
+
+
+function _VirtualDom_organizeFacts(factList)
+{
+	for (var facts = {}; factList.b; factList = factList.b) // WHILE_CONS
+	{
+		var entry = factList.a;
+
+		var tag = entry.$;
+		var key = entry.n;
+		var value = entry.o;
+
+		if (tag === 'a2')
+		{
+			(key === 'className')
+				? _VirtualDom_addClass(facts, key, _Json_unwrap(value))
+				: facts[key] = _Json_unwrap(value);
+
+			continue;
+		}
+
+		var subFacts = facts[tag] || (facts[tag] = {});
+		(tag === 'a3' && key === 'class')
+			? _VirtualDom_addClass(subFacts, key, value)
+			: subFacts[key] = value;
+	}
+
+	return facts;
+}
+
+function _VirtualDom_addClass(object, key, newClass)
+{
+	var classes = object[key];
+	object[key] = classes ? classes + ' ' + newClass : newClass;
+}
+
+
+
+// RENDER
+
+
+function _VirtualDom_render(vNode, eventNode)
+{
+	var tag = vNode.$;
+
+	if (tag === 5)
+	{
+		return _VirtualDom_render(vNode.k || (vNode.k = vNode.m()), eventNode);
+	}
+
+	if (tag === 0)
+	{
+		return _VirtualDom_doc.createTextNode(vNode.a);
+	}
+
+	if (tag === 4)
+	{
+		var subNode = vNode.k;
+		var tagger = vNode.j;
+
+		while (subNode.$ === 4)
+		{
+			typeof tagger !== 'object'
+				? tagger = [tagger, subNode.j]
+				: tagger.push(subNode.j);
+
+			subNode = subNode.k;
+		}
+
+		var subEventRoot = { j: tagger, p: eventNode };
+		var domNode = _VirtualDom_render(subNode, subEventRoot);
+		domNode.elm_event_node_ref = subEventRoot;
+		return domNode;
+	}
+
+	if (tag === 3)
+	{
+		var domNode = vNode.h(vNode.g);
+		_VirtualDom_applyFacts(domNode, eventNode, vNode.d);
+		return domNode;
+	}
+
+	// at this point `tag` must be 1 or 2
+
+	var domNode = vNode.f
+		? _VirtualDom_doc.createElementNS(vNode.f, vNode.c)
+		: _VirtualDom_doc.createElement(vNode.c);
+
+	if (_VirtualDom_divertHrefToApp && vNode.c == 'a')
+	{
+		domNode.addEventListener('click', _VirtualDom_divertHrefToApp(domNode));
+	}
+
+	_VirtualDom_applyFacts(domNode, eventNode, vNode.d);
+
+	for (var kids = vNode.e, i = 0; i < kids.length; i++)
+	{
+		_VirtualDom_appendChild(domNode, _VirtualDom_render(tag === 1 ? kids[i] : kids[i].b, eventNode));
+	}
+
+	return domNode;
+}
+
+
+
+// APPLY FACTS
+
+
+function _VirtualDom_applyFacts(domNode, eventNode, facts)
+{
+	for (var key in facts)
+	{
+		var value = facts[key];
+
+		key === 'a1'
+			? _VirtualDom_applyStyles(domNode, value)
+			:
+		key === 'a0'
+			? _VirtualDom_applyEvents(domNode, eventNode, value)
+			:
+		key === 'a3'
+			? _VirtualDom_applyAttrs(domNode, value)
+			:
+		key === 'a4'
+			? _VirtualDom_applyAttrsNS(domNode, value)
+			:
+		((key !== 'value' && key !== 'checked') || domNode[key] !== value) && (domNode[key] = value);
+	}
+}
+
+
+
+// APPLY STYLES
+
+
+function _VirtualDom_applyStyles(domNode, styles)
+{
+	var domNodeStyle = domNode.style;
+
+	for (var key in styles)
+	{
+		domNodeStyle[key] = styles[key];
+	}
+}
+
+
+
+// APPLY ATTRS
+
+
+function _VirtualDom_applyAttrs(domNode, attrs)
+{
+	for (var key in attrs)
+	{
+		var value = attrs[key];
+		typeof value !== 'undefined'
+			? domNode.setAttribute(key, value)
+			: domNode.removeAttribute(key);
+	}
+}
+
+
+
+// APPLY NAMESPACED ATTRS
+
+
+function _VirtualDom_applyAttrsNS(domNode, nsAttrs)
+{
+	for (var key in nsAttrs)
+	{
+		var pair = nsAttrs[key];
+		var namespace = pair.f;
+		var value = pair.o;
+
+		typeof value !== 'undefined'
+			? domNode.setAttributeNS(namespace, key, value)
+			: domNode.removeAttributeNS(namespace, key);
+	}
+}
+
+
+
+// APPLY EVENTS
+
+
+function _VirtualDom_applyEvents(domNode, eventNode, events)
+{
+	var allCallbacks = domNode.elmFs || (domNode.elmFs = {});
+
+	for (var key in events)
+	{
+		var newHandler = events[key];
+		var oldCallback = allCallbacks[key];
+
+		if (!newHandler)
+		{
+			domNode.removeEventListener(key, oldCallback);
+			allCallbacks[key] = undefined;
+			continue;
+		}
+
+		if (oldCallback)
+		{
+			var oldHandler = oldCallback.q;
+			if (oldHandler.$ === newHandler.$)
+			{
+				oldCallback.q = newHandler;
+				continue;
+			}
+			domNode.removeEventListener(key, oldCallback);
+		}
+
+		oldCallback = _VirtualDom_makeCallback(eventNode, newHandler);
+		domNode.addEventListener(key, oldCallback,
+			_VirtualDom_passiveSupported
+			&& { passive: $elm$virtual_dom$VirtualDom$toHandlerInt(newHandler) < 2 }
+		);
+		allCallbacks[key] = oldCallback;
+	}
+}
+
+
+
+// PASSIVE EVENTS
+
+
+var _VirtualDom_passiveSupported;
+
+try
+{
+	window.addEventListener('t', null, Object.defineProperty({}, 'passive', {
+		get: function() { _VirtualDom_passiveSupported = true; }
+	}));
+}
+catch(e) {}
+
+
+
+// EVENT HANDLERS
+
+
+function _VirtualDom_makeCallback(eventNode, initialHandler)
+{
+	function callback(event)
+	{
+		var handler = callback.q;
+		var result = _Json_runHelp(handler.a, event);
+
+		if (!$elm$core$Result$isOk(result))
+		{
+			return;
+		}
+
+		var tag = $elm$virtual_dom$VirtualDom$toHandlerInt(handler);
+
+		// 0 = Normal
+		// 1 = MayStopPropagation
+		// 2 = MayPreventDefault
+		// 3 = Custom
+
+		var value = result.a;
+		var message = !tag ? value : tag < 3 ? value.a : value.message;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.stopPropagation;
+		var currentEventNode = (
+			stopPropagation && event.stopPropagation(),
+			(tag == 2 ? value.b : tag == 3 && value.preventDefault) && event.preventDefault(),
+			eventNode
+		);
+		var tagger;
+		var i;
+		while (tagger = currentEventNode.j)
+		{
+			if (typeof tagger == 'function')
+			{
+				message = tagger(message);
+			}
+			else
+			{
+				for (var i = tagger.length; i--; )
+				{
+					message = tagger[i](message);
+				}
+			}
+			currentEventNode = currentEventNode.p;
+		}
+		currentEventNode(message, stopPropagation); // stopPropagation implies isSync
+	}
+
+	callback.q = initialHandler;
+
+	return callback;
+}
+
+function _VirtualDom_equalEvents(x, y)
+{
+	return x.$ == y.$ && _Json_equality(x.a, y.a);
+}
+
+
+
+// DIFF
+
+
+// TODO: Should we do patches like in iOS?
+//
+// type Patch
+//   = At Int Patch
+//   | Batch (List Patch)
+//   | Change ...
+//
+// How could it not be better?
+//
+function _VirtualDom_diff(x, y)
+{
+	var patches = [];
+	_VirtualDom_diffHelp(x, y, patches, 0);
+	return patches;
+}
+
+
+function _VirtualDom_pushPatch(patches, type, index, data)
+{
+	var patch = {
+		$: type,
+		r: index,
+		s: data,
+		t: undefined,
+		u: undefined
+	};
+	patches.push(patch);
+	return patch;
+}
+
+
+function _VirtualDom_diffHelp(x, y, patches, index)
+{
+	if (x === y)
+	{
+		return;
+	}
+
+	var xType = x.$;
+	var yType = y.$;
+
+	// Bail if you run into different types of nodes. Implies that the
+	// structure has changed significantly and it's not worth a diff.
+	if (xType !== yType)
+	{
+		if (xType === 1 && yType === 2)
+		{
+			y = _VirtualDom_dekey(y);
+			yType = 1;
+		}
+		else
+		{
+			_VirtualDom_pushPatch(patches, 0, index, y);
+			return;
+		}
+	}
+
+	// Now we know that both nodes are the same $.
+	switch (yType)
+	{
+		case 5:
+			var xRefs = x.l;
+			var yRefs = y.l;
+			var i = xRefs.length;
+			var same = i === yRefs.length;
+			while (same && i--)
+			{
+				same = xRefs[i] === yRefs[i];
+			}
+			if (same)
+			{
+				y.k = x.k;
+				return;
+			}
+			y.k = y.m();
+			var subPatches = [];
+			_VirtualDom_diffHelp(x.k, y.k, subPatches, 0);
+			subPatches.length > 0 && _VirtualDom_pushPatch(patches, 1, index, subPatches);
+			return;
+
+		case 4:
+			// gather nested taggers
+			var xTaggers = x.j;
+			var yTaggers = y.j;
+			var nesting = false;
+
+			var xSubNode = x.k;
+			while (xSubNode.$ === 4)
+			{
+				nesting = true;
+
+				typeof xTaggers !== 'object'
+					? xTaggers = [xTaggers, xSubNode.j]
+					: xTaggers.push(xSubNode.j);
+
+				xSubNode = xSubNode.k;
+			}
+
+			var ySubNode = y.k;
+			while (ySubNode.$ === 4)
+			{
+				nesting = true;
+
+				typeof yTaggers !== 'object'
+					? yTaggers = [yTaggers, ySubNode.j]
+					: yTaggers.push(ySubNode.j);
+
+				ySubNode = ySubNode.k;
+			}
+
+			// Just bail if different numbers of taggers. This implies the
+			// structure of the virtual DOM has changed.
+			if (nesting && xTaggers.length !== yTaggers.length)
+			{
+				_VirtualDom_pushPatch(patches, 0, index, y);
+				return;
+			}
+
+			// check if taggers are "the same"
+			if (nesting ? !_VirtualDom_pairwiseRefEqual(xTaggers, yTaggers) : xTaggers !== yTaggers)
+			{
+				_VirtualDom_pushPatch(patches, 2, index, yTaggers);
+			}
+
+			// diff everything below the taggers
+			_VirtualDom_diffHelp(xSubNode, ySubNode, patches, index + 1);
+			return;
+
+		case 0:
+			if (x.a !== y.a)
+			{
+				_VirtualDom_pushPatch(patches, 3, index, y.a);
+			}
+			return;
+
+		case 1:
+			_VirtualDom_diffNodes(x, y, patches, index, _VirtualDom_diffKids);
+			return;
+
+		case 2:
+			_VirtualDom_diffNodes(x, y, patches, index, _VirtualDom_diffKeyedKids);
+			return;
+
+		case 3:
+			if (x.h !== y.h)
+			{
+				_VirtualDom_pushPatch(patches, 0, index, y);
+				return;
+			}
+
+			var factsDiff = _VirtualDom_diffFacts(x.d, y.d);
+			factsDiff && _VirtualDom_pushPatch(patches, 4, index, factsDiff);
+
+			var patch = y.i(x.g, y.g);
+			patch && _VirtualDom_pushPatch(patches, 5, index, patch);
+
+			return;
+	}
+}
+
+// assumes the incoming arrays are the same length
+function _VirtualDom_pairwiseRefEqual(as, bs)
+{
+	for (var i = 0; i < as.length; i++)
+	{
+		if (as[i] !== bs[i])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+function _VirtualDom_diffNodes(x, y, patches, index, diffKids)
+{
+	// Bail if obvious indicators have changed. Implies more serious
+	// structural changes such that it's not worth it to diff.
+	if (x.c !== y.c || x.f !== y.f)
+	{
+		_VirtualDom_pushPatch(patches, 0, index, y);
+		return;
+	}
+
+	var factsDiff = _VirtualDom_diffFacts(x.d, y.d);
+	factsDiff && _VirtualDom_pushPatch(patches, 4, index, factsDiff);
+
+	diffKids(x, y, patches, index);
+}
+
+
+
+// DIFF FACTS
+
+
+// TODO Instead of creating a new diff object, it's possible to just test if
+// there *is* a diff. During the actual patch, do the diff again and make the
+// modifications directly. This way, there's no new allocations. Worth it?
+function _VirtualDom_diffFacts(x, y, category)
+{
+	var diff;
+
+	// look for changes and removals
+	for (var xKey in x)
+	{
+		if (xKey === 'a1' || xKey === 'a0' || xKey === 'a3' || xKey === 'a4')
+		{
+			var subDiff = _VirtualDom_diffFacts(x[xKey], y[xKey] || {}, xKey);
+			if (subDiff)
+			{
+				diff = diff || {};
+				diff[xKey] = subDiff;
+			}
+			continue;
+		}
+
+		// remove if not in the new facts
+		if (!(xKey in y))
+		{
+			diff = diff || {};
+			diff[xKey] =
+				!category
+					? (typeof x[xKey] === 'string' ? '' : null)
+					:
+				(category === 'a1')
+					? ''
+					:
+				(category === 'a0' || category === 'a3')
+					? undefined
+					:
+				{ f: x[xKey].f, o: undefined };
+
+			continue;
+		}
+
+		var xValue = x[xKey];
+		var yValue = y[xKey];
+
+		// reference equal, so don't worry about it
+		if (xValue === yValue && xKey !== 'value' && xKey !== 'checked'
+			|| category === 'a0' && _VirtualDom_equalEvents(xValue, yValue))
+		{
+			continue;
+		}
+
+		diff = diff || {};
+		diff[xKey] = yValue;
+	}
+
+	// add new stuff
+	for (var yKey in y)
+	{
+		if (!(yKey in x))
+		{
+			diff = diff || {};
+			diff[yKey] = y[yKey];
+		}
+	}
+
+	return diff;
+}
+
+
+
+// DIFF KIDS
+
+
+function _VirtualDom_diffKids(xParent, yParent, patches, index)
+{
+	var xKids = xParent.e;
+	var yKids = yParent.e;
+
+	var xLen = xKids.length;
+	var yLen = yKids.length;
+
+	// FIGURE OUT IF THERE ARE INSERTS OR REMOVALS
+
+	if (xLen > yLen)
+	{
+		_VirtualDom_pushPatch(patches, 6, index, {
+			v: yLen,
+			i: xLen - yLen
+		});
+	}
+	else if (xLen < yLen)
+	{
+		_VirtualDom_pushPatch(patches, 7, index, {
+			v: xLen,
+			e: yKids
+		});
+	}
+
+	// PAIRWISE DIFF EVERYTHING ELSE
+
+	for (var minLen = xLen < yLen ? xLen : yLen, i = 0; i < minLen; i++)
+	{
+		var xKid = xKids[i];
+		_VirtualDom_diffHelp(xKid, yKids[i], patches, ++index);
+		index += xKid.b || 0;
+	}
+}
+
+
+
+// KEYED DIFF
+
+
+function _VirtualDom_diffKeyedKids(xParent, yParent, patches, rootIndex)
+{
+	var localPatches = [];
+
+	var changes = {}; // Dict String Entry
+	var inserts = []; // Array { index : Int, entry : Entry }
+	// type Entry = { tag : String, vnode : VNode, index : Int, data : _ }
+
+	var xKids = xParent.e;
+	var yKids = yParent.e;
+	var xLen = xKids.length;
+	var yLen = yKids.length;
+	var xIndex = 0;
+	var yIndex = 0;
+
+	var index = rootIndex;
+
+	while (xIndex < xLen && yIndex < yLen)
+	{
+		var x = xKids[xIndex];
+		var y = yKids[yIndex];
+
+		var xKey = x.a;
+		var yKey = y.a;
+		var xNode = x.b;
+		var yNode = y.b;
+
+		var newMatch = undefined;
+		var oldMatch = undefined;
+
+		// check if keys match
+
+		if (xKey === yKey)
+		{
+			index++;
+			_VirtualDom_diffHelp(xNode, yNode, localPatches, index);
+			index += xNode.b || 0;
+
+			xIndex++;
+			yIndex++;
+			continue;
+		}
+
+		// look ahead 1 to detect insertions and removals.
+
+		var xNext = xKids[xIndex + 1];
+		var yNext = yKids[yIndex + 1];
+
+		if (xNext)
+		{
+			var xNextKey = xNext.a;
+			var xNextNode = xNext.b;
+			oldMatch = yKey === xNextKey;
+		}
+
+		if (yNext)
+		{
+			var yNextKey = yNext.a;
+			var yNextNode = yNext.b;
+			newMatch = xKey === yNextKey;
+		}
+
+
+		// swap x and y
+		if (newMatch && oldMatch)
+		{
+			index++;
+			_VirtualDom_diffHelp(xNode, yNextNode, localPatches, index);
+			_VirtualDom_insertNode(changes, localPatches, xKey, yNode, yIndex, inserts);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNextNode, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 2;
+			continue;
+		}
+
+		// insert y
+		if (newMatch)
+		{
+			index++;
+			_VirtualDom_insertNode(changes, localPatches, yKey, yNode, yIndex, inserts);
+			_VirtualDom_diffHelp(xNode, yNextNode, localPatches, index);
+			index += xNode.b || 0;
+
+			xIndex += 1;
+			yIndex += 2;
+			continue;
+		}
+
+		// remove x
+		if (oldMatch)
+		{
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNode, index);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_diffHelp(xNextNode, yNode, localPatches, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 1;
+			continue;
+		}
+
+		// remove x, insert y
+		if (xNext && xNextKey === yNextKey)
+		{
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNode, index);
+			_VirtualDom_insertNode(changes, localPatches, yKey, yNode, yIndex, inserts);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_diffHelp(xNextNode, yNextNode, localPatches, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 2;
+			continue;
+		}
+
+		break;
+	}
+
+	// eat up any remaining nodes with removeNode and insertNode
+
+	while (xIndex < xLen)
+	{
+		index++;
+		var x = xKids[xIndex];
+		var xNode = x.b;
+		_VirtualDom_removeNode(changes, localPatches, x.a, xNode, index);
+		index += xNode.b || 0;
+		xIndex++;
+	}
+
+	while (yIndex < yLen)
+	{
+		var endInserts = endInserts || [];
+		var y = yKids[yIndex];
+		_VirtualDom_insertNode(changes, localPatches, y.a, y.b, undefined, endInserts);
+		yIndex++;
+	}
+
+	if (localPatches.length > 0 || inserts.length > 0 || endInserts)
+	{
+		_VirtualDom_pushPatch(patches, 8, rootIndex, {
+			w: localPatches,
+			x: inserts,
+			y: endInserts
+		});
+	}
+}
+
+
+
+// CHANGES FROM KEYED DIFF
+
+
+var _VirtualDom_POSTFIX = '_elmW6BL';
+
+
+function _VirtualDom_insertNode(changes, localPatches, key, vnode, yIndex, inserts)
+{
+	var entry = changes[key];
+
+	// never seen this key before
+	if (!entry)
+	{
+		entry = {
+			c: 0,
+			z: vnode,
+			r: yIndex,
+			s: undefined
+		};
+
+		inserts.push({ r: yIndex, A: entry });
+		changes[key] = entry;
+
+		return;
+	}
+
+	// this key was removed earlier, a match!
+	if (entry.c === 1)
+	{
+		inserts.push({ r: yIndex, A: entry });
+
+		entry.c = 2;
+		var subPatches = [];
+		_VirtualDom_diffHelp(entry.z, vnode, subPatches, entry.r);
+		entry.r = yIndex;
+		entry.s.s = {
+			w: subPatches,
+			A: entry
+		};
+
+		return;
+	}
+
+	// this key has already been inserted or moved, a duplicate!
+	_VirtualDom_insertNode(changes, localPatches, key + _VirtualDom_POSTFIX, vnode, yIndex, inserts);
+}
+
+
+function _VirtualDom_removeNode(changes, localPatches, key, vnode, index)
+{
+	var entry = changes[key];
+
+	// never seen this key before
+	if (!entry)
+	{
+		var patch = _VirtualDom_pushPatch(localPatches, 9, index, undefined);
+
+		changes[key] = {
+			c: 1,
+			z: vnode,
+			r: index,
+			s: patch
+		};
+
+		return;
+	}
+
+	// this key was inserted earlier, a match!
+	if (entry.c === 0)
+	{
+		entry.c = 2;
+		var subPatches = [];
+		_VirtualDom_diffHelp(vnode, entry.z, subPatches, index);
+
+		_VirtualDom_pushPatch(localPatches, 9, index, {
+			w: subPatches,
+			A: entry
+		});
+
+		return;
+	}
+
+	// this key has already been removed or moved, a duplicate!
+	_VirtualDom_removeNode(changes, localPatches, key + _VirtualDom_POSTFIX, vnode, index);
+}
+
+
+
+// ADD DOM NODES
+//
+// Each DOM node has an "index" assigned in order of traversal. It is important
+// to minimize our crawl over the actual DOM, so these indexes (along with the
+// descendantsCount of virtual nodes) let us skip touching entire subtrees of
+// the DOM if we know there are no patches there.
+
+
+function _VirtualDom_addDomNodes(domNode, vNode, patches, eventNode)
+{
+	_VirtualDom_addDomNodesHelp(domNode, vNode, patches, 0, 0, vNode.b, eventNode);
+}
+
+
+// assumes `patches` is non-empty and indexes increase monotonically.
+function _VirtualDom_addDomNodesHelp(domNode, vNode, patches, i, low, high, eventNode)
+{
+	var patch = patches[i];
+	var index = patch.r;
+
+	while (index === low)
+	{
+		var patchType = patch.$;
+
+		if (patchType === 1)
+		{
+			_VirtualDom_addDomNodes(domNode, vNode.k, patch.s, eventNode);
+		}
+		else if (patchType === 8)
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+
+			var subPatches = patch.s.w;
+			if (subPatches.length > 0)
+			{
+				_VirtualDom_addDomNodesHelp(domNode, vNode, subPatches, 0, low, high, eventNode);
+			}
+		}
+		else if (patchType === 9)
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+
+			var data = patch.s;
+			if (data)
+			{
+				data.A.s = domNode;
+				var subPatches = data.w;
+				if (subPatches.length > 0)
+				{
+					_VirtualDom_addDomNodesHelp(domNode, vNode, subPatches, 0, low, high, eventNode);
+				}
+			}
+		}
+		else
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+		}
+
+		i++;
+
+		if (!(patch = patches[i]) || (index = patch.r) > high)
+		{
+			return i;
+		}
+	}
+
+	var tag = vNode.$;
+
+	if (tag === 4)
+	{
+		var subNode = vNode.k;
+
+		while (subNode.$ === 4)
+		{
+			subNode = subNode.k;
+		}
+
+		return _VirtualDom_addDomNodesHelp(domNode, subNode, patches, i, low + 1, high, domNode.elm_event_node_ref);
+	}
+
+	// tag must be 1 or 2 at this point
+
+	var vKids = vNode.e;
+	var childNodes = domNode.childNodes;
+	for (var j = 0; j < vKids.length; j++)
+	{
+		low++;
+		var vKid = tag === 1 ? vKids[j] : vKids[j].b;
+		var nextLow = low + (vKid.b || 0);
+		if (low <= index && index <= nextLow)
+		{
+			i = _VirtualDom_addDomNodesHelp(childNodes[j], vKid, patches, i, low, nextLow, eventNode);
+			if (!(patch = patches[i]) || (index = patch.r) > high)
+			{
+				return i;
+			}
+		}
+		low = nextLow;
+	}
+	return i;
+}
+
+
+
+// APPLY PATCHES
+
+
+function _VirtualDom_applyPatches(rootDomNode, oldVirtualNode, patches, eventNode)
+{
+	if (patches.length === 0)
+	{
+		return rootDomNode;
+	}
+
+	_VirtualDom_addDomNodes(rootDomNode, oldVirtualNode, patches, eventNode);
+	return _VirtualDom_applyPatchesHelp(rootDomNode, patches);
+}
+
+function _VirtualDom_applyPatchesHelp(rootDomNode, patches)
+{
+	for (var i = 0; i < patches.length; i++)
+	{
+		var patch = patches[i];
+		var localDomNode = patch.t
+		var newNode = _VirtualDom_applyPatch(localDomNode, patch);
+		if (localDomNode === rootDomNode)
+		{
+			rootDomNode = newNode;
+		}
+	}
+	return rootDomNode;
+}
+
+function _VirtualDom_applyPatch(domNode, patch)
+{
+	switch (patch.$)
+	{
+		case 0:
+			return _VirtualDom_applyPatchRedraw(domNode, patch.s, patch.u);
+
+		case 4:
+			_VirtualDom_applyFacts(domNode, patch.u, patch.s);
+			return domNode;
+
+		case 3:
+			domNode.replaceData(0, domNode.length, patch.s);
+			return domNode;
+
+		case 1:
+			return _VirtualDom_applyPatchesHelp(domNode, patch.s);
+
+		case 2:
+			if (domNode.elm_event_node_ref)
+			{
+				domNode.elm_event_node_ref.j = patch.s;
+			}
+			else
+			{
+				domNode.elm_event_node_ref = { j: patch.s, p: patch.u };
+			}
+			return domNode;
+
+		case 6:
+			var data = patch.s;
+			for (var i = 0; i < data.i; i++)
+			{
+				domNode.removeChild(domNode.childNodes[data.v]);
+			}
+			return domNode;
+
+		case 7:
+			var data = patch.s;
+			var kids = data.e;
+			var i = data.v;
+			var theEnd = domNode.childNodes[i];
+			for (; i < kids.length; i++)
+			{
+				domNode.insertBefore(_VirtualDom_render(kids[i], patch.u), theEnd);
+			}
+			return domNode;
+
+		case 9:
+			var data = patch.s;
+			if (!data)
+			{
+				domNode.parentNode.removeChild(domNode);
+				return domNode;
+			}
+			var entry = data.A;
+			if (typeof entry.r !== 'undefined')
+			{
+				domNode.parentNode.removeChild(domNode);
+			}
+			entry.s = _VirtualDom_applyPatchesHelp(domNode, data.w);
+			return domNode;
+
+		case 8:
+			return _VirtualDom_applyPatchReorder(domNode, patch);
+
+		case 5:
+			return patch.s(domNode);
+
+		default:
+			_Debug_crash(10); // 'Ran into an unknown patch!'
+	}
+}
+
+
+function _VirtualDom_applyPatchRedraw(domNode, vNode, eventNode)
+{
+	var parentNode = domNode.parentNode;
+	var newNode = _VirtualDom_render(vNode, eventNode);
+
+	if (!newNode.elm_event_node_ref)
+	{
+		newNode.elm_event_node_ref = domNode.elm_event_node_ref;
+	}
+
+	if (parentNode && newNode !== domNode)
+	{
+		parentNode.replaceChild(newNode, domNode);
+	}
+	return newNode;
+}
+
+
+function _VirtualDom_applyPatchReorder(domNode, patch)
+{
+	var data = patch.s;
+
+	// remove end inserts
+	var frag = _VirtualDom_applyPatchReorderEndInsertsHelp(data.y, patch);
+
+	// removals
+	domNode = _VirtualDom_applyPatchesHelp(domNode, data.w);
+
+	// inserts
+	var inserts = data.x;
+	for (var i = 0; i < inserts.length; i++)
+	{
+		var insert = inserts[i];
+		var entry = insert.A;
+		var node = entry.c === 2
+			? entry.s
+			: _VirtualDom_render(entry.z, patch.u);
+		domNode.insertBefore(node, domNode.childNodes[insert.r]);
+	}
+
+	// add end inserts
+	if (frag)
+	{
+		_VirtualDom_appendChild(domNode, frag);
+	}
+
+	return domNode;
+}
+
+
+function _VirtualDom_applyPatchReorderEndInsertsHelp(endInserts, patch)
+{
+	if (!endInserts)
+	{
+		return;
+	}
+
+	var frag = _VirtualDom_doc.createDocumentFragment();
+	for (var i = 0; i < endInserts.length; i++)
+	{
+		var insert = endInserts[i];
+		var entry = insert.A;
+		_VirtualDom_appendChild(frag, entry.c === 2
+			? entry.s
+			: _VirtualDom_render(entry.z, patch.u)
+		);
+	}
+	return frag;
+}
+
+
+function _VirtualDom_virtualize(node)
+{
+	// TEXT NODES
+
+	if (node.nodeType === 3)
+	{
+		return _VirtualDom_text(node.textContent);
+	}
+
+
+	// WEIRD NODES
+
+	if (node.nodeType !== 1)
+	{
+		return _VirtualDom_text('');
+	}
+
+
+	// ELEMENT NODES
+
+	var attrList = _List_Nil;
+	var attrs = node.attributes;
+	for (var i = attrs.length; i--; )
+	{
+		var attr = attrs[i];
+		var name = attr.name;
+		var value = attr.value;
+		attrList = _List_Cons( A2(_VirtualDom_attribute, name, value), attrList );
+	}
+
+	var tag = node.tagName.toLowerCase();
+	var kidList = _List_Nil;
+	var kids = node.childNodes;
+
+	for (var i = kids.length; i--; )
+	{
+		kidList = _List_Cons(_VirtualDom_virtualize(kids[i]), kidList);
+	}
+	return A3(_VirtualDom_node, tag, attrList, kidList);
+}
+
+function _VirtualDom_dekey(keyedNode)
+{
+	var keyedKids = keyedNode.e;
+	var len = keyedKids.length;
+	var kids = new Array(len);
+	for (var i = 0; i < len; i++)
+	{
+		kids[i] = keyedKids[i].b;
+	}
+
+	return {
+		$: 1,
+		c: keyedNode.c,
+		d: keyedNode.d,
+		e: kids,
+		f: keyedNode.f,
+		b: keyedNode.b
+	};
+}
+
+
+
+
+// ELEMENT
+
+
+var _Debugger_element;
+
+var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.init,
+		impl.update,
+		impl.subscriptions,
+		function(sendToApp, initialModel) {
+			var view = impl.view;
+			/**_UNUSED/
+			var domNode = args['node'];
+			//*/
+			/**/
+			var domNode = args && args['node'] ? args['node'] : _Debug_crash(0);
+			//*/
+			var currNode = _VirtualDom_virtualize(domNode);
+
+			return _Browser_makeAnimator(initialModel, function(model)
+			{
+				var nextNode = view(model);
+				var patches = _VirtualDom_diff(currNode, nextNode);
+				domNode = _VirtualDom_applyPatches(domNode, currNode, patches, sendToApp);
+				currNode = nextNode;
+			});
+		}
+	);
+});
+
+
+
+// DOCUMENT
+
+
+var _Debugger_document;
+
+var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.init,
+		impl.update,
+		impl.subscriptions,
+		function(sendToApp, initialModel) {
+			var divertHrefToApp = impl.setup && impl.setup(sendToApp)
+			var view = impl.view;
+			var title = _VirtualDom_doc.title;
+			var bodyNode = _VirtualDom_doc.body;
+			var currNode = _VirtualDom_virtualize(bodyNode);
+			return _Browser_makeAnimator(initialModel, function(model)
+			{
+				_VirtualDom_divertHrefToApp = divertHrefToApp;
+				var doc = view(model);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.body);
+				var patches = _VirtualDom_diff(currNode, nextNode);
+				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
+				currNode = nextNode;
+				_VirtualDom_divertHrefToApp = 0;
+				(title !== doc.title) && (_VirtualDom_doc.title = title = doc.title);
+			});
+		}
+	);
+});
+
+
+
+// ANIMATION
+
+
+var _Browser_cancelAnimationFrame =
+	typeof cancelAnimationFrame !== 'undefined'
+		? cancelAnimationFrame
+		: function(id) { clearTimeout(id); };
+
+var _Browser_requestAnimationFrame =
+	typeof requestAnimationFrame !== 'undefined'
+		? requestAnimationFrame
+		: function(callback) { return setTimeout(callback, 1000 / 60); };
+
+
+function _Browser_makeAnimator(model, draw)
+{
+	draw(model);
+
+	var state = 0;
+
+	function updateIfNeeded()
+	{
+		state = state === 1
+			? 0
+			: ( _Browser_requestAnimationFrame(updateIfNeeded), draw(model), 1 );
+	}
+
+	return function(nextModel, isSync)
+	{
+		model = nextModel;
+
+		isSync
+			? ( draw(model),
+				state === 2 && (state = 1)
+				)
+			: ( state === 0 && _Browser_requestAnimationFrame(updateIfNeeded),
+				state = 2
+				);
+	};
+}
+
+
+
+// APPLICATION
+
+
+function _Browser_application(impl)
+{
+	var onUrlChange = impl.onUrlChange;
+	var onUrlRequest = impl.onUrlRequest;
+	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
+
+	return _Browser_document({
+		setup: function(sendToApp)
+		{
+			key.a = sendToApp;
+			_Browser_window.addEventListener('popstate', key);
+			_Browser_window.navigator.userAgent.indexOf('Trident') < 0 || _Browser_window.addEventListener('hashchange', key);
+
+			return F2(function(domNode, event)
+			{
+				if (!event.ctrlKey && !event.metaKey && !event.shiftKey && event.button < 1 && !domNode.target && !domNode.hasAttribute('download'))
+				{
+					event.preventDefault();
+					var href = domNode.href;
+					var curr = _Browser_getUrl();
+					var next = $elm$url$Url$fromString(href).a;
+					sendToApp(onUrlRequest(
+						(next
+							&& curr.protocol === next.protocol
+							&& curr.host === next.host
+							&& curr.port_.a === next.port_.a
+						)
+							? $elm$browser$Browser$Internal(next)
+							: $elm$browser$Browser$External(href)
+					));
+				}
+			});
+		},
+		init: function(flags)
+		{
+			return A3(impl.init, flags, _Browser_getUrl(), key);
+		},
+		view: impl.view,
+		update: impl.update,
+		subscriptions: impl.subscriptions
+	});
+}
+
+function _Browser_getUrl()
+{
+	return $elm$url$Url$fromString(_VirtualDom_doc.location.href).a || _Debug_crash(1);
+}
+
+var _Browser_go = F2(function(key, n)
+{
+	return A2($elm$core$Task$perform, $elm$core$Basics$never, _Scheduler_binding(function() {
+		n && history.go(n);
+		key();
+	}));
+});
+
+var _Browser_pushUrl = F2(function(key, url)
+{
+	return A2($elm$core$Task$perform, $elm$core$Basics$never, _Scheduler_binding(function() {
+		history.pushState({}, '', url);
+		key();
+	}));
+});
+
+var _Browser_replaceUrl = F2(function(key, url)
+{
+	return A2($elm$core$Task$perform, $elm$core$Basics$never, _Scheduler_binding(function() {
+		history.replaceState({}, '', url);
+		key();
+	}));
+});
+
+
+
+// GLOBAL EVENTS
+
+
+var _Browser_fakeNode = { addEventListener: function() {}, removeEventListener: function() {} };
+var _Browser_doc = typeof document !== 'undefined' ? document : _Browser_fakeNode;
+var _Browser_window = typeof window !== 'undefined' ? window : _Browser_fakeNode;
+
+var _Browser_on = F3(function(node, eventName, sendToSelf)
+{
+	return _Scheduler_spawn(_Scheduler_binding(function(callback)
+	{
+		function handler(event)	{ _Scheduler_rawSpawn(sendToSelf(event)); }
+		node.addEventListener(eventName, handler, _VirtualDom_passiveSupported && { passive: true });
+		return function() { node.removeEventListener(eventName, handler); };
+	}));
+});
+
+var _Browser_decodeEvent = F2(function(decoder, event)
+{
+	var result = _Json_runHelp(decoder, event);
+	return $elm$core$Result$isOk(result) ? $elm$core$Maybe$Just(result.a) : $elm$core$Maybe$Nothing;
+});
+
+
+
+// PAGE VISIBILITY
+
+
+function _Browser_visibilityInfo()
+{
+	return (typeof _VirtualDom_doc.hidden !== 'undefined')
+		? { hidden: 'hidden', change: 'visibilitychange' }
+		:
+	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
+		? { hidden: 'mozHidden', change: 'mozvisibilitychange' }
+		:
+	(typeof _VirtualDom_doc.msHidden !== 'undefined')
+		? { hidden: 'msHidden', change: 'msvisibilitychange' }
+		:
+	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
+		? { hidden: 'webkitHidden', change: 'webkitvisibilitychange' }
+		: { hidden: 'hidden', change: 'visibilitychange' };
+}
+
+
+
+// ANIMATION FRAMES
+
+
+function _Browser_rAF()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		var id = _Browser_requestAnimationFrame(function() {
+			callback(_Scheduler_succeed(Date.now()));
+		});
+
+		return function() {
+			_Browser_cancelAnimationFrame(id);
+		};
+	});
+}
+
+
+function _Browser_now()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		callback(_Scheduler_succeed(Date.now()));
+	});
+}
+
+
+
+// DOM STUFF
+
+
+function _Browser_withNode(id, doStuff)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		_Browser_requestAnimationFrame(function() {
+			var node = document.getElementById(id);
+			callback(node
+				? _Scheduler_succeed(doStuff(node))
+				: _Scheduler_fail($elm$browser$Browser$Dom$NotFound(id))
+			);
+		});
+	});
+}
+
+
+function _Browser_withWindow(doStuff)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		_Browser_requestAnimationFrame(function() {
+			callback(_Scheduler_succeed(doStuff()));
+		});
+	});
+}
+
+
+// FOCUS and BLUR
+
+
+var _Browser_call = F2(function(functionName, id)
+{
+	return _Browser_withNode(id, function(node) {
+		node[functionName]();
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// WINDOW VIEWPORT
+
+
+function _Browser_getViewport()
+{
+	return {
+		scene: _Browser_getScene(),
+		viewport: {
+			x: _Browser_window.pageXOffset,
+			y: _Browser_window.pageYOffset,
+			width: _Browser_doc.documentElement.clientWidth,
+			height: _Browser_doc.documentElement.clientHeight
+		}
+	};
+}
+
+function _Browser_getScene()
+{
+	var body = _Browser_doc.body;
+	var elem = _Browser_doc.documentElement;
+	return {
+		width: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		height: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+	};
+}
+
+var _Browser_setViewport = F2(function(x, y)
+{
+	return _Browser_withWindow(function()
+	{
+		_Browser_window.scroll(x, y);
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// ELEMENT VIEWPORT
+
+
+function _Browser_getViewportOf(id)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		return {
+			scene: {
+				width: node.scrollWidth,
+				height: node.scrollHeight
+			},
+			viewport: {
+				x: node.scrollLeft,
+				y: node.scrollTop,
+				width: node.clientWidth,
+				height: node.clientHeight
+			}
+		};
+	});
+}
+
+
+var _Browser_setViewportOf = F3(function(id, x, y)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		node.scrollLeft = x;
+		node.scrollTop = y;
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// ELEMENT
+
+
+function _Browser_getElement(id)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		var rect = node.getBoundingClientRect();
+		var x = _Browser_window.pageXOffset;
+		var y = _Browser_window.pageYOffset;
+		return {
+			scene: _Browser_getScene(),
+			viewport: {
+				x: x,
+				y: y,
+				width: _Browser_doc.documentElement.clientWidth,
+				height: _Browser_doc.documentElement.clientHeight
+			},
+			element: {
+				x: x + rect.left,
+				y: y + rect.top,
+				width: rect.width,
+				height: rect.height
+			}
+		};
+	});
+}
+
+
+
+// LOAD and RELOAD
+
+
+function _Browser_reload(skipCache)
+{
+	return A2($elm$core$Task$perform, $elm$core$Basics$never, _Scheduler_binding(function(callback)
+	{
+		_VirtualDom_doc.location.reload(skipCache);
+	}));
+}
+
+function _Browser_load(url)
+{
+	return A2($elm$core$Task$perform, $elm$core$Basics$never, _Scheduler_binding(function(callback)
+	{
+		try
+		{
+			_Browser_window.location = url;
+		}
+		catch(err)
+		{
+			// Only Firefox can throw a NS_ERROR_MALFORMED_URI exception here.
+			// Other browsers reload the page, so let's be consistent about that.
+			_VirtualDom_doc.location.reload(false);
+		}
+	}));
+}
+
+
+
+// SEND REQUEST
+
+var _Http_toTask = F3(function(router, toTask, request)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		function done(response) {
+			callback(toTask(request.expect.a(response)));
+		}
+
+		var xhr = new XMLHttpRequest();
+		xhr.addEventListener('error', function() { done($elm$http$Http$NetworkError_); });
+		xhr.addEventListener('timeout', function() { done($elm$http$Http$Timeout_); });
+		xhr.addEventListener('load', function() { done(_Http_toResponse(request.expect.b, xhr)); });
+		$elm$core$Maybe$isJust(request.tracker) && _Http_track(router, xhr, request.tracker.a);
+
+		try {
+			xhr.open(request.method, request.url, true);
+		} catch (e) {
+			return done($elm$http$Http$BadUrl_(request.url));
+		}
+
+		_Http_configureRequest(xhr, request);
+
+		request.body.a && xhr.setRequestHeader('Content-Type', request.body.a);
+		xhr.send(request.body.b);
+
+		return function() { xhr.c = true; xhr.abort(); };
+	});
+});
+
+
+// CONFIGURE
+
+function _Http_configureRequest(xhr, request)
+{
+	for (var headers = request.headers; headers.b; headers = headers.b) // WHILE_CONS
+	{
+		xhr.setRequestHeader(headers.a.a, headers.a.b);
+	}
+	xhr.timeout = request.timeout.a || 0;
+	xhr.responseType = request.expect.d;
+	xhr.withCredentials = request.allowCookiesFromOtherDomains;
+}
+
+
+// RESPONSES
+
+function _Http_toResponse(toBody, xhr)
+{
+	return A2(
+		200 <= xhr.status && xhr.status < 300 ? $elm$http$Http$GoodStatus_ : $elm$http$Http$BadStatus_,
+		_Http_toMetadata(xhr),
+		toBody(xhr.response)
+	);
+}
+
+
+// METADATA
+
+function _Http_toMetadata(xhr)
+{
+	return {
+		url: xhr.responseURL,
+		statusCode: xhr.status,
+		statusText: xhr.statusText,
+		headers: _Http_parseHeaders(xhr.getAllResponseHeaders())
+	};
+}
+
+
+// HEADERS
+
+function _Http_parseHeaders(rawHeaders)
+{
+	if (!rawHeaders)
+	{
+		return $elm$core$Dict$empty;
+	}
+
+	var headers = $elm$core$Dict$empty;
+	var headerPairs = rawHeaders.split('\r\n');
+	for (var i = headerPairs.length; i--; )
+	{
+		var headerPair = headerPairs[i];
+		var index = headerPair.indexOf(': ');
+		if (index > 0)
+		{
+			var key = headerPair.substring(0, index);
+			var value = headerPair.substring(index + 2);
+
+			headers = A3($elm$core$Dict$update, key, function(oldValue) {
+				return $elm$core$Maybe$Just($elm$core$Maybe$isJust(oldValue)
+					? value + ', ' + oldValue.a
+					: value
+				);
+			}, headers);
+		}
+	}
+	return headers;
+}
+
+
+// EXPECT
+
+var _Http_expect = F3(function(type, toBody, toValue)
+{
+	return {
+		$: 0,
+		d: type,
+		b: toBody,
+		a: toValue
+	};
+});
+
+var _Http_mapExpect = F2(function(func, expect)
+{
+	return {
+		$: 0,
+		d: expect.d,
+		b: expect.b,
+		a: function(x) { return func(expect.a(x)); }
+	};
+});
+
+function _Http_toDataView(arrayBuffer)
+{
+	return new DataView(arrayBuffer);
+}
+
+
+// BODY and PARTS
+
+var _Http_emptyBody = { $: 0 };
+var _Http_pair = F2(function(a, b) { return { $: 0, a: a, b: b }; });
+
+function _Http_toFormData(parts)
+{
+	for (var formData = new FormData(); parts.b; parts = parts.b) // WHILE_CONS
+	{
+		var part = parts.a;
+		formData.append(part.a, part.b);
+	}
+	return formData;
+}
+
+var _Http_bytesToBlob = F2(function(mime, bytes)
+{
+	return new Blob([bytes], { type: mime });
+});
+
+
+// PROGRESS
+
+function _Http_track(router, xhr, tracker)
+{
+	// TODO check out lengthComputable on loadstart event
+
+	xhr.upload.addEventListener('progress', function(event) {
+		if (xhr.c) { return; }
+		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Sending({
+			sent: event.loaded,
+			size: event.total
+		}))));
+	});
+	xhr.addEventListener('progress', function(event) {
+		if (xhr.c) { return; }
+		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Receiving({
+			received: event.loaded,
+			size: event.lengthComputable ? $elm$core$Maybe$Just(event.total) : $elm$core$Maybe$Nothing
+		}))));
+	});
+}
+
+function _Url_percentEncode(string)
+{
+	return encodeURIComponent(string);
+}
+
+function _Url_percentDecode(string)
+{
+	try
+	{
+		return $elm$core$Maybe$Just(decodeURIComponent(string));
+	}
+	catch (e)
+	{
+		return $elm$core$Maybe$Nothing;
+	}
+}
+
+
+var _Bitwise_and = F2(function(a, b)
+{
+	return a & b;
+});
+
+var _Bitwise_or = F2(function(a, b)
+{
+	return a | b;
+});
+
+var _Bitwise_xor = F2(function(a, b)
+{
+	return a ^ b;
+});
+
+function _Bitwise_complement(a)
+{
+	return ~a;
+};
+
+var _Bitwise_shiftLeftBy = F2(function(offset, a)
+{
+	return a << offset;
+});
+
+var _Bitwise_shiftRightBy = F2(function(offset, a)
+{
+	return a >> offset;
+});
+
+var _Bitwise_shiftRightZfBy = F2(function(offset, a)
+{
+	return a >>> offset;
+});
+var $author$project$Main$LinkClicked = function (a) {
+	return {$: 'LinkClicked', a: a};
+};
+var $author$project$Main$UrlChanged = function (a) {
+	return {$: 'UrlChanged', a: a};
+};
+var $elm$core$Basics$EQ = {$: 'EQ'};
+var $elm$core$Basics$GT = {$: 'GT'};
+var $elm$core$Basics$LT = {$: 'LT'};
+var $elm$core$List$cons = _List_cons;
+var $elm$core$Dict$foldr = F3(
+	function (func, acc, t) {
+		foldr:
+		while (true) {
+			if (t.$ === 'RBEmpty_elm_builtin') {
+				return acc;
+			} else {
+				var key = t.b;
+				var value = t.c;
+				var left = t.d;
+				var right = t.e;
+				var $temp$func = func,
+					$temp$acc = A3(
+					func,
+					key,
+					value,
+					A3($elm$core$Dict$foldr, func, acc, right)),
+					$temp$t = left;
+				func = $temp$func;
+				acc = $temp$acc;
+				t = $temp$t;
+				continue foldr;
+			}
+		}
+	});
+var $elm$core$Dict$toList = function (dict) {
+	return A3(
+		$elm$core$Dict$foldr,
+		F3(
+			function (key, value, list) {
+				return A2(
+					$elm$core$List$cons,
+					_Utils_Tuple2(key, value),
+					list);
+			}),
+		_List_Nil,
+		dict);
+};
+var $elm$core$Dict$keys = function (dict) {
+	return A3(
+		$elm$core$Dict$foldr,
+		F3(
+			function (key, value, keyList) {
+				return A2($elm$core$List$cons, key, keyList);
+			}),
+		_List_Nil,
+		dict);
+};
+var $elm$core$Set$toList = function (_v0) {
+	var dict = _v0.a;
+	return $elm$core$Dict$keys(dict);
+};
+var $elm$core$Elm$JsArray$foldr = _JsArray_foldr;
+var $elm$core$Array$foldr = F3(
+	function (func, baseCase, _v0) {
+		var tree = _v0.c;
+		var tail = _v0.d;
+		var helper = F2(
+			function (node, acc) {
+				if (node.$ === 'SubTree') {
+					var subTree = node.a;
+					return A3($elm$core$Elm$JsArray$foldr, helper, acc, subTree);
+				} else {
+					var values = node.a;
+					return A3($elm$core$Elm$JsArray$foldr, func, acc, values);
+				}
+			});
+		return A3(
+			$elm$core$Elm$JsArray$foldr,
+			helper,
+			A3($elm$core$Elm$JsArray$foldr, func, baseCase, tail),
+			tree);
+	});
+var $elm$core$Array$toList = function (array) {
+	return A3($elm$core$Array$foldr, $elm$core$List$cons, _List_Nil, array);
+};
+var $elm$core$Result$Err = function (a) {
+	return {$: 'Err', a: a};
+};
+var $elm$json$Json$Decode$Failure = F2(
+	function (a, b) {
+		return {$: 'Failure', a: a, b: b};
+	});
+var $elm$json$Json$Decode$Field = F2(
+	function (a, b) {
+		return {$: 'Field', a: a, b: b};
+	});
+var $elm$json$Json$Decode$Index = F2(
+	function (a, b) {
+		return {$: 'Index', a: a, b: b};
+	});
+var $elm$core$Result$Ok = function (a) {
+	return {$: 'Ok', a: a};
+};
+var $elm$json$Json$Decode$OneOf = function (a) {
+	return {$: 'OneOf', a: a};
+};
+var $elm$core$Basics$False = {$: 'False'};
+var $elm$core$Basics$add = _Basics_add;
+var $elm$core$Maybe$Just = function (a) {
+	return {$: 'Just', a: a};
+};
+var $elm$core$Maybe$Nothing = {$: 'Nothing'};
+var $elm$core$String$all = _String_all;
+var $elm$core$Basics$and = _Basics_and;
+var $elm$core$Basics$append = _Utils_append;
+var $elm$json$Json$Encode$encode = _Json_encode;
+var $elm$core$String$fromInt = _String_fromNumber;
+var $elm$core$String$join = F2(
+	function (sep, chunks) {
+		return A2(
+			_String_join,
+			sep,
+			_List_toArray(chunks));
+	});
+var $elm$core$String$split = F2(
+	function (sep, string) {
+		return _List_fromArray(
+			A2(_String_split, sep, string));
+	});
+var $elm$json$Json$Decode$indent = function (str) {
+	return A2(
+		$elm$core$String$join,
+		'\n    ',
+		A2($elm$core$String$split, '\n', str));
+};
+var $elm$core$List$foldl = F3(
+	function (func, acc, list) {
+		foldl:
+		while (true) {
+			if (!list.b) {
+				return acc;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				var $temp$func = func,
+					$temp$acc = A2(func, x, acc),
+					$temp$list = xs;
+				func = $temp$func;
+				acc = $temp$acc;
+				list = $temp$list;
+				continue foldl;
+			}
+		}
+	});
+var $elm$core$List$length = function (xs) {
+	return A3(
+		$elm$core$List$foldl,
+		F2(
+			function (_v0, i) {
+				return i + 1;
+			}),
+		0,
+		xs);
+};
+var $elm$core$List$map2 = _List_map2;
+var $elm$core$Basics$le = _Utils_le;
+var $elm$core$Basics$sub = _Basics_sub;
+var $elm$core$List$rangeHelp = F3(
+	function (lo, hi, list) {
+		rangeHelp:
+		while (true) {
+			if (_Utils_cmp(lo, hi) < 1) {
+				var $temp$lo = lo,
+					$temp$hi = hi - 1,
+					$temp$list = A2($elm$core$List$cons, hi, list);
+				lo = $temp$lo;
+				hi = $temp$hi;
+				list = $temp$list;
+				continue rangeHelp;
+			} else {
+				return list;
+			}
+		}
+	});
+var $elm$core$List$range = F2(
+	function (lo, hi) {
+		return A3($elm$core$List$rangeHelp, lo, hi, _List_Nil);
+	});
+var $elm$core$List$indexedMap = F2(
+	function (f, xs) {
+		return A3(
+			$elm$core$List$map2,
+			f,
+			A2(
+				$elm$core$List$range,
+				0,
+				$elm$core$List$length(xs) - 1),
+			xs);
+	});
+var $elm$core$Char$toCode = _Char_toCode;
+var $elm$core$Char$isLower = function (_char) {
+	var code = $elm$core$Char$toCode(_char);
+	return (97 <= code) && (code <= 122);
+};
+var $elm$core$Char$isUpper = function (_char) {
+	var code = $elm$core$Char$toCode(_char);
+	return (code <= 90) && (65 <= code);
+};
+var $elm$core$Basics$or = _Basics_or;
+var $elm$core$Char$isAlpha = function (_char) {
+	return $elm$core$Char$isLower(_char) || $elm$core$Char$isUpper(_char);
+};
+var $elm$core$Char$isDigit = function (_char) {
+	var code = $elm$core$Char$toCode(_char);
+	return (code <= 57) && (48 <= code);
+};
+var $elm$core$Char$isAlphaNum = function (_char) {
+	return $elm$core$Char$isLower(_char) || ($elm$core$Char$isUpper(_char) || $elm$core$Char$isDigit(_char));
+};
+var $elm$core$List$reverse = function (list) {
+	return A3($elm$core$List$foldl, $elm$core$List$cons, _List_Nil, list);
+};
+var $elm$core$String$uncons = _String_uncons;
+var $elm$json$Json$Decode$errorOneOf = F2(
+	function (i, error) {
+		return '\n\n(' + ($elm$core$String$fromInt(i + 1) + (') ' + $elm$json$Json$Decode$indent(
+			$elm$json$Json$Decode$errorToString(error))));
+	});
+var $elm$json$Json$Decode$errorToString = function (error) {
+	return A2($elm$json$Json$Decode$errorToStringHelp, error, _List_Nil);
+};
+var $elm$json$Json$Decode$errorToStringHelp = F2(
+	function (error, context) {
+		errorToStringHelp:
+		while (true) {
+			switch (error.$) {
+				case 'Field':
+					var f = error.a;
+					var err = error.b;
+					var isSimple = function () {
+						var _v1 = $elm$core$String$uncons(f);
+						if (_v1.$ === 'Nothing') {
+							return false;
+						} else {
+							var _v2 = _v1.a;
+							var _char = _v2.a;
+							var rest = _v2.b;
+							return $elm$core$Char$isAlpha(_char) && A2($elm$core$String$all, $elm$core$Char$isAlphaNum, rest);
+						}
+					}();
+					var fieldName = isSimple ? ('.' + f) : ('[\'' + (f + '\']'));
+					var $temp$error = err,
+						$temp$context = A2($elm$core$List$cons, fieldName, context);
+					error = $temp$error;
+					context = $temp$context;
+					continue errorToStringHelp;
+				case 'Index':
+					var i = error.a;
+					var err = error.b;
+					var indexName = '[' + ($elm$core$String$fromInt(i) + ']');
+					var $temp$error = err,
+						$temp$context = A2($elm$core$List$cons, indexName, context);
+					error = $temp$error;
+					context = $temp$context;
+					continue errorToStringHelp;
+				case 'OneOf':
+					var errors = error.a;
+					if (!errors.b) {
+						return 'Ran into a Json.Decode.oneOf with no possibilities' + function () {
+							if (!context.b) {
+								return '!';
+							} else {
+								return ' at json' + A2(
+									$elm$core$String$join,
+									'',
+									$elm$core$List$reverse(context));
+							}
+						}();
+					} else {
+						if (!errors.b.b) {
+							var err = errors.a;
+							var $temp$error = err,
+								$temp$context = context;
+							error = $temp$error;
+							context = $temp$context;
+							continue errorToStringHelp;
+						} else {
+							var starter = function () {
+								if (!context.b) {
+									return 'Json.Decode.oneOf';
+								} else {
+									return 'The Json.Decode.oneOf at json' + A2(
+										$elm$core$String$join,
+										'',
+										$elm$core$List$reverse(context));
+								}
+							}();
+							var introduction = starter + (' failed in the following ' + ($elm$core$String$fromInt(
+								$elm$core$List$length(errors)) + ' ways:'));
+							return A2(
+								$elm$core$String$join,
+								'\n\n',
+								A2(
+									$elm$core$List$cons,
+									introduction,
+									A2($elm$core$List$indexedMap, $elm$json$Json$Decode$errorOneOf, errors)));
+						}
+					}
+				default:
+					var msg = error.a;
+					var json = error.b;
+					var introduction = function () {
+						if (!context.b) {
+							return 'Problem with the given value:\n\n';
+						} else {
+							return 'Problem with the value at json' + (A2(
+								$elm$core$String$join,
+								'',
+								$elm$core$List$reverse(context)) + ':\n\n    ');
+						}
+					}();
+					return introduction + ($elm$json$Json$Decode$indent(
+						A2($elm$json$Json$Encode$encode, 4, json)) + ('\n\n' + msg));
+			}
+		}
+	});
+var $elm$core$Array$branchFactor = 32;
+var $elm$core$Array$Array_elm_builtin = F4(
+	function (a, b, c, d) {
+		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
+	});
+var $elm$core$Elm$JsArray$empty = _JsArray_empty;
+var $elm$core$Basics$ceiling = _Basics_ceiling;
+var $elm$core$Basics$fdiv = _Basics_fdiv;
+var $elm$core$Basics$logBase = F2(
+	function (base, number) {
+		return _Basics_log(number) / _Basics_log(base);
+	});
+var $elm$core$Basics$toFloat = _Basics_toFloat;
+var $elm$core$Array$shiftStep = $elm$core$Basics$ceiling(
+	A2($elm$core$Basics$logBase, 2, $elm$core$Array$branchFactor));
+var $elm$core$Array$empty = A4($elm$core$Array$Array_elm_builtin, 0, $elm$core$Array$shiftStep, $elm$core$Elm$JsArray$empty, $elm$core$Elm$JsArray$empty);
+var $elm$core$Elm$JsArray$initialize = _JsArray_initialize;
+var $elm$core$Array$Leaf = function (a) {
+	return {$: 'Leaf', a: a};
+};
+var $elm$core$Basics$apL = F2(
+	function (f, x) {
+		return f(x);
+	});
+var $elm$core$Basics$apR = F2(
+	function (x, f) {
+		return f(x);
+	});
+var $elm$core$Basics$eq = _Utils_equal;
+var $elm$core$Basics$floor = _Basics_floor;
+var $elm$core$Elm$JsArray$length = _JsArray_length;
+var $elm$core$Basics$gt = _Utils_gt;
+var $elm$core$Basics$max = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) > 0) ? x : y;
+	});
+var $elm$core$Basics$mul = _Basics_mul;
+var $elm$core$Array$SubTree = function (a) {
+	return {$: 'SubTree', a: a};
+};
+var $elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
+var $elm$core$Array$compressNodes = F2(
+	function (nodes, acc) {
+		compressNodes:
+		while (true) {
+			var _v0 = A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, nodes);
+			var node = _v0.a;
+			var remainingNodes = _v0.b;
+			var newAcc = A2(
+				$elm$core$List$cons,
+				$elm$core$Array$SubTree(node),
+				acc);
+			if (!remainingNodes.b) {
+				return $elm$core$List$reverse(newAcc);
+			} else {
+				var $temp$nodes = remainingNodes,
+					$temp$acc = newAcc;
+				nodes = $temp$nodes;
+				acc = $temp$acc;
+				continue compressNodes;
+			}
+		}
+	});
+var $elm$core$Tuple$first = function (_v0) {
+	var x = _v0.a;
+	return x;
+};
+var $elm$core$Array$treeFromBuilder = F2(
+	function (nodeList, nodeListSize) {
+		treeFromBuilder:
+		while (true) {
+			var newNodeSize = $elm$core$Basics$ceiling(nodeListSize / $elm$core$Array$branchFactor);
+			if (newNodeSize === 1) {
+				return A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, nodeList).a;
+			} else {
+				var $temp$nodeList = A2($elm$core$Array$compressNodes, nodeList, _List_Nil),
+					$temp$nodeListSize = newNodeSize;
+				nodeList = $temp$nodeList;
+				nodeListSize = $temp$nodeListSize;
+				continue treeFromBuilder;
+			}
+		}
+	});
+var $elm$core$Array$builderToArray = F2(
+	function (reverseNodeList, builder) {
+		if (!builder.nodeListSize) {
+			return A4(
+				$elm$core$Array$Array_elm_builtin,
+				$elm$core$Elm$JsArray$length(builder.tail),
+				$elm$core$Array$shiftStep,
+				$elm$core$Elm$JsArray$empty,
+				builder.tail);
+		} else {
+			var treeLen = builder.nodeListSize * $elm$core$Array$branchFactor;
+			var depth = $elm$core$Basics$floor(
+				A2($elm$core$Basics$logBase, $elm$core$Array$branchFactor, treeLen - 1));
+			var correctNodeList = reverseNodeList ? $elm$core$List$reverse(builder.nodeList) : builder.nodeList;
+			var tree = A2($elm$core$Array$treeFromBuilder, correctNodeList, builder.nodeListSize);
+			return A4(
+				$elm$core$Array$Array_elm_builtin,
+				$elm$core$Elm$JsArray$length(builder.tail) + treeLen,
+				A2($elm$core$Basics$max, 5, depth * $elm$core$Array$shiftStep),
+				tree,
+				builder.tail);
+		}
+	});
+var $elm$core$Basics$idiv = _Basics_idiv;
+var $elm$core$Basics$lt = _Utils_lt;
+var $elm$core$Array$initializeHelp = F5(
+	function (fn, fromIndex, len, nodeList, tail) {
+		initializeHelp:
+		while (true) {
+			if (fromIndex < 0) {
+				return A2(
+					$elm$core$Array$builderToArray,
+					false,
+					{nodeList: nodeList, nodeListSize: (len / $elm$core$Array$branchFactor) | 0, tail: tail});
+			} else {
+				var leaf = $elm$core$Array$Leaf(
+					A3($elm$core$Elm$JsArray$initialize, $elm$core$Array$branchFactor, fromIndex, fn));
+				var $temp$fn = fn,
+					$temp$fromIndex = fromIndex - $elm$core$Array$branchFactor,
+					$temp$len = len,
+					$temp$nodeList = A2($elm$core$List$cons, leaf, nodeList),
+					$temp$tail = tail;
+				fn = $temp$fn;
+				fromIndex = $temp$fromIndex;
+				len = $temp$len;
+				nodeList = $temp$nodeList;
+				tail = $temp$tail;
+				continue initializeHelp;
+			}
+		}
+	});
+var $elm$core$Basics$remainderBy = _Basics_remainderBy;
+var $elm$core$Array$initialize = F2(
+	function (len, fn) {
+		if (len <= 0) {
+			return $elm$core$Array$empty;
+		} else {
+			var tailLen = len % $elm$core$Array$branchFactor;
+			var tail = A3($elm$core$Elm$JsArray$initialize, tailLen, len - tailLen, fn);
+			var initialFromIndex = (len - tailLen) - $elm$core$Array$branchFactor;
+			return A5($elm$core$Array$initializeHelp, fn, initialFromIndex, len, _List_Nil, tail);
+		}
+	});
+var $elm$core$Basics$True = {$: 'True'};
+var $elm$core$Result$isOk = function (result) {
+	if (result.$ === 'Ok') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $elm$json$Json$Decode$map = _Json_map1;
+var $elm$json$Json$Decode$map2 = _Json_map2;
+var $elm$json$Json$Decode$succeed = _Json_succeed;
+var $elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
+	switch (handler.$) {
+		case 'Normal':
+			return 0;
+		case 'MayStopPropagation':
+			return 1;
+		case 'MayPreventDefault':
+			return 2;
+		default:
+			return 3;
+	}
+};
+var $elm$browser$Browser$External = function (a) {
+	return {$: 'External', a: a};
+};
+var $elm$browser$Browser$Internal = function (a) {
+	return {$: 'Internal', a: a};
+};
+var $elm$core$Basics$identity = function (x) {
+	return x;
+};
+var $elm$browser$Browser$Dom$NotFound = function (a) {
+	return {$: 'NotFound', a: a};
+};
+var $elm$url$Url$Http = {$: 'Http'};
+var $elm$url$Url$Https = {$: 'Https'};
+var $elm$url$Url$Url = F6(
+	function (protocol, host, port_, path, query, fragment) {
+		return {fragment: fragment, host: host, path: path, port_: port_, protocol: protocol, query: query};
+	});
+var $elm$core$String$contains = _String_contains;
+var $elm$core$String$length = _String_length;
+var $elm$core$String$slice = _String_slice;
+var $elm$core$String$dropLeft = F2(
+	function (n, string) {
+		return (n < 1) ? string : A3(
+			$elm$core$String$slice,
+			n,
+			$elm$core$String$length(string),
+			string);
+	});
+var $elm$core$String$indexes = _String_indexes;
+var $elm$core$String$isEmpty = function (string) {
+	return string === '';
+};
+var $elm$core$String$left = F2(
+	function (n, string) {
+		return (n < 1) ? '' : A3($elm$core$String$slice, 0, n, string);
+	});
+var $elm$core$String$toInt = _String_toInt;
+var $elm$url$Url$chompBeforePath = F5(
+	function (protocol, path, params, frag, str) {
+		if ($elm$core$String$isEmpty(str) || A2($elm$core$String$contains, '@', str)) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			var _v0 = A2($elm$core$String$indexes, ':', str);
+			if (!_v0.b) {
+				return $elm$core$Maybe$Just(
+					A6($elm$url$Url$Url, protocol, str, $elm$core$Maybe$Nothing, path, params, frag));
+			} else {
+				if (!_v0.b.b) {
+					var i = _v0.a;
+					var _v1 = $elm$core$String$toInt(
+						A2($elm$core$String$dropLeft, i + 1, str));
+					if (_v1.$ === 'Nothing') {
+						return $elm$core$Maybe$Nothing;
+					} else {
+						var port_ = _v1;
+						return $elm$core$Maybe$Just(
+							A6(
+								$elm$url$Url$Url,
+								protocol,
+								A2($elm$core$String$left, i, str),
+								port_,
+								path,
+								params,
+								frag));
+					}
+				} else {
+					return $elm$core$Maybe$Nothing;
+				}
+			}
+		}
+	});
+var $elm$url$Url$chompBeforeQuery = F4(
+	function (protocol, params, frag, str) {
+		if ($elm$core$String$isEmpty(str)) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			var _v0 = A2($elm$core$String$indexes, '/', str);
+			if (!_v0.b) {
+				return A5($elm$url$Url$chompBeforePath, protocol, '/', params, frag, str);
+			} else {
+				var i = _v0.a;
+				return A5(
+					$elm$url$Url$chompBeforePath,
+					protocol,
+					A2($elm$core$String$dropLeft, i, str),
+					params,
+					frag,
+					A2($elm$core$String$left, i, str));
+			}
+		}
+	});
+var $elm$url$Url$chompBeforeFragment = F3(
+	function (protocol, frag, str) {
+		if ($elm$core$String$isEmpty(str)) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			var _v0 = A2($elm$core$String$indexes, '?', str);
+			if (!_v0.b) {
+				return A4($elm$url$Url$chompBeforeQuery, protocol, $elm$core$Maybe$Nothing, frag, str);
+			} else {
+				var i = _v0.a;
+				return A4(
+					$elm$url$Url$chompBeforeQuery,
+					protocol,
+					$elm$core$Maybe$Just(
+						A2($elm$core$String$dropLeft, i + 1, str)),
+					frag,
+					A2($elm$core$String$left, i, str));
+			}
+		}
+	});
+var $elm$url$Url$chompAfterProtocol = F2(
+	function (protocol, str) {
+		if ($elm$core$String$isEmpty(str)) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			var _v0 = A2($elm$core$String$indexes, '#', str);
+			if (!_v0.b) {
+				return A3($elm$url$Url$chompBeforeFragment, protocol, $elm$core$Maybe$Nothing, str);
+			} else {
+				var i = _v0.a;
+				return A3(
+					$elm$url$Url$chompBeforeFragment,
+					protocol,
+					$elm$core$Maybe$Just(
+						A2($elm$core$String$dropLeft, i + 1, str)),
+					A2($elm$core$String$left, i, str));
+			}
+		}
+	});
+var $elm$core$String$startsWith = _String_startsWith;
+var $elm$url$Url$fromString = function (str) {
+	return A2($elm$core$String$startsWith, 'http://', str) ? A2(
+		$elm$url$Url$chompAfterProtocol,
+		$elm$url$Url$Http,
+		A2($elm$core$String$dropLeft, 7, str)) : (A2($elm$core$String$startsWith, 'https://', str) ? A2(
+		$elm$url$Url$chompAfterProtocol,
+		$elm$url$Url$Https,
+		A2($elm$core$String$dropLeft, 8, str)) : $elm$core$Maybe$Nothing);
+};
+var $elm$core$Basics$never = function (_v0) {
+	never:
+	while (true) {
+		var nvr = _v0.a;
+		var $temp$_v0 = nvr;
+		_v0 = $temp$_v0;
+		continue never;
+	}
+};
+var $elm$core$Task$Perform = function (a) {
+	return {$: 'Perform', a: a};
+};
+var $elm$core$Task$succeed = _Scheduler_succeed;
+var $elm$core$Task$init = $elm$core$Task$succeed(_Utils_Tuple0);
+var $elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							$elm$core$List$foldl,
+							fn,
+							acc,
+							$elm$core$List$reverse(r4)) : A4($elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var $elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4($elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var $elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						$elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
+var $elm$core$Task$andThen = _Scheduler_andThen;
+var $elm$core$Task$map = F2(
+	function (func, taskA) {
+		return A2(
+			$elm$core$Task$andThen,
+			function (a) {
+				return $elm$core$Task$succeed(
+					func(a));
+			},
+			taskA);
+	});
+var $elm$core$Task$map2 = F3(
+	function (func, taskA, taskB) {
+		return A2(
+			$elm$core$Task$andThen,
+			function (a) {
+				return A2(
+					$elm$core$Task$andThen,
+					function (b) {
+						return $elm$core$Task$succeed(
+							A2(func, a, b));
+					},
+					taskB);
+			},
+			taskA);
+	});
+var $elm$core$Task$sequence = function (tasks) {
+	return A3(
+		$elm$core$List$foldr,
+		$elm$core$Task$map2($elm$core$List$cons),
+		$elm$core$Task$succeed(_List_Nil),
+		tasks);
+};
+var $elm$core$Platform$sendToApp = _Platform_sendToApp;
+var $elm$core$Task$spawnCmd = F2(
+	function (router, _v0) {
+		var task = _v0.a;
+		return _Scheduler_spawn(
+			A2(
+				$elm$core$Task$andThen,
+				$elm$core$Platform$sendToApp(router),
+				task));
+	});
+var $elm$core$Task$onEffects = F3(
+	function (router, commands, state) {
+		return A2(
+			$elm$core$Task$map,
+			function (_v0) {
+				return _Utils_Tuple0;
+			},
+			$elm$core$Task$sequence(
+				A2(
+					$elm$core$List$map,
+					$elm$core$Task$spawnCmd(router),
+					commands)));
+	});
+var $elm$core$Task$onSelfMsg = F3(
+	function (_v0, _v1, _v2) {
+		return $elm$core$Task$succeed(_Utils_Tuple0);
+	});
+var $elm$core$Task$cmdMap = F2(
+	function (tagger, _v0) {
+		var task = _v0.a;
+		return $elm$core$Task$Perform(
+			A2($elm$core$Task$map, tagger, task));
+	});
+_Platform_effectManagers['Task'] = _Platform_createManager($elm$core$Task$init, $elm$core$Task$onEffects, $elm$core$Task$onSelfMsg, $elm$core$Task$cmdMap);
+var $elm$core$Task$command = _Platform_leaf('Task');
+var $elm$core$Task$perform = F2(
+	function (toMessage, task) {
+		return $elm$core$Task$command(
+			$elm$core$Task$Perform(
+				A2($elm$core$Task$map, toMessage, task)));
+	});
+var $elm$browser$Browser$application = _Browser_application;
+var $author$project$Main$Home = function (a) {
+	return {$: 'Home', a: a};
+};
+var $elm$core$Platform$Cmd$batch = _Platform_batch;
+var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$Page$Home$init = function (_v0) {
+	return _Utils_Tuple2(
+		{
+			courses: _List_fromArray(
+				['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model'])
+		},
+		$elm$core$Platform$Cmd$none);
+};
+var $author$project$Main$NotFound = {$: 'NotFound'};
+var $author$project$Page$Tutorial$DemoMsg = function (a) {
+	return {$: 'DemoMsg', a: a};
+};
+var $author$project$Page$Tutorial$contentNames = _List_fromArray(
+	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model']);
+var $elm_community$list_extra$List$Extra$findIndexHelp = F3(
+	function (index, predicate, list) {
+		findIndexHelp:
+		while (true) {
+			if (!list.b) {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (predicate(x)) {
+					return $elm$core$Maybe$Just(index);
+				} else {
+					var $temp$index = index + 1,
+						$temp$predicate = predicate,
+						$temp$list = xs;
+					index = $temp$index;
+					predicate = $temp$predicate;
+					list = $temp$list;
+					continue findIndexHelp;
+				}
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$findIndex = $elm_community$list_extra$List$Extra$findIndexHelp(0);
+var $elm_community$list_extra$List$Extra$elemIndex = function (x) {
+	return $elm_community$list_extra$List$Extra$findIndex(
+		$elm$core$Basics$eq(x));
+};
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Page$Tutorial$getContentIndex = function (name) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$elemIndex, name, $author$project$Page$Tutorial$contentNames));
+};
+var $author$project$Demo$LogisticRegression$emptyLogisticRegressionModel = {loss: _List_Nil, w: _List_Nil, x: _List_Nil, y: _List_Nil};
+var $gicentre$elm_vegalite$VegaLite$Circle = {$: 'Circle'};
+var $gicentre$elm_vegalite$VegaLite$VLMark = {$: 'VLMark'};
+var $gicentre$elm_vegalite$VegaLite$markLabel = function (m) {
+	switch (m.$) {
+		case 'Area':
+			return 'area';
+		case 'Bar':
+			return 'bar';
+		case 'Boxplot':
+			return 'boxplot';
+		case 'Circle':
+			return 'circle';
+		case 'Errorband':
+			return 'errorband';
+		case 'Errorbar':
+			return 'errorbar';
+		case 'Image':
+			return 'image';
+		case 'Line':
+			return 'line';
+		case 'Geoshape':
+			return 'geoshape';
+		case 'Point':
+			return 'point';
+		case 'Rect':
+			return 'rect';
+		case 'Rule':
+			return 'rule';
+		case 'Square':
+			return 'square';
+		case 'Text':
+			return 'text';
+		case 'Tick':
+			return 'tick';
+		default:
+			return 'trail';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$TTNone = {$: 'TTNone'};
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $gicentre$elm_vegalite$VegaLite$colorGradientSpec = function (gr) {
+	if (gr.$ === 'GrLinear') {
+		return $elm$json$Json$Encode$string('linear');
+	} else {
+		return $elm$json$Json$Encode$string('radial');
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$cursorLabel = function (cur) {
+	switch (cur.$) {
+		case 'CAuto':
+			return 'auto';
+		case 'CDefault':
+			return 'default';
+		case 'CNone':
+			return 'none';
+		case 'CContextMenu':
+			return 'context-menu';
+		case 'CHelp':
+			return 'help';
+		case 'CPointer':
+			return 'pointer';
+		case 'CProgress':
+			return 'progress';
+		case 'CWait':
+			return 'wait';
+		case 'CCell':
+			return 'cell';
+		case 'CCrosshair':
+			return 'crosshair';
+		case 'CText':
+			return 'text';
+		case 'CVerticalText':
+			return 'vertical-text';
+		case 'CAlias':
+			return 'alias';
+		case 'CCopy':
+			return 'copy';
+		case 'CMove':
+			return 'move';
+		case 'CNoDrop':
+			return 'no-drop';
+		case 'CNotAllowed':
+			return 'not-allowed';
+		case 'CAllScroll':
+			return 'all-scroll';
+		case 'CColResize':
+			return 'col-resize';
+		case 'CRowResize':
+			return 'row-resize';
+		case 'CNResize':
+			return 'n-resize';
+		case 'CEResize':
+			return 'e-resize';
+		case 'CSResize':
+			return 's-resize';
+		case 'CWResize':
+			return 'w-resize';
+		case 'CNEResize':
+			return 'ne-resize';
+		case 'CNWResize':
+			return 'nw-resize';
+		case 'CSEResize':
+			return 'se-resize';
+		case 'CSWResize':
+			return 'sw-resize';
+		case 'CEWResize':
+			return 'ew-resize';
+		case 'CNSResize':
+			return 'ns-resize';
+		case 'CNESWResize':
+			return 'nesw-resize';
+		case 'CNWSEResize':
+			return 'nwse-resize';
+		case 'CZoomIn':
+			return 'zoom-in';
+		case 'CZoomOut':
+			return 'zoom-out';
+		case 'CGrab':
+			return 'grab';
+		default:
+			return 'grabbing';
+	}
+};
+var $elm$json$Json$Encode$float = _Json_wrap;
+var $gicentre$elm_vegalite$VegaLite$extentSpec = function (ext) {
+	switch (ext.$) {
+		case 'ExCI':
+			return $elm$json$Json$Encode$string('ci');
+		case 'ExStderr':
+			return $elm$json$Json$Encode$string('stderr');
+		case 'ExStdev':
+			return $elm$json$Json$Encode$string('stdev');
+		case 'ExIqr':
+			return $elm$json$Json$Encode$string('iqr');
+		case 'ExRange':
+			return $elm$json$Json$Encode$string('min-max');
+		default:
+			var sc = ext.a;
+			return $elm$json$Json$Encode$float(sc);
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$fontWeightSpec = function (w) {
+	switch (w.$) {
+		case 'Normal':
+			return $elm$json$Json$Encode$string('normal');
+		case 'Bold':
+			return $elm$json$Json$Encode$string('bold');
+		case 'Bolder':
+			return $elm$json$Json$Encode$string('bolder');
+		case 'Lighter':
+			return $elm$json$Json$Encode$string('lighter');
+		case 'W100':
+			return $elm$json$Json$Encode$float(100);
+		case 'W200':
+			return $elm$json$Json$Encode$float(200);
+		case 'W300':
+			return $elm$json$Json$Encode$float(300);
+		case 'W400':
+			return $elm$json$Json$Encode$float(400);
+		case 'W500':
+			return $elm$json$Json$Encode$float(500);
+		case 'W600':
+			return $elm$json$Json$Encode$float(600);
+		case 'W700':
+			return $elm$json$Json$Encode$float(700);
+		case 'W800':
+			return $elm$json$Json$Encode$float(800);
+		default:
+			return $elm$json$Json$Encode$float(900);
+	}
+};
+var $elm$json$Json$Encode$list = F2(
+	function (func, entries) {
+		return _Json_wrap(
+			A3(
+				$elm$core$List$foldl,
+				_Json_addEntry(func),
+				_Json_emptyArray(_Utils_Tuple0),
+				entries));
+	});
+var $elm$json$Json$Encode$object = function (pairs) {
+	return _Json_wrap(
+		A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v0, obj) {
+					var k = _v0.a;
+					var v = _v0.b;
+					return A3(_Json_addField, k, v, obj);
+				}),
+			_Json_emptyObject(_Utils_Tuple0),
+			pairs));
+};
+var $gicentre$elm_vegalite$VegaLite$stopSpec = function (_v0) {
+	var x = _v0.a;
+	var c = _v0.b;
+	return $elm$json$Json$Encode$object(
+		_List_fromArray(
+			[
+				_Utils_Tuple2(
+				'offset',
+				$elm$json$Json$Encode$float(x)),
+				_Utils_Tuple2(
+				'color',
+				$elm$json$Json$Encode$string(c))
+			]));
+};
+var $gicentre$elm_vegalite$VegaLite$gradientProperty = function (gp) {
+	switch (gp.$) {
+		case 'GrX1':
+			var x = gp.a;
+			return _Utils_Tuple2(
+				'x1',
+				$elm$json$Json$Encode$float(x));
+		case 'GrY1':
+			var x = gp.a;
+			return _Utils_Tuple2(
+				'y1',
+				$elm$json$Json$Encode$float(x));
+		case 'GrX2':
+			var x = gp.a;
+			return _Utils_Tuple2(
+				'x2',
+				$elm$json$Json$Encode$float(x));
+		case 'GrY2':
+			var x = gp.a;
+			return _Utils_Tuple2(
+				'y2',
+				$elm$json$Json$Encode$float(x));
+		case 'GrR1':
+			var x = gp.a;
+			return _Utils_Tuple2(
+				'r1',
+				$elm$json$Json$Encode$float(x));
+		case 'GrR2':
+			var x = gp.a;
+			return _Utils_Tuple2(
+				'r2',
+				$elm$json$Json$Encode$float(x));
+		default:
+			var grs = gp.a;
+			return _Utils_Tuple2(
+				'stops',
+				A2($elm$json$Json$Encode$list, $gicentre$elm_vegalite$VegaLite$stopSpec, grs));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$hAlignLabel = function (al) {
+	switch (al.$) {
+		case 'AlignLeft':
+			return 'left';
+		case 'AlignCenter':
+			return 'center';
+		default:
+			return 'right';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$markInterpolationLabel = function (interp) {
+	switch (interp.$) {
+		case 'Linear':
+			return 'linear';
+		case 'LinearClosed':
+			return 'linear-closed';
+		case 'Stepwise':
+			return 'step';
+		case 'StepBefore':
+			return 'step-before';
+		case 'StepAfter':
+			return 'step-after';
+		case 'Basis':
+			return 'basis';
+		case 'BasisOpen':
+			return 'basis-open';
+		case 'BasisClosed':
+			return 'basis-closed';
+		case 'Cardinal':
+			return 'cardinal';
+		case 'CardinalOpen':
+			return 'cardinal-open';
+		case 'CardinalClosed':
+			return 'cardinal-closed';
+		case 'Bundle':
+			return 'bundle';
+		default:
+			return 'monotone';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$markOrientationLabel = function (orient) {
+	if (orient.$ === 'MOHorizontal') {
+		return 'horizontal';
+	} else {
+		return 'vertical';
+	}
+};
+var $elm$json$Json$Encode$null = _Json_encodeNull;
+var $gicentre$elm_vegalite$VegaLite$strokeCapLabel = function (cap) {
+	switch (cap.$) {
+		case 'CButt':
+			return 'butt';
+		case 'CRound':
+			return 'round';
+		default:
+			return 'square';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$strokeJoinLabel = function (jn) {
+	switch (jn.$) {
+		case 'JMiter':
+			return 'miter';
+		case 'JRound':
+			return 'round';
+		default:
+			return 'bevel';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$symbolLabel = function (sym) {
+	switch (sym.$) {
+		case 'SymCircle':
+			return 'circle';
+		case 'SymSquare':
+			return 'square';
+		case 'SymCross':
+			return 'cross';
+		case 'SymDiamond':
+			return 'diamond';
+		case 'SymTriangleUp':
+			return 'triangle-up';
+		case 'SymTriangleDown':
+			return 'triangle-down';
+		case 'SymTriangleLeft':
+			return 'triangle-left';
+		case 'SymTriangleRight':
+			return 'triangle-right';
+		case 'SymTriangle':
+			return 'triangle';
+		case 'SymStroke':
+			return 'stroke';
+		case 'SymArrow':
+			return 'arrow';
+		case 'SymWedge':
+			return 'wedge';
+		default:
+			var svgPath = sym.a;
+			return svgPath;
+	}
+};
+var $elm$core$String$trim = _String_trim;
+var $gicentre$elm_vegalite$VegaLite$ttContentLabel = function (ttContent) {
+	switch (ttContent.$) {
+		case 'TTEncoding':
+			return 'encoding';
+		case 'TTData':
+			return 'data';
+		default:
+			return 'null';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$vAlignLabel = function (al) {
+	switch (al.$) {
+		case 'AlignTop':
+			return 'top';
+		case 'AlignMiddle':
+			return 'middle';
+		default:
+			return 'bottom';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$lineMarkerSpec = function (pm) {
+	if (pm.$ === 'LMNone') {
+		return $elm$json$Json$Encode$bool(false);
+	} else {
+		var mps = pm.a;
+		return $elm$json$Json$Encode$object(
+			A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, mps));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$markProperty = function (mProp) {
+	switch (mProp.$) {
+		case 'MFilled':
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'filled',
+				$elm$json$Json$Encode$bool(b));
+		case 'MClip':
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'clip',
+				$elm$json$Json$Encode$bool(b));
+		case 'MColor':
+			var col = mProp.a;
+			return _Utils_Tuple2(
+				'color',
+				$elm$json$Json$Encode$string(col));
+		case 'MCornerRadius':
+			var r = mProp.a;
+			return _Utils_Tuple2(
+				'cornerRadius',
+				$elm$json$Json$Encode$float(r));
+		case 'MCornerRadiusBL':
+			var r = mProp.a;
+			return _Utils_Tuple2(
+				'cornerRadiusBottomLeft',
+				$elm$json$Json$Encode$float(r));
+		case 'MCornerRadiusBR':
+			var r = mProp.a;
+			return _Utils_Tuple2(
+				'cornerRadiusBottomRight',
+				$elm$json$Json$Encode$float(r));
+		case 'MCornerRadiusTL':
+			var r = mProp.a;
+			return _Utils_Tuple2(
+				'cornerRadiusTopLeft',
+				$elm$json$Json$Encode$float(r));
+		case 'MCornerRadiusTR':
+			var r = mProp.a;
+			return _Utils_Tuple2(
+				'cornerRadiusTopRight',
+				$elm$json$Json$Encode$float(r));
+		case 'MCursor':
+			var cur = mProp.a;
+			return _Utils_Tuple2(
+				'cursor',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$cursorLabel(cur)));
+		case 'MExtent':
+			var ext = mProp.a;
+			return _Utils_Tuple2(
+				'extent',
+				$gicentre$elm_vegalite$VegaLite$extentSpec(ext));
+		case 'MHRef':
+			var s = mProp.a;
+			return _Utils_Tuple2(
+				'href',
+				$elm$json$Json$Encode$string(s));
+		case 'MRemoveInvalid':
+			var b = mProp.a;
+			return b ? _Utils_Tuple2(
+				'invalid',
+				$elm$json$Json$Encode$string('filter')) : _Utils_Tuple2('invalid', $elm$json$Json$Encode$null);
+		case 'MFill':
+			var col = mProp.a;
+			return ($elm$core$String$trim(col) === '') ? _Utils_Tuple2('fill', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'fill',
+				$elm$json$Json$Encode$string(col));
+		case 'MFillGradient':
+			var cGrad = mProp.a;
+			var props = mProp.b;
+			return _Utils_Tuple2(
+				'fill',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'gradient',
+							$gicentre$elm_vegalite$VegaLite$colorGradientSpec(cGrad)),
+						A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$gradientProperty, props))));
+		case 'MColorGradient':
+			var cGrad = mProp.a;
+			var props = mProp.b;
+			return _Utils_Tuple2(
+				'color',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'gradient',
+							$gicentre$elm_vegalite$VegaLite$colorGradientSpec(cGrad)),
+						A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$gradientProperty, props))));
+		case 'MStrokeGradient':
+			var cGrad = mProp.a;
+			var props = mProp.b;
+			return _Utils_Tuple2(
+				'stroke',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'gradient',
+							$gicentre$elm_vegalite$VegaLite$colorGradientSpec(cGrad)),
+						A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$gradientProperty, props))));
+		case 'MStroke':
+			var col = mProp.a;
+			return ($elm$core$String$trim(col) === '') ? _Utils_Tuple2('stroke', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'stroke',
+				$elm$json$Json$Encode$string(col));
+		case 'MStrokeCap':
+			var sc = mProp.a;
+			return _Utils_Tuple2(
+				'strokeCap',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$strokeCapLabel(sc)));
+		case 'MStrokeJoin':
+			var sj = mProp.a;
+			return _Utils_Tuple2(
+				'strokeJoin',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$strokeJoinLabel(sj)));
+		case 'MStrokeMiterLimit':
+			var ml = mProp.a;
+			return _Utils_Tuple2(
+				'strokeMiterLimit',
+				$elm$json$Json$Encode$float(ml));
+		case 'MOpacity':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'opacity',
+				$elm$json$Json$Encode$float(x));
+		case 'MFillOpacity':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'fillOpacity',
+				$elm$json$Json$Encode$float(x));
+		case 'MStrokeOpacity':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'strokeOpacity',
+				$elm$json$Json$Encode$float(x));
+		case 'MStrokeWidth':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'strokeWidth',
+				$elm$json$Json$Encode$float(x));
+		case 'MStrokeDash':
+			var xs = mProp.a;
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'strokeDash',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+		case 'MStrokeDashOffset':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'strokeDashOffset',
+				$elm$json$Json$Encode$float(x));
+		case 'MStyle':
+			var styles = mProp.a;
+			return _Utils_Tuple2(
+				'style',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styles));
+		case 'MInterpolate':
+			var interp = mProp.a;
+			return _Utils_Tuple2(
+				'interpolate',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$markInterpolationLabel(interp)));
+		case 'MTension':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'tension',
+				$elm$json$Json$Encode$float(x));
+		case 'MOrient':
+			var orient = mProp.a;
+			return _Utils_Tuple2(
+				'orient',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$markOrientationLabel(orient)));
+		case 'MShape':
+			var sym = mProp.a;
+			return _Utils_Tuple2(
+				'shape',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$symbolLabel(sym)));
+		case 'MSize':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'size',
+				$elm$json$Json$Encode$float(x));
+		case 'MAngle':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'angle',
+				$elm$json$Json$Encode$float(x));
+		case 'MAlign':
+			var al = mProp.a;
+			return _Utils_Tuple2(
+				'align',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$hAlignLabel(al)));
+		case 'MBaseline':
+			var va = mProp.a;
+			return _Utils_Tuple2(
+				'baseline',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$vAlignLabel(va)));
+		case 'MdX':
+			var dx = mProp.a;
+			return _Utils_Tuple2(
+				'dx',
+				$elm$json$Json$Encode$float(dx));
+		case 'MdY':
+			var dy = mProp.a;
+			return _Utils_Tuple2(
+				'dy',
+				$elm$json$Json$Encode$float(dy));
+		case 'MFont':
+			var fnt = mProp.a;
+			return _Utils_Tuple2(
+				'font',
+				$elm$json$Json$Encode$string(fnt));
+		case 'MFontSize':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'fontSize',
+				$elm$json$Json$Encode$float(x));
+		case 'MFontStyle':
+			var fSty = mProp.a;
+			return _Utils_Tuple2(
+				'fontStyle',
+				$elm$json$Json$Encode$string(fSty));
+		case 'MFontWeight':
+			var w = mProp.a;
+			return _Utils_Tuple2(
+				'fontWeight',
+				$gicentre$elm_vegalite$VegaLite$fontWeightSpec(w));
+		case 'MRadius':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'radius',
+				$elm$json$Json$Encode$float(x));
+		case 'MText':
+			var txt = mProp.a;
+			return _Utils_Tuple2(
+				'text',
+				$elm$json$Json$Encode$string(txt));
+		case 'MTheta':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'theta',
+				$elm$json$Json$Encode$float(x));
+		case 'MBinSpacing':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'binSpacing',
+				$elm$json$Json$Encode$float(x));
+		case 'MContinuousBandSize':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'continuousBandSize',
+				$elm$json$Json$Encode$float(x));
+		case 'MDiscreteBandSize':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'discreteBandSize',
+				$elm$json$Json$Encode$float(x));
+		case 'MShortTimeLabels':
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'shortTimeLabels',
+				$elm$json$Json$Encode$bool(b));
+		case 'MBandSize':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'bandSize',
+				$elm$json$Json$Encode$float(x));
+		case 'MThickness':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'thickness',
+				$elm$json$Json$Encode$float(x));
+		case 'MRule':
+			var props = mProp.a;
+			return _Utils_Tuple2(
+				'rule',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, props)));
+		case 'MBorders':
+			var props = mProp.a;
+			return _Utils_Tuple2(
+				'borders',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, props)));
+		case 'MMedian':
+			var props = mProp.a;
+			return _Utils_Tuple2(
+				'median',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, props)));
+		case 'MBox':
+			var props = mProp.a;
+			return _Utils_Tuple2(
+				'box',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, props)));
+		case 'MOutliers':
+			var props = mProp.a;
+			return _Utils_Tuple2(
+				'outliers',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, props)));
+		case 'MTicks':
+			var props = mProp.a;
+			return _Utils_Tuple2(
+				'ticks',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, props)));
+		case 'MTooltip':
+			var ttContent = mProp.a;
+			return _Utils_eq(ttContent, $gicentre$elm_vegalite$VegaLite$TTNone) ? _Utils_Tuple2('tooltip', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'tooltip',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'content',
+							$elm$json$Json$Encode$string(
+								$gicentre$elm_vegalite$VegaLite$ttContentLabel(ttContent)))
+						])));
+		case 'MPoint':
+			var pm = mProp.a;
+			return _Utils_Tuple2(
+				'point',
+				$gicentre$elm_vegalite$VegaLite$pointMarkerSpec(pm));
+		case 'MLine':
+			var lm = mProp.a;
+			return _Utils_Tuple2(
+				'line',
+				$gicentre$elm_vegalite$VegaLite$lineMarkerSpec(lm));
+		case 'MWidth':
+			var w = mProp.a;
+			return _Utils_Tuple2(
+				'width',
+				$elm$json$Json$Encode$float(w));
+		case 'MHeight':
+			var h = mProp.a;
+			return _Utils_Tuple2(
+				'height',
+				$elm$json$Json$Encode$float(h));
+		case 'MX':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'x',
+				$elm$json$Json$Encode$float(x));
+		case 'MY':
+			var y = mProp.a;
+			return _Utils_Tuple2(
+				'y',
+				$elm$json$Json$Encode$float(y));
+		case 'MX2':
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'x2',
+				$elm$json$Json$Encode$float(x));
+		case 'MY2':
+			var y = mProp.a;
+			return _Utils_Tuple2(
+				'y2',
+				$elm$json$Json$Encode$float(y));
+		case 'MOrder':
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'order',
+				$elm$json$Json$Encode$bool(b));
+		case 'MXOffset':
+			var o = mProp.a;
+			return _Utils_Tuple2(
+				'xOffset',
+				$elm$json$Json$Encode$float(o));
+		case 'MX2Offset':
+			var o = mProp.a;
+			return _Utils_Tuple2(
+				'x2Offset',
+				$elm$json$Json$Encode$float(o));
+		case 'MYOffset':
+			var o = mProp.a;
+			return _Utils_Tuple2(
+				'yOffset',
+				$elm$json$Json$Encode$float(o));
+		case 'MY2Offset':
+			var o = mProp.a;
+			return _Utils_Tuple2(
+				'y2Offset',
+				$elm$json$Json$Encode$float(o));
+		default:
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'aspect',
+				$elm$json$Json$Encode$bool(b));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$pointMarkerSpec = function (pm) {
+	switch (pm.$) {
+		case 'PMTransparent':
+			return $elm$json$Json$Encode$string('transparent');
+		case 'PMNone':
+			return $elm$json$Json$Encode$bool(false);
+		default:
+			var mps = pm.a;
+			return _Utils_eq(mps, _List_Nil) ? $elm$json$Json$Encode$bool(true) : $elm$json$Json$Encode$object(
+				A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, mps));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$mark = F2(
+	function (m, mProps) {
+		if (!mProps.b) {
+			return _Utils_Tuple2(
+				$gicentre$elm_vegalite$VegaLite$VLMark,
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$markLabel(m)));
+		} else {
+			return _Utils_Tuple2(
+				$gicentre$elm_vegalite$VegaLite$VLMark,
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'type',
+							$elm$json$Json$Encode$string(
+								$gicentre$elm_vegalite$VegaLite$markLabel(m))),
+						A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$markProperty, mProps))));
+		}
+	});
+var $gicentre$elm_vegalite$VegaLite$circle = $gicentre$elm_vegalite$VegaLite$mark($gicentre$elm_vegalite$VegaLite$Circle);
+var $gicentre$elm_vegalite$VegaLite$VLData = {$: 'VLData'};
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
+var $elm$core$List$concatMap = F2(
+	function (f, list) {
+		return $elm$core$List$concat(
+			A2($elm$core$List$map, f, list));
+	});
+var $gicentre$elm_vegalite$VegaLite$dataTypeSpec = function (dType) {
+	switch (dType.$) {
+		case 'FoNum':
+			return $elm$json$Json$Encode$string('number');
+		case 'FoBoo':
+			return $elm$json$Json$Encode$string('boolean');
+		case 'FoDate':
+			var dateFmt = dType.a;
+			return (dateFmt === '') ? $elm$json$Json$Encode$string('date') : $elm$json$Json$Encode$string('date:\'' + (dateFmt + '\''));
+		default:
+			var dateFmt = dType.a;
+			return (dateFmt === '') ? $elm$json$Json$Encode$string('utc') : $elm$json$Json$Encode$string('utc:\'' + (dateFmt + '\''));
+	}
+};
+var $elm$core$String$cons = _String_cons;
+var $elm$core$String$fromChar = function (_char) {
+	return A2($elm$core$String$cons, _char, '');
+};
+var $gicentre$elm_vegalite$VegaLite$formatProperty = function (fmt) {
+	switch (fmt.$) {
+		case 'JSON':
+			var propertyName = fmt.a;
+			return ($elm$core$String$trim(propertyName) === '') ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('json'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('json')),
+					_Utils_Tuple2(
+					'property',
+					$elm$json$Json$Encode$string(propertyName))
+				]);
+		case 'CSV':
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('csv'))
+				]);
+		case 'TSV':
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('tsv'))
+				]);
+		case 'DSV':
+			var delim = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('dsv')),
+					_Utils_Tuple2(
+					'delimiter',
+					$elm$json$Json$Encode$string(
+						$elm$core$String$fromChar(delim)))
+				]);
+		case 'Arrow':
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('arrow'))
+				]);
+		case 'TopojsonFeature':
+			var objectSet = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('topojson')),
+					_Utils_Tuple2(
+					'feature',
+					$elm$json$Json$Encode$string(objectSet))
+				]);
+		case 'TopojsonMesh':
+			var objectSet = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('topojson')),
+					_Utils_Tuple2(
+					'mesh',
+					$elm$json$Json$Encode$string(objectSet))
+				]);
+		default:
+			var fmts = fmt.a;
+			return _Utils_eq(fmts, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2('parse', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'parse',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v1) {
+								var field = _v1.a;
+								var fFormat = _v1.b;
+								return _Utils_Tuple2(
+									field,
+									$gicentre$elm_vegalite$VegaLite$dataTypeSpec(fFormat));
+							},
+							fmts)))
+				]);
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
+var $gicentre$elm_vegalite$VegaLite$dataFromRows = F2(
+	function (fmts, rows) {
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			$gicentre$elm_vegalite$VegaLite$VLData,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'values',
+						$gicentre$elm_vegalite$VegaLite$toList(rows))
+					]))) : _Utils_Tuple2(
+			$gicentre$elm_vegalite$VegaLite$VLData,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'values',
+						$gicentre$elm_vegalite$VegaLite$toList(rows)),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var $gicentre$elm_vegalite$VegaLite$VLEncoding = {$: 'VLEncoding'};
+var $gicentre$elm_vegalite$VegaLite$encoding = function (channels) {
+	return _Utils_Tuple2(
+		$gicentre$elm_vegalite$VegaLite$VLEncoding,
+		$elm$json$Json$Encode$object(channels));
+};
+var $gicentre$elm_vegalite$VegaLite$vlPropertyLabel = function (spec) {
+	switch (spec.$) {
+		case 'VLName':
+			return 'name';
+		case 'VLDescription':
+			return 'description';
+		case 'VLTitle':
+			return 'title';
+		case 'VLWidth':
+			return 'width';
+		case 'VLWidthStep':
+			return 'width';
+		case 'VLHeight':
+			return 'height';
+		case 'VLHeightStep':
+			return 'height';
+		case 'VLPadding':
+			return 'padding';
+		case 'VLAutosize':
+			return 'autosize';
+		case 'VLBackground':
+			return 'background';
+		case 'VLData':
+			return 'data';
+		case 'VLDatasets':
+			return 'datasets';
+		case 'VLProjection':
+			return 'projection';
+		case 'VLMark':
+			return 'mark';
+		case 'VLTransform':
+			return 'transform';
+		case 'VLEncoding':
+			return 'encoding';
+		case 'VLConfig':
+			return 'config';
+		case 'VLSelection':
+			return 'selection';
+		case 'VLConcat':
+			return 'concat';
+		case 'VLColumns':
+			return 'columns';
+		case 'VLHConcat':
+			return 'hconcat';
+		case 'VLVConcat':
+			return 'vconcat';
+		case 'VLLayer':
+			return 'layer';
+		case 'VLRepeat':
+			return 'repeat';
+		case 'VLFacet':
+			return 'facet';
+		case 'VLSpacing':
+			return 'spacing';
+		case 'VLAlign':
+			return 'align';
+		case 'VLBounds':
+			return 'bounds';
+		case 'VLCenter':
+			return 'center';
+		case 'VLSpec':
+			return 'spec';
+		case 'VLResolve':
+			return 'resolve';
+		default:
+			return 'view';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$toVegaLite = function (spec) {
+	return $elm$json$Json$Encode$object(
+		A2(
+			$elm$core$List$cons,
+			_Utils_Tuple2(
+				'$schema',
+				$elm$json$Json$Encode$string('https://vega.github.io/schema/vega-lite/v4.json')),
+			A2(
+				$elm$core$List$map,
+				function (_v0) {
+					var s = _v0.a;
+					var v = _v0.b;
+					return _Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$vlPropertyLabel(s),
+						v);
+				},
+				spec)));
+};
+var $author$project$Demo$LogisticRegression$emptySpec = function () {
+	var encoding = $gicentre$elm_vegalite$VegaLite$encoding;
+	var data = A2($gicentre$elm_vegalite$VegaLite$dataFromRows, _List_Nil, _List_Nil);
+	return $gicentre$elm_vegalite$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				encoding(_List_Nil),
+				$gicentre$elm_vegalite$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$Demo$LogisticRegression$emptyModel = {demoId: '', demoModel: $author$project$Demo$LogisticRegression$emptyLogisticRegressionModel, demoSpecs: $author$project$Demo$LogisticRegression$emptySpec, serverError: $elm$core$Maybe$Nothing};
+var $author$project$Demo$LogisticRegression$LoggedIn = function (a) {
+	return {$: 'LoggedIn', a: a};
+};
+var $elm$http$Http$BadStatus_ = F2(
+	function (a, b) {
+		return {$: 'BadStatus_', a: a, b: b};
+	});
+var $elm$http$Http$BadUrl_ = function (a) {
+	return {$: 'BadUrl_', a: a};
+};
+var $elm$http$Http$GoodStatus_ = F2(
+	function (a, b) {
+		return {$: 'GoodStatus_', a: a, b: b};
+	});
+var $elm$http$Http$NetworkError_ = {$: 'NetworkError_'};
+var $elm$http$Http$Receiving = function (a) {
+	return {$: 'Receiving', a: a};
+};
+var $elm$http$Http$Sending = function (a) {
+	return {$: 'Sending', a: a};
+};
+var $elm$http$Http$Timeout_ = {$: 'Timeout_'};
+var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
+var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
+var $elm$core$Maybe$isJust = function (maybe) {
+	if (maybe.$ === 'Just') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
+var $elm$core$Basics$compare = _Utils_compare;
+var $elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
+				switch (_v1.$) {
+					case 'LT':
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 'EQ':
+						return $elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
+	});
+var $elm$core$Dict$Black = {$: 'Black'};
+var $elm$core$Dict$RBNode_elm_builtin = F5(
+	function (a, b, c, d, e) {
+		return {$: 'RBNode_elm_builtin', a: a, b: b, c: c, d: d, e: e};
+	});
+var $elm$core$Dict$Red = {$: 'Red'};
+var $elm$core$Dict$balance = F5(
+	function (color, key, value, left, right) {
+		if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Red')) {
+			var _v1 = right.a;
+			var rK = right.b;
+			var rV = right.c;
+			var rLeft = right.d;
+			var rRight = right.e;
+			if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
+				var _v3 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var lLeft = left.d;
+				var lRight = left.e;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Red,
+					key,
+					value,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					color,
+					rK,
+					rV,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, left, rLeft),
+					rRight);
+			}
+		} else {
+			if ((((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) && (left.d.$ === 'RBNode_elm_builtin')) && (left.d.a.$ === 'Red')) {
+				var _v5 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var _v6 = left.d;
+				var _v7 = _v6.a;
+				var llK = _v6.b;
+				var llV = _v6.c;
+				var llLeft = _v6.d;
+				var llRight = _v6.e;
+				var lRight = left.e;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Red,
+					lK,
+					lV,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, key, value, lRight, right));
+			} else {
+				return A5($elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
+			}
+		}
+	});
+var $elm$core$Dict$insertHelp = F3(
+	function (key, value, dict) {
+		if (dict.$ === 'RBEmpty_elm_builtin') {
+			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
+		} else {
+			var nColor = dict.a;
+			var nKey = dict.b;
+			var nValue = dict.c;
+			var nLeft = dict.d;
+			var nRight = dict.e;
+			var _v1 = A2($elm$core$Basics$compare, key, nKey);
+			switch (_v1.$) {
+				case 'LT':
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						A3($elm$core$Dict$insertHelp, key, value, nLeft),
+						nRight);
+				case 'EQ':
+					return A5($elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
+				default:
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						nLeft,
+						A3($elm$core$Dict$insertHelp, key, value, nRight));
+			}
+		}
+	});
+var $elm$core$Dict$insert = F3(
+	function (key, value, dict) {
+		var _v0 = A3($elm$core$Dict$insertHelp, key, value, dict);
+		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
+			var _v1 = _v0.a;
+			var k = _v0.b;
+			var v = _v0.c;
+			var l = _v0.d;
+			var r = _v0.e;
+			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
+		} else {
+			var x = _v0;
+			return x;
+		}
+	});
+var $elm$core$Dict$getMin = function (dict) {
+	getMin:
+	while (true) {
+		if ((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) {
+			var left = dict.d;
+			var $temp$dict = left;
+			dict = $temp$dict;
+			continue getMin;
+		} else {
+			return dict;
+		}
+	}
+};
+var $elm$core$Dict$moveRedLeft = function (dict) {
+	if (((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) && (dict.e.$ === 'RBNode_elm_builtin')) {
+		if ((dict.e.d.$ === 'RBNode_elm_builtin') && (dict.e.d.a.$ === 'Red')) {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _v1 = dict.d;
+			var lClr = _v1.a;
+			var lK = _v1.b;
+			var lV = _v1.c;
+			var lLeft = _v1.d;
+			var lRight = _v1.e;
+			var _v2 = dict.e;
+			var rClr = _v2.a;
+			var rK = _v2.b;
+			var rV = _v2.c;
+			var rLeft = _v2.d;
+			var _v3 = rLeft.a;
+			var rlK = rLeft.b;
+			var rlV = rLeft.c;
+			var rlL = rLeft.d;
+			var rlR = rLeft.e;
+			var rRight = _v2.e;
+			return A5(
+				$elm$core$Dict$RBNode_elm_builtin,
+				$elm$core$Dict$Red,
+				rlK,
+				rlV,
+				A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					rlL),
+				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rlR, rRight));
+		} else {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _v4 = dict.d;
+			var lClr = _v4.a;
+			var lK = _v4.b;
+			var lV = _v4.c;
+			var lLeft = _v4.d;
+			var lRight = _v4.e;
+			var _v5 = dict.e;
+			var rClr = _v5.a;
+			var rK = _v5.b;
+			var rV = _v5.c;
+			var rLeft = _v5.d;
+			var rRight = _v5.e;
+			if (clr.$ === 'Black') {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+			}
+		}
+	} else {
+		return dict;
+	}
+};
+var $elm$core$Dict$moveRedRight = function (dict) {
+	if (((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) && (dict.e.$ === 'RBNode_elm_builtin')) {
+		if ((dict.d.d.$ === 'RBNode_elm_builtin') && (dict.d.d.a.$ === 'Red')) {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _v1 = dict.d;
+			var lClr = _v1.a;
+			var lK = _v1.b;
+			var lV = _v1.c;
+			var _v2 = _v1.d;
+			var _v3 = _v2.a;
+			var llK = _v2.b;
+			var llV = _v2.c;
+			var llLeft = _v2.d;
+			var llRight = _v2.e;
+			var lRight = _v1.e;
+			var _v4 = dict.e;
+			var rClr = _v4.a;
+			var rK = _v4.b;
+			var rV = _v4.c;
+			var rLeft = _v4.d;
+			var rRight = _v4.e;
+			return A5(
+				$elm$core$Dict$RBNode_elm_builtin,
+				$elm$core$Dict$Red,
+				lK,
+				lV,
+				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
+				A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					lRight,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight)));
+		} else {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _v5 = dict.d;
+			var lClr = _v5.a;
+			var lK = _v5.b;
+			var lV = _v5.c;
+			var lLeft = _v5.d;
+			var lRight = _v5.e;
+			var _v6 = dict.e;
+			var rClr = _v6.a;
+			var rK = _v6.b;
+			var rV = _v6.c;
+			var rLeft = _v6.d;
+			var rRight = _v6.e;
+			if (clr.$ === 'Black') {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Black,
+					k,
+					v,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, rK, rV, rLeft, rRight));
+			}
+		}
+	} else {
+		return dict;
+	}
+};
+var $elm$core$Dict$removeHelpPrepEQGT = F7(
+	function (targetKey, dict, color, key, value, left, right) {
+		if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
+			var _v1 = left.a;
+			var lK = left.b;
+			var lV = left.c;
+			var lLeft = left.d;
+			var lRight = left.e;
+			return A5(
+				$elm$core$Dict$RBNode_elm_builtin,
+				color,
+				lK,
+				lV,
+				lLeft,
+				A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, lRight, right));
+		} else {
+			_v2$2:
+			while (true) {
+				if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Black')) {
+					if (right.d.$ === 'RBNode_elm_builtin') {
+						if (right.d.a.$ === 'Black') {
+							var _v3 = right.a;
+							var _v4 = right.d;
+							var _v5 = _v4.a;
+							return $elm$core$Dict$moveRedRight(dict);
+						} else {
+							break _v2$2;
+						}
+					} else {
+						var _v6 = right.a;
+						var _v7 = right.d;
+						return $elm$core$Dict$moveRedRight(dict);
+					}
+				} else {
+					break _v2$2;
+				}
+			}
+			return dict;
+		}
+	});
+var $elm$core$Dict$removeMin = function (dict) {
+	if ((dict.$ === 'RBNode_elm_builtin') && (dict.d.$ === 'RBNode_elm_builtin')) {
+		var color = dict.a;
+		var key = dict.b;
+		var value = dict.c;
+		var left = dict.d;
+		var lColor = left.a;
+		var lLeft = left.d;
+		var right = dict.e;
+		if (lColor.$ === 'Black') {
+			if ((lLeft.$ === 'RBNode_elm_builtin') && (lLeft.a.$ === 'Red')) {
+				var _v3 = lLeft.a;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					color,
+					key,
+					value,
+					$elm$core$Dict$removeMin(left),
+					right);
+			} else {
+				var _v4 = $elm$core$Dict$moveRedLeft(dict);
+				if (_v4.$ === 'RBNode_elm_builtin') {
+					var nColor = _v4.a;
+					var nKey = _v4.b;
+					var nValue = _v4.c;
+					var nLeft = _v4.d;
+					var nRight = _v4.e;
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						$elm$core$Dict$removeMin(nLeft),
+						nRight);
+				} else {
+					return $elm$core$Dict$RBEmpty_elm_builtin;
+				}
+			}
+		} else {
+			return A5(
+				$elm$core$Dict$RBNode_elm_builtin,
+				color,
+				key,
+				value,
+				$elm$core$Dict$removeMin(left),
+				right);
+		}
+	} else {
+		return $elm$core$Dict$RBEmpty_elm_builtin;
+	}
+};
+var $elm$core$Dict$removeHelp = F2(
+	function (targetKey, dict) {
+		if (dict.$ === 'RBEmpty_elm_builtin') {
+			return $elm$core$Dict$RBEmpty_elm_builtin;
+		} else {
+			var color = dict.a;
+			var key = dict.b;
+			var value = dict.c;
+			var left = dict.d;
+			var right = dict.e;
+			if (_Utils_cmp(targetKey, key) < 0) {
+				if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Black')) {
+					var _v4 = left.a;
+					var lLeft = left.d;
+					if ((lLeft.$ === 'RBNode_elm_builtin') && (lLeft.a.$ === 'Red')) {
+						var _v6 = lLeft.a;
+						return A5(
+							$elm$core$Dict$RBNode_elm_builtin,
+							color,
+							key,
+							value,
+							A2($elm$core$Dict$removeHelp, targetKey, left),
+							right);
+					} else {
+						var _v7 = $elm$core$Dict$moveRedLeft(dict);
+						if (_v7.$ === 'RBNode_elm_builtin') {
+							var nColor = _v7.a;
+							var nKey = _v7.b;
+							var nValue = _v7.c;
+							var nLeft = _v7.d;
+							var nRight = _v7.e;
+							return A5(
+								$elm$core$Dict$balance,
+								nColor,
+								nKey,
+								nValue,
+								A2($elm$core$Dict$removeHelp, targetKey, nLeft),
+								nRight);
+						} else {
+							return $elm$core$Dict$RBEmpty_elm_builtin;
+						}
+					}
+				} else {
+					return A5(
+						$elm$core$Dict$RBNode_elm_builtin,
+						color,
+						key,
+						value,
+						A2($elm$core$Dict$removeHelp, targetKey, left),
+						right);
+				}
+			} else {
+				return A2(
+					$elm$core$Dict$removeHelpEQGT,
+					targetKey,
+					A7($elm$core$Dict$removeHelpPrepEQGT, targetKey, dict, color, key, value, left, right));
+			}
+		}
+	});
+var $elm$core$Dict$removeHelpEQGT = F2(
+	function (targetKey, dict) {
+		if (dict.$ === 'RBNode_elm_builtin') {
+			var color = dict.a;
+			var key = dict.b;
+			var value = dict.c;
+			var left = dict.d;
+			var right = dict.e;
+			if (_Utils_eq(targetKey, key)) {
+				var _v1 = $elm$core$Dict$getMin(right);
+				if (_v1.$ === 'RBNode_elm_builtin') {
+					var minKey = _v1.b;
+					var minValue = _v1.c;
+					return A5(
+						$elm$core$Dict$balance,
+						color,
+						minKey,
+						minValue,
+						left,
+						$elm$core$Dict$removeMin(right));
+				} else {
+					return $elm$core$Dict$RBEmpty_elm_builtin;
+				}
+			} else {
+				return A5(
+					$elm$core$Dict$balance,
+					color,
+					key,
+					value,
+					left,
+					A2($elm$core$Dict$removeHelp, targetKey, right));
+			}
+		} else {
+			return $elm$core$Dict$RBEmpty_elm_builtin;
+		}
+	});
+var $elm$core$Dict$remove = F2(
+	function (key, dict) {
+		var _v0 = A2($elm$core$Dict$removeHelp, key, dict);
+		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
+			var _v1 = _v0.a;
+			var k = _v0.b;
+			var v = _v0.c;
+			var l = _v0.d;
+			var r = _v0.e;
+			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
+		} else {
+			var x = _v0;
+			return x;
+		}
+	});
+var $elm$core$Dict$update = F3(
+	function (targetKey, alter, dictionary) {
+		var _v0 = alter(
+			A2($elm$core$Dict$get, targetKey, dictionary));
+		if (_v0.$ === 'Just') {
+			var value = _v0.a;
+			return A3($elm$core$Dict$insert, targetKey, value, dictionary);
+		} else {
+			return A2($elm$core$Dict$remove, targetKey, dictionary);
+		}
+	});
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var $elm$http$Http$expectBytesResponse = F2(
+	function (toMsg, toResult) {
+		return A3(
+			_Http_expect,
+			'arraybuffer',
+			_Http_toDataView,
+			A2($elm$core$Basics$composeR, toResult, toMsg));
+	});
+var $elm$http$Http$BadBody = function (a) {
+	return {$: 'BadBody', a: a};
+};
+var $elm$http$Http$BadStatus = function (a) {
+	return {$: 'BadStatus', a: a};
+};
+var $elm$http$Http$BadUrl = function (a) {
+	return {$: 'BadUrl', a: a};
+};
+var $elm$http$Http$NetworkError = {$: 'NetworkError'};
+var $elm$http$Http$Timeout = {$: 'Timeout'};
+var $elm$core$Result$mapError = F2(
+	function (f, result) {
+		if (result.$ === 'Ok') {
+			var v = result.a;
+			return $elm$core$Result$Ok(v);
+		} else {
+			var e = result.a;
+			return $elm$core$Result$Err(
+				f(e));
+		}
+	});
+var $elm$http$Http$resolve = F2(
+	function (toResult, response) {
+		switch (response.$) {
+			case 'BadUrl_':
+				var url = response.a;
+				return $elm$core$Result$Err(
+					$elm$http$Http$BadUrl(url));
+			case 'Timeout_':
+				return $elm$core$Result$Err($elm$http$Http$Timeout);
+			case 'NetworkError_':
+				return $elm$core$Result$Err($elm$http$Http$NetworkError);
+			case 'BadStatus_':
+				var metadata = response.a;
+				return $elm$core$Result$Err(
+					$elm$http$Http$BadStatus(metadata.statusCode));
+			default:
+				var body = response.b;
+				return A2(
+					$elm$core$Result$mapError,
+					$elm$http$Http$BadBody,
+					toResult(body));
+		}
+	});
+var $elm$http$Http$expectWhatever = function (toMsg) {
+	return A2(
+		$elm$http$Http$expectBytesResponse,
+		toMsg,
+		$elm$http$Http$resolve(
+			function (_v0) {
+				return $elm$core$Result$Ok(_Utils_Tuple0);
+			}));
+};
+var $elm$http$Http$jsonBody = function (value) {
+	return A2(
+		_Http_pair,
+		'application/json',
+		A2($elm$json$Json$Encode$encode, 0, value));
+};
+var $elm$http$Http$Request = function (a) {
+	return {$: 'Request', a: a};
+};
+var $elm$http$Http$State = F2(
+	function (reqs, subs) {
+		return {reqs: reqs, subs: subs};
+	});
+var $elm$http$Http$init = $elm$core$Task$succeed(
+	A2($elm$http$Http$State, $elm$core$Dict$empty, _List_Nil));
+var $elm$core$Process$kill = _Scheduler_kill;
+var $elm$core$Process$spawn = _Scheduler_spawn;
+var $elm$http$Http$updateReqs = F3(
+	function (router, cmds, reqs) {
+		updateReqs:
+		while (true) {
+			if (!cmds.b) {
+				return $elm$core$Task$succeed(reqs);
+			} else {
+				var cmd = cmds.a;
+				var otherCmds = cmds.b;
+				if (cmd.$ === 'Cancel') {
+					var tracker = cmd.a;
+					var _v2 = A2($elm$core$Dict$get, tracker, reqs);
+					if (_v2.$ === 'Nothing') {
+						var $temp$router = router,
+							$temp$cmds = otherCmds,
+							$temp$reqs = reqs;
+						router = $temp$router;
+						cmds = $temp$cmds;
+						reqs = $temp$reqs;
+						continue updateReqs;
+					} else {
+						var pid = _v2.a;
+						return A2(
+							$elm$core$Task$andThen,
+							function (_v3) {
+								return A3(
+									$elm$http$Http$updateReqs,
+									router,
+									otherCmds,
+									A2($elm$core$Dict$remove, tracker, reqs));
+							},
+							$elm$core$Process$kill(pid));
+					}
+				} else {
+					var req = cmd.a;
+					return A2(
+						$elm$core$Task$andThen,
+						function (pid) {
+							var _v4 = req.tracker;
+							if (_v4.$ === 'Nothing') {
+								return A3($elm$http$Http$updateReqs, router, otherCmds, reqs);
+							} else {
+								var tracker = _v4.a;
+								return A3(
+									$elm$http$Http$updateReqs,
+									router,
+									otherCmds,
+									A3($elm$core$Dict$insert, tracker, pid, reqs));
+							}
+						},
+						$elm$core$Process$spawn(
+							A3(
+								_Http_toTask,
+								router,
+								$elm$core$Platform$sendToApp(router),
+								req)));
+				}
+			}
+		}
+	});
+var $elm$http$Http$onEffects = F4(
+	function (router, cmds, subs, state) {
+		return A2(
+			$elm$core$Task$andThen,
+			function (reqs) {
+				return $elm$core$Task$succeed(
+					A2($elm$http$Http$State, reqs, subs));
+			},
+			A3($elm$http$Http$updateReqs, router, cmds, state.reqs));
+	});
+var $elm$core$List$maybeCons = F3(
+	function (f, mx, xs) {
+		var _v0 = f(mx);
+		if (_v0.$ === 'Just') {
+			var x = _v0.a;
+			return A2($elm$core$List$cons, x, xs);
+		} else {
+			return xs;
+		}
+	});
+var $elm$core$List$filterMap = F2(
+	function (f, xs) {
+		return A3(
+			$elm$core$List$foldr,
+			$elm$core$List$maybeCons(f),
+			_List_Nil,
+			xs);
+	});
+var $elm$http$Http$maybeSend = F4(
+	function (router, desiredTracker, progress, _v0) {
+		var actualTracker = _v0.a;
+		var toMsg = _v0.b;
+		return _Utils_eq(desiredTracker, actualTracker) ? $elm$core$Maybe$Just(
+			A2(
+				$elm$core$Platform$sendToApp,
+				router,
+				toMsg(progress))) : $elm$core$Maybe$Nothing;
+	});
+var $elm$http$Http$onSelfMsg = F3(
+	function (router, _v0, state) {
+		var tracker = _v0.a;
+		var progress = _v0.b;
+		return A2(
+			$elm$core$Task$andThen,
+			function (_v1) {
+				return $elm$core$Task$succeed(state);
+			},
+			$elm$core$Task$sequence(
+				A2(
+					$elm$core$List$filterMap,
+					A3($elm$http$Http$maybeSend, router, tracker, progress),
+					state.subs)));
+	});
+var $elm$http$Http$Cancel = function (a) {
+	return {$: 'Cancel', a: a};
+};
+var $elm$http$Http$cmdMap = F2(
+	function (func, cmd) {
+		if (cmd.$ === 'Cancel') {
+			var tracker = cmd.a;
+			return $elm$http$Http$Cancel(tracker);
+		} else {
+			var r = cmd.a;
+			return $elm$http$Http$Request(
+				{
+					allowCookiesFromOtherDomains: r.allowCookiesFromOtherDomains,
+					body: r.body,
+					expect: A2(_Http_mapExpect, func, r.expect),
+					headers: r.headers,
+					method: r.method,
+					timeout: r.timeout,
+					tracker: r.tracker,
+					url: r.url
+				});
+		}
+	});
+var $elm$http$Http$MySub = F2(
+	function (a, b) {
+		return {$: 'MySub', a: a, b: b};
+	});
+var $elm$http$Http$subMap = F2(
+	function (func, _v0) {
+		var tracker = _v0.a;
+		var toMsg = _v0.b;
+		return A2(
+			$elm$http$Http$MySub,
+			tracker,
+			A2($elm$core$Basics$composeR, toMsg, func));
+	});
+_Platform_effectManagers['Http'] = _Platform_createManager($elm$http$Http$init, $elm$http$Http$onEffects, $elm$http$Http$onSelfMsg, $elm$http$Http$cmdMap, $elm$http$Http$subMap);
+var $elm$http$Http$command = _Platform_leaf('Http');
+var $elm$http$Http$subscription = _Platform_leaf('Http');
+var $elm$http$Http$request = function (r) {
+	return $elm$http$Http$command(
+		$elm$http$Http$Request(
+			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
+};
+var $elm$http$Http$post = function (r) {
+	return $elm$http$Http$request(
+		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
+};
+var $author$project$Demo$LogisticRegression$serverRoot = 'http://106.15.39.117:8080/';
+var $author$project$Demo$LogisticRegression$logIn = $elm$http$Http$post(
+	{
+		body: $elm$http$Http$jsonBody(
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'username',
+						$elm$json$Json$Encode$string('admin')),
+						_Utils_Tuple2(
+						'password',
+						$elm$json$Json$Encode$string('040506'))
+					]))),
+		expect: $elm$http$Http$expectWhatever($author$project$Demo$LogisticRegression$LoggedIn),
+		url: $author$project$Demo$LogisticRegression$serverRoot + 'auth/login'
+	});
+var $author$project$Demo$LogisticRegression$init = _Utils_Tuple2($author$project$Demo$LogisticRegression$emptyModel, $author$project$Demo$LogisticRegression$logIn);
+var $elm$core$Platform$Cmd$map = _Platform_map;
+var $author$project$Page$Tutorial$renderContent = _Platform_outgoingPort('renderContent', $elm$json$Json$Encode$string);
+var $author$project$Page$Tutorial$init = function (contentName) {
+	var _v0 = $author$project$Demo$LogisticRegression$init;
+	var demo = _v0.a;
+	var initDemoMsg = _v0.b;
+	return _Utils_Tuple2(
+		{
+			contentIndex: $author$project$Page$Tutorial$getContentIndex(contentName),
+			demo: demo,
+			showMenu: true
+		},
+		$elm$core$Platform$Cmd$batch(
+			_List_fromArray(
+				[
+					$author$project$Page$Tutorial$renderContent(contentName),
+					A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, initDemoMsg)
+				])));
+};
+var $elm$url$Url$Parser$Parser = function (a) {
+	return {$: 'Parser', a: a};
+};
+var $elm$url$Url$Parser$State = F5(
+	function (visited, unvisited, params, frag, value) {
+		return {frag: frag, params: params, unvisited: unvisited, value: value, visited: visited};
+	});
+var $elm$url$Url$Parser$mapState = F2(
+	function (func, _v0) {
+		var visited = _v0.visited;
+		var unvisited = _v0.unvisited;
+		var params = _v0.params;
+		var frag = _v0.frag;
+		var value = _v0.value;
+		return A5(
+			$elm$url$Url$Parser$State,
+			visited,
+			unvisited,
+			params,
+			frag,
+			func(value));
+	});
+var $elm$url$Url$Parser$map = F2(
+	function (subValue, _v0) {
+		var parseArg = _v0.a;
+		return $elm$url$Url$Parser$Parser(
+			function (_v1) {
+				var visited = _v1.visited;
+				var unvisited = _v1.unvisited;
+				var params = _v1.params;
+				var frag = _v1.frag;
+				var value = _v1.value;
+				return A2(
+					$elm$core$List$map,
+					$elm$url$Url$Parser$mapState(value),
+					parseArg(
+						A5($elm$url$Url$Parser$State, visited, unvisited, params, frag, subValue)));
+			});
+	});
+var $elm$url$Url$Parser$oneOf = function (parsers) {
+	return $elm$url$Url$Parser$Parser(
+		function (state) {
+			return A2(
+				$elm$core$List$concatMap,
+				function (_v0) {
+					var parser = _v0.a;
+					return parser(state);
+				},
+				parsers);
+		});
+};
+var $elm$url$Url$Parser$getFirstMatch = function (states) {
+	getFirstMatch:
+	while (true) {
+		if (!states.b) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			var state = states.a;
+			var rest = states.b;
+			var _v1 = state.unvisited;
+			if (!_v1.b) {
+				return $elm$core$Maybe$Just(state.value);
+			} else {
+				if ((_v1.a === '') && (!_v1.b.b)) {
+					return $elm$core$Maybe$Just(state.value);
+				} else {
+					var $temp$states = rest;
+					states = $temp$states;
+					continue getFirstMatch;
+				}
+			}
+		}
+	}
+};
+var $elm$url$Url$Parser$removeFinalEmpty = function (segments) {
+	if (!segments.b) {
+		return _List_Nil;
+	} else {
+		if ((segments.a === '') && (!segments.b.b)) {
+			return _List_Nil;
+		} else {
+			var segment = segments.a;
+			var rest = segments.b;
+			return A2(
+				$elm$core$List$cons,
+				segment,
+				$elm$url$Url$Parser$removeFinalEmpty(rest));
+		}
+	}
+};
+var $elm$url$Url$Parser$preparePath = function (path) {
+	var _v0 = A2($elm$core$String$split, '/', path);
+	if (_v0.b && (_v0.a === '')) {
+		var segments = _v0.b;
+		return $elm$url$Url$Parser$removeFinalEmpty(segments);
+	} else {
+		var segments = _v0;
+		return $elm$url$Url$Parser$removeFinalEmpty(segments);
+	}
+};
+var $elm$url$Url$Parser$addToParametersHelp = F2(
+	function (value, maybeList) {
+		if (maybeList.$ === 'Nothing') {
+			return $elm$core$Maybe$Just(
+				_List_fromArray(
+					[value]));
+		} else {
+			var list = maybeList.a;
+			return $elm$core$Maybe$Just(
+				A2($elm$core$List$cons, value, list));
+		}
+	});
+var $elm$url$Url$percentDecode = _Url_percentDecode;
+var $elm$url$Url$Parser$addParam = F2(
+	function (segment, dict) {
+		var _v0 = A2($elm$core$String$split, '=', segment);
+		if ((_v0.b && _v0.b.b) && (!_v0.b.b.b)) {
+			var rawKey = _v0.a;
+			var _v1 = _v0.b;
+			var rawValue = _v1.a;
+			var _v2 = $elm$url$Url$percentDecode(rawKey);
+			if (_v2.$ === 'Nothing') {
+				return dict;
+			} else {
+				var key = _v2.a;
+				var _v3 = $elm$url$Url$percentDecode(rawValue);
+				if (_v3.$ === 'Nothing') {
+					return dict;
+				} else {
+					var value = _v3.a;
+					return A3(
+						$elm$core$Dict$update,
+						key,
+						$elm$url$Url$Parser$addToParametersHelp(value),
+						dict);
+				}
+			}
+		} else {
+			return dict;
+		}
+	});
+var $elm$url$Url$Parser$prepareQuery = function (maybeQuery) {
+	if (maybeQuery.$ === 'Nothing') {
+		return $elm$core$Dict$empty;
+	} else {
+		var qry = maybeQuery.a;
+		return A3(
+			$elm$core$List$foldr,
+			$elm$url$Url$Parser$addParam,
+			$elm$core$Dict$empty,
+			A2($elm$core$String$split, '&', qry));
+	}
+};
+var $elm$url$Url$Parser$parse = F2(
+	function (_v0, url) {
+		var parser = _v0.a;
+		return $elm$url$Url$Parser$getFirstMatch(
+			parser(
+				A5(
+					$elm$url$Url$Parser$State,
+					_List_Nil,
+					$elm$url$Url$Parser$preparePath(url.path),
+					$elm$url$Url$Parser$prepareQuery(url.query),
+					url.fragment,
+					$elm$core$Basics$identity)));
+	});
+var $elm$url$Url$Parser$s = function (str) {
+	return $elm$url$Url$Parser$Parser(
+		function (_v0) {
+			var visited = _v0.visited;
+			var unvisited = _v0.unvisited;
+			var params = _v0.params;
+			var frag = _v0.frag;
+			var value = _v0.value;
+			if (!unvisited.b) {
+				return _List_Nil;
+			} else {
+				var next = unvisited.a;
+				var rest = unvisited.b;
+				return _Utils_eq(next, str) ? _List_fromArray(
+					[
+						A5(
+						$elm$url$Url$Parser$State,
+						A2($elm$core$List$cons, next, visited),
+						rest,
+						params,
+						frag,
+						value)
+					]) : _List_Nil;
+			}
+		});
+};
+var $elm$url$Url$Parser$slash = F2(
+	function (_v0, _v1) {
+		var parseBefore = _v0.a;
+		var parseAfter = _v1.a;
+		return $elm$url$Url$Parser$Parser(
+			function (state) {
+				return A2(
+					$elm$core$List$concatMap,
+					parseAfter,
+					parseBefore(state));
+			});
+	});
+var $author$project$Main$HomeMsg = function (a) {
+	return {$: 'HomeMsg', a: a};
+};
+var $author$project$Main$stepHome = F2(
+	function (model, _v0) {
+		var home = _v0.a;
+		var cmds = _v0.b;
+		return _Utils_Tuple2(
+			_Utils_update(
+				model,
+				{
+					page: $author$project$Main$Home(home)
+				}),
+			A2($elm$core$Platform$Cmd$map, $author$project$Main$HomeMsg, cmds));
+	});
+var $author$project$Main$Tutorial = function (a) {
+	return {$: 'Tutorial', a: a};
+};
+var $author$project$Main$TutorialMsg = function (a) {
+	return {$: 'TutorialMsg', a: a};
+};
+var $author$project$Main$stepTutorial = F2(
+	function (model, _v0) {
+		var tutorial = _v0.a;
+		var cmds = _v0.b;
+		return _Utils_Tuple2(
+			_Utils_update(
+				model,
+				{
+					page: $author$project$Main$Tutorial(tutorial)
+				}),
+			A2($elm$core$Platform$Cmd$map, $author$project$Main$TutorialMsg, cmds));
+	});
+var $elm$url$Url$Parser$top = $elm$url$Url$Parser$Parser(
+	function (state) {
+		return _List_fromArray(
+			[state]);
+	});
+var $elm$url$Url$Parser$custom = F2(
+	function (tipe, stringToSomething) {
+		return $elm$url$Url$Parser$Parser(
+			function (_v0) {
+				var visited = _v0.visited;
+				var unvisited = _v0.unvisited;
+				var params = _v0.params;
+				var frag = _v0.frag;
+				var value = _v0.value;
+				if (!unvisited.b) {
+					return _List_Nil;
+				} else {
+					var next = unvisited.a;
+					var rest = unvisited.b;
+					var _v2 = stringToSomething(next);
+					if (_v2.$ === 'Just') {
+						var nextValue = _v2.a;
+						return _List_fromArray(
+							[
+								A5(
+								$elm$url$Url$Parser$State,
+								A2($elm$core$List$cons, next, visited),
+								rest,
+								params,
+								frag,
+								value(nextValue))
+							]);
+					} else {
+						return _List_Nil;
+					}
+				}
+			});
+	});
+var $author$project$Main$tutorialName_ = A2($elm$url$Url$Parser$custom, 'TUTORIAL', $elm$core$Maybe$Just);
+var $author$project$Main$route = F2(
+	function (url, model) {
+		var parser = $elm$url$Url$Parser$oneOf(
+			_List_fromArray(
+				[
+					A2(
+					$elm$url$Url$Parser$map,
+					A2(
+						$author$project$Main$stepHome,
+						model,
+						$author$project$Page$Home$init(_Utils_Tuple0)),
+					$elm$url$Url$Parser$s('home')),
+					A2(
+					$elm$url$Url$Parser$map,
+					function (tutorialName) {
+						var name = A2(
+							$elm$core$Maybe$withDefault,
+							tutorialName,
+							$elm$url$Url$percentDecode(tutorialName));
+						return A2(
+							$author$project$Main$stepTutorial,
+							model,
+							$author$project$Page$Tutorial$init(name));
+					},
+					A2(
+						$elm$url$Url$Parser$slash,
+						$elm$url$Url$Parser$s('tutorial'),
+						$author$project$Main$tutorialName_)),
+					A2(
+					$elm$url$Url$Parser$map,
+					A2(
+						$author$project$Main$stepHome,
+						model,
+						$author$project$Page$Home$init(_Utils_Tuple0)),
+					$elm$url$Url$Parser$top)
+				]));
+		var _v0 = A2($elm$url$Url$Parser$parse, parser, url);
+		if (_v0.$ === 'Just') {
+			var answer = _v0.a;
+			return answer;
+		} else {
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{page: $author$project$Main$NotFound}),
+				$elm$core$Platform$Cmd$none);
+		}
+	});
+var $author$project$Main$init = F3(
+	function (flags, url, key) {
+		return A2(
+			$author$project$Main$route,
+			url,
+			{
+				key: key,
+				page: $author$project$Main$Home(
+					$author$project$Page$Home$init(_Utils_Tuple0).a)
+			});
+	});
+var $elm$core$Platform$Sub$batch = _Platform_batch;
+var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$Main$subscriptions = function (_v0) {
+	return $elm$core$Platform$Sub$none;
+};
+var $elm$browser$Browser$Navigation$load = _Browser_load;
+var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
+var $elm$url$Url$addPort = F2(
+	function (maybePort, starter) {
+		if (maybePort.$ === 'Nothing') {
+			return starter;
+		} else {
+			var port_ = maybePort.a;
+			return starter + (':' + $elm$core$String$fromInt(port_));
+		}
+	});
+var $elm$url$Url$addPrefixed = F3(
+	function (prefix, maybeSegment, starter) {
+		if (maybeSegment.$ === 'Nothing') {
+			return starter;
+		} else {
+			var segment = maybeSegment.a;
+			return _Utils_ap(
+				starter,
+				_Utils_ap(prefix, segment));
+		}
+	});
+var $elm$url$Url$toString = function (url) {
+	var http = function () {
+		var _v0 = url.protocol;
+		if (_v0.$ === 'Http') {
+			return 'http://';
+		} else {
+			return 'https://';
+		}
+	}();
+	return A3(
+		$elm$url$Url$addPrefixed,
+		'#',
+		url.fragment,
+		A3(
+			$elm$url$Url$addPrefixed,
+			'?',
+			url.query,
+			_Utils_ap(
+				A2(
+					$elm$url$Url$addPort,
+					url.port_,
+					_Utils_ap(http, url.host)),
+				url.path)));
+};
+var $author$project$Page$Home$update = F2(
+	function (msg, model) {
+		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+	});
+var $author$project$Page$Tutorial$elmToJs = _Platform_outgoingPort('elmToJs', $elm$core$Basics$identity);
+var $gicentre$elm_vegalite$VegaLite$combineSpecs = function (specs) {
+	return $elm$json$Json$Encode$object(specs);
+};
+var $gicentre$elm_vegalite$VegaLite$VLHeight = {$: 'VLHeight'};
+var $gicentre$elm_vegalite$VegaLite$heightOfContainer = _Utils_Tuple2(
+	$gicentre$elm_vegalite$VegaLite$VLHeight,
+	$elm$json$Json$Encode$string('container'));
+var $gicentre$elm_vegalite$VegaLite$VLLayer = {$: 'VLLayer'};
+var $gicentre$elm_vegalite$VegaLite$layer = function (specs) {
+	return _Utils_Tuple2(
+		$gicentre$elm_vegalite$VegaLite$VLLayer,
+		$gicentre$elm_vegalite$VegaLite$toList(specs));
+};
+var $gicentre$elm_vegalite$VegaLite$X = {$: 'X'};
+var $gicentre$elm_vegalite$VegaLite$Y = {$: 'Y'};
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $gicentre$elm_vegalite$VegaLite$dayLabel = function (dayName) {
+	switch (dayName.$) {
+		case 'Mon':
+			return 'Mon';
+		case 'Tue':
+			return 'Tue';
+		case 'Wed':
+			return 'Wed';
+		case 'Thu':
+			return 'Thu';
+		case 'Fri':
+			return 'Fri';
+		case 'Sat':
+			return 'Sat';
+		default:
+			return 'Sun';
+	}
+};
+var $elm$json$Json$Encode$int = _Json_wrap;
+var $gicentre$elm_vegalite$VegaLite$monthNameLabel = function (mon) {
+	switch (mon.$) {
+		case 'Jan':
+			return 'Jan';
+		case 'Feb':
+			return 'Feb';
+		case 'Mar':
+			return 'Mar';
+		case 'Apr':
+			return 'Apr';
+		case 'May':
+			return 'May';
+		case 'Jun':
+			return 'Jun';
+		case 'Jul':
+			return 'Jul';
+		case 'Aug':
+			return 'Aug';
+		case 'Sep':
+			return 'Sep';
+		case 'Oct':
+			return 'Oct';
+		case 'Nov':
+			return 'Nov';
+		default:
+			return 'Dec';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$dateTimeProperty = function (dtp) {
+	switch (dtp.$) {
+		case 'DTYear':
+			var y = dtp.a;
+			return _Utils_Tuple2(
+				'year',
+				$elm$json$Json$Encode$int(y));
+		case 'DTQuarter':
+			var q = dtp.a;
+			return _Utils_Tuple2(
+				'quarter',
+				$elm$json$Json$Encode$int(q));
+		case 'DTMonth':
+			var mon = dtp.a;
+			return _Utils_Tuple2(
+				'month',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$monthNameLabel(mon)));
+		case 'DTMonthNum':
+			var n = dtp.a;
+			return _Utils_Tuple2(
+				'month',
+				$elm$json$Json$Encode$int(n));
+		case 'DTDate':
+			var d = dtp.a;
+			return _Utils_Tuple2(
+				'date',
+				$elm$json$Json$Encode$int(d));
+		case 'DTDay':
+			var d = dtp.a;
+			return _Utils_Tuple2(
+				'day',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$dayLabel(d)));
+		case 'DTHours':
+			var h = dtp.a;
+			return _Utils_Tuple2(
+				'hours',
+				$elm$json$Json$Encode$int(h));
+		case 'DTMinutes':
+			var m = dtp.a;
+			return _Utils_Tuple2(
+				'minutes',
+				$elm$json$Json$Encode$int(m));
+		case 'DTSeconds':
+			var s = dtp.a;
+			return _Utils_Tuple2(
+				'seconds',
+				$elm$json$Json$Encode$int(s));
+		default:
+			var ms = dtp.a;
+			return _Utils_Tuple2(
+				'milliseconds',
+				$elm$json$Json$Encode$int(ms));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 'Numbers':
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 'Strings':
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 'DateTimes':
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var $gicentre$elm_vegalite$VegaLite$transpose = function (xss) {
+	var numCols = A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$head,
+		A2(
+			$elm$core$Basics$composeR,
+			$elm$core$Maybe$withDefault(_List_Nil),
+			$elm$core$List$length));
+	return A3(
+		$elm$core$List$foldr,
+		$elm$core$List$map2($elm$core$List$cons),
+		A2(
+			$elm$core$List$repeat,
+			numCols(xss),
+			_List_Nil),
+		xss);
+};
+var $gicentre$elm_vegalite$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			$elm$json$Json$Encode$list,
+			$elm$json$Json$Encode$object,
+			$gicentre$elm_vegalite$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			$gicentre$elm_vegalite$VegaLite$VLData,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			$gicentre$elm_vegalite$VegaLite$VLData,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$getAt = F2(
+	function (idx, xs) {
+		return (idx < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
+			A2($elm$core$List$drop, idx, xs));
+	});
+var $gicentre$elm_vegalite$VegaLite$Line = {$: 'Line'};
+var $gicentre$elm_vegalite$VegaLite$line = $gicentre$elm_vegalite$VegaLite$mark($gicentre$elm_vegalite$VegaLite$Line);
+var $gicentre$elm_vegalite$VegaLite$MColor = function (a) {
+	return {$: 'MColor', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$maColor = $gicentre$elm_vegalite$VegaLite$MColor;
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $gicentre$elm_vegalite$VegaLite$Numbers = function (a) {
+	return {$: 'Numbers', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$nums = $gicentre$elm_vegalite$VegaLite$Numbers;
+var $gicentre$elm_vegalite$VegaLite$PName = function (a) {
+	return {$: 'PName', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$pName = $gicentre$elm_vegalite$VegaLite$PName;
+var $gicentre$elm_vegalite$VegaLite$PmType = function (a) {
+	return {$: 'PmType', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$Quantitative = {$: 'Quantitative'};
+var $gicentre$elm_vegalite$VegaLite$pQuant = $gicentre$elm_vegalite$VegaLite$PmType($gicentre$elm_vegalite$VegaLite$Quantitative);
+var $gicentre$elm_vegalite$VegaLite$Latitude = {$: 'Latitude'};
+var $gicentre$elm_vegalite$VegaLite$Latitude2 = {$: 'Latitude2'};
+var $gicentre$elm_vegalite$VegaLite$Longitude = {$: 'Longitude'};
+var $gicentre$elm_vegalite$VegaLite$Longitude2 = {$: 'Longitude2'};
+var $gicentre$elm_vegalite$VegaLite$X2 = {$: 'X2'};
+var $gicentre$elm_vegalite$VegaLite$XError = {$: 'XError'};
+var $gicentre$elm_vegalite$VegaLite$XError2 = {$: 'XError2'};
+var $gicentre$elm_vegalite$VegaLite$Y2 = {$: 'Y2'};
+var $gicentre$elm_vegalite$VegaLite$YError = {$: 'YError'};
+var $gicentre$elm_vegalite$VegaLite$YError2 = {$: 'YError2'};
+var $gicentre$elm_vegalite$VegaLite$arrangementLabel = function (arrng) {
+	switch (arrng.$) {
+		case 'Row':
+			return 'row';
+		case 'Column':
+			return 'column';
+		default:
+			return 'repeat';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$AxGridColor = function (a) {
+	return {$: 'AxGridColor', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxGridDash = function (a) {
+	return {$: 'AxGridDash', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxGridOpacity = function (a) {
+	return {$: 'AxGridOpacity', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxGridWidth = function (a) {
+	return {$: 'AxGridWidth', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelAlign = function (a) {
+	return {$: 'AxLabelAlign', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelBaseline = function (a) {
+	return {$: 'AxLabelBaseline', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelColor = function (a) {
+	return {$: 'AxLabelColor', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelFont = function (a) {
+	return {$: 'AxLabelFont', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelFontSize = function (a) {
+	return {$: 'AxLabelFontSize', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelFontStyle = function (a) {
+	return {$: 'AxLabelFontStyle', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelFontWeight = function (a) {
+	return {$: 'AxLabelFontWeight', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxLabelOpacity = function (a) {
+	return {$: 'AxLabelOpacity', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxTickColor = function (a) {
+	return {$: 'AxTickColor', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxTickOpacity = function (a) {
+	return {$: 'AxTickOpacity', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$AxTickWidth = function (a) {
+	return {$: 'AxTickWidth', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$anchorLabel = function (an) {
+	switch (an.$) {
+		case 'AnStart':
+			return 'start';
+		case 'AnMiddle':
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$binProperty = function (binProp) {
+	switch (binProp.$) {
+		case 'MaxBins':
+			var n = binProp.a;
+			return _Utils_Tuple2(
+				'maxbins',
+				$elm$json$Json$Encode$int(n));
+		case 'BiAnchor':
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'anchor',
+				$elm$json$Json$Encode$float(x));
+		case 'Base':
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'base',
+				$elm$json$Json$Encode$float(x));
+		case 'Step':
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'step',
+				$elm$json$Json$Encode$float(x));
+		case 'Steps':
+			var xs = binProp.a;
+			return _Utils_Tuple2(
+				'steps',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+		case 'MinStep':
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'minstep',
+				$elm$json$Json$Encode$float(x));
+		case 'Divides':
+			var xs = binProp.a;
+			return _Utils_Tuple2(
+				'divide',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+		case 'Extent':
+			var mn = binProp.a;
+			var mx = binProp.b;
+			return _Utils_Tuple2(
+				'extent',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$float,
+					_List_fromArray(
+						[mn, mx])));
+		case 'SelectionExtent':
+			var s = binProp.a;
+			return _Utils_Tuple2(
+				'extent',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'selection',
+							$elm$json$Json$Encode$string(s))
+						])));
+		default:
+			var b = binProp.a;
+			return _Utils_Tuple2(
+				'nice',
+				$elm$json$Json$Encode$bool(b));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$bin = function (bProps) {
+	return _Utils_eq(bProps, _List_Nil) ? _Utils_Tuple2(
+		'bin',
+		$elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
+		'bin',
+		$elm$json$Json$Encode$object(
+			A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$binProperty, bProps)));
+};
+var $gicentre$elm_vegalite$VegaLite$dataValuesSpecs = function (dvs) {
+	switch (dvs.$) {
+		case 'Numbers':
+			var xs = dvs.a;
+			return A2($elm$core$List$map, $elm$json$Json$Encode$float, xs);
+		case 'Strings':
+			var ss = dvs.a;
+			return A2($elm$core$List$map, $elm$json$Json$Encode$string, ss);
+		case 'DateTimes':
+			var dtss = dvs.a;
+			return A2(
+				$elm$core$List$map,
+				function (ds) {
+					return $elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, ds));
+				},
+				dtss);
+		default:
+			var bs = dvs.a;
+			return A2($elm$core$List$map, $elm$json$Json$Encode$bool, bs);
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$dataValueSpec = function (val) {
+	switch (val.$) {
+		case 'Number':
+			var x = val.a;
+			return $elm$json$Json$Encode$float(x);
+		case 'Str':
+			var s = val.a;
+			return $elm$json$Json$Encode$string(s);
+		case 'Boolean':
+			var b = val.a;
+			return $elm$json$Json$Encode$bool(b);
+		case 'DateTime':
+			var d = val.a;
+			return $elm$json$Json$Encode$object(
+				A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, d));
+		default:
+			return $elm$json$Json$Encode$null;
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$filterProperty = function (f) {
+	switch (f.$) {
+		case 'FEqual':
+			var field = f.a;
+			var val = f.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2(
+					'equal',
+					$gicentre$elm_vegalite$VegaLite$dataValueSpec(val))
+				]);
+		case 'FLessThan':
+			var field = f.a;
+			var val = f.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2(
+					'lt',
+					$gicentre$elm_vegalite$VegaLite$dataValueSpec(val))
+				]);
+		case 'FLessThanEq':
+			var field = f.a;
+			var val = f.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2(
+					'lte',
+					$gicentre$elm_vegalite$VegaLite$dataValueSpec(val))
+				]);
+		case 'FGreaterThan':
+			var field = f.a;
+			var val = f.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2(
+					'gt',
+					$gicentre$elm_vegalite$VegaLite$dataValueSpec(val))
+				]);
+		case 'FGreaterThanEq':
+			var field = f.a;
+			var val = f.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2(
+					'gte',
+					$gicentre$elm_vegalite$VegaLite$dataValueSpec(val))
+				]);
+		case 'FSelection':
+			var selName = f.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'selection',
+					$elm$json$Json$Encode$string(selName))
+				]);
+		case 'FRange':
+			var field = f.a;
+			var vals = f.b;
+			var values = function () {
+				if (vals.$ === 'NumberRange') {
+					var mn = vals.a;
+					var mx = vals.b;
+					return A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$float,
+						_List_fromArray(
+							[mn, mx]));
+				} else {
+					if (!vals.a.b) {
+						if (!vals.b.b) {
+							return $gicentre$elm_vegalite$VegaLite$toList(
+								_List_fromArray(
+									[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null]));
+						} else {
+							var dMax = vals.b;
+							return $gicentre$elm_vegalite$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$null,
+										$elm$json$Json$Encode$object(
+										A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, dMax))
+									]));
+						}
+					} else {
+						if (!vals.b.b) {
+							var dMin = vals.a;
+							return $gicentre$elm_vegalite$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$object(
+										A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, dMin)),
+										$elm$json$Json$Encode$null
+									]));
+						} else {
+							var dMin = vals.a;
+							var dMax = vals.b;
+							return A2(
+								$elm$json$Json$Encode$list,
+								$elm$json$Json$Encode$object,
+								_List_fromArray(
+									[
+										A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, dMin),
+										A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, dMax)
+									]));
+						}
+					}
+				}
+			}();
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2('range', values)
+				]);
+		case 'FOneOf':
+			var field = f.a;
+			var vals = f.b;
+			var values = function () {
+				switch (vals.$) {
+					case 'Numbers':
+						var xs = vals.a;
+						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs);
+					case 'DateTimes':
+						var ds = vals.a;
+						return A2(
+							$elm$json$Json$Encode$list,
+							function (d) {
+								return $elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, d));
+							},
+							ds);
+					case 'Strings':
+						var ss = vals.a;
+						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+					default:
+						var bs = vals.a;
+						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$bool, bs);
+				}
+			}();
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2('oneOf', values)
+				]);
+		case 'FValid':
+			var field = f.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2(
+					'valid',
+					$elm$json$Json$Encode$bool(true))
+				]);
+		default:
+			return _List_Nil;
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$compositionAlignmentSpec = function (ca) {
+	switch (ca.$) {
+		case 'CANone':
+			return $elm$json$Json$Encode$string('none');
+		case 'CAEach':
+			return $elm$json$Json$Encode$string('each');
+		default:
+			return $elm$json$Json$Encode$string('all');
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$legendOrientLabel = function (orient) {
+	switch (orient.$) {
+		case 'Left':
+			return 'left';
+		case 'TopLeft':
+			return 'top-left';
+		case 'Top':
+			return 'top';
+		case 'TopRight':
+			return 'top-right';
+		case 'Right':
+			return 'right';
+		case 'BottomRight':
+			return 'bottom-right';
+		case 'Bottom':
+			return 'bottom';
+		case 'BottomLeft':
+			return 'bottom-left';
+		default:
+			return 'none';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$overlapStrategySpec = function (strat) {
+	switch (strat.$) {
+		case 'ONone':
+			return $elm$json$Json$Encode$bool(false);
+		case 'OParity':
+			return $elm$json$Json$Encode$string('parity');
+		default:
+			return $elm$json$Json$Encode$string('greedy');
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$titleSpec = function (tText) {
+	var _v0 = A2($elm$core$String$split, '\n', tText);
+	if (!_v0.b) {
+		return $elm$json$Json$Encode$string('');
+	} else {
+		if (!_v0.b.b) {
+			var s = _v0.a;
+			return $elm$json$Json$Encode$string(s);
+		} else {
+			var ss = _v0;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+		}
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$legendProperty = function (legendProp) {
+	switch (legendProp.$) {
+		case 'LClipHeight':
+			var h = legendProp.a;
+			return _Utils_Tuple2(
+				'clipHeight',
+				$elm$json$Json$Encode$float(h));
+		case 'LColumnPadding':
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'columnPadding',
+				$elm$json$Json$Encode$float(n));
+		case 'LRowPadding':
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'rowPadding',
+				$elm$json$Json$Encode$float(n));
+		case 'LColumns':
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'columns',
+				$elm$json$Json$Encode$float(n));
+		case 'LCornerRadius':
+			var r = legendProp.a;
+			return _Utils_Tuple2(
+				'cornerRadius',
+				$elm$json$Json$Encode$float(r));
+		case 'LFillColor':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'fillColor',
+				$elm$json$Json$Encode$string(s));
+		case 'LDirection':
+			var d = legendProp.a;
+			return _Utils_Tuple2(
+				'direction',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$markOrientationLabel(d)));
+		case 'LType':
+			var lType = legendProp.a;
+			if (lType.$ === 'Gradient') {
+				return _Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('gradient'));
+			} else {
+				return _Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('symbol'));
+			}
+		case 'LFormat':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'format',
+				$elm$json$Json$Encode$string(s));
+		case 'LFormatAsNum':
+			return _Utils_Tuple2(
+				'formatType',
+				$elm$json$Json$Encode$string('number'));
+		case 'LFormatAsTemporal':
+			return _Utils_Tuple2(
+				'formatType',
+				$elm$json$Json$Encode$string('time'));
+		case 'LGradientLength':
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'gradientLength',
+				$elm$json$Json$Encode$float(n));
+		case 'LGradientThickness':
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'gradientThickness',
+				$elm$json$Json$Encode$float(n));
+		case 'LGradientStrokeColor':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'gradientStrokeColor',
+				$elm$json$Json$Encode$string(s));
+		case 'LGradientStrokeWidth':
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'gradientStrokeWidth',
+				$elm$json$Json$Encode$float(n));
+		case 'LGridAlign':
+			var ga = legendProp.a;
+			return _Utils_Tuple2(
+				'gridAlign',
+				$gicentre$elm_vegalite$VegaLite$compositionAlignmentSpec(ga));
+		case 'LLabelAlign':
+			var ha = legendProp.a;
+			return _Utils_Tuple2(
+				'labelAlign',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$hAlignLabel(ha)));
+		case 'LLabelBaseline':
+			var va = legendProp.a;
+			return _Utils_Tuple2(
+				'labelBaseline',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$vAlignLabel(va)));
+		case 'LLabelColor':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'labelColor',
+				$elm$json$Json$Encode$string(s));
+		case 'LLabelFont':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'labelFont',
+				$elm$json$Json$Encode$string(s));
+		case 'LLabelFontSize':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'labelFontSize',
+				$elm$json$Json$Encode$float(x));
+		case 'LLabelLimit':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'labelLimit',
+				$elm$json$Json$Encode$float(x));
+		case 'LLabelOffset':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'labelOffset',
+				$elm$json$Json$Encode$float(x));
+		case 'LLabelOverlap':
+			var lo = legendProp.a;
+			return _Utils_Tuple2(
+				'labelOverlap',
+				$gicentre$elm_vegalite$VegaLite$overlapStrategySpec(lo));
+		case 'LOffset':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'offset',
+				$elm$json$Json$Encode$float(x));
+		case 'LOrient':
+			var orient = legendProp.a;
+			return _Utils_Tuple2(
+				'orient',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$legendOrientLabel(orient)));
+		case 'LPadding':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'padding',
+				$elm$json$Json$Encode$float(x));
+		case 'LStrokeColor':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'strokeColor',
+				$elm$json$Json$Encode$string(s));
+		case 'LStrokeWidth':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'strokeWidth',
+				$elm$json$Json$Encode$float(x));
+		case 'LSymbolFillColor':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'symbolFillColor',
+				$elm$json$Json$Encode$string(s));
+		case 'LSymbolStrokeColor':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'symbolStrokeColor',
+				$elm$json$Json$Encode$string(s));
+		case 'LSymbolType':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'symbolType',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$symbolLabel(s)));
+		case 'LSymbolSize':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'symbolSize',
+				$elm$json$Json$Encode$float(x));
+		case 'LSymbolStrokeWidth':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'symbolStrokeWidth',
+				$elm$json$Json$Encode$float(x));
+		case 'LTickCount':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'tickCount',
+				$elm$json$Json$Encode$float(x));
+		case 'LTitle':
+			var s = legendProp.a;
+			return (s === '') ? _Utils_Tuple2('title', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'title',
+				$gicentre$elm_vegalite$VegaLite$titleSpec(s));
+		case 'LTitleAlign':
+			var ha = legendProp.a;
+			return _Utils_Tuple2(
+				'titleAlign',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$hAlignLabel(ha)));
+		case 'LTitleBaseline':
+			var va = legendProp.a;
+			return _Utils_Tuple2(
+				'titleBaseline',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$vAlignLabel(va)));
+		case 'LTitleColor':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'titleColor',
+				$elm$json$Json$Encode$string(s));
+		case 'LTitleFont':
+			var s = legendProp.a;
+			return _Utils_Tuple2(
+				'titleFont',
+				$elm$json$Json$Encode$string(s));
+		case 'LTitleFontSize':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'titleFontSize',
+				$elm$json$Json$Encode$float(x));
+		case 'LTitleFontWeight':
+			var fw = legendProp.a;
+			return _Utils_Tuple2(
+				'titleFontWeight',
+				$gicentre$elm_vegalite$VegaLite$fontWeightSpec(fw));
+		case 'LTitleLimit':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'titleLimit',
+				$elm$json$Json$Encode$float(x));
+		case 'LTitlePadding':
+			var x = legendProp.a;
+			return _Utils_Tuple2(
+				'titlePadding',
+				$elm$json$Json$Encode$float(x));
+		case 'LValues':
+			var vals = legendProp.a;
+			var list = function () {
+				switch (vals.$) {
+					case 'LNumbers':
+						var xs = vals.a;
+						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs);
+					case 'LDateTimes':
+						var ds = vals.a;
+						return A2(
+							$elm$json$Json$Encode$list,
+							function (d) {
+								return $elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, d));
+							},
+							ds);
+					default:
+						var ss = vals.a;
+						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+				}
+			}();
+			return _Utils_Tuple2('values', list);
+		case 'LeX':
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'legendX',
+				$elm$json$Json$Encode$float(n));
+		case 'LeY':
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'legendY',
+				$elm$json$Json$Encode$float(n));
+		default:
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'zindex',
+				$elm$json$Json$Encode$int(n));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$measurementLabel = function (mType) {
+	switch (mType.$) {
+		case 'Nominal':
+			return 'nominal';
+		case 'Ordinal':
+			return 'ordinal';
+		case 'Quantitative':
+			return 'quantitative';
+		case 'Temporal':
+			return 'temporal';
+		default:
+			return 'geojson';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$operationSpec = function (op) {
+	switch (op.$) {
+		case 'ArgMax':
+			var maybeField = op.a;
+			if (maybeField.$ === 'Nothing') {
+				return $elm$json$Json$Encode$string('argmax');
+			} else {
+				var f = maybeField.a;
+				return (!$elm$core$String$length(
+					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmax') : $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmax',
+							$elm$json$Json$Encode$string(f))
+						]));
+			}
+		case 'ArgMin':
+			var maybeField = op.a;
+			if (maybeField.$ === 'Nothing') {
+				return $elm$json$Json$Encode$string('argmin');
+			} else {
+				var f = maybeField.a;
+				return (!$elm$core$String$length(
+					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmin') : $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmin',
+							$elm$json$Json$Encode$string(f))
+						]));
+			}
+		case 'Count':
+			return $elm$json$Json$Encode$string('count');
+		case 'CI0':
+			return $elm$json$Json$Encode$string('ci0');
+		case 'CI1':
+			return $elm$json$Json$Encode$string('ci1');
+		case 'Distinct':
+			return $elm$json$Json$Encode$string('distinct');
+		case 'Max':
+			return $elm$json$Json$Encode$string('max');
+		case 'Mean':
+			return $elm$json$Json$Encode$string('mean');
+		case 'Median':
+			return $elm$json$Json$Encode$string('median');
+		case 'Min':
+			return $elm$json$Json$Encode$string('min');
+		case 'Missing':
+			return $elm$json$Json$Encode$string('missing');
+		case 'Q1':
+			return $elm$json$Json$Encode$string('q1');
+		case 'Q3':
+			return $elm$json$Json$Encode$string('q3');
+		case 'Stdev':
+			return $elm$json$Json$Encode$string('stdev');
+		case 'StdevP':
+			return $elm$json$Json$Encode$string('stdevp');
+		case 'Sum':
+			return $elm$json$Json$Encode$string('sum');
+		case 'Stderr':
+			return $elm$json$Json$Encode$string('stderr');
+		case 'Valid':
+			return $elm$json$Json$Encode$string('valid');
+		case 'Variance':
+			return $elm$json$Json$Encode$string('variance');
+		default:
+			return $elm$json$Json$Encode$string('variancep');
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$cInterpolateSpec = function (iType) {
+	switch (iType.$) {
+		case 'Rgb':
+			var gamma = iType.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'type',
+						$elm$json$Json$Encode$string('rgb')),
+						_Utils_Tuple2(
+						'gamma',
+						$elm$json$Json$Encode$float(gamma))
+					]));
+		case 'Hsl':
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'type',
+						$elm$json$Json$Encode$string('hsl'))
+					]));
+		case 'HslLong':
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'type',
+						$elm$json$Json$Encode$string('hsl-long'))
+					]));
+		case 'Lab':
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'type',
+						$elm$json$Json$Encode$string('lab'))
+					]));
+		case 'Hcl':
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'type',
+						$elm$json$Json$Encode$string('hcl'))
+					]));
+		case 'HclLong':
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'type',
+						$elm$json$Json$Encode$string('hcl-long'))
+					]));
+		case 'CubeHelix':
+			var gamma = iType.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'type',
+						$elm$json$Json$Encode$string('cubehelix')),
+						_Utils_Tuple2(
+						'gamma',
+						$elm$json$Json$Encode$float(gamma))
+					]));
+		default:
+			var gamma = iType.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'type',
+						$elm$json$Json$Encode$string('cubehelix-long')),
+						_Utils_Tuple2(
+						'gamma',
+						$elm$json$Json$Encode$float(gamma))
+					]));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$scaleDomainSpec = function (sdType) {
+	switch (sdType.$) {
+		case 'DNumbers':
+			var ns = sdType.a;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ns);
+		case 'DDateTimes':
+			var ds = sdType.a;
+			return A2(
+				$elm$json$Json$Encode$list,
+				function (d) {
+					return $elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, d));
+				},
+				ds);
+		case 'DStrings':
+			var cats = sdType.a;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, cats);
+		case 'DSelection':
+			var selName = sdType.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName))
+					]));
+		default:
+			return $elm$json$Json$Encode$string('unaggregated');
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$scaleLabel = function (sc) {
+	switch (sc.$) {
+		case 'ScLinear':
+			return 'linear';
+		case 'ScPow':
+			return 'pow';
+		case 'ScSymLog':
+			return 'symlog';
+		case 'ScSqrt':
+			return 'sqrt';
+		case 'ScLog':
+			return 'log';
+		case 'ScTime':
+			return 'time';
+		case 'ScUtc':
+			return 'utc';
+		case 'ScOrdinal':
+			return 'ordinal';
+		case 'ScBand':
+			return 'band';
+		case 'ScPoint':
+			return 'point';
+		case 'ScBinLinear':
+			return 'bin-linear';
+		case 'ScBinOrdinal':
+			return 'bin-ordinal';
+		case 'ScQuantile':
+			return 'quantile';
+		case 'ScQuantize':
+			return 'quantize';
+		default:
+			return 'threshold';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$timeUnitLabel = function (tu) {
+	switch (tu.$) {
+		case 'Year':
+			return 'year';
+		case 'YearQuarter':
+			return 'yearquarter';
+		case 'YearQuarterMonth':
+			return 'yearquartermonth';
+		case 'YearMonth':
+			return 'yearmonth';
+		case 'YearMonthDate':
+			return 'yearmonthdate';
+		case 'YearMonthDateHours':
+			return 'yearmonthdatehours';
+		case 'YearMonthDateHoursMinutes':
+			return 'yearmonthdatehoursminutes';
+		case 'YearMonthDateHoursMinutesSeconds':
+			return 'yearmonthdatehoursminutesseconds';
+		case 'Quarter':
+			return 'quarter';
+		case 'QuarterMonth':
+			return 'quartermonth';
+		case 'Month':
+			return 'month';
+		case 'MonthDate':
+			return 'monthdate';
+		case 'MonthDateHours':
+			return 'monthdatehours';
+		case 'Date':
+			return 'date';
+		case 'Day':
+			return 'day';
+		case 'Hours':
+			return 'hours';
+		case 'HoursMinutes':
+			return 'hoursminutes';
+		case 'HoursMinutesSeconds':
+			return 'hoursminutesseconds';
+		case 'Minutes':
+			return 'minutes';
+		case 'MinutesSeconds':
+			return 'minutesseconds';
+		case 'Seconds':
+			return 'seconds';
+		case 'SecondsMilliseconds':
+			return 'secondsmilliseconds';
+		case 'Milliseconds':
+			return 'milliseconds';
+		default:
+			var timeUnit = tu.a;
+			return 'utc' + $gicentre$elm_vegalite$VegaLite$timeUnitLabel(timeUnit);
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$scaleNiceSpec = function (ni) {
+	switch (ni.$) {
+		case 'NMillisecond':
+			return $elm$json$Json$Encode$string('millisecond');
+		case 'NSecond':
+			return $elm$json$Json$Encode$string('second');
+		case 'NMinute':
+			return $elm$json$Json$Encode$string('minute');
+		case 'NHour':
+			return $elm$json$Json$Encode$string('hour');
+		case 'NDay':
+			return $elm$json$Json$Encode$string('day');
+		case 'NWeek':
+			return $elm$json$Json$Encode$string('week');
+		case 'NMonth':
+			return $elm$json$Json$Encode$string('month');
+		case 'NYear':
+			return $elm$json$Json$Encode$string('year');
+		case 'NInterval':
+			var tu = ni.a;
+			var step = ni.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'interval',
+						$elm$json$Json$Encode$string(
+							$gicentre$elm_vegalite$VegaLite$timeUnitLabel(tu))),
+						_Utils_Tuple2(
+						'step',
+						$elm$json$Json$Encode$int(step))
+					]));
+		case 'NTrue':
+			return $elm$json$Json$Encode$bool(true);
+		case 'NFalse':
+			return $elm$json$Json$Encode$bool(false);
+		default:
+			var n = ni.a;
+			return $elm$json$Json$Encode$int(n);
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$schemeProperty = F2(
+	function (schName, extent) {
+		if (!extent.b) {
+			return _Utils_Tuple2(
+				'scheme',
+				$elm$json$Json$Encode$string(schName));
+		} else {
+			if (!extent.b.b) {
+				var n = extent.a;
+				return _Utils_Tuple2(
+					'scheme',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'name',
+								$elm$json$Json$Encode$string(schName)),
+								_Utils_Tuple2(
+								'count',
+								$elm$json$Json$Encode$float(n))
+							])));
+			} else {
+				if (!extent.b.b.b) {
+					var mn = extent.a;
+					var _v1 = extent.b;
+					var mx = _v1.a;
+					return _Utils_Tuple2(
+						'scheme',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'name',
+									$elm$json$Json$Encode$string(schName)),
+									_Utils_Tuple2(
+									'extent',
+									A2(
+										$elm$json$Json$Encode$list,
+										$elm$json$Json$Encode$float,
+										_List_fromArray(
+											[mn, mx])))
+								])));
+				} else {
+					return _Utils_Tuple2(
+						'scheme',
+						$elm$json$Json$Encode$string(schName));
+				}
+			}
+		}
+	});
+var $gicentre$elm_vegalite$VegaLite$scaleProperty = function (scaleProp) {
+	switch (scaleProp.$) {
+		case 'SType':
+			var sType = scaleProp.a;
+			return _Utils_Tuple2(
+				'type',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$scaleLabel(sType)));
+		case 'SDomain':
+			var sdType = scaleProp.a;
+			return _Utils_Tuple2(
+				'domain',
+				$gicentre$elm_vegalite$VegaLite$scaleDomainSpec(sdType));
+		case 'SRange':
+			var range = scaleProp.a;
+			switch (range.$) {
+				case 'RNumbers':
+					var xs = range.a;
+					return _Utils_Tuple2(
+						'range',
+						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+				case 'RStrings':
+					var ss = range.a;
+					return _Utils_Tuple2(
+						'range',
+						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss));
+				default:
+					var s = range.a;
+					return _Utils_Tuple2(
+						'range',
+						$elm$json$Json$Encode$string(s));
+			}
+		case 'SScheme':
+			var schName = scaleProp.a;
+			var extent = scaleProp.b;
+			return A2($gicentre$elm_vegalite$VegaLite$schemeProperty, schName, extent);
+		case 'SAlign':
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'align',
+				$elm$json$Json$Encode$float(x));
+		case 'SPadding':
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'padding',
+				$elm$json$Json$Encode$float(x));
+		case 'SBase':
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'base',
+				$elm$json$Json$Encode$float(x));
+		case 'SExponent':
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'exponent',
+				$elm$json$Json$Encode$float(x));
+		case 'SConstant':
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'constant',
+				$elm$json$Json$Encode$float(x));
+		case 'SPaddingInner':
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'paddingInner',
+				$elm$json$Json$Encode$float(x));
+		case 'SPaddingOuter':
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'paddingOuter',
+				$elm$json$Json$Encode$float(x));
+		case 'SRangeStep':
+			var numOrNull = scaleProp.a;
+			if (numOrNull.$ === 'Just') {
+				var x = numOrNull.a;
+				return _Utils_Tuple2(
+					'rangeStep',
+					$elm$json$Json$Encode$float(x));
+			} else {
+				return _Utils_Tuple2('rangeStep', $elm$json$Json$Encode$null);
+			}
+		case 'SRound':
+			var b = scaleProp.a;
+			return _Utils_Tuple2(
+				'round',
+				$elm$json$Json$Encode$bool(b));
+		case 'SClamp':
+			var b = scaleProp.a;
+			return _Utils_Tuple2(
+				'clamp',
+				$elm$json$Json$Encode$bool(b));
+		case 'SInterpolate':
+			var interp = scaleProp.a;
+			return _Utils_Tuple2(
+				'interpolate',
+				$gicentre$elm_vegalite$VegaLite$cInterpolateSpec(interp));
+		case 'SNice':
+			var ni = scaleProp.a;
+			return _Utils_Tuple2(
+				'nice',
+				$gicentre$elm_vegalite$VegaLite$scaleNiceSpec(ni));
+		case 'SZero':
+			var b = scaleProp.a;
+			return _Utils_Tuple2(
+				'zero',
+				$elm$json$Json$Encode$bool(b));
+		default:
+			var b = scaleProp.a;
+			return _Utils_Tuple2(
+				'reverse',
+				$elm$json$Json$Encode$bool(b));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$channelLabel = function (ch) {
+	switch (ch.$) {
+		case 'ChX':
+			return 'x';
+		case 'ChY':
+			return 'y';
+		case 'ChX2':
+			return 'x2';
+		case 'ChY2':
+			return 'y2';
+		case 'ChColor':
+			return 'color';
+		case 'ChOpacity':
+			return 'opacity';
+		case 'ChShape':
+			return 'shape';
+		default:
+			return 'size';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$sortProperty = function (sp) {
+	switch (sp.$) {
+		case 'Ascending':
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'order',
+					$elm$json$Json$Encode$string('ascending'))
+				]);
+		case 'Descending':
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'order',
+					$elm$json$Json$Encode$string('descending'))
+				]);
+		case 'ByChannel':
+			var ch = sp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'encoding',
+					$elm$json$Json$Encode$string(
+						$gicentre$elm_vegalite$VegaLite$channelLabel(ch)))
+				]);
+		case 'ByFieldOp':
+			var field = sp.a;
+			var op = sp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2(
+					'op',
+					$gicentre$elm_vegalite$VegaLite$operationSpec(op))
+				]);
+		case 'ByRepeatOp':
+			var arr = sp.a;
+			var op = sp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$gicentre$elm_vegalite$VegaLite$arrangementLabel(arr)))
+							]))),
+					_Utils_Tuple2(
+					'op',
+					$gicentre$elm_vegalite$VegaLite$operationSpec(op))
+				]);
+		default:
+			var dvs = sp.a;
+			return _List_Nil;
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$booleanOpSpec = function (bo) {
+	switch (bo.$) {
+		case 'Expr':
+			var ex = bo.a;
+			return $elm$json$Json$Encode$string(ex);
+		case 'FilterOp':
+			var f = bo.a;
+			return $gicentre$elm_vegalite$VegaLite$filterSpec(f);
+		case 'FilterOpTrans':
+			var tr = bo.a;
+			var f = bo.b;
+			return A2($gicentre$elm_vegalite$VegaLite$trFilterSpec, tr, f);
+		case 'SelectionName':
+			var selName = bo.a;
+			return $elm$json$Json$Encode$string(selName);
+		case 'Selection':
+			var sel = bo.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(sel))
+					]));
+		case 'And':
+			var operand1 = bo.a;
+			var operand2 = bo.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'and',
+						A2(
+							$elm$json$Json$Encode$list,
+							$gicentre$elm_vegalite$VegaLite$booleanOpSpec,
+							_List_fromArray(
+								[operand1, operand2])))
+					]));
+		case 'Or':
+			var operand1 = bo.a;
+			var operand2 = bo.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'or',
+						A2(
+							$elm$json$Json$Encode$list,
+							$gicentre$elm_vegalite$VegaLite$booleanOpSpec,
+							_List_fromArray(
+								[operand1, operand2])))
+					]));
+		default:
+			var operand = bo.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'not',
+						$gicentre$elm_vegalite$VegaLite$booleanOpSpec(operand))
+					]));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$filterSpec = function (f) {
+	switch (f.$) {
+		case 'FExpr':
+			var ex = f.a;
+			return $elm$json$Json$Encode$string(ex);
+		case 'FCompose':
+			var boolExpr = f.a;
+			return $gicentre$elm_vegalite$VegaLite$booleanOpSpec(boolExpr);
+		default:
+			return $elm$json$Json$Encode$object(
+				$gicentre$elm_vegalite$VegaLite$filterProperty(f));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$markChannelProperty = function (field) {
+	switch (field.$) {
+		case 'MName':
+			var s = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 'MRepeat':
+			var arr = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$gicentre$elm_vegalite$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 'MmType':
+			var t = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$gicentre$elm_vegalite$VegaLite$measurementLabel(t)))
+				]);
+		case 'MScale':
+			var sps = field.a;
+			return _Utils_eq(sps, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2('scale', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'scale',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$scaleProperty, sps)))
+				]);
+		case 'MLegend':
+			var lps = field.a;
+			return _Utils_eq(lps, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2('legend', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'legend',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$legendProperty, lps)))
+				]);
+		case 'MBin':
+			var bps = field.a;
+			return _List_fromArray(
+				[
+					$gicentre$elm_vegalite$VegaLite$bin(bps)
+				]);
+		case 'MSort':
+			var sps = field.a;
+			_v2$4:
+			while (true) {
+				if (!sps.b) {
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('sort', $elm$json$Json$Encode$null)
+						]);
+				} else {
+					if (!sps.b.b) {
+						switch (sps.a.$) {
+							case 'Ascending':
+								var _v3 = sps.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$elm$json$Json$Encode$string('ascending'))
+									]);
+							case 'Descending':
+								var _v4 = sps.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$elm$json$Json$Encode$string('descending'))
+									]);
+							case 'CustomSort':
+								var dvs = sps.a.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$gicentre$elm_vegalite$VegaLite$toList(
+											$gicentre$elm_vegalite$VegaLite$dataValuesSpecs(dvs)))
+									]);
+							default:
+								break _v2$4;
+						}
+					} else {
+						break _v2$4;
+					}
+				}
+			}
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'sort',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$sortProperty, sps)))
+				]);
+		case 'MBinned':
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					$elm$json$Json$Encode$string('binned'))
+				]);
+		case 'MSelectionCondition':
+			var selName = field.a;
+			var ifClause = field.b;
+			var elseClause = field.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								$gicentre$elm_vegalite$VegaLite$booleanOpSpec(selName)),
+							A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$markChannelProperty, ifClause)))),
+				A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$markChannelProperty, elseClause));
+		case 'MDataCondition':
+			var tests = field.a;
+			var elseClause = field.b;
+			var testClause = function (_v6) {
+				var predicate = _v6.a;
+				var ifClause = _v6.b;
+				return $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$gicentre$elm_vegalite$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$markChannelProperty, ifClause)));
+			};
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					function () {
+						if (tests.b && (!tests.b.b)) {
+							var test = tests.a;
+							return testClause(test);
+						} else {
+							return A2($elm$json$Json$Encode$list, testClause, tests);
+						}
+					}()),
+				A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$markChannelProperty, elseClause));
+		case 'MTimeUnit':
+			var tu = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$elm$json$Json$Encode$string(
+						$gicentre$elm_vegalite$VegaLite$timeUnitLabel(tu)))
+				]);
+		case 'MTitle':
+			var t = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					$gicentre$elm_vegalite$VegaLite$titleSpec(t))
+				]);
+		case 'MAggregate':
+			var op = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$gicentre$elm_vegalite$VegaLite$operationSpec(op))
+				]);
+		case 'MPath':
+			var s = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 'MNumber':
+			var x = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 'MString':
+			var s = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$string(s))
+				]);
+		default:
+			var b = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$bool(b))
+				]);
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$trFilterSpec = F2(
+	function (mc, f) {
+		switch (f.$) {
+			case 'FExpr':
+				var ex = f.a;
+				return $elm$json$Json$Encode$string(ex);
+			case 'FCompose':
+				var boolExpr = f.a;
+				return $gicentre$elm_vegalite$VegaLite$booleanOpSpec(boolExpr);
+			default:
+				return $elm$json$Json$Encode$object(
+					_Utils_ap(
+						$gicentre$elm_vegalite$VegaLite$markChannelProperty(mc),
+						$gicentre$elm_vegalite$VegaLite$filterProperty(f)));
+		}
+	});
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $gicentre$elm_vegalite$VegaLite$sideLabel = function (side) {
+	switch (side.$) {
+		case 'STop':
+			return 'top';
+		case 'SBottom':
+			return 'bottom';
+		case 'SLeft':
+			return 'left';
+		default:
+			return 'right';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$axisProperty = function (axisProp) {
+	switch (axisProp.$) {
+		case 'AxBandPosition':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'bandPosition',
+				$elm$json$Json$Encode$float(n));
+		case 'AxDataCondition':
+			var predicate = axisProp.a;
+			var cap = axisProp.b;
+			var _v1 = function () {
+				switch (cap.$) {
+					case 'CAxLabelAlign':
+						var ha1 = cap.a;
+						var ha2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelAlign(ha1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelAlign(ha2)));
+					case 'CAxLabelBaseline':
+						var va1 = cap.a;
+						var va2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelBaseline(va1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelBaseline(va2)));
+					case 'CAxLabelColor':
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelColor(c1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelColor(c2)));
+					case 'CAxLabelFont':
+						var f1 = cap.a;
+						var f2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelFont(f1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelFont(f2)));
+					case 'CAxLabelFontSize':
+						var s1 = cap.a;
+						var s2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelFontSize(s1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelFontSize(s2)));
+					case 'CAxLabelFontStyle':
+						var s1 = cap.a;
+						var s2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelFontStyle(s1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelFontStyle(s2)));
+					case 'CAxLabelFontWeight':
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelFontWeight(w1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelFontWeight(w2)));
+					case 'CAxLabelOpacity':
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelOpacity(o1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxLabelOpacity(o2)));
+					case 'CAxTickColor':
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxTickColor(c1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxTickColor(c2)));
+					case 'CAxTickOpacity':
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxTickOpacity(o1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxTickOpacity(o2)));
+					case 'CAxTickWidth':
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxTickWidth(w1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxTickWidth(w2)));
+					case 'CAxGridColor':
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxGridColor(c1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxGridColor(c2)));
+					case 'CAxGridDash':
+						var d1 = cap.a;
+						var d2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxGridDash(d1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxGridDash(d2)));
+					case 'CAxGridOpacity':
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxGridOpacity(o1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxGridOpacity(o2)));
+					default:
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxGridWidth(w1)),
+							$gicentre$elm_vegalite$VegaLite$axisProperty(
+								$gicentre$elm_vegalite$VegaLite$AxGridWidth(w2)));
+				}
+			}();
+			var ifProp = _v1.a;
+			var elseProp = _v1.b;
+			return _Utils_Tuple2(
+				ifProp.a,
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'condition',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'test',
+										$gicentre$elm_vegalite$VegaLite$booleanOpSpec(predicate)),
+										_Utils_Tuple2('value', ifProp.b)
+									]))),
+							_Utils_Tuple2('value', elseProp.b)
+						])));
+		case 'AxFormat':
+			var fmt = axisProp.a;
+			return _Utils_Tuple2(
+				'format',
+				$elm$json$Json$Encode$string(fmt));
+		case 'AxFormatAsNum':
+			return _Utils_Tuple2(
+				'formatType',
+				$elm$json$Json$Encode$string('number'));
+		case 'AxFormatAsTemporal':
+			return _Utils_Tuple2(
+				'formatType',
+				$elm$json$Json$Encode$string('time'));
+		case 'AxGridColor':
+			var c = axisProp.a;
+			return _Utils_Tuple2(
+				'gridColor',
+				$elm$json$Json$Encode$string(c));
+		case 'AxGridDash':
+			var ds = axisProp.a;
+			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('gridDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'gridDash',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ds));
+		case 'AxGridOpacity':
+			var o = axisProp.a;
+			return _Utils_Tuple2(
+				'gridOpacity',
+				$elm$json$Json$Encode$float(o));
+		case 'AxGridWidth':
+			var w = axisProp.a;
+			return _Utils_Tuple2(
+				'gridWidth',
+				$elm$json$Json$Encode$float(w));
+		case 'AxLabels':
+			var b = axisProp.a;
+			return _Utils_Tuple2(
+				'labels',
+				$elm$json$Json$Encode$bool(b));
+		case 'AxLabelAlign':
+			var ha = axisProp.a;
+			return _Utils_Tuple2(
+				'labelAlign',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$hAlignLabel(ha)));
+		case 'AxLabelBaseline':
+			var va = axisProp.a;
+			return _Utils_Tuple2(
+				'labelBaseline',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$vAlignLabel(va)));
+		case 'AxLabelBound':
+			var mn = axisProp.a;
+			if (mn.$ === 'Just') {
+				var n = mn.a;
+				return (n === 1) ? _Utils_Tuple2(
+					'labelBound',
+					$elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
+					'labelBound',
+					$elm$json$Json$Encode$float(n));
+			} else {
+				return _Utils_Tuple2(
+					'labelBound',
+					$elm$json$Json$Encode$bool(false));
+			}
+		case 'AxLabelAngle':
+			var angle = axisProp.a;
+			return _Utils_Tuple2(
+				'labelAngle',
+				$elm$json$Json$Encode$float(angle));
+		case 'AxLabelColor':
+			var s = axisProp.a;
+			return _Utils_Tuple2(
+				'labelColor',
+				$elm$json$Json$Encode$string(s));
+		case 'AxLabelExpr':
+			var ex = axisProp.a;
+			return _Utils_Tuple2(
+				'labelExpr',
+				$elm$json$Json$Encode$string(ex));
+		case 'AxLabelFlush':
+			var mn = axisProp.a;
+			if (mn.$ === 'Just') {
+				var n = mn.a;
+				return (n === 1) ? _Utils_Tuple2(
+					'labelFlush',
+					$elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
+					'labelFlush',
+					$elm$json$Json$Encode$float(n));
+			} else {
+				return _Utils_Tuple2(
+					'labelFlush',
+					$elm$json$Json$Encode$bool(false));
+			}
+		case 'AxLabelFlushOffset':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'labelFlushOffset',
+				$elm$json$Json$Encode$float(n));
+		case 'AxLabelFont':
+			var s = axisProp.a;
+			return _Utils_Tuple2(
+				'labelFont',
+				$elm$json$Json$Encode$string(s));
+		case 'AxLabelFontSize':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'labelFontSize',
+				$elm$json$Json$Encode$float(n));
+		case 'AxLabelFontStyle':
+			var s = axisProp.a;
+			return _Utils_Tuple2(
+				'labelFontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 'AxLabelFontWeight':
+			var fw = axisProp.a;
+			return _Utils_Tuple2(
+				'labelFontWeight',
+				$gicentre$elm_vegalite$VegaLite$fontWeightSpec(fw));
+		case 'AxLabelLimit':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'labelLimit',
+				$elm$json$Json$Encode$float(n));
+		case 'AxLabelOpacity':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'labelOpacity',
+				$elm$json$Json$Encode$float(n));
+		case 'AxLabelOverlap':
+			var strat = axisProp.a;
+			return _Utils_Tuple2(
+				'labelOverlap',
+				$gicentre$elm_vegalite$VegaLite$overlapStrategySpec(strat));
+		case 'AxLabelPadding':
+			var pad = axisProp.a;
+			return _Utils_Tuple2(
+				'labelPadding',
+				$elm$json$Json$Encode$float(pad));
+		case 'AxLabelSeparation':
+			var x = axisProp.a;
+			return _Utils_Tuple2(
+				'labelSeparation',
+				$elm$json$Json$Encode$float(x));
+		case 'AxDomain':
+			var b = axisProp.a;
+			return _Utils_Tuple2(
+				'domain',
+				$elm$json$Json$Encode$bool(b));
+		case 'AxDomainColor':
+			var c = axisProp.a;
+			return _Utils_Tuple2(
+				'domainColor',
+				$elm$json$Json$Encode$string(c));
+		case 'AxDomainOpacity':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'domainOpacity',
+				$elm$json$Json$Encode$float(n));
+		case 'AxDomainWidth':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'domainWidth',
+				$elm$json$Json$Encode$float(n));
+		case 'AxGrid':
+			var b = axisProp.a;
+			return _Utils_Tuple2(
+				'grid',
+				$elm$json$Json$Encode$bool(b));
+		case 'AxMaxExtent':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'maxExtent',
+				$elm$json$Json$Encode$float(n));
+		case 'AxMinExtent':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'minExtent',
+				$elm$json$Json$Encode$float(n));
+		case 'AxOrient':
+			var side = axisProp.a;
+			return _Utils_Tuple2(
+				'orient',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$sideLabel(side)));
+		case 'AxOffset':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'offset',
+				$elm$json$Json$Encode$float(n));
+		case 'AxPosition':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'position',
+				$elm$json$Json$Encode$float(n));
+		case 'AxZIndex':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'zindex',
+				$elm$json$Json$Encode$int(n));
+		case 'AxTicks':
+			var b = axisProp.a;
+			return _Utils_Tuple2(
+				'ticks',
+				$elm$json$Json$Encode$bool(b));
+		case 'AxTickColor':
+			var s = axisProp.a;
+			return _Utils_Tuple2(
+				'tickColor',
+				$elm$json$Json$Encode$string(s));
+		case 'AxTickCount':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'tickCount',
+				$elm$json$Json$Encode$int(n));
+		case 'AxTickExtra':
+			var b = axisProp.a;
+			return _Utils_Tuple2(
+				'tickExtra',
+				$elm$json$Json$Encode$bool(b));
+		case 'AxTickOffset':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'tickOffset',
+				$elm$json$Json$Encode$float(n));
+		case 'AxTickOpacity':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'tickOpacity',
+				$elm$json$Json$Encode$float(n));
+		case 'AxTickRound':
+			var b = axisProp.a;
+			return _Utils_Tuple2(
+				'tickRound',
+				$elm$json$Json$Encode$bool(b));
+		case 'AxTickMinStep':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'tickMinStep',
+				$elm$json$Json$Encode$float(n));
+		case 'AxTickSize':
+			var sz = axisProp.a;
+			return _Utils_Tuple2(
+				'tickSize',
+				$elm$json$Json$Encode$float(sz));
+		case 'AxTickWidth':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'tickWidth',
+				$elm$json$Json$Encode$float(n));
+		case 'AxValues':
+			var vals = axisProp.a;
+			return _Utils_Tuple2(
+				'values',
+				$gicentre$elm_vegalite$VegaLite$toList(
+					$gicentre$elm_vegalite$VegaLite$dataValuesSpecs(vals)));
+		case 'AxDates':
+			var dtss = axisProp.a;
+			return _Utils_Tuple2(
+				'values',
+				A2(
+					$elm$json$Json$Encode$list,
+					function (ds) {
+						return $elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$dateTimeProperty, ds));
+					},
+					dtss));
+		case 'AxTitle':
+			var s = axisProp.a;
+			return _Utils_Tuple2(
+				'title',
+				$gicentre$elm_vegalite$VegaLite$titleSpec(s));
+		case 'AxTitleAlign':
+			var al = axisProp.a;
+			return _Utils_Tuple2(
+				'titleAlign',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$hAlignLabel(al)));
+		case 'AxTitleAngle':
+			var angle = axisProp.a;
+			return _Utils_Tuple2(
+				'titleAngle',
+				$elm$json$Json$Encode$float(angle));
+		case 'AxTitleAnchor':
+			var an = axisProp.a;
+			return _Utils_Tuple2(
+				'titleAnchor',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$anchorLabel(an)));
+		case 'AxTitleBaseline':
+			var va = axisProp.a;
+			return _Utils_Tuple2(
+				'titleBaseline',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$vAlignLabel(va)));
+		case 'AxTitleColor':
+			var s = axisProp.a;
+			return _Utils_Tuple2(
+				'titleColor',
+				$elm$json$Json$Encode$string(s));
+		case 'AxTitleFont':
+			var s = axisProp.a;
+			return _Utils_Tuple2(
+				'titleFont',
+				$elm$json$Json$Encode$string(s));
+		case 'AxTitleFontSize':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'titleFontSize',
+				$elm$json$Json$Encode$float(n));
+		case 'AxTitleFontStyle':
+			var s = axisProp.a;
+			return _Utils_Tuple2(
+				'titleFontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 'AxTitleFontWeight':
+			var fw = axisProp.a;
+			return _Utils_Tuple2(
+				'titleFontWeight',
+				$gicentre$elm_vegalite$VegaLite$fontWeightSpec(fw));
+		case 'AxTitleLimit':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'titleLimit',
+				$elm$json$Json$Encode$float(n));
+		case 'AxTitleOpacity':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'titleOpacity',
+				$elm$json$Json$Encode$float(n));
+		case 'AxTitlePadding':
+			var pad = axisProp.a;
+			return _Utils_Tuple2(
+				'titlePadding',
+				$elm$json$Json$Encode$float(pad));
+		case 'AxTitleX':
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'titleX',
+				$elm$json$Json$Encode$float(n));
+		default:
+			var n = axisProp.a;
+			return _Utils_Tuple2(
+				'titleY',
+				$elm$json$Json$Encode$float(n));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$imMethodLabel = function (method) {
+	switch (method.$) {
+		case 'ImValue':
+			return 'value';
+		case 'ImMean':
+			return 'mean';
+		case 'ImMedian':
+			return 'median';
+		case 'ImMax':
+			return 'max';
+		default:
+			return 'min';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$imputeProperty = function (ip) {
+	switch (ip.$) {
+		case 'ImFrame':
+			if (ip.a.$ === 'Just') {
+				if (ip.b.$ === 'Just') {
+					var n1 = ip.a.a;
+					var n2 = ip.b.a;
+					return _Utils_Tuple2(
+						'frame',
+						A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$int,
+							_List_fromArray(
+								[n1, n2])));
+				} else {
+					var n1 = ip.a.a;
+					var _v2 = ip.b;
+					return _Utils_Tuple2(
+						'frame',
+						$gicentre$elm_vegalite$VegaLite$toList(
+							_List_fromArray(
+								[
+									$elm$json$Json$Encode$int(n1),
+									$elm$json$Json$Encode$null
+								])));
+				}
+			} else {
+				if (ip.b.$ === 'Just') {
+					var _v1 = ip.a;
+					var n2 = ip.b.a;
+					return _Utils_Tuple2(
+						'frame',
+						$gicentre$elm_vegalite$VegaLite$toList(
+							_List_fromArray(
+								[
+									$elm$json$Json$Encode$null,
+									$elm$json$Json$Encode$int(n2)
+								])));
+				} else {
+					var _v3 = ip.a;
+					var _v4 = ip.b;
+					return _Utils_Tuple2(
+						'frame',
+						$gicentre$elm_vegalite$VegaLite$toList(
+							_List_fromArray(
+								[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null])));
+				}
+			}
+		case 'ImKeyVals':
+			var dVals = ip.a;
+			return _Utils_Tuple2(
+				'keyvals',
+				$gicentre$elm_vegalite$VegaLite$toList(
+					$gicentre$elm_vegalite$VegaLite$dataValuesSpecs(dVals)));
+		case 'ImKeyValSequence':
+			var start = ip.a;
+			var stop = ip.b;
+			var step = ip.c;
+			return _Utils_Tuple2(
+				'keyvals',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'start',
+							$elm$json$Json$Encode$float(start)),
+							_Utils_Tuple2(
+							'stop',
+							$elm$json$Json$Encode$float(stop)),
+							_Utils_Tuple2(
+							'step',
+							$elm$json$Json$Encode$float(step))
+						])));
+		case 'ImMethod':
+			var method = ip.a;
+			return _Utils_Tuple2(
+				'method',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$imMethodLabel(method)));
+		case 'ImNewValue':
+			var dVal = ip.a;
+			return _Utils_Tuple2(
+				'value',
+				$gicentre$elm_vegalite$VegaLite$dataValueSpec(dVal));
+		default:
+			return _Utils_Tuple2('groupby', $elm$json$Json$Encode$null);
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$stackOffsetSpec = function (sp) {
+	switch (sp.$) {
+		case 'OfZero':
+			return $elm$json$Json$Encode$string('zero');
+		case 'OfNormalize':
+			return $elm$json$Json$Encode$string('normalize');
+		case 'OfCenter':
+			return $elm$json$Json$Encode$string('center');
+		default:
+			return $elm$json$Json$Encode$null;
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$stackOffset = function (offset) {
+	return _Utils_Tuple2(
+		'stack',
+		$gicentre$elm_vegalite$VegaLite$stackOffsetSpec(offset));
+};
+var $gicentre$elm_vegalite$VegaLite$positionChannelProperty = function (pDef) {
+	switch (pDef.$) {
+		case 'PName':
+			var s = pDef.a;
+			return _Utils_Tuple2(
+				'field',
+				$elm$json$Json$Encode$string(s));
+		case 'PmType':
+			var measure = pDef.a;
+			return _Utils_Tuple2(
+				'type',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$measurementLabel(measure)));
+		case 'PBin':
+			var bps = pDef.a;
+			return $gicentre$elm_vegalite$VegaLite$bin(bps);
+		case 'PBinned':
+			return _Utils_Tuple2(
+				'bin',
+				$elm$json$Json$Encode$string('binned'));
+		case 'PAggregate':
+			var op = pDef.a;
+			return _Utils_Tuple2(
+				'aggregate',
+				$gicentre$elm_vegalite$VegaLite$operationSpec(op));
+		case 'PTimeUnit':
+			var tu = pDef.a;
+			return _Utils_Tuple2(
+				'timeUnit',
+				$elm$json$Json$Encode$string(
+					$gicentre$elm_vegalite$VegaLite$timeUnitLabel(tu)));
+		case 'PTitle':
+			var t = pDef.a;
+			return _Utils_Tuple2(
+				'title',
+				$gicentre$elm_vegalite$VegaLite$titleSpec(t));
+		case 'PSort':
+			var sps = pDef.a;
+			_v1$4:
+			while (true) {
+				if (!sps.b) {
+					return _Utils_Tuple2('sort', $elm$json$Json$Encode$null);
+				} else {
+					if (!sps.b.b) {
+						switch (sps.a.$) {
+							case 'Ascending':
+								var _v2 = sps.a;
+								return _Utils_Tuple2(
+									'sort',
+									$elm$json$Json$Encode$string('ascending'));
+							case 'Descending':
+								var _v3 = sps.a;
+								return _Utils_Tuple2(
+									'sort',
+									$elm$json$Json$Encode$string('descending'));
+							case 'CustomSort':
+								var dvs = sps.a.a;
+								return _Utils_Tuple2(
+									'sort',
+									$gicentre$elm_vegalite$VegaLite$toList(
+										$gicentre$elm_vegalite$VegaLite$dataValuesSpecs(dvs)));
+							default:
+								break _v1$4;
+						}
+					} else {
+						break _v1$4;
+					}
+				}
+			}
+			return _Utils_Tuple2(
+				'sort',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$sortProperty, sps)));
+		case 'PBand':
+			var x = pDef.a;
+			return _Utils_Tuple2(
+				'band',
+				$elm$json$Json$Encode$float(x));
+		case 'PScale':
+			var sps = pDef.a;
+			return _Utils_eq(sps, _List_Nil) ? _Utils_Tuple2('scale', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'scale',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$scaleProperty, sps)));
+		case 'PAxis':
+			var aps = pDef.a;
+			return _Utils_eq(aps, _List_Nil) ? _Utils_Tuple2('axis', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'axis',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$axisProperty, aps)));
+		case 'PStack':
+			var so = pDef.a;
+			return $gicentre$elm_vegalite$VegaLite$stackOffset(so);
+		case 'PRepeat':
+			var arr = pDef.a;
+			return _Utils_Tuple2(
+				'field',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'repeat',
+							$elm$json$Json$Encode$string(
+								$gicentre$elm_vegalite$VegaLite$arrangementLabel(arr)))
+						])));
+		case 'PWidth':
+			return _Utils_Tuple2(
+				'value',
+				$elm$json$Json$Encode$string('width'));
+		case 'PHeight':
+			return _Utils_Tuple2(
+				'value',
+				$elm$json$Json$Encode$string('height'));
+		case 'PNumber':
+			var x = pDef.a;
+			return _Utils_Tuple2(
+				'value',
+				$elm$json$Json$Encode$float(x));
+		default:
+			var ips = pDef.a;
+			return _Utils_Tuple2(
+				'impute',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$imputeProperty, ips)));
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$positionLabel = function (pChannel) {
+	switch (pChannel.$) {
+		case 'X':
+			return 'x';
+		case 'Y':
+			return 'y';
+		case 'X2':
+			return 'x2';
+		case 'Y2':
+			return 'y2';
+		case 'XError':
+			return 'xError';
+		case 'YError':
+			return 'yError';
+		case 'XError2':
+			return 'xError2';
+		case 'YError2':
+			return 'yError2';
+		case 'Longitude':
+			return 'longitude';
+		case 'Latitude':
+			return 'latitude';
+		case 'Longitude2':
+			return 'longitude2';
+		default:
+			return 'latitude2';
+	}
+};
+var $gicentre$elm_vegalite$VegaLite$position = F2(
+	function (pos, pDefs) {
+		var isNotPmType = function (pp) {
+			if (pp.$ === 'PmType') {
+				var t = pp.a;
+				return false;
+			} else {
+				return true;
+			}
+		};
+		switch (pos.$) {
+			case 'X':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$X),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'Y':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$Y),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'X2':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$X2),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'Y2':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$Y2),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'XError':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$XError),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'YError':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$YError),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'XError2':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$XError2),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'YError2':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$YError2),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'Longitude':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$Longitude),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'Latitude':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$Latitude),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			case 'Longitude2':
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$Longitude2),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+			default:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$gicentre$elm_vegalite$VegaLite$positionLabel($gicentre$elm_vegalite$VegaLite$Latitude2),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $gicentre$elm_vegalite$VegaLite$positionChannelProperty, pDefs))));
+		}
+	});
+var $author$project$Demo$LogisticRegression$lineSpec = function (model) {
+	var x2 = 1;
+	var x1 = 0;
+	var w = A2(
+		$elm$core$Maybe$withDefault,
+		_List_Nil,
+		A2(
+			$elm_community$list_extra$List$Extra$getAt,
+			0,
+			A2(
+				$elm$core$Maybe$withDefault,
+				_List_Nil,
+				A2($elm_community$list_extra$List$Extra$getAt, 0, model.demoModel.w))));
+	var w1 = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$getAt, 1, w));
+	var w2 = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$getAt, 2, w));
+	var encoding = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$gicentre$elm_vegalite$VegaLite$encoding,
+			A2(
+				$gicentre$elm_vegalite$VegaLite$position,
+				$gicentre$elm_vegalite$VegaLite$X,
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$pName('x'),
+						$gicentre$elm_vegalite$VegaLite$pQuant
+					]))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$position,
+			$gicentre$elm_vegalite$VegaLite$Y,
+			_List_fromArray(
+				[
+					$gicentre$elm_vegalite$VegaLite$pName('y'),
+					$gicentre$elm_vegalite$VegaLite$pQuant
+				])));
+	var b = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		A2($elm_community$list_extra$List$Extra$getAt, 0, w));
+	var y1 = (-b) / w2;
+	var y2 = ((-b) - (x2 * w1)) / w2;
+	var points = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$gicentre$elm_vegalite$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$gicentre$elm_vegalite$VegaLite$dataColumn,
+				'x',
+				$gicentre$elm_vegalite$VegaLite$nums(
+					_List_fromArray(
+						[x1, x2])))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$dataColumn,
+			'y',
+			$gicentre$elm_vegalite$VegaLite$nums(
+				_List_fromArray(
+					[y1, y2]))));
+	return $gicentre$elm_vegalite$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				points(_List_Nil),
+				$gicentre$elm_vegalite$VegaLite$line(
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$maColor('#734FD8')
+					])),
+				encoding(_List_Nil)
+			]));
+};
+var $gicentre$elm_vegalite$VegaLite$VLWidth = {$: 'VLWidth'};
+var $gicentre$elm_vegalite$VegaLite$widthOfContainer = _Utils_Tuple2(
+	$gicentre$elm_vegalite$VegaLite$VLWidth,
+	$elm$json$Json$Encode$string('container'));
+var $author$project$Demo$LogisticRegression$lossPlotSpec = function (model) {
+	var points = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$gicentre$elm_vegalite$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$gicentre$elm_vegalite$VegaLite$dataColumn,
+				'epoch',
+				$gicentre$elm_vegalite$VegaLite$nums(
+					A2(
+						$elm$core$List$map,
+						$elm$core$Basics$toFloat,
+						A2(
+							$elm$core$List$range,
+							0,
+							$elm$core$List$length(model.demoModel.loss) - 1))))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$dataColumn,
+			'loss',
+			$gicentre$elm_vegalite$VegaLite$nums(model.demoModel.loss)));
+	var encoding = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$gicentre$elm_vegalite$VegaLite$encoding,
+			A2(
+				$gicentre$elm_vegalite$VegaLite$position,
+				$gicentre$elm_vegalite$VegaLite$X,
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$pName('epoch'),
+						$gicentre$elm_vegalite$VegaLite$pQuant
+					]))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$position,
+			$gicentre$elm_vegalite$VegaLite$Y,
+			_List_fromArray(
+				[
+					$gicentre$elm_vegalite$VegaLite$pName('loss'),
+					$gicentre$elm_vegalite$VegaLite$pQuant
+				])));
+	return $gicentre$elm_vegalite$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$gicentre$elm_vegalite$VegaLite$widthOfContainer,
+				$gicentre$elm_vegalite$VegaLite$heightOfContainer,
+				points(_List_Nil),
+				$gicentre$elm_vegalite$VegaLite$line(
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$maColor('#734FD8')
+					])),
+				encoding(_List_Nil)
+			]));
+};
+var $gicentre$elm_vegalite$VegaLite$color = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'color',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $gicentre$elm_vegalite$VegaLite$markChannelProperty, markProps))));
+};
+var $gicentre$elm_vegalite$VegaLite$MName = function (a) {
+	return {$: 'MName', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$mName = $gicentre$elm_vegalite$VegaLite$MName;
+var $gicentre$elm_vegalite$VegaLite$MmType = function (a) {
+	return {$: 'MmType', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$Nominal = {$: 'Nominal'};
+var $gicentre$elm_vegalite$VegaLite$mNominal = $gicentre$elm_vegalite$VegaLite$MmType($gicentre$elm_vegalite$VegaLite$Nominal);
+var $elm$core$Basics$round = _Basics_round;
+var $gicentre$elm_vegalite$VegaLite$Strings = function (a) {
+	return {$: 'Strings', a: a};
+};
+var $gicentre$elm_vegalite$VegaLite$strs = $gicentre$elm_vegalite$VegaLite$Strings;
+var $author$project$Demo$LogisticRegression$scatterPlotSpec = function (model) {
+	var points = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$gicentre$elm_vegalite$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$gicentre$elm_vegalite$VegaLite$dataColumn,
+					'x',
+					$gicentre$elm_vegalite$VegaLite$nums(
+						A2(
+							$elm$core$Maybe$withDefault,
+							_List_Nil,
+							A2($elm_community$list_extra$List$Extra$getAt, 0, model.demoModel.x))))),
+			A2(
+				$gicentre$elm_vegalite$VegaLite$dataColumn,
+				'y',
+				$gicentre$elm_vegalite$VegaLite$nums(
+					A2(
+						$elm$core$Maybe$withDefault,
+						_List_Nil,
+						A2($elm_community$list_extra$List$Extra$getAt, 1, model.demoModel.x))))),
+		A2(
+			$gicentre$elm_vegalite$VegaLite$dataColumn,
+			'group',
+			$gicentre$elm_vegalite$VegaLite$strs(
+				A2(
+					$elm$core$List$map,
+					function (num) {
+						var _v0 = $elm$core$Basics$round(num);
+						switch (_v0) {
+							case 0:
+								return 'Group 1';
+							case 1:
+								return 'Group 2';
+							default:
+								return 'Group';
+						}
+					},
+					A2(
+						$elm$core$Maybe$withDefault,
+						_List_Nil,
+						A2($elm_community$list_extra$List$Extra$getAt, 0, model.demoModel.y))))));
+	var encoding = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$gicentre$elm_vegalite$VegaLite$encoding,
+				A2(
+					$gicentre$elm_vegalite$VegaLite$position,
+					$gicentre$elm_vegalite$VegaLite$X,
+					_List_fromArray(
+						[
+							$gicentre$elm_vegalite$VegaLite$pName('x'),
+							$gicentre$elm_vegalite$VegaLite$pQuant
+						]))),
+			A2(
+				$gicentre$elm_vegalite$VegaLite$position,
+				$gicentre$elm_vegalite$VegaLite$Y,
+				_List_fromArray(
+					[
+						$gicentre$elm_vegalite$VegaLite$pName('y'),
+						$gicentre$elm_vegalite$VegaLite$pQuant
+					]))),
+		$gicentre$elm_vegalite$VegaLite$color(
+			_List_fromArray(
+				[
+					$gicentre$elm_vegalite$VegaLite$mName('group'),
+					$gicentre$elm_vegalite$VegaLite$mNominal
+				])));
+	return $gicentre$elm_vegalite$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				points(_List_Nil),
+				encoding(_List_Nil),
+				$gicentre$elm_vegalite$VegaLite$circle(_List_Nil)
+			]));
+};
+var $author$project$Demo$LogisticRegression$demoSpecs = function (model) {
+	return $gicentre$elm_vegalite$VegaLite$combineSpecs(
+		_List_fromArray(
+			[
+				_Utils_Tuple2(
+				'logisticRegressionDemoScatterPlot',
+				function () {
+					var encoding = $gicentre$elm_vegalite$VegaLite$encoding;
+					var data = A2($gicentre$elm_vegalite$VegaLite$dataFromRows, _List_Nil, _List_Nil);
+					return $gicentre$elm_vegalite$VegaLite$toVegaLite(
+						_List_fromArray(
+							[
+								$gicentre$elm_vegalite$VegaLite$widthOfContainer,
+								$gicentre$elm_vegalite$VegaLite$heightOfContainer,
+								data,
+								encoding(_List_Nil),
+								$gicentre$elm_vegalite$VegaLite$layer(
+								_List_fromArray(
+									[
+										$author$project$Demo$LogisticRegression$lineSpec(model),
+										$author$project$Demo$LogisticRegression$scatterPlotSpec(model)
+									]))
+							]));
+				}()),
+				_Utils_Tuple2(
+				'logisticRegressionDemoLossPlot',
+				$author$project$Demo$LogisticRegression$lossPlotSpec(model))
+			]));
+};
+var $author$project$Demo$LogisticRegression$GetNextEpoch = function (a) {
+	return {$: 'GetNextEpoch', a: a};
+};
+var $author$project$Demo$LogisticRegression$LogisticRegressionModel = F4(
+	function (x, y, w, loss) {
+		return {loss: loss, w: w, x: x, y: y};
+	});
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$float = _Json_decodeFloat;
+var $elm$json$Json$Decode$list = _Json_decodeList;
+var $elm$json$Json$Decode$map4 = _Json_map4;
+var $author$project$Demo$LogisticRegression$epochDecoder = A5(
+	$elm$json$Json$Decode$map4,
+	$author$project$Demo$LogisticRegression$LogisticRegressionModel,
+	A2(
+		$elm$json$Json$Decode$field,
+		'X',
+		$elm$json$Json$Decode$list(
+			$elm$json$Json$Decode$list($elm$json$Json$Decode$float))),
+	A2(
+		$elm$json$Json$Decode$field,
+		'Y',
+		$elm$json$Json$Decode$list(
+			$elm$json$Json$Decode$list($elm$json$Json$Decode$float))),
+	A2(
+		$elm$json$Json$Decode$field,
+		'W',
+		$elm$json$Json$Decode$list(
+			$elm$json$Json$Decode$list(
+				$elm$json$Json$Decode$list($elm$json$Json$Decode$float)))),
+	A2(
+		$elm$json$Json$Decode$field,
+		'loss',
+		$elm$json$Json$Decode$list($elm$json$Json$Decode$float)));
+var $elm$json$Json$Decode$decodeString = _Json_runOnString;
+var $elm$http$Http$expectStringResponse = F2(
+	function (toMsg, toResult) {
+		return A3(
+			_Http_expect,
+			'',
+			$elm$core$Basics$identity,
+			A2($elm$core$Basics$composeR, toResult, toMsg));
+	});
+var $elm$http$Http$expectJson = F2(
+	function (toMsg, decoder) {
+		return A2(
+			$elm$http$Http$expectStringResponse,
+			toMsg,
+			$elm$http$Http$resolve(
+				function (string) {
+					return A2(
+						$elm$core$Result$mapError,
+						$elm$json$Json$Decode$errorToString,
+						A2($elm$json$Json$Decode$decodeString, decoder, string));
+				}));
+	});
+var $author$project$Demo$LogisticRegression$getEpoch = F2(
+	function (epochNumber, demoId) {
+		return $elm$http$Http$post(
+			{
+				body: $elm$http$Http$jsonBody(
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'session_id',
+								$elm$json$Json$Encode$string(demoId)),
+								_Utils_Tuple2(
+								'epoch_num',
+								$elm$json$Json$Encode$int(epochNumber)),
+								_Utils_Tuple2(
+								'learning_rate',
+								$elm$json$Json$Encode$float(0.01))
+							]))),
+				expect: A2($elm$http$Http$expectJson, $author$project$Demo$LogisticRegression$GetNextEpoch, $author$project$Demo$LogisticRegression$epochDecoder),
+				url: $author$project$Demo$LogisticRegression$serverRoot + 'api/model/iter'
+			});
+	});
+var $author$project$Demo$LogisticRegression$GetDemoId = function (a) {
+	return {$: 'GetDemoId', a: a};
+};
+var $elm$http$Http$emptyBody = _Http_emptyBody;
+var $elm$http$Http$expectString = function (toMsg) {
+	return A2(
+		$elm$http$Http$expectStringResponse,
+		toMsg,
+		$elm$http$Http$resolve($elm$core$Result$Ok));
+};
+var $author$project$Demo$LogisticRegression$initDemo = $elm$http$Http$post(
+	{
+		body: $elm$http$Http$emptyBody,
+		expect: $elm$http$Http$expectString($author$project$Demo$LogisticRegression$GetDemoId),
+		url: $author$project$Demo$LogisticRegression$serverRoot + 'api/model/new'
+	});
+var $author$project$Demo$LogisticRegression$update = F2(
+	function (msg, model) {
+		switch (msg.$) {
+			case 'LoggedIn':
+				var result = msg.a;
+				return _Utils_Tuple2(
+					function () {
+						if (result.$ === 'Err') {
+							var reason = result.a;
+							return _Utils_update(
+								model,
+								{
+									serverError: $elm$core$Maybe$Just('Can\'t log in to server.')
+								});
+						} else {
+							return model;
+						}
+					}(),
+					$author$project$Demo$LogisticRegression$initDemo);
+			case 'GetDemoId':
+				var result = msg.a;
+				if (result.$ === 'Ok') {
+					var id = result.a;
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{demoId: id}),
+						A2($author$project$Demo$LogisticRegression$getEpoch, 1, id));
+				} else {
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{
+								serverError: $elm$core$Maybe$Just('Can\'t get demo from server.')
+							}),
+						$elm$core$Platform$Cmd$none);
+				}
+			case 'Run':
+				var epochNumber = msg.a;
+				return _Utils_Tuple2(
+					model,
+					A2($author$project$Demo$LogisticRegression$getEpoch, epochNumber, model.demoId));
+			default:
+				var result = msg.a;
+				return _Utils_Tuple2(
+					function () {
+						if (result.$ === 'Ok') {
+							var newDemoModel = result.a;
+							var storedDemoModel = _Utils_update(
+								newDemoModel,
+								{
+									loss: _Utils_ap(model.demoModel.loss, newDemoModel.loss)
+								});
+							return _Utils_update(
+								model,
+								{
+									demoModel: storedDemoModel,
+									demoSpecs: $author$project$Demo$LogisticRegression$demoSpecs(
+										_Utils_update(
+											model,
+											{demoModel: storedDemoModel}))
+								});
+						} else {
+							return _Utils_update(
+								model,
+								{
+									serverError: $elm$core$Maybe$Just('Can\'t get next epoch from server.')
+								});
+						}
+					}(),
+					$elm$core$Platform$Cmd$none);
+		}
+	});
+var $author$project$Page$Tutorial$update = F2(
+	function (msg, model) {
+		if (msg.$ === 'GetContentFromName') {
+			var name = msg.a;
+			var index = $author$project$Page$Tutorial$getContentIndex(name);
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{contentIndex: index}),
+				$author$project$Page$Tutorial$renderContent(name));
+		} else {
+			var demoMsg = msg.a;
+			var _v1 = A2($author$project$Demo$LogisticRegression$update, demoMsg, model.demo);
+			var newDemo = _v1.a;
+			var newDemoMsg = _v1.b;
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{demo: newDemo}),
+				$elm$core$Platform$Cmd$batch(
+					_List_fromArray(
+						[
+							A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, newDemoMsg),
+							$author$project$Page$Tutorial$elmToJs(newDemo.demoSpecs)
+						])));
+		}
+	});
+var $author$project$Main$update = F2(
+	function (message, model) {
+		switch (message.$) {
+			case 'LinkClicked':
+				var urlRequest = message.a;
+				if (urlRequest.$ === 'Internal') {
+					var url = urlRequest.a;
+					return _Utils_Tuple2(
+						model,
+						A2(
+							$elm$browser$Browser$Navigation$pushUrl,
+							model.key,
+							$elm$url$Url$toString(url)));
+				} else {
+					var href = urlRequest.a;
+					return _Utils_Tuple2(
+						model,
+						$elm$browser$Browser$Navigation$load(href));
+				}
+			case 'UrlChanged':
+				var url = message.a;
+				return A2($author$project$Main$route, url, model);
+			case 'HomeMsg':
+				var msg = message.a;
+				var _v2 = model.page;
+				if (_v2.$ === 'Home') {
+					var home = _v2.a;
+					return A2(
+						$author$project$Main$stepHome,
+						model,
+						A2($author$project$Page$Home$update, msg, home));
+				} else {
+					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+				}
+			case 'TutorialMsg':
+				var msg = message.a;
+				var _v3 = model.page;
+				if (_v3.$ === 'Tutorial') {
+					var tutorial = _v3.a;
+					return A2(
+						$author$project$Main$stepTutorial,
+						model,
+						A2($author$project$Page$Tutorial$update, msg, tutorial));
+				} else {
+					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+				}
+			default:
+				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}
+	});
+var $author$project$Main$NotFoundMsg = function (a) {
+	return {$: 'NotFoundMsg', a: a};
+};
+var $author$project$Page$Tutorial$firstContentName = A2(
+	$elm$core$Maybe$withDefault,
+	'',
+	$elm$core$List$head($author$project$Page$Tutorial$contentNames));
+var $author$project$Page$Tutorial$nth = F2(
+	function (n, xs) {
+		return (n < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
+			A2($elm$core$List$drop, n, xs));
+	});
+var $author$project$Page$Tutorial$getContentName = function (index) {
+	var lastIndex = $elm$core$List$length($author$project$Page$Tutorial$contentNames) - 1;
+	return (_Utils_cmp(index, lastIndex) > 0) ? A2(
+		$elm$core$Maybe$withDefault,
+		$author$project$Page$Tutorial$firstContentName,
+		A2($author$project$Page$Tutorial$nth, lastIndex, $author$project$Page$Tutorial$contentNames)) : A2(
+		$elm$core$Maybe$withDefault,
+		$author$project$Page$Tutorial$firstContentName,
+		A2($author$project$Page$Tutorial$nth, index, $author$project$Page$Tutorial$contentNames));
+};
+var $elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
+var $elm$html$Html$map = $elm$virtual_dom$VirtualDom$map;
+var $mdgriffith$elm_ui$Internal$Model$Colored = F3(
+	function (a, b, c) {
+		return {$: 'Colored', a: a, b: b, c: c};
+	});
+var $mdgriffith$elm_ui$Internal$Model$StyleClass = F2(
+	function (a, b) {
+		return {$: 'StyleClass', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$Flag = function (a) {
+	return {$: 'Flag', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Flag$Second = function (a) {
+	return {$: 'Second', a: a};
+};
+var $elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
+var $mdgriffith$elm_ui$Internal$Flag$flag = function (i) {
+	return (i > 31) ? $mdgriffith$elm_ui$Internal$Flag$Second(1 << (i - 32)) : $mdgriffith$elm_ui$Internal$Flag$Flag(1 << i);
+};
+var $mdgriffith$elm_ui$Internal$Flag$bgColor = $mdgriffith$elm_ui$Internal$Flag$flag(8);
+var $mdgriffith$elm_ui$Internal$Model$floatClass = function (x) {
+	return $elm$core$String$fromInt(
+		$elm$core$Basics$round(x * 255));
+};
+var $mdgriffith$elm_ui$Internal$Model$formatColorClass = function (_v0) {
+	var red = _v0.a;
+	var green = _v0.b;
+	var blue = _v0.c;
+	var alpha = _v0.d;
+	return $mdgriffith$elm_ui$Internal$Model$floatClass(red) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(green) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(blue) + ('-' + $mdgriffith$elm_ui$Internal$Model$floatClass(alpha))))));
+};
+var $mdgriffith$elm_ui$Element$Background$color = function (clr) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$bgColor,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$Colored,
+			'bg-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(clr),
+			'background-color',
+			clr));
+};
+var $mdgriffith$elm_ui$Internal$Flag$fontColor = $mdgriffith$elm_ui$Internal$Flag$flag(14);
+var $mdgriffith$elm_ui$Element$Font$color = function (fontColor) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$fontColor,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$Colored,
+			'fc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(fontColor),
+			'color',
+			fontColor));
+};
+var $mdgriffith$elm_ui$Internal$Model$Unkeyed = function (a) {
+	return {$: 'Unkeyed', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$AsColumn = {$: 'AsColumn'};
+var $mdgriffith$elm_ui$Internal$Model$asColumn = $mdgriffith$elm_ui$Internal$Model$AsColumn;
+var $mdgriffith$elm_ui$Internal$Style$classes = {above: 'a', active: 'atv', alignBottom: 'ab', alignCenterX: 'cx', alignCenterY: 'cy', alignContainerBottom: 'acb', alignContainerCenterX: 'accx', alignContainerCenterY: 'accy', alignContainerRight: 'acr', alignLeft: 'al', alignRight: 'ar', alignTop: 'at', alignedHorizontally: 'ah', alignedVertically: 'av', any: 's', behind: 'bh', below: 'b', bold: 'w7', borderDashed: 'bd', borderDotted: 'bdt', borderNone: 'bn', borderSolid: 'bs', capturePointerEvents: 'cpe', clip: 'cp', clipX: 'cpx', clipY: 'cpy', column: 'c', container: 'ctr', contentBottom: 'cb', contentCenterX: 'ccx', contentCenterY: 'ccy', contentLeft: 'cl', contentRight: 'cr', contentTop: 'ct', cursorPointer: 'cptr', cursorText: 'ctxt', focus: 'fcs', focusedWithin: 'focus-within', fullSize: 'fs', grid: 'g', hasBehind: 'hbh', heightContent: 'hc', heightExact: 'he', heightFill: 'hf', heightFillPortion: 'hfp', hover: 'hv', imageContainer: 'ic', inFront: 'fr', inputMultiline: 'iml', inputMultilineFiller: 'imlf', inputMultilineParent: 'imlp', inputMultilineWrapper: 'implw', inputText: 'it', italic: 'i', link: 'lnk', nearby: 'nb', noTextSelection: 'notxt', onLeft: 'ol', onRight: 'or', opaque: 'oq', overflowHidden: 'oh', page: 'pg', paragraph: 'p', passPointerEvents: 'ppe', root: 'ui', row: 'r', scrollbars: 'sb', scrollbarsX: 'sbx', scrollbarsY: 'sby', seButton: 'sbt', single: 'e', sizeByCapital: 'cap', spaceEvenly: 'sev', strike: 'sk', text: 't', textCenter: 'tc', textExtraBold: 'w8', textExtraLight: 'w2', textHeavy: 'w9', textJustify: 'tj', textJustifyAll: 'tja', textLeft: 'tl', textLight: 'w3', textMedium: 'w5', textNormalWeight: 'w4', textRight: 'tr', textSemiBold: 'w6', textThin: 'w1', textUnitalicized: 'tun', transition: 'ts', transparent: 'clr', underline: 'u', widthContent: 'wc', widthExact: 'we', widthFill: 'wf', widthFillPortion: 'wfp', wrapped: 'wrp'};
+var $mdgriffith$elm_ui$Internal$Model$Generic = {$: 'Generic'};
+var $mdgriffith$elm_ui$Internal$Model$div = $mdgriffith$elm_ui$Internal$Model$Generic;
+var $mdgriffith$elm_ui$Internal$Model$NoNearbyChildren = {$: 'NoNearbyChildren'};
+var $mdgriffith$elm_ui$Internal$Model$columnClass = $mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.column);
+var $mdgriffith$elm_ui$Internal$Model$gridClass = $mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.grid);
+var $mdgriffith$elm_ui$Internal$Model$pageClass = $mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.page);
+var $mdgriffith$elm_ui$Internal$Model$paragraphClass = $mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.paragraph);
+var $mdgriffith$elm_ui$Internal$Model$rowClass = $mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.row);
+var $mdgriffith$elm_ui$Internal$Model$singleClass = $mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.single);
+var $mdgriffith$elm_ui$Internal$Model$contextClasses = function (context) {
+	switch (context.$) {
+		case 'AsRow':
+			return $mdgriffith$elm_ui$Internal$Model$rowClass;
+		case 'AsColumn':
+			return $mdgriffith$elm_ui$Internal$Model$columnClass;
+		case 'AsEl':
+			return $mdgriffith$elm_ui$Internal$Model$singleClass;
+		case 'AsGrid':
+			return $mdgriffith$elm_ui$Internal$Model$gridClass;
+		case 'AsParagraph':
+			return $mdgriffith$elm_ui$Internal$Model$paragraphClass;
+		default:
+			return $mdgriffith$elm_ui$Internal$Model$pageClass;
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$Keyed = function (a) {
+	return {$: 'Keyed', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$NoStyleSheet = {$: 'NoStyleSheet'};
+var $mdgriffith$elm_ui$Internal$Model$Styled = function (a) {
+	return {$: 'Styled', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$Unstyled = function (a) {
+	return {$: 'Unstyled', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$addChildren = F2(
+	function (existing, nearbyChildren) {
+		switch (nearbyChildren.$) {
+			case 'NoNearbyChildren':
+				return existing;
+			case 'ChildrenBehind':
+				var behind = nearbyChildren.a;
+				return _Utils_ap(behind, existing);
+			case 'ChildrenInFront':
+				var inFront = nearbyChildren.a;
+				return _Utils_ap(existing, inFront);
+			default:
+				var behind = nearbyChildren.a;
+				var inFront = nearbyChildren.b;
+				return _Utils_ap(
+					behind,
+					_Utils_ap(existing, inFront));
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$addKeyedChildren = F3(
+	function (key, existing, nearbyChildren) {
+		switch (nearbyChildren.$) {
+			case 'NoNearbyChildren':
+				return existing;
+			case 'ChildrenBehind':
+				var behind = nearbyChildren.a;
+				return _Utils_ap(
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(key, x);
+						},
+						behind),
+					existing);
+			case 'ChildrenInFront':
+				var inFront = nearbyChildren.a;
+				return _Utils_ap(
+					existing,
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(key, x);
+						},
+						inFront));
+			default:
+				var behind = nearbyChildren.a;
+				var inFront = nearbyChildren.b;
+				return _Utils_ap(
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(key, x);
+						},
+						behind),
+					_Utils_ap(
+						existing,
+						A2(
+							$elm$core$List$map,
+							function (x) {
+								return _Utils_Tuple2(key, x);
+							},
+							inFront)));
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$AsEl = {$: 'AsEl'};
+var $mdgriffith$elm_ui$Internal$Model$asEl = $mdgriffith$elm_ui$Internal$Model$AsEl;
+var $mdgriffith$elm_ui$Internal$Model$AsParagraph = {$: 'AsParagraph'};
+var $mdgriffith$elm_ui$Internal$Model$asParagraph = $mdgriffith$elm_ui$Internal$Model$AsParagraph;
+var $mdgriffith$elm_ui$Internal$Flag$alignBottom = $mdgriffith$elm_ui$Internal$Flag$flag(41);
+var $mdgriffith$elm_ui$Internal$Flag$alignRight = $mdgriffith$elm_ui$Internal$Flag$flag(40);
+var $mdgriffith$elm_ui$Internal$Flag$centerX = $mdgriffith$elm_ui$Internal$Flag$flag(42);
+var $mdgriffith$elm_ui$Internal$Flag$centerY = $mdgriffith$elm_ui$Internal$Flag$flag(43);
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$core$Set$Set_elm_builtin = function (a) {
+	return {$: 'Set_elm_builtin', a: a};
+};
+var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
+var $mdgriffith$elm_ui$Internal$Model$lengthClassName = function (x) {
+	switch (x.$) {
+		case 'Px':
+			var px = x.a;
+			return $elm$core$String$fromInt(px) + 'px';
+		case 'Content':
+			return 'auto';
+		case 'Fill':
+			var i = x.a;
+			return $elm$core$String$fromInt(i) + 'fr';
+		case 'Min':
+			var min = x.a;
+			var len = x.b;
+			return 'min' + ($elm$core$String$fromInt(min) + $mdgriffith$elm_ui$Internal$Model$lengthClassName(len));
+		default:
+			var max = x.a;
+			var len = x.b;
+			return 'max' + ($elm$core$String$fromInt(max) + $mdgriffith$elm_ui$Internal$Model$lengthClassName(len));
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$transformClass = function (transform) {
+	switch (transform.$) {
+		case 'Untransformed':
+			return $elm$core$Maybe$Nothing;
+		case 'Moved':
+			var _v1 = transform.a;
+			var x = _v1.a;
+			var y = _v1.b;
+			var z = _v1.c;
+			return $elm$core$Maybe$Just(
+				'mv-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(x) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(y) + ('-' + $mdgriffith$elm_ui$Internal$Model$floatClass(z))))));
+		default:
+			var _v2 = transform.a;
+			var tx = _v2.a;
+			var ty = _v2.b;
+			var tz = _v2.c;
+			var _v3 = transform.b;
+			var sx = _v3.a;
+			var sy = _v3.b;
+			var sz = _v3.c;
+			var _v4 = transform.c;
+			var ox = _v4.a;
+			var oy = _v4.b;
+			var oz = _v4.c;
+			var angle = transform.d;
+			return $elm$core$Maybe$Just(
+				'tfrm-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(tx) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(ty) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(tz) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(sx) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(sy) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(sz) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(ox) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(oy) + ('-' + ($mdgriffith$elm_ui$Internal$Model$floatClass(oz) + ('-' + $mdgriffith$elm_ui$Internal$Model$floatClass(angle))))))))))))))))))));
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$getStyleName = function (style) {
+	switch (style.$) {
+		case 'Shadows':
+			var name = style.a;
+			return name;
+		case 'Transparency':
+			var name = style.a;
+			var o = style.b;
+			return name;
+		case 'Style':
+			var _class = style.a;
+			return _class;
+		case 'FontFamily':
+			var name = style.a;
+			return name;
+		case 'FontSize':
+			var i = style.a;
+			return 'font-size-' + $elm$core$String$fromInt(i);
+		case 'Single':
+			var _class = style.a;
+			return _class;
+		case 'Colored':
+			var _class = style.a;
+			return _class;
+		case 'SpacingStyle':
+			var cls = style.a;
+			var x = style.b;
+			var y = style.c;
+			return cls;
+		case 'PaddingStyle':
+			var cls = style.a;
+			var top = style.b;
+			var right = style.c;
+			var bottom = style.d;
+			var left = style.e;
+			return cls;
+		case 'BorderWidth':
+			var cls = style.a;
+			var top = style.b;
+			var right = style.c;
+			var bottom = style.d;
+			var left = style.e;
+			return cls;
+		case 'GridTemplateStyle':
+			var template = style.a;
+			return 'grid-rows-' + (A2(
+				$elm$core$String$join,
+				'-',
+				A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.rows)) + ('-cols-' + (A2(
+				$elm$core$String$join,
+				'-',
+				A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.columns)) + ('-space-x-' + ($mdgriffith$elm_ui$Internal$Model$lengthClassName(template.spacing.a) + ('-space-y-' + $mdgriffith$elm_ui$Internal$Model$lengthClassName(template.spacing.b)))))));
+		case 'GridPosition':
+			var pos = style.a;
+			return 'gp grid-pos-' + ($elm$core$String$fromInt(pos.row) + ('-' + ($elm$core$String$fromInt(pos.col) + ('-' + ($elm$core$String$fromInt(pos.width) + ('-' + $elm$core$String$fromInt(pos.height)))))));
+		case 'PseudoSelector':
+			var selector = style.a;
+			var subStyle = style.b;
+			var name = function () {
+				switch (selector.$) {
+					case 'Focus':
+						return 'fs';
+					case 'Hover':
+						return 'hv';
+					default:
+						return 'act';
+				}
+			}();
+			return A2(
+				$elm$core$String$join,
+				' ',
+				A2(
+					$elm$core$List$map,
+					function (sty) {
+						var _v1 = $mdgriffith$elm_ui$Internal$Model$getStyleName(sty);
+						if (_v1 === '') {
+							return '';
+						} else {
+							var styleName = _v1;
+							return styleName + ('-' + name);
+						}
+					},
+					subStyle));
+		default:
+			var x = style.a;
+			return A2(
+				$elm$core$Maybe$withDefault,
+				'',
+				$mdgriffith$elm_ui$Internal$Model$transformClass(x));
+	}
+};
+var $elm$core$Set$insert = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
+	});
+var $elm$core$Dict$member = F2(
+	function (key, dict) {
+		var _v0 = A2($elm$core$Dict$get, key, dict);
+		if (_v0.$ === 'Just') {
+			return true;
+		} else {
+			return false;
+		}
+	});
+var $elm$core$Set$member = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return A2($elm$core$Dict$member, key, dict);
+	});
+var $mdgriffith$elm_ui$Internal$Model$reduceStyles = F2(
+	function (style, nevermind) {
+		var cache = nevermind.a;
+		var existing = nevermind.b;
+		var styleName = $mdgriffith$elm_ui$Internal$Model$getStyleName(style);
+		return A2($elm$core$Set$member, styleName, cache) ? nevermind : _Utils_Tuple2(
+			A2($elm$core$Set$insert, styleName, cache),
+			A2($elm$core$List$cons, style, existing));
+	});
+var $mdgriffith$elm_ui$Internal$Model$Property = F2(
+	function (a, b) {
+		return {$: 'Property', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Model$Style = F2(
+	function (a, b) {
+		return {$: 'Style', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Style$dot = function (c) {
+	return '.' + c;
+};
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $mdgriffith$elm_ui$Internal$Model$formatColor = function (_v0) {
+	var red = _v0.a;
+	var green = _v0.b;
+	var blue = _v0.c;
+	var alpha = _v0.d;
+	return 'rgba(' + ($elm$core$String$fromInt(
+		$elm$core$Basics$round(red * 255)) + ((',' + $elm$core$String$fromInt(
+		$elm$core$Basics$round(green * 255))) + ((',' + $elm$core$String$fromInt(
+		$elm$core$Basics$round(blue * 255))) + (',' + ($elm$core$String$fromFloat(alpha) + ')')))));
+};
+var $mdgriffith$elm_ui$Internal$Model$formatBoxShadow = function (shadow) {
+	return A2(
+		$elm$core$String$join,
+		' ',
+		A2(
+			$elm$core$List$filterMap,
+			$elm$core$Basics$identity,
+			_List_fromArray(
+				[
+					shadow.inset ? $elm$core$Maybe$Just('inset') : $elm$core$Maybe$Nothing,
+					$elm$core$Maybe$Just(
+					$elm$core$String$fromFloat(shadow.offset.a) + 'px'),
+					$elm$core$Maybe$Just(
+					$elm$core$String$fromFloat(shadow.offset.b) + 'px'),
+					$elm$core$Maybe$Just(
+					$elm$core$String$fromFloat(shadow.blur) + 'px'),
+					$elm$core$Maybe$Just(
+					$elm$core$String$fromFloat(shadow.size) + 'px'),
+					$elm$core$Maybe$Just(
+					$mdgriffith$elm_ui$Internal$Model$formatColor(shadow.color))
+				])));
+};
+var $elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return $elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
+var $elm$core$Tuple$mapFirst = F2(
+	function (func, _v0) {
+		var x = _v0.a;
+		var y = _v0.b;
+		return _Utils_Tuple2(
+			func(x),
+			y);
+	});
+var $elm$core$Tuple$mapSecond = F2(
+	function (func, _v0) {
+		var x = _v0.a;
+		var y = _v0.b;
+		return _Utils_Tuple2(
+			x,
+			func(y));
+	});
+var $mdgriffith$elm_ui$Internal$Model$renderFocusStyle = function (focus) {
+	return _List_fromArray(
+		[
+			A2(
+			$mdgriffith$elm_ui$Internal$Model$Style,
+			$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.focusedWithin) + ':focus-within',
+			A2(
+				$elm$core$List$filterMap,
+				$elm$core$Basics$identity,
+				_List_fromArray(
+					[
+						A2(
+						$elm$core$Maybe$map,
+						function (color) {
+							return A2(
+								$mdgriffith$elm_ui$Internal$Model$Property,
+								'border-color',
+								$mdgriffith$elm_ui$Internal$Model$formatColor(color));
+						},
+						focus.borderColor),
+						A2(
+						$elm$core$Maybe$map,
+						function (color) {
+							return A2(
+								$mdgriffith$elm_ui$Internal$Model$Property,
+								'background-color',
+								$mdgriffith$elm_ui$Internal$Model$formatColor(color));
+						},
+						focus.backgroundColor),
+						A2(
+						$elm$core$Maybe$map,
+						function (shadow) {
+							return A2(
+								$mdgriffith$elm_ui$Internal$Model$Property,
+								'box-shadow',
+								$mdgriffith$elm_ui$Internal$Model$formatBoxShadow(
+									{
+										blur: shadow.blur,
+										color: shadow.color,
+										inset: false,
+										offset: A2(
+											$elm$core$Tuple$mapSecond,
+											$elm$core$Basics$toFloat,
+											A2($elm$core$Tuple$mapFirst, $elm$core$Basics$toFloat, shadow.offset)),
+										size: shadow.size
+									}));
+						},
+						focus.shadow),
+						$elm$core$Maybe$Just(
+						A2($mdgriffith$elm_ui$Internal$Model$Property, 'outline', 'none'))
+					]))),
+			A2(
+			$mdgriffith$elm_ui$Internal$Model$Style,
+			$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any) + (':focus .focusable, ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any) + '.focusable:focus')),
+			A2(
+				$elm$core$List$filterMap,
+				$elm$core$Basics$identity,
+				_List_fromArray(
+					[
+						A2(
+						$elm$core$Maybe$map,
+						function (color) {
+							return A2(
+								$mdgriffith$elm_ui$Internal$Model$Property,
+								'border-color',
+								$mdgriffith$elm_ui$Internal$Model$formatColor(color));
+						},
+						focus.borderColor),
+						A2(
+						$elm$core$Maybe$map,
+						function (color) {
+							return A2(
+								$mdgriffith$elm_ui$Internal$Model$Property,
+								'background-color',
+								$mdgriffith$elm_ui$Internal$Model$formatColor(color));
+						},
+						focus.backgroundColor),
+						A2(
+						$elm$core$Maybe$map,
+						function (shadow) {
+							return A2(
+								$mdgriffith$elm_ui$Internal$Model$Property,
+								'box-shadow',
+								$mdgriffith$elm_ui$Internal$Model$formatBoxShadow(
+									{
+										blur: shadow.blur,
+										color: shadow.color,
+										inset: false,
+										offset: A2(
+											$elm$core$Tuple$mapSecond,
+											$elm$core$Basics$toFloat,
+											A2($elm$core$Tuple$mapFirst, $elm$core$Basics$toFloat, shadow.offset)),
+										size: shadow.size
+									}));
+						},
+						focus.shadow),
+						$elm$core$Maybe$Just(
+						A2($mdgriffith$elm_ui$Internal$Model$Property, 'outline', 'none'))
+					])))
+		]);
+};
+var $elm$virtual_dom$VirtualDom$node = function (tag) {
+	return _VirtualDom_node(
+		_VirtualDom_noScript(tag));
+};
+var $elm$virtual_dom$VirtualDom$property = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_property,
+			_VirtualDom_noInnerHtmlOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var $mdgriffith$elm_ui$Internal$Style$Batch = function (a) {
+	return {$: 'Batch', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Style$Child = F2(
+	function (a, b) {
+		return {$: 'Child', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Style$Class = F2(
+	function (a, b) {
+		return {$: 'Class', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Style$Descriptor = F2(
+	function (a, b) {
+		return {$: 'Descriptor', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Style$Left = {$: 'Left'};
+var $mdgriffith$elm_ui$Internal$Style$Prop = F2(
+	function (a, b) {
+		return {$: 'Prop', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Style$Right = {$: 'Right'};
+var $mdgriffith$elm_ui$Internal$Style$Self = function (a) {
+	return {$: 'Self', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Style$Supports = F2(
+	function (a, b) {
+		return {$: 'Supports', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Style$Content = function (a) {
+	return {$: 'Content', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Style$Bottom = {$: 'Bottom'};
+var $mdgriffith$elm_ui$Internal$Style$CenterX = {$: 'CenterX'};
+var $mdgriffith$elm_ui$Internal$Style$CenterY = {$: 'CenterY'};
+var $mdgriffith$elm_ui$Internal$Style$Top = {$: 'Top'};
+var $mdgriffith$elm_ui$Internal$Style$alignments = _List_fromArray(
+	[$mdgriffith$elm_ui$Internal$Style$Top, $mdgriffith$elm_ui$Internal$Style$Bottom, $mdgriffith$elm_ui$Internal$Style$Right, $mdgriffith$elm_ui$Internal$Style$Left, $mdgriffith$elm_ui$Internal$Style$CenterX, $mdgriffith$elm_ui$Internal$Style$CenterY]);
+var $mdgriffith$elm_ui$Internal$Style$contentName = function (desc) {
+	switch (desc.a.$) {
+		case 'Top':
+			var _v1 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.contentTop);
+		case 'Bottom':
+			var _v2 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.contentBottom);
+		case 'Right':
+			var _v3 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.contentRight);
+		case 'Left':
+			var _v4 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.contentLeft);
+		case 'CenterX':
+			var _v5 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.contentCenterX);
+		default:
+			var _v6 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.contentCenterY);
+	}
+};
+var $mdgriffith$elm_ui$Internal$Style$selfName = function (desc) {
+	switch (desc.a.$) {
+		case 'Top':
+			var _v1 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignTop);
+		case 'Bottom':
+			var _v2 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignBottom);
+		case 'Right':
+			var _v3 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignRight);
+		case 'Left':
+			var _v4 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignLeft);
+		case 'CenterX':
+			var _v5 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignCenterX);
+		default:
+			var _v6 = desc.a;
+			return $mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignCenterY);
+	}
+};
+var $mdgriffith$elm_ui$Internal$Style$describeAlignment = function (values) {
+	var createDescription = function (alignment) {
+		var _v0 = values(alignment);
+		var content = _v0.a;
+		var indiv = _v0.b;
+		return _List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$contentName(
+					$mdgriffith$elm_ui$Internal$Style$Content(alignment)),
+				content),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Child,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+				_List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$selfName(
+							$mdgriffith$elm_ui$Internal$Style$Self(alignment)),
+						indiv)
+					]))
+			]);
+	};
+	return $mdgriffith$elm_ui$Internal$Style$Batch(
+		A2($elm$core$List$concatMap, createDescription, $mdgriffith$elm_ui$Internal$Style$alignments));
+};
+var $mdgriffith$elm_ui$Internal$Style$elDescription = _List_fromArray(
+	[
+		A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex'),
+		A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-direction', 'column'),
+		A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'pre'),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Descriptor,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.hasBehind),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '0'),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Child,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.behind),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '-1')
+					]))
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Descriptor,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.seButton),
+		_List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Child,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.text),
+				_List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFill),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthFill),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'auto !important')
+							]))
+					]))
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Child,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightContent),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', 'auto')
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Child,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFill),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '100000')
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Child,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthFill),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%')
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Child,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthFillPortion),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%')
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Child,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthContent),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'flex-start')
+			])),
+		$mdgriffith$elm_ui$Internal$Style$describeAlignment(
+		function (alignment) {
+			switch (alignment.$) {
+				case 'Top':
+					return _Utils_Tuple2(
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'flex-start')
+							]),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', 'auto !important'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', '0 !important')
+							]));
+				case 'Bottom':
+					return _Utils_Tuple2(
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'flex-end')
+							]),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', 'auto !important'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', '0 !important')
+							]));
+				case 'Right':
+					return _Utils_Tuple2(
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'flex-end')
+							]),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'flex-end')
+							]));
+				case 'Left':
+					return _Utils_Tuple2(
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'flex-start')
+							]),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'flex-start')
+							]));
+				case 'CenterX':
+					return _Utils_Tuple2(
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'center')
+							]),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'center')
+							]));
+				default:
+					return _Utils_Tuple2(
+						_List_fromArray(
+							[
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', 'auto'),
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', 'auto')
+									]))
+							]),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', 'auto !important'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', 'auto !important')
+							]));
+			}
+		})
+	]);
+var $mdgriffith$elm_ui$Internal$Style$gridAlignments = function (values) {
+	var createDescription = function (alignment) {
+		return _List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Child,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+				_List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$selfName(
+							$mdgriffith$elm_ui$Internal$Style$Self(alignment)),
+						values(alignment))
+					]))
+			]);
+	};
+	return $mdgriffith$elm_ui$Internal$Style$Batch(
+		A2($elm$core$List$concatMap, createDescription, $mdgriffith$elm_ui$Internal$Style$alignments));
+};
+var $mdgriffith$elm_ui$Internal$Style$Above = {$: 'Above'};
+var $mdgriffith$elm_ui$Internal$Style$Behind = {$: 'Behind'};
+var $mdgriffith$elm_ui$Internal$Style$Below = {$: 'Below'};
+var $mdgriffith$elm_ui$Internal$Style$OnLeft = {$: 'OnLeft'};
+var $mdgriffith$elm_ui$Internal$Style$OnRight = {$: 'OnRight'};
+var $mdgriffith$elm_ui$Internal$Style$Within = {$: 'Within'};
+var $mdgriffith$elm_ui$Internal$Style$locations = function () {
+	var loc = $mdgriffith$elm_ui$Internal$Style$Above;
+	var _v0 = function () {
+		switch (loc.$) {
+			case 'Above':
+				return _Utils_Tuple0;
+			case 'Below':
+				return _Utils_Tuple0;
+			case 'OnRight':
+				return _Utils_Tuple0;
+			case 'OnLeft':
+				return _Utils_Tuple0;
+			case 'Within':
+				return _Utils_Tuple0;
+			default:
+				return _Utils_Tuple0;
+		}
+	}();
+	return _List_fromArray(
+		[$mdgriffith$elm_ui$Internal$Style$Above, $mdgriffith$elm_ui$Internal$Style$Below, $mdgriffith$elm_ui$Internal$Style$OnRight, $mdgriffith$elm_ui$Internal$Style$OnLeft, $mdgriffith$elm_ui$Internal$Style$Within, $mdgriffith$elm_ui$Internal$Style$Behind]);
+}();
+var $mdgriffith$elm_ui$Internal$Style$baseSheet = _List_fromArray(
+	[
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Class,
+		'html,body',
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'padding', '0'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0')
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Class,
+		_Utils_ap(
+			$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+			_Utils_ap(
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.single),
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.imageContainer))),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'block')
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Class,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any) + ':focus',
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'outline', 'none')
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Class,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.root),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', 'auto'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'min-height', '100%'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '0'),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				_Utils_ap(
+					$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+					$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFill)),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFill),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%')
+							]))
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Child,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.inFront),
+				_List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.nearby),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'fixed')
+							]))
+					]))
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Class,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.nearby),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'relative'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border', 'none'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-direction', 'row'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto'),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.single),
+				$mdgriffith$elm_ui$Internal$Style$elDescription),
+				$mdgriffith$elm_ui$Internal$Style$Batch(
+				function (fn) {
+					return A2($elm$core$List$map, fn, $mdgriffith$elm_ui$Internal$Style$locations);
+				}(
+					function (loc) {
+						switch (loc.$) {
+							case 'Above':
+								return A2(
+									$mdgriffith$elm_ui$Internal$Style$Descriptor,
+									$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.above),
+									_List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'absolute'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'bottom', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'left', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '20'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important'),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFill),
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', 'auto')
+												])),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthFill),
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%')
+												])),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'none'),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											'*',
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'auto')
+												]))
+										]));
+							case 'Below':
+								return A2(
+									$mdgriffith$elm_ui$Internal$Style$Descriptor,
+									$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.below),
+									_List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'absolute'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'bottom', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'left', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '20'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'none'),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											'*',
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'auto')
+												])),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFill),
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', 'auto')
+												]))
+										]));
+							case 'OnRight':
+								return A2(
+									$mdgriffith$elm_ui$Internal$Style$Descriptor,
+									$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.onRight),
+									_List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'absolute'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'left', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'top', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '20'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'none'),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											'*',
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'auto')
+												]))
+										]));
+							case 'OnLeft':
+								return A2(
+									$mdgriffith$elm_ui$Internal$Style$Descriptor,
+									$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.onLeft),
+									_List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'absolute'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'right', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'top', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '20'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'none'),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											'*',
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'auto')
+												]))
+										]));
+							case 'Within':
+								return A2(
+									$mdgriffith$elm_ui$Internal$Style$Descriptor,
+									$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.inFront),
+									_List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'absolute'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'left', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'top', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'none'),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											'*',
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'auto')
+												]))
+										]));
+							default:
+								return A2(
+									$mdgriffith$elm_ui$Internal$Style$Descriptor,
+									$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.behind),
+									_List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'absolute'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'left', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'top', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '0'),
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'none'),
+											A2(
+											$mdgriffith$elm_ui$Internal$Style$Child,
+											'*',
+											_List_fromArray(
+												[
+													A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'auto')
+												]))
+										]));
+						}
+					}))
+			])),
+		A2(
+		$mdgriffith$elm_ui$Internal$Style$Class,
+		$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'relative'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border', 'none'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-shrink', '0'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-direction', 'row'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'resize', 'none'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-feature-settings', 'inherit'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'box-sizing', 'border-box'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'padding', '0'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border-width', '0'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border-style', 'solid'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-size', 'inherit'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'color', 'inherit'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-family', 'inherit'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'line-height', '1'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', 'inherit'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-decoration', 'none'),
+				A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-style', 'inherit'),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.wrapped),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-wrap', 'wrap')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.noTextSelection),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, '-moz-user-select', 'none'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, '-webkit-user-select', 'none'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, '-ms-user-select', 'none'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'user-select', 'none')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cursorPointer),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'cursor', 'pointer')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.cursorText),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'cursor', 'text')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.passPointerEvents),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'none !important')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.capturePointerEvents),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'auto !important')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.transparent),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '0')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.opaque),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '1')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot(
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.hover, $mdgriffith$elm_ui$Internal$Style$classes.transparent)) + ':hover',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '0')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot(
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.hover, $mdgriffith$elm_ui$Internal$Style$classes.opaque)) + ':hover',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '1')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot(
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.focus, $mdgriffith$elm_ui$Internal$Style$classes.transparent)) + ':focus',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '0')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot(
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.focus, $mdgriffith$elm_ui$Internal$Style$classes.opaque)) + ':focus',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '1')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot(
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.active, $mdgriffith$elm_ui$Internal$Style$classes.transparent)) + ':active',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '0')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot(
+					_Utils_ap($mdgriffith$elm_ui$Internal$Style$classes.active, $mdgriffith$elm_ui$Internal$Style$classes.opaque)) + ':active',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'opacity', '1')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.transition),
+				_List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Prop,
+						'transition',
+						A2(
+							$elm$core$String$join,
+							', ',
+							A2(
+								$elm$core$List$map,
+								function (x) {
+									return x + ' 160ms';
+								},
+								_List_fromArray(
+									['transform', 'opacity', 'filter', 'background-color', 'color', 'font-size']))))
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.scrollbars),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'overflow', 'auto'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-shrink', '1')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.scrollbarsX),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'overflow-x', 'auto'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.row),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-shrink', '1')
+							]))
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.scrollbarsY),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'overflow-y', 'auto'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.column),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-shrink', '1')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.single),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-shrink', '1')
+							]))
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.clip),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'overflow', 'hidden')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.clipX),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'overflow-x', 'hidden')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.clipY),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'overflow-y', 'hidden')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthContent),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', 'auto')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.borderNone),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border-width', '0')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.borderDashed),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border-style', 'dashed')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.borderDotted),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border-style', 'dotted')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.borderSolid),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'border-style', 'solid')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.text),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'pre'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline-block')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.inputText),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'line-height', '1.05'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'background', 'transparent')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.single),
+				$mdgriffith$elm_ui$Internal$Style$elDescription),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.row),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-direction', 'row'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', '0%'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthExact),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.link),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFill),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'stretch !important')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFillPortion),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'stretch !important')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthFill),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '100000')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.container),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'stretch')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						'u:first-of-type.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerRight,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '1')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						's:first-of-type.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterX,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '1'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignCenterX),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-left', 'auto !important')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						's:last-of-type.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterX,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '1'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignCenterX),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-right', 'auto !important')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						's:only-of-type.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterX,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '1'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignCenterY),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', 'auto !important'),
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', 'auto !important')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						's:last-of-type.' + ($mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterX + ' ~ u'),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						'u:first-of-type.' + ($mdgriffith$elm_ui$Internal$Style$classes.alignContainerRight + (' ~ s.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterX)),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0')
+							])),
+						$mdgriffith$elm_ui$Internal$Style$describeAlignment(
+						function (alignment) {
+							switch (alignment.$) {
+								case 'Top':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'flex-start')
+											]),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'flex-start')
+											]));
+								case 'Bottom':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'flex-end')
+											]),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'flex-end')
+											]));
+								case 'Right':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'flex-end')
+											]),
+										_List_Nil);
+								case 'Left':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'flex-start')
+											]),
+										_List_Nil);
+								case 'CenterX':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'center')
+											]),
+										_List_Nil);
+								default:
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'center')
+											]),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'center')
+											]));
+							}
+						}),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.spaceEvenly),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'space-between')
+							]))
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.column),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-direction', 'column'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', '0%'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightExact),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.column),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.heightFill),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '100000')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthFill),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthFillPortion),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.widthContent),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'flex-start')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						'u:first-of-type.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerBottom,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '1')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						's:first-of-type.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterY,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '1'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignCenterY),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', 'auto !important'),
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', '0 !important')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						's:last-of-type.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterY,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '1'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignCenterY),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', 'auto !important'),
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', '0 !important')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						's:only-of-type.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterY,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '1'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.alignCenterY),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', 'auto !important'),
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', 'auto !important')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						's:last-of-type.' + ($mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterY + ' ~ u'),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						'u:first-of-type.' + ($mdgriffith$elm_ui$Internal$Style$classes.alignContainerBottom + (' ~ s.' + $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterY)),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0')
+							])),
+						$mdgriffith$elm_ui$Internal$Style$describeAlignment(
+						function (alignment) {
+							switch (alignment.$) {
+								case 'Top':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'flex-start')
+											]),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-bottom', 'auto')
+											]));
+								case 'Bottom':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'flex-end')
+											]),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin-top', 'auto')
+											]));
+								case 'Right':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'flex-end')
+											]),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'flex-end')
+											]));
+								case 'Left':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'flex-start')
+											]),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'flex-start')
+											]));
+								case 'CenterX':
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'center')
+											]),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'center')
+											]));
+								default:
+									return _Utils_Tuple2(
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'center')
+											]),
+										_List_Nil);
+							}
+						}),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.container),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-grow', '0'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-self', 'stretch !important')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.spaceEvenly),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'space-between')
+							]))
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.grid),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', '-ms-grid'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						'.gp',
+						_List_fromArray(
+							[
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Supports,
+						_Utils_Tuple2('display', 'grid'),
+						_List_fromArray(
+							[
+								_Utils_Tuple2('display', 'grid')
+							])),
+						$mdgriffith$elm_ui$Internal$Style$gridAlignments(
+						function (alignment) {
+							switch (alignment.$) {
+								case 'Top':
+									return _List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'flex-start')
+										]);
+								case 'Bottom':
+									return _List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'flex-end')
+										]);
+								case 'Right':
+									return _List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'flex-end')
+										]);
+								case 'Left':
+									return _List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'flex-start')
+										]);
+								case 'CenterX':
+									return _List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'align-items', 'center')
+										]);
+								default:
+									return _List_fromArray(
+										[
+											A2($mdgriffith$elm_ui$Internal$Style$Prop, 'justify-content', 'center')
+										]);
+							}
+						})
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.page),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'block'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any + ':first-child'),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot(
+							$mdgriffith$elm_ui$Internal$Style$classes.any + ($mdgriffith$elm_ui$Internal$Style$selfName(
+								$mdgriffith$elm_ui$Internal$Style$Self($mdgriffith$elm_ui$Internal$Style$Left)) + (':first-child + .' + $mdgriffith$elm_ui$Internal$Style$classes.any))),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot(
+							$mdgriffith$elm_ui$Internal$Style$classes.any + ($mdgriffith$elm_ui$Internal$Style$selfName(
+								$mdgriffith$elm_ui$Internal$Style$Self($mdgriffith$elm_ui$Internal$Style$Right)) + (':first-child + .' + $mdgriffith$elm_ui$Internal$Style$classes.any))),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'margin', '0 !important')
+							])),
+						$mdgriffith$elm_ui$Internal$Style$describeAlignment(
+						function (alignment) {
+							switch (alignment.$) {
+								case 'Top':
+									return _Utils_Tuple2(_List_Nil, _List_Nil);
+								case 'Bottom':
+									return _Utils_Tuple2(_List_Nil, _List_Nil);
+								case 'Right':
+									return _Utils_Tuple2(
+										_List_Nil,
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'float', 'right'),
+												A2(
+												$mdgriffith$elm_ui$Internal$Style$Descriptor,
+												'::after',
+												_List_fromArray(
+													[
+														A2($mdgriffith$elm_ui$Internal$Style$Prop, 'content', '\"\"'),
+														A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'table'),
+														A2($mdgriffith$elm_ui$Internal$Style$Prop, 'clear', 'both')
+													]))
+											]));
+								case 'Left':
+									return _Utils_Tuple2(
+										_List_Nil,
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'float', 'left'),
+												A2(
+												$mdgriffith$elm_ui$Internal$Style$Descriptor,
+												'::after',
+												_List_fromArray(
+													[
+														A2($mdgriffith$elm_ui$Internal$Style$Prop, 'content', '\"\"'),
+														A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'table'),
+														A2($mdgriffith$elm_ui$Internal$Style$Prop, 'clear', 'both')
+													]))
+											]));
+								case 'CenterX':
+									return _Utils_Tuple2(_List_Nil, _List_Nil);
+								default:
+									return _Utils_Tuple2(_List_Nil, _List_Nil);
+							}
+						})
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.inputMultiline),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'pre-wrap'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'background-color', 'transparent')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.inputMultilineWrapper),
+				_List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.single),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'flex-basis', 'auto')
+							]))
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.inputMultilineParent),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'pre-wrap'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'cursor', 'text'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.inputMultilineFiller),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'pre-wrap'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'color', 'transparent')
+							]))
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.paragraph),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'block'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'normal'),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Descriptor,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.hasBehind),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '0'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.behind),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'z-index', '-1')
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.text),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'normal')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.single),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline'),
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'normal'),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.inFront),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.behind),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.above),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.below),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.onRight),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Descriptor,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.onLeft),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'flex')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.text),
+								_List_fromArray(
+									[
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline'),
+										A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'normal')
+									])),
+								A2(
+								$mdgriffith$elm_ui$Internal$Style$Child,
+								$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.single),
+								_List_fromArray(
+									[
+										A2(
+										$mdgriffith$elm_ui$Internal$Style$Child,
+										$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.text),
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline'),
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'white-space', 'normal')
+											]))
+									]))
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.row),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline-flex')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.column),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline-flex')
+							])),
+						A2(
+						$mdgriffith$elm_ui$Internal$Style$Child,
+						$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.grid),
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'inline-grid')
+							])),
+						$mdgriffith$elm_ui$Internal$Style$describeAlignment(
+						function (alignment) {
+							switch (alignment.$) {
+								case 'Top':
+									return _Utils_Tuple2(_List_Nil, _List_Nil);
+								case 'Bottom':
+									return _Utils_Tuple2(_List_Nil, _List_Nil);
+								case 'Right':
+									return _Utils_Tuple2(
+										_List_Nil,
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'float', 'right')
+											]));
+								case 'Left':
+									return _Utils_Tuple2(
+										_List_Nil,
+										_List_fromArray(
+											[
+												A2($mdgriffith$elm_ui$Internal$Style$Prop, 'float', 'left')
+											]));
+								case 'CenterX':
+									return _Utils_Tuple2(_List_Nil, _List_Nil);
+								default:
+									return _Utils_Tuple2(_List_Nil, _List_Nil);
+							}
+						})
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				'.hidden',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'display', 'none')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textThin),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '100')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textExtraLight),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '200')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textLight),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '300')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textNormalWeight),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '400')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textMedium),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '500')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textSemiBold),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '600')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.bold),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '700')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textExtraBold),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '800')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textHeavy),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-weight', '900')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.italic),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-style', 'italic')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.strike),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-decoration', 'line-through')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.underline),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-decoration', 'underline'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-decoration-skip-ink', 'auto'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-decoration-skip', 'ink')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				_Utils_ap(
+					$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.underline),
+					$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.strike)),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-decoration', 'line-through underline'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-decoration-skip-ink', 'auto'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-decoration-skip', 'ink')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textUnitalicized),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-style', 'normal')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textJustify),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-align', 'justify')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textJustifyAll),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-align', 'justify-all')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textCenter),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-align', 'center')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textRight),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-align', 'right')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				$mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.textLeft),
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'text-align', 'left')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Descriptor,
+				'.modal',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'position', 'fixed'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'left', '0'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'top', '0'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'width', '100%'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'height', '100%'),
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'pointer-events', 'none')
+					]))
+			]))
+	]);
+var $mdgriffith$elm_ui$Internal$Style$fontVariant = function (_var) {
+	return _List_fromArray(
+		[
+			A2(
+			$mdgriffith$elm_ui$Internal$Style$Class,
+			'.v-' + _var,
+			_List_fromArray(
+				[
+					A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-feature-settings', '\"' + (_var + '\"'))
+				])),
+			A2(
+			$mdgriffith$elm_ui$Internal$Style$Class,
+			'.v-' + (_var + '-off'),
+			_List_fromArray(
+				[
+					A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-feature-settings', '\"' + (_var + '\" 0'))
+				]))
+		]);
+};
+var $mdgriffith$elm_ui$Internal$Style$commonValues = $elm$core$List$concat(
+	_List_fromArray(
+		[
+			A2(
+			$elm$core$List$map,
+			function (x) {
+				return A2(
+					$mdgriffith$elm_ui$Internal$Style$Class,
+					'.border-' + $elm$core$String$fromInt(x),
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Internal$Style$Prop,
+							'border-width',
+							$elm$core$String$fromInt(x) + 'px')
+						]));
+			},
+			A2($elm$core$List$range, 0, 6)),
+			A2(
+			$elm$core$List$map,
+			function (i) {
+				return A2(
+					$mdgriffith$elm_ui$Internal$Style$Class,
+					'.font-size-' + $elm$core$String$fromInt(i),
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Internal$Style$Prop,
+							'font-size',
+							$elm$core$String$fromInt(i) + 'px')
+						]));
+			},
+			A2($elm$core$List$range, 8, 32)),
+			A2(
+			$elm$core$List$map,
+			function (i) {
+				return A2(
+					$mdgriffith$elm_ui$Internal$Style$Class,
+					'.p-' + $elm$core$String$fromInt(i),
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Internal$Style$Prop,
+							'padding',
+							$elm$core$String$fromInt(i) + 'px')
+						]));
+			},
+			A2($elm$core$List$range, 0, 24)),
+			_List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Class,
+				'.v-smcp',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-variant', 'small-caps')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Internal$Style$Class,
+				'.v-smcp-off',
+				_List_fromArray(
+					[
+						A2($mdgriffith$elm_ui$Internal$Style$Prop, 'font-variant', 'normal')
+					]))
+			]),
+			$mdgriffith$elm_ui$Internal$Style$fontVariant('zero'),
+			$mdgriffith$elm_ui$Internal$Style$fontVariant('onum'),
+			$mdgriffith$elm_ui$Internal$Style$fontVariant('liga'),
+			$mdgriffith$elm_ui$Internal$Style$fontVariant('dlig'),
+			$mdgriffith$elm_ui$Internal$Style$fontVariant('ordn'),
+			$mdgriffith$elm_ui$Internal$Style$fontVariant('tnum'),
+			$mdgriffith$elm_ui$Internal$Style$fontVariant('afrc'),
+			$mdgriffith$elm_ui$Internal$Style$fontVariant('frac')
+		]));
+var $mdgriffith$elm_ui$Internal$Style$explainer = '\n.explain {\n    border: 6px solid rgb(174, 121, 15) !important;\n}\n.explain > .' + ($mdgriffith$elm_ui$Internal$Style$classes.any + (' {\n    border: 4px dashed rgb(0, 151, 167) !important;\n}\n\n.ctr {\n    border: none !important;\n}\n.explain > .ctr > .' + ($mdgriffith$elm_ui$Internal$Style$classes.any + ' {\n    border: 4px dashed rgb(0, 151, 167) !important;\n}\n\n')));
+var $mdgriffith$elm_ui$Internal$Style$inputTextReset = '\ninput[type="search"],\ninput[type="search"]::-webkit-search-decoration,\ninput[type="search"]::-webkit-search-cancel-button,\ninput[type="search"]::-webkit-search-results-button,\ninput[type="search"]::-webkit-search-results-decoration {\n  -webkit-appearance:none;\n}\n';
+var $mdgriffith$elm_ui$Internal$Style$sliderReset = '\ninput[type=range] {\n  -webkit-appearance: none; \n  background: transparent;\n  position:absolute;\n  left:0;\n  top:0;\n  z-index:10;\n  width: 100%;\n  outline: dashed 1px;\n  height: 100%;\n  opacity: 0;\n}\n';
+var $mdgriffith$elm_ui$Internal$Style$thumbReset = '\ninput[type=range]::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range]::-moz-range-thumb {\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range]::-ms-thumb {\n    opacity: 0.5;\n    width: 80px;\n    height: 80px;\n    background-color: black;\n    border:none;\n    border-radius: 5px;\n}\ninput[type=range][orient=vertical]{\n    writing-mode: bt-lr; /* IE */\n    -webkit-appearance: slider-vertical;  /* WebKit */\n}\n';
+var $mdgriffith$elm_ui$Internal$Style$trackReset = '\ninput[type=range]::-moz-range-track {\n    background: transparent;\n    cursor: pointer;\n}\ninput[type=range]::-ms-track {\n    background: transparent;\n    cursor: pointer;\n}\ninput[type=range]::-webkit-slider-runnable-track {\n    background: transparent;\n    cursor: pointer;\n}\n';
+var $mdgriffith$elm_ui$Internal$Style$overrides = '@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.row) + (' > ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any) + (' { flex-basis: auto !important; } ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.row) + (' > ' + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.any) + ($mdgriffith$elm_ui$Internal$Style$dot($mdgriffith$elm_ui$Internal$Style$classes.container) + (' { flex-basis: auto !important; }}' + ($mdgriffith$elm_ui$Internal$Style$inputTextReset + ($mdgriffith$elm_ui$Internal$Style$sliderReset + ($mdgriffith$elm_ui$Internal$Style$trackReset + ($mdgriffith$elm_ui$Internal$Style$thumbReset + $mdgriffith$elm_ui$Internal$Style$explainer)))))))))))))));
+var $elm$core$String$concat = function (strings) {
+	return A2($elm$core$String$join, '', strings);
+};
+var $mdgriffith$elm_ui$Internal$Style$Intermediate = function (a) {
+	return {$: 'Intermediate', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Style$emptyIntermediate = F2(
+	function (selector, closing) {
+		return $mdgriffith$elm_ui$Internal$Style$Intermediate(
+			{closing: closing, others: _List_Nil, props: _List_Nil, selector: selector});
+	});
+var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
+	function (_v0, rulesToRender) {
+		var parent = _v0.a;
+		var generateIntermediates = F2(
+			function (rule, rendered) {
+				switch (rule.$) {
+					case 'Prop':
+						var name = rule.a;
+						var val = rule.b;
+						return _Utils_update(
+							rendered,
+							{
+								props: A2(
+									$elm$core$List$cons,
+									_Utils_Tuple2(name, val),
+									rendered.props)
+							});
+					case 'Supports':
+						var _v2 = rule.a;
+						var prop = _v2.a;
+						var value = _v2.b;
+						var props = rule.b;
+						return _Utils_update(
+							rendered,
+							{
+								others: A2(
+									$elm$core$List$cons,
+									$mdgriffith$elm_ui$Internal$Style$Intermediate(
+										{closing: '\n}', others: _List_Nil, props: props, selector: '@supports (' + (prop + (':' + (value + (') {' + parent.selector))))}),
+									rendered.others)
+							});
+					case 'Adjacent':
+						var selector = rule.a;
+						var adjRules = rule.b;
+						return _Utils_update(
+							rendered,
+							{
+								others: A2(
+									$elm$core$List$cons,
+									A2(
+										$mdgriffith$elm_ui$Internal$Style$renderRules,
+										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.selector + (' + ' + selector), ''),
+										adjRules),
+									rendered.others)
+							});
+					case 'Child':
+						var child = rule.a;
+						var childRules = rule.b;
+						return _Utils_update(
+							rendered,
+							{
+								others: A2(
+									$elm$core$List$cons,
+									A2(
+										$mdgriffith$elm_ui$Internal$Style$renderRules,
+										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.selector + (' > ' + child), ''),
+										childRules),
+									rendered.others)
+							});
+					case 'Descriptor':
+						var descriptor = rule.a;
+						var descriptorRules = rule.b;
+						return _Utils_update(
+							rendered,
+							{
+								others: A2(
+									$elm$core$List$cons,
+									A2(
+										$mdgriffith$elm_ui$Internal$Style$renderRules,
+										A2(
+											$mdgriffith$elm_ui$Internal$Style$emptyIntermediate,
+											_Utils_ap(parent.selector, descriptor),
+											''),
+										descriptorRules),
+									rendered.others)
+							});
+					default:
+						var batched = rule.a;
+						return _Utils_update(
+							rendered,
+							{
+								others: A2(
+									$elm$core$List$cons,
+									A2(
+										$mdgriffith$elm_ui$Internal$Style$renderRules,
+										A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, parent.selector, ''),
+										batched),
+									rendered.others)
+							});
+				}
+			});
+		return $mdgriffith$elm_ui$Internal$Style$Intermediate(
+			A3($elm$core$List$foldr, generateIntermediates, parent, rulesToRender));
+	});
+var $mdgriffith$elm_ui$Internal$Style$renderCompact = function (styleClasses) {
+	var renderValues = function (values) {
+		return $elm$core$String$concat(
+			A2(
+				$elm$core$List$map,
+				function (_v3) {
+					var x = _v3.a;
+					var y = _v3.b;
+					return x + (':' + (y + ';'));
+				},
+				values));
+	};
+	var renderClass = function (rule) {
+		var _v2 = rule.props;
+		if (!_v2.b) {
+			return '';
+		} else {
+			return rule.selector + ('{' + (renderValues(rule.props) + (rule.closing + '}')));
+		}
+	};
+	var renderIntermediate = function (_v0) {
+		var rule = _v0.a;
+		return _Utils_ap(
+			renderClass(rule),
+			$elm$core$String$concat(
+				A2($elm$core$List$map, renderIntermediate, rule.others)));
+	};
+	return $elm$core$String$concat(
+		A2(
+			$elm$core$List$map,
+			renderIntermediate,
+			A3(
+				$elm$core$List$foldr,
+				F2(
+					function (_v1, existing) {
+						var name = _v1.a;
+						var styleRules = _v1.b;
+						return A2(
+							$elm$core$List$cons,
+							A2(
+								$mdgriffith$elm_ui$Internal$Style$renderRules,
+								A2($mdgriffith$elm_ui$Internal$Style$emptyIntermediate, name, ''),
+								styleRules),
+							existing);
+					}),
+				_List_Nil,
+				styleClasses)));
+};
+var $mdgriffith$elm_ui$Internal$Style$rules = _Utils_ap(
+	$mdgriffith$elm_ui$Internal$Style$overrides,
+	$mdgriffith$elm_ui$Internal$Style$renderCompact(
+		_Utils_ap($mdgriffith$elm_ui$Internal$Style$baseSheet, $mdgriffith$elm_ui$Internal$Style$commonValues)));
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $mdgriffith$elm_ui$Internal$Model$staticRoot = function (opts) {
+	var _v0 = opts.mode;
+	switch (_v0.$) {
+		case 'Layout':
+			return A3(
+				$elm$virtual_dom$VirtualDom$node,
+				'div',
+				_List_Nil,
+				_List_fromArray(
+					[
+						A3(
+						$elm$virtual_dom$VirtualDom$node,
+						'style',
+						_List_Nil,
+						_List_fromArray(
+							[
+								$elm$virtual_dom$VirtualDom$text($mdgriffith$elm_ui$Internal$Style$rules)
+							]))
+					]));
+		case 'NoStaticStyleSheet':
+			return $elm$virtual_dom$VirtualDom$text('');
+		default:
+			return A3(
+				$elm$virtual_dom$VirtualDom$node,
+				'elm-ui-static-rules',
+				_List_fromArray(
+					[
+						A2(
+						$elm$virtual_dom$VirtualDom$property,
+						'rules',
+						$elm$json$Json$Encode$string($mdgriffith$elm_ui$Internal$Style$rules))
+					]),
+				_List_Nil);
+	}
+};
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$fontName = function (font) {
+	switch (font.$) {
+		case 'Serif':
+			return 'serif';
+		case 'SansSerif':
+			return 'sans-serif';
+		case 'Monospace':
+			return 'monospace';
+		case 'Typeface':
+			var name = font.a;
+			return '\"' + (name + '\"');
+		case 'ImportFont':
+			var name = font.a;
+			var url = font.b;
+			return '\"' + (name + '\"');
+		default:
+			var name = font.a.name;
+			return '\"' + (name + '\"');
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$isSmallCaps = function (_var) {
+	switch (_var.$) {
+		case 'VariantActive':
+			var name = _var.a;
+			return name === 'smcp';
+		case 'VariantOff':
+			var name = _var.a;
+			return false;
+		default:
+			var name = _var.a;
+			var index = _var.b;
+			return (name === 'smcp') && (index === 1);
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$hasSmallCaps = function (typeface) {
+	if (typeface.$ === 'FontWith') {
+		var font = typeface.a;
+		return A2($elm$core$List$any, $mdgriffith$elm_ui$Internal$Model$isSmallCaps, font.variants);
+	} else {
+		return false;
+	}
+};
+var $elm$core$Basics$min = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) < 0) ? x : y;
+	});
+var $mdgriffith$elm_ui$Internal$Model$renderProps = F3(
+	function (force, _v0, existing) {
+		var key = _v0.a;
+		var val = _v0.b;
+		return force ? (existing + ('\n  ' + (key + (': ' + (val + ' !important;'))))) : (existing + ('\n  ' + (key + (': ' + (val + ';')))));
+	});
+var $mdgriffith$elm_ui$Internal$Model$renderStyle = F4(
+	function (options, maybePseudo, selector, props) {
+		if (maybePseudo.$ === 'Nothing') {
+			return _List_fromArray(
+				[
+					selector + ('{' + (A3(
+					$elm$core$List$foldl,
+					$mdgriffith$elm_ui$Internal$Model$renderProps(false),
+					'',
+					props) + '\n}'))
+				]);
+		} else {
+			var pseudo = maybePseudo.a;
+			switch (pseudo.$) {
+				case 'Hover':
+					var _v2 = options.hover;
+					switch (_v2.$) {
+						case 'NoHover':
+							return _List_Nil;
+						case 'ForceHover':
+							return _List_fromArray(
+								[
+									selector + ('-hv {' + (A3(
+									$elm$core$List$foldl,
+									$mdgriffith$elm_ui$Internal$Model$renderProps(true),
+									'',
+									props) + '\n}'))
+								]);
+						default:
+							return _List_fromArray(
+								[
+									selector + ('-hv:hover {' + (A3(
+									$elm$core$List$foldl,
+									$mdgriffith$elm_ui$Internal$Model$renderProps(false),
+									'',
+									props) + '\n}'))
+								]);
+					}
+				case 'Focus':
+					var renderedProps = A3(
+						$elm$core$List$foldl,
+						$mdgriffith$elm_ui$Internal$Model$renderProps(false),
+						'',
+						props);
+					return _List_fromArray(
+						[selector + ('-fs:focus {' + (renderedProps + '\n}')), '.' + ($mdgriffith$elm_ui$Internal$Style$classes.any + (':focus ~ ' + (selector + ('-fs:not(.focus)  {' + (renderedProps + '\n}'))))), '.' + ($mdgriffith$elm_ui$Internal$Style$classes.any + (':focus ' + (selector + ('-fs  {' + (renderedProps + '\n}'))))), selector + ('-fs:focus-within {' + (renderedProps + '\n}')), '.focusable-parent:focus ~ ' + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + (selector + ('-fs {' + (renderedProps + '\n}'))))))]);
+				default:
+					return _List_fromArray(
+						[
+							selector + ('-act:active {' + (A3(
+							$elm$core$List$foldl,
+							$mdgriffith$elm_ui$Internal$Model$renderProps(false),
+							'',
+							props) + '\n}'))
+						]);
+			}
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$renderVariant = function (_var) {
+	switch (_var.$) {
+		case 'VariantActive':
+			var name = _var.a;
+			return '\"' + (name + '\"');
+		case 'VariantOff':
+			var name = _var.a;
+			return '\"' + (name + '\" 0');
+		default:
+			var name = _var.a;
+			var index = _var.b;
+			return '\"' + (name + ('\" ' + $elm$core$String$fromInt(index)));
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$renderVariants = function (typeface) {
+	if (typeface.$ === 'FontWith') {
+		var font = typeface.a;
+		return $elm$core$Maybe$Just(
+			A2(
+				$elm$core$String$join,
+				', ',
+				A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$renderVariant, font.variants)));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$transformValue = function (transform) {
+	switch (transform.$) {
+		case 'Untransformed':
+			return $elm$core$Maybe$Nothing;
+		case 'Moved':
+			var _v1 = transform.a;
+			var x = _v1.a;
+			var y = _v1.b;
+			var z = _v1.c;
+			return $elm$core$Maybe$Just(
+				'translate3d(' + ($elm$core$String$fromFloat(x) + ('px, ' + ($elm$core$String$fromFloat(y) + ('px, ' + ($elm$core$String$fromFloat(z) + 'px)'))))));
+		default:
+			var _v2 = transform.a;
+			var tx = _v2.a;
+			var ty = _v2.b;
+			var tz = _v2.c;
+			var _v3 = transform.b;
+			var sx = _v3.a;
+			var sy = _v3.b;
+			var sz = _v3.c;
+			var _v4 = transform.c;
+			var ox = _v4.a;
+			var oy = _v4.b;
+			var oz = _v4.c;
+			var angle = transform.d;
+			var translate = 'translate3d(' + ($elm$core$String$fromFloat(tx) + ('px, ' + ($elm$core$String$fromFloat(ty) + ('px, ' + ($elm$core$String$fromFloat(tz) + 'px)')))));
+			var scale = 'scale3d(' + ($elm$core$String$fromFloat(sx) + (', ' + ($elm$core$String$fromFloat(sy) + (', ' + ($elm$core$String$fromFloat(sz) + ')')))));
+			var rotate = 'rotate3d(' + ($elm$core$String$fromFloat(ox) + (', ' + ($elm$core$String$fromFloat(oy) + (', ' + ($elm$core$String$fromFloat(oz) + (', ' + ($elm$core$String$fromFloat(angle) + 'rad)')))))));
+			return $elm$core$Maybe$Just(translate + (' ' + (scale + (' ' + rotate))));
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$renderStyleRule = F3(
+	function (options, rule, maybePseudo) {
+		switch (rule.$) {
+			case 'Style':
+				var selector = rule.a;
+				var props = rule.b;
+				return A4($mdgriffith$elm_ui$Internal$Model$renderStyle, options, maybePseudo, selector, props);
+			case 'Shadows':
+				var name = rule.a;
+				var prop = rule.b;
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$renderStyle,
+					options,
+					maybePseudo,
+					'.' + name,
+					_List_fromArray(
+						[
+							A2($mdgriffith$elm_ui$Internal$Model$Property, 'box-shadow', prop)
+						]));
+			case 'Transparency':
+				var name = rule.a;
+				var transparency = rule.b;
+				var opacity = A2(
+					$elm$core$Basics$max,
+					0,
+					A2($elm$core$Basics$min, 1, 1 - transparency));
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$renderStyle,
+					options,
+					maybePseudo,
+					'.' + name,
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Internal$Model$Property,
+							'opacity',
+							$elm$core$String$fromFloat(opacity))
+						]));
+			case 'FontSize':
+				var i = rule.a;
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$renderStyle,
+					options,
+					maybePseudo,
+					'.font-size-' + $elm$core$String$fromInt(i),
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Internal$Model$Property,
+							'font-size',
+							$elm$core$String$fromInt(i) + 'px')
+						]));
+			case 'FontFamily':
+				var name = rule.a;
+				var typefaces = rule.b;
+				var features = A2(
+					$elm$core$String$join,
+					', ',
+					A2($elm$core$List$filterMap, $mdgriffith$elm_ui$Internal$Model$renderVariants, typefaces));
+				var families = _List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Internal$Model$Property,
+						'font-family',
+						A2(
+							$elm$core$String$join,
+							', ',
+							A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$fontName, typefaces))),
+						A2($mdgriffith$elm_ui$Internal$Model$Property, 'font-feature-settings', features),
+						A2(
+						$mdgriffith$elm_ui$Internal$Model$Property,
+						'font-variant',
+						A2($elm$core$List$any, $mdgriffith$elm_ui$Internal$Model$hasSmallCaps, typefaces) ? 'small-caps' : 'normal')
+					]);
+				return A4($mdgriffith$elm_ui$Internal$Model$renderStyle, options, maybePseudo, '.' + name, families);
+			case 'Single':
+				var _class = rule.a;
+				var prop = rule.b;
+				var val = rule.c;
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$renderStyle,
+					options,
+					maybePseudo,
+					'.' + _class,
+					_List_fromArray(
+						[
+							A2($mdgriffith$elm_ui$Internal$Model$Property, prop, val)
+						]));
+			case 'Colored':
+				var _class = rule.a;
+				var prop = rule.b;
+				var color = rule.c;
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$renderStyle,
+					options,
+					maybePseudo,
+					'.' + _class,
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Internal$Model$Property,
+							prop,
+							$mdgriffith$elm_ui$Internal$Model$formatColor(color))
+						]));
+			case 'SpacingStyle':
+				var cls = rule.a;
+				var x = rule.b;
+				var y = rule.c;
+				var yPx = $elm$core$String$fromInt(y) + 'px';
+				var xPx = $elm$core$String$fromInt(x) + 'px';
+				var single = '.' + $mdgriffith$elm_ui$Internal$Style$classes.single;
+				var row = '.' + $mdgriffith$elm_ui$Internal$Style$classes.row;
+				var wrappedRow = '.' + ($mdgriffith$elm_ui$Internal$Style$classes.wrapped + row);
+				var right = '.' + $mdgriffith$elm_ui$Internal$Style$classes.alignRight;
+				var paragraph = '.' + $mdgriffith$elm_ui$Internal$Style$classes.paragraph;
+				var page = '.' + $mdgriffith$elm_ui$Internal$Style$classes.page;
+				var left = '.' + $mdgriffith$elm_ui$Internal$Style$classes.alignLeft;
+				var halfY = $elm$core$String$fromFloat(y / 2) + 'px';
+				var halfX = $elm$core$String$fromFloat(x / 2) + 'px';
+				var column = '.' + $mdgriffith$elm_ui$Internal$Style$classes.column;
+				var _class = '.' + cls;
+				var any = '.' + $mdgriffith$elm_ui$Internal$Style$classes.any;
+				return $elm$core$List$concat(
+					_List_fromArray(
+						[
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (row + (' > ' + (any + (' + ' + any)))),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'margin-left', xPx)
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (wrappedRow + (' > ' + any)),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'margin', halfY + (' ' + halfX))
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (column + (' > ' + (any + (' + ' + any)))),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'margin-top', yPx)
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (page + (' > ' + (any + (' + ' + any)))),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'margin-top', yPx)
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (page + (' > ' + left)),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'margin-right', xPx)
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (page + (' > ' + right)),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'margin-left', xPx)
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_Utils_ap(_class, paragraph),
+							_List_fromArray(
+								[
+									A2(
+									$mdgriffith$elm_ui$Internal$Model$Property,
+									'line-height',
+									'calc(1em + ' + ($elm$core$String$fromInt(y) + 'px)'))
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							'textarea' + (any + _class),
+							_List_fromArray(
+								[
+									A2(
+									$mdgriffith$elm_ui$Internal$Model$Property,
+									'line-height',
+									'calc(1em + ' + ($elm$core$String$fromInt(y) + 'px)')),
+									A2(
+									$mdgriffith$elm_ui$Internal$Model$Property,
+									'height',
+									'calc(100% + ' + ($elm$core$String$fromInt(y) + 'px)'))
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (paragraph + (' > ' + left)),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'margin-right', xPx)
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (paragraph + (' > ' + right)),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'margin-left', xPx)
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (paragraph + '::after'),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'content', '\'\''),
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'display', 'block'),
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'height', '0'),
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'width', '0'),
+									A2(
+									$mdgriffith$elm_ui$Internal$Model$Property,
+									'margin-top',
+									$elm$core$String$fromInt((-1) * ((y / 2) | 0)) + 'px')
+								])),
+							A4(
+							$mdgriffith$elm_ui$Internal$Model$renderStyle,
+							options,
+							maybePseudo,
+							_class + (paragraph + '::before'),
+							_List_fromArray(
+								[
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'content', '\'\''),
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'display', 'block'),
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'height', '0'),
+									A2($mdgriffith$elm_ui$Internal$Model$Property, 'width', '0'),
+									A2(
+									$mdgriffith$elm_ui$Internal$Model$Property,
+									'margin-bottom',
+									$elm$core$String$fromInt((-1) * ((y / 2) | 0)) + 'px')
+								]))
+						]));
+			case 'PaddingStyle':
+				var cls = rule.a;
+				var top = rule.b;
+				var right = rule.c;
+				var bottom = rule.d;
+				var left = rule.e;
+				var _class = '.' + cls;
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$renderStyle,
+					options,
+					maybePseudo,
+					_class,
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Internal$Model$Property,
+							'padding',
+							$elm$core$String$fromInt(top) + ('px ' + ($elm$core$String$fromInt(right) + ('px ' + ($elm$core$String$fromInt(bottom) + ('px ' + ($elm$core$String$fromInt(left) + 'px')))))))
+						]));
+			case 'BorderWidth':
+				var cls = rule.a;
+				var top = rule.b;
+				var right = rule.c;
+				var bottom = rule.d;
+				var left = rule.e;
+				var _class = '.' + cls;
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$renderStyle,
+					options,
+					maybePseudo,
+					_class,
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Internal$Model$Property,
+							'border-width',
+							$elm$core$String$fromInt(top) + ('px ' + ($elm$core$String$fromInt(right) + ('px ' + ($elm$core$String$fromInt(bottom) + ('px ' + ($elm$core$String$fromInt(left) + 'px')))))))
+						]));
+			case 'GridTemplateStyle':
+				var template = rule.a;
+				var toGridLengthHelper = F3(
+					function (minimum, maximum, x) {
+						toGridLengthHelper:
+						while (true) {
+							switch (x.$) {
+								case 'Px':
+									var px = x.a;
+									return $elm$core$String$fromInt(px) + 'px';
+								case 'Content':
+									var _v2 = _Utils_Tuple2(minimum, maximum);
+									if (_v2.a.$ === 'Nothing') {
+										if (_v2.b.$ === 'Nothing') {
+											var _v3 = _v2.a;
+											var _v4 = _v2.b;
+											return 'max-content';
+										} else {
+											var _v6 = _v2.a;
+											var maxSize = _v2.b.a;
+											return 'minmax(max-content, ' + ($elm$core$String$fromInt(maxSize) + 'px)');
+										}
+									} else {
+										if (_v2.b.$ === 'Nothing') {
+											var minSize = _v2.a.a;
+											var _v5 = _v2.b;
+											return 'minmax(' + ($elm$core$String$fromInt(minSize) + ('px, ' + 'max-content)'));
+										} else {
+											var minSize = _v2.a.a;
+											var maxSize = _v2.b.a;
+											return 'minmax(' + ($elm$core$String$fromInt(minSize) + ('px, ' + ($elm$core$String$fromInt(maxSize) + 'px)')));
+										}
+									}
+								case 'Fill':
+									var i = x.a;
+									var _v7 = _Utils_Tuple2(minimum, maximum);
+									if (_v7.a.$ === 'Nothing') {
+										if (_v7.b.$ === 'Nothing') {
+											var _v8 = _v7.a;
+											var _v9 = _v7.b;
+											return $elm$core$String$fromInt(i) + 'fr';
+										} else {
+											var _v11 = _v7.a;
+											var maxSize = _v7.b.a;
+											return 'minmax(max-content, ' + ($elm$core$String$fromInt(maxSize) + 'px)');
+										}
+									} else {
+										if (_v7.b.$ === 'Nothing') {
+											var minSize = _v7.a.a;
+											var _v10 = _v7.b;
+											return 'minmax(' + ($elm$core$String$fromInt(minSize) + ('px, ' + ($elm$core$String$fromInt(i) + ('fr' + 'fr)'))));
+										} else {
+											var minSize = _v7.a.a;
+											var maxSize = _v7.b.a;
+											return 'minmax(' + ($elm$core$String$fromInt(minSize) + ('px, ' + ($elm$core$String$fromInt(maxSize) + 'px)')));
+										}
+									}
+								case 'Min':
+									var m = x.a;
+									var len = x.b;
+									var $temp$minimum = $elm$core$Maybe$Just(m),
+										$temp$maximum = maximum,
+										$temp$x = len;
+									minimum = $temp$minimum;
+									maximum = $temp$maximum;
+									x = $temp$x;
+									continue toGridLengthHelper;
+								default:
+									var m = x.a;
+									var len = x.b;
+									var $temp$minimum = minimum,
+										$temp$maximum = $elm$core$Maybe$Just(m),
+										$temp$x = len;
+									minimum = $temp$minimum;
+									maximum = $temp$maximum;
+									x = $temp$x;
+									continue toGridLengthHelper;
+							}
+						}
+					});
+				var toGridLength = function (x) {
+					return A3(toGridLengthHelper, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing, x);
+				};
+				var xSpacing = toGridLength(template.spacing.a);
+				var ySpacing = toGridLength(template.spacing.b);
+				var rows = function (x) {
+					return 'grid-template-rows: ' + (x + ';');
+				}(
+					A2(
+						$elm$core$String$join,
+						' ',
+						A2($elm$core$List$map, toGridLength, template.rows)));
+				var msRows = function (x) {
+					return '-ms-grid-rows: ' + (x + ';');
+				}(
+					A2(
+						$elm$core$String$join,
+						ySpacing,
+						A2($elm$core$List$map, toGridLength, template.columns)));
+				var msColumns = function (x) {
+					return '-ms-grid-columns: ' + (x + ';');
+				}(
+					A2(
+						$elm$core$String$join,
+						ySpacing,
+						A2($elm$core$List$map, toGridLength, template.columns)));
+				var gapY = 'grid-row-gap:' + (toGridLength(template.spacing.b) + ';');
+				var gapX = 'grid-column-gap:' + (toGridLength(template.spacing.a) + ';');
+				var columns = function (x) {
+					return 'grid-template-columns: ' + (x + ';');
+				}(
+					A2(
+						$elm$core$String$join,
+						' ',
+						A2($elm$core$List$map, toGridLength, template.columns)));
+				var _class = '.grid-rows-' + (A2(
+					$elm$core$String$join,
+					'-',
+					A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.rows)) + ('-cols-' + (A2(
+					$elm$core$String$join,
+					'-',
+					A2($elm$core$List$map, $mdgriffith$elm_ui$Internal$Model$lengthClassName, template.columns)) + ('-space-x-' + ($mdgriffith$elm_ui$Internal$Model$lengthClassName(template.spacing.a) + ('-space-y-' + $mdgriffith$elm_ui$Internal$Model$lengthClassName(template.spacing.b)))))));
+				var modernGrid = _class + ('{' + (columns + (rows + (gapX + (gapY + '}')))));
+				var supports = '@supports (display:grid) {' + (modernGrid + '}');
+				var base = _class + ('{' + (msColumns + (msRows + '}')));
+				return _List_fromArray(
+					[base, supports]);
+			case 'GridPosition':
+				var position = rule.a;
+				var msPosition = A2(
+					$elm$core$String$join,
+					' ',
+					_List_fromArray(
+						[
+							'-ms-grid-row: ' + ($elm$core$String$fromInt(position.row) + ';'),
+							'-ms-grid-row-span: ' + ($elm$core$String$fromInt(position.height) + ';'),
+							'-ms-grid-column: ' + ($elm$core$String$fromInt(position.col) + ';'),
+							'-ms-grid-column-span: ' + ($elm$core$String$fromInt(position.width) + ';')
+						]));
+				var modernPosition = A2(
+					$elm$core$String$join,
+					' ',
+					_List_fromArray(
+						[
+							'grid-row: ' + ($elm$core$String$fromInt(position.row) + (' / ' + ($elm$core$String$fromInt(position.row + position.height) + ';'))),
+							'grid-column: ' + ($elm$core$String$fromInt(position.col) + (' / ' + ($elm$core$String$fromInt(position.col + position.width) + ';')))
+						]));
+				var _class = '.grid-pos-' + ($elm$core$String$fromInt(position.row) + ('-' + ($elm$core$String$fromInt(position.col) + ('-' + ($elm$core$String$fromInt(position.width) + ('-' + $elm$core$String$fromInt(position.height)))))));
+				var modernGrid = _class + ('{' + (modernPosition + '}'));
+				var supports = '@supports (display:grid) {' + (modernGrid + '}');
+				var base = _class + ('{' + (msPosition + '}'));
+				return _List_fromArray(
+					[base, supports]);
+			case 'PseudoSelector':
+				var _class = rule.a;
+				var styles = rule.b;
+				var renderPseudoRule = function (style) {
+					return A3(
+						$mdgriffith$elm_ui$Internal$Model$renderStyleRule,
+						options,
+						style,
+						$elm$core$Maybe$Just(_class));
+				};
+				return A2($elm$core$List$concatMap, renderPseudoRule, styles);
+			default:
+				var transform = rule.a;
+				var val = $mdgriffith$elm_ui$Internal$Model$transformValue(transform);
+				var _class = $mdgriffith$elm_ui$Internal$Model$transformClass(transform);
+				var _v12 = _Utils_Tuple2(_class, val);
+				if ((_v12.a.$ === 'Just') && (_v12.b.$ === 'Just')) {
+					var cls = _v12.a.a;
+					var v = _v12.b.a;
+					return A4(
+						$mdgriffith$elm_ui$Internal$Model$renderStyle,
+						options,
+						maybePseudo,
+						'.' + cls,
+						_List_fromArray(
+							[
+								A2($mdgriffith$elm_ui$Internal$Model$Property, 'transform', v)
+							]));
+				} else {
+					return _List_Nil;
+				}
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$encodeStyles = F2(
+	function (options, stylesheet) {
+		return $elm$json$Json$Encode$object(
+			A2(
+				$elm$core$List$map,
+				function (style) {
+					var styled = A3($mdgriffith$elm_ui$Internal$Model$renderStyleRule, options, style, $elm$core$Maybe$Nothing);
+					return _Utils_Tuple2(
+						$mdgriffith$elm_ui$Internal$Model$getStyleName(style),
+						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styled));
+				},
+				stylesheet));
+	});
+var $mdgriffith$elm_ui$Internal$Model$bracket = F2(
+	function (selector, rules) {
+		var renderPair = function (_v0) {
+			var name = _v0.a;
+			var val = _v0.b;
+			return name + (': ' + (val + ';'));
+		};
+		return selector + (' {' + (A2(
+			$elm$core$String$join,
+			'',
+			A2($elm$core$List$map, renderPair, rules)) + '}'));
+	});
+var $mdgriffith$elm_ui$Internal$Model$fontRule = F3(
+	function (name, modifier, _v0) {
+		var parentAdj = _v0.a;
+		var textAdjustment = _v0.b;
+		return _List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Internal$Model$bracket, '.' + (name + ('.' + (modifier + (', ' + ('.' + (name + (' .' + modifier))))))), parentAdj),
+				A2($mdgriffith$elm_ui$Internal$Model$bracket, '.' + (name + ('.' + (modifier + ('> .' + ($mdgriffith$elm_ui$Internal$Style$classes.text + (', .' + (name + (' .' + (modifier + (' > .' + $mdgriffith$elm_ui$Internal$Style$classes.text)))))))))), textAdjustment)
+			]);
+	});
+var $mdgriffith$elm_ui$Internal$Model$renderFontAdjustmentRule = F3(
+	function (fontToAdjust, _v0, otherFontName) {
+		var full = _v0.a;
+		var capital = _v0.b;
+		var name = _Utils_eq(fontToAdjust, otherFontName) ? fontToAdjust : (otherFontName + (' .' + fontToAdjust));
+		return A2(
+			$elm$core$String$join,
+			' ',
+			_Utils_ap(
+				A3($mdgriffith$elm_ui$Internal$Model$fontRule, name, $mdgriffith$elm_ui$Internal$Style$classes.sizeByCapital, capital),
+				A3($mdgriffith$elm_ui$Internal$Model$fontRule, name, $mdgriffith$elm_ui$Internal$Style$classes.fullSize, full)));
+	});
+var $mdgriffith$elm_ui$Internal$Model$renderNullAdjustmentRule = F2(
+	function (fontToAdjust, otherFontName) {
+		var name = _Utils_eq(fontToAdjust, otherFontName) ? fontToAdjust : (otherFontName + (' .' + fontToAdjust));
+		return A2(
+			$elm$core$String$join,
+			' ',
+			_List_fromArray(
+				[
+					A2(
+					$mdgriffith$elm_ui$Internal$Model$bracket,
+					'.' + (name + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.sizeByCapital + (', ' + ('.' + (name + (' .' + $mdgriffith$elm_ui$Internal$Style$classes.sizeByCapital))))))),
+					_List_fromArray(
+						[
+							_Utils_Tuple2('line-height', '1')
+						])),
+					A2(
+					$mdgriffith$elm_ui$Internal$Model$bracket,
+					'.' + (name + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.sizeByCapital + ('> .' + ($mdgriffith$elm_ui$Internal$Style$classes.text + (', .' + (name + (' .' + ($mdgriffith$elm_ui$Internal$Style$classes.sizeByCapital + (' > .' + $mdgriffith$elm_ui$Internal$Style$classes.text)))))))))),
+					_List_fromArray(
+						[
+							_Utils_Tuple2('vertical-align', '0'),
+							_Utils_Tuple2('line-height', '1')
+						]))
+				]));
+	});
+var $mdgriffith$elm_ui$Internal$Model$adjust = F3(
+	function (size, height, vertical) {
+		return {height: height / size, size: size, vertical: vertical};
+	});
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var $elm$core$List$maximum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$max, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$minimum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$min, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$Basics$neq = _Utils_notEqual;
+var $mdgriffith$elm_ui$Internal$Model$convertAdjustment = function (adjustment) {
+	var lines = _List_fromArray(
+		[adjustment.capital, adjustment.baseline, adjustment.descender, adjustment.lowercase]);
+	var lineHeight = 1.5;
+	var normalDescender = (lineHeight - 1) / 2;
+	var oldMiddle = lineHeight / 2;
+	var descender = A2(
+		$elm$core$Maybe$withDefault,
+		adjustment.descender,
+		$elm$core$List$minimum(lines));
+	var newBaseline = A2(
+		$elm$core$Maybe$withDefault,
+		adjustment.baseline,
+		$elm$core$List$minimum(
+			A2(
+				$elm$core$List$filter,
+				function (x) {
+					return !_Utils_eq(x, descender);
+				},
+				lines)));
+	var base = lineHeight;
+	var ascender = A2(
+		$elm$core$Maybe$withDefault,
+		adjustment.capital,
+		$elm$core$List$maximum(lines));
+	var capitalSize = 1 / (ascender - newBaseline);
+	var capitalVertical = 1 - ascender;
+	var fullSize = 1 / (ascender - descender);
+	var fullVertical = 1 - ascender;
+	var newCapitalMiddle = ((ascender - newBaseline) / 2) + newBaseline;
+	var newFullMiddle = ((ascender - descender) / 2) + descender;
+	return {
+		capital: A3($mdgriffith$elm_ui$Internal$Model$adjust, capitalSize, ascender - newBaseline, capitalVertical),
+		full: A3($mdgriffith$elm_ui$Internal$Model$adjust, fullSize, ascender - descender, fullVertical)
+	};
+};
+var $mdgriffith$elm_ui$Internal$Model$fontAdjustmentRules = function (converted) {
+	return _Utils_Tuple2(
+		_List_fromArray(
+			[
+				_Utils_Tuple2('display', 'block')
+			]),
+		_List_fromArray(
+			[
+				_Utils_Tuple2('display', 'inline-block'),
+				_Utils_Tuple2(
+				'line-height',
+				$elm$core$String$fromFloat(converted.height)),
+				_Utils_Tuple2(
+				'vertical-align',
+				$elm$core$String$fromFloat(converted.vertical) + 'em'),
+				_Utils_Tuple2(
+				'font-size',
+				$elm$core$String$fromFloat(converted.size) + 'em')
+			]));
+};
+var $mdgriffith$elm_ui$Internal$Model$typefaceAdjustment = function (typefaces) {
+	return A3(
+		$elm$core$List$foldl,
+		F2(
+			function (face, found) {
+				if (found.$ === 'Nothing') {
+					if (face.$ === 'FontWith') {
+						var _with = face.a;
+						var _v2 = _with.adjustment;
+						if (_v2.$ === 'Nothing') {
+							return found;
+						} else {
+							var adjustment = _v2.a;
+							return $elm$core$Maybe$Just(
+								_Utils_Tuple2(
+									$mdgriffith$elm_ui$Internal$Model$fontAdjustmentRules(
+										function ($) {
+											return $.full;
+										}(
+											$mdgriffith$elm_ui$Internal$Model$convertAdjustment(adjustment))),
+									$mdgriffith$elm_ui$Internal$Model$fontAdjustmentRules(
+										function ($) {
+											return $.capital;
+										}(
+											$mdgriffith$elm_ui$Internal$Model$convertAdjustment(adjustment)))));
+						}
+					} else {
+						return found;
+					}
+				} else {
+					return found;
+				}
+			}),
+		$elm$core$Maybe$Nothing,
+		typefaces);
+};
+var $mdgriffith$elm_ui$Internal$Model$renderTopLevelValues = function (rules) {
+	var withImport = function (font) {
+		if (font.$ === 'ImportFont') {
+			var url = font.b;
+			return $elm$core$Maybe$Just('@import url(\'' + (url + '\');'));
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	};
+	var fontImports = function (_v2) {
+		var name = _v2.a;
+		var typefaces = _v2.b;
+		var imports = A2(
+			$elm$core$String$join,
+			'\n',
+			A2($elm$core$List$filterMap, withImport, typefaces));
+		return imports;
+	};
+	var allNames = A2($elm$core$List$map, $elm$core$Tuple$first, rules);
+	var fontAdjustments = function (_v1) {
+		var name = _v1.a;
+		var typefaces = _v1.b;
+		var _v0 = $mdgriffith$elm_ui$Internal$Model$typefaceAdjustment(typefaces);
+		if (_v0.$ === 'Nothing') {
+			return A2(
+				$elm$core$String$join,
+				'',
+				A2(
+					$elm$core$List$map,
+					$mdgriffith$elm_ui$Internal$Model$renderNullAdjustmentRule(name),
+					allNames));
+		} else {
+			var adjustment = _v0.a;
+			return A2(
+				$elm$core$String$join,
+				'',
+				A2(
+					$elm$core$List$map,
+					A2($mdgriffith$elm_ui$Internal$Model$renderFontAdjustmentRule, name, adjustment),
+					allNames));
+		}
+	};
+	return _Utils_ap(
+		A2(
+			$elm$core$String$join,
+			'\n',
+			A2($elm$core$List$map, fontImports, rules)),
+		A2(
+			$elm$core$String$join,
+			'\n',
+			A2($elm$core$List$map, fontAdjustments, rules)));
+};
+var $mdgriffith$elm_ui$Internal$Model$topLevelValue = function (rule) {
+	if (rule.$ === 'FontFamily') {
+		var name = rule.a;
+		var typefaces = rule.b;
+		return $elm$core$Maybe$Just(
+			_Utils_Tuple2(name, typefaces));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$toStyleSheetString = F2(
+	function (options, stylesheet) {
+		var combine = F2(
+			function (style, rendered) {
+				return {
+					rules: _Utils_ap(
+						rendered.rules,
+						A3($mdgriffith$elm_ui$Internal$Model$renderStyleRule, options, style, $elm$core$Maybe$Nothing)),
+					topLevel: function () {
+						var _v1 = $mdgriffith$elm_ui$Internal$Model$topLevelValue(style);
+						if (_v1.$ === 'Nothing') {
+							return rendered.topLevel;
+						} else {
+							var topLevel = _v1.a;
+							return A2($elm$core$List$cons, topLevel, rendered.topLevel);
+						}
+					}()
+				};
+			});
+		var _v0 = A3(
+			$elm$core$List$foldl,
+			combine,
+			{rules: _List_Nil, topLevel: _List_Nil},
+			stylesheet);
+		var topLevel = _v0.topLevel;
+		var rules = _v0.rules;
+		return _Utils_ap(
+			$mdgriffith$elm_ui$Internal$Model$renderTopLevelValues(topLevel),
+			$elm$core$String$concat(rules));
+	});
+var $mdgriffith$elm_ui$Internal$Model$toStyleSheet = F2(
+	function (options, styleSheet) {
+		var _v0 = options.mode;
+		switch (_v0.$) {
+			case 'Layout':
+				return A3(
+					$elm$virtual_dom$VirtualDom$node,
+					'div',
+					_List_Nil,
+					_List_fromArray(
+						[
+							A3(
+							$elm$virtual_dom$VirtualDom$node,
+							'style',
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$virtual_dom$VirtualDom$text(
+									A2($mdgriffith$elm_ui$Internal$Model$toStyleSheetString, options, styleSheet))
+								]))
+						]));
+			case 'NoStaticStyleSheet':
+				return A3(
+					$elm$virtual_dom$VirtualDom$node,
+					'div',
+					_List_Nil,
+					_List_fromArray(
+						[
+							A3(
+							$elm$virtual_dom$VirtualDom$node,
+							'style',
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$virtual_dom$VirtualDom$text(
+									A2($mdgriffith$elm_ui$Internal$Model$toStyleSheetString, options, styleSheet))
+								]))
+						]));
+			default:
+				return A3(
+					$elm$virtual_dom$VirtualDom$node,
+					'elm-ui-rules',
+					_List_fromArray(
+						[
+							A2(
+							$elm$virtual_dom$VirtualDom$property,
+							'rules',
+							A2($mdgriffith$elm_ui$Internal$Model$encodeStyles, options, styleSheet))
+						]),
+					_List_Nil);
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$embedKeyed = F4(
+	function (_static, opts, styles, children) {
+		var dynamicStyleSheet = A2(
+			$mdgriffith$elm_ui$Internal$Model$toStyleSheet,
+			opts,
+			A3(
+				$elm$core$List$foldl,
+				$mdgriffith$elm_ui$Internal$Model$reduceStyles,
+				_Utils_Tuple2(
+					$elm$core$Set$empty,
+					$mdgriffith$elm_ui$Internal$Model$renderFocusStyle(opts.focus)),
+				styles).b);
+		return _static ? A2(
+			$elm$core$List$cons,
+			_Utils_Tuple2(
+				'static-stylesheet',
+				$mdgriffith$elm_ui$Internal$Model$staticRoot(opts)),
+			A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2('dynamic-stylesheet', dynamicStyleSheet),
+				children)) : A2(
+			$elm$core$List$cons,
+			_Utils_Tuple2('dynamic-stylesheet', dynamicStyleSheet),
+			children);
+	});
+var $mdgriffith$elm_ui$Internal$Model$embedWith = F4(
+	function (_static, opts, styles, children) {
+		var dynamicStyleSheet = A2(
+			$mdgriffith$elm_ui$Internal$Model$toStyleSheet,
+			opts,
+			A3(
+				$elm$core$List$foldl,
+				$mdgriffith$elm_ui$Internal$Model$reduceStyles,
+				_Utils_Tuple2(
+					$elm$core$Set$empty,
+					$mdgriffith$elm_ui$Internal$Model$renderFocusStyle(opts.focus)),
+				styles).b);
+		return _static ? A2(
+			$elm$core$List$cons,
+			$mdgriffith$elm_ui$Internal$Model$staticRoot(opts),
+			A2($elm$core$List$cons, dynamicStyleSheet, children)) : A2($elm$core$List$cons, dynamicStyleSheet, children);
+	});
+var $mdgriffith$elm_ui$Internal$Flag$heightBetween = $mdgriffith$elm_ui$Internal$Flag$flag(45);
+var $mdgriffith$elm_ui$Internal$Flag$heightFill = $mdgriffith$elm_ui$Internal$Flag$flag(37);
+var $elm$virtual_dom$VirtualDom$keyedNode = function (tag) {
+	return _VirtualDom_keyedNode(
+		_VirtualDom_noScript(tag));
+};
+var $elm$core$Basics$not = _Basics_not;
+var $elm$html$Html$p = _VirtualDom_node('p');
+var $elm$core$Bitwise$and = _Bitwise_and;
+var $mdgriffith$elm_ui$Internal$Flag$present = F2(
+	function (myFlag, _v0) {
+		var fieldOne = _v0.a;
+		var fieldTwo = _v0.b;
+		if (myFlag.$ === 'Flag') {
+			var first = myFlag.a;
+			return _Utils_eq(first & fieldOne, first);
+		} else {
+			var second = myFlag.a;
+			return _Utils_eq(second & fieldTwo, second);
+		}
+	});
+var $elm$html$Html$s = _VirtualDom_node('s');
+var $elm$html$Html$u = _VirtualDom_node('u');
+var $mdgriffith$elm_ui$Internal$Flag$widthBetween = $mdgriffith$elm_ui$Internal$Flag$flag(44);
+var $mdgriffith$elm_ui$Internal$Flag$widthFill = $mdgriffith$elm_ui$Internal$Flag$flag(39);
+var $mdgriffith$elm_ui$Internal$Model$finalizeNode = F6(
+	function (has, node, attributes, children, embedMode, parentContext) {
+		var createNode = F2(
+			function (nodeName, attrs) {
+				if (children.$ === 'Keyed') {
+					var keyed = children.a;
+					return A3(
+						$elm$virtual_dom$VirtualDom$keyedNode,
+						nodeName,
+						attrs,
+						function () {
+							switch (embedMode.$) {
+								case 'NoStyleSheet':
+									return keyed;
+								case 'OnlyDynamic':
+									var opts = embedMode.a;
+									var styles = embedMode.b;
+									return A4($mdgriffith$elm_ui$Internal$Model$embedKeyed, false, opts, styles, keyed);
+								default:
+									var opts = embedMode.a;
+									var styles = embedMode.b;
+									return A4($mdgriffith$elm_ui$Internal$Model$embedKeyed, true, opts, styles, keyed);
+							}
+						}());
+				} else {
+					var unkeyed = children.a;
+					return A2(
+						function () {
+							switch (nodeName) {
+								case 'div':
+									return $elm$html$Html$div;
+								case 'p':
+									return $elm$html$Html$p;
+								default:
+									return $elm$virtual_dom$VirtualDom$node(nodeName);
+							}
+						}(),
+						attrs,
+						function () {
+							switch (embedMode.$) {
+								case 'NoStyleSheet':
+									return unkeyed;
+								case 'OnlyDynamic':
+									var opts = embedMode.a;
+									var styles = embedMode.b;
+									return A4($mdgriffith$elm_ui$Internal$Model$embedWith, false, opts, styles, unkeyed);
+								default:
+									var opts = embedMode.a;
+									var styles = embedMode.b;
+									return A4($mdgriffith$elm_ui$Internal$Model$embedWith, true, opts, styles, unkeyed);
+							}
+						}());
+				}
+			});
+		var html = function () {
+			switch (node.$) {
+				case 'Generic':
+					return A2(createNode, 'div', attributes);
+				case 'NodeName':
+					var nodeName = node.a;
+					return A2(createNode, nodeName, attributes);
+				default:
+					var nodeName = node.a;
+					var internal = node.b;
+					return A3(
+						$elm$virtual_dom$VirtualDom$node,
+						nodeName,
+						attributes,
+						_List_fromArray(
+							[
+								A2(
+								createNode,
+								internal,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class($mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.single))
+									]))
+							]));
+			}
+		}();
+		switch (parentContext.$) {
+			case 'AsRow':
+				return (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$widthFill, has) && (!A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$widthBetween, has))) ? html : (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$alignRight, has) ? A2(
+					$elm$html$Html$u,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class(
+							A2(
+								$elm$core$String$join,
+								' ',
+								_List_fromArray(
+									[$mdgriffith$elm_ui$Internal$Style$classes.any, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.container, $mdgriffith$elm_ui$Internal$Style$classes.contentCenterY, $mdgriffith$elm_ui$Internal$Style$classes.alignContainerRight])))
+						]),
+					_List_fromArray(
+						[html])) : (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$centerX, has) ? A2(
+					$elm$html$Html$s,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class(
+							A2(
+								$elm$core$String$join,
+								' ',
+								_List_fromArray(
+									[$mdgriffith$elm_ui$Internal$Style$classes.any, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.container, $mdgriffith$elm_ui$Internal$Style$classes.contentCenterY, $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterX])))
+						]),
+					_List_fromArray(
+						[html])) : html));
+			case 'AsColumn':
+				return (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$heightFill, has) && (!A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$heightBetween, has))) ? html : (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$centerY, has) ? A2(
+					$elm$html$Html$s,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class(
+							A2(
+								$elm$core$String$join,
+								' ',
+								_List_fromArray(
+									[$mdgriffith$elm_ui$Internal$Style$classes.any, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.container, $mdgriffith$elm_ui$Internal$Style$classes.alignContainerCenterY])))
+						]),
+					_List_fromArray(
+						[html])) : (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$alignBottom, has) ? A2(
+					$elm$html$Html$u,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class(
+							A2(
+								$elm$core$String$join,
+								' ',
+								_List_fromArray(
+									[$mdgriffith$elm_ui$Internal$Style$classes.any, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.container, $mdgriffith$elm_ui$Internal$Style$classes.alignContainerBottom])))
+						]),
+					_List_fromArray(
+						[html])) : html));
+			default:
+				return html;
+		}
+	});
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $mdgriffith$elm_ui$Internal$Model$textElementClasses = $mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.text + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.widthContent + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.heightContent)))));
+var $mdgriffith$elm_ui$Internal$Model$textElement = function (str) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class($mdgriffith$elm_ui$Internal$Model$textElementClasses)
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text(str)
+			]));
+};
+var $mdgriffith$elm_ui$Internal$Model$textElementFillClasses = $mdgriffith$elm_ui$Internal$Style$classes.any + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.text + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.widthFill + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.heightFill)))));
+var $mdgriffith$elm_ui$Internal$Model$textElementFill = function (str) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class($mdgriffith$elm_ui$Internal$Model$textElementFillClasses)
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text(str)
+			]));
+};
+var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
+	function (context, children, rendered) {
+		var gatherKeyed = F2(
+			function (_v8, _v9) {
+				var key = _v8.a;
+				var child = _v8.b;
+				var htmls = _v9.a;
+				var existingStyles = _v9.b;
+				switch (child.$) {
+					case 'Unstyled':
+						var html = child.a;
+						return _Utils_eq(context, $mdgriffith$elm_ui$Internal$Model$asParagraph) ? _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									key,
+									html(context)),
+								htmls),
+							existingStyles) : _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									key,
+									html(context)),
+								htmls),
+							existingStyles);
+					case 'Styled':
+						var styled = child.a;
+						return _Utils_eq(context, $mdgriffith$elm_ui$Internal$Model$asParagraph) ? _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									key,
+									A2(styled.html, $mdgriffith$elm_ui$Internal$Model$NoStyleSheet, context)),
+								htmls),
+							$elm$core$List$isEmpty(existingStyles) ? styled.styles : _Utils_ap(styled.styles, existingStyles)) : _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									key,
+									A2(styled.html, $mdgriffith$elm_ui$Internal$Model$NoStyleSheet, context)),
+								htmls),
+							$elm$core$List$isEmpty(existingStyles) ? styled.styles : _Utils_ap(styled.styles, existingStyles));
+					case 'Text':
+						var str = child.a;
+						return _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									key,
+									_Utils_eq(context, $mdgriffith$elm_ui$Internal$Model$asEl) ? $mdgriffith$elm_ui$Internal$Model$textElementFill(str) : $mdgriffith$elm_ui$Internal$Model$textElement(str)),
+								htmls),
+							existingStyles);
+					default:
+						return _Utils_Tuple2(htmls, existingStyles);
+				}
+			});
+		var gather = F2(
+			function (child, _v6) {
+				var htmls = _v6.a;
+				var existingStyles = _v6.b;
+				switch (child.$) {
+					case 'Unstyled':
+						var html = child.a;
+						return _Utils_eq(context, $mdgriffith$elm_ui$Internal$Model$asParagraph) ? _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								html(context),
+								htmls),
+							existingStyles) : _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								html(context),
+								htmls),
+							existingStyles);
+					case 'Styled':
+						var styled = child.a;
+						return _Utils_eq(context, $mdgriffith$elm_ui$Internal$Model$asParagraph) ? _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								A2(styled.html, $mdgriffith$elm_ui$Internal$Model$NoStyleSheet, context),
+								htmls),
+							$elm$core$List$isEmpty(existingStyles) ? styled.styles : _Utils_ap(styled.styles, existingStyles)) : _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								A2(styled.html, $mdgriffith$elm_ui$Internal$Model$NoStyleSheet, context),
+								htmls),
+							$elm$core$List$isEmpty(existingStyles) ? styled.styles : _Utils_ap(styled.styles, existingStyles));
+					case 'Text':
+						var str = child.a;
+						return _Utils_Tuple2(
+							A2(
+								$elm$core$List$cons,
+								_Utils_eq(context, $mdgriffith$elm_ui$Internal$Model$asEl) ? $mdgriffith$elm_ui$Internal$Model$textElementFill(str) : $mdgriffith$elm_ui$Internal$Model$textElement(str),
+								htmls),
+							existingStyles);
+					default:
+						return _Utils_Tuple2(htmls, existingStyles);
+				}
+			});
+		if (children.$ === 'Keyed') {
+			var keyedChildren = children.a;
+			var _v1 = A3(
+				$elm$core$List$foldr,
+				gatherKeyed,
+				_Utils_Tuple2(_List_Nil, _List_Nil),
+				keyedChildren);
+			var keyed = _v1.a;
+			var styles = _v1.b;
+			var newStyles = $elm$core$List$isEmpty(styles) ? rendered.styles : _Utils_ap(rendered.styles, styles);
+			if (!newStyles.b) {
+				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
+					A5(
+						$mdgriffith$elm_ui$Internal$Model$finalizeNode,
+						rendered.has,
+						rendered.node,
+						rendered.attributes,
+						$mdgriffith$elm_ui$Internal$Model$Keyed(
+							A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.children)),
+						$mdgriffith$elm_ui$Internal$Model$NoStyleSheet));
+			} else {
+				var allStyles = newStyles;
+				return $mdgriffith$elm_ui$Internal$Model$Styled(
+					{
+						html: A4(
+							$mdgriffith$elm_ui$Internal$Model$finalizeNode,
+							rendered.has,
+							rendered.node,
+							rendered.attributes,
+							$mdgriffith$elm_ui$Internal$Model$Keyed(
+								A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.children))),
+						styles: allStyles
+					});
+			}
+		} else {
+			var unkeyedChildren = children.a;
+			var _v3 = A3(
+				$elm$core$List$foldr,
+				gather,
+				_Utils_Tuple2(_List_Nil, _List_Nil),
+				unkeyedChildren);
+			var unkeyed = _v3.a;
+			var styles = _v3.b;
+			var newStyles = $elm$core$List$isEmpty(styles) ? rendered.styles : _Utils_ap(rendered.styles, styles);
+			if (!newStyles.b) {
+				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
+					A5(
+						$mdgriffith$elm_ui$Internal$Model$finalizeNode,
+						rendered.has,
+						rendered.node,
+						rendered.attributes,
+						$mdgriffith$elm_ui$Internal$Model$Unkeyed(
+							A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.children)),
+						$mdgriffith$elm_ui$Internal$Model$NoStyleSheet));
+			} else {
+				var allStyles = newStyles;
+				return $mdgriffith$elm_ui$Internal$Model$Styled(
+					{
+						html: A4(
+							$mdgriffith$elm_ui$Internal$Model$finalizeNode,
+							rendered.has,
+							rendered.node,
+							rendered.attributes,
+							$mdgriffith$elm_ui$Internal$Model$Unkeyed(
+								A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.children))),
+						styles: allStyles
+					});
+			}
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$Single = F3(
+	function (a, b, c) {
+		return {$: 'Single', a: a, b: b, c: c};
+	});
+var $mdgriffith$elm_ui$Internal$Model$Transform = function (a) {
+	return {$: 'Transform', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Flag$Field = F2(
+	function (a, b) {
+		return {$: 'Field', a: a, b: b};
+	});
+var $elm$core$Bitwise$or = _Bitwise_or;
+var $mdgriffith$elm_ui$Internal$Flag$add = F2(
+	function (myFlag, _v0) {
+		var one = _v0.a;
+		var two = _v0.b;
+		if (myFlag.$ === 'Flag') {
+			var first = myFlag.a;
+			return A2($mdgriffith$elm_ui$Internal$Flag$Field, first | one, two);
+		} else {
+			var second = myFlag.a;
+			return A2($mdgriffith$elm_ui$Internal$Flag$Field, one, second | two);
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$ChildrenBehind = function (a) {
+	return {$: 'ChildrenBehind', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$ChildrenBehindAndInFront = F2(
+	function (a, b) {
+		return {$: 'ChildrenBehindAndInFront', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Model$ChildrenInFront = function (a) {
+	return {$: 'ChildrenInFront', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$nearbyElement = F2(
+	function (location, elem) {
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class(
+					function () {
+						switch (location.$) {
+							case 'Above':
+								return A2(
+									$elm$core$String$join,
+									' ',
+									_List_fromArray(
+										[$mdgriffith$elm_ui$Internal$Style$classes.nearby, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.above]));
+							case 'Below':
+								return A2(
+									$elm$core$String$join,
+									' ',
+									_List_fromArray(
+										[$mdgriffith$elm_ui$Internal$Style$classes.nearby, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.below]));
+							case 'OnRight':
+								return A2(
+									$elm$core$String$join,
+									' ',
+									_List_fromArray(
+										[$mdgriffith$elm_ui$Internal$Style$classes.nearby, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.onRight]));
+							case 'OnLeft':
+								return A2(
+									$elm$core$String$join,
+									' ',
+									_List_fromArray(
+										[$mdgriffith$elm_ui$Internal$Style$classes.nearby, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.onLeft]));
+							case 'InFront':
+								return A2(
+									$elm$core$String$join,
+									' ',
+									_List_fromArray(
+										[$mdgriffith$elm_ui$Internal$Style$classes.nearby, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.inFront]));
+							default:
+								return A2(
+									$elm$core$String$join,
+									' ',
+									_List_fromArray(
+										[$mdgriffith$elm_ui$Internal$Style$classes.nearby, $mdgriffith$elm_ui$Internal$Style$classes.single, $mdgriffith$elm_ui$Internal$Style$classes.behind]));
+						}
+					}())
+				]),
+			_List_fromArray(
+				[
+					function () {
+					switch (elem.$) {
+						case 'Empty':
+							return $elm$virtual_dom$VirtualDom$text('');
+						case 'Text':
+							var str = elem.a;
+							return $mdgriffith$elm_ui$Internal$Model$textElement(str);
+						case 'Unstyled':
+							var html = elem.a;
+							return html($mdgriffith$elm_ui$Internal$Model$asEl);
+						default:
+							var styled = elem.a;
+							return A2(styled.html, $mdgriffith$elm_ui$Internal$Model$NoStyleSheet, $mdgriffith$elm_ui$Internal$Model$asEl);
+					}
+				}()
+				]));
+	});
+var $mdgriffith$elm_ui$Internal$Model$addNearbyElement = F3(
+	function (location, elem, existing) {
+		var nearby = A2($mdgriffith$elm_ui$Internal$Model$nearbyElement, location, elem);
+		switch (existing.$) {
+			case 'NoNearbyChildren':
+				if (location.$ === 'Behind') {
+					return $mdgriffith$elm_ui$Internal$Model$ChildrenBehind(
+						_List_fromArray(
+							[nearby]));
+				} else {
+					return $mdgriffith$elm_ui$Internal$Model$ChildrenInFront(
+						_List_fromArray(
+							[nearby]));
+				}
+			case 'ChildrenBehind':
+				var existingBehind = existing.a;
+				if (location.$ === 'Behind') {
+					return $mdgriffith$elm_ui$Internal$Model$ChildrenBehind(
+						A2($elm$core$List$cons, nearby, existingBehind));
+				} else {
+					return A2(
+						$mdgriffith$elm_ui$Internal$Model$ChildrenBehindAndInFront,
+						existingBehind,
+						_List_fromArray(
+							[nearby]));
+				}
+			case 'ChildrenInFront':
+				var existingInFront = existing.a;
+				if (location.$ === 'Behind') {
+					return A2(
+						$mdgriffith$elm_ui$Internal$Model$ChildrenBehindAndInFront,
+						_List_fromArray(
+							[nearby]),
+						existingInFront);
+				} else {
+					return $mdgriffith$elm_ui$Internal$Model$ChildrenInFront(
+						A2($elm$core$List$cons, nearby, existingInFront));
+				}
+			default:
+				var existingBehind = existing.a;
+				var existingInFront = existing.b;
+				if (location.$ === 'Behind') {
+					return A2(
+						$mdgriffith$elm_ui$Internal$Model$ChildrenBehindAndInFront,
+						A2($elm$core$List$cons, nearby, existingBehind),
+						existingInFront);
+				} else {
+					return A2(
+						$mdgriffith$elm_ui$Internal$Model$ChildrenBehindAndInFront,
+						existingBehind,
+						A2($elm$core$List$cons, nearby, existingInFront));
+				}
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$Embedded = F2(
+	function (a, b) {
+		return {$: 'Embedded', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Model$NodeName = function (a) {
+	return {$: 'NodeName', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$addNodeName = F2(
+	function (newNode, old) {
+		switch (old.$) {
+			case 'Generic':
+				return $mdgriffith$elm_ui$Internal$Model$NodeName(newNode);
+			case 'NodeName':
+				var name = old.a;
+				return A2($mdgriffith$elm_ui$Internal$Model$Embedded, name, newNode);
+			default:
+				var x = old.a;
+				var y = old.b;
+				return A2($mdgriffith$elm_ui$Internal$Model$Embedded, x, y);
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$alignXName = function (align) {
+	switch (align.$) {
+		case 'Left':
+			return $mdgriffith$elm_ui$Internal$Style$classes.alignedHorizontally + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.alignLeft);
+		case 'Right':
+			return $mdgriffith$elm_ui$Internal$Style$classes.alignedHorizontally + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.alignRight);
+		default:
+			return $mdgriffith$elm_ui$Internal$Style$classes.alignedHorizontally + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.alignCenterX);
+	}
+};
+var $mdgriffith$elm_ui$Internal$Model$alignYName = function (align) {
+	switch (align.$) {
+		case 'Top':
+			return $mdgriffith$elm_ui$Internal$Style$classes.alignedVertically + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.alignTop);
+		case 'Bottom':
+			return $mdgriffith$elm_ui$Internal$Style$classes.alignedVertically + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.alignBottom);
+		default:
+			return $mdgriffith$elm_ui$Internal$Style$classes.alignedVertically + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.alignCenterY);
+	}
+};
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var $mdgriffith$elm_ui$Internal$Model$FullTransform = F4(
+	function (a, b, c, d) {
+		return {$: 'FullTransform', a: a, b: b, c: c, d: d};
+	});
+var $mdgriffith$elm_ui$Internal$Model$Moved = function (a) {
+	return {$: 'Moved', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$composeTransformation = F2(
+	function (transform, component) {
+		switch (transform.$) {
+			case 'Untransformed':
+				switch (component.$) {
+					case 'MoveX':
+						var x = component.a;
+						return $mdgriffith$elm_ui$Internal$Model$Moved(
+							_Utils_Tuple3(x, 0, 0));
+					case 'MoveY':
+						var y = component.a;
+						return $mdgriffith$elm_ui$Internal$Model$Moved(
+							_Utils_Tuple3(0, y, 0));
+					case 'MoveZ':
+						var z = component.a;
+						return $mdgriffith$elm_ui$Internal$Model$Moved(
+							_Utils_Tuple3(0, 0, z));
+					case 'MoveXYZ':
+						var xyz = component.a;
+						return $mdgriffith$elm_ui$Internal$Model$Moved(xyz);
+					case 'Rotate':
+						var xyz = component.a;
+						var angle = component.b;
+						return A4(
+							$mdgriffith$elm_ui$Internal$Model$FullTransform,
+							_Utils_Tuple3(0, 0, 0),
+							_Utils_Tuple3(1, 1, 1),
+							xyz,
+							angle);
+					default:
+						var xyz = component.a;
+						return A4(
+							$mdgriffith$elm_ui$Internal$Model$FullTransform,
+							_Utils_Tuple3(0, 0, 0),
+							xyz,
+							_Utils_Tuple3(0, 0, 1),
+							0);
+				}
+			case 'Moved':
+				var moved = transform.a;
+				var x = moved.a;
+				var y = moved.b;
+				var z = moved.c;
+				switch (component.$) {
+					case 'MoveX':
+						var newX = component.a;
+						return $mdgriffith$elm_ui$Internal$Model$Moved(
+							_Utils_Tuple3(newX, y, z));
+					case 'MoveY':
+						var newY = component.a;
+						return $mdgriffith$elm_ui$Internal$Model$Moved(
+							_Utils_Tuple3(x, newY, z));
+					case 'MoveZ':
+						var newZ = component.a;
+						return $mdgriffith$elm_ui$Internal$Model$Moved(
+							_Utils_Tuple3(x, y, newZ));
+					case 'MoveXYZ':
+						var xyz = component.a;
+						return $mdgriffith$elm_ui$Internal$Model$Moved(xyz);
+					case 'Rotate':
+						var xyz = component.a;
+						var angle = component.b;
+						return A4(
+							$mdgriffith$elm_ui$Internal$Model$FullTransform,
+							moved,
+							_Utils_Tuple3(1, 1, 1),
+							xyz,
+							angle);
+					default:
+						var scale = component.a;
+						return A4(
+							$mdgriffith$elm_ui$Internal$Model$FullTransform,
+							moved,
+							scale,
+							_Utils_Tuple3(0, 0, 1),
+							0);
+				}
+			default:
+				var moved = transform.a;
+				var x = moved.a;
+				var y = moved.b;
+				var z = moved.c;
+				var scaled = transform.b;
+				var origin = transform.c;
+				var angle = transform.d;
+				switch (component.$) {
+					case 'MoveX':
+						var newX = component.a;
+						return A4(
+							$mdgriffith$elm_ui$Internal$Model$FullTransform,
+							_Utils_Tuple3(newX, y, z),
+							scaled,
+							origin,
+							angle);
+					case 'MoveY':
+						var newY = component.a;
+						return A4(
+							$mdgriffith$elm_ui$Internal$Model$FullTransform,
+							_Utils_Tuple3(x, newY, z),
+							scaled,
+							origin,
+							angle);
+					case 'MoveZ':
+						var newZ = component.a;
+						return A4(
+							$mdgriffith$elm_ui$Internal$Model$FullTransform,
+							_Utils_Tuple3(x, y, newZ),
+							scaled,
+							origin,
+							angle);
+					case 'MoveXYZ':
+						var newMove = component.a;
+						return A4($mdgriffith$elm_ui$Internal$Model$FullTransform, newMove, scaled, origin, angle);
+					case 'Rotate':
+						var newOrigin = component.a;
+						var newAngle = component.b;
+						return A4($mdgriffith$elm_ui$Internal$Model$FullTransform, moved, scaled, newOrigin, newAngle);
+					default:
+						var newScale = component.a;
+						return A4($mdgriffith$elm_ui$Internal$Model$FullTransform, moved, newScale, origin, angle);
+				}
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Flag$height = $mdgriffith$elm_ui$Internal$Flag$flag(7);
+var $mdgriffith$elm_ui$Internal$Flag$heightContent = $mdgriffith$elm_ui$Internal$Flag$flag(36);
+var $mdgriffith$elm_ui$Internal$Flag$merge = F2(
+	function (_v0, _v1) {
+		var one = _v0.a;
+		var two = _v0.b;
+		var three = _v1.a;
+		var four = _v1.b;
+		return A2($mdgriffith$elm_ui$Internal$Flag$Field, one | three, two | four);
+	});
+var $mdgriffith$elm_ui$Internal$Flag$none = A2($mdgriffith$elm_ui$Internal$Flag$Field, 0, 0);
+var $mdgriffith$elm_ui$Internal$Model$renderHeight = function (h) {
+	switch (h.$) {
+		case 'Px':
+			var px = h.a;
+			var val = $elm$core$String$fromInt(px);
+			var name = 'height-px-' + val;
+			return _Utils_Tuple3(
+				$mdgriffith$elm_ui$Internal$Flag$none,
+				$mdgriffith$elm_ui$Internal$Style$classes.heightExact + (' ' + name),
+				_List_fromArray(
+					[
+						A3($mdgriffith$elm_ui$Internal$Model$Single, name, 'height', val + 'px')
+					]));
+		case 'Content':
+			return _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$heightContent, $mdgriffith$elm_ui$Internal$Flag$none),
+				$mdgriffith$elm_ui$Internal$Style$classes.heightContent,
+				_List_Nil);
+		case 'Fill':
+			var portion = h.a;
+			return (portion === 1) ? _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$heightFill, $mdgriffith$elm_ui$Internal$Flag$none),
+				$mdgriffith$elm_ui$Internal$Style$classes.heightFill,
+				_List_Nil) : _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$heightFill, $mdgriffith$elm_ui$Internal$Flag$none),
+				$mdgriffith$elm_ui$Internal$Style$classes.heightFillPortion + (' height-fill-' + $elm$core$String$fromInt(portion)),
+				_List_fromArray(
+					[
+						A3(
+						$mdgriffith$elm_ui$Internal$Model$Single,
+						$mdgriffith$elm_ui$Internal$Style$classes.any + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.column + (' > ' + $mdgriffith$elm_ui$Internal$Style$dot(
+							'height-fill-' + $elm$core$String$fromInt(portion))))),
+						'flex-grow',
+						$elm$core$String$fromInt(portion * 100000))
+					]));
+		case 'Min':
+			var minSize = h.a;
+			var len = h.b;
+			var cls = 'min-height-' + $elm$core$String$fromInt(minSize);
+			var style = A3(
+				$mdgriffith$elm_ui$Internal$Model$Single,
+				cls,
+				'min-height',
+				$elm$core$String$fromInt(minSize) + 'px');
+			var _v1 = $mdgriffith$elm_ui$Internal$Model$renderHeight(len);
+			var newFlag = _v1.a;
+			var newAttrs = _v1.b;
+			var newStyle = _v1.c;
+			return _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$heightBetween, newFlag),
+				cls + (' ' + newAttrs),
+				A2($elm$core$List$cons, style, newStyle));
+		default:
+			var maxSize = h.a;
+			var len = h.b;
+			var cls = 'max-height-' + $elm$core$String$fromInt(maxSize);
+			var style = A3(
+				$mdgriffith$elm_ui$Internal$Model$Single,
+				cls,
+				'max-height',
+				$elm$core$String$fromInt(maxSize) + 'px');
+			var _v2 = $mdgriffith$elm_ui$Internal$Model$renderHeight(len);
+			var newFlag = _v2.a;
+			var newAttrs = _v2.b;
+			var newStyle = _v2.c;
+			return _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$heightBetween, newFlag),
+				cls + (' ' + newAttrs),
+				A2($elm$core$List$cons, style, newStyle));
+	}
+};
+var $mdgriffith$elm_ui$Internal$Flag$widthContent = $mdgriffith$elm_ui$Internal$Flag$flag(38);
+var $mdgriffith$elm_ui$Internal$Model$renderWidth = function (w) {
+	switch (w.$) {
+		case 'Px':
+			var px = w.a;
+			return _Utils_Tuple3(
+				$mdgriffith$elm_ui$Internal$Flag$none,
+				$mdgriffith$elm_ui$Internal$Style$classes.widthExact + (' width-px-' + $elm$core$String$fromInt(px)),
+				_List_fromArray(
+					[
+						A3(
+						$mdgriffith$elm_ui$Internal$Model$Single,
+						'width-px-' + $elm$core$String$fromInt(px),
+						'width',
+						$elm$core$String$fromInt(px) + 'px')
+					]));
+		case 'Content':
+			return _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$widthContent, $mdgriffith$elm_ui$Internal$Flag$none),
+				$mdgriffith$elm_ui$Internal$Style$classes.widthContent,
+				_List_Nil);
+		case 'Fill':
+			var portion = w.a;
+			return (portion === 1) ? _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$widthFill, $mdgriffith$elm_ui$Internal$Flag$none),
+				$mdgriffith$elm_ui$Internal$Style$classes.widthFill,
+				_List_Nil) : _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$widthFill, $mdgriffith$elm_ui$Internal$Flag$none),
+				$mdgriffith$elm_ui$Internal$Style$classes.widthFillPortion + (' width-fill-' + $elm$core$String$fromInt(portion)),
+				_List_fromArray(
+					[
+						A3(
+						$mdgriffith$elm_ui$Internal$Model$Single,
+						$mdgriffith$elm_ui$Internal$Style$classes.any + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.row + (' > ' + $mdgriffith$elm_ui$Internal$Style$dot(
+							'width-fill-' + $elm$core$String$fromInt(portion))))),
+						'flex-grow',
+						$elm$core$String$fromInt(portion * 100000))
+					]));
+		case 'Min':
+			var minSize = w.a;
+			var len = w.b;
+			var cls = 'min-width-' + $elm$core$String$fromInt(minSize);
+			var style = A3(
+				$mdgriffith$elm_ui$Internal$Model$Single,
+				cls,
+				'min-width',
+				$elm$core$String$fromInt(minSize) + 'px');
+			var _v1 = $mdgriffith$elm_ui$Internal$Model$renderWidth(len);
+			var newFlag = _v1.a;
+			var newAttrs = _v1.b;
+			var newStyle = _v1.c;
+			return _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$widthBetween, newFlag),
+				cls + (' ' + newAttrs),
+				A2($elm$core$List$cons, style, newStyle));
+		default:
+			var maxSize = w.a;
+			var len = w.b;
+			var cls = 'max-width-' + $elm$core$String$fromInt(maxSize);
+			var style = A3(
+				$mdgriffith$elm_ui$Internal$Model$Single,
+				cls,
+				'max-width',
+				$elm$core$String$fromInt(maxSize) + 'px');
+			var _v2 = $mdgriffith$elm_ui$Internal$Model$renderWidth(len);
+			var newFlag = _v2.a;
+			var newAttrs = _v2.b;
+			var newStyle = _v2.c;
+			return _Utils_Tuple3(
+				A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$widthBetween, newFlag),
+				cls + (' ' + newAttrs),
+				A2($elm$core$List$cons, style, newStyle));
+	}
+};
+var $mdgriffith$elm_ui$Internal$Flag$borderWidth = $mdgriffith$elm_ui$Internal$Flag$flag(27);
+var $elm$core$Basics$ge = _Utils_ge;
+var $mdgriffith$elm_ui$Internal$Model$skippable = F2(
+	function (flag, style) {
+		if (_Utils_eq(flag, $mdgriffith$elm_ui$Internal$Flag$borderWidth)) {
+			if (style.$ === 'Single') {
+				var val = style.c;
+				switch (val) {
+					case '0px':
+						return true;
+					case '1px':
+						return true;
+					case '2px':
+						return true;
+					case '3px':
+						return true;
+					case '4px':
+						return true;
+					case '5px':
+						return true;
+					case '6px':
+						return true;
+					default:
+						return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			switch (style.$) {
+				case 'FontSize':
+					var i = style.a;
+					return (i >= 8) && (i <= 32);
+				case 'PaddingStyle':
+					var name = style.a;
+					var t = style.b;
+					var r = style.c;
+					var b = style.d;
+					var l = style.e;
+					return _Utils_eq(t, b) && (_Utils_eq(t, r) && (_Utils_eq(t, l) && ((t >= 0) && (t <= 24))));
+				default:
+					return false;
+			}
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Flag$width = $mdgriffith$elm_ui$Internal$Flag$flag(6);
+var $mdgriffith$elm_ui$Internal$Flag$xAlign = $mdgriffith$elm_ui$Internal$Flag$flag(30);
+var $mdgriffith$elm_ui$Internal$Flag$yAlign = $mdgriffith$elm_ui$Internal$Flag$flag(29);
+var $mdgriffith$elm_ui$Internal$Model$gatherAttrRecursive = F8(
+	function (classes, node, has, transform, styles, attrs, children, elementAttrs) {
+		gatherAttrRecursive:
+		while (true) {
+			if (!elementAttrs.b) {
+				var _v1 = $mdgriffith$elm_ui$Internal$Model$transformClass(transform);
+				if (_v1.$ === 'Nothing') {
+					return {
+						attributes: A2(
+							$elm$core$List$cons,
+							$elm$html$Html$Attributes$class(classes),
+							attrs),
+						children: children,
+						has: has,
+						node: node,
+						styles: styles
+					};
+				} else {
+					var _class = _v1.a;
+					return {
+						attributes: A2(
+							$elm$core$List$cons,
+							$elm$html$Html$Attributes$class(classes + (' ' + _class)),
+							attrs),
+						children: children,
+						has: has,
+						node: node,
+						styles: A2(
+							$elm$core$List$cons,
+							$mdgriffith$elm_ui$Internal$Model$Transform(transform),
+							styles)
+					};
+				}
+			} else {
+				var attribute = elementAttrs.a;
+				var remaining = elementAttrs.b;
+				switch (attribute.$) {
+					case 'NoAttribute':
+						var $temp$classes = classes,
+							$temp$node = node,
+							$temp$has = has,
+							$temp$transform = transform,
+							$temp$styles = styles,
+							$temp$attrs = attrs,
+							$temp$children = children,
+							$temp$elementAttrs = remaining;
+						classes = $temp$classes;
+						node = $temp$node;
+						has = $temp$has;
+						transform = $temp$transform;
+						styles = $temp$styles;
+						attrs = $temp$attrs;
+						children = $temp$children;
+						elementAttrs = $temp$elementAttrs;
+						continue gatherAttrRecursive;
+					case 'Class':
+						var flag = attribute.a;
+						var exactClassName = attribute.b;
+						if (A2($mdgriffith$elm_ui$Internal$Flag$present, flag, has)) {
+							var $temp$classes = classes,
+								$temp$node = node,
+								$temp$has = has,
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						} else {
+							var $temp$classes = exactClassName + (' ' + classes),
+								$temp$node = node,
+								$temp$has = A2($mdgriffith$elm_ui$Internal$Flag$add, flag, has),
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						}
+					case 'Attr':
+						var actualAttribute = attribute.a;
+						var $temp$classes = classes,
+							$temp$node = node,
+							$temp$has = has,
+							$temp$transform = transform,
+							$temp$styles = styles,
+							$temp$attrs = A2($elm$core$List$cons, actualAttribute, attrs),
+							$temp$children = children,
+							$temp$elementAttrs = remaining;
+						classes = $temp$classes;
+						node = $temp$node;
+						has = $temp$has;
+						transform = $temp$transform;
+						styles = $temp$styles;
+						attrs = $temp$attrs;
+						children = $temp$children;
+						elementAttrs = $temp$elementAttrs;
+						continue gatherAttrRecursive;
+					case 'StyleClass':
+						var flag = attribute.a;
+						var style = attribute.b;
+						if (A2($mdgriffith$elm_ui$Internal$Flag$present, flag, has)) {
+							var $temp$classes = classes,
+								$temp$node = node,
+								$temp$has = has,
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						} else {
+							if (A2($mdgriffith$elm_ui$Internal$Model$skippable, flag, style)) {
+								var $temp$classes = $mdgriffith$elm_ui$Internal$Model$getStyleName(style) + (' ' + classes),
+									$temp$node = node,
+									$temp$has = A2($mdgriffith$elm_ui$Internal$Flag$add, flag, has),
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = attrs,
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							} else {
+								var $temp$classes = $mdgriffith$elm_ui$Internal$Model$getStyleName(style) + (' ' + classes),
+									$temp$node = node,
+									$temp$has = A2($mdgriffith$elm_ui$Internal$Flag$add, flag, has),
+									$temp$transform = transform,
+									$temp$styles = A2($elm$core$List$cons, style, styles),
+									$temp$attrs = attrs,
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							}
+						}
+					case 'TransformComponent':
+						var flag = attribute.a;
+						var component = attribute.b;
+						var $temp$classes = classes,
+							$temp$node = node,
+							$temp$has = A2($mdgriffith$elm_ui$Internal$Flag$add, flag, has),
+							$temp$transform = A2($mdgriffith$elm_ui$Internal$Model$composeTransformation, transform, component),
+							$temp$styles = styles,
+							$temp$attrs = attrs,
+							$temp$children = children,
+							$temp$elementAttrs = remaining;
+						classes = $temp$classes;
+						node = $temp$node;
+						has = $temp$has;
+						transform = $temp$transform;
+						styles = $temp$styles;
+						attrs = $temp$attrs;
+						children = $temp$children;
+						elementAttrs = $temp$elementAttrs;
+						continue gatherAttrRecursive;
+					case 'Width':
+						var width = attribute.a;
+						if (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$width, has)) {
+							var $temp$classes = classes,
+								$temp$node = node,
+								$temp$has = has,
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						} else {
+							switch (width.$) {
+								case 'Px':
+									var px = width.a;
+									var $temp$classes = ($mdgriffith$elm_ui$Internal$Style$classes.widthExact + (' width-px-' + $elm$core$String$fromInt(px))) + (' ' + classes),
+										$temp$node = node,
+										$temp$has = A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$width, has),
+										$temp$transform = transform,
+										$temp$styles = A2(
+										$elm$core$List$cons,
+										A3(
+											$mdgriffith$elm_ui$Internal$Model$Single,
+											'width-px-' + $elm$core$String$fromInt(px),
+											'width',
+											$elm$core$String$fromInt(px) + 'px'),
+										styles),
+										$temp$attrs = attrs,
+										$temp$children = children,
+										$temp$elementAttrs = remaining;
+									classes = $temp$classes;
+									node = $temp$node;
+									has = $temp$has;
+									transform = $temp$transform;
+									styles = $temp$styles;
+									attrs = $temp$attrs;
+									children = $temp$children;
+									elementAttrs = $temp$elementAttrs;
+									continue gatherAttrRecursive;
+								case 'Content':
+									var $temp$classes = classes + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.widthContent),
+										$temp$node = node,
+										$temp$has = A2(
+										$mdgriffith$elm_ui$Internal$Flag$add,
+										$mdgriffith$elm_ui$Internal$Flag$widthContent,
+										A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$width, has)),
+										$temp$transform = transform,
+										$temp$styles = styles,
+										$temp$attrs = attrs,
+										$temp$children = children,
+										$temp$elementAttrs = remaining;
+									classes = $temp$classes;
+									node = $temp$node;
+									has = $temp$has;
+									transform = $temp$transform;
+									styles = $temp$styles;
+									attrs = $temp$attrs;
+									children = $temp$children;
+									elementAttrs = $temp$elementAttrs;
+									continue gatherAttrRecursive;
+								case 'Fill':
+									var portion = width.a;
+									if (portion === 1) {
+										var $temp$classes = classes + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.widthFill),
+											$temp$node = node,
+											$temp$has = A2(
+											$mdgriffith$elm_ui$Internal$Flag$add,
+											$mdgriffith$elm_ui$Internal$Flag$widthFill,
+											A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$width, has)),
+											$temp$transform = transform,
+											$temp$styles = styles,
+											$temp$attrs = attrs,
+											$temp$children = children,
+											$temp$elementAttrs = remaining;
+										classes = $temp$classes;
+										node = $temp$node;
+										has = $temp$has;
+										transform = $temp$transform;
+										styles = $temp$styles;
+										attrs = $temp$attrs;
+										children = $temp$children;
+										elementAttrs = $temp$elementAttrs;
+										continue gatherAttrRecursive;
+									} else {
+										var $temp$classes = classes + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.widthFillPortion + (' width-fill-' + $elm$core$String$fromInt(portion)))),
+											$temp$node = node,
+											$temp$has = A2(
+											$mdgriffith$elm_ui$Internal$Flag$add,
+											$mdgriffith$elm_ui$Internal$Flag$widthFill,
+											A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$width, has)),
+											$temp$transform = transform,
+											$temp$styles = A2(
+											$elm$core$List$cons,
+											A3(
+												$mdgriffith$elm_ui$Internal$Model$Single,
+												$mdgriffith$elm_ui$Internal$Style$classes.any + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.row + (' > ' + $mdgriffith$elm_ui$Internal$Style$dot(
+													'width-fill-' + $elm$core$String$fromInt(portion))))),
+												'flex-grow',
+												$elm$core$String$fromInt(portion * 100000)),
+											styles),
+											$temp$attrs = attrs,
+											$temp$children = children,
+											$temp$elementAttrs = remaining;
+										classes = $temp$classes;
+										node = $temp$node;
+										has = $temp$has;
+										transform = $temp$transform;
+										styles = $temp$styles;
+										attrs = $temp$attrs;
+										children = $temp$children;
+										elementAttrs = $temp$elementAttrs;
+										continue gatherAttrRecursive;
+									}
+								default:
+									var _v4 = $mdgriffith$elm_ui$Internal$Model$renderWidth(width);
+									var addToFlags = _v4.a;
+									var newClass = _v4.b;
+									var newStyles = _v4.c;
+									var $temp$classes = classes + (' ' + newClass),
+										$temp$node = node,
+										$temp$has = A2(
+										$mdgriffith$elm_ui$Internal$Flag$merge,
+										addToFlags,
+										A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$width, has)),
+										$temp$transform = transform,
+										$temp$styles = _Utils_ap(newStyles, styles),
+										$temp$attrs = attrs,
+										$temp$children = children,
+										$temp$elementAttrs = remaining;
+									classes = $temp$classes;
+									node = $temp$node;
+									has = $temp$has;
+									transform = $temp$transform;
+									styles = $temp$styles;
+									attrs = $temp$attrs;
+									children = $temp$children;
+									elementAttrs = $temp$elementAttrs;
+									continue gatherAttrRecursive;
+							}
+						}
+					case 'Height':
+						var height = attribute.a;
+						if (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$height, has)) {
+							var $temp$classes = classes,
+								$temp$node = node,
+								$temp$has = has,
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						} else {
+							switch (height.$) {
+								case 'Px':
+									var px = height.a;
+									var val = $elm$core$String$fromInt(px) + 'px';
+									var name = 'height-px-' + val;
+									var $temp$classes = $mdgriffith$elm_ui$Internal$Style$classes.heightExact + (' ' + (name + (' ' + classes))),
+										$temp$node = node,
+										$temp$has = A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$height, has),
+										$temp$transform = transform,
+										$temp$styles = A2(
+										$elm$core$List$cons,
+										A3($mdgriffith$elm_ui$Internal$Model$Single, name, 'height ', val),
+										styles),
+										$temp$attrs = attrs,
+										$temp$children = children,
+										$temp$elementAttrs = remaining;
+									classes = $temp$classes;
+									node = $temp$node;
+									has = $temp$has;
+									transform = $temp$transform;
+									styles = $temp$styles;
+									attrs = $temp$attrs;
+									children = $temp$children;
+									elementAttrs = $temp$elementAttrs;
+									continue gatherAttrRecursive;
+								case 'Content':
+									var $temp$classes = $mdgriffith$elm_ui$Internal$Style$classes.heightContent + (' ' + classes),
+										$temp$node = node,
+										$temp$has = A2(
+										$mdgriffith$elm_ui$Internal$Flag$add,
+										$mdgriffith$elm_ui$Internal$Flag$heightContent,
+										A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$height, has)),
+										$temp$transform = transform,
+										$temp$styles = styles,
+										$temp$attrs = attrs,
+										$temp$children = children,
+										$temp$elementAttrs = remaining;
+									classes = $temp$classes;
+									node = $temp$node;
+									has = $temp$has;
+									transform = $temp$transform;
+									styles = $temp$styles;
+									attrs = $temp$attrs;
+									children = $temp$children;
+									elementAttrs = $temp$elementAttrs;
+									continue gatherAttrRecursive;
+								case 'Fill':
+									var portion = height.a;
+									if (portion === 1) {
+										var $temp$classes = $mdgriffith$elm_ui$Internal$Style$classes.heightFill + (' ' + classes),
+											$temp$node = node,
+											$temp$has = A2(
+											$mdgriffith$elm_ui$Internal$Flag$add,
+											$mdgriffith$elm_ui$Internal$Flag$heightFill,
+											A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$height, has)),
+											$temp$transform = transform,
+											$temp$styles = styles,
+											$temp$attrs = attrs,
+											$temp$children = children,
+											$temp$elementAttrs = remaining;
+										classes = $temp$classes;
+										node = $temp$node;
+										has = $temp$has;
+										transform = $temp$transform;
+										styles = $temp$styles;
+										attrs = $temp$attrs;
+										children = $temp$children;
+										elementAttrs = $temp$elementAttrs;
+										continue gatherAttrRecursive;
+									} else {
+										var $temp$classes = classes + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.heightFillPortion + (' height-fill-' + $elm$core$String$fromInt(portion)))),
+											$temp$node = node,
+											$temp$has = A2(
+											$mdgriffith$elm_ui$Internal$Flag$add,
+											$mdgriffith$elm_ui$Internal$Flag$heightFill,
+											A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$height, has)),
+											$temp$transform = transform,
+											$temp$styles = A2(
+											$elm$core$List$cons,
+											A3(
+												$mdgriffith$elm_ui$Internal$Model$Single,
+												$mdgriffith$elm_ui$Internal$Style$classes.any + ('.' + ($mdgriffith$elm_ui$Internal$Style$classes.column + (' > ' + $mdgriffith$elm_ui$Internal$Style$dot(
+													'height-fill-' + $elm$core$String$fromInt(portion))))),
+												'flex-grow',
+												$elm$core$String$fromInt(portion * 100000)),
+											styles),
+											$temp$attrs = attrs,
+											$temp$children = children,
+											$temp$elementAttrs = remaining;
+										classes = $temp$classes;
+										node = $temp$node;
+										has = $temp$has;
+										transform = $temp$transform;
+										styles = $temp$styles;
+										attrs = $temp$attrs;
+										children = $temp$children;
+										elementAttrs = $temp$elementAttrs;
+										continue gatherAttrRecursive;
+									}
+								default:
+									var _v6 = $mdgriffith$elm_ui$Internal$Model$renderHeight(height);
+									var addToFlags = _v6.a;
+									var newClass = _v6.b;
+									var newStyles = _v6.c;
+									var $temp$classes = classes + (' ' + newClass),
+										$temp$node = node,
+										$temp$has = A2(
+										$mdgriffith$elm_ui$Internal$Flag$merge,
+										addToFlags,
+										A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$height, has)),
+										$temp$transform = transform,
+										$temp$styles = _Utils_ap(newStyles, styles),
+										$temp$attrs = attrs,
+										$temp$children = children,
+										$temp$elementAttrs = remaining;
+									classes = $temp$classes;
+									node = $temp$node;
+									has = $temp$has;
+									transform = $temp$transform;
+									styles = $temp$styles;
+									attrs = $temp$attrs;
+									children = $temp$children;
+									elementAttrs = $temp$elementAttrs;
+									continue gatherAttrRecursive;
+							}
+						}
+					case 'Describe':
+						var description = attribute.a;
+						switch (description.$) {
+							case 'Main':
+								var $temp$classes = classes,
+									$temp$node = A2($mdgriffith$elm_ui$Internal$Model$addNodeName, 'main', node),
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = attrs,
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							case 'Navigation':
+								var $temp$classes = classes,
+									$temp$node = A2($mdgriffith$elm_ui$Internal$Model$addNodeName, 'nav', node),
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = attrs,
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							case 'ContentInfo':
+								var $temp$classes = classes,
+									$temp$node = A2($mdgriffith$elm_ui$Internal$Model$addNodeName, 'footer', node),
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = attrs,
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							case 'Complementary':
+								var $temp$classes = classes,
+									$temp$node = A2($mdgriffith$elm_ui$Internal$Model$addNodeName, 'aside', node),
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = attrs,
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							case 'Heading':
+								var i = description.a;
+								if (i <= 1) {
+									var $temp$classes = classes,
+										$temp$node = A2($mdgriffith$elm_ui$Internal$Model$addNodeName, 'h1', node),
+										$temp$has = has,
+										$temp$transform = transform,
+										$temp$styles = styles,
+										$temp$attrs = attrs,
+										$temp$children = children,
+										$temp$elementAttrs = remaining;
+									classes = $temp$classes;
+									node = $temp$node;
+									has = $temp$has;
+									transform = $temp$transform;
+									styles = $temp$styles;
+									attrs = $temp$attrs;
+									children = $temp$children;
+									elementAttrs = $temp$elementAttrs;
+									continue gatherAttrRecursive;
+								} else {
+									if (i < 7) {
+										var $temp$classes = classes,
+											$temp$node = A2(
+											$mdgriffith$elm_ui$Internal$Model$addNodeName,
+											'h' + $elm$core$String$fromInt(i),
+											node),
+											$temp$has = has,
+											$temp$transform = transform,
+											$temp$styles = styles,
+											$temp$attrs = attrs,
+											$temp$children = children,
+											$temp$elementAttrs = remaining;
+										classes = $temp$classes;
+										node = $temp$node;
+										has = $temp$has;
+										transform = $temp$transform;
+										styles = $temp$styles;
+										attrs = $temp$attrs;
+										children = $temp$children;
+										elementAttrs = $temp$elementAttrs;
+										continue gatherAttrRecursive;
+									} else {
+										var $temp$classes = classes,
+											$temp$node = A2($mdgriffith$elm_ui$Internal$Model$addNodeName, 'h6', node),
+											$temp$has = has,
+											$temp$transform = transform,
+											$temp$styles = styles,
+											$temp$attrs = attrs,
+											$temp$children = children,
+											$temp$elementAttrs = remaining;
+										classes = $temp$classes;
+										node = $temp$node;
+										has = $temp$has;
+										transform = $temp$transform;
+										styles = $temp$styles;
+										attrs = $temp$attrs;
+										children = $temp$children;
+										elementAttrs = $temp$elementAttrs;
+										continue gatherAttrRecursive;
+									}
+								}
+							case 'Paragraph':
+								var $temp$classes = classes,
+									$temp$node = node,
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = attrs,
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							case 'Button':
+								var $temp$classes = classes,
+									$temp$node = node,
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = A2(
+									$elm$core$List$cons,
+									A2($elm$virtual_dom$VirtualDom$attribute, 'role', 'button'),
+									attrs),
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							case 'Label':
+								var label = description.a;
+								var $temp$classes = classes,
+									$temp$node = node,
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = A2(
+									$elm$core$List$cons,
+									A2($elm$virtual_dom$VirtualDom$attribute, 'aria-label', label),
+									attrs),
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							case 'LivePolite':
+								var $temp$classes = classes,
+									$temp$node = node,
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = A2(
+									$elm$core$List$cons,
+									A2($elm$virtual_dom$VirtualDom$attribute, 'aria-live', 'polite'),
+									attrs),
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+							default:
+								var $temp$classes = classes,
+									$temp$node = node,
+									$temp$has = has,
+									$temp$transform = transform,
+									$temp$styles = styles,
+									$temp$attrs = A2(
+									$elm$core$List$cons,
+									A2($elm$virtual_dom$VirtualDom$attribute, 'aria-live', 'assertive'),
+									attrs),
+									$temp$children = children,
+									$temp$elementAttrs = remaining;
+								classes = $temp$classes;
+								node = $temp$node;
+								has = $temp$has;
+								transform = $temp$transform;
+								styles = $temp$styles;
+								attrs = $temp$attrs;
+								children = $temp$children;
+								elementAttrs = $temp$elementAttrs;
+								continue gatherAttrRecursive;
+						}
+					case 'Nearby':
+						var location = attribute.a;
+						var elem = attribute.b;
+						var newStyles = function () {
+							switch (elem.$) {
+								case 'Empty':
+									return styles;
+								case 'Text':
+									var str = elem.a;
+									return styles;
+								case 'Unstyled':
+									var html = elem.a;
+									return styles;
+								default:
+									var styled = elem.a;
+									return _Utils_ap(styles, styled.styles);
+							}
+						}();
+						var $temp$classes = classes,
+							$temp$node = node,
+							$temp$has = has,
+							$temp$transform = transform,
+							$temp$styles = newStyles,
+							$temp$attrs = attrs,
+							$temp$children = A3($mdgriffith$elm_ui$Internal$Model$addNearbyElement, location, elem, children),
+							$temp$elementAttrs = remaining;
+						classes = $temp$classes;
+						node = $temp$node;
+						has = $temp$has;
+						transform = $temp$transform;
+						styles = $temp$styles;
+						attrs = $temp$attrs;
+						children = $temp$children;
+						elementAttrs = $temp$elementAttrs;
+						continue gatherAttrRecursive;
+					case 'AlignX':
+						var x = attribute.a;
+						if (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$xAlign, has)) {
+							var $temp$classes = classes,
+								$temp$node = node,
+								$temp$has = has,
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						} else {
+							var $temp$classes = $mdgriffith$elm_ui$Internal$Model$alignXName(x) + (' ' + classes),
+								$temp$node = node,
+								$temp$has = function (flags) {
+								switch (x.$) {
+									case 'CenterX':
+										return A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$centerX, flags);
+									case 'Right':
+										return A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$alignRight, flags);
+									default:
+										return flags;
+								}
+							}(
+								A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$xAlign, has)),
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						}
+					default:
+						var y = attribute.a;
+						if (A2($mdgriffith$elm_ui$Internal$Flag$present, $mdgriffith$elm_ui$Internal$Flag$yAlign, has)) {
+							var $temp$classes = classes,
+								$temp$node = node,
+								$temp$has = has,
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						} else {
+							var $temp$classes = $mdgriffith$elm_ui$Internal$Model$alignYName(y) + (' ' + classes),
+								$temp$node = node,
+								$temp$has = function (flags) {
+								switch (y.$) {
+									case 'CenterY':
+										return A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$centerY, flags);
+									case 'Bottom':
+										return A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$alignBottom, flags);
+									default:
+										return flags;
+								}
+							}(
+								A2($mdgriffith$elm_ui$Internal$Flag$add, $mdgriffith$elm_ui$Internal$Flag$yAlign, has)),
+								$temp$transform = transform,
+								$temp$styles = styles,
+								$temp$attrs = attrs,
+								$temp$children = children,
+								$temp$elementAttrs = remaining;
+							classes = $temp$classes;
+							node = $temp$node;
+							has = $temp$has;
+							transform = $temp$transform;
+							styles = $temp$styles;
+							attrs = $temp$attrs;
+							children = $temp$children;
+							elementAttrs = $temp$elementAttrs;
+							continue gatherAttrRecursive;
+						}
+				}
+			}
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$Untransformed = {$: 'Untransformed'};
+var $mdgriffith$elm_ui$Internal$Model$untransformed = $mdgriffith$elm_ui$Internal$Model$Untransformed;
+var $mdgriffith$elm_ui$Internal$Model$element = F4(
+	function (context, node, attributes, children) {
+		return A3(
+			$mdgriffith$elm_ui$Internal$Model$createElement,
+			context,
+			children,
+			A8(
+				$mdgriffith$elm_ui$Internal$Model$gatherAttrRecursive,
+				$mdgriffith$elm_ui$Internal$Model$contextClasses(context),
+				node,
+				$mdgriffith$elm_ui$Internal$Flag$none,
+				$mdgriffith$elm_ui$Internal$Model$untransformed,
+				_List_Nil,
+				_List_Nil,
+				$mdgriffith$elm_ui$Internal$Model$NoNearbyChildren,
+				$elm$core$List$reverse(attributes)));
+	});
+var $mdgriffith$elm_ui$Internal$Model$Height = function (a) {
+	return {$: 'Height', a: a};
+};
+var $mdgriffith$elm_ui$Element$height = $mdgriffith$elm_ui$Internal$Model$Height;
+var $mdgriffith$elm_ui$Internal$Model$Attr = function (a) {
+	return {$: 'Attr', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$htmlClass = function (cls) {
+	return $mdgriffith$elm_ui$Internal$Model$Attr(
+		$elm$html$Html$Attributes$class(cls));
+};
+var $mdgriffith$elm_ui$Internal$Model$Content = {$: 'Content'};
+var $mdgriffith$elm_ui$Element$shrink = $mdgriffith$elm_ui$Internal$Model$Content;
+var $mdgriffith$elm_ui$Internal$Model$Width = function (a) {
+	return {$: 'Width', a: a};
+};
+var $mdgriffith$elm_ui$Element$width = $mdgriffith$elm_ui$Internal$Model$Width;
+var $mdgriffith$elm_ui$Element$column = F2(
+	function (attrs, children) {
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asColumn,
+			$mdgriffith$elm_ui$Internal$Model$div,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentTop + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.contentLeft)),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+						attrs))),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
+	});
+var $mdgriffith$elm_ui$Internal$Model$FontFamily = F2(
+	function (a, b) {
+		return {$: 'FontFamily', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$fontFamily = $mdgriffith$elm_ui$Internal$Flag$flag(5);
+var $elm$core$String$toLower = _String_toLower;
+var $elm$core$String$words = _String_words;
+var $mdgriffith$elm_ui$Internal$Model$renderFontClassName = F2(
+	function (font, current) {
+		return _Utils_ap(
+			current,
+			function () {
+				switch (font.$) {
+					case 'Serif':
+						return 'serif';
+					case 'SansSerif':
+						return 'sans-serif';
+					case 'Monospace':
+						return 'monospace';
+					case 'Typeface':
+						var name = font.a;
+						return A2(
+							$elm$core$String$join,
+							'-',
+							$elm$core$String$words(
+								$elm$core$String$toLower(name)));
+					case 'ImportFont':
+						var name = font.a;
+						var url = font.b;
+						return A2(
+							$elm$core$String$join,
+							'-',
+							$elm$core$String$words(
+								$elm$core$String$toLower(name)));
+					default:
+						var name = font.a.name;
+						return A2(
+							$elm$core$String$join,
+							'-',
+							$elm$core$String$words(
+								$elm$core$String$toLower(name)));
+				}
+			}());
+	});
+var $mdgriffith$elm_ui$Element$Font$family = function (families) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$fontFamily,
+		A2(
+			$mdgriffith$elm_ui$Internal$Model$FontFamily,
+			A3($elm$core$List$foldl, $mdgriffith$elm_ui$Internal$Model$renderFontClassName, 'ff-', families),
+			families));
+};
+var $mdgriffith$elm_ui$Internal$Model$Fill = function (a) {
+	return {$: 'Fill', a: a};
+};
+var $mdgriffith$elm_ui$Element$fill = $mdgriffith$elm_ui$Internal$Model$Fill(1);
+var $mdgriffith$elm_ui$Internal$Model$formatTextShadow = function (shadow) {
+	return A2(
+		$elm$core$String$join,
+		' ',
+		_List_fromArray(
+			[
+				$elm$core$String$fromFloat(shadow.offset.a) + 'px',
+				$elm$core$String$fromFloat(shadow.offset.b) + 'px',
+				$elm$core$String$fromFloat(shadow.blur) + 'px',
+				$mdgriffith$elm_ui$Internal$Model$formatColor(shadow.color)
+			]));
+};
+var $mdgriffith$elm_ui$Internal$Model$textShadowClass = function (shadow) {
+	return $elm$core$String$concat(
+		_List_fromArray(
+			[
+				'txt',
+				$mdgriffith$elm_ui$Internal$Model$floatClass(shadow.offset.a) + 'px',
+				$mdgriffith$elm_ui$Internal$Model$floatClass(shadow.offset.b) + 'px',
+				$mdgriffith$elm_ui$Internal$Model$floatClass(shadow.blur) + 'px',
+				$mdgriffith$elm_ui$Internal$Model$formatColorClass(shadow.color)
+			]));
+};
+var $mdgriffith$elm_ui$Internal$Flag$txtShadows = $mdgriffith$elm_ui$Internal$Flag$flag(18);
+var $mdgriffith$elm_ui$Element$Font$glow = F2(
+	function (clr, i) {
+		var shade = {
+			blur: i * 2,
+			color: clr,
+			offset: _Utils_Tuple2(0, 0)
+		};
+		return A2(
+			$mdgriffith$elm_ui$Internal$Model$StyleClass,
+			$mdgriffith$elm_ui$Internal$Flag$txtShadows,
+			A3(
+				$mdgriffith$elm_ui$Internal$Model$Single,
+				$mdgriffith$elm_ui$Internal$Model$textShadowClass(shade),
+				'text-shadow',
+				$mdgriffith$elm_ui$Internal$Model$formatTextShadow(shade)));
+	});
+var $mdgriffith$elm_ui$Internal$Model$OnlyDynamic = F2(
+	function (a, b) {
+		return {$: 'OnlyDynamic', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Model$StaticRootAndDynamic = F2(
+	function (a, b) {
+		return {$: 'StaticRootAndDynamic', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Model$AllowHover = {$: 'AllowHover'};
+var $mdgriffith$elm_ui$Internal$Model$Layout = {$: 'Layout'};
+var $mdgriffith$elm_ui$Internal$Model$Rgba = F4(
+	function (a, b, c, d) {
+		return {$: 'Rgba', a: a, b: b, c: c, d: d};
+	});
+var $mdgriffith$elm_ui$Internal$Model$focusDefaultStyle = {
+	backgroundColor: $elm$core$Maybe$Nothing,
+	borderColor: $elm$core$Maybe$Nothing,
+	shadow: $elm$core$Maybe$Just(
+		{
+			blur: 0,
+			color: A4($mdgriffith$elm_ui$Internal$Model$Rgba, 155 / 255, 203 / 255, 1, 1),
+			offset: _Utils_Tuple2(0, 0),
+			size: 3
+		})
+};
+var $mdgriffith$elm_ui$Internal$Model$optionsToRecord = function (options) {
+	var combine = F2(
+		function (opt, record) {
+			switch (opt.$) {
+				case 'HoverOption':
+					var hoverable = opt.a;
+					var _v4 = record.hover;
+					if (_v4.$ === 'Nothing') {
+						return _Utils_update(
+							record,
+							{
+								hover: $elm$core$Maybe$Just(hoverable)
+							});
+					} else {
+						return record;
+					}
+				case 'FocusStyleOption':
+					var focusStyle = opt.a;
+					var _v5 = record.focus;
+					if (_v5.$ === 'Nothing') {
+						return _Utils_update(
+							record,
+							{
+								focus: $elm$core$Maybe$Just(focusStyle)
+							});
+					} else {
+						return record;
+					}
+				default:
+					var renderMode = opt.a;
+					var _v6 = record.mode;
+					if (_v6.$ === 'Nothing') {
+						return _Utils_update(
+							record,
+							{
+								mode: $elm$core$Maybe$Just(renderMode)
+							});
+					} else {
+						return record;
+					}
+			}
+		});
+	var andFinally = function (record) {
+		return {
+			focus: function () {
+				var _v0 = record.focus;
+				if (_v0.$ === 'Nothing') {
+					return $mdgriffith$elm_ui$Internal$Model$focusDefaultStyle;
+				} else {
+					var focusable = _v0.a;
+					return focusable;
+				}
+			}(),
+			hover: function () {
+				var _v1 = record.hover;
+				if (_v1.$ === 'Nothing') {
+					return $mdgriffith$elm_ui$Internal$Model$AllowHover;
+				} else {
+					var hoverable = _v1.a;
+					return hoverable;
+				}
+			}(),
+			mode: function () {
+				var _v2 = record.mode;
+				if (_v2.$ === 'Nothing') {
+					return $mdgriffith$elm_ui$Internal$Model$Layout;
+				} else {
+					var actualMode = _v2.a;
+					return actualMode;
+				}
+			}()
+		};
+	};
+	return andFinally(
+		A3(
+			$elm$core$List$foldr,
+			combine,
+			{focus: $elm$core$Maybe$Nothing, hover: $elm$core$Maybe$Nothing, mode: $elm$core$Maybe$Nothing},
+			options));
+};
+var $mdgriffith$elm_ui$Internal$Model$toHtml = F2(
+	function (mode, el) {
+		switch (el.$) {
+			case 'Unstyled':
+				var html = el.a;
+				return html($mdgriffith$elm_ui$Internal$Model$asEl);
+			case 'Styled':
+				var styles = el.a.styles;
+				var html = el.a.html;
+				return A2(
+					html,
+					mode(styles),
+					$mdgriffith$elm_ui$Internal$Model$asEl);
+			case 'Text':
+				var text = el.a;
+				return $mdgriffith$elm_ui$Internal$Model$textElement(text);
+			default:
+				return $mdgriffith$elm_ui$Internal$Model$textElement('');
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$renderRoot = F3(
+	function (optionList, attributes, child) {
+		var options = $mdgriffith$elm_ui$Internal$Model$optionsToRecord(optionList);
+		var embedStyle = function () {
+			var _v0 = options.mode;
+			if (_v0.$ === 'NoStaticStyleSheet') {
+				return $mdgriffith$elm_ui$Internal$Model$OnlyDynamic(options);
+			} else {
+				return $mdgriffith$elm_ui$Internal$Model$StaticRootAndDynamic(options);
+			}
+		}();
+		return A2(
+			$mdgriffith$elm_ui$Internal$Model$toHtml,
+			embedStyle,
+			A4(
+				$mdgriffith$elm_ui$Internal$Model$element,
+				$mdgriffith$elm_ui$Internal$Model$asEl,
+				$mdgriffith$elm_ui$Internal$Model$div,
+				attributes,
+				$mdgriffith$elm_ui$Internal$Model$Unkeyed(
+					_List_fromArray(
+						[child]))));
+	});
+var $mdgriffith$elm_ui$Internal$Model$FontSize = function (a) {
+	return {$: 'FontSize', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$SansSerif = {$: 'SansSerif'};
+var $mdgriffith$elm_ui$Internal$Model$Typeface = function (a) {
+	return {$: 'Typeface', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Flag$fontSize = $mdgriffith$elm_ui$Internal$Flag$flag(4);
+var $mdgriffith$elm_ui$Internal$Model$rootStyle = function () {
+	var families = _List_fromArray(
+		[
+			$mdgriffith$elm_ui$Internal$Model$Typeface('Open Sans'),
+			$mdgriffith$elm_ui$Internal$Model$Typeface('Helvetica'),
+			$mdgriffith$elm_ui$Internal$Model$Typeface('Verdana'),
+			$mdgriffith$elm_ui$Internal$Model$SansSerif
+		]);
+	return _List_fromArray(
+		[
+			A2(
+			$mdgriffith$elm_ui$Internal$Model$StyleClass,
+			$mdgriffith$elm_ui$Internal$Flag$bgColor,
+			A3(
+				$mdgriffith$elm_ui$Internal$Model$Colored,
+				'bg-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(
+					A4($mdgriffith$elm_ui$Internal$Model$Rgba, 1, 1, 1, 0)),
+				'background-color',
+				A4($mdgriffith$elm_ui$Internal$Model$Rgba, 1, 1, 1, 0))),
+			A2(
+			$mdgriffith$elm_ui$Internal$Model$StyleClass,
+			$mdgriffith$elm_ui$Internal$Flag$fontColor,
+			A3(
+				$mdgriffith$elm_ui$Internal$Model$Colored,
+				'fc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(
+					A4($mdgriffith$elm_ui$Internal$Model$Rgba, 0, 0, 0, 1)),
+				'color',
+				A4($mdgriffith$elm_ui$Internal$Model$Rgba, 0, 0, 0, 1))),
+			A2(
+			$mdgriffith$elm_ui$Internal$Model$StyleClass,
+			$mdgriffith$elm_ui$Internal$Flag$fontSize,
+			$mdgriffith$elm_ui$Internal$Model$FontSize(20)),
+			A2(
+			$mdgriffith$elm_ui$Internal$Model$StyleClass,
+			$mdgriffith$elm_ui$Internal$Flag$fontFamily,
+			A2(
+				$mdgriffith$elm_ui$Internal$Model$FontFamily,
+				A3($elm$core$List$foldl, $mdgriffith$elm_ui$Internal$Model$renderFontClassName, 'font-', families),
+				families))
+		]);
+}();
+var $mdgriffith$elm_ui$Element$layoutWith = F3(
+	function (_v0, attrs, child) {
+		var options = _v0.options;
+		return A3(
+			$mdgriffith$elm_ui$Internal$Model$renderRoot,
+			options,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Internal$Model$htmlClass(
+					A2(
+						$elm$core$String$join,
+						' ',
+						_List_fromArray(
+							[$mdgriffith$elm_ui$Internal$Style$classes.root, $mdgriffith$elm_ui$Internal$Style$classes.any, $mdgriffith$elm_ui$Internal$Style$classes.single]))),
+				_Utils_ap($mdgriffith$elm_ui$Internal$Model$rootStyle, attrs)),
+			child);
+	});
+var $mdgriffith$elm_ui$Element$layout = $mdgriffith$elm_ui$Element$layoutWith(
+	{options: _List_Nil});
+var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
+	function (a, b, c, d, e) {
+		return {$: 'PaddingStyle', a: a, b: b, c: c, d: d, e: e};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$padding = $mdgriffith$elm_ui$Internal$Flag$flag(2);
+var $mdgriffith$elm_ui$Element$padding = function (x) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$padding,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
+			'p-' + $elm$core$String$fromInt(x),
+			x,
+			x,
+			x,
+			x));
+};
+var $mdgriffith$elm_ui$Element$rgba255 = F4(
+	function (red, green, blue, a) {
+		return A4($mdgriffith$elm_ui$Internal$Model$Rgba, red / 255, green / 255, blue / 255, a);
+	});
+var $mdgriffith$elm_ui$Element$Font$sansSerif = $mdgriffith$elm_ui$Internal$Model$SansSerif;
+var $mdgriffith$elm_ui$Element$rgb255 = F3(
+	function (red, green, blue) {
+		return A4($mdgriffith$elm_ui$Internal$Model$Rgba, red / 255, green / 255, blue / 255, 1);
+	});
+var $author$project$Page$Home$theme = {
+	dark: A3($mdgriffith$elm_ui$Element$rgb255, 50, 29, 29),
+	yellow: A3($mdgriffith$elm_ui$Element$rgb255, 247, 203, 55)
+};
+var $mdgriffith$elm_ui$Element$Font$typeface = $mdgriffith$elm_ui$Internal$Model$Typeface;
+var $mdgriffith$elm_ui$Internal$Model$Class = F2(
+	function (a, b) {
+		return {$: 'Class', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$fontWeight = $mdgriffith$elm_ui$Internal$Flag$flag(13);
+var $mdgriffith$elm_ui$Element$Font$bold = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$fontWeight, $mdgriffith$elm_ui$Internal$Style$classes.bold);
+var $mdgriffith$elm_ui$Internal$Flag$fontAlignment = $mdgriffith$elm_ui$Internal$Flag$flag(12);
+var $mdgriffith$elm_ui$Element$Font$center = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$fontAlignment, $mdgriffith$elm_ui$Internal$Style$classes.textCenter);
+var $mdgriffith$elm_ui$Internal$Model$AlignX = function (a) {
+	return {$: 'AlignX', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$CenterX = {$: 'CenterX'};
+var $mdgriffith$elm_ui$Element$centerX = $mdgriffith$elm_ui$Internal$Model$AlignX($mdgriffith$elm_ui$Internal$Model$CenterX);
+var $mdgriffith$elm_ui$Element$el = F2(
+	function (attrs, child) {
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asEl,
+			$mdgriffith$elm_ui$Internal$Model$div,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+					attrs)),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(
+				_List_fromArray(
+					[child])));
+	});
+var $mdgriffith$elm_ui$Element$htmlAttribute = $mdgriffith$elm_ui$Internal$Model$Attr;
+var $mdgriffith$elm_ui$Internal$Model$Max = F2(
+	function (a, b) {
+		return {$: 'Max', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Element$maximum = F2(
+	function (i, l) {
+		return A2($mdgriffith$elm_ui$Internal$Model$Max, i, l);
+	});
+var $mdgriffith$elm_ui$Internal$Model$Describe = function (a) {
+	return {$: 'Describe', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$Paragraph = {$: 'Paragraph'};
+var $mdgriffith$elm_ui$Internal$Model$SpacingStyle = F3(
+	function (a, b, c) {
+		return {$: 'SpacingStyle', a: a, b: b, c: c};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$spacing = $mdgriffith$elm_ui$Internal$Flag$flag(3);
+var $mdgriffith$elm_ui$Internal$Model$spacingName = F2(
+	function (x, y) {
+		return 'spacing-' + ($elm$core$String$fromInt(x) + ('-' + $elm$core$String$fromInt(y)));
+	});
+var $mdgriffith$elm_ui$Element$spacing = function (x) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$spacing,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$SpacingStyle,
+			A2($mdgriffith$elm_ui$Internal$Model$spacingName, x, x),
+			x,
+			x));
+};
+var $mdgriffith$elm_ui$Element$paragraph = F2(
+	function (attrs, children) {
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asParagraph,
+			$mdgriffith$elm_ui$Internal$Model$div,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Internal$Model$Describe($mdgriffith$elm_ui$Internal$Model$Paragraph),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Element$spacing(5),
+						attrs))),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
+	});
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $mdgriffith$elm_ui$Internal$Model$Text = function (a) {
+	return {$: 'Text', a: a};
+};
+var $mdgriffith$elm_ui$Element$text = function (content) {
+	return $mdgriffith$elm_ui$Internal$Model$Text(content);
+};
+var $mdgriffith$elm_ui$Internal$Model$AlignY = function (a) {
+	return {$: 'AlignY', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$CenterY = {$: 'CenterY'};
+var $mdgriffith$elm_ui$Element$centerY = $mdgriffith$elm_ui$Internal$Model$AlignY($mdgriffith$elm_ui$Internal$Model$CenterY);
+var $mdgriffith$elm_ui$Element$Background$image = function (src) {
+	return $mdgriffith$elm_ui$Internal$Model$Attr(
+		A2($elm$virtual_dom$VirtualDom$style, 'background', 'url(\"' + (src + '\") center / cover no-repeat')));
+};
+var $elm$html$Html$Attributes$href = function (url) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'href',
+		_VirtualDom_noJavaScriptUri(url));
+};
+var $elm$html$Html$Attributes$rel = _VirtualDom_attribute('rel');
+var $mdgriffith$elm_ui$Element$link = F2(
+	function (attrs, _v0) {
+		var url = _v0.url;
+		var label = _v0.label;
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asEl,
+			$mdgriffith$elm_ui$Internal$Model$NodeName('a'),
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Internal$Model$Attr(
+					$elm$html$Html$Attributes$href(url)),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Internal$Model$Attr(
+						$elm$html$Html$Attributes$rel('noopener noreferrer')),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+						A2(
+							$elm$core$List$cons,
+							$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+							A2(
+								$elm$core$List$cons,
+								$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentCenterX + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.contentCenterY + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.link)))),
+								attrs))))),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(
+				_List_fromArray(
+					[label])));
+	});
+var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
+	return {$: 'Px', a: a};
+};
+var $mdgriffith$elm_ui$Element$px = $mdgriffith$elm_ui$Internal$Model$Px;
+var $author$project$Page$Home$viewCourseCard = function (title) {
+	return A2(
+		$mdgriffith$elm_ui$Element$el,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$Background$image('/assets/waffle.svg'),
+				$mdgriffith$elm_ui$Element$width(
+				$mdgriffith$elm_ui$Element$px(200)),
+				$mdgriffith$elm_ui$Element$height(
+				$mdgriffith$elm_ui$Element$px(200))
+			]),
+		A2(
+			$mdgriffith$elm_ui$Element$paragraph,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$Font$center,
+					$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Home$theme.dark),
+					$mdgriffith$elm_ui$Element$Font$bold,
+					$mdgriffith$elm_ui$Element$centerY
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$mdgriffith$elm_ui$Element$link,
+					_List_Nil,
+					{
+						label: $mdgriffith$elm_ui$Element$text(title),
+						url: '/tutorial/' + title
+					})
+				])));
+};
+var $mdgriffith$elm_ui$Internal$Model$AsRow = {$: 'AsRow'};
+var $mdgriffith$elm_ui$Internal$Model$asRow = $mdgriffith$elm_ui$Internal$Model$AsRow;
+var $mdgriffith$elm_ui$Internal$Model$Padding = F5(
+	function (a, b, c, d, e) {
+		return {$: 'Padding', a: a, b: b, c: c, d: d, e: e};
+	});
+var $mdgriffith$elm_ui$Internal$Model$Spaced = F3(
+	function (a, b, c) {
+		return {$: 'Spaced', a: a, b: b, c: c};
+	});
+var $mdgriffith$elm_ui$Internal$Model$extractSpacingAndPadding = function (attrs) {
+	return A3(
+		$elm$core$List$foldr,
+		F2(
+			function (attr, _v0) {
+				var pad = _v0.a;
+				var spacing = _v0.b;
+				return _Utils_Tuple2(
+					function () {
+						if (pad.$ === 'Just') {
+							var x = pad.a;
+							return pad;
+						} else {
+							if ((attr.$ === 'StyleClass') && (attr.b.$ === 'PaddingStyle')) {
+								var _v3 = attr.b;
+								var name = _v3.a;
+								var t = _v3.b;
+								var r = _v3.c;
+								var b = _v3.d;
+								var l = _v3.e;
+								return $elm$core$Maybe$Just(
+									A5($mdgriffith$elm_ui$Internal$Model$Padding, name, t, r, b, l));
+							} else {
+								return $elm$core$Maybe$Nothing;
+							}
+						}
+					}(),
+					function () {
+						if (spacing.$ === 'Just') {
+							var x = spacing.a;
+							return spacing;
+						} else {
+							if ((attr.$ === 'StyleClass') && (attr.b.$ === 'SpacingStyle')) {
+								var _v6 = attr.b;
+								var name = _v6.a;
+								var x = _v6.b;
+								var y = _v6.c;
+								return $elm$core$Maybe$Just(
+									A3($mdgriffith$elm_ui$Internal$Model$Spaced, name, x, y));
+							} else {
+								return $elm$core$Maybe$Nothing;
+							}
+						}
+					}());
+			}),
+		_Utils_Tuple2($elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing),
+		attrs);
+};
+var $mdgriffith$elm_ui$Internal$Model$paddingName = F4(
+	function (top, right, bottom, left) {
+		return 'pad-' + ($elm$core$String$fromInt(top) + ('-' + ($elm$core$String$fromInt(right) + ('-' + ($elm$core$String$fromInt(bottom) + ('-' + $elm$core$String$fromInt(left)))))));
+	});
+var $mdgriffith$elm_ui$Element$paddingEach = function (_v0) {
+	var top = _v0.top;
+	var right = _v0.right;
+	var bottom = _v0.bottom;
+	var left = _v0.left;
+	return (_Utils_eq(top, right) && (_Utils_eq(top, bottom) && _Utils_eq(top, left))) ? A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$padding,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
+			'p-' + $elm$core$String$fromInt(top),
+			top,
+			top,
+			top,
+			top)) : A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$padding,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
+			A4($mdgriffith$elm_ui$Internal$Model$paddingName, top, right, bottom, left),
+			top,
+			right,
+			bottom,
+			left));
+};
+var $mdgriffith$elm_ui$Element$wrappedRow = F2(
+	function (attrs, children) {
+		var _v0 = $mdgriffith$elm_ui$Internal$Model$extractSpacingAndPadding(attrs);
+		var padded = _v0.a;
+		var spaced = _v0.b;
+		if (spaced.$ === 'Nothing') {
+			return A4(
+				$mdgriffith$elm_ui$Internal$Model$element,
+				$mdgriffith$elm_ui$Internal$Model$asRow,
+				$mdgriffith$elm_ui$Internal$Model$div,
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentLeft + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.contentCenterY + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.wrapped)))),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+						A2(
+							$elm$core$List$cons,
+							$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+							attrs))),
+				$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
+		} else {
+			var _v2 = spaced.a;
+			var spaceName = _v2.a;
+			var x = _v2.b;
+			var y = _v2.c;
+			var newPadding = function () {
+				if (padded.$ === 'Just') {
+					var _v5 = padded.a;
+					var name = _v5.a;
+					var t = _v5.b;
+					var r = _v5.c;
+					var b = _v5.d;
+					var l = _v5.e;
+					return ((_Utils_cmp(r, (x / 2) | 0) > -1) && (_Utils_cmp(b, (y / 2) | 0) > -1)) ? $elm$core$Maybe$Just(
+						$mdgriffith$elm_ui$Element$paddingEach(
+							{bottom: b - ((y / 2) | 0), left: l - ((x / 2) | 0), right: r - ((x / 2) | 0), top: t - ((y / 2) | 0)})) : $elm$core$Maybe$Nothing;
+				} else {
+					return $elm$core$Maybe$Nothing;
+				}
+			}();
+			if (newPadding.$ === 'Just') {
+				var pad = newPadding.a;
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$element,
+					$mdgriffith$elm_ui$Internal$Model$asRow,
+					$mdgriffith$elm_ui$Internal$Model$div,
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentLeft + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.contentCenterY + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.wrapped)))),
+						A2(
+							$elm$core$List$cons,
+							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+							A2(
+								$elm$core$List$cons,
+								$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+								_Utils_ap(
+									attrs,
+									_List_fromArray(
+										[pad]))))),
+					$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
+			} else {
+				var halfY = -(y / 2);
+				var halfX = -(x / 2);
+				return A4(
+					$mdgriffith$elm_ui$Internal$Model$element,
+					$mdgriffith$elm_ui$Internal$Model$asEl,
+					$mdgriffith$elm_ui$Internal$Model$div,
+					attrs,
+					$mdgriffith$elm_ui$Internal$Model$Unkeyed(
+						_List_fromArray(
+							[
+								A4(
+								$mdgriffith$elm_ui$Internal$Model$element,
+								$mdgriffith$elm_ui$Internal$Model$asRow,
+								$mdgriffith$elm_ui$Internal$Model$div,
+								A2(
+									$elm$core$List$cons,
+									$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentLeft + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.contentCenterY + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.wrapped)))),
+									A2(
+										$elm$core$List$cons,
+										$mdgriffith$elm_ui$Internal$Model$Attr(
+											A2(
+												$elm$html$Html$Attributes$style,
+												'margin',
+												$elm$core$String$fromFloat(halfY) + ('px' + (' ' + ($elm$core$String$fromFloat(halfX) + 'px'))))),
+										A2(
+											$elm$core$List$cons,
+											$mdgriffith$elm_ui$Internal$Model$Attr(
+												A2(
+													$elm$html$Html$Attributes$style,
+													'width',
+													'calc(100% + ' + ($elm$core$String$fromInt(x) + 'px)'))),
+											A2(
+												$elm$core$List$cons,
+												$mdgriffith$elm_ui$Internal$Model$Attr(
+													A2(
+														$elm$html$Html$Attributes$style,
+														'height',
+														'calc(100% + ' + ($elm$core$String$fromInt(y) + 'px)'))),
+												A2(
+													$elm$core$List$cons,
+													A2(
+														$mdgriffith$elm_ui$Internal$Model$StyleClass,
+														$mdgriffith$elm_ui$Internal$Flag$spacing,
+														A3($mdgriffith$elm_ui$Internal$Model$SpacingStyle, spaceName, x, y)),
+													_List_Nil))))),
+								$mdgriffith$elm_ui$Internal$Model$Unkeyed(children))
+							])));
+			}
+		}
+	});
+var $author$project$Page$Home$viewBody = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$column,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+				$mdgriffith$elm_ui$Element$spacing(20),
+				$mdgriffith$elm_ui$Element$padding(30)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[$mdgriffith$elm_ui$Element$centerX, $mdgriffith$elm_ui$Element$Font$bold]),
+				$mdgriffith$elm_ui$Element$text('Develop Your AI Superpower')),
+				A2(
+				$mdgriffith$elm_ui$Element$paragraph,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$centerX,
+						$mdgriffith$elm_ui$Element$Font$center,
+						$mdgriffith$elm_ui$Element$width(
+						A2($mdgriffith$elm_ui$Element$maximum, 600, $mdgriffith$elm_ui$Element$fill))
+					]),
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$text('learn AI Interactively from scratch for free. \nUnderstand the workings behind the AI superpower, \nand start using them yourself!')
+					])),
+				A2(
+				$mdgriffith$elm_ui$Element$wrappedRow,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$padding(20),
+						$mdgriffith$elm_ui$Element$spacing(40),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'margin-left', 'auto')),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'margin-right', 'auto')),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'display', 'flex')),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'justify-content', 'center'))
+					]),
+				A2($elm$core$List$map, $author$project$Page$Home$viewCourseCard, model.courses))
+			]));
+};
+var $mdgriffith$elm_ui$Internal$Model$Left = {$: 'Left'};
+var $mdgriffith$elm_ui$Element$alignLeft = $mdgriffith$elm_ui$Internal$Model$AlignX($mdgriffith$elm_ui$Internal$Model$Left);
+var $mdgriffith$elm_ui$Internal$Model$Right = {$: 'Right'};
+var $mdgriffith$elm_ui$Element$alignRight = $mdgriffith$elm_ui$Internal$Model$AlignX($mdgriffith$elm_ui$Internal$Model$Right);
+var $mdgriffith$elm_ui$Element$row = F2(
+	function (attrs, children) {
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asRow,
+			$mdgriffith$elm_ui$Internal$Model$div,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentLeft + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.contentCenterY)),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+						attrs))),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
+	});
+var $author$project$Page$Home$viewHeader = A2(
+	$mdgriffith$elm_ui$Element$row,
+	_List_fromArray(
+		[
+			$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$mdgriffith$elm_ui$Element$el,
+			_List_fromArray(
+				[$mdgriffith$elm_ui$Element$alignLeft]),
+			$mdgriffith$elm_ui$Element$text('AIWaffle')),
+			A2(
+			$mdgriffith$elm_ui$Element$el,
+			_List_fromArray(
+				[$mdgriffith$elm_ui$Element$alignRight]),
+			$mdgriffith$elm_ui$Element$text('Log In'))
+		]));
+var $author$project$Page$Home$view = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$layout,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$Font$family(
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$Font$typeface('Nunito'),
+						$mdgriffith$elm_ui$Element$Font$sansSerif
+					])),
+				$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Home$theme.yellow),
+				A2(
+				$mdgriffith$elm_ui$Element$Font$glow,
+				A4($mdgriffith$elm_ui$Element$rgba255, 255, 218, 94, 0.8),
+				3),
+				$mdgriffith$elm_ui$Element$Background$color($author$project$Page$Home$theme.dark),
+				$mdgriffith$elm_ui$Element$padding(10)
+			]),
+		A2(
+			$mdgriffith$elm_ui$Element$column,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+				]),
+			_List_fromArray(
+				[
+					$author$project$Page$Home$viewHeader,
+					$author$project$Page$Home$viewBody(model)
+				])));
+};
+var $mdgriffith$elm_ui$Internal$Model$ImportFont = F2(
+	function (a, b) {
+		return {$: 'ImportFont', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Element$Font$external = function (_v0) {
+	var url = _v0.url;
+	var name = _v0.name;
+	return A2($mdgriffith$elm_ui$Internal$Model$ImportFont, name, url);
+};
+var $mdgriffith$elm_ui$Element$Font$size = function (i) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$fontSize,
+		$mdgriffith$elm_ui$Internal$Model$FontSize(i));
+};
+var $author$project$Page$NotFound$theme = {
+	dark: A3($mdgriffith$elm_ui$Element$rgb255, 50, 29, 29),
+	yellow: A3($mdgriffith$elm_ui$Element$rgb255, 247, 203, 55)
+};
+var $author$project$Page$NotFound$view = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$layout,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$Font$family(
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$Font$external(
+						{name: 'Nunito', url: 'https://fonts.googleapis.com/css?family=Nunito'}),
+						$mdgriffith$elm_ui$Element$Font$sansSerif
+					])),
+				$mdgriffith$elm_ui$Element$Font$color($author$project$Page$NotFound$theme.yellow),
+				$mdgriffith$elm_ui$Element$Font$size(50),
+				A2(
+				$mdgriffith$elm_ui$Element$Font$glow,
+				A4($mdgriffith$elm_ui$Element$rgba255, 255, 218, 94, 0.8),
+				3),
+				$mdgriffith$elm_ui$Element$Background$color($author$project$Page$NotFound$theme.dark),
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+				$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+				$mdgriffith$elm_ui$Element$centerY,
+				$mdgriffith$elm_ui$Element$Font$center,
+				$mdgriffith$elm_ui$Element$padding(10)
+			]),
+		A2(
+			$mdgriffith$elm_ui$Element$el,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$htmlAttribute(
+					A2($elm$html$Html$Attributes$style, 'margin-top', '45vh')),
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+				]),
+			$mdgriffith$elm_ui$Element$text('This page does not exist!')));
+};
+var $author$project$Page$Tutorial$center = function (element) {
+	return A2(
+		$mdgriffith$elm_ui$Element$el,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'marginLeft', 'auto')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'marginRight', 'auto'))
+			]),
+		element);
+};
+var $author$project$Page$Tutorial$contentDemos = _List_fromArray(
+	[false, false, true]);
+var $mdgriffith$elm_ui$Element$fillPortion = $mdgriffith$elm_ui$Internal$Model$Fill;
+var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
+var $mdgriffith$elm_ui$Internal$Model$map = F2(
+	function (fn, el) {
+		switch (el.$) {
+			case 'Styled':
+				var styled = el.a;
+				return $mdgriffith$elm_ui$Internal$Model$Styled(
+					{
+						html: F2(
+							function (add, context) {
+								return A2(
+									$elm$virtual_dom$VirtualDom$map,
+									fn,
+									A2(styled.html, add, context));
+							}),
+						styles: styled.styles
+					});
+			case 'Unstyled':
+				var html = el.a;
+				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
+					A2(
+						$elm$core$Basics$composeL,
+						$elm$virtual_dom$VirtualDom$map(fn),
+						html));
+			case 'Text':
+				var str = el.a;
+				return $mdgriffith$elm_ui$Internal$Model$Text(str);
+			default:
+				return $mdgriffith$elm_ui$Internal$Model$Empty;
+		}
+	});
+var $mdgriffith$elm_ui$Element$map = $mdgriffith$elm_ui$Internal$Model$map;
+var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
+var $author$project$Demo$LogisticRegression$Run = function (a) {
+	return {$: 'Run', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
+var $mdgriffith$elm_ui$Internal$Model$NoAttribute = {$: 'NoAttribute'};
+var $mdgriffith$elm_ui$Element$Input$hasFocusStyle = function (attr) {
+	if (((attr.$ === 'StyleClass') && (attr.b.$ === 'PseudoSelector')) && (attr.b.a.$ === 'Focus')) {
+		var _v1 = attr.b;
+		var _v2 = _v1.a;
+		return true;
+	} else {
+		return false;
+	}
+};
+var $mdgriffith$elm_ui$Element$Input$focusDefault = function (attrs) {
+	return A2($elm$core$List$any, $mdgriffith$elm_ui$Element$Input$hasFocusStyle, attrs) ? $mdgriffith$elm_ui$Internal$Model$NoAttribute : $mdgriffith$elm_ui$Internal$Model$htmlClass('focusable');
+};
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
+var $mdgriffith$elm_ui$Element$Input$enter = 'Enter';
+var $elm$json$Json$Decode$andThen = _Json_andThen;
+var $elm$json$Json$Decode$fail = _Json_fail;
+var $elm$virtual_dom$VirtualDom$MayPreventDefault = function (a) {
+	return {$: 'MayPreventDefault', a: a};
+};
+var $elm$html$Html$Events$preventDefaultOn = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayPreventDefault(decoder));
+	});
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $mdgriffith$elm_ui$Element$Input$onKey = F2(
+	function (desiredCode, msg) {
+		var decode = function (code) {
+			return _Utils_eq(code, desiredCode) ? $elm$json$Json$Decode$succeed(msg) : $elm$json$Json$Decode$fail('Not the enter key');
+		};
+		var isKey = A2(
+			$elm$json$Json$Decode$andThen,
+			decode,
+			A2($elm$json$Json$Decode$field, 'key', $elm$json$Json$Decode$string));
+		return $mdgriffith$elm_ui$Internal$Model$Attr(
+			A2(
+				$elm$html$Html$Events$preventDefaultOn,
+				'keyup',
+				A2(
+					$elm$json$Json$Decode$map,
+					function (fired) {
+						return _Utils_Tuple2(fired, true);
+					},
+					isKey)));
+	});
+var $mdgriffith$elm_ui$Element$Input$onEnter = function (msg) {
+	return A2($mdgriffith$elm_ui$Element$Input$onKey, $mdgriffith$elm_ui$Element$Input$enter, msg);
+};
+var $mdgriffith$elm_ui$Internal$Flag$cursor = $mdgriffith$elm_ui$Internal$Flag$flag(21);
+var $mdgriffith$elm_ui$Element$pointer = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$cursor, $mdgriffith$elm_ui$Internal$Style$classes.cursorPointer);
+var $elm$html$Html$Attributes$tabindex = function (n) {
+	return A2(
+		_VirtualDom_attribute,
+		'tabIndex',
+		$elm$core$String$fromInt(n));
+};
+var $mdgriffith$elm_ui$Element$Input$button = F2(
+	function (attrs, _v0) {
+		var onPress = _v0.onPress;
+		var label = _v0.label;
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asEl,
+			$mdgriffith$elm_ui$Internal$Model$div,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.contentCenterX + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.contentCenterY + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.seButton + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.noTextSelection)))))),
+						A2(
+							$elm$core$List$cons,
+							$mdgriffith$elm_ui$Element$pointer,
+							A2(
+								$elm$core$List$cons,
+								$mdgriffith$elm_ui$Element$Input$focusDefault(attrs),
+								A2(
+									$elm$core$List$cons,
+									$mdgriffith$elm_ui$Internal$Model$Describe($mdgriffith$elm_ui$Internal$Model$Button),
+									A2(
+										$elm$core$List$cons,
+										$mdgriffith$elm_ui$Internal$Model$Attr(
+											$elm$html$Html$Attributes$tabindex(0)),
+										function () {
+											if (onPress.$ === 'Nothing') {
+												return A2(
+													$elm$core$List$cons,
+													$mdgriffith$elm_ui$Internal$Model$Attr(
+														$elm$html$Html$Attributes$disabled(true)),
+													attrs);
+											} else {
+												var msg = onPress.a;
+												return A2(
+													$elm$core$List$cons,
+													$mdgriffith$elm_ui$Element$Events$onClick(msg),
+													A2(
+														$elm$core$List$cons,
+														$mdgriffith$elm_ui$Element$Input$onEnter(msg),
+														attrs));
+											}
+										}()))))))),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(
+				_List_fromArray(
+					[label])));
+	});
+var $mdgriffith$elm_ui$Internal$Model$Hover = {$: 'Hover'};
+var $mdgriffith$elm_ui$Internal$Model$PseudoSelector = F2(
+	function (a, b) {
+		return {$: 'PseudoSelector', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$hover = $mdgriffith$elm_ui$Internal$Flag$flag(33);
+var $mdgriffith$elm_ui$Internal$Model$Nearby = F2(
+	function (a, b) {
+		return {$: 'Nearby', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Model$TransformComponent = F2(
+	function (a, b) {
+		return {$: 'TransformComponent', a: a, b: b};
+	});
+var $elm$virtual_dom$VirtualDom$mapAttribute = _VirtualDom_mapAttribute;
+var $mdgriffith$elm_ui$Internal$Model$mapAttrFromStyle = F2(
+	function (fn, attr) {
+		switch (attr.$) {
+			case 'NoAttribute':
+				return $mdgriffith$elm_ui$Internal$Model$NoAttribute;
+			case 'Describe':
+				var description = attr.a;
+				return $mdgriffith$elm_ui$Internal$Model$Describe(description);
+			case 'AlignX':
+				var x = attr.a;
+				return $mdgriffith$elm_ui$Internal$Model$AlignX(x);
+			case 'AlignY':
+				var y = attr.a;
+				return $mdgriffith$elm_ui$Internal$Model$AlignY(y);
+			case 'Width':
+				var x = attr.a;
+				return $mdgriffith$elm_ui$Internal$Model$Width(x);
+			case 'Height':
+				var x = attr.a;
+				return $mdgriffith$elm_ui$Internal$Model$Height(x);
+			case 'Class':
+				var x = attr.a;
+				var y = attr.b;
+				return A2($mdgriffith$elm_ui$Internal$Model$Class, x, y);
+			case 'StyleClass':
+				var flag = attr.a;
+				var style = attr.b;
+				return A2($mdgriffith$elm_ui$Internal$Model$StyleClass, flag, style);
+			case 'Nearby':
+				var location = attr.a;
+				var elem = attr.b;
+				return A2(
+					$mdgriffith$elm_ui$Internal$Model$Nearby,
+					location,
+					A2($mdgriffith$elm_ui$Internal$Model$map, fn, elem));
+			case 'Attr':
+				var htmlAttr = attr.a;
+				return $mdgriffith$elm_ui$Internal$Model$Attr(
+					A2($elm$virtual_dom$VirtualDom$mapAttribute, fn, htmlAttr));
+			default:
+				var fl = attr.a;
+				var trans = attr.b;
+				return A2($mdgriffith$elm_ui$Internal$Model$TransformComponent, fl, trans);
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$removeNever = function (style) {
+	return A2($mdgriffith$elm_ui$Internal$Model$mapAttrFromStyle, $elm$core$Basics$never, style);
+};
+var $mdgriffith$elm_ui$Internal$Model$unwrapDecsHelper = F2(
+	function (attr, _v0) {
+		var styles = _v0.a;
+		var trans = _v0.b;
+		var _v1 = $mdgriffith$elm_ui$Internal$Model$removeNever(attr);
+		switch (_v1.$) {
+			case 'StyleClass':
+				var style = _v1.b;
+				return _Utils_Tuple2(
+					A2($elm$core$List$cons, style, styles),
+					trans);
+			case 'TransformComponent':
+				var flag = _v1.a;
+				var component = _v1.b;
+				return _Utils_Tuple2(
+					styles,
+					A2($mdgriffith$elm_ui$Internal$Model$composeTransformation, trans, component));
+			default:
+				return _Utils_Tuple2(styles, trans);
+		}
+	});
+var $mdgriffith$elm_ui$Internal$Model$unwrapDecorations = function (attrs) {
+	var _v0 = A3(
+		$elm$core$List$foldl,
+		$mdgriffith$elm_ui$Internal$Model$unwrapDecsHelper,
+		_Utils_Tuple2(_List_Nil, $mdgriffith$elm_ui$Internal$Model$Untransformed),
+		attrs);
+	var styles = _v0.a;
+	var transform = _v0.b;
+	return A2(
+		$elm$core$List$cons,
+		$mdgriffith$elm_ui$Internal$Model$Transform(transform),
+		styles);
+};
+var $mdgriffith$elm_ui$Element$mouseOver = function (decs) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$hover,
+		A2(
+			$mdgriffith$elm_ui$Internal$Model$PseudoSelector,
+			$mdgriffith$elm_ui$Internal$Model$Hover,
+			$mdgriffith$elm_ui$Internal$Model$unwrapDecorations(decs)));
+};
+var $author$project$Demo$LogisticRegression$theme = {
+	black: A3($mdgriffith$elm_ui$Element$rgb255, 0, 0, 0),
+	darkYellow: A3($mdgriffith$elm_ui$Element$rgb255, 235, 182, 0),
+	yellow: A3($mdgriffith$elm_ui$Element$rgb255, 247, 203, 55)
+};
+var $author$project$Demo$LogisticRegression$button = F2(
+	function (text, msg) {
+		return A2(
+			$mdgriffith$elm_ui$Element$Input$button,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$Background$color($author$project$Demo$LogisticRegression$theme.yellow),
+					$mdgriffith$elm_ui$Element$padding(10),
+					$mdgriffith$elm_ui$Element$mouseOver(
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$Background$color($author$project$Demo$LogisticRegression$theme.darkYellow)
+						]))
+				]),
+			{
+				label: $mdgriffith$elm_ui$Element$text(text),
+				onPress: $elm$core$Maybe$Just(msg)
+			});
+	});
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
+var $author$project$Demo$LogisticRegression$view = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$column,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+				$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						$elm$html$Html$Attributes$id('logisticRegressionDemoScatterPlot')),
+						$mdgriffith$elm_ui$Element$width(
+						$mdgriffith$elm_ui$Element$px(500)),
+						$mdgriffith$elm_ui$Element$height(
+						$mdgriffith$elm_ui$Element$px(400)),
+						$mdgriffith$elm_ui$Element$centerX,
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'max-width', '100vw')),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'max-height', '70vw'))
+					]),
+				$mdgriffith$elm_ui$Element$none),
+				A2(
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						$elm$html$Html$Attributes$id('logisticRegressionDemoLossPlot')),
+						$mdgriffith$elm_ui$Element$width(
+						$mdgriffith$elm_ui$Element$px(500)),
+						$mdgriffith$elm_ui$Element$height(
+						$mdgriffith$elm_ui$Element$px(300)),
+						$mdgriffith$elm_ui$Element$centerX,
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'max-width', '100vw')),
+						$mdgriffith$elm_ui$Element$htmlAttribute(
+						A2($elm$html$Html$Attributes$style, 'max-height', '30vw'))
+					]),
+				$mdgriffith$elm_ui$Element$none),
+				A2(
+				$mdgriffith$elm_ui$Element$wrappedRow,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$spacing(20),
+						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$author$project$Demo$LogisticRegression$button,
+						'Run 1 Epoch',
+						$author$project$Demo$LogisticRegression$Run(1)),
+						A2(
+						$author$project$Demo$LogisticRegression$button,
+						'Run 10 Epoch',
+						$author$project$Demo$LogisticRegression$Run(10)),
+						A2(
+						$author$project$Demo$LogisticRegression$button,
+						'Run 100 Epoch',
+						$author$project$Demo$LogisticRegression$Run(100)),
+						A2(
+						$author$project$Demo$LogisticRegression$button,
+						'Run 1000 Epoch',
+						$author$project$Demo$LogisticRegression$Run(1000))
+					]))
+			]));
+};
+var $author$project$Page$Tutorial$viewTutorialDemo = function (model) {
+	var _v0 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Page$Tutorial$contentDemos);
+	if (_v0.$ === 'Nothing') {
+		return $mdgriffith$elm_ui$Element$none;
+	} else {
+		var hasDemo = _v0.a;
+		return hasDemo ? A2(
+			$mdgriffith$elm_ui$Element$column,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$width(
+					$mdgriffith$elm_ui$Element$fillPortion(6)),
+					$mdgriffith$elm_ui$Element$spacing(10)
+				]),
+			_List_fromArray(
+				[
+					$author$project$Page$Tutorial$center(
+					A2(
+						$mdgriffith$elm_ui$Element$map,
+						$author$project$Page$Tutorial$DemoMsg,
+						$author$project$Demo$LogisticRegression$view(model.demo)))
+				])) : $mdgriffith$elm_ui$Element$none;
+	}
+};
+var $mdgriffith$elm_ui$Element$Font$regular = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$fontWeight, $mdgriffith$elm_ui$Internal$Style$classes.textNormalWeight);
+var $author$project$Page$Tutorial$theme = {
+	dark: A3($mdgriffith$elm_ui$Element$rgb255, 50, 29, 29),
+	grey: A3($mdgriffith$elm_ui$Element$rgb255, 170, 170, 170),
+	yellow: A3($mdgriffith$elm_ui$Element$rgb255, 247, 203, 55)
+};
+var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
+	function (a, b, c, d, e) {
+		return {$: 'BorderWidth', a: a, b: b, c: c, d: d, e: e};
+	});
+var $mdgriffith$elm_ui$Element$Border$width = function (v) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
+			'b-' + $elm$core$String$fromInt(v),
+			v,
+			v,
+			v,
+			v));
+};
+var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
+	return model.showMenu ? A2(
+		$mdgriffith$elm_ui$Element$column,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'width', '20vw')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'height', '100vh')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'position', 'fixed')),
+				$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+				$mdgriffith$elm_ui$Element$spacing(30),
+				$mdgriffith$elm_ui$Element$padding(20),
+				$mdgriffith$elm_ui$Element$Background$color($author$project$Page$Tutorial$theme.dark),
+				$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Tutorial$theme.yellow)
+			]),
+		A2(
+			$elm$core$List$cons,
+			A2(
+				$mdgriffith$elm_ui$Element$link,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+						$mdgriffith$elm_ui$Element$Border$width(2),
+						$mdgriffith$elm_ui$Element$padding(10)
+					]),
+				{
+					label: $mdgriffith$elm_ui$Element$text('Home'),
+					url: '/'
+				}),
+			A2(
+				$elm$core$List$indexedMap,
+				F2(
+					function (contentIndex, contentName) {
+						return A2(
+							$mdgriffith$elm_ui$Element$link,
+							_List_Nil,
+							{
+								label: A2(
+									$mdgriffith$elm_ui$Element$el,
+									_Utils_eq(contentIndex, model.contentIndex) ? _List_fromArray(
+										[
+											$mdgriffith$elm_ui$Element$Font$bold,
+											$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Tutorial$theme.yellow)
+										]) : _List_fromArray(
+										[
+											$mdgriffith$elm_ui$Element$Font$regular,
+											$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Tutorial$theme.grey)
+										]),
+									$mdgriffith$elm_ui$Element$text(contentName)),
+								url: '/tutorial/' + contentName
+							});
+					}),
+				$author$project$Page$Tutorial$contentNames))) : $mdgriffith$elm_ui$Element$none;
+};
+var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
+var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
+var $feathericons$elm_feather$FeatherIcons$Icon = function (a) {
+	return {$: 'Icon', a: a};
+};
+var $feathericons$elm_feather$FeatherIcons$defaultAttributes = function (name) {
+	return {
+		_class: $elm$core$Maybe$Just('feather feather-' + name),
+		size: 24,
+		sizeUnit: '',
+		strokeWidth: 2,
+		viewBox: '0 0 24 24'
+	};
+};
+var $feathericons$elm_feather$FeatherIcons$makeBuilder = F2(
+	function (name, src) {
+		return $feathericons$elm_feather$FeatherIcons$Icon(
+			{
+				attrs: $feathericons$elm_feather$FeatherIcons$defaultAttributes(name),
+				src: src
+			});
+	});
+var $elm$svg$Svg$Attributes$points = _VirtualDom_attribute('points');
+var $elm$svg$Svg$polyline = $elm$svg$Svg$trustedNode('polyline');
+var $elm$svg$Svg$Attributes$x1 = _VirtualDom_attribute('x1');
+var $elm$svg$Svg$Attributes$x2 = _VirtualDom_attribute('x2');
+var $elm$svg$Svg$Attributes$y1 = _VirtualDom_attribute('y1');
+var $elm$svg$Svg$Attributes$y2 = _VirtualDom_attribute('y2');
+var $feathericons$elm_feather$FeatherIcons$arrowLeft = A2(
+	$feathericons$elm_feather$FeatherIcons$makeBuilder,
+	'arrow-left',
+	_List_fromArray(
+		[
+			A2(
+			$elm$svg$Svg$line,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$x1('19'),
+					$elm$svg$Svg$Attributes$y1('12'),
+					$elm$svg$Svg$Attributes$x2('5'),
+					$elm$svg$Svg$Attributes$y2('12')
+				]),
+			_List_Nil),
+			A2(
+			$elm$svg$Svg$polyline,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$points('12 19 5 12 12 5')
+				]),
+			_List_Nil)
+		]));
+var $feathericons$elm_feather$FeatherIcons$arrowRight = A2(
+	$feathericons$elm_feather$FeatherIcons$makeBuilder,
+	'arrow-right',
+	_List_fromArray(
+		[
+			A2(
+			$elm$svg$Svg$line,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$x1('5'),
+					$elm$svg$Svg$Attributes$y1('12'),
+					$elm$svg$Svg$Attributes$x2('19'),
+					$elm$svg$Svg$Attributes$y2('12')
+				]),
+			_List_Nil),
+			A2(
+			$elm$svg$Svg$polyline,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$points('12 5 19 12 12 19')
+				]),
+			_List_Nil)
+		]));
+var $mdgriffith$elm_ui$Element$rgb = F3(
+	function (r, g, b) {
+		return A4($mdgriffith$elm_ui$Internal$Model$Rgba, r, g, b, 1);
+	});
+var $author$project$Page$Tutorial$grey = A3($mdgriffith$elm_ui$Element$rgb, 0.6, 0.6, 0.6);
+var $elm$core$Basics$always = F2(
+	function (a, _v0) {
+		return a;
+	});
+var $mdgriffith$elm_ui$Internal$Model$unstyled = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Unstyled, $elm$core$Basics$always);
+var $mdgriffith$elm_ui$Element$html = $mdgriffith$elm_ui$Internal$Model$unstyled;
+var $mdgriffith$elm_ui$Element$paddingXY = F2(
+	function (x, y) {
+		return _Utils_eq(x, y) ? A2(
+			$mdgriffith$elm_ui$Internal$Model$StyleClass,
+			$mdgriffith$elm_ui$Internal$Flag$padding,
+			A5(
+				$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
+				'p-' + $elm$core$String$fromInt(x),
+				x,
+				x,
+				x,
+				x)) : A2(
+			$mdgriffith$elm_ui$Internal$Model$StyleClass,
+			$mdgriffith$elm_ui$Internal$Flag$padding,
+			A5(
+				$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
+				'p-' + ($elm$core$String$fromInt(x) + ('-' + $elm$core$String$fromInt(y))),
+				y,
+				x,
+				y,
+				x));
+	});
+var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
+var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
+var $elm$svg$Svg$Attributes$height = _VirtualDom_attribute('height');
+var $elm$svg$Svg$map = $elm$virtual_dom$VirtualDom$map;
+var $elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
+var $elm$svg$Svg$Attributes$strokeLinecap = _VirtualDom_attribute('stroke-linecap');
+var $elm$svg$Svg$Attributes$strokeLinejoin = _VirtualDom_attribute('stroke-linejoin');
+var $elm$svg$Svg$Attributes$strokeWidth = _VirtualDom_attribute('stroke-width');
+var $elm$svg$Svg$svg = $elm$svg$Svg$trustedNode('svg');
+var $elm$svg$Svg$Attributes$viewBox = _VirtualDom_attribute('viewBox');
+var $elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
+var $feathericons$elm_feather$FeatherIcons$toHtml = F2(
+	function (attributes, _v0) {
+		var src = _v0.a.src;
+		var attrs = _v0.a.attrs;
+		var strSize = $elm$core$String$fromFloat(attrs.size);
+		var baseAttributes = _List_fromArray(
+			[
+				$elm$svg$Svg$Attributes$fill('none'),
+				$elm$svg$Svg$Attributes$height(
+				_Utils_ap(strSize, attrs.sizeUnit)),
+				$elm$svg$Svg$Attributes$width(
+				_Utils_ap(strSize, attrs.sizeUnit)),
+				$elm$svg$Svg$Attributes$stroke('currentColor'),
+				$elm$svg$Svg$Attributes$strokeLinecap('round'),
+				$elm$svg$Svg$Attributes$strokeLinejoin('round'),
+				$elm$svg$Svg$Attributes$strokeWidth(
+				$elm$core$String$fromFloat(attrs.strokeWidth)),
+				$elm$svg$Svg$Attributes$viewBox(attrs.viewBox)
+			]);
+		var combinedAttributes = _Utils_ap(
+			function () {
+				var _v1 = attrs._class;
+				if (_v1.$ === 'Just') {
+					var c = _v1.a;
+					return A2(
+						$elm$core$List$cons,
+						$elm$svg$Svg$Attributes$class(c),
+						baseAttributes);
+				} else {
+					return baseAttributes;
+				}
+			}(),
+			attributes);
+		return A2(
+			$elm$svg$Svg$svg,
+			combinedAttributes,
+			A2(
+				$elm$core$List$map,
+				$elm$svg$Svg$map($elm$core$Basics$never),
+				src));
+	});
+var $author$project$Page$Tutorial$contentNavigation = function (model) {
+	var prevUrl = $author$project$Page$Tutorial$getContentName(model.contentIndex - 1);
+	var nextUrl = $author$project$Page$Tutorial$getContentName(model.contentIndex + 1);
+	return A2(
+		$mdgriffith$elm_ui$Element$row,
+		_List_fromArray(
+			[
+				A2($mdgriffith$elm_ui$Element$paddingXY, 20, 10),
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Element$link,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$alignLeft,
+						$mdgriffith$elm_ui$Element$mouseOver(
+						_List_fromArray(
+							[
+								$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Tutorial$grey)
+							])),
+						$mdgriffith$elm_ui$Element$pointer
+					]),
+				{
+					label: $mdgriffith$elm_ui$Element$html(
+						A2($feathericons$elm_feather$FeatherIcons$toHtml, _List_Nil, $feathericons$elm_feather$FeatherIcons$arrowLeft)),
+					url: prevUrl
+				}),
+				A2(
+				$mdgriffith$elm_ui$Element$link,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$alignRight,
+						$mdgriffith$elm_ui$Element$mouseOver(
+						_List_fromArray(
+							[
+								$mdgriffith$elm_ui$Element$Font$color($author$project$Page$Tutorial$grey)
+							])),
+						$mdgriffith$elm_ui$Element$pointer
+					]),
+				{
+					label: $mdgriffith$elm_ui$Element$html(
+						A2($feathericons$elm_feather$FeatherIcons$toHtml, _List_Nil, $feathericons$elm_feather$FeatherIcons$arrowRight)),
+					url: nextUrl
+				})
+			]));
+};
+var $mdgriffith$elm_ui$Internal$Model$Min = F2(
+	function (a, b) {
+		return {$: 'Min', a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Element$minimum = F2(
+	function (i, l) {
+		return A2($mdgriffith$elm_ui$Internal$Model$Min, i, l);
+	});
+var $author$project$Page$Tutorial$viewTutorialText = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$column,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$width(
+				A2(
+					$mdgriffith$elm_ui$Element$minimum,
+					360,
+					$mdgriffith$elm_ui$Element$fillPortion(4))),
+				A2($mdgriffith$elm_ui$Element$paddingXY, 20, 0),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'max-width', '70vw')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'margin', 'auto')),
+				$mdgriffith$elm_ui$Element$htmlAttribute(
+				A2($elm$html$Html$Attributes$style, 'margin-left', '20vw'))
+			]),
+		_List_fromArray(
+			[
+				$author$project$Page$Tutorial$contentNavigation(model),
+				$mdgriffith$elm_ui$Element$html(
+				A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class(
+							function () {
+								var _v0 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Page$Tutorial$contentDemos);
+								if (_v0.$ === 'Nothing') {
+									return 'content';
+								} else {
+									var hasDemo = _v0.a;
+									return hasDemo ? 'content content-scroll' : 'content';
+								}
+							}())
+						]),
+					_List_Nil))
+			]));
+};
+var $author$project$Page$Tutorial$view = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$layout,
+		_List_Nil,
+		A2(
+			$mdgriffith$elm_ui$Element$wrappedRow,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
+				]),
+			_List_fromArray(
+				[
+					$author$project$Page$Tutorial$viewTutorialMenu(model),
+					$author$project$Page$Tutorial$viewTutorialText(model),
+					$author$project$Page$Tutorial$viewTutorialDemo(model)
+				])));
+};
+var $author$project$Main$view = function (model) {
+	var _v0 = model.page;
+	switch (_v0.$) {
+		case 'NotFound':
+			return {
+				body: _List_fromArray(
+					[
+						A2(
+						$elm$html$Html$map,
+						$author$project$Main$NotFoundMsg,
+						$author$project$Page$NotFound$view(
+							{}))
+					]),
+				title: 'AIWaffle'
+			};
+		case 'Home':
+			var home = _v0.a;
+			return {
+				body: _List_fromArray(
+					[
+						A2(
+						$elm$html$Html$map,
+						$author$project$Main$HomeMsg,
+						$author$project$Page$Home$view(home))
+					]),
+				title: 'AIWaffle'
+			};
+		default:
+			var tutorial = _v0.a;
+			return {
+				body: _List_fromArray(
+					[
+						A2(
+						$elm$html$Html$map,
+						$author$project$Main$TutorialMsg,
+						$author$project$Page$Tutorial$view(tutorial))
+					]),
+				title: $author$project$Page$Tutorial$getContentName(tutorial.contentIndex)
+			};
+	}
+};
+var $author$project$Main$main = $elm$browser$Browser$application(
+	{init: $author$project$Main$init, onUrlChange: $author$project$Main$UrlChanged, onUrlRequest: $author$project$Main$LinkClicked, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
+_Platform_export({'Main':{'init':$author$project$Main$main(
+	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
