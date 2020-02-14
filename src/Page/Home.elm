@@ -103,9 +103,12 @@ viewBody model =
       [ E.text "learn AI Interactively from scratch for free. \nUnderstand the workings behind the AI superpower, \nand start using them yourself!"
       ]
     , E.wrappedRow
-      [ E.centerX
-      , E.padding 20
+      [ E.padding 20
       , E.spacing 40
+      , E.htmlAttribute <| Html.Attributes.style "margin-left" "auto"
+      , E.htmlAttribute <| Html.Attributes.style "margin-right" "auto"
+      , E.htmlAttribute <| Html.Attributes.style "display" "flex"
+      , E.htmlAttribute <| Html.Attributes.style "justify-content" "center"
       ]
       ( List.map
         viewCourseCard
