@@ -188,10 +188,21 @@ viewTutorialText model =
         , E.paddingXY 20 0
         , E.htmlAttribute (Html.Attributes.style "max-width" "70vw")
         , E.htmlAttribute (Html.Attributes.style "margin" "auto")
-        , E.htmlAttribute (Html.Attributes.style "height" "calc(100vh - 20px)")
         ]
         [ contentNavigation model
-        , E.html <| Html.div [ Html.Attributes.class "content" ] []
+        , E.html <| Html.div
+            [ Html.Attributes.class
+                (case nth model.contentIndex contentDemos of
+                    Nothing ->
+                        "content"
+                    Just hasDemo ->
+                        if hasDemo then
+                            "content content-scroll"
+                        else
+                            "content"
+                )
+            ]
+            []
         ]
 
 
