@@ -100,11 +100,9 @@ route url model =
           (Parser.s "home")
         , Parser.map
           (\tutorialName ->
-            let
-              name =
-                Maybe.withDefault tutorialName <| Url.percentDecode tutorialName
-            in
-            stepTutorial model (Tutorial.init name)
+            ( model
+            , Nav.load <| Url.toString url
+            )
           )
           (Parser.s "tutorial" </> tutorialName_)
         , Parser.map
