@@ -74,11 +74,12 @@
         }
       }
     </style>
+    <script defer src="/dist/main.js"></script>
 </head>
 <body>
-    <script src="/dist/main.js"></script>
     <div id="app"></div>
     <script>
+      document.addEventListener('DOMContentLoaded', function() {
       var app = Elm.Main.init({
         node: document.getElementById("app")
       });
@@ -120,6 +121,7 @@
           window.scrollTo(0, 0);
         }
       )
+      });
     </script>
 </body>
 </html>
