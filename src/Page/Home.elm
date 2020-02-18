@@ -1,4 +1,4 @@
-module Page.Home exposing (main, Model, Msg, init, update, view)
+port module Page.Home exposing (main, Model, Msg, init, update, view)
 
 import Browser
 import Html exposing (Html)
@@ -6,6 +6,8 @@ import Html.Attributes
 import Element as E
 import Element.Font as Font
 import Element.Background as Background
+
+port resetContent : () -> Cmd msg
 
 main =
   Browser.element
@@ -43,7 +45,7 @@ init _ =
     , "Logistic Regression Model"
     ]
   }
-  , Cmd.none
+  , resetContent ()
   )
 
 view : Model -> Html Msg
