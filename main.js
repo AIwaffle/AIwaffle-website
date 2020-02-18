@@ -5337,20 +5337,25 @@ var $elm$browser$Browser$application = _Browser_application;
 var $author$project$Main$Home = function (a) {
 	return {$: 'Home', a: a};
 };
-var $elm$core$Platform$Cmd$batch = _Platform_batch;
-var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $elm$json$Json$Encode$null = _Json_encodeNull;
+var $author$project$Page$Home$resetContent = _Platform_outgoingPort(
+	'resetContent',
+	function ($) {
+		return $elm$json$Json$Encode$null;
+	});
 var $author$project$Page$Home$init = function (_v0) {
 	return _Utils_Tuple2(
 		{
 			courses: _List_fromArray(
 				['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model'])
 		},
-		$elm$core$Platform$Cmd$none);
+		$author$project$Page$Home$resetContent(_Utils_Tuple0));
 };
 var $author$project$Main$NotFound = {$: 'NotFound'};
 var $author$project$Page$Tutorial$DemoMsg = function (a) {
 	return {$: 'DemoMsg', a: a};
 };
+var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $author$project$Page$Tutorial$contentNames = _List_fromArray(
 	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model']);
 var $elm_community$list_extra$List$Extra$findIndexHelp = F3(
@@ -5691,7 +5696,6 @@ var $gicentre$elm_vegalite$VegaLite$markOrientationLabel = function (orient) {
 		return 'vertical';
 	}
 };
-var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $gicentre$elm_vegalite$VegaLite$strokeCapLabel = function (cap) {
 	switch (cap.$) {
 		case 'CButt':
@@ -7339,6 +7343,7 @@ var $elm$url$Url$Parser$map = F2(
 						A5($elm$url$Url$Parser$State, visited, unvisited, params, frag, subValue)));
 			});
 	});
+var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $elm$url$Url$Parser$oneOf = function (parsers) {
 	return $elm$url$Url$Parser$Parser(
 		function (state) {

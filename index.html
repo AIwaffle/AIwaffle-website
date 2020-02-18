@@ -104,6 +104,16 @@
           })
         }
       );
+      app.ports.resetContent.subscribe(
+        function() {
+          const contentNode = document.getElementsByClassName("content")[0];
+          if (contentNode !== undefined) {
+            while (contentNode.firstChild) {
+              contentNode.removeChild(contentNode.firstChild);
+            }
+          }
+        }
+      );
       // This function grabs the specification from Elm (here called specs).
       app.ports.elmToJs.subscribe(
         function(namedSpecs) {
