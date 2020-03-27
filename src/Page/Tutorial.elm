@@ -165,7 +165,15 @@ viewTutorialMenu model =
                 , E.padding 10
                 ]
                 { url = "/"
-                , label = E.text "Home"
+                , label = E.row []
+                    [ E.image
+                        [ E.htmlAttribute <| Html.Attributes.class "inline-logo"
+                        ]
+                        { src = "/assets/logo.svg"
+                        , description = "AIwaffle Logo"
+                        }
+                    , E.text "Home"
+                    ]
                 }
             :: List.indexedMap
                 (\contentIndex contentName ->

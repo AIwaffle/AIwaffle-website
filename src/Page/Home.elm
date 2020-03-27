@@ -89,11 +89,18 @@ viewBody model =
     , E.spacing 20
     , E.padding 30
     ]
-    [ E.el
+    [ E.row
       [ E.centerX
       , Font.bold
       ]
-      (E.text "Develop Your AI Superpower")
+      [ E.image
+        [ E.htmlAttribute <| Html.Attributes.class "inline-logo"
+        ]
+        { src = "/assets/logo.svg"
+        , description = "AIwaffle Logo"
+        }
+      , E.text "Develop Your AI Superpower"
+      ]
     , E.paragraph
       [ E.centerX
       , Font.center
