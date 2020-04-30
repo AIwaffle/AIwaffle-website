@@ -33,6 +33,8 @@ contentNames =
     [ "Intro to Machine Learning"
     , "Intro to Deep Learning"
     , "Logistic Regression Model"
+    , "2D Point Classification"
+    , "Handwritten Digit Classification"
     ]
 
 
@@ -41,6 +43,8 @@ contentDemos =
     [ False
     , False
     , True
+    , False
+    , False
     ]
 
 
@@ -183,7 +187,7 @@ viewTutorialMenu model =
                                 , Font.color Style.color.grey
                                 ]
                             )
-                            (E.text contentName)
+                            (E.paragraph [] [ E.text contentName ])
                         }
                 )
                 contentNames

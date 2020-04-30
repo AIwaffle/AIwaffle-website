@@ -14,7 +14,6 @@ See [sample tutorial content](https://github.com/AlienKevin/AIwaffle-website/blo
 ```
 elm-live src/Main.elm --pushstate --start-page dist/index.html -- --output=dist/main.js
 ```
---host 0.0.0.0
 3. In your browser, go to address `localhost:8000`
 
 # License

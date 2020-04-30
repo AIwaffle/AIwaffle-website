@@ -38,6 +38,8 @@ init _ =
     [ "Intro to Machine Learning"
     , "Intro to Deep Learning"
     , "Logistic Regression Model"
+    , "2D Point Classification"
+    , "Handwritten Digit Classification"
     ]
   }
   , resetContent ()
