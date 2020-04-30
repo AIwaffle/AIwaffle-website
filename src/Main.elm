@@ -157,13 +157,13 @@ view : Model -> Browser.Document Msg
 view model =
   case model.page of
     NotFound ->
-      { title = "AIWaffle"
+      { title = "AIwaffle"
       , body =
         [ Html.map NotFoundMsg <| NotFound.view {}
         ]
       }
     Home home ->
-      { title = "AIWaffle"
+      { title = "AIwaffle"
       , body =
         [ Html.map HomeMsg <| Home.view home
         ]

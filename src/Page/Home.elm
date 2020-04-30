@@ -73,7 +73,7 @@ viewHeader =
     [ E.width E.fill ]
     [ E.el
       [ E.alignLeft ] 
-      ( E.text "AIWaffle"
+      ( E.text "AIwaffle"
       )
     , E.el
       [ E.alignRight ]
