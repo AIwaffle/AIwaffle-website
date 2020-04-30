@@ -51,10 +51,11 @@ view model =
     E.column
     [ E.centerX
     , E.spacing 20
-    , E.padding 30
-    , E.width (E.fill |> E.maximum 720)
+    , E.padding 10
+    , E.width (E.fill |> E.maximum 800)
     ]
-    [ E.row
+    [ viewHeader
+    , E.row
       (E.centerX
         :: Style.font.title
       )
@@ -89,6 +90,24 @@ view model =
       { url = "https://aiwaffle.github.io/AIwaffle-blog/"
       , label = E.text "Check out our blog here."
       }
+    ]
+
+
+viewHeader : E.Element Msg
+viewHeader =
+  E.row
+    [ E.width E.fill
+    , E.padding 10
+    , E.spacing 20
+    ]
+    [ E.link [ E.alignLeft ]
+      { url = "/"
+      , label = E.text "Home"
+      }
+    , E.el
+      [ E.alignRight ]
+      ( E.text "Log In"
+      )
     ]
 
 

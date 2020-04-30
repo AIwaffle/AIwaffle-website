@@ -58,7 +58,9 @@ view model =
     , E.padding 10
     ]
     ( E.column
-      [ E.width E.fill ]
+      [ E.width (E.fill |> E.maximum 800)
+      , E.centerX
+      ]
       [ viewHeader
       , viewBody model
       ]
