@@ -5347,7 +5347,7 @@ var $author$project$Page$Home$init = function (_v0) {
 	return _Utils_Tuple2(
 		{
 			courses: _List_fromArray(
-				['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model'])
+				['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model', '2D Point Classification', 'Handwritten Digit Classification'])
 		},
 		$author$project$Page$Home$resetContent(_Utils_Tuple0));
 };
@@ -5367,7 +5367,7 @@ var $author$project$Page$Tutorial$DemoMsg = function (a) {
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $author$project$Page$Tutorial$contentNames = _List_fromArray(
-	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model']);
+	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model', '2D Point Classification', 'Handwritten Digit Classification']);
 var $elm_community$list_extra$List$Extra$findIndexHelp = F3(
 	function (index, predicate, list) {
 		findIndexHelp:
@@ -17898,7 +17898,7 @@ var $author$project$Page$Tutorial$center = function (element) {
 		element);
 };
 var $author$project$Page$Tutorial$contentDemos = _List_fromArray(
-	[false, false, true]);
+	[false, false, true, false, false]);
 var $mdgriffith$elm_ui$Element$fillPortion = $mdgriffith$elm_ui$Internal$Model$Fill;
 var $mdgriffith$elm_ui$Element$map = $mdgriffith$elm_ui$Internal$Model$map;
 var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
@@ -18108,7 +18108,13 @@ var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
 											$mdgriffith$elm_ui$Element$Font$regular,
 											$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.grey)
 										]),
-									$mdgriffith$elm_ui$Element$text(contentName)),
+									A2(
+										$mdgriffith$elm_ui$Element$paragraph,
+										_List_Nil,
+										_List_fromArray(
+											[
+												$mdgriffith$elm_ui$Element$text(contentName)
+											]))),
 								url: contentName
 							});
 					}),
