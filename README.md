@@ -18,3 +18,9 @@ elm-live src/Main.elm --pushstate --start-page dist/index.html -- --output=dist/
 
 # License
 MIT
+
+# Change Log
+
+Release v0.2.0
+* Add About Page ([#1](https://github.com/AIwaffle/AIwaffle-website/issues/1))
+* Add 2 Jupyter notebook tutorials ([#2](https://github.com/AIwaffle/AIwaffle-website/issues/2))
