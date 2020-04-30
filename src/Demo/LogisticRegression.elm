@@ -15,7 +15,7 @@ import Http
 import Json.Encode as Encode
 import Json.Decode as Decode
 import VegaLite as Vega
-
+import Style
 
 type alias LogisticRegressionModel =
   { x : Floats2
@@ -61,13 +61,6 @@ type Msg
   | GetDemoId (Result Http.Error String)
   | GetNextEpoch (Result Http.Error LogisticRegressionModel)
   | Run Int
-
-
-theme =
-  { yellow = E.rgb255 247 203 55
-  , black = E.rgb255 0 0 0
-  , darkYellow = E.rgb255 235 182 0
-  }
 
 
 serverRoot : String
@@ -235,10 +228,10 @@ view model =
 button : String -> Msg -> E.Element Msg
 button text msg =
   Input.button
-    [ Background.color theme.yellow
+    [ Background.color Style.color.yellow
     , E.padding 10
     , E.mouseOver
-      [ Background.color theme.darkYellow
+      [ Background.color Style.color.darkYellow
       ]
     ]
     { onPress = Just msg

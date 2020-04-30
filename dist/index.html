@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="gc:client-id" content="a0b07b3cc690645dbabf">
+    <meta name="gc:client-secret" content="a4a40aa396ad8bddc1b1796f9bf452ea71d8f32f">
     <title>AIwaffle</title>
     <link rel="shortcut icon" href="/assets/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
@@ -77,6 +79,12 @@
           margin-left: 300px; 
         }
       }
+      /* style github cards */
+      iframe[id^="ghcard"] {
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
     </style>
     <script defer src="/dist/main.js"></script>
 </head>
@@ -84,57 +92,74 @@
     <div id="app"></div>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-      var app = Elm.Main.init({
-        node: document.getElementById("app")
-      });
-      app.ports.renderContent.subscribe(
-        function(contentName) {
-          fetch('/dist/contents/' + contentName + '.md')
-          .then(response => response.text())
-          .then((contentText) => {
-            const contentNode = document.getElementsByClassName("content")[0];
-            const tm = texmath.use(katex);
-            const md = window.markdownit({
-              highlight: function (str, lang) {
-                if (lang && hljs.getLanguage(lang)) {
-                  try {
-                    return hljs.highlight(lang, str).value;
-                  } catch (__) {}
+        var app = Elm.Main.init({
+          node: document.getElementById("app")
+        });
+        app.ports.renderContent.subscribe(
+          function(contentName) {
+            fetch('/dist/contents/' + contentName + '.md')
+            .then(response => response.text())
+            .then((contentText) => {
+              const contentNode = document.getElementsByClassName("content")[0];
+              const tm = texmath.use(katex);
+              const md = window.markdownit({
+                highlight: function (str, lang) {
+                  if (lang && hljs.getLanguage(lang)) {
+                    try {
+                      return hljs.highlight(lang, str).value;
+                    } catch (__) {}
+                  }
+                  return '';
                 }
-                return '';
+              }).use(tm,{delimiters:'dollars'});
+              contentNode.innerHTML = md.render(contentText);
+            })
+          }
+        );
+        app.ports.resetContent.subscribe(
+          function() {
+            const contentNode = document.getElementsByClassName("content")[0];
+            if (contentNode !== undefined) {
+              while (contentNode.firstChild) {
+                contentNode.removeChild(contentNode.firstChild);
               }
-            }).use(tm,{delimiters:'dollars'});
-            contentNode.innerHTML = md.render(contentText);
-          })
-        }
-      );
-      app.ports.resetContent.subscribe(
-        function() {
-          const contentNode = document.getElementsByClassName("content")[0];
-          if (contentNode !== undefined) {
-            while (contentNode.firstChild) {
-              contentNode.removeChild(contentNode.firstChild);
             }
           }
-        }
-      );
-      // This function grabs the specification from Elm (here called specs).
-      app.ports.elmToJs.subscribe(
-        function(namedSpecs) {
-          console.log(namedSpecs)
-          for (let name of Object.keys(namedSpecs)) {
-            vegaEmbed(`#${name}`, namedSpecs[name], {
-              actions: false,
-              logLevel: vega.Warn
-            }).catch(console.warn);
+        );
+        // This function grabs the specification from Elm (here called specs).
+        app.ports.elmToJs.subscribe(
+          function(namedSpecs) {
+            console.log(namedSpecs)
+            for (let name of Object.keys(namedSpecs)) {
+              vegaEmbed(`#${name}`, namedSpecs[name], {
+                actions: false,
+                logLevel: vega.Warn
+              }).catch(console.warn);
+            }
           }
-        }
-      );
-      app.ports.scrollToTop.subscribe(
-        function() {
-          window.scrollTo(0, 0);
-        }
-      )
+        );
+        app.ports.scrollToTop.subscribe(
+          function() {
+            window.scrollTo(0, 0);
+          }
+        )
+        app.ports.renderGithubCards.subscribe(function() {
+          function waitForElementToDisplay(selector, time) {
+            if(document.querySelector(selector)!=null) {
+              console.log("renderGithubCards...");
+          (function(m){function g(b,c){return b.getAttribute("data-"+c)}function D(b){window.addEventListener&&window.addEventListener("message",function(c){b.id===c.data.sender&&(b.height=c.data.height)},!1)}function q(b,c){c=c||r;if(!c){var h=g(b,"theme")||t||"default";c=u+"cards/"+h+".html"}var e=g(b,"user");h=g(b,"repo");var k=g(b,"github");k&&(k=k.split("/"),k.length&&!e&&(e=k[0],h=h||k[1]));if(e){v+=1;k=g(b,"width");var w=g(b,"height"),x=g(b,"target"),z=g(b,"client-id")||y,B=g(b,"client-secret")||A,C=
+"ghcard-"+e+"-"+v,f=m.createElement("iframe");f.setAttribute("id",C);f.setAttribute("frameborder",0);f.setAttribute("scrolling",0);f.setAttribute("allowtransparency",!0);e=c+"?user="+e+"&identity="+C;h&&(e+="&repo="+h);x&&(e+="&target="+x);z&&B&&(e+="&client_id="+z+"&client_secret="+B);f.src=e;f.width=k||Math.min(b.parentNode.clientWidth||400,400);w&&(f.height=w);D(f);b.parentNode.replaceChild(f,b);return f}}var u="//lab.lepture.com/github-cards/",d,v=0,l=m.getElementsByTagName("meta"),r,y,A,t;for(d=
+0;d<l.length;d++){var n=l[d].getAttribute("name"),p=l[d].getAttribute("content");"gc:url"===n?r=p:"gc:base"===n?u=p:"gc:client-id"===n?y=p:"gc:client-secret"===n?A=p:"gc:theme"===n&&(t=p)}l=function(b){if(m.querySelectorAll)return m.querySelectorAll("."+b);var c=m.getElementsByTagName("div"),h=[];for(d=0;d<c.length;d++)~c[d].className.split(" ").indexOf(b)&&h.push(c[d]);return h}("github-card");for(d=0;d<l.length;d++)q(l[d]);window.a&&(window.a.b=q)})(document);
+              return;
+            }
+            else {
+              setTimeout(function() {
+                waitForElementToDisplay(selector, time);
+              }, time);
+            }
+          }
+          waitForElementToDisplay(".github-card", 100);
+        });
       });
     </script>
 </body>

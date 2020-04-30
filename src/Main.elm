@@ -7,6 +7,7 @@ import Url
 import Page.Home as Home
 import Page.NotFound as NotFound
 import Page.Tutorial as Tutorial
+import Page.About as About
 import Url.Parser as Parser exposing (Parser, (</>))
 
 
@@ -39,6 +40,7 @@ type Page
   = NotFound
   | Home Home.Model
   | Tutorial Tutorial.Model
+  | About About.Model
 
 
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
@@ -59,6 +61,7 @@ type Msg
   | NotFoundMsg NotFound.Msg
   | HomeMsg Home.Msg
   | TutorialMsg Tutorial.Msg
+  | AboutMsg About.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -88,6 +91,9 @@ update message model =
     NotFoundMsg _ ->
       ( model, Cmd.none )
 
+    AboutMsg _ ->
+      ( model, Cmd.none )
+
 
 route : Url.Url -> Model -> (Model, Cmd Msg)
 route url model =
@@ -107,6 +113,10 @@ route url model =
             stepTutorial model (Tutorial.init name)
           )
           (Parser.s "tutorial" </> tutorialName_)
+        , Parser.map
+          ( stepAbout model (About.init ())
+          )
+          (Parser.s "about")
         , Parser.map
             (stepHome model (Home.init ()))
             Parser.top
@@ -141,6 +151,13 @@ stepTutorial model (tutorial, cmds) =
   )
 
 
+stepAbout : Model -> ( About.Model, Cmd About.Msg ) -> ( Model, Cmd Msg )
+stepAbout model (about, cmds) =
+  ( { model | page = About about }
+  , Cmd.map AboutMsg cmds
+  )
+
+
 -- SUBSCRIPTIONS
 
 
@@ -172,6 +189,12 @@ view model =
       { title = Tutorial.getContentName tutorial.contentIndex
       , body =
         [ Html.map TutorialMsg <| Tutorial.view tutorial
+        ]
+      }
+    About about ->
+      { title = "About AIwaffle"
+      , body =
+        [ Html.map AboutMsg <| About.view about
         ]
       }
       

@@ -10,7 +10,11 @@ See [sample tutorial content](https://github.com/AlienKevin/AIwaffle-website/blo
 
 # Build locally
 1. Install elm-live using `npm install elm-live`
-2. run `elm-live src/Main.elm --pushstate --start-page dist/index.html --host 0.0.0.0 -- --output=dist/main.js`. The `--host 0.0.0.0` is only required for Windows Subsystem for Linux 2.
+2. run
+```
+elm-live src/Main.elm --pushstate --start-page dist/index.html -- --output=dist/main.js
+```
+--host 0.0.0.0
 3. In your browser, go to address `localhost:8000`
 
 # License

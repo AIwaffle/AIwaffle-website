@@ -6,6 +6,7 @@ import Html.Attributes
 import Element as E
 import Element.Font as Font
 import Element.Background as Background
+import Style
 
 port resetContent : () -> Cmd msg
 
@@ -24,12 +25,6 @@ type alias Model =
 
 type Msg
   = NoOp
-
-
-theme =
-  { yellow = E.rgb255 247 203 55
-  , dark = E.rgb255 50 29 29
-  }
 
 
 subscriptions : Model -> Sub msg
@@ -55,9 +50,9 @@ view model =
       [ Font.typeface "Nunito"
       , Font.sansSerif
       ]
-    , Font.color <| theme.yellow
+    , Font.color <| Style.color.yellow
     , Font.glow (E.rgba255 255 218 94 0.8) 3
-    , Background.color <| theme.dark
+    , Background.color <| Style.color.dark
     , E.padding 10
     ]
     ( E.column
@@ -70,11 +65,18 @@ view model =
 viewHeader : E.Element Msg
 viewHeader =
   E.row
-    [ E.width E.fill ]
+    [ E.width E.fill
+    , E.padding 10
+    , E.spacing 20
+    ]
     [ E.el
       [ E.alignLeft ] 
       ( E.text "AIwaffle"
       )
+    , E.link [ E.alignLeft ]
+      { url = "/about"
+      , label = E.text "About"
+      }
     , E.el
       [ E.alignRight ]
       ( E.text "Log In"
@@ -90,16 +92,16 @@ viewBody model =
     , E.padding 30
     ]
     [ E.row
-      [ E.centerX
-      , Font.bold
-      ]
+      (E.centerX
+        :: Style.font.title
+      )
       [ E.image
         [ E.htmlAttribute <| Html.Attributes.class "inline-logo"
         ]
         { src = "/assets/logo.svg"
         , description = "AIwaffle Logo"
         }
-      , E.text "Develop Your AI Superpower"
+      , E.paragraph [] [ E.text "Develop Your AI Superpower" ]
       ]
     , E.paragraph
       [ E.centerX
@@ -131,7 +133,7 @@ viewCourseCard title =
     ]
     ( E.paragraph
       [ Font.center
-      , Font.color theme.dark
+      , Font.color Style.color.dark
       , Font.bold
       , E.centerY
       ]

@@ -16,6 +16,7 @@ import FeatherIcons
 import Http
 import Demo.LogisticRegression as Demo
 import VegaLite as Vega
+import Style
 
 port renderContent : (String -> Cmd msg)
 port elmToJs : Vega.Spec -> Cmd msg
@@ -46,14 +47,6 @@ contentDemos =
 firstContentName : String
 firstContentName =
     Maybe.withDefault "" <| List.head contentNames
-
-
-theme =
-  { yellow = E.rgb255 247 203 55
-  , darkYellow = E.rgb255 235 182 0
-  , grey = E.rgb255 170 170 170
-  , dark = E.rgb255 50 29 29
-  }
 
 
 init : String -> ( Model, Cmd Msg )
@@ -156,8 +149,8 @@ viewTutorialMenu model =
             , E.height <| E.fill
             , E.spacing 30
             , E.padding 20
-            , Background.color theme.dark
-            , Font.color theme.yellow
+            , Background.color Style.color.dark
+            , Font.color Style.color.yellow
             ]
             ( E.link
                 [ E.width E.fill
@@ -183,11 +176,11 @@ viewTutorialMenu model =
                             E.el
                             ( if contentIndex == model.contentIndex then
                                 [ Font.bold
-                                , Font.color theme.yellow
+                                , Font.color Style.color.yellow
                                 ]
                             else
                                 [ Font.regular
-                                , Font.color theme.grey
+                                , Font.color Style.color.grey
                                 ]
                             )
                             (E.text contentName)
@@ -260,10 +253,10 @@ viewNextButton model =
         { url = getContentName (model.contentIndex + 1)
         , label =
             Input.button
-                [ Background.color theme.yellow
+                [ Background.color Style.color.yellow
                 , E.padding 10
                 , E.mouseOver
-                [ Background.color theme.darkYellow
+                [ Background.color Style.color.darkYellow
                 ]
                 ]
                 { onPress = Nothing
