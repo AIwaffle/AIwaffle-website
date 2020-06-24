@@ -16,6 +16,7 @@ import Json.Encode as Encode
 import Json.Decode as Decode
 import VegaLite as Vega
 import Style
+import Constants exposing (serverRoot)
 
 type alias LogisticRegressionModel =
   { x : Floats2
@@ -63,11 +64,6 @@ type Msg
   | Run Int
 
 
-serverRoot : String
-serverRoot =
-  "http://106.15.39.117:8080/"
-
-
 emptyLogisticRegressionModel =
   { x = []
   , y = []
@@ -91,7 +87,7 @@ logIn =
       , ( "password", Encode.string "040506" )
       ]
     , expect = Http.expectWhatever LoggedIn
-  } 
+  }
 
 
 initDemo =
