@@ -17,6 +17,7 @@ import Http
 import Demo.LogisticRegression as Demo
 import VegaLite as Vega
 import Style
+import Constants exposing (courseNames, courseDemos)
 
 port renderContent : (String -> Cmd msg)
 port elmToJs : Vega.Spec -> Cmd msg
@@ -28,29 +29,10 @@ type alias Model =
     , showMenu : Bool
     }
 
-contentNames : List String
-contentNames =
-    [ "Intro to Machine Learning"
-    , "Intro to Deep Learning"
-    , "Logistic Regression Model"
-    , "2D Point Classification"
-    , "Handwritten Digit Classification"
-    ]
-
-
-contentDemos : List Bool
-contentDemos =
-    [ False
-    , False
-    , True
-    , False
-    , False
-    ]
-
 
 firstContentName : String
 firstContentName =
-    Maybe.withDefault "" <| List.head contentNames
+    Maybe.withDefault "" <| List.head courseNames
 
 
 init : String -> ( Model, Cmd Msg )
@@ -112,17 +94,17 @@ getContentName : Int -> String
 getContentName index =
     let
         lastIndex =
-            List.length contentNames - 1
+            List.length courseNames - 1
     in
     if index > lastIndex then
-        Maybe.withDefault firstContentName <| nth lastIndex contentNames
+        Maybe.withDefault firstContentName <| nth lastIndex courseNames
     else
-        Maybe.withDefault firstContentName <| nth index contentNames
+        Maybe.withDefault firstContentName <| nth index courseNames
 
 
 getContentIndex : String -> Int
 getContentIndex name =
-    Maybe.withDefault 0 <| List.Extra.elemIndex name contentNames
+    Maybe.withDefault 0 <| List.Extra.elemIndex name courseNames
 
 
 view : Model -> Html Msg
@@ -190,7 +172,7 @@ viewTutorialMenu model =
                             (E.paragraph [] [ E.text contentName ])
                         }
                 )
-                contentNames
+                courseNames
             )
     else
         E.none
@@ -198,7 +180,7 @@ viewTutorialMenu model =
 
 viewTutorialDemo : Model -> E.Element Msg
 viewTutorialDemo model =
-    case nth model.contentIndex contentDemos of
+    case nth model.contentIndex courseDemos of
         Nothing ->
             E.none
         Just hasDemo ->
@@ -233,7 +215,7 @@ viewTutorialText model =
         ]
         [ E.html <| Html.div
             [ Html.Attributes.class
-                (case nth model.contentIndex contentDemos of
+                (case nth model.contentIndex courseDemos of
                     Nothing ->
                         "content"
                     Just hasDemo ->

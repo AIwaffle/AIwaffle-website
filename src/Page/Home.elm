@@ -7,6 +7,7 @@ import Element as E
 import Element.Font as Font
 import Element.Background as Background
 import Style
+import Constants
 
 port resetContent : () -> Cmd msg
 
@@ -35,12 +36,7 @@ subscriptions _ =
 init : () -> ( Model, Cmd Msg )
 init _ =
   ( { courses =
-    [ "Intro to Machine Learning"
-    , "Intro to Deep Learning"
-    , "Logistic Regression Model"
-    , "2D Point Classification"
-    , "Handwritten Digit Classification"
-    ]
+    Constants.courseNames
   }
   , resetContent ()
   )
