@@ -7,6 +7,7 @@ courseNames =
     , "Intro to Deep Learning"
     , "Logistic Regression Model"
     , "Study Path and Resources"
+    , "Pytorch Tensor Manipulation"
     , "2D Point Classification"
     , "Handwritten Digit Classification"
     ]
@@ -17,6 +18,7 @@ courseDemos =
     [ False
     , False
     , True
+    , False
     , False
     , False
     , False

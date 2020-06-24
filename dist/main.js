@@ -5338,7 +5338,7 @@ var $author$project$Main$Home = function (a) {
 	return {$: 'Home', a: a};
 };
 var $author$project$Constants$courseNames = _List_fromArray(
-	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model', 'Study Path and Resources', '2D Point Classification', 'Handwritten Digit Classification']);
+	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model', 'Study Path and Resources', 'Pytorch Tensor Manipulation', '2D Point Classification', 'Handwritten Digit Classification']);
 var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$Page$Home$resetContent = _Platform_outgoingPort(
 	'resetContent',
@@ -17922,7 +17922,7 @@ var $author$project$Page$Tutorial$center = function (element) {
 		element);
 };
 var $author$project$Constants$courseDemos = _List_fromArray(
-	[false, false, true, false, false, false]);
+	[false, false, true, false, false, false, false]);
 var $mdgriffith$elm_ui$Element$fillPortion = $mdgriffith$elm_ui$Internal$Model$Fill;
 var $mdgriffith$elm_ui$Element$map = $mdgriffith$elm_ui$Internal$Model$map;
 var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
