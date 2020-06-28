@@ -12,6 +12,8 @@ import Style
 import Constants exposing (courseNames, serverRoot)
 import Http
 import Json.Encode as Encode
+import Json.Decode as Decode exposing (Decoder)
+import Json.Decode.Field as Field
 import FeatherIcons
 
 port resetContent : () -> Cmd msg
@@ -36,9 +38,9 @@ type alias Model =
 
 type PopUp
   = LogInPopUp
-  | LogInErrorPopUp
+  | LogInErrorPopUp String
   | SignUpPopUp
-  | SignUpErrorPopUp
+  | SignUpErrorPopUp String
   | NoPopUp
 
 
@@ -46,9 +48,9 @@ type Msg
   = ShowLogInPopUp
   | ShowSignUpPopUp
   | LogIn
-  | LoggedIn (Result Http.Error ())
+  | LoggedIn (Result Http.Error AuthResponse)
   | SignUp
-  | SignedUp (Result Http.Error ())
+  | SignedUp (Result Http.Error AuthResponse)
   | ChangedUserName String
   | ChangedUserPassword String
   | ClosePopUp
@@ -92,7 +94,7 @@ view model =
       [ E.width (E.fill |> E.maximum 800)
       , E.centerX
       ]
-      [ viewHeader
+      [ viewHeader model
       , viewBody model
       ]
     )
@@ -107,22 +109,23 @@ viewPopUp model =
     LogInPopUp ->
       viewLogInPopUp model
     
-    LogInErrorPopUp ->
-      viewLogInErrorPopUp model
+    LogInErrorPopUp reason ->
+      viewLogInErrorPopUp reason model
     
     SignUpPopUp ->
       viewSignUpPopUp model
     
-    SignUpErrorPopUp ->
-      viewSignUpErrorPopUp model
+    SignUpErrorPopUp reason ->
+      viewSignUpErrorPopUp reason model
 
 
-viewSignUpErrorPopUp model =
+viewSignUpErrorPopUp : String -> Model -> Element Msg
+viewSignUpErrorPopUp reason model =
   viewBasePopUp
   [ title "Sign Up Error"
   , E.paragraph
     []
-    [ E.text "I can't sign you up because your username has already been taken. Please make up another one."
+    [ E.text reason
     ]
   , Input.button
     [ Background.color Style.color.dark
@@ -180,12 +183,12 @@ viewSignUpPopUp model =
   ]
 
 
-viewLogInErrorPopUp : Model -> Element Msg
-viewLogInErrorPopUp model =
+viewLogInErrorPopUp : String -> Model -> Element Msg
+viewLogInErrorPopUp reason model =
   viewBasePopUp
   [ title "Log In Error"
   , E.paragraph []
-    [ E.text "I can't log you in. Did you make a typo in your username and/or password? If you haven't signed up yet, sign up first."
+    [ E.text reason
     ]
   , E.row
     [ E.width E.fill ]
@@ -298,8 +301,8 @@ viewClosePopUpButton =
     }
 
 
-viewHeader : Element Msg
-viewHeader =
+viewHeader : Model -> Element Msg
+viewHeader model =
   E.row
     [ E.width E.fill
     , E.padding 10
@@ -313,22 +316,27 @@ viewHeader =
       { url = "/about"
       , label = E.text "About"
       }
-    , Input.button
-      [ E.alignRight
-      ]
-      { onPress =
-        Just ShowLogInPopUp
-      , label =
-        E.text "Log In"
-      }
-    , Input.button
-      [ E.alignRight
-      ]
-      { onPress =
-        Just ShowSignUpPopUp
-      , label =
-        E.text "Sign Up"
-      }
+    , E.el [ E.alignRight ] <|
+      if model.loggedIn then
+        E.text model.username
+      else
+        Input.button []
+          { onPress =
+            Just ShowLogInPopUp
+          , label =
+            E.text "Log In"
+          }
+    , if model.loggedIn then
+      E.none
+    else
+      Input.button
+        [ E.alignRight
+        ]
+        { onPress =
+          Just ShowSignUpPopUp
+        , label =
+          E.text "Sign Up"
+        }
     ]
 
 
@@ -454,39 +462,54 @@ changedUserName newName model =
   )
 
 
-loggedIn : Result Http.Error ()-> Model -> ( Model, Cmd Msg )
+loggedIn : Result Http.Error AuthResponse -> Model -> ( Model, Cmd Msg )
 loggedIn result model =
   ( case result of
-    Ok _ ->
+    Ok { success, reason} ->
       { model
         | loggedIn =
-          True
+          success
+        , popUp =
+          if success then
+            NoPopUp
+          else
+            LogInErrorPopUp reason
       }
     
-    Err _ ->
+    Err err ->
+      let
+        _ = Debug.log "log in error" err
+      in
       { model
         | popUp =
-          LogInErrorPopUp
+          LogInErrorPopUp "AIwaffle server or your network connection has some problem. Please try logging in again."
       }
   , Cmd.none
   )
 
 
 
-signedUp : Result Http.Error ()-> Model -> ( Model, Cmd Msg )
+signedUp : Result Http.Error AuthResponse -> Model -> ( Model, Cmd Msg )
 signedUp result model =
   case result of
-    Ok _ ->
-      logIn model
+    Ok { success, reason } ->
+      if success then
+        logIn model
+      else
+        ( { model
+          | popUp =
+            SignUpErrorPopUp reason
+        }
+        , Cmd.none
+        )
     
     Err err ->
       let
-        _ =
-          Debug.log "sign up error" err
+        _ = Debug.log "sign up error" err
       in
       ( { model
         | popUp =
-          SignUpErrorPopUp
+          SignUpErrorPopUp "AIwaffle server or your network connection has some problem. Please try signing up again."
       }
       , Cmd.none
       )
@@ -512,16 +535,22 @@ showLogInPopUp model =
   )
 
 
+type alias AuthResponse =
+  { success : Bool
+  , reason : String
+  }
+
+
 signUp : Model -> ( Model, Cmd Msg )
 signUp model =
   ( model
   , Http.post
-      { url = serverRoot ++ "auth/register"
+      { url = serverRoot ++ "api/auth/register"
       , body = Http.jsonBody <| Encode.object
         [ ( "username", Encode.string model.username )
         , ( "password", Encode.string model.password )
         ]
-      , expect = Http.expectWhatever SignedUp
+      , expect = Http.expectJson SignedUp authResponseDecoder
     }
   )
 
@@ -530,14 +559,28 @@ logIn : Model -> ( Model, Cmd Msg )
 logIn model =
   ( model
   , Http.post
-      { url = serverRoot ++ "auth/login"
+      { url = serverRoot ++ "api/auth/login"
       , body = Http.jsonBody <| Encode.object
         [ ( "username", Encode.string model.username )
         , ( "password", Encode.string model.password )
+        , ( "session", Encode.int 1 ) -- store the login in session
         ]
-      , expect = Http.expectWhatever LoggedIn
+      , expect = Http.expectJson LoggedIn authResponseDecoder
     }
   )
+
+
+authResponseDecoder : Decoder AuthResponse
+authResponseDecoder =
+  Field.require "success" Decode.bool <| \success ->
+  Field.attempt "reason" Decode.string <| \reason ->
+
+  Decode.succeed
+    { success =
+      success
+    , reason =
+      Maybe.withDefault "" reason
+    }
 
 
 title : String -> Element Msg
