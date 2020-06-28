@@ -3,7 +3,7 @@ module Constants exposing (..)
 
 courseNames : List String
 courseNames =
-    [ "Intro to Machine Learning"
+    [ "Intro To Machine Learning"
     , "Intro to Deep Learning"
     , "Logistic Regression Model"
     , "Study Path and Resources"
@@ -27,4 +27,16 @@ courseDemos =
 
 serverRoot : String
 serverRoot =
-    "http://106.15.39.117:8080/"
+    "https://www.aiwaffle.com/"
+
+
+forumRoot : String
+forumRoot =
+    "https://aiwaffle.flarum.cloud/embed/"
+
+
+discussionIds : List String
+discussionIds =
+    [ "3-intro-to-machine-learning"
+    , ""
+    ]

@@ -17,7 +17,7 @@ import Http
 import Demo.LogisticRegression as Demo
 import VegaLite as Vega
 import Style
-import Constants exposing (courseNames, courseDemos)
+import Constants exposing (courseNames, courseDemos, forumRoot, discussionIds)
 
 port renderContent : (String -> Cmd msg)
 port elmToJs : Vega.Spec -> Cmd msg
@@ -226,6 +226,21 @@ viewTutorialText model =
                 )
             ]
             []
+        , case nth model.contentIndex discussionIds of
+            Just id ->
+                E.html <|
+                    Html.iframe
+                    [ Html.Attributes.class "discussion"
+                    , Html.Attributes.src <| forumRoot ++ id
+                    , Html.Attributes.style "width" "100%"
+                    , Html.Attributes.style "min-height" "500px"
+                    , Html.Attributes.style "margin-bottom" "20px"
+                    , Html.Attributes.style "border" "none"
+                    ]
+                    []
+            
+            Nothing ->
+                E.none
         ]
 
 
