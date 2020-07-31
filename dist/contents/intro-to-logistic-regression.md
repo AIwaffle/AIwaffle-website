@@ -1,4 +1,4 @@
-# Logistic Regression Model
+# Intro To Logistic Regression
 
 ## What can it do?
 Logistic Regression Model is used for **binary classification** problems, say, seperating 2 types of points on a 2D plane:  

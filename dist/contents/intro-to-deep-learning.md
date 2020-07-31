@@ -1,4 +1,4 @@
-# Intro to Deep Learning
+# Intro To Deep Learning
 
 ## What is deep learning?
 Deep learning is a subfield of ML, which use neural networks to learn features from complex data.

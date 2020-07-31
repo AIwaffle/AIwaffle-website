@@ -1,4 +1,4 @@
-# Study Path and Resources
+# Study Path And Where To Find Resources
 
 Complete this lesson on [Kaggle](https://www.kaggle.com/idiott/study-path-where-to-find-resources-aiwaffle)
 

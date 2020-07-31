@@ -9,7 +9,7 @@ import Element.Background as Background
 import Element.Input as Input
 import Element.Border as Border
 import Style
-import Constants exposing (courseNames, serverRoot)
+import Constants exposing (courseIds, courseNames, serverRoot)
 import Http
 import Json.Encode as Encode
 import Json.Decode as Decode exposing (Decoder)
@@ -28,7 +28,7 @@ main =
 
 
 type alias Model =
-  { courses : List String
+  { courses : List (String, String)
   , username : String
   , password : String
   , loggedIn : Bool
@@ -64,7 +64,7 @@ subscriptions _ =
 init : () -> ( Model, Cmd Msg )
 init _ =
   ( { courses =
-    courseNames
+    List.map2 Tuple.pair courseIds courseNames
   , username =
     ""
   , password =
@@ -381,7 +381,7 @@ viewBody model =
     ]
 
 
-viewCourseCard courseTitle =
+viewCourseCard (courseId, courseName) =
   E.el
     [ Background.image "/assets/waffle.svg"
     , E.width <| E.px 200
@@ -394,8 +394,8 @@ viewCourseCard courseTitle =
       , E.centerY
       ]
       [ E.link []
-        { url = "/tutorial/" ++ courseTitle
-        , label = E.text courseTitle
+        { url = "/tutorial/" ++ courseId
+        , label = E.text courseName
         }
       ]
       )

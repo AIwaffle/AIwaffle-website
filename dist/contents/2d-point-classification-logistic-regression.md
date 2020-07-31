@@ -1,4 +1,4 @@
-# 2D point classification
+# 2D Point Classification: Logistic Regression
 
 Complete this lesson on [Kaggle](https://www.kaggle.com/idiott/aiwaffle-experimental-course)
 

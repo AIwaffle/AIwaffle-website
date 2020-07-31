@@ -1,4 +1,4 @@
-port module Page.Tutorial exposing (Model, Msg, init, subscriptions, update, view, getContentName)
+port module Page.Tutorial exposing (Model, Msg, init, subscriptions, update, view, getContentId, getContentName)
 
 import Browser
 import Color
@@ -17,7 +17,7 @@ import Http
 import Demo.LogisticRegression as Demo
 import VegaLite as Vega
 import Style
-import Constants exposing (courseNames, courseDemos, forumRoot, discussionIds)
+import Constants exposing (courseIds, courseNames, courseDemos, forumRoot, discussionIds)
 
 port renderContent : (String -> Cmd msg)
 port elmToJs : Vega.Spec -> Cmd msg
@@ -36,20 +36,20 @@ firstContentName =
 
 
 init : String -> ( Model, Cmd Msg )
-init contentName =
+init courseId =
     let
         (demo, initDemoMsg) =
             Demo.init
     in
     ({ contentIndex =
-        getContentIndex contentName 
+        getContentIndex courseId
     , demo =
         demo
     , showMenu =
         True
     }
     , Cmd.batch
-        [ renderContent contentName
+        [ renderContent courseId
         , Cmd.map DemoMsg initDemoMsg
         , scrollToTop ()
         ]
@@ -90,6 +90,18 @@ update msg model =
             )
 
 
+getContentId : Int -> String
+getContentId index =
+    let
+        lastIndex =
+            List.length courseIds - 1
+    in
+    if index > lastIndex then
+        Maybe.withDefault firstContentName <| nth lastIndex courseIds
+    else
+        Maybe.withDefault firstContentName <| nth index courseIds
+
+
 getContentName : Int -> String
 getContentName index =
     let
@@ -103,8 +115,8 @@ getContentName index =
 
 
 getContentIndex : String -> Int
-getContentIndex name =
-    Maybe.withDefault 0 <| List.Extra.elemIndex name courseNames
+getContentIndex courseId =
+    Maybe.withDefault 0 <| List.Extra.elemIndex courseId courseIds
 
 
 view : Model -> Html Msg
@@ -155,9 +167,9 @@ viewTutorialMenu model =
                     ]
                 }
             :: List.indexedMap
-                (\contentIndex contentName ->
+                (\contentIndex (courseId, courseName) ->
                     E.link []
-                        { url = contentName
+                        { url = courseId
                         , label =
                             E.el
                             ( if contentIndex == model.contentIndex then
@@ -169,10 +181,10 @@ viewTutorialMenu model =
                                 , Font.color Style.color.grey
                                 ]
                             )
-                            (E.paragraph [] [ E.text contentName ])
+                            (E.paragraph [] [ E.text courseName ])
                         }
                 )
-                courseNames
+                (List.map2 Tuple.pair courseIds courseNames)
             )
     else
         E.none
@@ -251,7 +263,7 @@ viewNextButton model =
         , E.htmlAttribute <| Html.Attributes.style "bottom" "20px"
         , E.htmlAttribute <| Html.Attributes.style "right" "20px"
         ]
-        { url = getContentName (model.contentIndex + 1)
+        { url = getContentId (model.contentIndex + 1)
         , label =
             Input.button
                 [ Background.color Style.color.yellow

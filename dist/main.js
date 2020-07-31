@@ -5338,8 +5338,14 @@ var $author$project$Main$Home = function (a) {
 	return {$: 'Home', a: a};
 };
 var $author$project$Page$Home$NoPopUp = {$: 'NoPopUp'};
+var $author$project$Constants$courseIds = _List_fromArray(
+	['intro-to-machine-learning', 'intro-to-deep-learning', 'intro-to-logistic-regression', 'study-path-and-where-to-find-resources', 'pytorch-tensor-manipulation', '2d-point-classification-logistic-regression', 'mnist-shallow-deep-and-cnn']);
 var $author$project$Constants$courseNames = _List_fromArray(
-	['Intro to Machine Learning', 'Intro to Deep Learning', 'Logistic Regression Model', 'Study Path and Resources', 'Pytorch Tensor Manipulation', '2D Point Classification', 'Handwritten Digit Classification']);
+	['Intro To Machine Learning', 'Intro to Deep Learning', 'Intro To Logistic Regression', 'Study Path And Where To Find Resources', 'Pytorch: Tensor Manipulation', '2D Point Classification: Logistic Regression', 'MNIST: shallow, deep, and CNN']);
+var $elm$core$Tuple$pair = F2(
+	function (a, b) {
+		return _Utils_Tuple2(a, b);
+	});
 var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$Page$Home$resetContent = _Platform_outgoingPort(
 	'resetContent',
@@ -5348,7 +5354,13 @@ var $author$project$Page$Home$resetContent = _Platform_outgoingPort(
 	});
 var $author$project$Page$Home$init = function (_v0) {
 	return _Utils_Tuple2(
-		{courses: $author$project$Constants$courseNames, loggedIn: false, password: '', popUp: $author$project$Page$Home$NoPopUp, username: ''},
+		{
+			courses: A3($elm$core$List$map2, $elm$core$Tuple$pair, $author$project$Constants$courseIds, $author$project$Constants$courseNames),
+			loggedIn: false,
+			password: '',
+			popUp: $author$project$Page$Home$NoPopUp,
+			username: ''
+		},
 		$author$project$Page$Home$resetContent(_Utils_Tuple0));
 };
 var $author$project$Main$NotFound = {$: 'NotFound'};
@@ -5403,11 +5415,11 @@ var $elm$core$Maybe$withDefault = F2(
 			return _default;
 		}
 	});
-var $author$project$Page$Tutorial$getContentIndex = function (name) {
+var $author$project$Page$Tutorial$getContentIndex = function (courseId) {
 	return A2(
 		$elm$core$Maybe$withDefault,
 		0,
-		A2($elm_community$list_extra$List$Extra$elemIndex, name, $author$project$Constants$courseNames));
+		A2($elm_community$list_extra$List$Extra$elemIndex, courseId, $author$project$Constants$courseIds));
 };
 var $author$project$Demo$LogisticRegression$emptyLogisticRegressionModel = {loss: _List_Nil, w: _List_Nil, x: _List_Nil, y: _List_Nil};
 var $gicentre$elm_vegalite$VegaLite$Circle = {$: 'Circle'};
@@ -7269,7 +7281,7 @@ var $elm$http$Http$post = function (r) {
 	return $elm$http$Http$request(
 		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
-var $author$project$Constants$serverRoot = 'http://106.15.39.117:8080/';
+var $author$project$Constants$serverRoot = 'https://www.aiwaffle.com/';
 var $author$project$Demo$LogisticRegression$logIn = $elm$http$Http$post(
 	{
 		body: $elm$http$Http$jsonBody(
@@ -7294,20 +7306,20 @@ var $author$project$Page$Tutorial$scrollToTop = _Platform_outgoingPort(
 	function ($) {
 		return $elm$json$Json$Encode$null;
 	});
-var $author$project$Page$Tutorial$init = function (contentName) {
+var $author$project$Page$Tutorial$init = function (courseId) {
 	var _v0 = $author$project$Demo$LogisticRegression$init;
 	var demo = _v0.a;
 	var initDemoMsg = _v0.b;
 	return _Utils_Tuple2(
 		{
-			contentIndex: $author$project$Page$Tutorial$getContentIndex(contentName),
+			contentIndex: $author$project$Page$Tutorial$getContentIndex(courseId),
 			demo: demo,
 			showMenu: true
 		},
 		$elm$core$Platform$Cmd$batch(
 			_List_fromArray(
 				[
-					$author$project$Page$Tutorial$renderContent(contentName),
+					$author$project$Page$Tutorial$renderContent(courseId),
 					A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, initDemoMsg),
 					$author$project$Page$Tutorial$scrollToTop(_Utils_Tuple0)
 				])));
@@ -7750,6 +7762,74 @@ var $author$project$Page$Home$closePopUp = function (model) {
 var $author$project$Page$Home$LoggedIn = function (a) {
 	return {$: 'LoggedIn', a: a};
 };
+var $elm$json$Json$Decode$andThen = _Json_andThen;
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$oneOf = _Json_oneOf;
+var $elm$json$Json$Decode$maybe = function (decoder) {
+	return $elm$json$Json$Decode$oneOf(
+		_List_fromArray(
+			[
+				A2($elm$json$Json$Decode$map, $elm$core$Maybe$Just, decoder),
+				$elm$json$Json$Decode$succeed($elm$core$Maybe$Nothing)
+			]));
+};
+var $webbhuset$elm_json_decode$Json$Decode$Field$attempt = F3(
+	function (fieldName, valueDecoder, continuation) {
+		return A2(
+			$elm$json$Json$Decode$andThen,
+			continuation,
+			$elm$json$Json$Decode$maybe(
+				A2($elm$json$Json$Decode$field, fieldName, valueDecoder)));
+	});
+var $elm$json$Json$Decode$bool = _Json_decodeBool;
+var $webbhuset$elm_json_decode$Json$Decode$Field$require = F3(
+	function (fieldName, valueDecoder, continuation) {
+		return A2(
+			$elm$json$Json$Decode$andThen,
+			continuation,
+			A2($elm$json$Json$Decode$field, fieldName, valueDecoder));
+	});
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $author$project$Page$Home$authResponseDecoder = A3(
+	$webbhuset$elm_json_decode$Json$Decode$Field$require,
+	'success',
+	$elm$json$Json$Decode$bool,
+	function (success) {
+		return A3(
+			$webbhuset$elm_json_decode$Json$Decode$Field$attempt,
+			'reason',
+			$elm$json$Json$Decode$string,
+			function (reason) {
+				return $elm$json$Json$Decode$succeed(
+					{
+						reason: A2($elm$core$Maybe$withDefault, '', reason),
+						success: success
+					});
+			});
+	});
+var $elm$json$Json$Decode$decodeString = _Json_runOnString;
+var $elm$http$Http$expectStringResponse = F2(
+	function (toMsg, toResult) {
+		return A3(
+			_Http_expect,
+			'',
+			$elm$core$Basics$identity,
+			A2($elm$core$Basics$composeR, toResult, toMsg));
+	});
+var $elm$http$Http$expectJson = F2(
+	function (toMsg, decoder) {
+		return A2(
+			$elm$http$Http$expectStringResponse,
+			toMsg,
+			$elm$http$Http$resolve(
+				function (string) {
+					return A2(
+						$elm$core$Result$mapError,
+						$elm$json$Json$Decode$errorToString,
+						A2($elm$json$Json$Decode$decodeString, decoder, string));
+				}));
+	});
+var $elm$json$Json$Encode$int = _Json_wrap;
 var $author$project$Page$Home$logIn = function (model) {
 	return _Utils_Tuple2(
 		model,
@@ -7764,25 +7844,40 @@ var $author$project$Page$Home$logIn = function (model) {
 								$elm$json$Json$Encode$string(model.username)),
 								_Utils_Tuple2(
 								'password',
-								$elm$json$Json$Encode$string(model.password))
+								$elm$json$Json$Encode$string(model.password)),
+								_Utils_Tuple2(
+								'session',
+								$elm$json$Json$Encode$int(1))
 							]))),
-				expect: $elm$http$Http$expectWhatever($author$project$Page$Home$LoggedIn),
-				url: $author$project$Constants$serverRoot + 'auth/login'
+				expect: A2($elm$http$Http$expectJson, $author$project$Page$Home$LoggedIn, $author$project$Page$Home$authResponseDecoder),
+				url: $author$project$Constants$serverRoot + 'api/auth/login'
 			}));
 };
-var $author$project$Page$Home$LogInErrorPopUp = {$: 'LogInErrorPopUp'};
+var $author$project$Page$Home$LogInErrorPopUp = function (a) {
+	return {$: 'LogInErrorPopUp', a: a};
+};
+var $elm$core$Debug$log = _Debug_log;
 var $author$project$Page$Home$loggedIn = F2(
 	function (result, model) {
 		return _Utils_Tuple2(
 			function () {
 				if (result.$ === 'Ok') {
+					var success = result.a.success;
+					var reason = result.a.reason;
 					return _Utils_update(
 						model,
-						{loggedIn: true});
+						{
+							loggedIn: success,
+							popUp: success ? $author$project$Page$Home$NoPopUp : $author$project$Page$Home$LogInErrorPopUp(reason)
+						});
 				} else {
+					var err = result.a;
+					var _v1 = A2($elm$core$Debug$log, 'log in error', err);
 					return _Utils_update(
 						model,
-						{popUp: $author$project$Page$Home$LogInErrorPopUp});
+						{
+							popUp: $author$project$Page$Home$LogInErrorPopUp('AIwaffle server or your network connection has some problem. Please try logging in again.')
+						});
 				}
 			}(),
 			$elm$core$Platform$Cmd$none);
@@ -7822,23 +7917,34 @@ var $author$project$Page$Home$signUp = function (model) {
 								'password',
 								$elm$json$Json$Encode$string(model.password))
 							]))),
-				expect: $elm$http$Http$expectWhatever($author$project$Page$Home$SignedUp),
-				url: $author$project$Constants$serverRoot + 'auth/register'
+				expect: A2($elm$http$Http$expectJson, $author$project$Page$Home$SignedUp, $author$project$Page$Home$authResponseDecoder),
+				url: $author$project$Constants$serverRoot + 'api/auth/register'
 			}));
 };
-var $author$project$Page$Home$SignUpErrorPopUp = {$: 'SignUpErrorPopUp'};
-var $elm$core$Debug$log = _Debug_log;
+var $author$project$Page$Home$SignUpErrorPopUp = function (a) {
+	return {$: 'SignUpErrorPopUp', a: a};
+};
 var $author$project$Page$Home$signedUp = F2(
 	function (result, model) {
 		if (result.$ === 'Ok') {
-			return $author$project$Page$Home$logIn(model);
+			var success = result.a.success;
+			var reason = result.a.reason;
+			return success ? $author$project$Page$Home$logIn(model) : _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{
+						popUp: $author$project$Page$Home$SignUpErrorPopUp(reason)
+					}),
+				$elm$core$Platform$Cmd$none);
 		} else {
 			var err = result.a;
 			var _v1 = A2($elm$core$Debug$log, 'sign up error', err);
 			return _Utils_Tuple2(
 				_Utils_update(
 					model,
-					{popUp: $author$project$Page$Home$SignUpErrorPopUp}),
+					{
+						popUp: $author$project$Page$Home$SignUpErrorPopUp('AIwaffle server or your network connection has some problem. Please try signing up again.')
+					}),
 				$elm$core$Platform$Cmd$none);
 		}
 	});
@@ -7908,7 +8014,6 @@ var $gicentre$elm_vegalite$VegaLite$dayLabel = function (dayName) {
 			return 'Sun';
 	}
 };
-var $elm$json$Json$Encode$int = _Json_wrap;
 var $gicentre$elm_vegalite$VegaLite$monthNameLabel = function (mon) {
 	switch (mon.$) {
 		case 'Jan':
@@ -10888,7 +10993,6 @@ var $author$project$Demo$LogisticRegression$LogisticRegressionModel = F4(
 	function (x, y, w, loss) {
 		return {loss: loss, w: w, x: x, y: y};
 	});
-var $elm$json$Json$Decode$field = _Json_decodeField;
 var $elm$json$Json$Decode$float = _Json_decodeFloat;
 var $elm$json$Json$Decode$list = _Json_decodeList;
 var $elm$json$Json$Decode$map4 = _Json_map4;
@@ -10915,28 +11019,6 @@ var $author$project$Demo$LogisticRegression$epochDecoder = A5(
 		$elm$json$Json$Decode$field,
 		'loss',
 		$elm$json$Json$Decode$list($elm$json$Json$Decode$float)));
-var $elm$json$Json$Decode$decodeString = _Json_runOnString;
-var $elm$http$Http$expectStringResponse = F2(
-	function (toMsg, toResult) {
-		return A3(
-			_Http_expect,
-			'',
-			$elm$core$Basics$identity,
-			A2($elm$core$Basics$composeR, toResult, toMsg));
-	});
-var $elm$http$Http$expectJson = F2(
-	function (toMsg, decoder) {
-		return A2(
-			$elm$http$Http$expectStringResponse,
-			toMsg,
-			$elm$http$Http$resolve(
-				function (string) {
-					return A2(
-						$elm$core$Result$mapError,
-						$elm$json$Json$Decode$errorToString,
-						A2($elm$json$Json$Decode$decodeString, decoder, string));
-				}));
-	});
 var $author$project$Demo$LogisticRegression$getEpoch = F2(
 	function (epochNumber, demoId) {
 		return $elm$http$Http$post(
@@ -17566,7 +17648,9 @@ var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
 	return {$: 'Px', a: a};
 };
 var $mdgriffith$elm_ui$Element$px = $mdgriffith$elm_ui$Internal$Model$Px;
-var $author$project$Page$Home$viewCourseCard = function (courseTitle) {
+var $author$project$Page$Home$viewCourseCard = function (_v0) {
+	var courseId = _v0.a;
+	var courseName = _v0.b;
 	return A2(
 		$mdgriffith$elm_ui$Element$el,
 		_List_fromArray(
@@ -17592,8 +17676,8 @@ var $author$project$Page$Home$viewCourseCard = function (courseTitle) {
 					$mdgriffith$elm_ui$Element$link,
 					_List_Nil,
 					{
-						label: $mdgriffith$elm_ui$Element$text(courseTitle),
-						url: '/tutorial/' + courseTitle
+						label: $mdgriffith$elm_ui$Element$text(courseName),
+						url: '/tutorial/' + courseId
 					})
 				])));
 };
@@ -17702,7 +17786,6 @@ var $elm$html$Html$Events$onClick = function (msg) {
 };
 var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
 var $mdgriffith$elm_ui$Element$Input$enter = 'Enter';
-var $elm$json$Json$Decode$andThen = _Json_andThen;
 var $elm$json$Json$Decode$fail = _Json_fail;
 var $elm$virtual_dom$VirtualDom$MayPreventDefault = function (a) {
 	return {$: 'MayPreventDefault', a: a};
@@ -17714,7 +17797,6 @@ var $elm$html$Html$Events$preventDefaultOn = F2(
 			event,
 			$elm$virtual_dom$VirtualDom$MayPreventDefault(decoder));
 	});
-var $elm$json$Json$Decode$string = _Json_decodeString;
 var $mdgriffith$elm_ui$Element$Input$onKey = F2(
 	function (desiredCode, msg) {
 		var decode = function (code) {
@@ -17798,48 +17880,53 @@ var $mdgriffith$elm_ui$Element$Input$button = F2(
 				_List_fromArray(
 					[label])));
 	});
-var $author$project$Page$Home$viewHeader = A2(
-	$mdgriffith$elm_ui$Element$row,
-	_List_fromArray(
-		[
-			$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-			$mdgriffith$elm_ui$Element$padding(10),
-			$mdgriffith$elm_ui$Element$spacing(20)
-		]),
-	_List_fromArray(
-		[
-			A2(
-			$mdgriffith$elm_ui$Element$el,
-			_List_fromArray(
-				[$mdgriffith$elm_ui$Element$alignLeft]),
-			$mdgriffith$elm_ui$Element$text('AIwaffle')),
-			A2(
-			$mdgriffith$elm_ui$Element$link,
-			_List_fromArray(
-				[$mdgriffith$elm_ui$Element$alignLeft]),
-			{
-				label: $mdgriffith$elm_ui$Element$text('About'),
-				url: '/about'
-			}),
-			A2(
-			$mdgriffith$elm_ui$Element$Input$button,
-			_List_fromArray(
-				[$mdgriffith$elm_ui$Element$alignRight]),
-			{
-				label: $mdgriffith$elm_ui$Element$text('Log In'),
-				onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowLogInPopUp)
-			}),
-			A2(
-			$mdgriffith$elm_ui$Element$Input$button,
-			_List_fromArray(
-				[$mdgriffith$elm_ui$Element$alignRight]),
-			{
-				label: $mdgriffith$elm_ui$Element$text('Sign Up'),
-				onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
-			})
-		]));
 var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
 var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
+var $author$project$Page$Home$viewHeader = function (model) {
+	return A2(
+		$mdgriffith$elm_ui$Element$row,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+				$mdgriffith$elm_ui$Element$padding(10),
+				$mdgriffith$elm_ui$Element$spacing(20)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[$mdgriffith$elm_ui$Element$alignLeft]),
+				$mdgriffith$elm_ui$Element$text('AIwaffle')),
+				A2(
+				$mdgriffith$elm_ui$Element$link,
+				_List_fromArray(
+					[$mdgriffith$elm_ui$Element$alignLeft]),
+				{
+					label: $mdgriffith$elm_ui$Element$text('About'),
+					url: '/about'
+				}),
+				A2(
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[$mdgriffith$elm_ui$Element$alignRight]),
+				model.loggedIn ? $mdgriffith$elm_ui$Element$text(model.username) : A2(
+					$mdgriffith$elm_ui$Element$Input$button,
+					_List_Nil,
+					{
+						label: $mdgriffith$elm_ui$Element$text('Log In'),
+						onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowLogInPopUp)
+					})),
+				model.loggedIn ? $mdgriffith$elm_ui$Element$none : A2(
+				$mdgriffith$elm_ui$Element$Input$button,
+				_List_fromArray(
+					[$mdgriffith$elm_ui$Element$alignRight]),
+				{
+					label: $mdgriffith$elm_ui$Element$text('Sign Up'),
+					onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
+				})
+			]));
+};
 var $author$project$Page$Home$title = function (text) {
 	return A2(
 		$mdgriffith$elm_ui$Element$el,
@@ -18017,55 +18104,56 @@ var $author$project$Page$Home$viewBasePopUp = function (elements) {
 			]),
 		elements);
 };
-var $author$project$Page$Home$viewLogInErrorPopUp = function (model) {
-	return $author$project$Page$Home$viewBasePopUp(
-		_List_fromArray(
-			[
-				$author$project$Page$Home$title('Log In Error'),
-				A2(
-				$mdgriffith$elm_ui$Element$paragraph,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$text('I can\'t log you in. Did you make a typo in your username and/or password? If you haven\'t signed up yet, sign up first.')
-					])),
-				A2(
-				$mdgriffith$elm_ui$Element$row,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$mdgriffith$elm_ui$Element$Input$button,
-						_List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
-								$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
-								$mdgriffith$elm_ui$Element$padding(10),
-								$mdgriffith$elm_ui$Element$alignLeft
-							]),
-						{
-							label: $mdgriffith$elm_ui$Element$text('Sign Up'),
-							onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
-						}),
-						A2(
-						$mdgriffith$elm_ui$Element$Input$button,
-						_List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
-								$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
-								$mdgriffith$elm_ui$Element$padding(10),
-								$mdgriffith$elm_ui$Element$alignRight
-							]),
-						{
-							label: $mdgriffith$elm_ui$Element$text('Try Again'),
-							onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowLogInPopUp)
-						})
-					]))
-			]));
-};
+var $author$project$Page$Home$viewLogInErrorPopUp = F2(
+	function (reason, model) {
+		return $author$project$Page$Home$viewBasePopUp(
+			_List_fromArray(
+				[
+					$author$project$Page$Home$title('Log In Error'),
+					A2(
+					$mdgriffith$elm_ui$Element$paragraph,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$text(reason)
+						])),
+					A2(
+					$mdgriffith$elm_ui$Element$row,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Element$Input$button,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
+									$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
+									$mdgriffith$elm_ui$Element$padding(10),
+									$mdgriffith$elm_ui$Element$alignLeft
+								]),
+							{
+								label: $mdgriffith$elm_ui$Element$text('Sign Up'),
+								onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
+							}),
+							A2(
+							$mdgriffith$elm_ui$Element$Input$button,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
+									$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
+									$mdgriffith$elm_ui$Element$padding(10),
+									$mdgriffith$elm_ui$Element$alignRight
+								]),
+							{
+								label: $mdgriffith$elm_ui$Element$text('Try Again'),
+								onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowLogInPopUp)
+							})
+						]))
+				]));
+	});
 var $author$project$Page$Home$ChangedUserName = function (a) {
 	return {$: 'ChangedUserName', a: a};
 };
@@ -18971,33 +19059,34 @@ var $author$project$Page$Home$viewLogInPopUp = function (model) {
 				})
 			]));
 };
-var $author$project$Page$Home$viewSignUpErrorPopUp = function (model) {
-	return $author$project$Page$Home$viewBasePopUp(
-		_List_fromArray(
-			[
-				$author$project$Page$Home$title('Sign Up Error'),
-				A2(
-				$mdgriffith$elm_ui$Element$paragraph,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$text('I can\'t sign you up because your username has already been taken. Please make up another one.')
-					])),
-				A2(
-				$mdgriffith$elm_ui$Element$Input$button,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
-						$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
-						$mdgriffith$elm_ui$Element$padding(10),
-						$mdgriffith$elm_ui$Element$alignRight
-					]),
-				{
-					label: $mdgriffith$elm_ui$Element$text('Try Again'),
-					onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
-				})
-			]));
-};
+var $author$project$Page$Home$viewSignUpErrorPopUp = F2(
+	function (reason, model) {
+		return $author$project$Page$Home$viewBasePopUp(
+			_List_fromArray(
+				[
+					$author$project$Page$Home$title('Sign Up Error'),
+					A2(
+					$mdgriffith$elm_ui$Element$paragraph,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$text(reason)
+						])),
+					A2(
+					$mdgriffith$elm_ui$Element$Input$button,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
+							$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
+							$mdgriffith$elm_ui$Element$padding(10),
+							$mdgriffith$elm_ui$Element$alignRight
+						]),
+					{
+						label: $mdgriffith$elm_ui$Element$text('Try Again'),
+						onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
+					})
+				]));
+	});
 var $author$project$Page$Home$SignUp = {$: 'SignUp'};
 var $author$project$Page$Home$viewSignUpPopUp = function (model) {
 	return $author$project$Page$Home$viewBasePopUp(
@@ -19052,11 +19141,13 @@ var $author$project$Page$Home$viewPopUp = function (model) {
 		case 'LogInPopUp':
 			return $author$project$Page$Home$viewLogInPopUp(model);
 		case 'LogInErrorPopUp':
-			return $author$project$Page$Home$viewLogInErrorPopUp(model);
+			var reason = _v0.a;
+			return A2($author$project$Page$Home$viewLogInErrorPopUp, reason, model);
 		case 'SignUpPopUp':
 			return $author$project$Page$Home$viewSignUpPopUp(model);
 		default:
-			return $author$project$Page$Home$viewSignUpErrorPopUp(model);
+			var reason = _v0.a;
+			return A2($author$project$Page$Home$viewSignUpErrorPopUp, reason, model);
 	}
 };
 var $author$project$Page$Home$view = function (model) {
@@ -19090,7 +19181,7 @@ var $author$project$Page$Home$view = function (model) {
 				]),
 			_List_fromArray(
 				[
-					$author$project$Page$Home$viewHeader,
+					$author$project$Page$Home$viewHeader(model),
 					$author$project$Page$Home$viewBody(model)
 				])));
 };
@@ -19133,6 +19224,16 @@ var $author$project$Page$NotFound$view = function (model) {
 					[
 						$mdgriffith$elm_ui$Element$text('This page does not exist!')
 					]))));
+};
+var $author$project$Page$Tutorial$getContentId = function (index) {
+	var lastIndex = $elm$core$List$length($author$project$Constants$courseIds) - 1;
+	return (_Utils_cmp(index, lastIndex) > 0) ? A2(
+		$elm$core$Maybe$withDefault,
+		$author$project$Page$Tutorial$firstContentName,
+		A2($author$project$Page$Tutorial$nth, lastIndex, $author$project$Constants$courseIds)) : A2(
+		$elm$core$Maybe$withDefault,
+		$author$project$Page$Tutorial$firstContentName,
+		A2($author$project$Page$Tutorial$nth, index, $author$project$Constants$courseIds));
 };
 var $mdgriffith$elm_ui$Internal$Model$Hover = {$: 'Hover'};
 var $mdgriffith$elm_ui$Internal$Model$PseudoSelector = F2(
@@ -19291,7 +19392,7 @@ var $author$project$Page$Tutorial$viewNextButton = function (model) {
 					label: $mdgriffith$elm_ui$Element$text('Next'),
 					onPress: $elm$core$Maybe$Nothing
 				}),
-			url: $author$project$Page$Tutorial$getContentName(model.contentIndex + 1)
+			url: $author$project$Page$Tutorial$getContentId(model.contentIndex + 1)
 		});
 };
 var $author$project$Page$Tutorial$center = function (element) {
@@ -19484,7 +19585,9 @@ var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
 			A2(
 				$elm$core$List$indexedMap,
 				F2(
-					function (contentIndex, contentName) {
+					function (contentIndex, _v0) {
+						var courseId = _v0.a;
+						var courseName = _v0.b;
 						return A2(
 							$mdgriffith$elm_ui$Element$link,
 							_List_Nil,
@@ -19505,13 +19608,17 @@ var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
 										_List_Nil,
 										_List_fromArray(
 											[
-												$mdgriffith$elm_ui$Element$text(contentName)
+												$mdgriffith$elm_ui$Element$text(courseName)
 											]))),
-								url: contentName
+								url: courseId
 							});
 					}),
-				$author$project$Constants$courseNames))) : $mdgriffith$elm_ui$Element$none;
+				A3($elm$core$List$map2, $elm$core$Tuple$pair, $author$project$Constants$courseIds, $author$project$Constants$courseNames)))) : $mdgriffith$elm_ui$Element$none;
 };
+var $author$project$Constants$discussionIds = _List_fromArray(
+	['3-intro-to-machine-learning', '5-intro-to-deep-learning', '6-intro-to-logistic-regression', '7-study-path-and-where-to-find-resources', '8-pytorch-tensor-manipulation', '9-2d-point-classification-logistic-regression', '10-mnist-shallow-deep-and-cnn']);
+var $author$project$Constants$forumRoot = 'https://aiwaffle.flarum.cloud/embed/';
+var $elm$html$Html$iframe = _VirtualDom_node('iframe');
 var $mdgriffith$elm_ui$Internal$Model$Min = F2(
 	function (a, b) {
 		return {$: 'Min', a: a, b: b};
@@ -19556,7 +19663,29 @@ var $author$project$Page$Tutorial$viewTutorialText = function (model) {
 								}
 							}())
 						]),
-					_List_Nil))
+					_List_Nil)),
+				function () {
+				var _v1 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Constants$discussionIds);
+				if (_v1.$ === 'Just') {
+					var id = _v1.a;
+					return $mdgriffith$elm_ui$Element$html(
+						A2(
+							$elm$html$Html$iframe,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('discussion'),
+									$elm$html$Html$Attributes$src(
+									_Utils_ap($author$project$Constants$forumRoot, id)),
+									A2($elm$html$Html$Attributes$style, 'width', '100%'),
+									A2($elm$html$Html$Attributes$style, 'min-height', '500px'),
+									A2($elm$html$Html$Attributes$style, 'margin-bottom', '20px'),
+									A2($elm$html$Html$Attributes$style, 'border', 'none')
+								]),
+							_List_Nil));
+				} else {
+					return $mdgriffith$elm_ui$Element$none;
+				}
+			}()
 			]));
 };
 var $author$project$Page$Tutorial$view = function (model) {
