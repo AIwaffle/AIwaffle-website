@@ -1,27 +1,33 @@
-port module Page.Tutorial exposing (Model, Msg, init, subscriptions, update, view, getContentId, getContentName)
+port module Page.Tutorial exposing (Model, Msg, getContentId, getContentName, init, subscriptions, update, view)
 
 import Browser
 import Color
+import Constants exposing (courseDemos, courseIds, courseNames, discussionIds, forumRoot)
+import Demo.LogisticRegression as Demo
 import Element as E
 import Element.Background as Background
 import Element.Border as Border
 import Element.Events as Events
 import Element.Font as Font
 import Element.Input as Input
+import FeatherIcons
 import Html exposing (Html)
 import Html.Attributes
+import Http
 import List
 import List.Extra
-import FeatherIcons
-import Http
-import Demo.LogisticRegression as Demo
-import VegaLite as Vega
 import Style
-import Constants exposing (courseIds, courseNames, courseDemos, forumRoot, discussionIds)
+import VegaLite as Vega
 
-port renderContent : (String -> Cmd msg)
+
+port renderContent : String -> Cmd msg
+
+
 port elmToJs : Vega.Spec -> Cmd msg
+
+
 port scrollToTop : () -> Cmd msg
+
 
 type alias Model =
     { contentIndex : Int
@@ -38,16 +44,16 @@ firstContentName =
 init : String -> ( Model, Cmd Msg )
 init courseId =
     let
-        (demo, initDemoMsg) =
+        ( demo, initDemoMsg ) =
             Demo.init
     in
-    ({ contentIndex =
-        getContentIndex courseId
-    , demo =
-        demo
-    , showMenu =
-        True
-    }
+    ( { contentIndex =
+            getContentIndex courseId
+      , demo =
+            demo
+      , showMenu =
+            True
+      }
     , Cmd.batch
         [ renderContent courseId
         , Cmd.map DemoMsg initDemoMsg
@@ -69,20 +75,21 @@ update msg model =
                 index =
                     getContentIndex name
             in
-            ( { model |
-                contentIndex = index
-            }
+            ( { model
+                | contentIndex = index
+              }
             , renderContent name
             )
+
         DemoMsg demoMsg ->
             let
-                (newDemo, newDemoMsg) =
+                ( newDemo, newDemoMsg ) =
                     Demo.update demoMsg model.demo
             in
-            ( { model |
-                demo =
+            ( { model
+                | demo =
                     newDemo
-            }
+              }
             , Cmd.batch
                 [ Cmd.map DemoMsg newDemoMsg
                 , elmToJs newDemo.demoSpecs
@@ -98,6 +105,7 @@ getContentId index =
     in
     if index > lastIndex then
         Maybe.withDefault firstContentName <| nth lastIndex courseIds
+
     else
         Maybe.withDefault firstContentName <| nth index courseIds
 
@@ -110,6 +118,7 @@ getContentName index =
     in
     if index > lastIndex then
         Maybe.withDefault firstContentName <| nth lastIndex courseNames
+
     else
         Maybe.withDefault firstContentName <| nth index courseNames
 
@@ -123,7 +132,7 @@ view : Model -> Html Msg
 view model =
     E.layout
         []
-        <|
+    <|
         E.wrappedRow
             [ E.width E.fill
             , E.height E.fill
@@ -150,42 +159,45 @@ viewTutorialMenu model =
             , Background.color Style.color.dark
             , Font.color Style.color.yellow
             ]
-            ( E.link
+            (E.link
                 [ E.width E.fill
                 , Border.width 2
                 , E.padding 10
                 ]
                 { url = "/"
-                , label = E.row []
-                    [ E.image
-                        [ E.htmlAttribute <| Html.Attributes.class "inline-logo"
+                , label =
+                    E.row []
+                        [ E.image
+                            [ E.htmlAttribute <| Html.Attributes.class "inline-logo"
+                            ]
+                            { src = "/assets/logo.svg"
+                            , description = "AIwaffle Logo"
+                            }
+                        , E.text "Home"
                         ]
-                        { src = "/assets/logo.svg"
-                        , description = "AIwaffle Logo"
-                        }
-                    , E.text "Home"
-                    ]
                 }
-            :: List.indexedMap
-                (\contentIndex (courseId, courseName) ->
-                    E.link []
-                        { url = courseId
-                        , label =
-                            E.el
-                            ( if contentIndex == model.contentIndex then
-                                [ Font.bold
-                                , Font.color Style.color.yellow
-                                ]
-                            else
-                                [ Font.regular
-                                , Font.color Style.color.grey
-                                ]
-                            )
-                            (E.paragraph [] [ E.text courseName ])
-                        }
-                )
-                (List.map2 Tuple.pair courseIds courseNames)
+                :: List.indexedMap
+                    (\contentIndex ( courseId, courseName ) ->
+                        E.link []
+                            { url = courseId
+                            , label =
+                                E.el
+                                    (if contentIndex == model.contentIndex then
+                                        [ Font.bold
+                                        , Font.color Style.color.yellow
+                                        ]
+
+                                     else
+                                        [ Font.regular
+                                        , Font.color Style.color.grey
+                                        ]
+                                    )
+                                    (E.paragraph [] [ E.text courseName ])
+                            }
+                    )
+                    (List.map2 Tuple.pair courseIds courseNames)
             )
+
     else
         E.none
 
@@ -195,21 +207,24 @@ viewTutorialDemo model =
     case nth model.contentIndex courseDemos of
         Nothing ->
             E.none
+
         Just hasDemo ->
             if hasDemo then
                 E.column
-                [ E.width (E.fillPortion 6)
-                , E.spacing 10
-                , E.paddingEach
-                    { top = 0
-                    , left = 0
-                    , bottom = 70
-                    , right = 0
-                    }
-                ]
-                [ center <|
-                    E.map DemoMsg <| Demo.view model.demo
-                ]
+                    [ E.width (E.fillPortion 6)
+                    , E.spacing 10
+                    , E.paddingEach
+                        { top = 0
+                        , left = 0
+                        , bottom = 70
+                        , right = 0
+                        }
+                    ]
+                    [ center <|
+                        E.map DemoMsg <|
+                            Demo.view model.demo
+                    ]
+
             else
                 E.none
 
@@ -217,40 +232,44 @@ viewTutorialDemo model =
 viewTutorialText : Model -> E.Element Msg
 viewTutorialText model =
     E.column
-        [ E.width (E.fillPortion 5 |>
-            E.minimum 360
-        )
+        [ E.width
+            (E.fillPortion 5
+                |> E.minimum 360
+            )
         , E.paddingXY 20 0
         , E.htmlAttribute (Html.Attributes.style "max-width" "70vw")
         , E.htmlAttribute (Html.Attributes.style "margin" "auto")
         , E.htmlAttribute (Html.Attributes.style "margin-top" "20px")
         ]
-        [ E.html <| Html.div
-            [ Html.Attributes.class
-                (case nth model.contentIndex courseDemos of
-                    Nothing ->
-                        "content"
-                    Just hasDemo ->
-                        if hasDemo then
-                            "content content-scroll"
-                        else
+        [ E.html <|
+            Html.div
+                [ Html.Attributes.class
+                    (case nth model.contentIndex courseDemos of
+                        Nothing ->
                             "content"
-                )
-            ]
-            []
+
+                        Just hasDemo ->
+                            if hasDemo then
+                                "content content-scroll"
+
+                            else
+                                "content"
+                    )
+                ]
+                []
         , case nth model.contentIndex discussionIds of
             Just id ->
                 E.html <|
                     Html.iframe
-                    [ Html.Attributes.class "discussion"
-                    , Html.Attributes.src <| forumRoot ++ id
-                    , Html.Attributes.style "width" "100%"
-                    , Html.Attributes.style "min-height" "500px"
-                    , Html.Attributes.style "margin-bottom" "20px"
-                    , Html.Attributes.style "border" "none"
-                    ]
-                    []
-            
+                        [ Html.Attributes.class "discussion"
+                        , Html.Attributes.src <| forumRoot ++ id
+                        , Html.Attributes.style "width" "100%"
+                        , Html.Attributes.style "min-height" "500px"
+                        , Html.Attributes.style "margin-bottom" "20px"
+                        , Html.Attributes.style "border" "none"
+                        ]
+                        []
+
             Nothing ->
                 E.none
         ]
@@ -269,13 +288,14 @@ viewNextButton model =
                 [ Background.color Style.color.yellow
                 , E.padding 10
                 , E.mouseOver
-                [ Background.color Style.color.darkYellow
-                ]
+                    [ Background.color Style.color.darkYellow
+                    ]
                 ]
                 { onPress = Nothing
                 , label = E.text "Next"
                 }
         }
+
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =

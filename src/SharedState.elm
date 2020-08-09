@@ -1,10 +1,11 @@
 module SharedState exposing (SharedState, UpdateSharedState(..), update)
 
+
 type alias SharedState =
-  { username : String
-  , password : String
-  , loggedIn : Bool
-  }
+    { username : String
+    , password : String
+    , loggedIn : Bool
+    }
 
 
 type UpdateSharedState
@@ -37,4 +38,3 @@ update sharedState updateSharedState =
 
         NoUpdate ->
             sharedState
-        
