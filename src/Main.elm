@@ -8,7 +8,9 @@ import Page.Home as Home
 import Page.NotFound as NotFound
 import Page.Tutorial as Tutorial
 import Page.About as About
+import SharedState exposing (SharedState, UpdateSharedState)
 import Url.Parser as Parser exposing (Parser, (</>))
+import Tuple3
 
 
 -- MAIN
@@ -33,6 +35,7 @@ main =
 type alias Model =
   { key : Nav.Key
   , page : Page
+  , sharedState : SharedState
   }
 
 
@@ -45,9 +48,17 @@ type Page
 
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url key =
+  let
+    initialSharedState =
+      { username = ""
+      , password = ""
+      , loggedIn = False
+      }
+  in
   route url
     { key = key
-    , page = Home <| Tuple.first <| Home.init ()
+    , page = Home <| Tuple3.first <| Home.init ()
+    , sharedState = initialSharedState
     }
 
 
@@ -80,7 +91,7 @@ update message model =
 
     HomeMsg msg ->
       case model.page of
-        Home home -> stepHome model (Home.update msg home)
+        Home home -> stepHome model (Home.update model.sharedState msg home)
         _             -> ( model, Cmd.none )
 
     TutorialMsg msg ->
@@ -137,16 +148,22 @@ tutorialName_ =
   Parser.custom "TUTORIAL" Just
 
 
-stepHome : Model -> ( Home.Model, Cmd Home.Msg ) -> ( Model, Cmd Msg )
-stepHome model (home, cmds) =
-  ( { model | page = Home home }
+stepHome : Model -> ( Home.Model, Cmd Home.Msg, UpdateSharedState ) -> ( Model, Cmd Msg )
+stepHome model (home, cmds, updateSharedState) =
+  ( { model
+    | page = Home home
+    , sharedState =
+      SharedState.update model.sharedState updateSharedState
+  }
   , Cmd.map HomeMsg cmds
   )
 
 
 stepTutorial : Model -> ( Tutorial.Model, Cmd Tutorial.Msg ) -> ( Model, Cmd Msg )
 stepTutorial model (tutorial, cmds) =
-  ( { model | page = Tutorial tutorial }
+  ( { model
+    | page = Tutorial tutorial
+  }
   , Cmd.map TutorialMsg cmds
   )
 
@@ -182,7 +199,7 @@ view model =
     Home home ->
       { title = "AIwaffle"
       , body =
-        [ Html.map HomeMsg <| Home.view home
+        [ Html.map HomeMsg <| Home.view model.sharedState home
         ]
       }
     Tutorial tutorial ->

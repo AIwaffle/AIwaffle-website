@@ -1,4 +1,4 @@
-port module Page.Home exposing (main, Model, Msg, init, update, view)
+port module Page.Home exposing (Model, Msg, init, update, view)
 
 import Browser
 import Html exposing (Html)
@@ -15,23 +15,13 @@ import Json.Encode as Encode
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Field as Field
 import FeatherIcons
+import SharedState exposing (SharedState, UpdateSharedState(..))
 
 port resetContent : () -> Cmd msg
-
-main =
-  Browser.element
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
 
 
 type alias Model =
   { courses : List (String, String)
-  , username : String
-  , password : String
-  , loggedIn : Bool
   , popUp : PopUp
   }
 
@@ -61,24 +51,19 @@ subscriptions _ =
   Sub.none
 
 
-init : () -> ( Model, Cmd Msg )
+init : () -> ( Model, Cmd Msg, UpdateSharedState )
 init _ =
   ( { courses =
     List.map2 Tuple.pair courseIds courseNames
-  , username =
-    ""
-  , password =
-    ""
-  , loggedIn =
-    False
   , popUp =
     NoPopUp
   }
   , resetContent ()
+  , NoUpdate
   )
 
-view : Model -> Html Msg
-view model =
+view : SharedState -> Model -> Html Msg
+view sharedState model =
   E.layout
     [ Font.family
       [ Font.typeface "Nunito"
@@ -88,32 +73,32 @@ view model =
     , Font.glow (E.rgba255 255 218 94 0.8) 3
     , Background.color <| Style.color.dark
     , E.padding 10
-    , E.inFront (viewPopUp model)
+    , E.inFront (viewPopUp sharedState model)
     ]
     ( E.column
       [ E.width (E.fill |> E.maximum 800)
       , E.centerX
       ]
-      [ viewHeader model
+      [ viewHeader sharedState model
       , viewBody model
       ]
     )
 
 
-viewPopUp : Model -> Element Msg
-viewPopUp model =
+viewPopUp : SharedState -> Model -> Element Msg
+viewPopUp sharedState model =
   case model.popUp of
     NoPopUp ->
       E.none
     
     LogInPopUp ->
-      viewLogInPopUp model
+      viewLogInPopUp sharedState model
     
     LogInErrorPopUp reason ->
       viewLogInErrorPopUp reason model
     
     SignUpPopUp ->
-      viewSignUpPopUp model
+      viewSignUpPopUp sharedState model
     
     SignUpErrorPopUp reason ->
       viewSignUpErrorPopUp reason model
@@ -141,8 +126,8 @@ viewSignUpErrorPopUp reason model =
   ]
 
 
-viewSignUpPopUp : Model -> Element Msg
-viewSignUpPopUp model =
+viewSignUpPopUp : SharedState -> Model -> Element Msg
+viewSignUpPopUp sharedState model =
   viewBasePopUp
   [ title "Sign Up"
   , Input.username
@@ -150,7 +135,7 @@ viewSignUpPopUp model =
     { onChange =
       ChangedUserName
     , text =
-      model.username
+      sharedState.username
     , placeholder =
       Nothing
     , label =
@@ -161,7 +146,7 @@ viewSignUpPopUp model =
     { onChange =
       ChangedUserPassword
     , text =
-      model.password
+      sharedState.password
     , placeholder =
       Nothing
     , label =
@@ -218,8 +203,8 @@ viewLogInErrorPopUp reason model =
   ]
 
 
-viewLogInPopUp : Model -> Element Msg
-viewLogInPopUp model =
+viewLogInPopUp : SharedState -> Model -> Element Msg
+viewLogInPopUp sharedState model =
   viewBasePopUp
   [ title "Log In"
   , Input.username
@@ -227,7 +212,7 @@ viewLogInPopUp model =
     { onChange =
       ChangedUserName
     , text =
-      model.username
+      sharedState.username
     , placeholder =
       Nothing
     , label =
@@ -238,7 +223,7 @@ viewLogInPopUp model =
     { onChange =
       ChangedUserPassword
     , text =
-      model.password
+      sharedState.password
     , placeholder =
       Nothing
     , label =
@@ -301,8 +286,8 @@ viewClosePopUpButton =
     }
 
 
-viewHeader : Model -> Element Msg
-viewHeader model =
+viewHeader : SharedState -> Model -> Element Msg
+viewHeader sharedState model =
   E.row
     [ E.width E.fill
     , E.padding 10
@@ -317,8 +302,8 @@ viewHeader model =
       , label = E.text "About"
       }
     , E.el [ E.alignRight ] <|
-      if model.loggedIn then
-        E.text model.username
+      if sharedState.loggedIn then
+        E.text sharedState.username
       else
         Input.button []
           { onPress =
@@ -326,7 +311,7 @@ viewHeader model =
           , label =
             E.text "Log In"
           }
-    , if model.loggedIn then
+    , if sharedState.loggedIn then
       E.none
     else
       Input.button
@@ -401,8 +386,8 @@ viewCourseCard (courseId, courseName) =
       )
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
+update : SharedState -> Msg -> Model -> ( Model, Cmd Msg, UpdateSharedState )
+update sharedState msg model =
   case msg of
     ShowLogInPopUp ->
       showLogInPopUp model
@@ -411,16 +396,16 @@ update msg model =
       showSignUpPopUp model
     
     LogIn ->
-      logIn model
+      logIn sharedState model
     
     LoggedIn result ->
       loggedIn result model
     
     SignUp ->
-      signUp model
+      signUp sharedState model
 
     SignedUp result ->
-      signedUp result model
+      signedUp sharedState result model
 
     ChangedUserName newName ->
       changedUserName newName model
@@ -432,75 +417,75 @@ update msg model =
       closePopUp model
 
 
-closePopUp : Model -> ( Model, Cmd Msg )
+closePopUp : Model -> ( Model, Cmd Msg, UpdateSharedState )
 closePopUp model =
   ( { model
     | popUp =
       NoPopUp
   }
   , Cmd.none
+  , NoUpdate
   )
 
 
-changedUserPassword : String -> Model -> ( Model, Cmd Msg )
+changedUserPassword : String -> Model -> ( Model, Cmd Msg, UpdateSharedState )
 changedUserPassword newPassword model =
-  ( { model
-    | password =
-      newPassword
-  }
+  ( model
   , Cmd.none
+  , UpdatePassword newPassword
   )
 
 
-changedUserName : String -> Model -> ( Model, Cmd Msg )
+changedUserName : String -> Model -> ( Model, Cmd Msg, UpdateSharedState )
 changedUserName newName model =
-  ( { model
-    | username =
-      newName
-  }
+  ( model
   , Cmd.none
+  , UpdateUsername newName
   )
 
 
-loggedIn : Result Http.Error AuthResponse -> Model -> ( Model, Cmd Msg )
+loggedIn : Result Http.Error AuthResponse -> Model -> ( Model, Cmd Msg, UpdateSharedState )
 loggedIn result model =
-  ( case result of
+  case result of
     Ok { success, reason} ->
-      { model
-        | loggedIn =
-          success
-        , popUp =
+      ( { model
+        | popUp =
           if success then
             NoPopUp
           else
             LogInErrorPopUp reason
       }
+      , Cmd.none
+      , UpdateLoggedIn True
+      )
     
     Err err ->
       let
         _ = Debug.log "log in error" err
       in
-      { model
+      ( { model
         | popUp =
           LogInErrorPopUp "AIwaffle server or your network connection has some problem. Please try logging in again."
       }
-  , Cmd.none
-  )
+      , Cmd.none
+      , UpdateLoggedIn False
+      )
 
 
 
-signedUp : Result Http.Error AuthResponse -> Model -> ( Model, Cmd Msg )
-signedUp result model =
+signedUp : SharedState -> Result Http.Error AuthResponse -> Model -> ( Model, Cmd Msg, UpdateSharedState )
+signedUp sharedState result model =
   case result of
     Ok { success, reason } ->
       if success then
-        logIn model
+        logIn sharedState model
       else
         ( { model
           | popUp =
             SignUpErrorPopUp reason
         }
         , Cmd.none
+        , NoUpdate
         )
     
     Err err ->
@@ -512,26 +497,29 @@ signedUp result model =
           SignUpErrorPopUp "AIwaffle server or your network connection has some problem. Please try signing up again."
       }
       , Cmd.none
+      , NoUpdate
       )
 
 
-showSignUpPopUp : Model -> ( Model, Cmd Msg )
+showSignUpPopUp : Model -> ( Model, Cmd Msg, UpdateSharedState )
 showSignUpPopUp model =
   ( { model
     | popUp =
       SignUpPopUp
   }
   , Cmd.none
+  , NoUpdate
   )
 
 
-showLogInPopUp : Model -> ( Model, Cmd Msg )
+showLogInPopUp : Model -> ( Model, Cmd Msg, UpdateSharedState )
 showLogInPopUp model =
   ( { model
     | popUp =
       LogInPopUp
   }
   , Cmd.none
+  , NoUpdate
   )
 
 
@@ -541,32 +529,34 @@ type alias AuthResponse =
   }
 
 
-signUp : Model -> ( Model, Cmd Msg )
-signUp model =
+signUp : SharedState -> Model -> ( Model, Cmd Msg, UpdateSharedState )
+signUp sharedState model =
   ( model
   , Http.post
       { url = serverRoot ++ "api/auth/register"
       , body = Http.jsonBody <| Encode.object
-        [ ( "username", Encode.string model.username )
-        , ( "password", Encode.string model.password )
+        [ ( "username", Encode.string sharedState.username )
+        , ( "password", Encode.string sharedState.password )
         ]
       , expect = Http.expectJson SignedUp authResponseDecoder
     }
+  , NoUpdate
   )
 
 
-logIn : Model -> ( Model, Cmd Msg )
-logIn model =
+logIn : SharedState -> Model -> ( Model, Cmd Msg, UpdateSharedState )
+logIn sharedState model =
   ( model
   , Http.post
       { url = serverRoot ++ "api/auth/login"
       , body = Http.jsonBody <| Encode.object
-        [ ( "username", Encode.string model.username )
-        , ( "password", Encode.string model.password )
+        [ ( "username", Encode.string sharedState.username )
+        , ( "password", Encode.string sharedState.password )
         , ( "session", Encode.int 1 ) -- store the login in session
         ]
       , expect = Http.expectJson LoggedIn authResponseDecoder
     }
+  , NoUpdate
   )
 
 

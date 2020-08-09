@@ -5337,7 +5337,12 @@ var $elm$browser$Browser$application = _Browser_application;
 var $author$project$Main$Home = function (a) {
 	return {$: 'Home', a: a};
 };
+var $TSFoster$elm_tuple_extra$Tuple3$first = function (_v0) {
+	var a = _v0.a;
+	return a;
+};
 var $author$project$Page$Home$NoPopUp = {$: 'NoPopUp'};
+var $author$project$SharedState$NoUpdate = {$: 'NoUpdate'};
 var $author$project$Constants$courseIds = _List_fromArray(
 	['intro-to-machine-learning', 'intro-to-deep-learning', 'intro-to-logistic-regression', 'study-path-and-where-to-find-resources', 'pytorch-tensor-manipulation', '2d-point-classification-logistic-regression', 'mnist-shallow-deep-and-cnn']);
 var $author$project$Constants$courseNames = _List_fromArray(
@@ -5353,15 +5358,13 @@ var $author$project$Page$Home$resetContent = _Platform_outgoingPort(
 		return $elm$json$Json$Encode$null;
 	});
 var $author$project$Page$Home$init = function (_v0) {
-	return _Utils_Tuple2(
+	return _Utils_Tuple3(
 		{
 			courses: A3($elm$core$List$map2, $elm$core$Tuple$pair, $author$project$Constants$courseIds, $author$project$Constants$courseNames),
-			loggedIn: false,
-			password: '',
-			popUp: $author$project$Page$Home$NoPopUp,
-			username: ''
+			popUp: $author$project$Page$Home$NoPopUp
 		},
-		$author$project$Page$Home$resetContent(_Utils_Tuple0));
+		$author$project$Page$Home$resetContent(_Utils_Tuple0),
+		$author$project$SharedState$NoUpdate);
 };
 var $author$project$Main$NotFound = {$: 'NotFound'};
 var $author$project$Page$About$renderGithubCards = _Platform_outgoingPort(
@@ -7550,15 +7553,39 @@ var $author$project$Main$stepAbout = F2(
 var $author$project$Main$HomeMsg = function (a) {
 	return {$: 'HomeMsg', a: a};
 };
+var $author$project$SharedState$update = F2(
+	function (sharedState, updateSharedState) {
+		switch (updateSharedState.$) {
+			case 'UpdateUsername':
+				var newUsername = updateSharedState.a;
+				return _Utils_update(
+					sharedState,
+					{username: newUsername});
+			case 'UpdatePassword':
+				var newPassword = updateSharedState.a;
+				return _Utils_update(
+					sharedState,
+					{password: newPassword});
+			case 'UpdateLoggedIn':
+				var newLoggedIn = updateSharedState.a;
+				return _Utils_update(
+					sharedState,
+					{loggedIn: newLoggedIn});
+			default:
+				return sharedState;
+		}
+	});
 var $author$project$Main$stepHome = F2(
 	function (model, _v0) {
 		var home = _v0.a;
 		var cmds = _v0.b;
+		var updateSharedState = _v0.c;
 		return _Utils_Tuple2(
 			_Utils_update(
 				model,
 				{
-					page: $author$project$Main$Home(home)
+					page: $author$project$Main$Home(home),
+					sharedState: A2($author$project$SharedState$update, model.sharedState, updateSharedState)
 				}),
 			A2($elm$core$Platform$Cmd$map, $author$project$Main$HomeMsg, cmds));
 	});
@@ -7676,13 +7703,16 @@ var $author$project$Main$route = F2(
 	});
 var $author$project$Main$init = F3(
 	function (flags, url, key) {
+		var initialSharedState = {loggedIn: false, password: '', username: ''};
 		return A2(
 			$author$project$Main$route,
 			url,
 			{
 				key: key,
 				page: $author$project$Main$Home(
-					$author$project$Page$Home$init(_Utils_Tuple0).a)
+					$TSFoster$elm_tuple_extra$Tuple3$first(
+						$author$project$Page$Home$init(_Utils_Tuple0))),
+				sharedState: initialSharedState
 			});
 	});
 var $elm$core$Platform$Sub$batch = _Platform_batch;
@@ -7736,28 +7766,33 @@ var $elm$url$Url$toString = function (url) {
 					_Utils_ap(http, url.host)),
 				url.path)));
 };
+var $author$project$SharedState$UpdateUsername = function (a) {
+	return {$: 'UpdateUsername', a: a};
+};
 var $author$project$Page$Home$changedUserName = F2(
 	function (newName, model) {
-		return _Utils_Tuple2(
-			_Utils_update(
-				model,
-				{username: newName}),
-			$elm$core$Platform$Cmd$none);
+		return _Utils_Tuple3(
+			model,
+			$elm$core$Platform$Cmd$none,
+			$author$project$SharedState$UpdateUsername(newName));
 	});
+var $author$project$SharedState$UpdatePassword = function (a) {
+	return {$: 'UpdatePassword', a: a};
+};
 var $author$project$Page$Home$changedUserPassword = F2(
 	function (newPassword, model) {
-		return _Utils_Tuple2(
-			_Utils_update(
-				model,
-				{password: newPassword}),
-			$elm$core$Platform$Cmd$none);
+		return _Utils_Tuple3(
+			model,
+			$elm$core$Platform$Cmd$none,
+			$author$project$SharedState$UpdatePassword(newPassword));
 	});
 var $author$project$Page$Home$closePopUp = function (model) {
-	return _Utils_Tuple2(
+	return _Utils_Tuple3(
 		_Utils_update(
 			model,
 			{popUp: $author$project$Page$Home$NoPopUp}),
-		$elm$core$Platform$Cmd$none);
+		$elm$core$Platform$Cmd$none,
+		$author$project$SharedState$NoUpdate);
 };
 var $author$project$Page$Home$LoggedIn = function (a) {
 	return {$: 'LoggedIn', a: a};
@@ -7830,141 +7865,153 @@ var $elm$http$Http$expectJson = F2(
 				}));
 	});
 var $elm$json$Json$Encode$int = _Json_wrap;
-var $author$project$Page$Home$logIn = function (model) {
-	return _Utils_Tuple2(
-		model,
-		$elm$http$Http$post(
-			{
-				body: $elm$http$Http$jsonBody(
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'username',
-								$elm$json$Json$Encode$string(model.username)),
-								_Utils_Tuple2(
-								'password',
-								$elm$json$Json$Encode$string(model.password)),
-								_Utils_Tuple2(
-								'session',
-								$elm$json$Json$Encode$int(1))
-							]))),
-				expect: A2($elm$http$Http$expectJson, $author$project$Page$Home$LoggedIn, $author$project$Page$Home$authResponseDecoder),
-				url: $author$project$Constants$serverRoot + 'api/auth/login'
-			}));
-};
+var $author$project$Page$Home$logIn = F2(
+	function (sharedState, model) {
+		return _Utils_Tuple3(
+			model,
+			$elm$http$Http$post(
+				{
+					body: $elm$http$Http$jsonBody(
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'username',
+									$elm$json$Json$Encode$string(sharedState.username)),
+									_Utils_Tuple2(
+									'password',
+									$elm$json$Json$Encode$string(sharedState.password)),
+									_Utils_Tuple2(
+									'session',
+									$elm$json$Json$Encode$int(1))
+								]))),
+					expect: A2($elm$http$Http$expectJson, $author$project$Page$Home$LoggedIn, $author$project$Page$Home$authResponseDecoder),
+					url: $author$project$Constants$serverRoot + 'api/auth/login'
+				}),
+			$author$project$SharedState$NoUpdate);
+	});
 var $author$project$Page$Home$LogInErrorPopUp = function (a) {
 	return {$: 'LogInErrorPopUp', a: a};
+};
+var $author$project$SharedState$UpdateLoggedIn = function (a) {
+	return {$: 'UpdateLoggedIn', a: a};
 };
 var $elm$core$Debug$log = _Debug_log;
 var $author$project$Page$Home$loggedIn = F2(
 	function (result, model) {
-		return _Utils_Tuple2(
-			function () {
-				if (result.$ === 'Ok') {
-					var success = result.a.success;
-					var reason = result.a.reason;
-					return _Utils_update(
-						model,
-						{
-							loggedIn: success,
-							popUp: success ? $author$project$Page$Home$NoPopUp : $author$project$Page$Home$LogInErrorPopUp(reason)
-						});
-				} else {
-					var err = result.a;
-					var _v1 = A2($elm$core$Debug$log, 'log in error', err);
-					return _Utils_update(
-						model,
-						{
-							popUp: $author$project$Page$Home$LogInErrorPopUp('AIwaffle server or your network connection has some problem. Please try logging in again.')
-						});
-				}
-			}(),
-			$elm$core$Platform$Cmd$none);
+		if (result.$ === 'Ok') {
+			var success = result.a.success;
+			var reason = result.a.reason;
+			return _Utils_Tuple3(
+				_Utils_update(
+					model,
+					{
+						popUp: success ? $author$project$Page$Home$NoPopUp : $author$project$Page$Home$LogInErrorPopUp(reason)
+					}),
+				$elm$core$Platform$Cmd$none,
+				$author$project$SharedState$UpdateLoggedIn(true));
+		} else {
+			var err = result.a;
+			var _v1 = A2($elm$core$Debug$log, 'log in error', err);
+			return _Utils_Tuple3(
+				_Utils_update(
+					model,
+					{
+						popUp: $author$project$Page$Home$LogInErrorPopUp('AIwaffle server or your network connection has some problem. Please try logging in again.')
+					}),
+				$elm$core$Platform$Cmd$none,
+				$author$project$SharedState$UpdateLoggedIn(false));
+		}
 	});
 var $author$project$Page$Home$LogInPopUp = {$: 'LogInPopUp'};
 var $author$project$Page$Home$showLogInPopUp = function (model) {
-	return _Utils_Tuple2(
+	return _Utils_Tuple3(
 		_Utils_update(
 			model,
 			{popUp: $author$project$Page$Home$LogInPopUp}),
-		$elm$core$Platform$Cmd$none);
+		$elm$core$Platform$Cmd$none,
+		$author$project$SharedState$NoUpdate);
 };
 var $author$project$Page$Home$SignUpPopUp = {$: 'SignUpPopUp'};
 var $author$project$Page$Home$showSignUpPopUp = function (model) {
-	return _Utils_Tuple2(
+	return _Utils_Tuple3(
 		_Utils_update(
 			model,
 			{popUp: $author$project$Page$Home$SignUpPopUp}),
-		$elm$core$Platform$Cmd$none);
+		$elm$core$Platform$Cmd$none,
+		$author$project$SharedState$NoUpdate);
 };
 var $author$project$Page$Home$SignedUp = function (a) {
 	return {$: 'SignedUp', a: a};
 };
-var $author$project$Page$Home$signUp = function (model) {
-	return _Utils_Tuple2(
-		model,
-		$elm$http$Http$post(
-			{
-				body: $elm$http$Http$jsonBody(
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'username',
-								$elm$json$Json$Encode$string(model.username)),
-								_Utils_Tuple2(
-								'password',
-								$elm$json$Json$Encode$string(model.password))
-							]))),
-				expect: A2($elm$http$Http$expectJson, $author$project$Page$Home$SignedUp, $author$project$Page$Home$authResponseDecoder),
-				url: $author$project$Constants$serverRoot + 'api/auth/register'
-			}));
-};
+var $author$project$Page$Home$signUp = F2(
+	function (sharedState, model) {
+		return _Utils_Tuple3(
+			model,
+			$elm$http$Http$post(
+				{
+					body: $elm$http$Http$jsonBody(
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'username',
+									$elm$json$Json$Encode$string(sharedState.username)),
+									_Utils_Tuple2(
+									'password',
+									$elm$json$Json$Encode$string(sharedState.password))
+								]))),
+					expect: A2($elm$http$Http$expectJson, $author$project$Page$Home$SignedUp, $author$project$Page$Home$authResponseDecoder),
+					url: $author$project$Constants$serverRoot + 'api/auth/register'
+				}),
+			$author$project$SharedState$NoUpdate);
+	});
 var $author$project$Page$Home$SignUpErrorPopUp = function (a) {
 	return {$: 'SignUpErrorPopUp', a: a};
 };
-var $author$project$Page$Home$signedUp = F2(
-	function (result, model) {
+var $author$project$Page$Home$signedUp = F3(
+	function (sharedState, result, model) {
 		if (result.$ === 'Ok') {
 			var success = result.a.success;
 			var reason = result.a.reason;
-			return success ? $author$project$Page$Home$logIn(model) : _Utils_Tuple2(
+			return success ? A2($author$project$Page$Home$logIn, sharedState, model) : _Utils_Tuple3(
 				_Utils_update(
 					model,
 					{
 						popUp: $author$project$Page$Home$SignUpErrorPopUp(reason)
 					}),
-				$elm$core$Platform$Cmd$none);
+				$elm$core$Platform$Cmd$none,
+				$author$project$SharedState$NoUpdate);
 		} else {
 			var err = result.a;
 			var _v1 = A2($elm$core$Debug$log, 'sign up error', err);
-			return _Utils_Tuple2(
+			return _Utils_Tuple3(
 				_Utils_update(
 					model,
 					{
 						popUp: $author$project$Page$Home$SignUpErrorPopUp('AIwaffle server or your network connection has some problem. Please try signing up again.')
 					}),
-				$elm$core$Platform$Cmd$none);
+				$elm$core$Platform$Cmd$none,
+				$author$project$SharedState$NoUpdate);
 		}
 	});
-var $author$project$Page$Home$update = F2(
-	function (msg, model) {
+var $author$project$Page$Home$update = F3(
+	function (sharedState, msg, model) {
 		switch (msg.$) {
 			case 'ShowLogInPopUp':
 				return $author$project$Page$Home$showLogInPopUp(model);
 			case 'ShowSignUpPopUp':
 				return $author$project$Page$Home$showSignUpPopUp(model);
 			case 'LogIn':
-				return $author$project$Page$Home$logIn(model);
+				return A2($author$project$Page$Home$logIn, sharedState, model);
 			case 'LoggedIn':
 				var result = msg.a;
 				return A2($author$project$Page$Home$loggedIn, result, model);
 			case 'SignUp':
-				return $author$project$Page$Home$signUp(model);
+				return A2($author$project$Page$Home$signUp, sharedState, model);
 			case 'SignedUp':
 				var result = msg.a;
-				return A2($author$project$Page$Home$signedUp, result, model);
+				return A3($author$project$Page$Home$signedUp, sharedState, result, model);
 			case 'ChangedUserName':
 				var newName = msg.a;
 				return A2($author$project$Page$Home$changedUserName, newName, model);
@@ -11187,7 +11234,7 @@ var $author$project$Main$update = F2(
 					return A2(
 						$author$project$Main$stepHome,
 						model,
-						A2($author$project$Page$Home$update, msg, home));
+						A3($author$project$Page$Home$update, model.sharedState, msg, home));
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 				}
@@ -17882,51 +17929,52 @@ var $mdgriffith$elm_ui$Element$Input$button = F2(
 	});
 var $mdgriffith$elm_ui$Internal$Model$Empty = {$: 'Empty'};
 var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
-var $author$project$Page$Home$viewHeader = function (model) {
-	return A2(
-		$mdgriffith$elm_ui$Element$row,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-				$mdgriffith$elm_ui$Element$padding(10),
-				$mdgriffith$elm_ui$Element$spacing(20)
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$mdgriffith$elm_ui$Element$el,
-				_List_fromArray(
-					[$mdgriffith$elm_ui$Element$alignLeft]),
-				$mdgriffith$elm_ui$Element$text('AIwaffle')),
-				A2(
-				$mdgriffith$elm_ui$Element$link,
-				_List_fromArray(
-					[$mdgriffith$elm_ui$Element$alignLeft]),
-				{
-					label: $mdgriffith$elm_ui$Element$text('About'),
-					url: '/about'
-				}),
-				A2(
-				$mdgriffith$elm_ui$Element$el,
-				_List_fromArray(
-					[$mdgriffith$elm_ui$Element$alignRight]),
-				model.loggedIn ? $mdgriffith$elm_ui$Element$text(model.username) : A2(
-					$mdgriffith$elm_ui$Element$Input$button,
-					_List_Nil,
+var $author$project$Page$Home$viewHeader = F2(
+	function (sharedState, model) {
+		return A2(
+			$mdgriffith$elm_ui$Element$row,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+					$mdgriffith$elm_ui$Element$padding(10),
+					$mdgriffith$elm_ui$Element$spacing(20)
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$mdgriffith$elm_ui$Element$el,
+					_List_fromArray(
+						[$mdgriffith$elm_ui$Element$alignLeft]),
+					$mdgriffith$elm_ui$Element$text('AIwaffle')),
+					A2(
+					$mdgriffith$elm_ui$Element$link,
+					_List_fromArray(
+						[$mdgriffith$elm_ui$Element$alignLeft]),
 					{
-						label: $mdgriffith$elm_ui$Element$text('Log In'),
-						onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowLogInPopUp)
-					})),
-				model.loggedIn ? $mdgriffith$elm_ui$Element$none : A2(
-				$mdgriffith$elm_ui$Element$Input$button,
-				_List_fromArray(
-					[$mdgriffith$elm_ui$Element$alignRight]),
-				{
-					label: $mdgriffith$elm_ui$Element$text('Sign Up'),
-					onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
-				})
-			]));
-};
+						label: $mdgriffith$elm_ui$Element$text('About'),
+						url: '/about'
+					}),
+					A2(
+					$mdgriffith$elm_ui$Element$el,
+					_List_fromArray(
+						[$mdgriffith$elm_ui$Element$alignRight]),
+					sharedState.loggedIn ? $mdgriffith$elm_ui$Element$text(sharedState.username) : A2(
+						$mdgriffith$elm_ui$Element$Input$button,
+						_List_Nil,
+						{
+							label: $mdgriffith$elm_ui$Element$text('Log In'),
+							onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowLogInPopUp)
+						})),
+					sharedState.loggedIn ? $mdgriffith$elm_ui$Element$none : A2(
+					$mdgriffith$elm_ui$Element$Input$button,
+					_List_fromArray(
+						[$mdgriffith$elm_ui$Element$alignRight]),
+					{
+						label: $mdgriffith$elm_ui$Element$text('Sign Up'),
+						onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
+					})
+				]));
+	});
 var $author$project$Page$Home$title = function (text) {
 	return A2(
 		$mdgriffith$elm_ui$Element$el,
@@ -19014,51 +19062,52 @@ var $mdgriffith$elm_ui$Element$Input$username = $mdgriffith$elm_ui$Element$Input
 		spellchecked: false,
 		type_: $mdgriffith$elm_ui$Element$Input$TextInputNode('text')
 	});
-var $author$project$Page$Home$viewLogInPopUp = function (model) {
-	return $author$project$Page$Home$viewBasePopUp(
-		_List_fromArray(
-			[
-				$author$project$Page$Home$title('Log In'),
-				A2(
-				$mdgriffith$elm_ui$Element$Input$username,
-				_List_Nil,
-				{
-					label: A2(
-						$mdgriffith$elm_ui$Element$Input$labelLeft,
-						_List_Nil,
-						$mdgriffith$elm_ui$Element$text('Username: ')),
-					onChange: $author$project$Page$Home$ChangedUserName,
-					placeholder: $elm$core$Maybe$Nothing,
-					text: model.username
-				}),
-				A2(
-				$mdgriffith$elm_ui$Element$Input$currentPassword,
-				_List_Nil,
-				{
-					label: A2(
-						$mdgriffith$elm_ui$Element$Input$labelLeft,
-						_List_Nil,
-						$mdgriffith$elm_ui$Element$text('Password: ')),
-					onChange: $author$project$Page$Home$ChangedUserPassword,
-					placeholder: $elm$core$Maybe$Nothing,
-					show: false,
-					text: model.password
-				}),
-				A2(
-				$mdgriffith$elm_ui$Element$Input$button,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
-						$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
-						$mdgriffith$elm_ui$Element$padding(10),
-						$mdgriffith$elm_ui$Element$alignRight
-					]),
-				{
-					label: $mdgriffith$elm_ui$Element$text('Submit'),
-					onPress: $elm$core$Maybe$Just($author$project$Page$Home$LogIn)
-				})
-			]));
-};
+var $author$project$Page$Home$viewLogInPopUp = F2(
+	function (sharedState, model) {
+		return $author$project$Page$Home$viewBasePopUp(
+			_List_fromArray(
+				[
+					$author$project$Page$Home$title('Log In'),
+					A2(
+					$mdgriffith$elm_ui$Element$Input$username,
+					_List_Nil,
+					{
+						label: A2(
+							$mdgriffith$elm_ui$Element$Input$labelLeft,
+							_List_Nil,
+							$mdgriffith$elm_ui$Element$text('Username: ')),
+						onChange: $author$project$Page$Home$ChangedUserName,
+						placeholder: $elm$core$Maybe$Nothing,
+						text: sharedState.username
+					}),
+					A2(
+					$mdgriffith$elm_ui$Element$Input$currentPassword,
+					_List_Nil,
+					{
+						label: A2(
+							$mdgriffith$elm_ui$Element$Input$labelLeft,
+							_List_Nil,
+							$mdgriffith$elm_ui$Element$text('Password: ')),
+						onChange: $author$project$Page$Home$ChangedUserPassword,
+						placeholder: $elm$core$Maybe$Nothing,
+						show: false,
+						text: sharedState.password
+					}),
+					A2(
+					$mdgriffith$elm_ui$Element$Input$button,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
+							$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
+							$mdgriffith$elm_ui$Element$padding(10),
+							$mdgriffith$elm_ui$Element$alignRight
+						]),
+					{
+						label: $mdgriffith$elm_ui$Element$text('Submit'),
+						onPress: $elm$core$Maybe$Just($author$project$Page$Home$LogIn)
+					})
+				]));
+	});
 var $author$project$Page$Home$viewSignUpErrorPopUp = F2(
 	function (reason, model) {
 		return $author$project$Page$Home$viewBasePopUp(
@@ -19088,103 +19137,106 @@ var $author$project$Page$Home$viewSignUpErrorPopUp = F2(
 				]));
 	});
 var $author$project$Page$Home$SignUp = {$: 'SignUp'};
-var $author$project$Page$Home$viewSignUpPopUp = function (model) {
-	return $author$project$Page$Home$viewBasePopUp(
-		_List_fromArray(
-			[
-				$author$project$Page$Home$title('Sign Up'),
-				A2(
-				$mdgriffith$elm_ui$Element$Input$username,
-				_List_Nil,
-				{
-					label: A2(
-						$mdgriffith$elm_ui$Element$Input$labelLeft,
-						_List_Nil,
-						$mdgriffith$elm_ui$Element$text('Username: ')),
-					onChange: $author$project$Page$Home$ChangedUserName,
-					placeholder: $elm$core$Maybe$Nothing,
-					text: model.username
-				}),
-				A2(
-				$mdgriffith$elm_ui$Element$Input$currentPassword,
-				_List_Nil,
-				{
-					label: A2(
-						$mdgriffith$elm_ui$Element$Input$labelLeft,
-						_List_Nil,
-						$mdgriffith$elm_ui$Element$text('Password: ')),
-					onChange: $author$project$Page$Home$ChangedUserPassword,
-					placeholder: $elm$core$Maybe$Nothing,
-					show: false,
-					text: model.password
-				}),
-				A2(
-				$mdgriffith$elm_ui$Element$Input$button,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
-						$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
-						$mdgriffith$elm_ui$Element$padding(10),
-						$mdgriffith$elm_ui$Element$alignRight
-					]),
-				{
-					label: $mdgriffith$elm_ui$Element$text('Submit'),
-					onPress: $elm$core$Maybe$Just($author$project$Page$Home$SignUp)
-				})
-			]));
-};
-var $author$project$Page$Home$viewPopUp = function (model) {
-	var _v0 = model.popUp;
-	switch (_v0.$) {
-		case 'NoPopUp':
-			return $mdgriffith$elm_ui$Element$none;
-		case 'LogInPopUp':
-			return $author$project$Page$Home$viewLogInPopUp(model);
-		case 'LogInErrorPopUp':
-			var reason = _v0.a;
-			return A2($author$project$Page$Home$viewLogInErrorPopUp, reason, model);
-		case 'SignUpPopUp':
-			return $author$project$Page$Home$viewSignUpPopUp(model);
-		default:
-			var reason = _v0.a;
-			return A2($author$project$Page$Home$viewSignUpErrorPopUp, reason, model);
-	}
-};
-var $author$project$Page$Home$view = function (model) {
-	return A2(
-		$mdgriffith$elm_ui$Element$layout,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$Font$family(
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$Font$typeface('Nunito'),
-						$mdgriffith$elm_ui$Element$Font$sansSerif
-					])),
-				$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
-				A2(
-				$mdgriffith$elm_ui$Element$Font$glow,
-				A4($mdgriffith$elm_ui$Element$rgba255, 255, 218, 94, 0.8),
-				3),
-				$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
-				$mdgriffith$elm_ui$Element$padding(10),
-				$mdgriffith$elm_ui$Element$inFront(
-				$author$project$Page$Home$viewPopUp(model))
-			]),
-		A2(
-			$mdgriffith$elm_ui$Element$column,
+var $author$project$Page$Home$viewSignUpPopUp = F2(
+	function (sharedState, model) {
+		return $author$project$Page$Home$viewBasePopUp(
 			_List_fromArray(
 				[
-					$mdgriffith$elm_ui$Element$width(
-					A2($mdgriffith$elm_ui$Element$maximum, 800, $mdgriffith$elm_ui$Element$fill)),
-					$mdgriffith$elm_ui$Element$centerX
+					$author$project$Page$Home$title('Sign Up'),
+					A2(
+					$mdgriffith$elm_ui$Element$Input$username,
+					_List_Nil,
+					{
+						label: A2(
+							$mdgriffith$elm_ui$Element$Input$labelLeft,
+							_List_Nil,
+							$mdgriffith$elm_ui$Element$text('Username: ')),
+						onChange: $author$project$Page$Home$ChangedUserName,
+						placeholder: $elm$core$Maybe$Nothing,
+						text: sharedState.username
+					}),
+					A2(
+					$mdgriffith$elm_ui$Element$Input$currentPassword,
+					_List_Nil,
+					{
+						label: A2(
+							$mdgriffith$elm_ui$Element$Input$labelLeft,
+							_List_Nil,
+							$mdgriffith$elm_ui$Element$text('Password: ')),
+						onChange: $author$project$Page$Home$ChangedUserPassword,
+						placeholder: $elm$core$Maybe$Nothing,
+						show: false,
+						text: sharedState.password
+					}),
+					A2(
+					$mdgriffith$elm_ui$Element$Input$button,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
+							$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
+							$mdgriffith$elm_ui$Element$padding(10),
+							$mdgriffith$elm_ui$Element$alignRight
+						]),
+					{
+						label: $mdgriffith$elm_ui$Element$text('Submit'),
+						onPress: $elm$core$Maybe$Just($author$project$Page$Home$SignUp)
+					})
+				]));
+	});
+var $author$project$Page$Home$viewPopUp = F2(
+	function (sharedState, model) {
+		var _v0 = model.popUp;
+		switch (_v0.$) {
+			case 'NoPopUp':
+				return $mdgriffith$elm_ui$Element$none;
+			case 'LogInPopUp':
+				return A2($author$project$Page$Home$viewLogInPopUp, sharedState, model);
+			case 'LogInErrorPopUp':
+				var reason = _v0.a;
+				return A2($author$project$Page$Home$viewLogInErrorPopUp, reason, model);
+			case 'SignUpPopUp':
+				return A2($author$project$Page$Home$viewSignUpPopUp, sharedState, model);
+			default:
+				var reason = _v0.a;
+				return A2($author$project$Page$Home$viewSignUpErrorPopUp, reason, model);
+		}
+	});
+var $author$project$Page$Home$view = F2(
+	function (sharedState, model) {
+		return A2(
+			$mdgriffith$elm_ui$Element$layout,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$Font$family(
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$Font$typeface('Nunito'),
+							$mdgriffith$elm_ui$Element$Font$sansSerif
+						])),
+					$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
+					A2(
+					$mdgriffith$elm_ui$Element$Font$glow,
+					A4($mdgriffith$elm_ui$Element$rgba255, 255, 218, 94, 0.8),
+					3),
+					$mdgriffith$elm_ui$Element$Background$color($author$project$Style$color.dark),
+					$mdgriffith$elm_ui$Element$padding(10),
+					$mdgriffith$elm_ui$Element$inFront(
+					A2($author$project$Page$Home$viewPopUp, sharedState, model))
 				]),
-			_List_fromArray(
-				[
-					$author$project$Page$Home$viewHeader(model),
-					$author$project$Page$Home$viewBody(model)
-				])));
-};
+			A2(
+				$mdgriffith$elm_ui$Element$column,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$width(
+						A2($mdgriffith$elm_ui$Element$maximum, 800, $mdgriffith$elm_ui$Element$fill)),
+						$mdgriffith$elm_ui$Element$centerX
+					]),
+				_List_fromArray(
+					[
+						A2($author$project$Page$Home$viewHeader, sharedState, model),
+						$author$project$Page$Home$viewBody(model)
+					])));
+	});
 var $author$project$Page$NotFound$view = function (model) {
 	return A2(
 		$mdgriffith$elm_ui$Element$layout,
@@ -19730,7 +19782,7 @@ var $author$project$Main$view = function (model) {
 						A2(
 						$elm$html$Html$map,
 						$author$project$Main$HomeMsg,
-						$author$project$Page$Home$view(home))
+						A2($author$project$Page$Home$view, model.sharedState, home))
 					]),
 				title: 'AIwaffle'
 			};
