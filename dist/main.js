@@ -17695,102 +17695,107 @@ var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
 	return {$: 'Px', a: a};
 };
 var $mdgriffith$elm_ui$Element$px = $mdgriffith$elm_ui$Internal$Model$Px;
-var $author$project$Page$Home$viewCourseCard = function (_v0) {
-	var courseId = _v0.a;
-	var courseName = _v0.b;
-	return A2(
-		$mdgriffith$elm_ui$Element$el,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$Background$image('/assets/waffle.svg'),
-				$mdgriffith$elm_ui$Element$width(
-				$mdgriffith$elm_ui$Element$px(200)),
-				$mdgriffith$elm_ui$Element$height(
-				$mdgriffith$elm_ui$Element$px(200))
-			]),
-		A2(
-			$mdgriffith$elm_ui$Element$paragraph,
+var $author$project$Page$Home$viewCourseCard = F2(
+	function (sharedState, _v0) {
+		var courseId = _v0.a;
+		var courseName = _v0.b;
+		return A2(
+			$mdgriffith$elm_ui$Element$el,
 			_List_fromArray(
 				[
-					$mdgriffith$elm_ui$Element$Font$center,
-					$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.dark),
-					$mdgriffith$elm_ui$Element$Font$bold,
-					$mdgriffith$elm_ui$Element$centerY
+					$mdgriffith$elm_ui$Element$Background$image('/assets/waffle.svg'),
+					$mdgriffith$elm_ui$Element$width(
+					$mdgriffith$elm_ui$Element$px(200)),
+					$mdgriffith$elm_ui$Element$height(
+					$mdgriffith$elm_ui$Element$px(200))
+				]),
+			A2(
+				$mdgriffith$elm_ui$Element$paragraph,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$Font$center,
+						$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.dark),
+						$mdgriffith$elm_ui$Element$Font$bold,
+						$mdgriffith$elm_ui$Element$centerY
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Element$link,
+						_List_Nil,
+						{
+							label: $mdgriffith$elm_ui$Element$text(courseName),
+							url: 'https://www.aiwaffle.com/jhub/user/' + (sharedState.username + ('/notebooks/courses/' + (courseId + '.ipynb')))
+						})
+					])));
+	});
+var $author$project$Page$Home$viewBody = F2(
+	function (sharedState, model) {
+		return A2(
+			$mdgriffith$elm_ui$Element$column,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+					$mdgriffith$elm_ui$Element$spacing(20),
+					$mdgriffith$elm_ui$Element$padding(30)
 				]),
 			_List_fromArray(
 				[
 					A2(
-					$mdgriffith$elm_ui$Element$link,
-					_List_Nil,
-					{
-						label: $mdgriffith$elm_ui$Element$text(courseName),
-						url: '/tutorial/' + courseId
-					})
-				])));
-};
-var $author$project$Page$Home$viewBody = function (model) {
-	return A2(
-		$mdgriffith$elm_ui$Element$column,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-				$mdgriffith$elm_ui$Element$spacing(20),
-				$mdgriffith$elm_ui$Element$padding(30)
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$mdgriffith$elm_ui$Element$row,
-				A2($elm$core$List$cons, $mdgriffith$elm_ui$Element$centerX, $author$project$Style$font.title),
-				_List_fromArray(
-					[
-						A2(
-						$mdgriffith$elm_ui$Element$image,
-						_List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$htmlAttribute(
-								$elm$html$Html$Attributes$class('inline-logo'))
-							]),
-						{description: 'AIwaffle Logo', src: '/assets/logo.svg'}),
-						A2(
-						$mdgriffith$elm_ui$Element$paragraph,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$text('Develop Your AI Superpower')
-							]))
-					])),
-				A2(
-				$mdgriffith$elm_ui$Element$paragraph,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$centerX,
-						$mdgriffith$elm_ui$Element$Font$center,
-						$mdgriffith$elm_ui$Element$width(
-						A2($mdgriffith$elm_ui$Element$maximum, 600, $mdgriffith$elm_ui$Element$fill))
-					]),
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$text('learn AI Interactively from scratch for free. \nUnderstand the workings behind the AI superpower, \nand start using them yourself!')
-					])),
-				A2(
-				$mdgriffith$elm_ui$Element$wrappedRow,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$padding(20),
-						$mdgriffith$elm_ui$Element$spacing(40),
-						$mdgriffith$elm_ui$Element$htmlAttribute(
-						A2($elm$html$Html$Attributes$style, 'margin-left', 'auto')),
-						$mdgriffith$elm_ui$Element$htmlAttribute(
-						A2($elm$html$Html$Attributes$style, 'margin-right', 'auto')),
-						$mdgriffith$elm_ui$Element$htmlAttribute(
-						A2($elm$html$Html$Attributes$style, 'display', 'flex')),
-						$mdgriffith$elm_ui$Element$htmlAttribute(
-						A2($elm$html$Html$Attributes$style, 'justify-content', 'center'))
-					]),
-				A2($elm$core$List$map, $author$project$Page$Home$viewCourseCard, model.courses))
-			]));
-};
+					$mdgriffith$elm_ui$Element$row,
+					A2($elm$core$List$cons, $mdgriffith$elm_ui$Element$centerX, $author$project$Style$font.title),
+					_List_fromArray(
+						[
+							A2(
+							$mdgriffith$elm_ui$Element$image,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$htmlAttribute(
+									$elm$html$Html$Attributes$class('inline-logo'))
+								]),
+							{description: 'AIwaffle Logo', src: '/assets/logo.svg'}),
+							A2(
+							$mdgriffith$elm_ui$Element$paragraph,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$text('Develop Your AI Superpower')
+								]))
+						])),
+					A2(
+					$mdgriffith$elm_ui$Element$paragraph,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$centerX,
+							$mdgriffith$elm_ui$Element$Font$center,
+							$mdgriffith$elm_ui$Element$width(
+							A2($mdgriffith$elm_ui$Element$maximum, 600, $mdgriffith$elm_ui$Element$fill))
+						]),
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$text('learn AI Interactively from scratch for free. \nUnderstand the workings behind the AI superpower, \nand start using them yourself!')
+						])),
+					A2(
+					$mdgriffith$elm_ui$Element$wrappedRow,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$padding(20),
+							$mdgriffith$elm_ui$Element$spacing(40),
+							$mdgriffith$elm_ui$Element$htmlAttribute(
+							A2($elm$html$Html$Attributes$style, 'margin-left', 'auto')),
+							$mdgriffith$elm_ui$Element$htmlAttribute(
+							A2($elm$html$Html$Attributes$style, 'margin-right', 'auto')),
+							$mdgriffith$elm_ui$Element$htmlAttribute(
+							A2($elm$html$Html$Attributes$style, 'display', 'flex')),
+							$mdgriffith$elm_ui$Element$htmlAttribute(
+							A2($elm$html$Html$Attributes$style, 'justify-content', 'center'))
+						]),
+					A2(
+						$elm$core$List$map,
+						$author$project$Page$Home$viewCourseCard(sharedState),
+						model.courses))
+				]));
+	});
 var $author$project$Page$Home$ShowLogInPopUp = {$: 'ShowLogInPopUp'};
 var $author$project$Page$Home$ShowSignUpPopUp = {$: 'ShowSignUpPopUp'};
 var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
@@ -19234,7 +19239,7 @@ var $author$project$Page$Home$view = F2(
 				_List_fromArray(
 					[
 						A2($author$project$Page$Home$viewHeader, sharedState, model),
-						$author$project$Page$Home$viewBody(model)
+						A2($author$project$Page$Home$viewBody, sharedState, model)
 					])));
 	});
 var $author$project$Page$NotFound$view = function (model) {

@@ -82,7 +82,7 @@ view sharedState model =
             , E.centerX
             ]
             [ viewHeader sharedState model
-            , viewBody model
+            , viewBody sharedState model
             ]
         )
 
@@ -328,8 +328,8 @@ viewHeader sharedState model =
         ]
 
 
-viewBody : Model -> Element Msg
-viewBody model =
+viewBody : SharedState -> Model -> Element Msg
+viewBody sharedState model =
     E.column
         [ E.width E.fill
         , E.spacing 20
@@ -363,13 +363,13 @@ viewBody model =
             , E.htmlAttribute <| Html.Attributes.style "justify-content" "center"
             ]
             (List.map
-                viewCourseCard
+                (viewCourseCard sharedState)
                 model.courses
             )
         ]
 
 
-viewCourseCard ( courseId, courseName ) =
+viewCourseCard sharedState ( courseId, courseName ) =
     E.el
         [ Background.image "/assets/waffle.svg"
         , E.width <| E.px 200
@@ -382,7 +382,7 @@ viewCourseCard ( courseId, courseName ) =
             , E.centerY
             ]
             [ E.link []
-                { url = "/tutorial/" ++ courseId
+                { url = "https://www.aiwaffle.com/jhub/user/" ++ sharedState.username ++ "/notebooks/courses/" ++ courseId ++ ".ipynb"
                 , label = E.text courseName
                 }
             ]
