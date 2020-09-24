@@ -381,8 +381,8 @@ viewCourseCard sharedState ( courseId, courseName ) =
             , Font.bold
             , E.centerY
             ]
-            [ E.link []
-                { url = "https://www.aiwaffle.com/jhub/user/" ++ sharedState.username ++ "/notebooks/courses/" ++ courseId ++ ".ipynb"
+            [ E.newTabLink []
+                { url = "/jhub/user/" ++ sharedState.username ++ "/notebooks/Courses/" ++ courseId ++ ".ipynb"
                 , label = E.text courseName
                 }
             ]

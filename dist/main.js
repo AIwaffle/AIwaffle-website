@@ -17721,11 +17721,11 @@ var $author$project$Page$Home$viewCourseCard = F2(
 				_List_fromArray(
 					[
 						A2(
-						$mdgriffith$elm_ui$Element$link,
+						$mdgriffith$elm_ui$Element$newTabLink,
 						_List_Nil,
 						{
 							label: $mdgriffith$elm_ui$Element$text(courseName),
-							url: 'https://www.aiwaffle.com/jhub/user/' + (sharedState.username + ('/notebooks/courses/' + (courseId + '.ipynb')))
+							url: '/jhub/user/' + (sharedState.username + ('/notebooks/Courses/' + (courseId + '.ipynb')))
 						})
 					])));
 	});
