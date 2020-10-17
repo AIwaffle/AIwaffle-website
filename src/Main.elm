@@ -1,4 +1,4 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 import Browser
 import Browser.Navigation as Nav
@@ -13,11 +13,14 @@ import Url
 import Url.Parser as Parser exposing ((</>), Parser)
 
 
+port getUsername : (() -> msg) -> Sub msg
+port setUsername : String -> Cmd msg
+
 
 -- MAIN
 
 
-main : Program () Model Msg
+main : Program (Maybe String) Model Msg
 main =
     Browser.application
         { init = init
@@ -47,14 +50,22 @@ type Page
     | About About.Model
 
 
-init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
-init flags url key =
+init : Maybe String -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
+init maybeUsername url key =
     let
         initialSharedState =
-            { username = ""
-            , password = ""
-            , loggedIn = False
-            }
+            case maybeUsername of
+                Just username ->
+                    { username = username
+                    , password = ""
+                    , loggedIn = True
+                    }
+                
+                Nothing ->
+                    { username = ""
+                    , password = ""
+                    , loggedIn = False
+                    }
     in
     route url
         { key = key
@@ -74,6 +85,7 @@ type Msg
     | HomeMsg Home.Msg
     | TutorialMsg Tutorial.Msg
     | AboutMsg About.Msg
+    | SaveUsername
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -111,6 +123,10 @@ update message model =
 
         AboutMsg _ ->
             ( model, Cmd.none )
+
+        SaveUsername ->
+            ( model, setUsername model.sharedState.username )
+
 
 
 route : Url.Url -> Model -> ( Model, Cmd Msg )
@@ -186,7 +202,7 @@ stepAbout model ( about, cmds ) =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    getUsername (\_ -> SaveUsername)
 
 
 

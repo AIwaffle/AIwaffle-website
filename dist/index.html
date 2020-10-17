@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="gc:client-id" content="a0b07b3cc690645dbabf">
-    <meta name="gc:client-secret" content="a4a40aa396ad8bddc1b1796f9bf452ea71d8f32f">
-    <title>AIwaffle</title>
-    <link rel="shortcut icon" href="/assets/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
-    <link defer rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/markdown-it.min.js"></script>
-    <link defer rel="preload" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.0/css/texmath.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <script defer src="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.0/texmath.min.js"></script>
-    <link defer rel="preload" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/solarized-light.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <script defer src="/dist/highlight.js" onload="hljs.initHighlightingOnLoad"></script>
-    <!-- loadCSS asynchronously: https://github.com/filamentgroup/loadCSS/blob/master/src/cssrelpreload.js -->
-    <script>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="ie=edge" http-equiv="X-UA-Compatible">
+        <meta content="a0b07b3cc690645dbabf" name="gc:client-id">
+        <meta content="a4a40aa396ad8bddc1b1796f9bf452ea71d8f32f" name="gc:client-secret">
+        <title>AIwaffle</title>
+        <link href="/assets/favicon.ico" rel="shortcut icon">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+        <link as="style" defer href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/markdown-it.min.js"></script>
+        <link as="style" defer href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.0/css/texmath.min.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+        <script defer src="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.0/texmath.min.js"></script>
+        <link as="style" defer href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/solarized-light.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+        <script defer onload="hljs.initHighlightingOnLoad" src="/dist/highlight.js"></script>
+        <!-- loadCSS asynchronously: https://github.com/filamentgroup/loadCSS/blob/master/src/cssrelpreload.js -->
+        <script>
       !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
     </script>
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script defer src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    <style>
+        <!-- These scripts link to the Vega/Vega-Lite runtime -->
+        <script defer src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+        <style>
       img {
         width: 100%;
       }
@@ -89,14 +89,24 @@
         margin-bottom: 10px;
       }
     </style>
-    <script defer src="/dist/main.js"></script>
-</head>
-<body>
-    <div id="app"></div>
-    <script>
+        <script defer src="/dist/main.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
       document.addEventListener('DOMContentLoaded', function() {
+        const username = sessionStorage.getItem('aiwaffle-username');
+        console.log("username: ", username);
         var app = Elm.Main.init({
-          node: document.getElementById("app")
+          node: document.getElementById("app"),
+          flags: username
+        });
+        window.addEventListener('beforeunload', function() {
+          app.ports.getUsername.send(null);
+        });
+        app.ports.setUsername.subscribe(function(username) {
+          console.log("setting username");
+          sessionStorage.setItem('aiwaffle-username', username);
         });
         app.ports.renderContent.subscribe(
           function(contentName) {
@@ -166,4 +176,6 @@
       });
     </script>
 </body>
-</html>
+</html 
+    </body>
+</html>>

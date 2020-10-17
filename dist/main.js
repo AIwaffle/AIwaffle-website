@@ -4539,9 +4539,13 @@ var _Bitwise_shiftRightZfBy = F2(function(offset, a)
 {
 	return a >>> offset;
 });
+var $elm$core$Maybe$Just = function (a) {
+	return {$: 'Just', a: a};
+};
 var $author$project$Main$LinkClicked = function (a) {
 	return {$: 'LinkClicked', a: a};
 };
+var $elm$core$Maybe$Nothing = {$: 'Nothing'};
 var $author$project$Main$UrlChanged = function (a) {
 	return {$: 'UrlChanged', a: a};
 };
@@ -4648,10 +4652,6 @@ var $elm$json$Json$Decode$OneOf = function (a) {
 };
 var $elm$core$Basics$False = {$: 'False'};
 var $elm$core$Basics$add = _Basics_add;
-var $elm$core$Maybe$Just = function (a) {
-	return {$: 'Just', a: a};
-};
-var $elm$core$Maybe$Nothing = {$: 'Nothing'};
 var $elm$core$String$all = _String_all;
 var $elm$core$Basics$and = _Basics_and;
 var $elm$core$Basics$append = _Utils_append;
@@ -7702,8 +7702,15 @@ var $author$project$Main$route = F2(
 		}
 	});
 var $author$project$Main$init = F3(
-	function (flags, url, key) {
-		var initialSharedState = {loggedIn: false, password: '', username: ''};
+	function (maybeUsername, url, key) {
+		var initialSharedState = function () {
+			if (maybeUsername.$ === 'Just') {
+				var username = maybeUsername.a;
+				return {loggedIn: true, password: '', username: username};
+			} else {
+				return {loggedIn: false, password: '', username: ''};
+			}
+		}();
 		return A2(
 			$author$project$Main$route,
 			url,
@@ -7715,13 +7722,22 @@ var $author$project$Main$init = F3(
 				sharedState: initialSharedState
 			});
 	});
-var $elm$core$Platform$Sub$batch = _Platform_batch;
-var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $elm$json$Json$Decode$null = _Json_decodeNull;
+var $elm$json$Json$Decode$oneOf = _Json_oneOf;
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $author$project$Main$SaveUsername = {$: 'SaveUsername'};
+var $author$project$Main$getUsername = _Platform_incomingPort(
+	'getUsername',
+	$elm$json$Json$Decode$null(_Utils_Tuple0));
 var $author$project$Main$subscriptions = function (_v0) {
-	return $elm$core$Platform$Sub$none;
+	return $author$project$Main$getUsername(
+		function (_v1) {
+			return $author$project$Main$SaveUsername;
+		});
 };
 var $elm$browser$Browser$Navigation$load = _Browser_load;
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
+var $author$project$Main$setUsername = _Platform_outgoingPort('setUsername', $elm$json$Json$Encode$string);
 var $elm$url$Url$addPort = F2(
 	function (maybePort, starter) {
 		if (maybePort.$ === 'Nothing') {
@@ -7799,7 +7815,6 @@ var $author$project$Page$Home$LoggedIn = function (a) {
 };
 var $elm$json$Json$Decode$andThen = _Json_andThen;
 var $elm$json$Json$Decode$field = _Json_decodeField;
-var $elm$json$Json$Decode$oneOf = _Json_oneOf;
 var $elm$json$Json$Decode$maybe = function (decoder) {
 	return $elm$json$Json$Decode$oneOf(
 		_List_fromArray(
@@ -7824,7 +7839,6 @@ var $webbhuset$elm_json_decode$Json$Decode$Field$require = F3(
 			continuation,
 			A2($elm$json$Json$Decode$field, fieldName, valueDecoder));
 	});
-var $elm$json$Json$Decode$string = _Json_decodeString;
 var $author$project$Page$Home$authResponseDecoder = A3(
 	$webbhuset$elm_json_decode$Json$Decode$Field$require,
 	'success',
@@ -11252,8 +11266,12 @@ var $author$project$Main$update = F2(
 				}
 			case 'NotFoundMsg':
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-			default:
+			case 'AboutMsg':
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+			default:
+				return _Utils_Tuple2(
+					model,
+					$author$project$Main$setUsername(model.sharedState.username));
 		}
 	});
 var $author$project$Main$NotFoundMsg = function (a) {
@@ -19820,4 +19838,9 @@ var $author$project$Main$view = function (model) {
 var $author$project$Main$main = $elm$browser$Browser$application(
 	{init: $author$project$Main$init, onUrlChange: $author$project$Main$UrlChanged, onUrlRequest: $author$project$Main$LinkClicked, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
-	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
+	$elm$json$Json$Decode$oneOf(
+		_List_fromArray(
+			[
+				$elm$json$Json$Decode$null($elm$core$Maybe$Nothing),
+				A2($elm$json$Json$Decode$map, $elm$core$Maybe$Just, $elm$json$Json$Decode$string)
+			])))(0)}});}(this));
