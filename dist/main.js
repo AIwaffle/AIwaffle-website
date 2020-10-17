@@ -19079,6 +19079,18 @@ var $mdgriffith$elm_ui$Element$Input$Label = F3(
 	});
 var $mdgriffith$elm_ui$Element$Input$OnLeft = {$: 'OnLeft'};
 var $mdgriffith$elm_ui$Element$Input$labelLeft = $mdgriffith$elm_ui$Element$Input$Label($mdgriffith$elm_ui$Element$Input$OnLeft);
+var $author$project$Page$Home$onEnter = function (msg) {
+	return $mdgriffith$elm_ui$Element$htmlAttribute(
+		A2(
+			$elm$html$Html$Events$on,
+			'keyup',
+			A2(
+				$elm$json$Json$Decode$andThen,
+				function (key) {
+					return (key === 'Enter') ? $elm$json$Json$Decode$succeed(msg) : $elm$json$Json$Decode$fail('Not the enter key');
+				},
+				A2($elm$json$Json$Decode$field, 'key', $elm$json$Json$Decode$string))));
+};
 var $mdgriffith$elm_ui$Element$Input$username = $mdgriffith$elm_ui$Element$Input$textHelper(
 	{
 		autofill: $elm$core$Maybe$Just('username'),
@@ -19105,7 +19117,10 @@ var $author$project$Page$Home$viewLogInPopUp = F2(
 					}),
 					A2(
 					$mdgriffith$elm_ui$Element$Input$currentPassword,
-					_List_Nil,
+					_List_fromArray(
+						[
+							$author$project$Page$Home$onEnter($author$project$Page$Home$LogIn)
+						]),
 					{
 						label: A2(
 							$mdgriffith$elm_ui$Element$Input$labelLeft,
@@ -19180,7 +19195,10 @@ var $author$project$Page$Home$viewSignUpPopUp = F2(
 					}),
 					A2(
 					$mdgriffith$elm_ui$Element$Input$currentPassword,
-					_List_Nil,
+					_List_fromArray(
+						[
+							$author$project$Page$Home$onEnter($author$project$Page$Home$SignUp)
+						]),
 					{
 						label: A2(
 							$mdgriffith$elm_ui$Element$Input$labelLeft,

@@ -10,6 +10,7 @@ import Element.Input as Input
 import FeatherIcons
 import Html exposing (Html)
 import Html.Attributes
+import Html.Events
 import Http
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Field as Field
@@ -144,7 +145,7 @@ viewSignUpPopUp sharedState model =
                 Input.labelLeft [] <| E.text "Username: "
             }
         , Input.currentPassword
-            []
+            [ onEnter SignUp ]
             { onChange =
                 ChangedUserPassword
             , text =
@@ -168,6 +169,23 @@ viewSignUpPopUp sharedState model =
                 E.text "Submit"
             }
         ]
+
+
+onEnter : msg -> E.Attribute msg
+onEnter msg =
+    E.htmlAttribute
+        (Html.Events.on "keyup"
+            (Decode.field "key" Decode.string
+                |> Decode.andThen
+                    (\key ->
+                        if key == "Enter" then
+                            Decode.succeed msg
+
+                        else
+                            Decode.fail "Not the enter key"
+                    )
+            )
+        )
 
 
 viewLogInErrorPopUp : String -> Model -> Element Msg
@@ -221,7 +239,7 @@ viewLogInPopUp sharedState model =
                 Input.labelLeft [] <| E.text "Username: "
             }
         , Input.currentPassword
-            []
+            [ onEnter LogIn ]
             { onChange =
                 ChangedUserPassword
             , text =
