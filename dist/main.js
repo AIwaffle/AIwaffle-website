@@ -17775,7 +17775,7 @@ var $author$project$Page$Home$viewCourseCard = F2(
 							[$mdgriffith$elm_ui$Element$Font$underline]),
 						{
 							label: $mdgriffith$elm_ui$Element$text(courseName),
-							url: ($elm$core$String$isEmpty(sharedState.username) || A2($elm$core$List$member, courseId, $author$project$Constants$markdownCourseIds)) ? ('/tutorial/' + courseId) : ('/jhub/user/' + (sharedState.username + ('/notebooks/Courses/' + (courseId + '.ipynb'))))
+							url: ((!sharedState.loggedIn) || A2($elm$core$List$member, courseId, $author$project$Constants$markdownCourseIds)) ? ('/tutorial/' + courseId) : ('/jhub/user/' + (sharedState.username + ('/notebooks/Courses/' + (courseId + '.ipynb'))))
 						})
 					])));
 	});

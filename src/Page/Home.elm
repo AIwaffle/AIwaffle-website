@@ -422,7 +422,7 @@ viewCourseCard sharedState ( courseId, courseName ) =
                 [ Font.underline ]
                 { url =
                     if
-                        String.isEmpty sharedState.username
+                        not sharedState.loggedIn
                             || List.member courseId markdownCourseIds
                     then
                         "/tutorial/" ++ courseId
