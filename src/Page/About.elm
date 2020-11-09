@@ -105,13 +105,13 @@ viewHeader =
         , E.padding 10
         , E.spacing 20
         ]
-        [ E.link [ E.alignLeft ]
+        [ E.link
+            [ E.alignLeft
+            , Font.underline
+            ]
             { url = "/"
             , label = E.text "Home"
             }
-        , E.el
-            [ E.alignRight ]
-            (E.text "Log In")
         ]
 
 

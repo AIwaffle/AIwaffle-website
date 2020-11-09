@@ -112,7 +112,7 @@ viewPopUp sharedState model =
 viewSignUpErrorPopUp : String -> Model -> Element Msg
 viewSignUpErrorPopUp reason model =
     viewBasePopUp
-        [ title "Sign Up Error"
+        [ title "Sign up Error"
         , E.paragraph
             []
             [ E.text reason
@@ -134,7 +134,7 @@ viewSignUpErrorPopUp reason model =
 viewSignUpPopUp : SharedState -> Model -> Element Msg
 viewSignUpPopUp sharedState model =
     viewBasePopUp
-        [ title "Sign Up"
+        [ title "Sign up"
         , Input.username
             []
             { onChange =
@@ -193,7 +193,7 @@ onEnter msg =
 viewLogInErrorPopUp : String -> Model -> Element Msg
 viewLogInErrorPopUp reason model =
     viewBasePopUp
-        [ title "Log In Error"
+        [ title "Login Error"
         , E.paragraph []
             [ E.text reason
             ]
@@ -208,7 +208,7 @@ viewLogInErrorPopUp reason model =
                 { onPress =
                     Just ShowSignUpPopUp
                 , label =
-                    E.text "Sign Up"
+                    E.text "Sign up"
                 }
             , Input.button
                 [ Background.color Style.color.dark
@@ -228,7 +228,7 @@ viewLogInErrorPopUp reason model =
 viewLogInPopUp : SharedState -> Model -> Element Msg
 viewLogInPopUp sharedState model =
     viewBasePopUp
-        [ title "Log In"
+        [ title "Login"
         , Input.username
             []
             { onChange =
@@ -318,7 +318,10 @@ viewHeader sharedState model =
         [ E.el
             [ E.alignLeft ]
             (E.text "AIwaffle")
-        , E.link [ E.alignLeft ]
+        , E.link
+            [ E.alignLeft
+            , Font.underline
+            ]
             { url = "/about"
             , label = E.text "About"
             }
@@ -329,7 +332,8 @@ viewHeader sharedState model =
                     , E.spacing 20
                     ]
                     [ E.text sharedState.username
-                    , Input.button []
+                    , Input.button
+                        [ Font.underline ]
                         { onPress =
                             Just <| LogOut
                         , label =
@@ -338,7 +342,8 @@ viewHeader sharedState model =
                     ]
 
             else
-                Input.button []
+                Input.button
+                    [ Font.underline ]
                     { onPress =
                         Just ShowLogInPopUp
                     , label =
@@ -350,11 +355,12 @@ viewHeader sharedState model =
           else
             Input.button
                 [ E.alignRight
+                , Font.underline
                 ]
                 { onPress =
                     Just ShowSignUpPopUp
                 , label =
-                    E.text "Sign Up"
+                    E.text "Sign up"
                 }
         ]
 
@@ -412,7 +418,8 @@ viewCourseCard sharedState ( courseId, courseName ) =
             , Font.bold
             , E.centerY
             ]
-            [ E.newTabLink []
+            [ E.newTabLink
+                [ Font.underline ]
                 { url =
                     if
                         String.isEmpty sharedState.username
@@ -511,7 +518,7 @@ loggedIn result model =
         Err err ->
             let
                 _ =
-                    Debug.log "log in error" err
+                    Debug.log "login error" err
             in
             ( { model
                 | popUp =

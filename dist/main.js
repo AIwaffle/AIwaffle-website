@@ -7942,7 +7942,7 @@ var $author$project$Page$Home$loggedIn = F2(
 				$author$project$SharedState$UpdateLoggedIn(true));
 		} else {
 			var err = result.a;
-			var _v1 = A2($elm$core$Debug$log, 'log in error', err);
+			var _v1 = A2($elm$core$Debug$log, 'login error', err);
 			return _Utils_Tuple3(
 				_Utils_update(
 					model,
@@ -17315,8 +17315,6 @@ var $mdgriffith$elm_ui$Element$text = function (content) {
 var $mdgriffith$elm_ui$Element$Font$typeface = $mdgriffith$elm_ui$Internal$Model$Typeface;
 var $mdgriffith$elm_ui$Internal$Model$Left = {$: 'Left'};
 var $mdgriffith$elm_ui$Element$alignLeft = $mdgriffith$elm_ui$Internal$Model$AlignX($mdgriffith$elm_ui$Internal$Model$Left);
-var $mdgriffith$elm_ui$Internal$Model$Right = {$: 'Right'};
-var $mdgriffith$elm_ui$Element$alignRight = $mdgriffith$elm_ui$Internal$Model$AlignX($mdgriffith$elm_ui$Internal$Model$Right);
 var $mdgriffith$elm_ui$Element$link = F2(
 	function (attrs, _v0) {
 		var url = _v0.url;
@@ -17360,16 +17358,11 @@ var $author$project$Page$About$viewHeader = A2(
 			A2(
 			$mdgriffith$elm_ui$Element$link,
 			_List_fromArray(
-				[$mdgriffith$elm_ui$Element$alignLeft]),
+				[$mdgriffith$elm_ui$Element$alignLeft, $mdgriffith$elm_ui$Element$Font$underline]),
 			{
 				label: $mdgriffith$elm_ui$Element$text('Home'),
 				url: '/'
-			}),
-			A2(
-			$mdgriffith$elm_ui$Element$el,
-			_List_fromArray(
-				[$mdgriffith$elm_ui$Element$alignRight]),
-			$mdgriffith$elm_ui$Element$text('Log In'))
+			})
 		]));
 var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
 var $elm$core$Basics$always = F2(
@@ -17778,7 +17771,8 @@ var $author$project$Page$Home$viewCourseCard = F2(
 					[
 						A2(
 						$mdgriffith$elm_ui$Element$newTabLink,
-						_List_Nil,
+						_List_fromArray(
+							[$mdgriffith$elm_ui$Element$Font$underline]),
 						{
 							label: $mdgriffith$elm_ui$Element$text(courseName),
 							url: ($elm$core$String$isEmpty(sharedState.username) || A2($elm$core$List$member, courseId, $author$project$Constants$markdownCourseIds)) ? ('/tutorial/' + courseId) : ('/jhub/user/' + (sharedState.username + ('/notebooks/Courses/' + (courseId + '.ipynb'))))
@@ -17855,6 +17849,8 @@ var $author$project$Page$Home$viewBody = F2(
 var $author$project$Page$Home$LogOut = {$: 'LogOut'};
 var $author$project$Page$Home$ShowLogInPopUp = {$: 'ShowLogInPopUp'};
 var $author$project$Page$Home$ShowSignUpPopUp = {$: 'ShowSignUpPopUp'};
+var $mdgriffith$elm_ui$Internal$Model$Right = {$: 'Right'};
+var $mdgriffith$elm_ui$Element$alignRight = $mdgriffith$elm_ui$Internal$Model$AlignX($mdgriffith$elm_ui$Internal$Model$Right);
 var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
 var $elm$html$Html$Attributes$boolProperty = F2(
 	function (key, bool) {
@@ -18011,7 +18007,7 @@ var $author$project$Page$Home$viewHeader = F2(
 					A2(
 					$mdgriffith$elm_ui$Element$link,
 					_List_fromArray(
-						[$mdgriffith$elm_ui$Element$alignLeft]),
+						[$mdgriffith$elm_ui$Element$alignLeft, $mdgriffith$elm_ui$Element$Font$underline]),
 					{
 						label: $mdgriffith$elm_ui$Element$text('About'),
 						url: '/about'
@@ -18032,14 +18028,16 @@ var $author$project$Page$Home$viewHeader = F2(
 								$mdgriffith$elm_ui$Element$text(sharedState.username),
 								A2(
 								$mdgriffith$elm_ui$Element$Input$button,
-								_List_Nil,
+								_List_fromArray(
+									[$mdgriffith$elm_ui$Element$Font$underline]),
 								{
 									label: $mdgriffith$elm_ui$Element$text('Logout'),
 									onPress: $elm$core$Maybe$Just($author$project$Page$Home$LogOut)
 								})
 							])) : A2(
 						$mdgriffith$elm_ui$Element$Input$button,
-						_List_Nil,
+						_List_fromArray(
+							[$mdgriffith$elm_ui$Element$Font$underline]),
 						{
 							label: $mdgriffith$elm_ui$Element$text('Login'),
 							onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowLogInPopUp)
@@ -18047,9 +18045,9 @@ var $author$project$Page$Home$viewHeader = F2(
 					sharedState.loggedIn ? $mdgriffith$elm_ui$Element$none : A2(
 					$mdgriffith$elm_ui$Element$Input$button,
 					_List_fromArray(
-						[$mdgriffith$elm_ui$Element$alignRight]),
+						[$mdgriffith$elm_ui$Element$alignRight, $mdgriffith$elm_ui$Element$Font$underline]),
 					{
-						label: $mdgriffith$elm_ui$Element$text('Sign Up'),
+						label: $mdgriffith$elm_ui$Element$text('Sign up'),
 						onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
 					})
 				]));
@@ -18236,7 +18234,7 @@ var $author$project$Page$Home$viewLogInErrorPopUp = F2(
 		return $author$project$Page$Home$viewBasePopUp(
 			_List_fromArray(
 				[
-					$author$project$Page$Home$title('Log In Error'),
+					$author$project$Page$Home$title('Login Error'),
 					A2(
 					$mdgriffith$elm_ui$Element$paragraph,
 					_List_Nil,
@@ -18262,7 +18260,7 @@ var $author$project$Page$Home$viewLogInErrorPopUp = F2(
 									$mdgriffith$elm_ui$Element$alignLeft
 								]),
 							{
-								label: $mdgriffith$elm_ui$Element$text('Sign Up'),
+								label: $mdgriffith$elm_ui$Element$text('Sign up'),
 								onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowSignUpPopUp)
 							}),
 							A2(
@@ -19158,7 +19156,7 @@ var $author$project$Page$Home$viewLogInPopUp = F2(
 		return $author$project$Page$Home$viewBasePopUp(
 			_List_fromArray(
 				[
-					$author$project$Page$Home$title('Log In'),
+					$author$project$Page$Home$title('Login'),
 					A2(
 					$mdgriffith$elm_ui$Element$Input$username,
 					_List_Nil,
@@ -19207,7 +19205,7 @@ var $author$project$Page$Home$viewSignUpErrorPopUp = F2(
 		return $author$project$Page$Home$viewBasePopUp(
 			_List_fromArray(
 				[
-					$author$project$Page$Home$title('Sign Up Error'),
+					$author$project$Page$Home$title('Sign up Error'),
 					A2(
 					$mdgriffith$elm_ui$Element$paragraph,
 					_List_Nil,
@@ -19236,7 +19234,7 @@ var $author$project$Page$Home$viewSignUpPopUp = F2(
 		return $author$project$Page$Home$viewBasePopUp(
 			_List_fromArray(
 				[
-					$author$project$Page$Home$title('Sign Up'),
+					$author$project$Page$Home$title('Sign up'),
 					A2(
 					$mdgriffith$elm_ui$Element$Input$username,
 					_List_Nil,
