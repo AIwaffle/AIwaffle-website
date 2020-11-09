@@ -108,25 +108,38 @@
           console.log("setting username");
           sessionStorage.setItem('aiwaffle-username', username);
         });
+        const md_content_ids =
+          [ "intro-to-machine-learning"
+          , "intro-to-deep-learning"
+          , "intro-to-logistic-regression"
+          ];
         app.ports.renderContent.subscribe(
-          function(contentName) {
-            fetch('/dist/contents/' + contentName + '.md')
-            .then(response => response.text())
-            .then((contentText) => {
-              const contentNode = document.getElementsByClassName("content")[0];
-              const tm = texmath.use(katex);
-              const md = window.markdownit({
-                highlight: function (str, lang) {
-                  if (lang && hljs.getLanguage(lang)) {
-                    try {
-                      return hljs.highlight(lang, str).value;
-                    } catch (__) {}
+          function(contentId) {
+            const contentNode = document.getElementsByClassName("content")[0];
+            if (!md_content_ids.includes(contentId)) {
+              contentNode.style.width = "100vw";
+              contentNode.style.height = "80vh";
+              contentNode.innerHTML = `\<iframe src="https://nbviewer.jupyter.org/github/AIwaffle/AIwaffle/blob/master/Courses/${contentId}.ipynb" style="width: 100%; height: 100%"\>\</iframe\>`;
+            } else {
+              contentNode.style.width = "100%";
+              contentNode.style.height = "100%";
+              fetch('/dist/contents/' + contentId + '.md')
+              .then(response => response.text())
+              .then((contentText) => {
+                const tm = texmath.use(katex);
+                const md = window.markdownit({
+                  highlight: function (str, lang) {
+                    if (lang && hljs.getLanguage(lang)) {
+                      try {
+                        return hljs.highlight(lang, str).value;
+                      } catch (__) {}
+                    }
+                    return '';
                   }
-                  return '';
-                }
-              }).use(tm,{delimiters:'dollars'});
-              contentNode.innerHTML = md.render(contentText);
-            })
+                }).use(tm,{delimiters:'dollars'});
+                contentNode.innerHTML = md.render(contentText);
+              })
+            }
           }
         );
         app.ports.resetContent.subscribe(
@@ -136,6 +149,8 @@
               while (contentNode.firstChild) {
                 contentNode.removeChild(contentNode.firstChild);
               }
+              contentNode.style.width = "100%";
+              contentNode.style.height = "100%";
             }
           }
         );

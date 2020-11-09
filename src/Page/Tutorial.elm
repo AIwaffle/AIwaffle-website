@@ -16,8 +16,10 @@ import Html.Attributes
 import Http
 import List
 import List.Extra
+import SharedState exposing (SharedState)
 import Style
 import VegaLite as Vega
+import Constants exposing (markdownCourseIds)
 
 
 port renderContent : String -> Cmd msg
@@ -33,6 +35,7 @@ type alias Model =
     { contentIndex : Int
     , demo : Demo.Model
     , showMenu : Bool
+    , sharedState : SharedState
     }
 
 
@@ -41,8 +44,8 @@ firstContentName =
     Maybe.withDefault "" <| List.head courseNames
 
 
-init : String -> ( Model, Cmd Msg )
-init courseId =
+init : ( SharedState, String ) -> ( Model, Cmd Msg )
+init ( sharedState, courseId ) =
     let
         ( demo, initDemoMsg ) =
             Demo.init
@@ -53,6 +56,8 @@ init courseId =
             demo
       , showMenu =
             True
+      , sharedState =
+            sharedState
       }
     , Cmd.batch
         [ renderContent courseId
@@ -231,6 +236,10 @@ viewTutorialDemo model =
 
 viewTutorialText : Model -> E.Element Msg
 viewTutorialText model =
+    let
+        contentId = 
+            getContentId model.contentIndex
+    in
     E.column
         [ E.width
             (E.fillPortion 5
@@ -241,22 +250,47 @@ viewTutorialText model =
         , E.htmlAttribute (Html.Attributes.style "margin" "auto")
         , E.htmlAttribute (Html.Attributes.style "margin-top" "20px")
         ]
-        [ E.html <|
-            Html.div
-                [ Html.Attributes.class
-                    (case nth model.contentIndex courseDemos of
-                        Nothing ->
-                            "content"
-
-                        Just hasDemo ->
-                            if hasDemo then
-                                "content content-scroll"
-
-                            else
+        [ E.el
+            [ E.inFront <|
+                if model.sharedState.loggedIn && not (List.member contentId markdownCourseIds) then
+                    E.newTabLink
+                        [ Font.color Style.color.yellow
+                        , E.htmlAttribute <| Html.Attributes.style "right" "-10vw"
+                        , E.below <|
+                            E.el
+                                [ E.centerX
+                                , Font.color Style.color.dark
+                                ]
+                                (E.text "Run")
+                        ]
+                        { url =
+                            "/jhub/user/" ++ model.sharedState.username ++ "/notebooks/Courses/" ++ contentId ++ ".ipynb"
+                        , label = E.html (FeatherIcons.playCircle
+                            |> FeatherIcons.withSize 80
+                            |> FeatherIcons.withStrokeWidth 4.2
+                            |> FeatherIcons.toHtml []
+                            )
+                        }
+                else
+                    E.none
+            ]
+          <|
+            E.html <|
+                Html.div
+                    [ Html.Attributes.class
+                        (case nth model.contentIndex courseDemos of
+                            Nothing ->
                                 "content"
-                    )
-                ]
-                []
+
+                            Just hasDemo ->
+                                if hasDemo then
+                                    "content content-scroll"
+
+                                else
+                                    "content"
+                        )
+                    ]
+                    []
         , case nth model.contentIndex discussionIds of
             Just id ->
                 E.html <|

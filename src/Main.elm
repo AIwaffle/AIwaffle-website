@@ -143,7 +143,7 @@ route url model =
                             name =
                                 Maybe.withDefault tutorialName <| Url.percentDecode tutorialName
                         in
-                        stepTutorial model (Tutorial.init name)
+                        stepTutorial model (Tutorial.init (model.sharedState, name))
                     )
                     (Parser.s "tutorial" </> tutorialName_)
                 , Parser.map

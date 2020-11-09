@@ -7309,14 +7309,17 @@ var $author$project$Page$Tutorial$scrollToTop = _Platform_outgoingPort(
 	function ($) {
 		return $elm$json$Json$Encode$null;
 	});
-var $author$project$Page$Tutorial$init = function (courseId) {
-	var _v0 = $author$project$Demo$LogisticRegression$init;
-	var demo = _v0.a;
-	var initDemoMsg = _v0.b;
+var $author$project$Page$Tutorial$init = function (_v0) {
+	var sharedState = _v0.a;
+	var courseId = _v0.b;
+	var _v1 = $author$project$Demo$LogisticRegression$init;
+	var demo = _v1.a;
+	var initDemoMsg = _v1.b;
 	return _Utils_Tuple2(
 		{
 			contentIndex: $author$project$Page$Tutorial$getContentIndex(courseId),
 			demo: demo,
+			sharedState: sharedState,
 			showMenu: true
 		},
 		$elm$core$Platform$Cmd$batch(
@@ -7668,7 +7671,8 @@ var $author$project$Main$route = F2(
 						return A2(
 							$author$project$Main$stepTutorial,
 							model,
-							$author$project$Page$Tutorial$init(name));
+							$author$project$Page$Tutorial$init(
+								_Utils_Tuple2(model.sharedState, name)));
 					},
 					A2(
 						$elm$url$Url$Parser$slash,
@@ -17729,17 +17733,6 @@ var $mdgriffith$elm_ui$Element$Background$image = function (src) {
 	return $mdgriffith$elm_ui$Internal$Model$Attr(
 		A2($elm$virtual_dom$VirtualDom$style, 'background', 'url(\"' + (src + '\") center / cover no-repeat')));
 };
-var $author$project$Constants$markdownCourseIds = _List_fromArray(
-	['intro-to-machine-learning', 'intro-to-deep-learning', 'intro-to-logistic-regression']);
-var $elm$core$List$member = F2(
-	function (x, xs) {
-		return A2(
-			$elm$core$List$any,
-			function (a) {
-				return _Utils_eq(a, x);
-			},
-			xs);
-	});
 var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
 	return {$: 'Px', a: a};
 };
@@ -17775,7 +17768,7 @@ var $author$project$Page$Home$viewCourseCard = F2(
 							[$mdgriffith$elm_ui$Element$Font$underline]),
 						{
 							label: $mdgriffith$elm_ui$Element$text(courseName),
-							url: ((!sharedState.loggedIn) || A2($elm$core$List$member, courseId, $author$project$Constants$markdownCourseIds)) ? ('/tutorial/' + courseId) : ('/jhub/user/' + (sharedState.username + ('/notebooks/Courses/' + (courseId + '.ipynb'))))
+							url: '/tutorial/' + courseId
 						})
 					])));
 	});
@@ -19762,10 +19755,25 @@ var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
 					}),
 				A3($elm$core$List$map2, $elm$core$Tuple$pair, $author$project$Constants$courseIds, $author$project$Constants$courseNames)))) : $mdgriffith$elm_ui$Element$none;
 };
+var $mdgriffith$elm_ui$Internal$Model$Below = {$: 'Below'};
+var $mdgriffith$elm_ui$Element$below = function (element) {
+	return A2($mdgriffith$elm_ui$Element$createNearby, $mdgriffith$elm_ui$Internal$Model$Below, element);
+};
 var $author$project$Constants$discussionIds = _List_fromArray(
 	['3-intro-to-machine-learning', '5-intro-to-deep-learning', '6-intro-to-logistic-regression', '7-study-path-and-where-to-find-resources', '8-pytorch-tensor-manipulation', '9-2d-point-classification-logistic-regression', '10-mnist-shallow-deep-and-cnn']);
 var $author$project$Constants$forumRoot = 'https://aiwaffle.flarum.cloud/embed/';
 var $elm$html$Html$iframe = _VirtualDom_node('iframe');
+var $author$project$Constants$markdownCourseIds = _List_fromArray(
+	['intro-to-machine-learning', 'intro-to-deep-learning', 'intro-to-logistic-regression']);
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
 var $mdgriffith$elm_ui$Internal$Model$Min = F2(
 	function (a, b) {
 		return {$: 'Min', a: a, b: b};
@@ -19774,7 +19782,60 @@ var $mdgriffith$elm_ui$Element$minimum = F2(
 	function (i, l) {
 		return A2($mdgriffith$elm_ui$Internal$Model$Min, i, l);
 	});
+var $elm$svg$Svg$circle = $elm$svg$Svg$trustedNode('circle');
+var $elm$svg$Svg$Attributes$cx = _VirtualDom_attribute('cx');
+var $elm$svg$Svg$Attributes$cy = _VirtualDom_attribute('cy');
+var $elm$svg$Svg$Attributes$points = _VirtualDom_attribute('points');
+var $elm$svg$Svg$polygon = $elm$svg$Svg$trustedNode('polygon');
+var $elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
+var $feathericons$elm_feather$FeatherIcons$playCircle = A2(
+	$feathericons$elm_feather$FeatherIcons$makeBuilder,
+	'play-circle',
+	_List_fromArray(
+		[
+			A2(
+			$elm$svg$Svg$circle,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$cx('12'),
+					$elm$svg$Svg$Attributes$cy('12'),
+					$elm$svg$Svg$Attributes$r('10')
+				]),
+			_List_Nil),
+			A2(
+			$elm$svg$Svg$polygon,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$points('10 8 16 12 10 16 10 8')
+				]),
+			_List_Nil)
+		]));
+var $feathericons$elm_feather$FeatherIcons$withSize = F2(
+	function (size, _v0) {
+		var attrs = _v0.a.attrs;
+		var src = _v0.a.src;
+		return $feathericons$elm_feather$FeatherIcons$Icon(
+			{
+				attrs: _Utils_update(
+					attrs,
+					{size: size}),
+				src: src
+			});
+	});
+var $feathericons$elm_feather$FeatherIcons$withStrokeWidth = F2(
+	function (strokeWidth, _v0) {
+		var attrs = _v0.a.attrs;
+		var src = _v0.a.src;
+		return $feathericons$elm_feather$FeatherIcons$Icon(
+			{
+				attrs: _Utils_update(
+					attrs,
+					{strokeWidth: strokeWidth}),
+				src: src
+			});
+	});
 var $author$project$Page$Tutorial$viewTutorialText = function (model) {
+	var contentId = $author$project$Page$Tutorial$getContentId(model.contentIndex);
 	return A2(
 		$mdgriffith$elm_ui$Element$column,
 		_List_fromArray(
@@ -19794,23 +19855,57 @@ var $author$project$Page$Tutorial$viewTutorialText = function (model) {
 			]),
 		_List_fromArray(
 			[
-				$mdgriffith$elm_ui$Element$html(
 				A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class(
-							function () {
-								var _v0 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Constants$courseDemos);
-								if (_v0.$ === 'Nothing') {
-									return 'content';
-								} else {
-									var hasDemo = _v0.a;
-									return hasDemo ? 'content content-scroll' : 'content';
-								}
-							}())
-						]),
-					_List_Nil)),
+				$mdgriffith$elm_ui$Element$el,
+				_List_fromArray(
+					[
+						$mdgriffith$elm_ui$Element$inFront(
+						(model.sharedState.loggedIn && (!A2($elm$core$List$member, contentId, $author$project$Constants$markdownCourseIds))) ? A2(
+							$mdgriffith$elm_ui$Element$newTabLink,
+							_List_fromArray(
+								[
+									$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
+									$mdgriffith$elm_ui$Element$htmlAttribute(
+									A2($elm$html$Html$Attributes$style, 'right', '-10vw')),
+									$mdgriffith$elm_ui$Element$below(
+									A2(
+										$mdgriffith$elm_ui$Element$el,
+										_List_fromArray(
+											[
+												$mdgriffith$elm_ui$Element$centerX,
+												$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.dark)
+											]),
+										$mdgriffith$elm_ui$Element$text('Run')))
+								]),
+							{
+								label: $mdgriffith$elm_ui$Element$html(
+									A2(
+										$feathericons$elm_feather$FeatherIcons$toHtml,
+										_List_Nil,
+										A2(
+											$feathericons$elm_feather$FeatherIcons$withStrokeWidth,
+											4.2,
+											A2($feathericons$elm_feather$FeatherIcons$withSize, 80, $feathericons$elm_feather$FeatherIcons$playCircle)))),
+								url: '/jhub/user/' + (model.sharedState.username + ('/notebooks/Courses/' + (contentId + '.ipynb')))
+							}) : $mdgriffith$elm_ui$Element$none)
+					]),
+				$mdgriffith$elm_ui$Element$html(
+					A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class(
+								function () {
+									var _v0 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Constants$courseDemos);
+									if (_v0.$ === 'Nothing') {
+										return 'content';
+									} else {
+										var hasDemo = _v0.a;
+										return hasDemo ? 'content content-scroll' : 'content';
+									}
+								}())
+							]),
+						_List_Nil))),
 				function () {
 				var _v1 = A2($author$project$Page$Tutorial$nth, model.contentIndex, $author$project$Constants$discussionIds);
 				if (_v1.$ === 'Just') {

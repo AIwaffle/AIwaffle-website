@@ -421,14 +421,8 @@ viewCourseCard sharedState ( courseId, courseName ) =
             [ E.newTabLink
                 [ Font.underline ]
                 { url =
-                    if
-                        not sharedState.loggedIn
-                            || List.member courseId markdownCourseIds
-                    then
-                        "/tutorial/" ++ courseId
+                    "/tutorial/" ++ courseId
 
-                    else
-                        "/jhub/user/" ++ sharedState.username ++ "/notebooks/Courses/" ++ courseId ++ ".ipynb"
                 , label = E.text courseName
                 }
             ]
