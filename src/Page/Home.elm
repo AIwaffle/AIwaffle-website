@@ -1,7 +1,7 @@
 port module Page.Home exposing (Model, Msg, init, update, view)
 
 import Browser
-import Constants exposing (courseIds, courseNames, serverRoot)
+import Constants exposing (courseIds, markdownCourseIds, courseNames, serverRoot)
 import Element as E exposing (Element)
 import Element.Background as Background
 import Element.Border as Border
@@ -400,7 +400,13 @@ viewCourseCard sharedState ( courseId, courseName ) =
             , E.centerY
             ]
             [ E.newTabLink []
-                { url = "/jhub/user/" ++ sharedState.username ++ "/notebooks/Courses/" ++ courseId ++ ".ipynb"
+                { url =
+                    if String.isEmpty sharedState.username
+                    || List.member courseId markdownCourseIds
+                    then
+                        "/tutorial/" ++ courseId
+                    else
+                        "/jhub/user/" ++ sharedState.username ++ "/notebooks/Courses/" ++ courseId ++ ".ipynb"
                 , label = E.text courseName
                 }
             ]

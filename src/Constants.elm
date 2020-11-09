@@ -13,6 +13,14 @@ courseIds =
     ]
 
 
+markdownCourseIds : List String
+markdownCourseIds =
+    [ "intro-to-machine-learning"
+    , "intro-to-deep-learning"
+    , "intro-to-logistic-regression"
+    ]
+
+
 courseNames : List String
 courseNames =
     [ "Intro To Machine Learning"

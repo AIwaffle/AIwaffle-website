@@ -17709,6 +17709,17 @@ var $mdgriffith$elm_ui$Element$Background$image = function (src) {
 	return $mdgriffith$elm_ui$Internal$Model$Attr(
 		A2($elm$virtual_dom$VirtualDom$style, 'background', 'url(\"' + (src + '\") center / cover no-repeat')));
 };
+var $author$project$Constants$markdownCourseIds = _List_fromArray(
+	['intro-to-machine-learning', 'intro-to-deep-learning', 'intro-to-logistic-regression']);
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
 var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
 	return {$: 'Px', a: a};
 };
@@ -17743,7 +17754,7 @@ var $author$project$Page$Home$viewCourseCard = F2(
 						_List_Nil,
 						{
 							label: $mdgriffith$elm_ui$Element$text(courseName),
-							url: '/jhub/user/' + (sharedState.username + ('/notebooks/Courses/' + (courseId + '.ipynb')))
+							url: ($elm$core$String$isEmpty(sharedState.username) || A2($elm$core$List$member, courseId, $author$project$Constants$markdownCourseIds)) ? ('/tutorial/' + courseId) : ('/jhub/user/' + (sharedState.username + ('/notebooks/Courses/' + (courseId + '.ipynb'))))
 						})
 					])));
 	});
