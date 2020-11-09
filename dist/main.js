@@ -7904,6 +7904,22 @@ var $author$project$Page$Home$logIn = F2(
 				}),
 			$author$project$SharedState$NoUpdate);
 	});
+var $author$project$Page$Home$LoggedOut = function (a) {
+	return {$: 'LoggedOut', a: a};
+};
+var $elm$http$Http$emptyBody = _Http_emptyBody;
+var $author$project$Page$Home$logOut = F2(
+	function (sharedState, model) {
+		return _Utils_Tuple3(
+			model,
+			$elm$http$Http$post(
+				{
+					body: $elm$http$Http$emptyBody,
+					expect: $elm$http$Http$expectWhatever($author$project$Page$Home$LoggedOut),
+					url: $author$project$Constants$serverRoot + 'auth/logout'
+				}),
+			$author$project$SharedState$NoUpdate);
+	});
 var $author$project$Page$Home$LogInErrorPopUp = function (a) {
 	return {$: 'LogInErrorPopUp', a: a};
 };
@@ -7936,6 +7952,13 @@ var $author$project$Page$Home$loggedIn = F2(
 				$elm$core$Platform$Cmd$none,
 				$author$project$SharedState$UpdateLoggedIn(false));
 		}
+	});
+var $author$project$Page$Home$loggedOut = F2(
+	function (result, model) {
+		return _Utils_Tuple3(
+			model,
+			$elm$core$Platform$Cmd$none,
+			$author$project$SharedState$UpdateLoggedIn(false));
 	});
 var $author$project$Page$Home$LogInPopUp = {$: 'LogInPopUp'};
 var $author$project$Page$Home$showLogInPopUp = function (model) {
@@ -8021,6 +8044,11 @@ var $author$project$Page$Home$update = F3(
 			case 'LoggedIn':
 				var result = msg.a;
 				return A2($author$project$Page$Home$loggedIn, result, model);
+			case 'LogOut':
+				return A2($author$project$Page$Home$logOut, sharedState, model);
+			case 'LoggedOut':
+				var result = msg.a;
+				return A2($author$project$Page$Home$loggedOut, result, model);
 			case 'SignUp':
 				return A2($author$project$Page$Home$signUp, sharedState, model);
 			case 'SignedUp':
@@ -11105,7 +11133,6 @@ var $author$project$Demo$LogisticRegression$getEpoch = F2(
 var $author$project$Demo$LogisticRegression$GetDemoId = function (a) {
 	return {$: 'GetDemoId', a: a};
 };
-var $elm$http$Http$emptyBody = _Http_emptyBody;
 var $elm$http$Http$expectString = function (toMsg) {
 	return A2(
 		$elm$http$Http$expectStringResponse,
@@ -17825,6 +17852,7 @@ var $author$project$Page$Home$viewBody = F2(
 						model.courses))
 				]));
 	});
+var $author$project$Page$Home$LogOut = {$: 'LogOut'};
 var $author$project$Page$Home$ShowLogInPopUp = {$: 'ShowLogInPopUp'};
 var $author$project$Page$Home$ShowSignUpPopUp = {$: 'ShowSignUpPopUp'};
 var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
@@ -17992,11 +18020,28 @@ var $author$project$Page$Home$viewHeader = F2(
 					$mdgriffith$elm_ui$Element$el,
 					_List_fromArray(
 						[$mdgriffith$elm_ui$Element$alignRight]),
-					sharedState.loggedIn ? $mdgriffith$elm_ui$Element$text(sharedState.username) : A2(
+					sharedState.loggedIn ? A2(
+						$mdgriffith$elm_ui$Element$row,
+						_List_fromArray(
+							[
+								$mdgriffith$elm_ui$Element$padding(10),
+								$mdgriffith$elm_ui$Element$spacing(20)
+							]),
+						_List_fromArray(
+							[
+								$mdgriffith$elm_ui$Element$text(sharedState.username),
+								A2(
+								$mdgriffith$elm_ui$Element$Input$button,
+								_List_Nil,
+								{
+									label: $mdgriffith$elm_ui$Element$text('Logout'),
+									onPress: $elm$core$Maybe$Just($author$project$Page$Home$LogOut)
+								})
+							])) : A2(
 						$mdgriffith$elm_ui$Element$Input$button,
 						_List_Nil,
 						{
-							label: $mdgriffith$elm_ui$Element$text('Log In'),
+							label: $mdgriffith$elm_ui$Element$text('Login'),
 							onPress: $elm$core$Maybe$Just($author$project$Page$Home$ShowLogInPopUp)
 						})),
 					sharedState.loggedIn ? $mdgriffith$elm_ui$Element$none : A2(

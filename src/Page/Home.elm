@@ -1,7 +1,7 @@
 port module Page.Home exposing (Model, Msg, init, update, view)
 
 import Browser
-import Constants exposing (courseIds, markdownCourseIds, courseNames, serverRoot)
+import Constants exposing (courseIds, courseNames, markdownCourseIds, serverRoot)
 import Element as E exposing (Element)
 import Element.Background as Background
 import Element.Border as Border
@@ -41,6 +41,8 @@ type Msg
     | ShowSignUpPopUp
     | LogIn
     | LoggedIn (Result Http.Error AuthResponse)
+    | LogOut
+    | LoggedOut (Result Http.Error ())
     | SignUp
     | SignedUp (Result Http.Error AuthResponse)
     | ChangedUserName String
@@ -322,14 +324,25 @@ viewHeader sharedState model =
             }
         , E.el [ E.alignRight ] <|
             if sharedState.loggedIn then
-                E.text sharedState.username
+                E.row
+                    [ E.padding 10
+                    , E.spacing 20
+                    ]
+                    [ E.text sharedState.username
+                    , Input.button []
+                        { onPress =
+                            Just <| LogOut
+                        , label =
+                            E.text "Logout"
+                        }
+                    ]
 
             else
                 Input.button []
                     { onPress =
                         Just ShowLogInPopUp
                     , label =
-                        E.text "Log In"
+                        E.text "Login"
                     }
         , if sharedState.loggedIn then
             E.none
@@ -401,10 +414,12 @@ viewCourseCard sharedState ( courseId, courseName ) =
             ]
             [ E.newTabLink []
                 { url =
-                    if String.isEmpty sharedState.username
-                    || List.member courseId markdownCourseIds
+                    if
+                        String.isEmpty sharedState.username
+                            || List.member courseId markdownCourseIds
                     then
                         "/tutorial/" ++ courseId
+
                     else
                         "/jhub/user/" ++ sharedState.username ++ "/notebooks/Courses/" ++ courseId ++ ".ipynb"
                 , label = E.text courseName
@@ -427,6 +442,12 @@ update sharedState msg model =
 
         LoggedIn result ->
             loggedIn result model
+        
+        LogOut ->
+            logOut sharedState model
+
+        LoggedOut result ->
+            loggedOut result model
 
         SignUp ->
             signUp sharedState model
@@ -499,6 +520,14 @@ loggedIn result model =
             , Cmd.none
             , UpdateLoggedIn False
             )
+
+
+loggedOut : Result Http.Error () -> Model -> ( Model, Cmd Msg, UpdateSharedState )
+loggedOut result model =
+    ( model
+    , Cmd.none
+    , UpdateLoggedIn False
+    )
 
 
 signedUp : SharedState -> Result Http.Error AuthResponse -> Model -> ( Model, Cmd Msg, UpdateSharedState )
@@ -589,6 +618,19 @@ logIn sharedState model =
                     , ( "session", Encode.int 1 ) -- store the login in session
                     ]
         , expect = Http.expectJson LoggedIn authResponseDecoder
+        }
+    , NoUpdate
+    )
+
+
+logOut : SharedState -> Model -> ( Model, Cmd Msg, UpdateSharedState )
+logOut sharedState model =
+    ( model
+    , Http.post
+        { url = serverRoot ++ "auth/logout"
+        , body =
+            Http.emptyBody
+        , expect = Http.expectWhatever LoggedOut
         }
     , NoUpdate
     )
