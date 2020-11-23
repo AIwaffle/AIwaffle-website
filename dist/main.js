@@ -20267,7 +20267,11 @@ var $author$project$Page$Tutorial$viewTutorialText = function (model) {
 var $author$project$Page$Tutorial$view = function (model) {
 	return A2(
 		$mdgriffith$elm_ui$Element$layout,
-		_List_Nil,
+		_List_fromArray(
+			[
+				$mdgriffith$elm_ui$Element$inFront(
+				$author$project$Page$Tutorial$viewTutorialMenu(model))
+			]),
 		A2(
 			$mdgriffith$elm_ui$Element$wrappedRow,
 			_List_fromArray(

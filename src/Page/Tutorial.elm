@@ -153,7 +153,7 @@ getContentIndex courseId =
 view : Model -> Html Msg
 view model =
     E.layout
-        []
+        [ E.inFront <| viewTutorialMenu model ]
     <|
         E.wrappedRow
             [ E.width E.fill
