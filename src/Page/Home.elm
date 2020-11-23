@@ -15,7 +15,7 @@ import Http
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Field as Field
 import Json.Encode as Encode
-import SharedState exposing (SharedState, UpdateSharedState(..))
+import SharedState exposing (SharedState, UpdateSharedState)
 import Style
 
 
@@ -63,7 +63,7 @@ init _ =
             NoPopUp
       }
     , resetContent ()
-    , NoUpdate
+    , SharedState.NoUpdate
     )
 
 
@@ -418,11 +418,9 @@ viewCourseCard sharedState ( courseId, courseName ) =
             , Font.bold
             , E.centerY
             ]
-            [ E.newTabLink
+            [ E.link
                 [ Font.underline ]
-                { url =
-                    "/tutorial/" ++ courseId
-
+                { url = "/tutorial/" ++ courseId
                 , label = E.text courseName
                 }
             ]
@@ -473,7 +471,7 @@ closePopUp model =
             NoPopUp
       }
     , Cmd.none
-    , NoUpdate
+    , SharedState.NoUpdate
     )
 
 
@@ -481,7 +479,7 @@ changedUserPassword : String -> Model -> ( Model, Cmd Msg, UpdateSharedState )
 changedUserPassword newPassword model =
     ( model
     , Cmd.none
-    , UpdatePassword newPassword
+    , SharedState.UpdatePassword newPassword
     )
 
 
@@ -489,7 +487,7 @@ changedUserName : String -> Model -> ( Model, Cmd Msg, UpdateSharedState )
 changedUserName newName model =
     ( model
     , Cmd.none
-    , UpdateUsername newName
+    , SharedState.UpdateUsername newName
     )
 
 
@@ -506,7 +504,7 @@ loggedIn result model =
                         LogInErrorPopUp reason
               }
             , Cmd.none
-            , UpdateLoggedIn True
+            , SharedState.UpdateLoggedIn True
             )
 
         Err err ->
@@ -519,7 +517,7 @@ loggedIn result model =
                     LogInErrorPopUp "AIwaffle server or your network connection has some problem. Please try logging in again."
               }
             , Cmd.none
-            , UpdateLoggedIn False
+            , SharedState.UpdateLoggedIn False
             )
 
 
@@ -527,7 +525,7 @@ loggedOut : Result Http.Error () -> Model -> ( Model, Cmd Msg, UpdateSharedState
 loggedOut result model =
     ( model
     , Cmd.none
-    , UpdateLoggedIn False
+    , SharedState.LogOut
     )
 
 
@@ -544,7 +542,7 @@ signedUp sharedState result model =
                         SignUpErrorPopUp reason
                   }
                 , Cmd.none
-                , NoUpdate
+                , SharedState.NoUpdate
                 )
 
         Err err ->
@@ -557,7 +555,7 @@ signedUp sharedState result model =
                     SignUpErrorPopUp "AIwaffle server or your network connection has some problem. Please try signing up again."
               }
             , Cmd.none
-            , NoUpdate
+            , SharedState.NoUpdate
             )
 
 
@@ -568,7 +566,7 @@ showSignUpPopUp model =
             SignUpPopUp
       }
     , Cmd.none
-    , NoUpdate
+    , SharedState.NoUpdate
     )
 
 
@@ -579,7 +577,7 @@ showLogInPopUp model =
             LogInPopUp
       }
     , Cmd.none
-    , NoUpdate
+    , SharedState.NoUpdate
     )
 
 
@@ -602,7 +600,7 @@ signUp sharedState model =
                     ]
         , expect = Http.expectJson SignedUp authResponseDecoder
         }
-    , NoUpdate
+    , SharedState.NoUpdate
     )
 
 
@@ -620,7 +618,7 @@ logIn sharedState model =
                     ]
         , expect = Http.expectJson LoggedIn authResponseDecoder
         }
-    , NoUpdate
+    , SharedState.NoUpdate
     )
 
 
@@ -633,7 +631,7 @@ logOut sharedState model =
             Http.emptyBody
         , expect = Http.expectWhatever LoggedOut
         }
-    , NoUpdate
+    , SharedState.NoUpdate
     )
 
 

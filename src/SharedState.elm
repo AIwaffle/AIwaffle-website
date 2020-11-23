@@ -12,6 +12,7 @@ type UpdateSharedState
     = UpdateUsername String
     | UpdatePassword String
     | UpdateLoggedIn Bool
+    | LogOut
     | NoUpdate
 
 
@@ -34,6 +35,16 @@ update sharedState updateSharedState =
             { sharedState
                 | loggedIn =
                     newLoggedIn
+            }
+
+        LogOut ->
+            { sharedState
+                | loggedIn =
+                    False
+                , password =
+                    ""
+                , username =
+                    ""
             }
 
         NoUpdate ->

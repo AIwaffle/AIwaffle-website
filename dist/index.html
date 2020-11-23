@@ -88,7 +88,11 @@
         });
         app.ports.setUsername.subscribe(function(username) {
           console.log("setting username");
-          sessionStorage.setItem('aiwaffle-username', username);
+          if (username === "") {
+            sessionStorage.removeItem('aiwaffle-username');
+          } else {
+            sessionStorage.setItem('aiwaffle-username', username);
+          }
         });
         const md_content_ids =
           [ "intro-to-machine-learning"

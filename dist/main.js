@@ -5366,6 +5366,7 @@ var $author$project$Page$Home$init = function (_v0) {
 		$author$project$Page$Home$resetContent(_Utils_Tuple0),
 		$author$project$SharedState$NoUpdate);
 };
+var $elm$core$Debug$log = _Debug_log;
 var $author$project$Main$NotFound = {$: 'NotFound'};
 var $author$project$Page$About$renderGithubCards = _Platform_outgoingPort(
 	'renderGithubCards',
@@ -7586,6 +7587,10 @@ var $author$project$SharedState$update = F2(
 				return _Utils_update(
 					sharedState,
 					{loggedIn: newLoggedIn});
+			case 'LogOut':
+				return _Utils_update(
+					sharedState,
+					{loggedIn: false, password: '', username: ''});
 			default:
 				return sharedState;
 		}
@@ -7727,6 +7732,7 @@ var $author$project$Main$init = F3(
 				return {loggedIn: false, password: '', username: ''};
 			}
 		}();
+		var _v0 = A2($elm$core$Debug$log, 'AL -> initialSharedState', initialSharedState);
 		return A2(
 			$author$project$Main$route,
 			url,
@@ -8271,7 +8277,6 @@ var $author$project$Page$Home$LogInErrorPopUp = function (a) {
 var $author$project$SharedState$UpdateLoggedIn = function (a) {
 	return {$: 'UpdateLoggedIn', a: a};
 };
-var $elm$core$Debug$log = _Debug_log;
 var $author$project$Page$Home$loggedIn = F2(
 	function (result, model) {
 		if (result.$ === 'Ok') {
@@ -8298,12 +8303,10 @@ var $author$project$Page$Home$loggedIn = F2(
 				$author$project$SharedState$UpdateLoggedIn(false));
 		}
 	});
+var $author$project$SharedState$LogOut = {$: 'LogOut'};
 var $author$project$Page$Home$loggedOut = F2(
 	function (result, model) {
-		return _Utils_Tuple3(
-			model,
-			$elm$core$Platform$Cmd$none,
-			$author$project$SharedState$UpdateLoggedIn(false));
+		return _Utils_Tuple3(model, $elm$core$Platform$Cmd$none, $author$project$SharedState$LogOut);
 	});
 var $author$project$Page$Home$LogInPopUp = {$: 'LogInPopUp'};
 var $author$project$Page$Home$showLogInPopUp = function (model) {
@@ -11606,7 +11609,11 @@ var $author$project$Main$update = F2(
 				var urlRequest = message.a;
 				if (urlRequest.$ === 'Internal') {
 					var url = urlRequest.a;
-					return _Utils_Tuple2(
+					var urlString = $elm$url$Url$toString(url);
+					var _v2 = A2($elm$core$Debug$log, 'AL -> urlString', urlString);
+					return A2($elm$core$String$contains, '/tutorial/', urlString) ? _Utils_Tuple2(
+						model,
+						$elm$browser$Browser$Navigation$load(urlString)) : _Utils_Tuple2(
 						model,
 						A2(
 							$elm$browser$Browser$Navigation$pushUrl,
@@ -11623,9 +11630,9 @@ var $author$project$Main$update = F2(
 				return A2($author$project$Main$route, url, model);
 			case 'HomeMsg':
 				var msg = message.a;
-				var _v2 = model.page;
-				if (_v2.$ === 'Home') {
-					var home = _v2.a;
+				var _v3 = model.page;
+				if (_v3.$ === 'Home') {
+					var home = _v3.a;
 					return A2(
 						$author$project$Main$stepHome,
 						model,
@@ -11635,9 +11642,9 @@ var $author$project$Main$update = F2(
 				}
 			case 'TutorialMsg':
 				var msg = message.a;
-				var _v3 = model.page;
-				if (_v3.$ === 'Tutorial') {
-					var tutorial = _v3.a;
+				var _v4 = model.page;
+				if (_v4.$ === 'Tutorial') {
+					var tutorial = _v4.a;
 					return A2(
 						$author$project$Main$stepTutorial,
 						model,
@@ -18112,7 +18119,7 @@ var $author$project$Page$Home$viewCourseCard = F2(
 				_List_fromArray(
 					[
 						A2(
-						$mdgriffith$elm_ui$Element$newTabLink,
+						$mdgriffith$elm_ui$Element$link,
 						_List_fromArray(
 							[$mdgriffith$elm_ui$Element$Font$underline]),
 						{

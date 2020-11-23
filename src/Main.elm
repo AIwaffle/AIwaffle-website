@@ -19,7 +19,6 @@ port getUsername : (() -> msg) -> Sub msg
 port setUsername : String -> Cmd msg
 
 
-
 -- MAIN
 
 
@@ -56,6 +55,7 @@ type Page
 init : Maybe String -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init maybeUsername url key =
     let
+        _ = Debug.log "AL -> initialSharedState" <| initialSharedState
         initialSharedState =
             case maybeUsername of
                 Just username ->
@@ -97,7 +97,15 @@ update message model =
         LinkClicked urlRequest ->
             case urlRequest of
                 Browser.Internal url ->
-                    ( model, Nav.pushUrl model.key (Url.toString url) )
+                    let
+                        urlString =
+                            Url.toString url
+                        _ = Debug.log "AL -> urlString" <| urlString
+                    in
+                    if String.contains "/tutorial/" urlString then
+                        ( model, Nav.load urlString )
+                    else
+                        ( model, Nav.pushUrl model.key (Url.toString url) )
 
                 Browser.External href ->
                     ( model, Nav.load href )
