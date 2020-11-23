@@ -1,4 +1,4 @@
-port module Page.About exposing (Model, Msg, init, main, view)
+port module Page.About exposing (Model, Msg, init, main, view, subscriptions)
 
 import Browser
 import Element as E

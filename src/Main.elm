@@ -14,7 +14,10 @@ import Url.Parser as Parser exposing ((</>), Parser)
 
 
 port getUsername : (() -> msg) -> Sub msg
+
+
 port setUsername : String -> Cmd msg
+
 
 
 -- MAIN
@@ -60,7 +63,7 @@ init maybeUsername url key =
                     , password = ""
                     , loggedIn = True
                     }
-                
+
                 Nothing ->
                     { username = ""
                     , password = ""
@@ -128,7 +131,6 @@ update message model =
             ( model, setUsername model.sharedState.username )
 
 
-
 route : Url.Url -> Model -> ( Model, Cmd Msg )
 route url model =
     let
@@ -143,7 +145,7 @@ route url model =
                             name =
                                 Maybe.withDefault tutorialName <| Url.percentDecode tutorialName
                         in
-                        stepTutorial model (Tutorial.init (model.sharedState, name))
+                        stepTutorial model (Tutorial.init ( model.sharedState, name ))
                     )
                     (Parser.s "tutorial" </> tutorialName_)
                 , Parser.map
@@ -201,8 +203,22 @@ stepAbout model ( about, cmds ) =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions _ =
-    getUsername (\_ -> SaveUsername)
+subscriptions model =
+    Sub.batch
+        [ getUsername (\_ -> SaveUsername)
+        , case model.page of
+            Tutorial page ->
+                Sub.map TutorialMsg <| Tutorial.subscriptions page
+
+            Home page ->
+                Sub.map HomeMsg <| Home.subscriptions page
+
+            About page ->
+                Sub.map HomeMsg <| About.subscriptions page
+
+            _ ->
+                Sub.none
+        ]
 
 
 

@@ -5380,6 +5380,9 @@ var $author$project$Page$About$init = function (_v0) {
 var $author$project$Page$Tutorial$DemoMsg = function (a) {
 	return {$: 'DemoMsg', a: a};
 };
+var $author$project$Page$Tutorial$GetWindowWidth = function (a) {
+	return {$: 'GetWindowWidth', a: a};
+};
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm_community$list_extra$List$Extra$findIndexHelp = F3(
 	function (index, predicate, list) {
@@ -5424,6 +5427,7 @@ var $author$project$Page$Tutorial$getContentIndex = function (courseId) {
 		0,
 		A2($elm_community$list_extra$List$Extra$elemIndex, courseId, $author$project$Constants$courseIds));
 };
+var $elm$browser$Browser$Dom$getViewport = _Browser_withWindow(_Browser_getViewport);
 var $author$project$Demo$LogisticRegression$emptyLogisticRegressionModel = {loss: _List_Nil, w: _List_Nil, x: _List_Nil, y: _List_Nil};
 var $gicentre$elm_vegalite$VegaLite$Circle = {$: 'Circle'};
 var $gicentre$elm_vegalite$VegaLite$VLMark = {$: 'VLMark'};
@@ -7320,14 +7324,22 @@ var $author$project$Page$Tutorial$init = function (_v0) {
 			contentIndex: $author$project$Page$Tutorial$getContentIndex(courseId),
 			demo: demo,
 			sharedState: sharedState,
-			showMenu: true
+			showMenu: true,
+			windowWidth: 400
 		},
 		$elm$core$Platform$Cmd$batch(
 			_List_fromArray(
 				[
 					$author$project$Page$Tutorial$renderContent(courseId),
 					A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, initDemoMsg),
-					$author$project$Page$Tutorial$scrollToTop(_Utils_Tuple0)
+					$author$project$Page$Tutorial$scrollToTop(_Utils_Tuple0),
+					A2(
+					$elm$core$Task$perform,
+					function (_v2) {
+						var viewport = _v2.viewport;
+						return $author$project$Page$Tutorial$GetWindowWidth(viewport.width);
+					},
+					$elm$browser$Browser$Dom$getViewport)
 				])));
 };
 var $elm$url$Url$Parser$Parser = function (a) {
@@ -7730,14 +7742,344 @@ var $elm$json$Json$Decode$null = _Json_decodeNull;
 var $elm$json$Json$Decode$oneOf = _Json_oneOf;
 var $elm$json$Json$Decode$string = _Json_decodeString;
 var $author$project$Main$SaveUsername = {$: 'SaveUsername'};
+var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $author$project$Main$getUsername = _Platform_incomingPort(
 	'getUsername',
 	$elm$json$Json$Decode$null(_Utils_Tuple0));
-var $author$project$Main$subscriptions = function (_v0) {
-	return $author$project$Main$getUsername(
-		function (_v1) {
-			return $author$project$Main$SaveUsername;
-		});
+var $elm$core$Platform$Sub$map = _Platform_map;
+var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$Page$About$subscriptions = function (_v0) {
+	return $elm$core$Platform$Sub$none;
+};
+var $author$project$Page$Home$subscriptions = function (_v0) {
+	return $elm$core$Platform$Sub$none;
+};
+var $elm$browser$Browser$Events$Window = {$: 'Window'};
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$int = _Json_decodeInt;
+var $elm$browser$Browser$Events$MySub = F3(
+	function (a, b, c) {
+		return {$: 'MySub', a: a, b: b, c: c};
+	});
+var $elm$browser$Browser$Events$State = F2(
+	function (subs, pids) {
+		return {pids: pids, subs: subs};
+	});
+var $elm$browser$Browser$Events$init = $elm$core$Task$succeed(
+	A2($elm$browser$Browser$Events$State, _List_Nil, $elm$core$Dict$empty));
+var $elm$browser$Browser$Events$nodeToKey = function (node) {
+	if (node.$ === 'Document') {
+		return 'd_';
+	} else {
+		return 'w_';
+	}
+};
+var $elm$browser$Browser$Events$addKey = function (sub) {
+	var node = sub.a;
+	var name = sub.b;
+	return _Utils_Tuple2(
+		_Utils_ap(
+			$elm$browser$Browser$Events$nodeToKey(node),
+			name),
+		sub);
+};
+var $elm$core$Dict$fromList = function (assocs) {
+	return A3(
+		$elm$core$List$foldl,
+		F2(
+			function (_v0, dict) {
+				var key = _v0.a;
+				var value = _v0.b;
+				return A3($elm$core$Dict$insert, key, value, dict);
+			}),
+		$elm$core$Dict$empty,
+		assocs);
+};
+var $elm$core$Dict$foldl = F3(
+	function (func, acc, dict) {
+		foldl:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return acc;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var $temp$func = func,
+					$temp$acc = A3(
+					func,
+					key,
+					value,
+					A3($elm$core$Dict$foldl, func, acc, left)),
+					$temp$dict = right;
+				func = $temp$func;
+				acc = $temp$acc;
+				dict = $temp$dict;
+				continue foldl;
+			}
+		}
+	});
+var $elm$core$Dict$merge = F6(
+	function (leftStep, bothStep, rightStep, leftDict, rightDict, initialResult) {
+		var stepState = F3(
+			function (rKey, rValue, _v0) {
+				stepState:
+				while (true) {
+					var list = _v0.a;
+					var result = _v0.b;
+					if (!list.b) {
+						return _Utils_Tuple2(
+							list,
+							A3(rightStep, rKey, rValue, result));
+					} else {
+						var _v2 = list.a;
+						var lKey = _v2.a;
+						var lValue = _v2.b;
+						var rest = list.b;
+						if (_Utils_cmp(lKey, rKey) < 0) {
+							var $temp$rKey = rKey,
+								$temp$rValue = rValue,
+								$temp$_v0 = _Utils_Tuple2(
+								rest,
+								A3(leftStep, lKey, lValue, result));
+							rKey = $temp$rKey;
+							rValue = $temp$rValue;
+							_v0 = $temp$_v0;
+							continue stepState;
+						} else {
+							if (_Utils_cmp(lKey, rKey) > 0) {
+								return _Utils_Tuple2(
+									list,
+									A3(rightStep, rKey, rValue, result));
+							} else {
+								return _Utils_Tuple2(
+									rest,
+									A4(bothStep, lKey, lValue, rValue, result));
+							}
+						}
+					}
+				}
+			});
+		var _v3 = A3(
+			$elm$core$Dict$foldl,
+			stepState,
+			_Utils_Tuple2(
+				$elm$core$Dict$toList(leftDict),
+				initialResult),
+			rightDict);
+		var leftovers = _v3.a;
+		var intermediateResult = _v3.b;
+		return A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v4, result) {
+					var k = _v4.a;
+					var v = _v4.b;
+					return A3(leftStep, k, v, result);
+				}),
+			intermediateResult,
+			leftovers);
+	});
+var $elm$browser$Browser$Events$Event = F2(
+	function (key, event) {
+		return {event: event, key: key};
+	});
+var $elm$browser$Browser$Events$spawn = F3(
+	function (router, key, _v0) {
+		var node = _v0.a;
+		var name = _v0.b;
+		var actualNode = function () {
+			if (node.$ === 'Document') {
+				return _Browser_doc;
+			} else {
+				return _Browser_window;
+			}
+		}();
+		return A2(
+			$elm$core$Task$map,
+			function (value) {
+				return _Utils_Tuple2(key, value);
+			},
+			A3(
+				_Browser_on,
+				actualNode,
+				name,
+				function (event) {
+					return A2(
+						$elm$core$Platform$sendToSelf,
+						router,
+						A2($elm$browser$Browser$Events$Event, key, event));
+				}));
+	});
+var $elm$core$Dict$union = F2(
+	function (t1, t2) {
+		return A3($elm$core$Dict$foldl, $elm$core$Dict$insert, t2, t1);
+	});
+var $elm$browser$Browser$Events$onEffects = F3(
+	function (router, subs, state) {
+		var stepRight = F3(
+			function (key, sub, _v6) {
+				var deads = _v6.a;
+				var lives = _v6.b;
+				var news = _v6.c;
+				return _Utils_Tuple3(
+					deads,
+					lives,
+					A2(
+						$elm$core$List$cons,
+						A3($elm$browser$Browser$Events$spawn, router, key, sub),
+						news));
+			});
+		var stepLeft = F3(
+			function (_v4, pid, _v5) {
+				var deads = _v5.a;
+				var lives = _v5.b;
+				var news = _v5.c;
+				return _Utils_Tuple3(
+					A2($elm$core$List$cons, pid, deads),
+					lives,
+					news);
+			});
+		var stepBoth = F4(
+			function (key, pid, _v2, _v3) {
+				var deads = _v3.a;
+				var lives = _v3.b;
+				var news = _v3.c;
+				return _Utils_Tuple3(
+					deads,
+					A3($elm$core$Dict$insert, key, pid, lives),
+					news);
+			});
+		var newSubs = A2($elm$core$List$map, $elm$browser$Browser$Events$addKey, subs);
+		var _v0 = A6(
+			$elm$core$Dict$merge,
+			stepLeft,
+			stepBoth,
+			stepRight,
+			state.pids,
+			$elm$core$Dict$fromList(newSubs),
+			_Utils_Tuple3(_List_Nil, $elm$core$Dict$empty, _List_Nil));
+		var deadPids = _v0.a;
+		var livePids = _v0.b;
+		var makeNewPids = _v0.c;
+		return A2(
+			$elm$core$Task$andThen,
+			function (pids) {
+				return $elm$core$Task$succeed(
+					A2(
+						$elm$browser$Browser$Events$State,
+						newSubs,
+						A2(
+							$elm$core$Dict$union,
+							livePids,
+							$elm$core$Dict$fromList(pids))));
+			},
+			A2(
+				$elm$core$Task$andThen,
+				function (_v1) {
+					return $elm$core$Task$sequence(makeNewPids);
+				},
+				$elm$core$Task$sequence(
+					A2($elm$core$List$map, $elm$core$Process$kill, deadPids))));
+	});
+var $elm$browser$Browser$Events$onSelfMsg = F3(
+	function (router, _v0, state) {
+		var key = _v0.key;
+		var event = _v0.event;
+		var toMessage = function (_v2) {
+			var subKey = _v2.a;
+			var _v3 = _v2.b;
+			var node = _v3.a;
+			var name = _v3.b;
+			var decoder = _v3.c;
+			return _Utils_eq(subKey, key) ? A2(_Browser_decodeEvent, decoder, event) : $elm$core$Maybe$Nothing;
+		};
+		var messages = A2($elm$core$List$filterMap, toMessage, state.subs);
+		return A2(
+			$elm$core$Task$andThen,
+			function (_v1) {
+				return $elm$core$Task$succeed(state);
+			},
+			$elm$core$Task$sequence(
+				A2(
+					$elm$core$List$map,
+					$elm$core$Platform$sendToApp(router),
+					messages)));
+	});
+var $elm$browser$Browser$Events$subMap = F2(
+	function (func, _v0) {
+		var node = _v0.a;
+		var name = _v0.b;
+		var decoder = _v0.c;
+		return A3(
+			$elm$browser$Browser$Events$MySub,
+			node,
+			name,
+			A2($elm$json$Json$Decode$map, func, decoder));
+	});
+_Platform_effectManagers['Browser.Events'] = _Platform_createManager($elm$browser$Browser$Events$init, $elm$browser$Browser$Events$onEffects, $elm$browser$Browser$Events$onSelfMsg, 0, $elm$browser$Browser$Events$subMap);
+var $elm$browser$Browser$Events$subscription = _Platform_leaf('Browser.Events');
+var $elm$browser$Browser$Events$on = F3(
+	function (node, name, decoder) {
+		return $elm$browser$Browser$Events$subscription(
+			A3($elm$browser$Browser$Events$MySub, node, name, decoder));
+	});
+var $elm$browser$Browser$Events$onResize = function (func) {
+	return A3(
+		$elm$browser$Browser$Events$on,
+		$elm$browser$Browser$Events$Window,
+		'resize',
+		A2(
+			$elm$json$Json$Decode$field,
+			'target',
+			A3(
+				$elm$json$Json$Decode$map2,
+				func,
+				A2($elm$json$Json$Decode$field, 'innerWidth', $elm$json$Json$Decode$int),
+				A2($elm$json$Json$Decode$field, 'innerHeight', $elm$json$Json$Decode$int))));
+};
+var $author$project$Page$Tutorial$subscriptions = function (_v0) {
+	return $elm$browser$Browser$Events$onResize(
+		F2(
+			function (w, _v1) {
+				return $author$project$Page$Tutorial$GetWindowWidth(w);
+			}));
+};
+var $author$project$Main$subscriptions = function (model) {
+	return $elm$core$Platform$Sub$batch(
+		_List_fromArray(
+			[
+				$author$project$Main$getUsername(
+				function (_v0) {
+					return $author$project$Main$SaveUsername;
+				}),
+				function () {
+				var _v1 = model.page;
+				switch (_v1.$) {
+					case 'Tutorial':
+						var page = _v1.a;
+						return A2(
+							$elm$core$Platform$Sub$map,
+							$author$project$Main$TutorialMsg,
+							$author$project$Page$Tutorial$subscriptions(page));
+					case 'Home':
+						var page = _v1.a;
+						return A2(
+							$elm$core$Platform$Sub$map,
+							$author$project$Main$HomeMsg,
+							$author$project$Page$Home$subscriptions(page));
+					case 'About':
+						var page = _v1.a;
+						return A2(
+							$elm$core$Platform$Sub$map,
+							$author$project$Main$HomeMsg,
+							$author$project$Page$About$subscriptions(page));
+					default:
+						return $elm$core$Platform$Sub$none;
+				}
+			}()
+			]));
 };
 var $elm$browser$Browser$Navigation$load = _Browser_load;
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
@@ -7818,7 +8160,6 @@ var $author$project$Page$Home$LoggedIn = function (a) {
 	return {$: 'LoggedIn', a: a};
 };
 var $elm$json$Json$Decode$andThen = _Json_andThen;
-var $elm$json$Json$Decode$field = _Json_decodeField;
 var $elm$json$Json$Decode$maybe = function (decoder) {
 	return $elm$json$Json$Decode$oneOf(
 		_List_fromArray(
@@ -8069,6 +8410,7 @@ var $author$project$Page$Home$update = F3(
 		}
 	});
 var $author$project$Page$Tutorial$elmToJs = _Platform_outgoingPort('elmToJs', $elm$core$Basics$identity);
+var $elm$core$Basics$ge = _Utils_ge;
 var $gicentre$elm_vegalite$VegaLite$combineSpecs = function (specs) {
 	return $elm$json$Json$Encode$object(specs);
 };
@@ -11224,29 +11566,37 @@ var $author$project$Demo$LogisticRegression$update = F2(
 	});
 var $author$project$Page$Tutorial$update = F2(
 	function (msg, model) {
-		if (msg.$ === 'GetContentFromName') {
-			var name = msg.a;
-			var index = $author$project$Page$Tutorial$getContentIndex(name);
-			return _Utils_Tuple2(
-				_Utils_update(
-					model,
-					{contentIndex: index}),
-				$author$project$Page$Tutorial$renderContent(name));
-		} else {
-			var demoMsg = msg.a;
-			var _v1 = A2($author$project$Demo$LogisticRegression$update, demoMsg, model.demo);
-			var newDemo = _v1.a;
-			var newDemoMsg = _v1.b;
-			return _Utils_Tuple2(
-				_Utils_update(
-					model,
-					{demo: newDemo}),
-				$elm$core$Platform$Cmd$batch(
-					_List_fromArray(
-						[
-							A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, newDemoMsg),
-							$author$project$Page$Tutorial$elmToJs(newDemo.demoSpecs)
-						])));
+		switch (msg.$) {
+			case 'GetContentFromName':
+				var name = msg.a;
+				var index = $author$project$Page$Tutorial$getContentIndex(name);
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{contentIndex: index}),
+					$author$project$Page$Tutorial$renderContent(name));
+			case 'DemoMsg':
+				var demoMsg = msg.a;
+				var _v1 = A2($author$project$Demo$LogisticRegression$update, demoMsg, model.demo);
+				var newDemo = _v1.a;
+				var newDemoMsg = _v1.b;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{demo: newDemo}),
+					$elm$core$Platform$Cmd$batch(
+						_List_fromArray(
+							[
+								A2($elm$core$Platform$Cmd$map, $author$project$Page$Tutorial$DemoMsg, newDemoMsg),
+								$author$project$Page$Tutorial$elmToJs(newDemo.demoSpecs)
+							])));
+			default:
+				var width = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{showMenu: width >= 1000, windowWidth: width}),
+					$elm$core$Platform$Cmd$none);
 		}
 	});
 var $author$project$Main$update = F2(
@@ -15779,7 +16129,6 @@ var $mdgriffith$elm_ui$Internal$Model$renderWidth = function (w) {
 	}
 };
 var $mdgriffith$elm_ui$Internal$Flag$borderWidth = $mdgriffith$elm_ui$Internal$Flag$flag(27);
-var $elm$core$Basics$ge = _Utils_ge;
 var $mdgriffith$elm_ui$Internal$Model$skippable = F2(
 	function (flag, style) {
 		if (_Utils_eq(flag, $mdgriffith$elm_ui$Internal$Flag$borderWidth)) {
@@ -19678,16 +20027,8 @@ var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
 		$mdgriffith$elm_ui$Element$column,
 		_List_fromArray(
 			[
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'width', '300px')),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'height', '100vh')),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'position', 'fixed')),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				$elm$html$Html$Attributes$id('tutorial-menu')),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'z-index', '9999')),
+				$mdgriffith$elm_ui$Element$width(
+				$mdgriffith$elm_ui$Element$px(300)),
 				$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
 				$mdgriffith$elm_ui$Element$spacing(30),
 				$mdgriffith$elm_ui$Element$padding(20),
@@ -19753,7 +20094,7 @@ var $author$project$Page$Tutorial$viewTutorialMenu = function (model) {
 								url: courseId
 							});
 					}),
-				A3($elm$core$List$map2, $elm$core$Tuple$pair, $author$project$Constants$courseIds, $author$project$Constants$courseNames)))) : $mdgriffith$elm_ui$Element$none;
+				A3($elm$core$List$map2, $elm$core$Tuple$pair, $author$project$Constants$courseIds, $author$project$Constants$courseNames)))) : A2($mdgriffith$elm_ui$Element$el, _List_Nil, $mdgriffith$elm_ui$Element$none);
 };
 var $mdgriffith$elm_ui$Internal$Model$Below = {$: 'Below'};
 var $mdgriffith$elm_ui$Element$below = function (element) {
@@ -19845,13 +20186,7 @@ var $author$project$Page$Tutorial$viewTutorialText = function (model) {
 					$mdgriffith$elm_ui$Element$minimum,
 					360,
 					$mdgriffith$elm_ui$Element$fillPortion(5))),
-				A2($mdgriffith$elm_ui$Element$paddingXY, 20, 0),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'max-width', '70vw')),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'margin', 'auto')),
-				$mdgriffith$elm_ui$Element$htmlAttribute(
-				A2($elm$html$Html$Attributes$style, 'margin-top', '20px'))
+				A2($mdgriffith$elm_ui$Element$paddingXY, 20, 0)
 			]),
 		_List_fromArray(
 			[
@@ -19865,8 +20200,6 @@ var $author$project$Page$Tutorial$viewTutorialText = function (model) {
 							_List_fromArray(
 								[
 									$mdgriffith$elm_ui$Element$Font$color($author$project$Style$color.yellow),
-									$mdgriffith$elm_ui$Element$htmlAttribute(
-									A2($elm$html$Html$Attributes$style, 'right', '-10vw')),
 									$mdgriffith$elm_ui$Element$below(
 									A2(
 										$mdgriffith$elm_ui$Element$el,
@@ -19887,7 +20220,8 @@ var $author$project$Page$Tutorial$viewTutorialText = function (model) {
 											4.2,
 											A2($feathericons$elm_feather$FeatherIcons$withSize, 80, $feathericons$elm_feather$FeatherIcons$playCircle)))),
 								url: '/jhub/user/' + (model.sharedState.username + ('/notebooks/Courses/' + (contentId + '.ipynb')))
-							}) : $mdgriffith$elm_ui$Element$none)
+							}) : $mdgriffith$elm_ui$Element$none),
+						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
 					]),
 				$mdgriffith$elm_ui$Element$html(
 					A2(

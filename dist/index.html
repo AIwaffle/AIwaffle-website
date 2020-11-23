@@ -45,11 +45,6 @@
         padding-right: 0.8em;
         margin: auto;
       }
-      @media (min-width: 700px) {
-        .content {
-          max-width: 50vw;
-        }
-      }
       @media (min-width: 860px) {
         .content-scroll::-webkit-scrollbar {
           width: 15px;
@@ -67,19 +62,6 @@
           background-color: var(--thumbBG) ;
           border-radius: 6px;
           border: 3px solid var(--scrollbarBG);
-        }
-      }
-      @media (max-width: 500px) {
-        #tutorial-menu {
-          display: none;
-        }
-      }
-      @media (min-width: 501px) {
-        .content {
-          margin-left: 300px; 
-        }
-        .discussion {
-          margin-left: 150px;
         }
       }
       /* style github cards */
@@ -117,7 +99,7 @@
           function(contentId) {
             const contentNode = document.getElementsByClassName("content")[0];
             if (!md_content_ids.includes(contentId)) {
-              contentNode.style.width = "100vw";
+              contentNode.style.width = "100%";
               contentNode.style.height = "80vh";
               contentNode.innerHTML = `\<iframe src="https://nbviewer.jupyter.org/github/AIwaffle/AIwaffle/blob/master/Courses/${contentId}.ipynb" style="width: 100%; height: 100%"\>\</iframe\>`;
             } else {

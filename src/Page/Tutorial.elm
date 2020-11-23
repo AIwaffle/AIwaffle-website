@@ -1,8 +1,10 @@
 port module Page.Tutorial exposing (Model, Msg, getContentId, getContentName, init, subscriptions, update, view)
 
 import Browser
+import Browser.Dom
+import Browser.Events
 import Color
-import Constants exposing (courseDemos, courseIds, courseNames, discussionIds, forumRoot)
+import Constants exposing (courseDemos, courseIds, courseNames, discussionIds, forumRoot, markdownCourseIds)
 import Demo.LogisticRegression as Demo
 import Element as E
 import Element.Background as Background
@@ -18,8 +20,8 @@ import List
 import List.Extra
 import SharedState exposing (SharedState)
 import Style
+import Task
 import VegaLite as Vega
-import Constants exposing (markdownCourseIds)
 
 
 port renderContent : String -> Cmd msg
@@ -36,6 +38,7 @@ type alias Model =
     , demo : Demo.Model
     , showMenu : Bool
     , sharedState : SharedState
+    , windowWidth : Float
     }
 
 
@@ -58,11 +61,14 @@ init ( sharedState, courseId ) =
             True
       , sharedState =
             sharedState
+      , windowWidth =
+            400
       }
     , Cmd.batch
         [ renderContent courseId
         , Cmd.map DemoMsg initDemoMsg
         , scrollToTop ()
+        , Task.perform (\{viewport} -> GetWindowWidth viewport.width) Browser.Dom.getViewport
         ]
     )
 
@@ -70,6 +76,7 @@ init ( sharedState, courseId ) =
 type Msg
     = GetContentFromName String
     | DemoMsg Demo.Msg
+    | GetWindowWidth Float
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -99,6 +106,16 @@ update msg model =
                 [ Cmd.map DemoMsg newDemoMsg
                 , elmToJs newDemo.demoSpecs
                 ]
+            )
+
+        GetWindowWidth width ->
+            ( { model
+                | windowWidth =
+                    width
+                , showMenu =
+                    width >= 1000
+              }
+            , Cmd.none
             )
 
 
@@ -153,11 +170,7 @@ viewTutorialMenu : Model -> E.Element Msg
 viewTutorialMenu model =
     if model.showMenu then
         E.column
-            [ E.htmlAttribute <| Html.Attributes.style "width" "300px"
-            , E.htmlAttribute <| Html.Attributes.style "height" "100vh"
-            , E.htmlAttribute <| Html.Attributes.style "position" "fixed"
-            , E.htmlAttribute <| Html.Attributes.id "tutorial-menu"
-            , E.htmlAttribute <| Html.Attributes.style "z-index" "9999"
+            [ E.width <| E.px 300
             , E.height <| E.fill
             , E.spacing 30
             , E.padding 20
@@ -204,7 +217,8 @@ viewTutorialMenu model =
             )
 
     else
-        E.none
+        -- need a empty placeholder element instead of E.none
+        E.el [] E.none
 
 
 viewTutorialDemo : Model -> E.Element Msg
@@ -237,7 +251,7 @@ viewTutorialDemo model =
 viewTutorialText : Model -> E.Element Msg
 viewTutorialText model =
     let
-        contentId = 
+        contentId =
             getContentId model.contentIndex
     in
     E.column
@@ -246,16 +260,12 @@ viewTutorialText model =
                 |> E.minimum 360
             )
         , E.paddingXY 20 0
-        , E.htmlAttribute (Html.Attributes.style "max-width" "70vw")
-        , E.htmlAttribute (Html.Attributes.style "margin" "auto")
-        , E.htmlAttribute (Html.Attributes.style "margin-top" "20px")
         ]
         [ E.el
             [ E.inFront <|
                 if model.sharedState.loggedIn && not (List.member contentId markdownCourseIds) then
                     E.newTabLink
                         [ Font.color Style.color.yellow
-                        , E.htmlAttribute <| Html.Attributes.style "right" "-10vw"
                         , E.below <|
                             E.el
                                 [ E.centerX
@@ -265,14 +275,18 @@ viewTutorialText model =
                         ]
                         { url =
                             "/jhub/user/" ++ model.sharedState.username ++ "/notebooks/Courses/" ++ contentId ++ ".ipynb"
-                        , label = E.html (FeatherIcons.playCircle
-                            |> FeatherIcons.withSize 80
-                            |> FeatherIcons.withStrokeWidth 4.2
-                            |> FeatherIcons.toHtml []
-                            )
+                        , label =
+                            E.html
+                                (FeatherIcons.playCircle
+                                    |> FeatherIcons.withSize 80
+                                    |> FeatherIcons.withStrokeWidth 4.2
+                                    |> FeatherIcons.toHtml []
+                                )
                         }
+
                 else
                     E.none
+            , E.width E.fill
             ]
           <|
             E.html <|
@@ -333,7 +347,7 @@ viewNextButton model =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    Browser.Events.onResize (\w _ -> GetWindowWidth <| toFloat w)
 
 
 centerAll : List (E.Element msg) -> List (E.Element msg)

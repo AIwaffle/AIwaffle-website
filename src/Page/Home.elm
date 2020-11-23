@@ -1,4 +1,4 @@
-port module Page.Home exposing (Model, Msg, init, update, view)
+port module Page.Home exposing (Model, Msg, init, update, view, subscriptions)
 
 import Browser
 import Constants exposing (courseIds, courseNames, markdownCourseIds, serverRoot)
