@@ -508,10 +508,6 @@ loggedIn result model =
             )
 
         Err err ->
-            let
-                _ =
-                    Debug.log "login error" err
-            in
             ( { model
                 | popUp =
                     LogInErrorPopUp "AIwaffle server or your network connection has some problem. Please try logging in again."
@@ -546,10 +542,6 @@ signedUp sharedState result model =
                 )
 
         Err err ->
-            let
-                _ =
-                    Debug.log "sign up error" err
-            in
             ( { model
                 | popUp =
                     SignUpErrorPopUp "AIwaffle server or your network connection has some problem. Please try signing up again."

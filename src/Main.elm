@@ -55,7 +55,6 @@ type Page
 init : Maybe String -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init maybeUsername url key =
     let
-        _ = Debug.log "AL -> initialSharedState" <| initialSharedState
         initialSharedState =
             case maybeUsername of
                 Just username ->
@@ -100,7 +99,6 @@ update message model =
                     let
                         urlString =
                             Url.toString url
-                        _ = Debug.log "AL -> urlString" <| urlString
                     in
                     if String.contains "/tutorial/" urlString then
                         ( model, Nav.load urlString )
