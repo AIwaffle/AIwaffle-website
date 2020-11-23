@@ -100,10 +100,12 @@
             const contentNode = document.getElementsByClassName("content")[0];
             if (!md_content_ids.includes(contentId)) {
               contentNode.style.width = "100%";
+              contentNode.style.maxWidth = "100%";
               contentNode.style.height = "80vh";
               contentNode.innerHTML = `\<iframe src="https://nbviewer.jupyter.org/github/AIwaffle/AIwaffle/blob/master/Courses/${contentId}.ipynb" style="width: 100%; height: 100%"\>\</iframe\>`;
             } else {
               contentNode.style.width = "100%";
+              contentNode.style.maxWidth = "700px";
               contentNode.style.height = "100%";
               fetch('/dist/contents/' + contentId + '.md')
               .then(response => response.text())
